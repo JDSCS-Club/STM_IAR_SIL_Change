@@ -1,0 +1,2168 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:56
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\Si446x\si446x_api_lib.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\radio\Si446x\si446x_api_lib.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\Si446x\si446x_api_lib.c
+#        -D USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\radio\Si446x
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\radio\Si446x
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\radio\Si446x\si446x_api_lib.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\radio\Si446x\si446x_api_lib.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\radio\Si446x\si446x_api_lib.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\Si446x\si446x_api_lib.c
+      1          /*!
+      2           * File:
+      3           *  si446x_api_lib.c
+      4           *
+      5           * Description:
+      6           *  This file contains the Si446x API library.
+      7           *
+      8           * Silicon Laboratories Confidential
+      9           * Copyright 2011 Silicon Laboratories, Inc.
+     10           */
+     11          
+     12          
+     13          #include <stdarg.h>
+     14          
+     15          #include "main.h"					//	define SILABS_RADIO_SI446X / RADIO_DRIVER_FULL_SUPPORT
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     16          
+     17          #include "radio_comm.h"				//	radio_comm_ClearCTS()
+     18          #include "si446x_api_lib.h"			//	SI446X_STAT
+     19          
+
+   \                                 In section .bss, align 4
+     20          SEGMENT_VARIABLE( Si446xCmd, union si446x_cmd_reply_union, SEG_XDATA );
+   \                     Si446xCmd:
+   \        0x0                      DS8 20
+
+   \                                 In section .bss, align 4
+     21          SEGMENT_VARIABLE( Pro2Cmd[16], U8, SEG_XDATA );
+   \                     Pro2Cmd:
+   \        0x0                      DS8 16
+     22          
+     23          #ifdef SI446X_PATCH_CMDS
+     24          SEGMENT_VARIABLE( Si446xPatchCommands[][8] = { SI446X_PATCH_CMDS }, U8, SEG_CODE);
+     25          #endif
+     26          
+     27          
+     28          /*!
+     29           * This functions is used to reset the si446x radio by applying shutdown and
+     30           * releasing it.  After this function @ref si446x_boot should be called.  You
+     31           * can check if POR has completed by waiting 4 ms or by polling GPIO 0, 2, or 3.
+     32           * When these GPIOs are high, it is safe to call @ref si446x_boot.
+     33           */
+
+   \                                 In section .text, align 2, keep-with-next
+     34          void si446x_reset(void)
+     35          {
+   \                     si446x_reset: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+     36              U8 loopCount;
+     37          
+     38              /* Put radio in shutdown, wait then release */
+     39              radio_hal_AssertShutdown();
+                     ^
+Warning[Pe223]: function "radio_hal_AssertShutdown" declared implicitly
+   \        0x2   0x.... 0x....      BL       radio_hal_AssertShutdown
+     40              //! @todo this needs to be a better delay function.
+     41          //    for (loopCount = 255; loopCount != 0; loopCount--);
+     42              HAL_Delay(20);
+   \        0x6   0x2014             MOVS     R0,#+20
+   \        0x8   0x.... 0x....      BL       HAL_Delay
+     43              radio_hal_DeassertShutdown();
+                     ^
+Warning[Pe223]: function "radio_hal_DeassertShutdown" declared implicitly
+
+      U8 loopCount;
+         ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\Si446x\si446x_api_lib.c",36  Warning[Pe177]: 
+          variable "loopCount" was declared but never referenced
+   \        0xC   0x.... 0x....      BL       radio_hal_DeassertShutdown
+     44          //    for (loopCount = 255; loopCount != 0; loopCount--);
+     45              HAL_Delay(5);
+   \       0x10   0x2005             MOVS     R0,#+5
+   \       0x12   0x.... 0x....      BL       HAL_Delay
+     46              radio_comm_ClearCTS();
+   \       0x16   0x.... 0x....      BL       radio_comm_ClearCTS
+     47          }
+   \       0x1A   0xBD01             POP      {R0,PC}
+     48          
+     49          /*!
+     50           * This function is used to initialize after power-up the radio chip.
+     51           * Before this function @si446x_reset should be called.
+     52           */
+
+   \                                 In section .text, align 2, keep-with-next
+     53          void si446x_power_up(U8 BOOT_OPTIONS, U8 XTAL_OPTIONS, U32 XO_FREQ)
+     54          {
+   \                     si446x_power_up: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+     55              Pro2Cmd[0] = SI446X_CMD_ID_POWER_UP;
+   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable40
+   \        0xC   0x2002             MOVS     R0,#+2
+   \        0xE   0x7008             STRB     R0,[R1, #+0]
+     56              Pro2Cmd[1] = BOOT_OPTIONS;
+   \       0x10   0x704C             STRB     R4,[R1, #+1]
+     57              Pro2Cmd[2] = XTAL_OPTIONS;
+   \       0x12   0x708D             STRB     R5,[R1, #+2]
+     58              Pro2Cmd[3] = (U8)(XO_FREQ >> 24);
+   \       0x14   0x0030             MOVS     R0,R6
+   \       0x16   0x0E00             LSRS     R0,R0,#+24
+   \       0x18   0x70C8             STRB     R0,[R1, #+3]
+     59              Pro2Cmd[4] = (U8)(XO_FREQ >> 16);
+   \       0x1A   0x0030             MOVS     R0,R6
+   \       0x1C   0x0C00             LSRS     R0,R0,#+16
+   \       0x1E   0x7108             STRB     R0,[R1, #+4]
+     60              Pro2Cmd[5] = (U8)(XO_FREQ >> 8);
+   \       0x20   0x0030             MOVS     R0,R6
+   \       0x22   0x0A00             LSRS     R0,R0,#+8
+   \       0x24   0x7148             STRB     R0,[R1, #+5]
+     61              Pro2Cmd[6] = (U8)(XO_FREQ);
+   \       0x26   0x718E             STRB     R6,[R1, #+6]
+     62          
+     63              radio_comm_SendCmd( SI446X_CMD_ARG_COUNT_POWER_UP, Pro2Cmd );
+   \       0x28   0x2007             MOVS     R0,#+7
+   \       0x2A   0x.... 0x....      BL       radio_comm_SendCmd
+     64          }
+   \       0x2E   0xBD70             POP      {R4-R6,PC}
+     65          
+     66          /*!
+     67           * This function is used to load all properties and commands with a list of NULL terminated commands.
+     68           * Before this function @si446x_reset should be called.
+     69           */
+
+   \                                 In section .text, align 2, keep-with-next
+     70          U8 si446x_configuration_init(const U8* pSetPropCmd)
+     71          {
+   \                     si446x_configuration_init: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0005             MOVS     R5,R0
+     72            SEGMENT_VARIABLE(col, U8, SEG_DATA);
+     73            SEGMENT_VARIABLE(numOfBytes, U8, SEG_DATA);
+     74          
+     75            /* While cycle as far as the pointer points to a command */
+     76            while (*pSetPropCmd != 0x00)
+   \                     ??si446x_configuration_init_0: (+1)
+   \        0x4   0x7828             LDRB     R0,[R5, #+0]
+   \        0x6   0x2800             CMP      R0,#+0
+   \        0x8   0xD035             BEQ.N    ??si446x_configuration_init_1
+     77            {
+     78              /* Commands structure in the array:
+     79               * --------------------------------
+     80               * LEN | <LEN length of data>
+     81               */
+     82          
+     83              numOfBytes = *pSetPropCmd++;
+   \        0xA   0x7828             LDRB     R0,[R5, #+0]
+   \        0xC   0x0006             MOVS     R6,R0
+   \        0xE   0x1C6D             ADDS     R5,R5,#+1
+     84          
+     85              if (numOfBytes > 16u)
+   \       0x10   0x0030             MOVS     R0,R6
+   \       0x12   0xB2C0             UXTB     R0,R0
+   \       0x14   0x2811             CMP      R0,#+17
+   \       0x16   0xD301             BCC.N    ??si446x_configuration_init_2
+     86              {
+     87                /* Number of command bytes exceeds maximal allowable length */
+     88                return SI446X_COMMAND_ERROR;
+   \       0x18   0x2004             MOVS     R0,#+4
+   \       0x1A   0xE02D             B.N      ??si446x_configuration_init_3
+     89              }
+     90          
+     91              for (col = 0u; col < numOfBytes; col++)
+   \                     ??si446x_configuration_init_2: (+1)
+   \       0x1C   0x2000             MOVS     R0,#+0
+   \       0x1E   0x0004             MOVS     R4,R0
+   \                     ??si446x_configuration_init_4: (+1)
+   \       0x20   0x0020             MOVS     R0,R4
+   \       0x22   0x0031             MOVS     R1,R6
+   \       0x24   0xB2C0             UXTB     R0,R0
+   \       0x26   0xB2C9             UXTB     R1,R1
+   \       0x28   0x4288             CMP      R0,R1
+   \       0x2A   0xD208             BCS.N    ??si446x_configuration_init_5
+     92              {
+     93                Pro2Cmd[col] = *pSetPropCmd;
+   \       0x2C   0x7828             LDRB     R0,[R5, #+0]
+   \       0x2E   0x.... 0x....      LDR.W    R1,??DataTable40
+   \       0x32   0x0022             MOVS     R2,R4
+   \       0x34   0xB2D2             UXTB     R2,R2
+   \       0x36   0x5488             STRB     R0,[R1, R2]
+     94                pSetPropCmd++;
+   \       0x38   0x1C6D             ADDS     R5,R5,#+1
+     95              }
+   \       0x3A   0x1C64             ADDS     R4,R4,#+1
+   \       0x3C   0xE7F0             B.N      ??si446x_configuration_init_4
+     96          
+     97              if (radio_comm_SendCmdGetResp(numOfBytes, Pro2Cmd, 0, 0) != 0xFF)
+   \                     ??si446x_configuration_init_5: (+1)
+   \       0x3E   0x2300             MOVS     R3,#+0
+   \       0x40   0x2200             MOVS     R2,#+0
+   \       0x42   0x.... 0x....      LDR.W    R1,??DataTable40
+   \       0x46   0x0030             MOVS     R0,R6
+   \       0x48   0xB2C0             UXTB     R0,R0
+   \       0x4A   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+   \       0x4E   0x28FF             CMP      R0,#+255
+   \       0x50   0xD001             BEQ.N    ??si446x_configuration_init_6
+     98              {
+     99                /* Timeout occured */
+    100                return SI446X_CTS_TIMEOUT;
+   \       0x52   0x2002             MOVS     R0,#+2
+   \       0x54   0xE010             B.N      ??si446x_configuration_init_3
+    101              }
+    102          
+    103              if (radio_hal_NirqLevel() == 0)
+                         ^
+Warning[Pe223]: function "radio_hal_NirqLevel" declared implicitly
+   \                     ??si446x_configuration_init_6: (+1)
+   \       0x56   0x.... 0x....      BL       radio_hal_NirqLevel
+   \       0x5A   0x2800             CMP      R0,#+0
+   \       0x5C   0xD1D2             BNE.N    ??si446x_configuration_init_0
+    104              {
+    105                /* Get and clear all interrupts.  An error has occured... */
+    106                si446x_get_int_status(0, 0, 0);
+   \       0x5E   0x2200             MOVS     R2,#+0
+   \       0x60   0x2100             MOVS     R1,#+0
+   \       0x62   0x2000             MOVS     R0,#+0
+   \       0x64   0x.... 0x....      BL       si446x_get_int_status
+    107                if (Si446xCmd.GET_INT_STATUS.CHIP_PEND & SI446X_CMD_GET_CHIP_STATUS_REP_CHIP_PEND_CMD_ERROR_PEND_MASK)
+   \       0x68   0x.... 0x....      LDR.W    R0,??DataTable40_1
+   \       0x6C   0x7980             LDRB     R0,[R0, #+6]
+   \       0x6E   0x0700             LSLS     R0,R0,#+28
+   \       0x70   0xD5C8             BPL.N    ??si446x_configuration_init_0
+    108                {
+    109                  return SI446X_COMMAND_ERROR;
+   \       0x72   0x2004             MOVS     R0,#+4
+   \       0x74   0xE000             B.N      ??si446x_configuration_init_3
+    110                }
+    111              }
+    112            }
+    113          
+    114            return SI446X_SUCCESS;
+   \                     ??si446x_configuration_init_1: (+1)
+   \       0x76   0x2000             MOVS     R0,#+0
+   \                     ??si446x_configuration_init_3: (+1)
+   \       0x78   0xBD70             POP      {R4-R6,PC}
+    115          }
+    116          
+    117          /*! This function sends the PART_INFO command to the radio and receives the answer
+    118           *  into @Si446xCmd union.
+    119           */
+
+   \                                 In section .text, align 2, keep-with-next
+    120          void si446x_part_info(void)
+    121          {
+   \                     si446x_part_info: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    122              Pro2Cmd[0] = SI446X_CMD_ID_PART_INFO;
+   \        0x2   0x.... 0x....      LDR.W    R4,??DataTable40
+   \        0x6   0x2001             MOVS     R0,#+1
+   \        0x8   0x7020             STRB     R0,[R4, #+0]
+    123          
+    124              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_PART_INFO,
+    125                                        Pro2Cmd,
+    126                                        SI446X_CMD_REPLY_COUNT_PART_INFO,
+    127                                        Pro2Cmd );
+   \        0xA   0x0023             MOVS     R3,R4
+   \        0xC   0x2208             MOVS     R2,#+8
+   \        0xE   0x0021             MOVS     R1,R4
+   \       0x10   0x2001             MOVS     R0,#+1
+   \       0x12   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    128          
+    129              Si446xCmd.PART_INFO.CHIPREV         = Pro2Cmd[0];
+   \       0x16   0x.... 0x....      LDR.W    R1,??DataTable40_1
+   \       0x1A   0x7820             LDRB     R0,[R4, #+0]
+   \       0x1C   0x7008             STRB     R0,[R1, #+0]
+    130              Si446xCmd.PART_INFO.PART            = ((U16)Pro2Cmd[1] << 8) & 0xFF00;
+   \       0x1E   0x7860             LDRB     R0,[R4, #+1]
+   \       0x20   0x0200             LSLS     R0,R0,#+8
+   \       0x22   0x6048             STR      R0,[R1, #+4]
+    131              Si446xCmd.PART_INFO.PART           |= (U16)Pro2Cmd[2] & 0x00FF;
+   \       0x24   0x684A             LDR      R2,[R1, #+4]
+   \       0x26   0x78A0             LDRB     R0,[R4, #+2]
+   \       0x28   0x4302             ORRS     R2,R0,R2
+   \       0x2A   0x604A             STR      R2,[R1, #+4]
+    132              Si446xCmd.PART_INFO.PBUILD          = Pro2Cmd[3];
+   \       0x2C   0x78E0             LDRB     R0,[R4, #+3]
+   \       0x2E   0x7208             STRB     R0,[R1, #+8]
+    133              Si446xCmd.PART_INFO.ID              = ((U16)Pro2Cmd[4] << 8) & 0xFF00;
+   \       0x30   0x7920             LDRB     R0,[R4, #+4]
+   \       0x32   0x0200             LSLS     R0,R0,#+8
+   \       0x34   0x60C8             STR      R0,[R1, #+12]
+    134              Si446xCmd.PART_INFO.ID             |= (U16)Pro2Cmd[5] & 0x00FF;
+   \       0x36   0x68CA             LDR      R2,[R1, #+12]
+   \       0x38   0x7960             LDRB     R0,[R4, #+5]
+   \       0x3A   0x4302             ORRS     R2,R0,R2
+   \       0x3C   0x60CA             STR      R2,[R1, #+12]
+    135              Si446xCmd.PART_INFO.CUSTOMER        = Pro2Cmd[6];
+   \       0x3E   0x79A0             LDRB     R0,[R4, #+6]
+   \       0x40   0x7408             STRB     R0,[R1, #+16]
+    136              Si446xCmd.PART_INFO.ROMID           = Pro2Cmd[7];
+   \       0x42   0x79E0             LDRB     R0,[R4, #+7]
+   \       0x44   0x7448             STRB     R0,[R1, #+17]
+    137          }
+   \       0x46   0xBD10             POP      {R4,PC}
+    138          
+    139          /*! Sends START_TX command to the radio.
+    140           *
+    141           * @param CHANNEL   Channel number.
+    142           * @param CONDITION Start TX condition.
+    143           * @param TX_LEN    Payload length (exclude the PH generated CRC).
+    144           */
+
+   \                                 In section .text, align 2, keep-with-next
+    145          void si446x_start_tx(U8 CHANNEL, U8 CONDITION, U16 TX_LEN)
+    146          {
+   \                     si446x_start_tx: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    147              Pro2Cmd[0] = SI446X_CMD_ID_START_TX;
+   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable40
+   \        0xC   0x2031             MOVS     R0,#+49
+   \        0xE   0x7008             STRB     R0,[R1, #+0]
+    148              Pro2Cmd[1] = CHANNEL;
+   \       0x10   0x704C             STRB     R4,[R1, #+1]
+    149              Pro2Cmd[2] = CONDITION;
+   \       0x12   0x708D             STRB     R5,[R1, #+2]
+    150              Pro2Cmd[3] = (U8)(TX_LEN >> 8);
+   \       0x14   0x0030             MOVS     R0,R6
+   \       0x16   0x0A00             LSRS     R0,R0,#+8
+   \       0x18   0x70C8             STRB     R0,[R1, #+3]
+    151              Pro2Cmd[4] = (U8)(TX_LEN);
+   \       0x1A   0x710E             STRB     R6,[R1, #+4]
+    152              Pro2Cmd[5] = 0x00;
+   \       0x1C   0x2000             MOVS     R0,#+0
+   \       0x1E   0x7148             STRB     R0,[R1, #+5]
+    153          
+    154              // Don't repeat the packet, 
+    155              // ie. transmit the packet only once
+    156              Pro2Cmd[6] = 0x00;
+   \       0x20   0x2000             MOVS     R0,#+0
+   \       0x22   0x7188             STRB     R0,[R1, #+6]
+    157          
+    158              radio_comm_SendCmd( SI446X_CMD_ARG_COUNT_START_TX, Pro2Cmd );
+   \       0x24   0x2007             MOVS     R0,#+7
+   \       0x26   0x.... 0x....      BL       radio_comm_SendCmd
+    159          }
+   \       0x2A   0xBD70             POP      {R4-R6,PC}
+    160          
+    161          /*!
+    162           * Sends START_RX command to the radio.
+    163           *
+    164           * @param CHANNEL     Channel number.
+    165           * @param CONDITION   Start RX condition.
+    166           * @param RX_LEN      Payload length (exclude the PH generated CRC).
+    167           * @param NEXT_STATE1 Next state when Preamble Timeout occurs.
+    168           * @param NEXT_STATE2 Next state when a valid packet received.
+    169           * @param NEXT_STATE3 Next state when invalid packet received (e.g. CRC error).
+    170           */
+
+   \                                 In section .text, align 2, keep-with-next
+    171          void si446x_start_rx(U8 CHANNEL, U8 CONDITION, U16 RX_LEN, U8 NEXT_STATE1, U8 NEXT_STATE2, U8 NEXT_STATE3)
+    172          {
+   \                     si446x_start_rx: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0x0006             MOVS     R6,R0
+   \        0x6   0x000F             MOVS     R7,R1
+   \        0x8   0x4690             MOV      R8,R2
+   \        0xA   0x4699             MOV      R9,R3
+   \        0xC   0x9C08             LDR      R4,[SP, #+32]
+   \        0xE   0x9D09             LDR      R5,[SP, #+36]
+    173              Pro2Cmd[0] = SI446X_CMD_ID_START_RX;
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable40
+   \       0x14   0x2032             MOVS     R0,#+50
+   \       0x16   0x7008             STRB     R0,[R1, #+0]
+    174              Pro2Cmd[1] = CHANNEL;
+   \       0x18   0x704E             STRB     R6,[R1, #+1]
+    175              Pro2Cmd[2] = CONDITION;
+   \       0x1A   0x708F             STRB     R7,[R1, #+2]
+    176              Pro2Cmd[3] = (U8)(RX_LEN >> 8);
+   \       0x1C   0x4640             MOV      R0,R8
+   \       0x1E   0x0A00             LSRS     R0,R0,#+8
+   \       0x20   0x70C8             STRB     R0,[R1, #+3]
+    177              Pro2Cmd[4] = (U8)(RX_LEN);
+   \       0x22   0xF881 0x8004      STRB     R8,[R1, #+4]
+    178              Pro2Cmd[5] = NEXT_STATE1;
+   \       0x26   0xF881 0x9005      STRB     R9,[R1, #+5]
+    179              Pro2Cmd[6] = NEXT_STATE2;
+   \       0x2A   0x718C             STRB     R4,[R1, #+6]
+    180              Pro2Cmd[7] = NEXT_STATE3;
+   \       0x2C   0x71CD             STRB     R5,[R1, #+7]
+    181          
+    182              radio_comm_SendCmd( SI446X_CMD_ARG_COUNT_START_RX, Pro2Cmd );
+   \       0x2E   0x2008             MOVS     R0,#+8
+   \       0x30   0x.... 0x....      BL       radio_comm_SendCmd
+    183          }
+   \       0x34   0xE8BD 0x83F1      POP      {R0,R4-R9,PC}
+    184          
+    185          /*!
+    186           * Get the Interrupt status/pending flags form the radio and clear flags if requested.
+    187           *
+    188           * @param PH_CLR_PEND     Packet Handler pending flags clear.
+    189           * @param MODEM_CLR_PEND  Modem Status pending flags clear.
+    190           * @param CHIP_CLR_PEND   Chip State pending flags clear.
+    191           */
+
+   \                                 In section .text, align 2, keep-with-next
+    192          void si446x_get_int_status(U8 PH_CLR_PEND, U8 MODEM_CLR_PEND, U8 CHIP_CLR_PEND)
+    193          {
+   \                     si446x_get_int_status: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    194              Pro2Cmd[0] = SI446X_CMD_ID_GET_INT_STATUS;
+   \        0x8   0x.... 0x....      LDR.W    R7,??DataTable40
+   \        0xC   0x2020             MOVS     R0,#+32
+   \        0xE   0x7038             STRB     R0,[R7, #+0]
+    195              Pro2Cmd[1] = PH_CLR_PEND;
+   \       0x10   0x707C             STRB     R4,[R7, #+1]
+    196              Pro2Cmd[2] = MODEM_CLR_PEND;
+   \       0x12   0x70BD             STRB     R5,[R7, #+2]
+    197              Pro2Cmd[3] = CHIP_CLR_PEND;
+   \       0x14   0x70FE             STRB     R6,[R7, #+3]
+    198          
+    199              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_GET_INT_STATUS,
+    200                                        Pro2Cmd,
+    201                                        SI446X_CMD_REPLY_COUNT_GET_INT_STATUS,
+    202                                        Pro2Cmd );
+   \       0x16   0x003B             MOVS     R3,R7
+   \       0x18   0x2208             MOVS     R2,#+8
+   \       0x1A   0x0039             MOVS     R1,R7
+   \       0x1C   0x2004             MOVS     R0,#+4
+   \       0x1E   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    203          
+    204              Si446xCmd.GET_INT_STATUS.INT_PEND       = Pro2Cmd[0];
+   \       0x22   0x.... 0x....      LDR.W    R0,??DataTable40_1
+   \       0x26   0x7839             LDRB     R1,[R7, #+0]
+   \       0x28   0x7001             STRB     R1,[R0, #+0]
+    205              Si446xCmd.GET_INT_STATUS.INT_STATUS     = Pro2Cmd[1];
+   \       0x2A   0x7879             LDRB     R1,[R7, #+1]
+   \       0x2C   0x7041             STRB     R1,[R0, #+1]
+    206              Si446xCmd.GET_INT_STATUS.PH_PEND        = Pro2Cmd[2];
+   \       0x2E   0x78B9             LDRB     R1,[R7, #+2]
+   \       0x30   0x7081             STRB     R1,[R0, #+2]
+    207              Si446xCmd.GET_INT_STATUS.PH_STATUS      = Pro2Cmd[3];
+   \       0x32   0x78F9             LDRB     R1,[R7, #+3]
+   \       0x34   0x70C1             STRB     R1,[R0, #+3]
+    208              Si446xCmd.GET_INT_STATUS.MODEM_PEND     = Pro2Cmd[4];
+   \       0x36   0x7939             LDRB     R1,[R7, #+4]
+   \       0x38   0x7101             STRB     R1,[R0, #+4]
+    209              Si446xCmd.GET_INT_STATUS.MODEM_STATUS   = Pro2Cmd[5];
+   \       0x3A   0x7979             LDRB     R1,[R7, #+5]
+   \       0x3C   0x7141             STRB     R1,[R0, #+5]
+    210              Si446xCmd.GET_INT_STATUS.CHIP_PEND      = Pro2Cmd[6];
+   \       0x3E   0x79B9             LDRB     R1,[R7, #+6]
+   \       0x40   0x7181             STRB     R1,[R0, #+6]
+    211              Si446xCmd.GET_INT_STATUS.CHIP_STATUS    = Pro2Cmd[7];
+   \       0x42   0x79F9             LDRB     R1,[R7, #+7]
+   \       0x44   0x71C1             STRB     R1,[R0, #+7]
+    212          }
+   \       0x46   0xBDF1             POP      {R0,R4-R7,PC}
+    213          
+    214          /*!
+    215           * Send GPIO pin config command to the radio and reads the answer into
+    216           * @Si446xCmd union.
+    217           *
+    218           * @param GPIO0       GPIO0 configuration.
+    219           * @param GPIO1       GPIO1 configuration.
+    220           * @param GPIO2       GPIO2 configuration.
+    221           * @param GPIO3       GPIO3 configuration.
+    222           * @param NIRQ        NIRQ configuration.
+    223           * @param SDO         SDO configuration.
+    224           * @param GEN_CONFIG  General pin configuration.
+    225           */
+
+   \                                 In section .text, align 2, keep-with-next
+    226          void si446x_gpio_pin_cfg(U8 GPIO0, U8 GPIO1, U8 GPIO2, U8 GPIO3, U8 NIRQ, U8 SDO, U8 GEN_CONFIG)
+    227          {
+   \                     si446x_gpio_pin_cfg: (+1)
+   \        0x0   0xE92D 0x4FF8      PUSH     {R3-R11,LR}
+   \        0x4   0x0007             MOVS     R7,R0
+   \        0x6   0x4688             MOV      R8,R1
+   \        0x8   0x4691             MOV      R9,R2
+   \        0xA   0x469A             MOV      R10,R3
+   \        0xC   0x9C0A             LDR      R4,[SP, #+40]
+   \        0xE   0x9D0B             LDR      R5,[SP, #+44]
+   \       0x10   0x9E0C             LDR      R6,[SP, #+48]
+    228              Pro2Cmd[0] = SI446X_CMD_ID_GPIO_PIN_CFG;
+   \       0x12   0x.... 0x....      LDR.W    R11,??DataTable40
+   \       0x16   0x2013             MOVS     R0,#+19
+   \       0x18   0xF88B 0x0000      STRB     R0,[R11, #+0]
+    229              Pro2Cmd[1] = GPIO0;
+   \       0x1C   0xF88B 0x7001      STRB     R7,[R11, #+1]
+    230              Pro2Cmd[2] = GPIO1;
+   \       0x20   0xF88B 0x8002      STRB     R8,[R11, #+2]
+    231              Pro2Cmd[3] = GPIO2;
+   \       0x24   0xF88B 0x9003      STRB     R9,[R11, #+3]
+    232              Pro2Cmd[4] = GPIO3;
+   \       0x28   0xF88B 0xA004      STRB     R10,[R11, #+4]
+    233              Pro2Cmd[5] = NIRQ;
+   \       0x2C   0xF88B 0x4005      STRB     R4,[R11, #+5]
+    234              Pro2Cmd[6] = SDO;
+   \       0x30   0xF88B 0x5006      STRB     R5,[R11, #+6]
+    235              Pro2Cmd[7] = GEN_CONFIG;
+   \       0x34   0xF88B 0x6007      STRB     R6,[R11, #+7]
+    236          
+    237              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_GPIO_PIN_CFG,
+    238                                        Pro2Cmd,
+    239                                        SI446X_CMD_REPLY_COUNT_GPIO_PIN_CFG,
+    240                                        Pro2Cmd );
+   \       0x38   0x465B             MOV      R3,R11
+   \       0x3A   0x2207             MOVS     R2,#+7
+   \       0x3C   0x4659             MOV      R1,R11
+   \       0x3E   0x2008             MOVS     R0,#+8
+   \       0x40   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    241          
+    242              Si446xCmd.GPIO_PIN_CFG.GPIO[0]        = Pro2Cmd[0];
+   \       0x44   0x.... 0x....      LDR.W    R0,??DataTable40_1
+   \       0x48   0xF89B 0x1000      LDRB     R1,[R11, #+0]
+   \       0x4C   0x7001             STRB     R1,[R0, #+0]
+    243              Si446xCmd.GPIO_PIN_CFG.GPIO[1]        = Pro2Cmd[1];
+   \       0x4E   0xF89B 0x1001      LDRB     R1,[R11, #+1]
+   \       0x52   0x7041             STRB     R1,[R0, #+1]
+    244              Si446xCmd.GPIO_PIN_CFG.GPIO[2]        = Pro2Cmd[2];
+   \       0x54   0xF89B 0x1002      LDRB     R1,[R11, #+2]
+   \       0x58   0x7081             STRB     R1,[R0, #+2]
+    245              Si446xCmd.GPIO_PIN_CFG.GPIO[3]        = Pro2Cmd[3];
+   \       0x5A   0xF89B 0x1003      LDRB     R1,[R11, #+3]
+   \       0x5E   0x70C1             STRB     R1,[R0, #+3]
+    246              Si446xCmd.GPIO_PIN_CFG.NIRQ         = Pro2Cmd[4];
+   \       0x60   0xF89B 0x1004      LDRB     R1,[R11, #+4]
+   \       0x64   0x7101             STRB     R1,[R0, #+4]
+    247              Si446xCmd.GPIO_PIN_CFG.SDO          = Pro2Cmd[5];
+   \       0x66   0xF89B 0x1005      LDRB     R1,[R11, #+5]
+   \       0x6A   0x7141             STRB     R1,[R0, #+5]
+    248              Si446xCmd.GPIO_PIN_CFG.GEN_CONFIG   = Pro2Cmd[6];
+   \       0x6C   0xF89B 0x1006      LDRB     R1,[R11, #+6]
+   \       0x70   0x7181             STRB     R1,[R0, #+6]
+    249          }
+   \       0x72   0xE8BD 0x8FF1      POP      {R0,R4-R11,PC}
+    250          
+    251          /*!
+    252           * Send SET_PROPERTY command to the radio.
+    253           *
+    254           * @param GROUP       Property group.
+    255           * @param NUM_PROPS   Number of property to be set. The properties must be in ascending order
+    256           *                    in their sub-property aspect. Max. 12 properties can be set in one command.
+    257           * @param START_PROP  Start sub-property address.
+    258           */
+    259          #ifdef __C51__
+    260          #pragma maxargs (13)  /* allow 13 bytes for parameters */
+    261          #endif
+
+   \                                 In section .text, align 2, keep-with-next
+    262          void si446x_set_property( U8 GROUP, U8 NUM_PROPS, U8 START_PROP, ... )
+    263          {
+   \                     si446x_set_property: (+1)
+   \        0x0   0xB408             PUSH     {R3}
+   \        0x2   0xE92D 0x41F8      PUSH     {R3-R8,LR}
+   \        0x6   0x0004             MOVS     R4,R0
+   \        0x8   0x000D             MOVS     R5,R1
+   \        0xA   0x0016             MOVS     R6,R2
+    264              va_list argList;
+    265              U8 cmdIndex;
+    266          
+    267              Pro2Cmd[0] = SI446X_CMD_ID_SET_PROPERTY;
+   \        0xC   0x.... 0x....      LDR.W    R1,??DataTable40
+   \       0x10   0x2011             MOVS     R0,#+17
+   \       0x12   0x7008             STRB     R0,[R1, #+0]
+    268              Pro2Cmd[1] = GROUP;
+   \       0x14   0x704C             STRB     R4,[R1, #+1]
+    269              Pro2Cmd[2] = NUM_PROPS;
+   \       0x16   0x708D             STRB     R5,[R1, #+2]
+    270              Pro2Cmd[3] = START_PROP;
+   \       0x18   0x70CE             STRB     R6,[R1, #+3]
+    271          
+    272              va_start (argList, START_PROP);
+   \       0x1A   0xAF07             ADD      R7,SP,#+28
+    273              cmdIndex = 4;
+   \       0x1C   0xF05F 0x0804      MOVS     R8,#+4
+    274              while(NUM_PROPS--)
+   \                     ??si446x_set_property_0: (+1)
+   \       0x20   0x0028             MOVS     R0,R5
+   \       0x22   0x1E45             SUBS     R5,R0,#+1
+   \       0x24   0xB2C0             UXTB     R0,R0
+   \       0x26   0x2800             CMP      R0,#+0
+   \       0x28   0xD007             BEQ.N    ??si446x_set_property_1
+    275              {
+    276          #ifdef __C51__  //  Keil Compiler
+    277                  Pro2Cmd[cmdIndex] = va_arg (argList, U8);
+    278          #else
+    279                  //‘char’ is promoted to ‘int’ when passed through ‘...’
+    280                  //  gcc : 가변인자는 char -> int로 확장됨.
+    281                  Pro2Cmd[cmdIndex] = va_arg ( argList, int );
+   \       0x2A   0x6838             LDR      R0,[R7, #+0]
+   \       0x2C   0x1D3F             ADDS     R7,R7,#+4
+   \       0x2E   0x4642             MOV      R2,R8
+   \       0x30   0xB2D2             UXTB     R2,R2
+   \       0x32   0x5488             STRB     R0,[R1, R2]
+    282          #endif
+    283                  cmdIndex++;
+   \       0x34   0xF118 0x0801      ADDS     R8,R8,#+1
+   \       0x38   0xE7F2             B.N      ??si446x_set_property_0
+    284              }
+    285              va_end(argList);
+    286          
+    287              radio_comm_SendCmd( cmdIndex, Pro2Cmd );
+   \                     ??si446x_set_property_1: (+1)
+   \       0x3A   0x4640             MOV      R0,R8
+   \       0x3C   0xB2C0             UXTB     R0,R0
+   \       0x3E   0x.... 0x....      BL       radio_comm_SendCmd
+    288          }
+   \       0x42   0xE8BD 0x01F1      POP      {R0,R4-R8}
+   \       0x46   0xF85D 0xFB08      LDR      PC,[SP], #+8
+    289          
+    290          /*!
+    291           * Issue a change state command to the radio.
+    292           *
+    293           * @param NEXT_STATE1 Next state.
+    294           */
+
+   \                                 In section .text, align 2, keep-with-next
+    295          void si446x_change_state(U8 NEXT_STATE1)
+    296          {
+   \                     si446x_change_state: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    297              Pro2Cmd[0] = SI446X_CMD_ID_CHANGE_STATE;
+   \        0x4   0x.... 0x....      LDR.W    R1,??DataTable40
+   \        0x8   0x2034             MOVS     R0,#+52
+   \        0xA   0x7008             STRB     R0,[R1, #+0]
+    298              Pro2Cmd[1] = NEXT_STATE1;
+   \        0xC   0x704C             STRB     R4,[R1, #+1]
+    299          
+    300              radio_comm_SendCmd( SI446X_CMD_ARG_COUNT_CHANGE_STATE, Pro2Cmd );
+   \        0xE   0x2002             MOVS     R0,#+2
+   \       0x10   0x.... 0x....      BL       radio_comm_SendCmd
+    301          }
+   \       0x14   0xBD10             POP      {R4,PC}
+    302          
+    303          
+    304          #ifdef RADIO_DRIVER_EXTENDED_SUPPORT
+    305          /* Extended driver support functions */
+    306          /*!
+    307           * Sends NOP command to the radio. Can be used to maintain SPI communication.
+    308           */
+
+   \                                 In section .text, align 2, keep-with-next
+    309          void si446x_nop(void)
+    310          {
+   \                     si446x_nop: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    311              Pro2Cmd[0] = SI446X_CMD_ID_NOP;
+   \        0x2   0x.... 0x....      LDR.W    R1,??DataTable40
+   \        0x6   0x2000             MOVS     R0,#+0
+   \        0x8   0x7008             STRB     R0,[R1, #+0]
+    312          
+    313              radio_comm_SendCmd( SI446X_CMD_ARG_COUNT_NOP, Pro2Cmd );
+   \        0xA   0x2001             MOVS     R0,#+1
+   \        0xC   0x.... 0x....      BL       radio_comm_SendCmd
+    314          }
+   \       0x10   0xBD01             POP      {R0,PC}
+    315          
+    316          /*!
+    317           * Send the FIFO_INFO command to the radio. Optionally resets the TX/RX FIFO. Reads the radio response back
+    318           * into @Si446xCmd.
+    319           *
+    320           * @param FIFO  RX/TX FIFO reset flags.
+    321           */
+
+   \                                 In section .text, align 2, keep-with-next
+    322          void si446x_fifo_info(U8 FIFO)
+    323          {
+   \                     si446x_fifo_info: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    324              Pro2Cmd[0] = SI446X_CMD_ID_FIFO_INFO;
+   \        0x4   0x.... 0x....      LDR.W    R5,??DataTable40
+   \        0x8   0x2015             MOVS     R0,#+21
+   \        0xA   0x7028             STRB     R0,[R5, #+0]
+    325              Pro2Cmd[1] = FIFO;
+   \        0xC   0x706C             STRB     R4,[R5, #+1]
+    326          
+    327              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_FIFO_INFO,
+    328                                        Pro2Cmd,
+    329                                        SI446X_CMD_REPLY_COUNT_FIFO_INFO,
+    330                                        Pro2Cmd );
+   \        0xE   0x002B             MOVS     R3,R5
+   \       0x10   0x2202             MOVS     R2,#+2
+   \       0x12   0x0029             MOVS     R1,R5
+   \       0x14   0x2002             MOVS     R0,#+2
+   \       0x16   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    331          
+    332              Si446xCmd.FIFO_INFO.RX_FIFO_COUNT   = Pro2Cmd[0];
+   \       0x1A   0x.... 0x....      LDR.W    R0,??DataTable40_1
+   \       0x1E   0x7829             LDRB     R1,[R5, #+0]
+   \       0x20   0x7001             STRB     R1,[R0, #+0]
+    333              Si446xCmd.FIFO_INFO.TX_FIFO_SPACE   = Pro2Cmd[1];
+   \       0x22   0x7869             LDRB     R1,[R5, #+1]
+   \       0x24   0x7041             STRB     R1,[R0, #+1]
+    334          }
+   \       0x26   0xBD31             POP      {R0,R4,R5,PC}
+    335          
+    336          /*!
+    337           * The function can be used to load data into TX FIFO.
+    338           *
+    339           * @param numBytes  Data length to be load.
+    340           * @param pTxData   Pointer to the data (U8*).
+    341           */
+
+   \                                 In section .text, align 2, keep-with-next
+    342          void si446x_write_tx_fifo(U8 numBytes, U8* pTxData)
+    343          {
+   \                     si446x_write_tx_fifo: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    344            radio_comm_WriteData( SI446X_CMD_ID_WRITE_TX_FIFO, 0, numBytes, pTxData );
+   \        0x6   0x002B             MOVS     R3,R5
+   \        0x8   0x0022             MOVS     R2,R4
+   \        0xA   0xB2D2             UXTB     R2,R2
+   \        0xC   0x2100             MOVS     R1,#+0
+   \        0xE   0x2066             MOVS     R0,#+102
+   \       0x10   0x.... 0x....      BL       radio_comm_WriteData
+    345          }
+   \       0x14   0xBD31             POP      {R0,R4,R5,PC}
+    346          
+    347          /*!
+    348           * Reads the RX FIFO content from the radio.
+    349           *
+    350           * @param numBytes  Data length to be read.
+    351           * @param pRxData   Pointer to the buffer location.
+    352           */
+
+   \                                 In section .text, align 2, keep-with-next
+    353          void si446x_read_rx_fifo(U8 numBytes, U8* pRxData)
+    354          {
+   \                     si446x_read_rx_fifo: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    355            radio_comm_ReadData( SI446X_CMD_ID_READ_RX_FIFO, 0, numBytes, pRxData );
+   \        0x6   0x002B             MOVS     R3,R5
+   \        0x8   0x0022             MOVS     R2,R4
+   \        0xA   0xB2D2             UXTB     R2,R2
+   \        0xC   0x2100             MOVS     R1,#+0
+   \        0xE   0x2077             MOVS     R0,#+119
+   \       0x10   0x.... 0x....      BL       radio_comm_ReadData
+    356          }
+   \       0x14   0xBD31             POP      {R0,R4,R5,PC}
+    357          
+    358          /*!
+    359           * Get property values from the radio. Reads them into Si446xCmd union.
+    360           *
+    361           * @param GROUP       Property group number.
+    362           * @param NUM_PROPS   Number of properties to be read.
+    363           * @param START_PROP  Starting sub-property number.
+    364           */
+
+   \                                 In section .text, align 2, keep-with-next
+    365          void si446x_get_property(U8 GROUP, U8 NUM_PROPS, U8 START_PROP)
+    366          {
+   \                     si446x_get_property: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    367              Pro2Cmd[0] = SI446X_CMD_ID_GET_PROPERTY;
+   \        0x8   0x.... 0x....      LDR.W    R7,??DataTable40
+   \        0xC   0x2012             MOVS     R0,#+18
+   \        0xE   0x7038             STRB     R0,[R7, #+0]
+    368              Pro2Cmd[1] = GROUP;
+   \       0x10   0x707C             STRB     R4,[R7, #+1]
+    369              Pro2Cmd[2] = NUM_PROPS;
+   \       0x12   0x70BD             STRB     R5,[R7, #+2]
+    370              Pro2Cmd[3] = START_PROP;
+   \       0x14   0x70FE             STRB     R6,[R7, #+3]
+    371          
+    372              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_GET_PROPERTY,
+    373                                        Pro2Cmd,
+    374                                        Pro2Cmd[2],
+    375                                        Pro2Cmd );
+   \       0x16   0x003B             MOVS     R3,R7
+   \       0x18   0x78BA             LDRB     R2,[R7, #+2]
+   \       0x1A   0x0039             MOVS     R1,R7
+   \       0x1C   0x2004             MOVS     R0,#+4
+   \       0x1E   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    376          
+    377              Si446xCmd.GET_PROPERTY.DATA[0 ]   = Pro2Cmd[0];
+   \       0x22   0x.... 0x....      LDR.W    R0,??DataTable40_1
+   \       0x26   0x7839             LDRB     R1,[R7, #+0]
+   \       0x28   0x7001             STRB     R1,[R0, #+0]
+    378              Si446xCmd.GET_PROPERTY.DATA[1 ]   = Pro2Cmd[1];
+   \       0x2A   0x7879             LDRB     R1,[R7, #+1]
+   \       0x2C   0x7041             STRB     R1,[R0, #+1]
+    379              Si446xCmd.GET_PROPERTY.DATA[2 ]   = Pro2Cmd[2];
+   \       0x2E   0x78B9             LDRB     R1,[R7, #+2]
+   \       0x30   0x7081             STRB     R1,[R0, #+2]
+    380              Si446xCmd.GET_PROPERTY.DATA[3 ]   = Pro2Cmd[3];
+   \       0x32   0x78F9             LDRB     R1,[R7, #+3]
+   \       0x34   0x70C1             STRB     R1,[R0, #+3]
+    381              Si446xCmd.GET_PROPERTY.DATA[4 ]   = Pro2Cmd[4];
+   \       0x36   0x7939             LDRB     R1,[R7, #+4]
+   \       0x38   0x7101             STRB     R1,[R0, #+4]
+    382              Si446xCmd.GET_PROPERTY.DATA[5 ]   = Pro2Cmd[5];
+   \       0x3A   0x7979             LDRB     R1,[R7, #+5]
+   \       0x3C   0x7141             STRB     R1,[R0, #+5]
+    383              Si446xCmd.GET_PROPERTY.DATA[6 ]   = Pro2Cmd[6];
+   \       0x3E   0x79B9             LDRB     R1,[R7, #+6]
+   \       0x40   0x7181             STRB     R1,[R0, #+6]
+    384              Si446xCmd.GET_PROPERTY.DATA[7 ]   = Pro2Cmd[7];
+   \       0x42   0x79F9             LDRB     R1,[R7, #+7]
+   \       0x44   0x71C1             STRB     R1,[R0, #+7]
+    385              Si446xCmd.GET_PROPERTY.DATA[8 ]   = Pro2Cmd[8];
+   \       0x46   0x7A39             LDRB     R1,[R7, #+8]
+   \       0x48   0x7201             STRB     R1,[R0, #+8]
+    386              Si446xCmd.GET_PROPERTY.DATA[9 ]   = Pro2Cmd[9];
+   \       0x4A   0x7A79             LDRB     R1,[R7, #+9]
+   \       0x4C   0x7241             STRB     R1,[R0, #+9]
+    387              Si446xCmd.GET_PROPERTY.DATA[10]   = Pro2Cmd[10];
+   \       0x4E   0x7AB9             LDRB     R1,[R7, #+10]
+   \       0x50   0x7281             STRB     R1,[R0, #+10]
+    388              Si446xCmd.GET_PROPERTY.DATA[11]   = Pro2Cmd[11];
+   \       0x52   0x7AF9             LDRB     R1,[R7, #+11]
+   \       0x54   0x72C1             STRB     R1,[R0, #+11]
+    389              Si446xCmd.GET_PROPERTY.DATA[12]   = Pro2Cmd[12];
+   \       0x56   0x7B39             LDRB     R1,[R7, #+12]
+   \       0x58   0x7301             STRB     R1,[R0, #+12]
+    390              Si446xCmd.GET_PROPERTY.DATA[13]   = Pro2Cmd[13];
+   \       0x5A   0x7B79             LDRB     R1,[R7, #+13]
+   \       0x5C   0x7341             STRB     R1,[R0, #+13]
+    391              Si446xCmd.GET_PROPERTY.DATA[14]   = Pro2Cmd[14];
+   \       0x5E   0x7BB9             LDRB     R1,[R7, #+14]
+   \       0x60   0x7381             STRB     R1,[R0, #+14]
+    392              Si446xCmd.GET_PROPERTY.DATA[15]   = Pro2Cmd[15];
+   \       0x62   0x7BF9             LDRB     R1,[R7, #+15]
+   \       0x64   0x73C1             STRB     R1,[R0, #+15]
+    393          }
+   \       0x66   0xBDF1             POP      {R0,R4-R7,PC}
+    394          
+    395          
+    396          #ifdef RADIO_DRIVER_FULL_SUPPORT
+    397          /* Full driver support functions */
+    398          
+    399          /*!
+    400           * Sends the FUNC_INFO command to the radio, then reads the resonse into @Si446xCmd union.
+    401           */
+
+   \                                 In section .text, align 2, keep-with-next
+    402          void si446x_func_info(void)
+    403          {
+   \                     si446x_func_info: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    404              Pro2Cmd[0] = SI446X_CMD_ID_FUNC_INFO;
+   \        0x2   0x.... 0x....      LDR.W    R4,??DataTable40
+   \        0x6   0x2010             MOVS     R0,#+16
+   \        0x8   0x7020             STRB     R0,[R4, #+0]
+    405          
+    406              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_FUNC_INFO,
+    407                                        Pro2Cmd,
+    408                                        SI446X_CMD_REPLY_COUNT_FUNC_INFO,
+    409                                        Pro2Cmd );
+   \        0xA   0x0023             MOVS     R3,R4
+   \        0xC   0x2206             MOVS     R2,#+6
+   \        0xE   0x0021             MOVS     R1,R4
+   \       0x10   0x2001             MOVS     R0,#+1
+   \       0x12   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    410          
+    411              Si446xCmd.FUNC_INFO.REVEXT          = Pro2Cmd[0];
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable40_1
+   \       0x1A   0x7821             LDRB     R1,[R4, #+0]
+   \       0x1C   0x7001             STRB     R1,[R0, #+0]
+    412              Si446xCmd.FUNC_INFO.REVBRANCH       = Pro2Cmd[1];
+   \       0x1E   0x7861             LDRB     R1,[R4, #+1]
+   \       0x20   0x7041             STRB     R1,[R0, #+1]
+    413              Si446xCmd.FUNC_INFO.REVINT          = Pro2Cmd[2];
+   \       0x22   0x78A1             LDRB     R1,[R4, #+2]
+   \       0x24   0x7081             STRB     R1,[R0, #+2]
+    414              Si446xCmd.FUNC_INFO.FUNC            = Pro2Cmd[5];
+   \       0x26   0x7961             LDRB     R1,[R4, #+5]
+   \       0x28   0x70C1             STRB     R1,[R0, #+3]
+    415          }
+   \       0x2A   0xBD10             POP      {R4,PC}
+    416          
+    417          /*!
+    418           * Reads the Fast Response Registers starting with A register into @Si446xCmd union.
+    419           *
+    420           * @param respByteCount Number of Fast Response Registers to be read.
+    421           */
+
+   \                                 In section .text, align 2, keep-with-next
+    422          void si446x_frr_a_read(U8 respByteCount)
+    423          {
+   \                     si446x_frr_a_read: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    424              radio_comm_ReadData(SI446X_CMD_ID_FRR_A_READ,
+    425                                      0,
+    426                                  respByteCount,
+    427                                  Pro2Cmd);
+   \        0x4   0x.... 0x....      LDR.W    R5,??DataTable40
+   \        0x8   0x002B             MOVS     R3,R5
+   \        0xA   0x0022             MOVS     R2,R4
+   \        0xC   0xB2D2             UXTB     R2,R2
+   \        0xE   0x2100             MOVS     R1,#+0
+   \       0x10   0x2050             MOVS     R0,#+80
+   \       0x12   0x.... 0x....      BL       radio_comm_ReadData
+    428          
+    429              Si446xCmd.FRR_A_READ.FRR_A_VALUE = Pro2Cmd[0];
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable40_1
+   \       0x1A   0x7829             LDRB     R1,[R5, #+0]
+   \       0x1C   0x7001             STRB     R1,[R0, #+0]
+    430              Si446xCmd.FRR_A_READ.FRR_B_VALUE = Pro2Cmd[1];
+   \       0x1E   0x7869             LDRB     R1,[R5, #+1]
+   \       0x20   0x7041             STRB     R1,[R0, #+1]
+    431              Si446xCmd.FRR_A_READ.FRR_C_VALUE = Pro2Cmd[2];
+   \       0x22   0x78A9             LDRB     R1,[R5, #+2]
+   \       0x24   0x7081             STRB     R1,[R0, #+2]
+    432              Si446xCmd.FRR_A_READ.FRR_D_VALUE = Pro2Cmd[3];
+   \       0x26   0x78E9             LDRB     R1,[R5, #+3]
+   \       0x28   0x70C1             STRB     R1,[R0, #+3]
+    433          }
+   \       0x2A   0xBD31             POP      {R0,R4,R5,PC}
+    434          
+    435          /*!
+    436           * Reads the Fast Response Registers starting with B register into @Si446xCmd union.
+    437           *
+    438           * @param respByteCount Number of Fast Response Registers to be read.
+    439           */
+
+   \                                 In section .text, align 2, keep-with-next
+    440          void si446x_frr_b_read(U8 respByteCount)
+    441          {
+   \                     si446x_frr_b_read: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    442              radio_comm_ReadData(SI446X_CMD_ID_FRR_B_READ,
+    443                                      0,
+    444                                  respByteCount,
+    445                                  Pro2Cmd);
+   \        0x4   0x.... 0x....      LDR.W    R5,??DataTable40
+   \        0x8   0x002B             MOVS     R3,R5
+   \        0xA   0x0022             MOVS     R2,R4
+   \        0xC   0xB2D2             UXTB     R2,R2
+   \        0xE   0x2100             MOVS     R1,#+0
+   \       0x10   0x2051             MOVS     R0,#+81
+   \       0x12   0x.... 0x....      BL       radio_comm_ReadData
+    446          
+    447              Si446xCmd.FRR_B_READ.FRR_B_VALUE = Pro2Cmd[0];
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable40_1
+   \       0x1A   0x7829             LDRB     R1,[R5, #+0]
+   \       0x1C   0x7001             STRB     R1,[R0, #+0]
+    448              Si446xCmd.FRR_B_READ.FRR_C_VALUE = Pro2Cmd[1];
+   \       0x1E   0x7869             LDRB     R1,[R5, #+1]
+   \       0x20   0x7041             STRB     R1,[R0, #+1]
+    449              Si446xCmd.FRR_B_READ.FRR_D_VALUE = Pro2Cmd[2];
+   \       0x22   0x78A9             LDRB     R1,[R5, #+2]
+   \       0x24   0x7081             STRB     R1,[R0, #+2]
+    450              Si446xCmd.FRR_B_READ.FRR_A_VALUE = Pro2Cmd[3];
+   \       0x26   0x78E9             LDRB     R1,[R5, #+3]
+   \       0x28   0x70C1             STRB     R1,[R0, #+3]
+    451          }
+   \       0x2A   0xBD31             POP      {R0,R4,R5,PC}
+    452          
+    453          /*!
+    454           * Reads the Fast Response Registers starting with C register into @Si446xCmd union.
+    455           *
+    456           * @param respByteCount Number of Fast Response Registers to be read.
+    457           */
+
+   \                                 In section .text, align 2, keep-with-next
+    458          void si446x_frr_c_read(U8 respByteCount)
+    459          {
+   \                     si446x_frr_c_read: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    460              radio_comm_ReadData(SI446X_CMD_ID_FRR_C_READ,
+    461                                      0,
+    462                                  respByteCount,
+    463                                  Pro2Cmd);
+   \        0x4   0x.... 0x....      LDR.W    R5,??DataTable40
+   \        0x8   0x002B             MOVS     R3,R5
+   \        0xA   0x0022             MOVS     R2,R4
+   \        0xC   0xB2D2             UXTB     R2,R2
+   \        0xE   0x2100             MOVS     R1,#+0
+   \       0x10   0x2053             MOVS     R0,#+83
+   \       0x12   0x.... 0x....      BL       radio_comm_ReadData
+    464          
+    465              Si446xCmd.FRR_C_READ.FRR_C_VALUE = Pro2Cmd[0];
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable40_1
+   \       0x1A   0x7829             LDRB     R1,[R5, #+0]
+   \       0x1C   0x7001             STRB     R1,[R0, #+0]
+    466              Si446xCmd.FRR_C_READ.FRR_D_VALUE = Pro2Cmd[1];
+   \       0x1E   0x7869             LDRB     R1,[R5, #+1]
+   \       0x20   0x7041             STRB     R1,[R0, #+1]
+    467              Si446xCmd.FRR_C_READ.FRR_A_VALUE = Pro2Cmd[2];
+   \       0x22   0x78A9             LDRB     R1,[R5, #+2]
+   \       0x24   0x7081             STRB     R1,[R0, #+2]
+    468              Si446xCmd.FRR_C_READ.FRR_B_VALUE = Pro2Cmd[3];
+   \       0x26   0x78E9             LDRB     R1,[R5, #+3]
+   \       0x28   0x70C1             STRB     R1,[R0, #+3]
+    469          }
+   \       0x2A   0xBD31             POP      {R0,R4,R5,PC}
+    470          
+    471          /*!
+    472           * Reads the Fast Response Registers starting with D register into @Si446xCmd union.
+    473           *
+    474           * @param respByteCount Number of Fast Response Registers to be read.
+    475           */
+
+   \                                 In section .text, align 2, keep-with-next
+    476          void si446x_frr_d_read(U8 respByteCount)
+    477          {
+   \                     si446x_frr_d_read: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    478              radio_comm_ReadData(SI446X_CMD_ID_FRR_D_READ,
+    479                                      0,
+    480                                  respByteCount,
+    481                                  Pro2Cmd);
+   \        0x4   0x.... 0x....      LDR.W    R5,??DataTable40
+   \        0x8   0x002B             MOVS     R3,R5
+   \        0xA   0x0022             MOVS     R2,R4
+   \        0xC   0xB2D2             UXTB     R2,R2
+   \        0xE   0x2100             MOVS     R1,#+0
+   \       0x10   0x2057             MOVS     R0,#+87
+   \       0x12   0x.... 0x....      BL       radio_comm_ReadData
+    482          
+    483              Si446xCmd.FRR_D_READ.FRR_D_VALUE = Pro2Cmd[0];
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable40_1
+   \       0x1A   0x7829             LDRB     R1,[R5, #+0]
+   \       0x1C   0x7001             STRB     R1,[R0, #+0]
+    484              Si446xCmd.FRR_D_READ.FRR_A_VALUE = Pro2Cmd[1];
+   \       0x1E   0x7869             LDRB     R1,[R5, #+1]
+   \       0x20   0x7041             STRB     R1,[R0, #+1]
+    485              Si446xCmd.FRR_D_READ.FRR_B_VALUE = Pro2Cmd[2];
+   \       0x22   0x78A9             LDRB     R1,[R5, #+2]
+   \       0x24   0x7081             STRB     R1,[R0, #+2]
+    486              Si446xCmd.FRR_D_READ.FRR_C_VALUE = Pro2Cmd[3];
+   \       0x26   0x78E9             LDRB     R1,[R5, #+3]
+   \       0x28   0x70C1             STRB     R1,[R0, #+3]
+    487          }
+   \       0x2A   0xBD31             POP      {R0,R4,R5,PC}
+    488          
+    489          /*!
+    490           * Reads the ADC values from the radio into @Si446xCmd union.
+    491           *
+    492           * @param ADC_EN  ADC enable parameter.
+    493           */
+
+   \                                 In section .text, align 2, keep-with-next
+    494          void si446x_get_adc_reading(U8 ADC_EN)
+    495          {
+   \                     si446x_get_adc_reading: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    496              Pro2Cmd[0] = SI446X_CMD_ID_GET_ADC_READING;
+   \        0x4   0x....             LDR.N    R5,??DataTable40
+   \        0x6   0x2014             MOVS     R0,#+20
+   \        0x8   0x7028             STRB     R0,[R5, #+0]
+    497              Pro2Cmd[1] = ADC_EN;
+   \        0xA   0x706C             STRB     R4,[R5, #+1]
+    498          
+    499              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_GET_ADC_READING,
+    500                                        Pro2Cmd,
+    501                                        SI446X_CMD_REPLY_COUNT_GET_ADC_READING,
+    502                                        Pro2Cmd );
+   \        0xC   0x002B             MOVS     R3,R5
+   \        0xE   0x2206             MOVS     R2,#+6
+   \       0x10   0x0029             MOVS     R1,R5
+   \       0x12   0x2003             MOVS     R0,#+3
+   \       0x14   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    503          
+    504              Si446xCmd.GET_ADC_READING.GPIO_ADC         = ((U16)Pro2Cmd[0] << 8) & 0xFF00;
+   \       0x18   0x....             LDR.N    R1,??DataTable40_1
+   \       0x1A   0x7828             LDRB     R0,[R5, #+0]
+   \       0x1C   0x0200             LSLS     R0,R0,#+8
+   \       0x1E   0x6008             STR      R0,[R1, #+0]
+    505              Si446xCmd.GET_ADC_READING.GPIO_ADC        |=  (U16)Pro2Cmd[1] & 0x00FF;
+   \       0x20   0x680A             LDR      R2,[R1, #+0]
+   \       0x22   0x7868             LDRB     R0,[R5, #+1]
+   \       0x24   0x4302             ORRS     R2,R0,R2
+   \       0x26   0x600A             STR      R2,[R1, #+0]
+    506              Si446xCmd.GET_ADC_READING.BATTERY_ADC      = ((U16)Pro2Cmd[2] << 8) & 0xFF00;
+   \       0x28   0x78A8             LDRB     R0,[R5, #+2]
+   \       0x2A   0x0200             LSLS     R0,R0,#+8
+   \       0x2C   0x6048             STR      R0,[R1, #+4]
+    507              Si446xCmd.GET_ADC_READING.BATTERY_ADC     |=  (U16)Pro2Cmd[3] & 0x00FF;
+   \       0x2E   0x684A             LDR      R2,[R1, #+4]
+   \       0x30   0x78E8             LDRB     R0,[R5, #+3]
+   \       0x32   0x4302             ORRS     R2,R0,R2
+   \       0x34   0x604A             STR      R2,[R1, #+4]
+    508              Si446xCmd.GET_ADC_READING.TEMP_ADC         = ((U16)Pro2Cmd[4] << 8) & 0xFF00;
+   \       0x36   0x7928             LDRB     R0,[R5, #+4]
+   \       0x38   0x0200             LSLS     R0,R0,#+8
+   \       0x3A   0x6088             STR      R0,[R1, #+8]
+    509              Si446xCmd.GET_ADC_READING.TEMP_ADC        |=  (U16)Pro2Cmd[5] & 0x00FF;
+   \       0x3C   0x688A             LDR      R2,[R1, #+8]
+   \       0x3E   0x7968             LDRB     R0,[R5, #+5]
+   \       0x40   0x4302             ORRS     R2,R0,R2
+   \       0x42   0x608A             STR      R2,[R1, #+8]
+    510          }
+   \       0x44   0xBD31             POP      {R0,R4,R5,PC}
+    511          
+    512          /*!
+    513           * Receives information from the radio of the current packet. Optionally can be used to modify
+    514           * the Packet Handler properties during packet reception.
+    515           *
+    516           * @param FIELD_NUMBER_MASK Packet Field number mask value.
+    517           * @param LEN               Length value.
+    518           * @param DIFF_LEN          Difference length.
+    519           */
+
+   \                                 In section .text, align 2, keep-with-next
+    520          void si446x_get_packet_info(U8 FIELD_NUMBER_MASK, U16 LEN, S16 DIFF_LEN )
+    521          {
+   \                     si446x_get_packet_info: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    522              Pro2Cmd[0] = SI446X_CMD_ID_PACKET_INFO;
+   \        0x8   0x....             LDR.N    R7,??DataTable40
+   \        0xA   0x2016             MOVS     R0,#+22
+   \        0xC   0x7038             STRB     R0,[R7, #+0]
+    523              Pro2Cmd[1] = FIELD_NUMBER_MASK;
+   \        0xE   0x707C             STRB     R4,[R7, #+1]
+    524              Pro2Cmd[2] = (U8)(LEN >> 8);
+   \       0x10   0x0028             MOVS     R0,R5
+   \       0x12   0x0A00             LSRS     R0,R0,#+8
+   \       0x14   0x70B8             STRB     R0,[R7, #+2]
+    525              Pro2Cmd[3] = (U8)(LEN);
+   \       0x16   0x70FD             STRB     R5,[R7, #+3]
+    526              // the different of the byte, althrough it is signed, but to command hander
+    527              // it can treat it as unsigned
+    528              Pro2Cmd[4] = (U8)((U16)DIFF_LEN >> 8);
+   \       0x18   0x0030             MOVS     R0,R6
+   \       0x1A   0x0A00             LSRS     R0,R0,#+8
+   \       0x1C   0x7138             STRB     R0,[R7, #+4]
+    529              Pro2Cmd[5] = (U8)(DIFF_LEN);
+   \       0x1E   0x717E             STRB     R6,[R7, #+5]
+    530          
+    531              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_PACKET_INFO,
+    532                                        Pro2Cmd,
+    533                                        SI446X_CMD_REPLY_COUNT_PACKET_INFO,
+    534                                        Pro2Cmd );
+   \       0x20   0x003B             MOVS     R3,R7
+   \       0x22   0x2202             MOVS     R2,#+2
+   \       0x24   0x0039             MOVS     R1,R7
+   \       0x26   0x2006             MOVS     R0,#+6
+   \       0x28   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    535          
+    536              Si446xCmd.PACKET_INFO.LENGTH = ((U16)Pro2Cmd[0] << 8) & 0xFF00;
+   \       0x2C   0x....             LDR.N    R1,??DataTable40_1
+   \       0x2E   0x7838             LDRB     R0,[R7, #+0]
+   \       0x30   0x0200             LSLS     R0,R0,#+8
+   \       0x32   0x6008             STR      R0,[R1, #+0]
+    537              Si446xCmd.PACKET_INFO.LENGTH |= (U16)Pro2Cmd[1] & 0x00FF;
+   \       0x34   0x680A             LDR      R2,[R1, #+0]
+   \       0x36   0x7878             LDRB     R0,[R7, #+1]
+   \       0x38   0x4302             ORRS     R2,R0,R2
+   \       0x3A   0x600A             STR      R2,[R1, #+0]
+    538          }
+   \       0x3C   0xBDF1             POP      {R0,R4-R7,PC}
+    539          
+    540          /*!
+    541           * Gets the Packet Handler status flags. Optionally clears them.
+    542           *
+    543           * @param PH_CLR_PEND Flags to clear.
+    544           */
+
+   \                                 In section .text, align 2, keep-with-next
+    545          void si446x_get_ph_status(U8 PH_CLR_PEND)
+    546          {
+   \                     si446x_get_ph_status: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    547              Pro2Cmd[0] = SI446X_CMD_ID_GET_PH_STATUS;
+   \        0x4   0x....             LDR.N    R5,??DataTable40
+   \        0x6   0x2021             MOVS     R0,#+33
+   \        0x8   0x7028             STRB     R0,[R5, #+0]
+    548              Pro2Cmd[1] = PH_CLR_PEND;
+   \        0xA   0x706C             STRB     R4,[R5, #+1]
+    549          
+    550              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_GET_PH_STATUS,
+    551                                        Pro2Cmd,
+    552                                        SI446X_CMD_REPLY_COUNT_GET_PH_STATUS,
+    553                                        Pro2Cmd );
+   \        0xC   0x002B             MOVS     R3,R5
+   \        0xE   0x2202             MOVS     R2,#+2
+   \       0x10   0x0029             MOVS     R1,R5
+   \       0x12   0x2002             MOVS     R0,#+2
+   \       0x14   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    554          
+    555              Si446xCmd.GET_PH_STATUS.PH_PEND        = Pro2Cmd[0];
+   \       0x18   0x....             LDR.N    R0,??DataTable40_1
+   \       0x1A   0x7829             LDRB     R1,[R5, #+0]
+   \       0x1C   0x7001             STRB     R1,[R0, #+0]
+    556              Si446xCmd.GET_PH_STATUS.PH_STATUS      = Pro2Cmd[1];
+   \       0x1E   0x7869             LDRB     R1,[R5, #+1]
+   \       0x20   0x7041             STRB     R1,[R0, #+1]
+    557          }
+   \       0x22   0xBD31             POP      {R0,R4,R5,PC}
+    558          
+    559          /*!
+    560           * Gets the Modem status flags. Optionally clears them.
+    561           *
+    562           * @param MODEM_CLR_PEND Flags to clear.
+    563           */
+
+   \                                 In section .text, align 2, keep-with-next
+    564          void si446x_get_modem_status( U8 MODEM_CLR_PEND )
+    565          {
+   \                     si446x_get_modem_status: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    566              Pro2Cmd[0] = SI446X_CMD_ID_GET_MODEM_STATUS;
+   \        0x4   0x....             LDR.N    R5,??DataTable40
+   \        0x6   0x2022             MOVS     R0,#+34
+   \        0x8   0x7028             STRB     R0,[R5, #+0]
+    567              Pro2Cmd[1] = MODEM_CLR_PEND;
+   \        0xA   0x706C             STRB     R4,[R5, #+1]
+    568          
+    569              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_GET_MODEM_STATUS,
+    570                                        Pro2Cmd,
+    571                                        SI446X_CMD_REPLY_COUNT_GET_MODEM_STATUS,
+    572                                        Pro2Cmd );
+   \        0xC   0x002B             MOVS     R3,R5
+   \        0xE   0x2208             MOVS     R2,#+8
+   \       0x10   0x0029             MOVS     R1,R5
+   \       0x12   0x2002             MOVS     R0,#+2
+   \       0x14   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    573          
+    574              Si446xCmd.GET_MODEM_STATUS.MODEM_PEND   = Pro2Cmd[0];
+   \       0x18   0x....             LDR.N    R1,??DataTable40_1
+   \       0x1A   0x7828             LDRB     R0,[R5, #+0]
+   \       0x1C   0x7008             STRB     R0,[R1, #+0]
+    575              Si446xCmd.GET_MODEM_STATUS.MODEM_STATUS = Pro2Cmd[1];
+   \       0x1E   0x7868             LDRB     R0,[R5, #+1]
+   \       0x20   0x7048             STRB     R0,[R1, #+1]
+    576              Si446xCmd.GET_MODEM_STATUS.CURR_RSSI    = Pro2Cmd[2];
+   \       0x22   0x78A8             LDRB     R0,[R5, #+2]
+   \       0x24   0x7088             STRB     R0,[R1, #+2]
+    577              Si446xCmd.GET_MODEM_STATUS.LATCH_RSSI   = Pro2Cmd[3];
+   \       0x26   0x78E8             LDRB     R0,[R5, #+3]
+   \       0x28   0x70C8             STRB     R0,[R1, #+3]
+    578              Si446xCmd.GET_MODEM_STATUS.ANT1_RSSI    = Pro2Cmd[4];
+   \       0x2A   0x7928             LDRB     R0,[R5, #+4]
+   \       0x2C   0x7108             STRB     R0,[R1, #+4]
+    579              Si446xCmd.GET_MODEM_STATUS.ANT2_RSSI    = Pro2Cmd[5];
+   \       0x2E   0x7968             LDRB     R0,[R5, #+5]
+   \       0x30   0x7148             STRB     R0,[R1, #+5]
+    580              Si446xCmd.GET_MODEM_STATUS.AFC_FREQ_OFFSET =  ((U16)Pro2Cmd[6] << 8) & 0xFF00;
+   \       0x32   0x79A8             LDRB     R0,[R5, #+6]
+   \       0x34   0x0200             LSLS     R0,R0,#+8
+   \       0x36   0x6088             STR      R0,[R1, #+8]
+    581              Si446xCmd.GET_MODEM_STATUS.AFC_FREQ_OFFSET |= (U16)Pro2Cmd[7] & 0x00FF;
+   \       0x38   0x688A             LDR      R2,[R1, #+8]
+   \       0x3A   0x79E8             LDRB     R0,[R5, #+7]
+   \       0x3C   0x4302             ORRS     R2,R0,R2
+   \       0x3E   0x608A             STR      R2,[R1, #+8]
+    582          }
+   \       0x40   0xBD31             POP      {R0,R4,R5,PC}
+    583          
+    584          /*!
+    585           * Gets the Chip status flags. Optionally clears them.
+    586           *
+    587           * @param CHIP_CLR_PEND Flags to clear.
+    588           */
+
+   \                                 In section .text, align 2, keep-with-next
+    589          void si446x_get_chip_status( U8 CHIP_CLR_PEND )
+    590          {
+   \                     si446x_get_chip_status: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    591              Pro2Cmd[0] = SI446X_CMD_ID_GET_CHIP_STATUS;
+   \        0x4   0x....             LDR.N    R5,??DataTable40
+   \        0x6   0x2023             MOVS     R0,#+35
+   \        0x8   0x7028             STRB     R0,[R5, #+0]
+    592              Pro2Cmd[1] = CHIP_CLR_PEND;
+   \        0xA   0x706C             STRB     R4,[R5, #+1]
+    593          
+    594              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_GET_CHIP_STATUS,
+    595                                        Pro2Cmd,
+    596                                        SI446X_CMD_REPLY_COUNT_GET_CHIP_STATUS,
+    597                                        Pro2Cmd );
+   \        0xC   0x002B             MOVS     R3,R5
+   \        0xE   0x2204             MOVS     R2,#+4
+   \       0x10   0x0029             MOVS     R1,R5
+   \       0x12   0x2002             MOVS     R0,#+2
+   \       0x14   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    598          
+    599              Si446xCmd.GET_CHIP_STATUS.CHIP_PEND         = Pro2Cmd[0];
+   \       0x18   0x....             LDR.N    R0,??DataTable40_1
+   \       0x1A   0x7829             LDRB     R1,[R5, #+0]
+   \       0x1C   0x7001             STRB     R1,[R0, #+0]
+    600              Si446xCmd.GET_CHIP_STATUS.CHIP_STATUS       = Pro2Cmd[1];
+   \       0x1E   0x7869             LDRB     R1,[R5, #+1]
+   \       0x20   0x7041             STRB     R1,[R0, #+1]
+    601              Si446xCmd.GET_CHIP_STATUS.CMD_ERR_STATUS    = Pro2Cmd[2];
+   \       0x22   0x78A9             LDRB     R1,[R5, #+2]
+   \       0x24   0x7081             STRB     R1,[R0, #+2]
+    602          }
+   \       0x26   0xBD31             POP      {R0,R4,R5,PC}
+    603          
+    604          /*!
+    605           * Performs image rejection calibration. Completion can be monitored by polling CTS or waiting for CHIP_READY interrupt source.
+    606           *
+    607           * @param SEARCHING_STEP_SIZE
+    608           * @param SEARCHING_RSSI_AVG
+    609           * @param RX_CHAIN_SETTING1
+    610           * @param RX_CHAIN_SETTING2
+    611           */
+
+   \                                 In section .text, align 2, keep-with-next
+    612          void si446x_ircal(U8 SEARCHING_STEP_SIZE, U8 SEARCHING_RSSI_AVG, U8 RX_CHAIN_SETTING1, U8 RX_CHAIN_SETTING2)
+    613          {
+   \                     si446x_ircal: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+   \        0x8   0x001F             MOVS     R7,R3
+    614              Pro2Cmd[0] = SI446X_CMD_ID_IRCAL;
+   \        0xA   0x....             LDR.N    R1,??DataTable40
+   \        0xC   0x2017             MOVS     R0,#+23
+   \        0xE   0x7008             STRB     R0,[R1, #+0]
+    615              Pro2Cmd[1] = SEARCHING_STEP_SIZE;
+   \       0x10   0x704C             STRB     R4,[R1, #+1]
+    616              Pro2Cmd[2] = SEARCHING_RSSI_AVG;
+   \       0x12   0x708D             STRB     R5,[R1, #+2]
+    617              Pro2Cmd[3] = RX_CHAIN_SETTING1;
+   \       0x14   0x70CE             STRB     R6,[R1, #+3]
+    618              Pro2Cmd[4] = RX_CHAIN_SETTING2;
+   \       0x16   0x710F             STRB     R7,[R1, #+4]
+    619          
+    620              radio_comm_SendCmd( SI446X_CMD_ARG_COUNT_IRCAL, Pro2Cmd);
+   \       0x18   0x2005             MOVS     R0,#+5
+   \       0x1A   0x.... 0x....      BL       radio_comm_SendCmd
+    621          }
+   \       0x1E   0xBDF1             POP      {R0,R4-R7,PC}
+    622          
+    623          
+    624          /*!
+    625           * Image rejection calibration. Forces a specific value for IR calibration, and reads back calibration values from previous calibrations
+    626           *
+    627           * @param IRCAL_AMP
+    628           * @param IRCAL_PH
+    629           */
+
+   \                                 In section .text, align 2, keep-with-next
+    630          void si446x_ircal_manual(U8 IRCAL_AMP, U8 IRCAL_PH)
+    631          {
+   \                     si446x_ircal_manual: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    632              Pro2Cmd[0] = SI446X_CMD_ID_IRCAL_MANUAL;
+   \        0x6   0x....             LDR.N    R6,??DataTable40
+   \        0x8   0x201A             MOVS     R0,#+26
+   \        0xA   0x7030             STRB     R0,[R6, #+0]
+    633              Pro2Cmd[1] = IRCAL_AMP;
+   \        0xC   0x7074             STRB     R4,[R6, #+1]
+    634              Pro2Cmd[2] = IRCAL_PH;
+   \        0xE   0x70B5             STRB     R5,[R6, #+2]
+    635          
+    636              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_IRCAL_MANUAL,
+    637                                        Pro2Cmd,
+    638                                        SI446X_CMD_REPLY_COUNT_IRCAL_MANUAL,
+    639                                        Pro2Cmd );
+   \       0x10   0x0033             MOVS     R3,R6
+   \       0x12   0x2202             MOVS     R2,#+2
+   \       0x14   0x0031             MOVS     R1,R6
+   \       0x16   0x2003             MOVS     R0,#+3
+   \       0x18   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    640          
+    641              Si446xCmd.IRCAL_MANUAL.IRCAL_AMP_REPLY   = Pro2Cmd[0];
+   \       0x1C   0x....             LDR.N    R0,??DataTable40_1
+   \       0x1E   0x7831             LDRB     R1,[R6, #+0]
+   \       0x20   0x7001             STRB     R1,[R0, #+0]
+    642              Si446xCmd.IRCAL_MANUAL.IRCAL_PH_REPLY    = Pro2Cmd[1];
+   \       0x22   0x7871             LDRB     R1,[R6, #+1]
+   \       0x24   0x7041             STRB     R1,[R0, #+1]
+    643          }
+   \       0x26   0xBD70             POP      {R4-R6,PC}
+    644          
+    645          /*!
+    646           * Requests the current state of the device and lists pending TX and RX requests
+    647           */
+
+   \                                 In section .text, align 2, keep-with-next
+    648          void si446x_request_device_state(void)
+    649          {
+   \                     si446x_request_device_state: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    650              Pro2Cmd[0] = SI446X_CMD_ID_REQUEST_DEVICE_STATE;
+   \        0x2   0x....             LDR.N    R4,??DataTable40
+   \        0x4   0x2033             MOVS     R0,#+51
+   \        0x6   0x7020             STRB     R0,[R4, #+0]
+    651          
+    652              radio_comm_SendCmdGetResp( SI446X_CMD_ARG_COUNT_REQUEST_DEVICE_STATE,
+    653                                        Pro2Cmd,
+    654                                        SI446X_CMD_REPLY_COUNT_REQUEST_DEVICE_STATE,
+    655                                        Pro2Cmd );
+   \        0x8   0x0023             MOVS     R3,R4
+   \        0xA   0x2202             MOVS     R2,#+2
+   \        0xC   0x0021             MOVS     R1,R4
+   \        0xE   0x2001             MOVS     R0,#+1
+   \       0x10   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    656          
+    657              Si446xCmd.REQUEST_DEVICE_STATE.CURR_STATE       = Pro2Cmd[0];
+   \       0x14   0x....             LDR.N    R0,??DataTable40_1
+   \       0x16   0x7821             LDRB     R1,[R4, #+0]
+   \       0x18   0x7001             STRB     R1,[R0, #+0]
+    658              Si446xCmd.REQUEST_DEVICE_STATE.CURRENT_CHANNEL  = Pro2Cmd[1];
+   \       0x1A   0x7861             LDRB     R1,[R4, #+1]
+   \       0x1C   0x7041             STRB     R1,[R0, #+1]
+    659          }
+   \       0x1E   0xBD10             POP      {R4,PC}
+    660          
+    661          /*!
+    662           * While in TX state this will hop to the frequency specified by the parameters
+    663           *
+    664           * @param INTE      New INTE register value.
+    665           * @param FRAC2     New FRAC2 register value.
+    666           * @param FRAC1     New FRAC1 register value.
+    667           * @param FRAC0     New FRAC0 register value.
+    668           * @param VCO_CNT1  New VCO_CNT1 register value.
+    669           * @param VCO_CNT0  New VCO_CNT0 register value.
+    670           * @param PLL_SETTLE_TIME1  New PLL_SETTLE_TIME1 register value.
+    671           * @param PLL_SETTLE_TIME0  New PLL_SETTLE_TIME0 register value.
+    672           */
+
+   \                                 In section .text, align 2, keep-with-next
+    673          void si446x_tx_hop(U8 INTE, U8 FRAC2, U8 FRAC1, U8 FRAC0, U8 VCO_CNT1, U8 VCO_CNT0, U8 PLL_SETTLE_TIME1, U8 PLL_SETTLE_TIME0)
+    674          {
+   \                     si446x_tx_hop: (+1)
+   \        0x0   0xE92D 0x4FF8      PUSH     {R3-R11,LR}
+   \        0x4   0x4680             MOV      R8,R0
+   \        0x6   0x4689             MOV      R9,R1
+   \        0x8   0x4692             MOV      R10,R2
+   \        0xA   0x469B             MOV      R11,R3
+   \        0xC   0x9C0A             LDR      R4,[SP, #+40]
+   \        0xE   0x9D0B             LDR      R5,[SP, #+44]
+   \       0x10   0x9E0C             LDR      R6,[SP, #+48]
+   \       0x12   0x9F0D             LDR      R7,[SP, #+52]
+    675              Pro2Cmd[0] = SI446X_CMD_ID_TX_HOP;
+   \       0x14   0x....             LDR.N    R1,??DataTable40
+   \       0x16   0x2037             MOVS     R0,#+55
+   \       0x18   0x7008             STRB     R0,[R1, #+0]
+    676              Pro2Cmd[1] = INTE;
+   \       0x1A   0xF881 0x8001      STRB     R8,[R1, #+1]
+    677              Pro2Cmd[2] = FRAC2;
+   \       0x1E   0xF881 0x9002      STRB     R9,[R1, #+2]
+    678              Pro2Cmd[3] = FRAC1;
+   \       0x22   0xF881 0xA003      STRB     R10,[R1, #+3]
+    679              Pro2Cmd[4] = FRAC0;
+   \       0x26   0xF881 0xB004      STRB     R11,[R1, #+4]
+    680              Pro2Cmd[5] = VCO_CNT1;
+   \       0x2A   0x714C             STRB     R4,[R1, #+5]
+    681              Pro2Cmd[6] = VCO_CNT0;
+   \       0x2C   0x718D             STRB     R5,[R1, #+6]
+    682              Pro2Cmd[7] = PLL_SETTLE_TIME1;
+   \       0x2E   0x71CE             STRB     R6,[R1, #+7]
+    683              Pro2Cmd[8] = PLL_SETTLE_TIME0;
+   \       0x30   0x720F             STRB     R7,[R1, #+8]
+    684          
+    685              radio_comm_SendCmd( SI446X_CMD_ARG_COUNT_TX_HOP, Pro2Cmd );
+   \       0x32   0x2001             MOVS     R0,#+1
+   \       0x34   0x.... 0x....      BL       radio_comm_SendCmd
+    686          }
+   \       0x38   0xE8BD 0x8FF1      POP      {R0,R4-R11,PC}
+    687          
+    688          /*!
+    689           * While in RX state this will hop to the frequency specified by the parameters and start searching for a preamble.
+    690           *
+    691           * @param INTE      New INTE register value.
+    692           * @param FRAC2     New FRAC2 register value.
+    693           * @param FRAC1     New FRAC1 register value.
+    694           * @param FRAC0     New FRAC0 register value.
+    695           * @param VCO_CNT1  New VCO_CNT1 register value.
+    696           * @param VCO_CNT0  New VCO_CNT0 register value.
+    697           */
+
+   \                                 In section .text, align 2, keep-with-next
+    698          void si446x_rx_hop(U8 INTE, U8 FRAC2, U8 FRAC1, U8 FRAC0, U8 VCO_CNT1, U8 VCO_CNT0)
+    699          {
+   \                     si446x_rx_hop: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0x0006             MOVS     R6,R0
+   \        0x6   0x000F             MOVS     R7,R1
+   \        0x8   0x4690             MOV      R8,R2
+   \        0xA   0x4699             MOV      R9,R3
+   \        0xC   0x9D08             LDR      R5,[SP, #+32]
+   \        0xE   0x9C09             LDR      R4,[SP, #+36]
+    700              Pro2Cmd[0] = SI446X_CMD_ID_RX_HOP;
+   \       0x10   0x....             LDR.N    R1,??DataTable40
+   \       0x12   0x2036             MOVS     R0,#+54
+   \       0x14   0x7008             STRB     R0,[R1, #+0]
+    701              Pro2Cmd[1] = INTE;
+   \       0x16   0x704E             STRB     R6,[R1, #+1]
+    702              Pro2Cmd[2] = FRAC2;
+   \       0x18   0x708F             STRB     R7,[R1, #+2]
+    703              Pro2Cmd[3] = FRAC1;
+   \       0x1A   0xF881 0x8003      STRB     R8,[R1, #+3]
+    704              Pro2Cmd[4] = FRAC0;
+   \       0x1E   0xF881 0x9004      STRB     R9,[R1, #+4]
+    705              Pro2Cmd[5] = VCO_CNT1;
+   \       0x22   0x714D             STRB     R5,[R1, #+5]
+    706              Pro2Cmd[6] = VCO_CNT0;
+   \       0x24   0x718C             STRB     R4,[R1, #+6]
+    707          
+    708              radio_comm_SendCmd( SI446X_CMD_ARG_COUNT_RX_HOP, Pro2Cmd );
+   \       0x26   0x2007             MOVS     R0,#+7
+   \       0x28   0x.... 0x....      BL       radio_comm_SendCmd
+    709          }
+   \       0x2C   0xE8BD 0x83F1      POP      {R0,R4-R9,PC}
+    710          
+    711          /*! Sends START_TX command ID to the radio with no input parameters
+    712           *
+    713           */
+
+   \                                 In section .text, align 2, keep-with-next
+    714          void si446x_start_tx_fast( void )
+    715          {
+   \                     si446x_start_tx_fast: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    716              Pro2Cmd[0] = SI446X_CMD_ID_START_TX;
+   \        0x2   0x....             LDR.N    R1,??DataTable40
+   \        0x4   0x2031             MOVS     R0,#+49
+   \        0x6   0x7008             STRB     R0,[R1, #+0]
+    717          
+    718              radio_comm_SendCmd( 1, Pro2Cmd );
+   \        0x8   0x2001             MOVS     R0,#+1
+   \        0xA   0x.... 0x....      BL       radio_comm_SendCmd
+    719          }
+   \        0xE   0xBD01             POP      {R0,PC}
+    720          
+    721          /*!
+    722           * Sends START_RX command ID to the radio with no input parameters
+    723           *
+    724           */
+
+   \                                 In section .text, align 2, keep-with-next
+    725          void si446x_start_rx_fast( void )
+    726          {
+   \                     si446x_start_rx_fast: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    727              Pro2Cmd[0] = SI446X_CMD_ID_START_RX;
+   \        0x2   0x....             LDR.N    R1,??DataTable40
+   \        0x4   0x2032             MOVS     R0,#+50
+   \        0x6   0x7008             STRB     R0,[R1, #+0]
+    728          
+    729              radio_comm_SendCmd( 1, Pro2Cmd );
+   \        0x8   0x2001             MOVS     R0,#+1
+   \        0xA   0x.... 0x....      BL       radio_comm_SendCmd
+    730          }
+   \        0xE   0xBD01             POP      {R0,PC}
+    731          
+    732          /*!
+    733           * Clear all Interrupt status/pending flags. Does NOT read back interrupt flags
+    734           *
+    735           */
+
+   \                                 In section .text, align 2, keep-with-next
+    736          void si446x_get_int_status_fast_clear( void )
+    737          {
+   \                     si446x_get_int_status_fast_clear: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    738              Pro2Cmd[0] = SI446X_CMD_ID_GET_INT_STATUS;
+   \        0x2   0x....             LDR.N    R1,??DataTable40
+   \        0x4   0x2020             MOVS     R0,#+32
+   \        0x6   0x7008             STRB     R0,[R1, #+0]
+    739          
+    740              radio_comm_SendCmd( 1, Pro2Cmd );
+   \        0x8   0x2001             MOVS     R0,#+1
+   \        0xA   0x.... 0x....      BL       radio_comm_SendCmd
+    741          }
+   \        0xE   0xBD01             POP      {R0,PC}
+    742          
+    743          /*!
+    744           * Clear and read all Interrupt status/pending flags
+    745           *
+    746           */
+
+   \                                 In section .text, align 2, keep-with-next
+    747          void si446x_get_int_status_fast_clear_read(void)
+    748          {
+   \                     si446x_get_int_status_fast_clear_read: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    749              Pro2Cmd[0] = SI446X_CMD_ID_GET_INT_STATUS;
+   \        0x2   0x....             LDR.N    R4,??DataTable40
+   \        0x4   0x2020             MOVS     R0,#+32
+   \        0x6   0x7020             STRB     R0,[R4, #+0]
+    750          
+    751              radio_comm_SendCmdGetResp( 1,
+    752                                        Pro2Cmd,
+    753                                        SI446X_CMD_REPLY_COUNT_GET_INT_STATUS,
+    754                                        Pro2Cmd );
+   \        0x8   0x0023             MOVS     R3,R4
+   \        0xA   0x2208             MOVS     R2,#+8
+   \        0xC   0x0021             MOVS     R1,R4
+   \        0xE   0x2001             MOVS     R0,#+1
+   \       0x10   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    755          
+    756              Si446xCmd.GET_INT_STATUS.INT_PEND       = Pro2Cmd[0];
+   \       0x14   0x....             LDR.N    R0,??DataTable40_1
+   \       0x16   0x7821             LDRB     R1,[R4, #+0]
+   \       0x18   0x7001             STRB     R1,[R0, #+0]
+    757              Si446xCmd.GET_INT_STATUS.INT_STATUS     = Pro2Cmd[1];
+   \       0x1A   0x7861             LDRB     R1,[R4, #+1]
+   \       0x1C   0x7041             STRB     R1,[R0, #+1]
+    758              Si446xCmd.GET_INT_STATUS.PH_PEND        = Pro2Cmd[2];
+   \       0x1E   0x78A1             LDRB     R1,[R4, #+2]
+   \       0x20   0x7081             STRB     R1,[R0, #+2]
+    759              Si446xCmd.GET_INT_STATUS.PH_STATUS      = Pro2Cmd[3];
+   \       0x22   0x78E1             LDRB     R1,[R4, #+3]
+   \       0x24   0x70C1             STRB     R1,[R0, #+3]
+    760              Si446xCmd.GET_INT_STATUS.MODEM_PEND     = Pro2Cmd[4];
+   \       0x26   0x7921             LDRB     R1,[R4, #+4]
+   \       0x28   0x7101             STRB     R1,[R0, #+4]
+    761              Si446xCmd.GET_INT_STATUS.MODEM_STATUS   = Pro2Cmd[5];
+   \       0x2A   0x7961             LDRB     R1,[R4, #+5]
+   \       0x2C   0x7141             STRB     R1,[R0, #+5]
+    762              Si446xCmd.GET_INT_STATUS.CHIP_PEND      = Pro2Cmd[6];
+   \       0x2E   0x79A1             LDRB     R1,[R4, #+6]
+   \       0x30   0x7181             STRB     R1,[R0, #+6]
+    763              Si446xCmd.GET_INT_STATUS.CHIP_STATUS    = Pro2Cmd[7];
+   \       0x32   0x79E1             LDRB     R1,[R4, #+7]
+   \       0x34   0x71C1             STRB     R1,[R0, #+7]
+    764          }
+   \       0x36   0xBD10             POP      {R4,PC}
+    765          
+    766          /*!
+    767           * Reads back current GPIO pin configuration. Does NOT configure GPIO pins
+    768            *
+    769           */
+
+   \                                 In section .text, align 2, keep-with-next
+    770          void si446x_gpio_pin_cfg_fast( void )
+    771          {
+   \                     si446x_gpio_pin_cfg_fast: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    772              Pro2Cmd[0] = SI446X_CMD_ID_GPIO_PIN_CFG;
+   \        0x2   0x....             LDR.N    R4,??DataTable40
+   \        0x4   0x2013             MOVS     R0,#+19
+   \        0x6   0x7020             STRB     R0,[R4, #+0]
+    773          
+    774              radio_comm_SendCmdGetResp( 1,
+    775                                        Pro2Cmd,
+    776                                        SI446X_CMD_REPLY_COUNT_GPIO_PIN_CFG,
+    777                                        Pro2Cmd );
+   \        0x8   0x0023             MOVS     R3,R4
+   \        0xA   0x2207             MOVS     R2,#+7
+   \        0xC   0x0021             MOVS     R1,R4
+   \        0xE   0x2001             MOVS     R0,#+1
+   \       0x10   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    778          
+    779              Si446xCmd.GPIO_PIN_CFG.GPIO[0]        = Pro2Cmd[0];
+   \       0x14   0x....             LDR.N    R0,??DataTable40_1
+   \       0x16   0x7821             LDRB     R1,[R4, #+0]
+   \       0x18   0x7001             STRB     R1,[R0, #+0]
+    780              Si446xCmd.GPIO_PIN_CFG.GPIO[1]        = Pro2Cmd[1];
+   \       0x1A   0x7861             LDRB     R1,[R4, #+1]
+   \       0x1C   0x7041             STRB     R1,[R0, #+1]
+    781              Si446xCmd.GPIO_PIN_CFG.GPIO[2]        = Pro2Cmd[2];
+   \       0x1E   0x78A1             LDRB     R1,[R4, #+2]
+   \       0x20   0x7081             STRB     R1,[R0, #+2]
+    782              Si446xCmd.GPIO_PIN_CFG.GPIO[3]        = Pro2Cmd[3];
+   \       0x22   0x78E1             LDRB     R1,[R4, #+3]
+   \       0x24   0x70C1             STRB     R1,[R0, #+3]
+    783              Si446xCmd.GPIO_PIN_CFG.NIRQ         = Pro2Cmd[4];
+   \       0x26   0x7921             LDRB     R1,[R4, #+4]
+   \       0x28   0x7101             STRB     R1,[R0, #+4]
+    784              Si446xCmd.GPIO_PIN_CFG.SDO          = Pro2Cmd[5];
+   \       0x2A   0x7961             LDRB     R1,[R4, #+5]
+   \       0x2C   0x7141             STRB     R1,[R0, #+5]
+    785              Si446xCmd.GPIO_PIN_CFG.GEN_CONFIG   = Pro2Cmd[6];
+   \       0x2E   0x79A1             LDRB     R1,[R4, #+6]
+   \       0x30   0x7181             STRB     R1,[R0, #+6]
+    786          }
+   \       0x32   0xBD10             POP      {R4,PC}
+    787          
+    788          
+    789          /*!
+    790           * Clear all Packet Handler status flags. Does NOT read back interrupt flags
+    791           *
+    792           */
+
+   \                                 In section .text, align 2, keep-with-next
+    793          void si446x_get_ph_status_fast_clear( void )
+    794          {
+   \                     si446x_get_ph_status_fast_clear: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    795              Pro2Cmd[0] = SI446X_CMD_ID_GET_PH_STATUS;
+   \        0x2   0x....             LDR.N    R1,??DataTable40
+   \        0x4   0x2021             MOVS     R0,#+33
+   \        0x6   0x7008             STRB     R0,[R1, #+0]
+    796              Pro2Cmd[1] = 0;
+   \        0x8   0x2000             MOVS     R0,#+0
+   \        0xA   0x7048             STRB     R0,[R1, #+1]
+    797          
+    798              radio_comm_SendCmd( 2, Pro2Cmd );
+   \        0xC   0x2002             MOVS     R0,#+2
+   \        0xE   0x.... 0x....      BL       radio_comm_SendCmd
+    799          }
+   \       0x12   0xBD01             POP      {R0,PC}
+    800          
+    801          /*!
+    802           * Clear and read all Packet Handler status flags.
+    803           *
+    804           */
+
+   \                                 In section .text, align 2, keep-with-next
+    805          void si446x_get_ph_status_fast_clear_read(void)
+    806          {
+   \                     si446x_get_ph_status_fast_clear_read: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    807              Pro2Cmd[0] = SI446X_CMD_ID_GET_PH_STATUS;
+   \        0x2   0x....             LDR.N    R4,??DataTable40
+   \        0x4   0x2021             MOVS     R0,#+33
+   \        0x6   0x7020             STRB     R0,[R4, #+0]
+    808          
+    809              radio_comm_SendCmdGetResp( 1,
+    810                                        Pro2Cmd,
+    811                                        SI446X_CMD_REPLY_COUNT_GET_PH_STATUS,
+    812                                        Pro2Cmd );
+   \        0x8   0x0023             MOVS     R3,R4
+   \        0xA   0x2202             MOVS     R2,#+2
+   \        0xC   0x0021             MOVS     R1,R4
+   \        0xE   0x2001             MOVS     R0,#+1
+   \       0x10   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    813          
+    814              Si446xCmd.GET_PH_STATUS.PH_PEND        = Pro2Cmd[0];
+   \       0x14   0x....             LDR.N    R0,??DataTable40_1
+   \       0x16   0x7821             LDRB     R1,[R4, #+0]
+   \       0x18   0x7001             STRB     R1,[R0, #+0]
+    815              Si446xCmd.GET_PH_STATUS.PH_STATUS      = Pro2Cmd[1];
+   \       0x1A   0x7861             LDRB     R1,[R4, #+1]
+   \       0x1C   0x7041             STRB     R1,[R0, #+1]
+    816          }
+   \       0x1E   0xBD10             POP      {R4,PC}
+    817          
+    818          /*!
+    819           * Clear all Modem status flags. Does NOT read back interrupt flags
+    820           *
+    821           */
+
+   \                                 In section .text, align 2, keep-with-next
+    822          void si446x_get_modem_status_fast_clear( void )
+    823          {
+   \                     si446x_get_modem_status_fast_clear: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    824              Pro2Cmd[0] = SI446X_CMD_ID_GET_MODEM_STATUS;
+   \        0x2   0x....             LDR.N    R1,??DataTable40
+   \        0x4   0x2022             MOVS     R0,#+34
+   \        0x6   0x7008             STRB     R0,[R1, #+0]
+    825              Pro2Cmd[1] = 0;
+   \        0x8   0x2000             MOVS     R0,#+0
+   \        0xA   0x7048             STRB     R0,[R1, #+1]
+    826          
+    827              radio_comm_SendCmd( 2, Pro2Cmd );
+   \        0xC   0x2002             MOVS     R0,#+2
+   \        0xE   0x.... 0x....      BL       radio_comm_SendCmd
+    828          }
+   \       0x12   0xBD01             POP      {R0,PC}
+    829          
+    830          /*!
+    831           * Clear and read all Modem status flags.
+    832           *
+    833           */
+
+   \                                 In section .text, align 2, keep-with-next
+    834          void si446x_get_modem_status_fast_clear_read( void )
+    835          {
+   \                     si446x_get_modem_status_fast_clear_read: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    836              Pro2Cmd[0] = SI446X_CMD_ID_GET_MODEM_STATUS;
+   \        0x2   0x....             LDR.N    R4,??DataTable40
+   \        0x4   0x2022             MOVS     R0,#+34
+   \        0x6   0x7020             STRB     R0,[R4, #+0]
+    837          
+    838              radio_comm_SendCmdGetResp( 1,
+    839                                        Pro2Cmd,
+    840                                        SI446X_CMD_REPLY_COUNT_GET_MODEM_STATUS,
+    841                                        Pro2Cmd );
+   \        0x8   0x0023             MOVS     R3,R4
+   \        0xA   0x2208             MOVS     R2,#+8
+   \        0xC   0x0021             MOVS     R1,R4
+   \        0xE   0x2001             MOVS     R0,#+1
+   \       0x10   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    842          
+    843              Si446xCmd.GET_MODEM_STATUS.MODEM_PEND   = Pro2Cmd[0];
+   \       0x14   0x....             LDR.N    R1,??DataTable40_1
+   \       0x16   0x7820             LDRB     R0,[R4, #+0]
+   \       0x18   0x7008             STRB     R0,[R1, #+0]
+    844              Si446xCmd.GET_MODEM_STATUS.MODEM_STATUS = Pro2Cmd[1];
+   \       0x1A   0x7860             LDRB     R0,[R4, #+1]
+   \       0x1C   0x7048             STRB     R0,[R1, #+1]
+    845              Si446xCmd.GET_MODEM_STATUS.CURR_RSSI    = Pro2Cmd[2];
+   \       0x1E   0x78A0             LDRB     R0,[R4, #+2]
+   \       0x20   0x7088             STRB     R0,[R1, #+2]
+    846              Si446xCmd.GET_MODEM_STATUS.LATCH_RSSI   = Pro2Cmd[3];
+   \       0x22   0x78E0             LDRB     R0,[R4, #+3]
+   \       0x24   0x70C8             STRB     R0,[R1, #+3]
+    847              Si446xCmd.GET_MODEM_STATUS.ANT1_RSSI    = Pro2Cmd[4];
+   \       0x26   0x7920             LDRB     R0,[R4, #+4]
+   \       0x28   0x7108             STRB     R0,[R1, #+4]
+    848              Si446xCmd.GET_MODEM_STATUS.ANT2_RSSI    = Pro2Cmd[5];
+   \       0x2A   0x7960             LDRB     R0,[R4, #+5]
+   \       0x2C   0x7148             STRB     R0,[R1, #+5]
+    849              Si446xCmd.GET_MODEM_STATUS.AFC_FREQ_OFFSET = ((U16)Pro2Cmd[6] << 8) & 0xFF00;
+   \       0x2E   0x79A0             LDRB     R0,[R4, #+6]
+   \       0x30   0x0200             LSLS     R0,R0,#+8
+   \       0x32   0x6088             STR      R0,[R1, #+8]
+    850              Si446xCmd.GET_MODEM_STATUS.AFC_FREQ_OFFSET |= (U16)Pro2Cmd[7] & 0x00FF;
+   \       0x34   0x688A             LDR      R2,[R1, #+8]
+   \       0x36   0x79E0             LDRB     R0,[R4, #+7]
+   \       0x38   0x4302             ORRS     R2,R0,R2
+   \       0x3A   0x608A             STR      R2,[R1, #+8]
+    851          }
+   \       0x3C   0xBD10             POP      {R4,PC}
+    852          
+    853          /*!
+    854           * Clear all Chip status flags. Does NOT read back interrupt flags
+    855           *
+    856           */
+
+   \                                 In section .text, align 2, keep-with-next
+    857          void si446x_get_chip_status_fast_clear( void )
+    858          {
+   \                     si446x_get_chip_status_fast_clear: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    859              Pro2Cmd[0] = SI446X_CMD_ID_GET_CHIP_STATUS;
+   \        0x2   0x....             LDR.N    R1,??DataTable40
+   \        0x4   0x2023             MOVS     R0,#+35
+   \        0x6   0x7008             STRB     R0,[R1, #+0]
+    860              Pro2Cmd[1] = 0;
+   \        0x8   0x2000             MOVS     R0,#+0
+   \        0xA   0x7048             STRB     R0,[R1, #+1]
+    861          
+    862              radio_comm_SendCmd( 2, Pro2Cmd );
+   \        0xC   0x2002             MOVS     R0,#+2
+   \        0xE   0x.... 0x....      BL       radio_comm_SendCmd
+    863          }
+   \       0x12   0xBD01             POP      {R0,PC}
+    864          
+    865          /*!
+    866           * Clear and read all Chip status flags.
+    867           *
+    868           */
+
+   \                                 In section .text, align 2, keep-with-next
+    869          void si446x_get_chip_status_fast_clear_read( void )
+    870          {
+   \                     si446x_get_chip_status_fast_clear_read: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    871              Pro2Cmd[0] = SI446X_CMD_ID_GET_CHIP_STATUS;
+   \        0x2   0x....             LDR.N    R4,??DataTable40
+   \        0x4   0x2023             MOVS     R0,#+35
+   \        0x6   0x7020             STRB     R0,[R4, #+0]
+    872          
+    873              radio_comm_SendCmdGetResp( 1,
+    874                                        Pro2Cmd,
+    875                                        SI446X_CMD_REPLY_COUNT_GET_CHIP_STATUS,
+    876                                        Pro2Cmd );
+   \        0x8   0x0023             MOVS     R3,R4
+   \        0xA   0x2204             MOVS     R2,#+4
+   \        0xC   0x0021             MOVS     R1,R4
+   \        0xE   0x2001             MOVS     R0,#+1
+   \       0x10   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    877          
+    878              Si446xCmd.GET_CHIP_STATUS.CHIP_PEND         = Pro2Cmd[0];
+   \       0x14   0x....             LDR.N    R0,??DataTable40_1
+   \       0x16   0x7821             LDRB     R1,[R4, #+0]
+   \       0x18   0x7001             STRB     R1,[R0, #+0]
+    879              Si446xCmd.GET_CHIP_STATUS.CHIP_STATUS       = Pro2Cmd[1];
+   \       0x1A   0x7861             LDRB     R1,[R4, #+1]
+   \       0x1C   0x7041             STRB     R1,[R0, #+1]
+    880              Si446xCmd.GET_CHIP_STATUS.CMD_ERR_STATUS    = Pro2Cmd[2];
+   \       0x1E   0x78A1             LDRB     R1,[R4, #+2]
+   \       0x20   0x7081             STRB     R1,[R0, #+2]
+    881          }
+   \       0x22   0xBD10             POP      {R4,PC}
+    882          
+    883          /*!
+    884           * Resets the RX/TX FIFO. Does not read back anything from TX/RX FIFO
+    885           *
+    886           */
+
+   \                                 In section .text, align 2, keep-with-next
+    887          void si446x_fifo_info_fast_reset(U8 FIFO)
+    888          {
+   \                     si446x_fifo_info_fast_reset: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    889              Pro2Cmd[0] = SI446X_CMD_ID_FIFO_INFO;
+   \        0x4   0x....             LDR.N    R1,??DataTable40
+   \        0x6   0x2015             MOVS     R0,#+21
+   \        0x8   0x7008             STRB     R0,[R1, #+0]
+    890              Pro2Cmd[1] = FIFO;
+   \        0xA   0x704C             STRB     R4,[R1, #+1]
+    891          
+    892              radio_comm_SendCmd( 2, Pro2Cmd );
+   \        0xC   0x2002             MOVS     R0,#+2
+   \        0xE   0x.... 0x....      BL       radio_comm_SendCmd
+    893          }
+   \       0x12   0xBD10             POP      {R4,PC}
+    894          
+    895          /*!
+    896           * Reads RX/TX FIFO count space. Does NOT reset RX/TX FIFO
+    897           *
+    898           */
+
+   \                                 In section .text, align 2, keep-with-next
+    899          void si446x_fifo_info_fast_read(void)
+    900          {
+   \                     si446x_fifo_info_fast_read: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    901              Pro2Cmd[0] = SI446X_CMD_ID_FIFO_INFO;
+   \        0x2   0x....             LDR.N    R4,??DataTable40
+   \        0x4   0x2015             MOVS     R0,#+21
+   \        0x6   0x7020             STRB     R0,[R4, #+0]
+    902          
+    903              radio_comm_SendCmdGetResp( 1,
+    904                                        Pro2Cmd,
+    905                                        SI446X_CMD_REPLY_COUNT_FIFO_INFO,
+    906                                        Pro2Cmd );
+   \        0x8   0x0023             MOVS     R3,R4
+   \        0xA   0x2202             MOVS     R2,#+2
+   \        0xC   0x0021             MOVS     R1,R4
+   \        0xE   0x2001             MOVS     R0,#+1
+   \       0x10   0x.... 0x....      BL       radio_comm_SendCmdGetResp
+    907          
+    908              Si446xCmd.FIFO_INFO.RX_FIFO_COUNT   = Pro2Cmd[0];
+   \       0x14   0x....             LDR.N    R0,??DataTable40_1
+   \       0x16   0x7821             LDRB     R1,[R4, #+0]
+   \       0x18   0x7001             STRB     R1,[R0, #+0]
+    909              Si446xCmd.FIFO_INFO.TX_FIFO_SPACE   = Pro2Cmd[1];
+   \       0x1A   0x7861             LDRB     R1,[R4, #+1]
+   \       0x1C   0x7041             STRB     R1,[R0, #+1]
+    910          }
+   \       0x1E   0xBD10             POP      {R4,PC}
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable40:
+   \        0x0   0x....'....        DC32     Pro2Cmd
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable40_1:
+   \        0x0   0x....'....        DC32     Si446xCmd
+    911          
+    912          #endif /* RADIO_DRIVER_FULL_SUPPORT */
+    913          
+    914          #endif /* RADIO_DRIVER_EXTENDED_SUPPORT */
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   si446x_change_state
+         8   -> radio_comm_SendCmd
+      16   si446x_configuration_init
+        16   -> radio_comm_SendCmdGetResp
+        16   -> radio_hal_NirqLevel
+        16   -> si446x_get_int_status
+      16   si446x_fifo_info
+        16   -> radio_comm_SendCmdGetResp
+       8   si446x_fifo_info_fast_read
+         8   -> radio_comm_SendCmdGetResp
+       8   si446x_fifo_info_fast_reset
+         8   -> radio_comm_SendCmd
+      16   si446x_frr_a_read
+        16   -> radio_comm_ReadData
+      16   si446x_frr_b_read
+        16   -> radio_comm_ReadData
+      16   si446x_frr_c_read
+        16   -> radio_comm_ReadData
+      16   si446x_frr_d_read
+        16   -> radio_comm_ReadData
+       8   si446x_func_info
+         8   -> radio_comm_SendCmdGetResp
+      16   si446x_get_adc_reading
+        16   -> radio_comm_SendCmdGetResp
+      16   si446x_get_chip_status
+        16   -> radio_comm_SendCmdGetResp
+       8   si446x_get_chip_status_fast_clear
+         8   -> radio_comm_SendCmd
+       8   si446x_get_chip_status_fast_clear_read
+         8   -> radio_comm_SendCmdGetResp
+      24   si446x_get_int_status
+        24   -> radio_comm_SendCmdGetResp
+       8   si446x_get_int_status_fast_clear
+         8   -> radio_comm_SendCmd
+       8   si446x_get_int_status_fast_clear_read
+         8   -> radio_comm_SendCmdGetResp
+      16   si446x_get_modem_status
+        16   -> radio_comm_SendCmdGetResp
+       8   si446x_get_modem_status_fast_clear
+         8   -> radio_comm_SendCmd
+       8   si446x_get_modem_status_fast_clear_read
+         8   -> radio_comm_SendCmdGetResp
+      24   si446x_get_packet_info
+        24   -> radio_comm_SendCmdGetResp
+      16   si446x_get_ph_status
+        16   -> radio_comm_SendCmdGetResp
+       8   si446x_get_ph_status_fast_clear
+         8   -> radio_comm_SendCmd
+       8   si446x_get_ph_status_fast_clear_read
+         8   -> radio_comm_SendCmdGetResp
+      24   si446x_get_property
+        24   -> radio_comm_SendCmdGetResp
+      40   si446x_gpio_pin_cfg
+        40   -> radio_comm_SendCmdGetResp
+       8   si446x_gpio_pin_cfg_fast
+         8   -> radio_comm_SendCmdGetResp
+      24   si446x_ircal
+        24   -> radio_comm_SendCmd
+      16   si446x_ircal_manual
+        16   -> radio_comm_SendCmdGetResp
+       8   si446x_nop
+         8   -> radio_comm_SendCmd
+       8   si446x_part_info
+         8   -> radio_comm_SendCmdGetResp
+      16   si446x_power_up
+        16   -> radio_comm_SendCmd
+      16   si446x_read_rx_fifo
+        16   -> radio_comm_ReadData
+       8   si446x_request_device_state
+         8   -> radio_comm_SendCmdGetResp
+       8   si446x_reset
+         8   -> HAL_Delay
+         8   -> radio_comm_ClearCTS
+         8   -> radio_hal_AssertShutdown
+         8   -> radio_hal_DeassertShutdown
+      32   si446x_rx_hop
+        32   -> radio_comm_SendCmd
+      32   si446x_set_property
+        32   -> radio_comm_SendCmd
+      32   si446x_start_rx
+        32   -> radio_comm_SendCmd
+       8   si446x_start_rx_fast
+         8   -> radio_comm_SendCmd
+      16   si446x_start_tx
+        16   -> radio_comm_SendCmd
+       8   si446x_start_tx_fast
+         8   -> radio_comm_SendCmd
+      40   si446x_tx_hop
+        40   -> radio_comm_SendCmd
+      16   si446x_write_tx_fifo
+        16   -> radio_comm_WriteData
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable40
+       4  ??DataTable40_1
+      16  Pro2Cmd
+      20  Si446xCmd
+      22  si446x_change_state
+     122  si446x_configuration_init
+      40  si446x_fifo_info
+      32  si446x_fifo_info_fast_read
+      20  si446x_fifo_info_fast_reset
+      44  si446x_frr_a_read
+      44  si446x_frr_b_read
+      44  si446x_frr_c_read
+      44  si446x_frr_d_read
+      44  si446x_func_info
+      70  si446x_get_adc_reading
+      40  si446x_get_chip_status
+      20  si446x_get_chip_status_fast_clear
+      36  si446x_get_chip_status_fast_clear_read
+      72  si446x_get_int_status
+      16  si446x_get_int_status_fast_clear
+      56  si446x_get_int_status_fast_clear_read
+      66  si446x_get_modem_status
+      20  si446x_get_modem_status_fast_clear
+      62  si446x_get_modem_status_fast_clear_read
+      62  si446x_get_packet_info
+      36  si446x_get_ph_status
+      20  si446x_get_ph_status_fast_clear
+      32  si446x_get_ph_status_fast_clear_read
+     104  si446x_get_property
+     118  si446x_gpio_pin_cfg
+      52  si446x_gpio_pin_cfg_fast
+      32  si446x_ircal
+      40  si446x_ircal_manual
+      18  si446x_nop
+      72  si446x_part_info
+      48  si446x_power_up
+      22  si446x_read_rx_fifo
+      32  si446x_request_device_state
+      28  si446x_reset
+      48  si446x_rx_hop
+      74  si446x_set_property
+      56  si446x_start_rx
+      16  si446x_start_rx_fast
+      44  si446x_start_tx
+      16  si446x_start_tx_fast
+      60  si446x_tx_hop
+      22  si446x_write_tx_fifo
+
+ 
+    36 bytes in section .bss
+ 1'974 bytes in section .text
+ 
+ 1'974 bytes of CODE memory
+    36 bytes of DATA memory
+
+Errors: none
+Warnings: 5

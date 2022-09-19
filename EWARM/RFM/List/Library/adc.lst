@@ -1,0 +1,516 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:58
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\adc.c
+#    Command line      =
+#        -f C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\adc.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Library\adc.c -D USE_HAL_DRIVER
+#        -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library --no_cse
+#        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
+#        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
+#        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\adc.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library\adc.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\adc.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Library\adc.c
+      1          /*------------------------------------------------------------------------------------------
+      2          	Project			: RFM
+      3          	Description		: ADC Battery Power
+      4          
+      5          	Writer			: $Author: zlkit $
+      6          	Revision		: $Rev: 1891 $
+      7          	Date			: 2020. 08.
+      8          	Copyright		: Piranti Corp.	( sw@piranti.co.kr )
+      9          	 
+     10          	Revision History 
+     11          	1. 2020. 08.	: Created
+     12          -------------------------------------------------------------------------------------------*/
+     13          
+     14          //========================================================================
+     15          // Header
+     16          
+     17          #include "main.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     18          
+     19          #include "adc.h"
+     20          
+     21          #include "rfm.h"		//	RFMModeNormal
+
+  typedef unsigned char       BYTE;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",73  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned short      WORD;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",77  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		BIT;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",83  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		U8;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",84  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned int 		U16;
+                       		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",85  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned long 		U32;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",86  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed char 		S8;
+                      		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",88  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed int 			S16;
+                     			^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",89  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed long 		S32;
+                      		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",90  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",304  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",322  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",468  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",506  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",511  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",533  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",559  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",567  Warning[Pe040]: 
+          expected an identifier
+     22          
+     23          //========================================================================
+     24          // Define
+     25          
+     26          #ifndef GetDbg
+     27          
+     28          #define GetDbg( args ... )     (0)         //  GetDbgLevel이 정의되지 않으면 Default 0
+     29          
+     30          #endif
+     31          
+     32          //========================================================================
+     33          // Function
+     34          
+     35          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     36          void Adc_Power( void )
+     37          //========================================================================
+     38          {
+   \                     Adc_Power: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+     39              enum
+     40              {
+     41                  VCCMax = 2550,
+     42                  VCCMin = 1000,
+     43              };
+     44          
+     45              static int old_adc_pwr = 3100;
+     46              int adc_pwr;
+     47          
+     48              static int  bOldIsCharge = 0;        //  충전중.
+     49              int         bIsCharge;       //  충전중.
+     50          
+     51              HAL_ADC_Start( &hadc1 );
+   \        0x2   0x....             LDR.N    R4,??DataTable1
+   \        0x4   0x0020             MOVS     R0,R4
+   \        0x6   0x.... 0x....      BL       HAL_ADC_Start
+     52              HAL_ADC_PollForConversion( &hadc1, 100 );
+   \        0xA   0x2164             MOVS     R1,#+100
+   \        0xC   0x0020             MOVS     R0,R4
+   \        0xE   0x.... 0x....      BL       HAL_ADC_PollForConversion
+     53          
+     54              adc_pwr = HAL_ADC_GetValue( &hadc1 );
+   \       0x12   0x0020             MOVS     R0,R4
+   \       0x14   0x.... 0x....      BL       HAL_ADC_GetValue
+   \       0x18   0x0005             MOVS     R5,R0
+     55          
+     56              //  충전중인지 검사.
+     57              bIsCharge = ( HAL_GPIO_ReadPin( BAT_CHRG_GPIO_Port, BAT_CHRG_Pin ) ) ? 0 : 1;
+   \       0x1A   0x2101             MOVS     R1,#+1
+   \       0x1C   0x....             LDR.N    R0,??DataTable1_1
+   \       0x1E   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \       0x22   0x2800             CMP      R0,#+0
+   \       0x24   0xD001             BEQ.N    ??Adc_Power_0
+   \       0x26   0x2400             MOVS     R4,#+0
+   \       0x28   0xE000             B.N      ??Adc_Power_1
+   \                     ??Adc_Power_0: (+1)
+   \       0x2A   0x2401             MOVS     R4,#+1
+     58          
+     59              if( GetDbg() > 0 )
+     60              {
+     61                  printf( "%s(%d) - adc_pwr : %d / old_adc_pwr : %d / BAT_CHRG : %d\n",
+                         ^
+Warning[Pe223]: function "printf" declared implicitly
+     62                      __func__, __LINE__,
+     63                      adc_pwr, old_adc_pwr,
+     64                      bIsCharge
+     65                  );
+     66              }
+     67          
+     68              if ( bOldIsCharge != bIsCharge )
+   \                     ??Adc_Power_1: (+1)
+   \       0x2C   0x....             LDR.N    R6,??DataTable1_2
+   \       0x2E   0x6830             LDR      R0,[R6, #+0]
+   \       0x30   0x42A0             CMP      R0,R4
+   \       0x32   0xD00F             BEQ.N    ??Adc_Power_2
+     69              {
+     70                  if ( bIsCharge == 0 )
+   \       0x34   0x2C00             CMP      R4,#+0
+   \       0x36   0xD10C             BNE.N    ??Adc_Power_3
+     71                  {
+     72                      //  충전 단자 제거시 -  LED Off
+     73                      HAL_GPIO_WritePin( LED_ON_A_GPIO_Port, LED_ON_A_Pin, GPIO_PIN_RESET );  //  Green
+   \       0x38   0x....             LDR.N    R7,??DataTable1_3
+   \       0x3A   0x2200             MOVS     R2,#+0
+   \       0x3C   0xF44F 0x5100      MOV      R1,#+8192
+   \       0x40   0x0038             MOVS     R0,R7
+   \       0x42   0x.... 0x....      BL       HAL_GPIO_WritePin
+     74                      HAL_GPIO_WritePin( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_RESET );  //  Red
+   \       0x46   0x2200             MOVS     R2,#+0
+   \       0x48   0xF44F 0x4180      MOV      R1,#+16384
+   \       0x4C   0x0038             MOVS     R0,R7
+   \       0x4E   0x.... 0x....      BL       HAL_GPIO_WritePin
+     75                  }
+     76          
+     77                  bOldIsCharge = bIsCharge;
+   \                     ??Adc_Power_3: (+1)
+   \       0x52   0x6034             STR      R4,[R6, #+0]
+     78              }
+     79          
+     80              if( bIsCharge )
+   \                     ??Adc_Power_2: (+1)
+   \       0x54   0x2C00             CMP      R4,#+0
+   \       0x56   0xD022             BEQ.N    ??Adc_Power_4
+     81              {
+     82                  //  충전중. - Charging Start.
+     83          
+     84                  LCDBattery( 6 );
+                         ^
+Warning[Pe223]: function "LCDBattery" declared implicitly
+   \       0x58   0x2006             MOVS     R0,#+6
+   \       0x5A   0x.... 0x....      BL       LCDBattery
+     85          
+     86                  //  LED 상태. - 충전중 Red / 충전완료 : Green
+     87          
+     88                  if ( adc_pwr < 2550 )
+   \       0x5E   0xF640 0x10F6      MOVW     R0,#+2550
+   \       0x62   0x4285             CMP      R5,R0
+   \       0x64   0xDA0D             BGE.N    ??Adc_Power_5
+     89                  {
+     90                      //  충전중.
+     91                      //  Red LED
+     92                      HAL_GPIO_WritePin( LED_ON_A_GPIO_Port, LED_ON_A_Pin, GPIO_PIN_RESET );  //  Green
+   \       0x66   0x....             LDR.N    R6,??DataTable1_3
+   \       0x68   0x2200             MOVS     R2,#+0
+   \       0x6A   0xF44F 0x5100      MOV      R1,#+8192
+   \       0x6E   0x0030             MOVS     R0,R6
+   \       0x70   0x.... 0x....      BL       HAL_GPIO_WritePin
+     93                      HAL_GPIO_WritePin( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_SET );    //  Red
+   \       0x74   0x2201             MOVS     R2,#+1
+   \       0x76   0xF44F 0x4180      MOV      R1,#+16384
+   \       0x7A   0x0030             MOVS     R0,R6
+   \       0x7C   0x.... 0x....      BL       HAL_GPIO_WritePin
+   \       0x80   0xE042             B.N      ??Adc_Power_6
+     94                  }
+     95                  else
+     96                  {
+     97                      //  충전완료.
+     98                      //  Green LED
+     99                      HAL_GPIO_WritePin( LED_ON_A_GPIO_Port, LED_ON_A_Pin, GPIO_PIN_SET );    //  Green
+   \                     ??Adc_Power_5: (+1)
+   \       0x82   0x....             LDR.N    R6,??DataTable1_3
+   \       0x84   0x2201             MOVS     R2,#+1
+   \       0x86   0xF44F 0x5100      MOV      R1,#+8192
+   \       0x8A   0x0030             MOVS     R0,R6
+   \       0x8C   0x.... 0x....      BL       HAL_GPIO_WritePin
+    100                      HAL_GPIO_WritePin( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_RESET );  //  Red
+   \       0x90   0x2200             MOVS     R2,#+0
+   \       0x92   0xF44F 0x4180      MOV      R1,#+16384
+   \       0x96   0x0030             MOVS     R0,R6
+   \       0x98   0x.... 0x....      BL       HAL_GPIO_WritePin
+   \       0x9C   0xE034             B.N      ??Adc_Power_6
+    101                  }
+    102              }
+    103              else
+    104              {
+    105                  if ( adc_pwr > 2450 )                           LCDBattery( 5 );
+                                                                         ^
+Warning[Pe223]: function "LCDBattery" declared implicitly
+   \                     ??Adc_Power_4: (+1)
+   \       0x9E   0xF640 0x1093      MOVW     R0,#+2451
+   \       0xA2   0x4285             CMP      R5,R0
+   \       0xA4   0xDB03             BLT.N    ??Adc_Power_7
+   \       0xA6   0x2005             MOVS     R0,#+5
+   \       0xA8   0x.... 0x....      BL       LCDBattery
+   \       0xAC   0xE02C             B.N      ??Adc_Power_6
+    106                  else if ( 2400 < adc_pwr && adc_pwr <= 2450 )   LCDBattery( 4 );
+                                                                         ^
+Warning[Pe223]: function "LCDBattery" declared implicitly
+   \                     ??Adc_Power_7: (+1)
+   \       0xAE   0xF640 0x1161      MOVW     R1,#+2401
+   \       0xB2   0x428D             CMP      R5,R1
+   \       0xB4   0xDB05             BLT.N    ??Adc_Power_8
+   \       0xB6   0x4285             CMP      R5,R0
+   \       0xB8   0xDA03             BGE.N    ??Adc_Power_8
+   \       0xBA   0x2004             MOVS     R0,#+4
+   \       0xBC   0x.... 0x....      BL       LCDBattery
+   \       0xC0   0xE022             B.N      ??Adc_Power_6
+    107                  else if ( 2350 < adc_pwr && adc_pwr <= 2400 )   LCDBattery( 3 );
+                                                                         ^
+Warning[Pe223]: function "LCDBattery" declared implicitly
+   \                     ??Adc_Power_8: (+1)
+   \       0xC2   0xF640 0x102F      MOVW     R0,#+2351
+   \       0xC6   0x4285             CMP      R5,R0
+   \       0xC8   0xDB05             BLT.N    ??Adc_Power_9
+   \       0xCA   0x428D             CMP      R5,R1
+   \       0xCC   0xDA03             BGE.N    ??Adc_Power_9
+   \       0xCE   0x2003             MOVS     R0,#+3
+   \       0xD0   0x.... 0x....      BL       LCDBattery
+   \       0xD4   0xE018             B.N      ??Adc_Power_6
+    108                  else if ( 2200 < adc_pwr && adc_pwr <= 2350 )   LCDBattery( 2 );
+                                                                         ^
+Warning[Pe223]: function "LCDBattery" declared implicitly
+   \                     ??Adc_Power_9: (+1)
+   \       0xD6   0xF640 0x0199      MOVW     R1,#+2201
+   \       0xDA   0x428D             CMP      R5,R1
+   \       0xDC   0xDB05             BLT.N    ??Adc_Power_10
+   \       0xDE   0x4285             CMP      R5,R0
+   \       0xE0   0xDA03             BGE.N    ??Adc_Power_10
+   \       0xE2   0x2002             MOVS     R0,#+2
+   \       0xE4   0x.... 0x....      BL       LCDBattery
+   \       0xE8   0xE00E             B.N      ??Adc_Power_6
+    109                  else if ( 1000 < adc_pwr && adc_pwr <= 2200 )   LCDBattery( 1 );
+                                                                         ^
+Warning[Pe223]: function "LCDBattery" declared implicitly
+   \                     ??Adc_Power_10: (+1)
+   \       0xEA   0xF240 0x30E9      MOVW     R0,#+1001
+   \       0xEE   0x4285             CMP      R5,R0
+   \       0xF0   0xDB05             BLT.N    ??Adc_Power_11
+   \       0xF2   0x428D             CMP      R5,R1
+   \       0xF4   0xDA03             BGE.N    ??Adc_Power_11
+   \       0xF6   0x2001             MOVS     R0,#+1
+   \       0xF8   0x.... 0x....      BL       LCDBattery
+   \       0xFC   0xE004             B.N      ??Adc_Power_6
+    110                  else if ( adc_pwr <= 1000 )                     LCDBattery( 0 );
+                                                                         ^
+Warning[Pe223]: function "LCDBattery" declared implicitly
+   \                     ??Adc_Power_11: (+1)
+   \       0xFE   0x4285             CMP      R5,R0
+   \      0x100   0xDA02             BGE.N    ??Adc_Power_6
+   \      0x102   0x2000             MOVS     R0,#+0
+   \      0x104   0x.... 0x....      BL       LCDBattery
+    111              }
+    112          
+    113              old_adc_pwr = adc_pwr;
+   \                     ??Adc_Power_6: (+1)
+   \      0x108   0x....             LDR.N    R0,??DataTable1_4
+   \      0x10A   0x6005             STR      R5,[R0, #+0]
+    114          }
+   \      0x10C   0xBDF1             POP      {R0,R4-R7,PC}
+
+   \                                 In section .data, align 4
+   \                     `Adc_Power::old_adc_pwr`:
+   \        0x0   0x0000'0C1C        DC32 3'100
+
+   \                                 In section .bss, align 4
+   \                     `Adc_Power::bOldIsCharge`:
+   \        0x0                      DS8 4
+    115          
+    116          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    117          void LoopProcAdc( int nTick )
+    118          //========================================================================
+    119          {
+   \                     LoopProcAdc: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    120          	//========================================================================
+    121          	//  ADC_Power
+    122          	//  Normal Mode 일때 Battery 체크.
+    123          	//	RSSI 수신감도 체크.
+    124          	static int oldTick = 0;
+    125          
+    126          	if ( nTick - oldTick > 1000 )
+   \        0x4   0x....             LDR.N    R5,??DataTable1_5
+   \        0x6   0x6828             LDR      R0,[R5, #+0]
+   \        0x8   0x1A20             SUBS     R0,R4,R0
+   \        0xA   0xF240 0x31E9      MOVW     R1,#+1001
+   \        0xE   0x4288             CMP      R0,R1
+   \       0x10   0xDB06             BLT.N    ??LoopProcAdc_0
+    127          	{
+    128          		//  Period : 1 sec
+    129          		if ( GetRFMMode() == RFMModeNormal )
+   \       0x12   0x.... 0x....      BL       GetRFMMode
+   \       0x16   0x2800             CMP      R0,#+0
+   \       0x18   0xD101             BNE.N    ??LoopProcAdc_1
+    130          		{
+    131          			Adc_Power();
+   \       0x1A   0x.... 0x....      BL       Adc_Power
+    132          		}
+    133          
+    134          		oldTick = nTick;
+   \                     ??LoopProcAdc_1: (+1)
+   \       0x1E   0x602C             STR      R4,[R5, #+0]
+    135          	}
+    136          }
+   \                     ??LoopProcAdc_0: (+1)
+   \       0x20   0xBD31             POP      {R0,R4,R5,PC}
+
+   \                                 In section .bss, align 4
+   \                     `LoopProcAdc::oldTick`:
+   \        0x0                      DS8 4
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1:
+   \        0x0   0x....'....        DC32     hadc1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_1:
+   \        0x0   0x4002'0800        DC32     0x40020800
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_2:
+   \        0x0   0x....'....        DC32     `Adc_Power::bOldIsCharge`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_3:
+   \        0x0   0x4002'0400        DC32     0x40020400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_4:
+   \        0x0   0x....'....        DC32     `Adc_Power::old_adc_pwr`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_5:
+   \        0x0   0x....'....        DC32     `LoopProcAdc::oldTick`
+    137          
+    138          //========================================================================
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      24   Adc_Power
+        24   -> HAL_ADC_GetValue
+        24   -> HAL_ADC_PollForConversion
+        24   -> HAL_ADC_Start
+        24   -> HAL_GPIO_ReadPin
+        24   -> HAL_GPIO_WritePin
+        24   -> LCDBattery
+      16   LoopProcAdc
+        16   -> Adc_Power
+        16   -> GetRFMMode
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable1
+       4  ??DataTable1_1
+       4  ??DataTable1_2
+       4  ??DataTable1_3
+       4  ??DataTable1_4
+       4  ??DataTable1_5
+     270  Adc_Power
+      34  LoopProcAdc
+       4  bOldIsCharge
+       4  oldTick
+       4  old_adc_pwr
+
+ 
+   8 bytes in section .bss
+   4 bytes in section .data
+ 328 bytes in section .text
+ 
+ 328 bytes of CODE memory
+  12 bytes of DATA memory
+
+Errors: none
+Warnings: 26

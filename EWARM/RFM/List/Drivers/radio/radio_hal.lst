@@ -1,0 +1,751 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:56
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\radio_hal.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\radio\radio_hal.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\radio_hal.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\radio -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\radio
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\radio\radio_hal.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\radio\radio_hal.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\radio\radio_hal.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\radio_hal.c
+      1          /*!
+      2           * File:
+      3           *  radio_hal.c
+      4           *
+      5           * Description:
+      6           *  This file contains RADIO HAL.
+      7           *
+      8           * Silicon Laboratories Confidential
+      9           * Copyright 2011 Silicon Laboratories, Inc.
+     10           */
+     11          
+     12                          /* ======================================= *
+     13                           *              I N C L U D E              *
+     14                           * ======================================= */
+     15          
+     16          //#include "..\..\bsp.h"
+     17          
+     18          #include "main.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     19          #include "radio_hal.h"
+
+  typedef unsigned char       BYTE;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",73  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned short      WORD;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",77  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		BIT;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",83  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		U8;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",84  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned int 		U16;
+                       		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",85  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned long 		U32;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",86  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed char 		S8;
+                      		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",88  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed int 			S16;
+                     			^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",89  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed long 		S32;
+                      		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",90  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+     20          
+     21          #include "stm32f4xx_hal.h"		//	GPIO_PinState
+     22                          /* ======================================= *
+     23                           *          D E F I N I T I O N S          *
+     24                           * ======================================= */
+     25          
+     26                          /* ======================================= *
+     27                           *     G L O B A L   V A R I A B L E S     *
+     28                           * ======================================= */
+     29          
+     30                          /* ======================================= *
+     31                           *      L O C A L   F U N C T I O N S      *
+     32                           * ======================================= */
+     33          
+     34                          /* ======================================= *
+     35                           *     P U B L I C   F U N C T I O N S     *
+     36                           * ======================================= */
+     37          
+
+   \                                 In section .text, align 2, keep-with-next
+     38          void radio_hal_AssertShutdown(void)
+     39          {
+   \                     radio_hal_AssertShutdown: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+     40          //  PWRDN = 1;
+     41          	/*
+     42          	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3|GPIO_PIN_5, GPIO_PIN_SET);
+     43          	/*/
+                 	^
+Warning[Pe009]: nested comment is not allowed
+     44          //	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5, GPIO_PIN_SET);
+     45          	HAL_GPIO_WritePin(PWR_RF_GPIO_Port, PWR_RF_Pin, GPIO_PIN_RESET);
+   \        0x2   0x2200             MOVS     R2,#+0
+   \        0x4   0x2104             MOVS     R1,#+4
+   \        0x6   0x....             LDR.N    R0,??DataTable9
+   \        0x8   0x.... 0x....      BL       HAL_GPIO_WritePin
+     46          //  HAL_GPIO_WritePin(PWR_RF_GPIO_Port, PWR_RF_Pin, GPIO_PIN_SET);
+     47            HAL_Delay(1);
+   \        0xC   0x2001             MOVS     R0,#+1
+   \        0xE   0x.... 0x....      BL       HAL_Delay
+     48            HAL_GPIO_WritePin(TRN_RST_GPIO_Port,TRN_RST_Pin,GPIO_PIN_SET);
+   \       0x12   0x2201             MOVS     R2,#+1
+   \       0x14   0x2120             MOVS     R1,#+32
+   \       0x16   0x....             LDR.N    R0,??DataTable9_1
+   \       0x18   0x.... 0x....      BL       HAL_GPIO_WritePin
+     49          	//	*/
+     50          }
+   \       0x1C   0xBD01             POP      {R0,PC}
+     51          
+
+   \                                 In section .text, align 2, keep-with-next
+     52          void radio_hal_DeassertShutdown(void)
+     53          {
+   \                     radio_hal_DeassertShutdown: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+     54          //  PWRDN = 0;
+     55          	/*
+     56          	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3|GPIO_PIN_5, GPIO_PIN_RESET);
+     57          	/*/
+                 	^
+Warning[Pe009]: nested comment is not allowed
+     58          	HAL_GPIO_WritePin(PWR_RF_GPIO_Port, PWR_RF_Pin, GPIO_PIN_SET);
+   \        0x2   0x2201             MOVS     R2,#+1
+   \        0x4   0x2104             MOVS     R1,#+4
+   \        0x6   0x....             LDR.N    R0,??DataTable9
+   \        0x8   0x.... 0x....      BL       HAL_GPIO_WritePin
+     59          //	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5, GPIO_PIN_RESET);
+     60            HAL_GPIO_WritePin(TRN_RST_GPIO_Port,TRN_RST_Pin,GPIO_PIN_RESET);
+   \        0xC   0x2200             MOVS     R2,#+0
+   \        0xE   0x2120             MOVS     R1,#+32
+   \       0x10   0x....             LDR.N    R0,??DataTable9_1
+   \       0x12   0x.... 0x....      BL       HAL_GPIO_WritePin
+     61          	//	*/
+     62          }
+   \       0x16   0xBD01             POP      {R0,PC}
+     63          
+
+   \                                 In section .text, align 2, keep-with-next
+     64          void radio_hal_ClearNsel(void)
+     65          {
+   \                     radio_hal_ClearNsel: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+     66          //    RF_NSEL = 0;
+     67              HAL_GPIO_WritePin(SPI_CSN_GPIO_Port,SPI_CSN_Pin,GPIO_PIN_RESET);
+   \        0x2   0x2200             MOVS     R2,#+0
+   \        0x4   0x2110             MOVS     R1,#+16
+   \        0x6   0x....             LDR.N    R0,??DataTable9_2
+   \        0x8   0x.... 0x....      BL       HAL_GPIO_WritePin
+     68          }
+   \        0xC   0xBD01             POP      {R0,PC}
+     69          
+
+   \                                 In section .text, align 2, keep-with-next
+     70          void radio_hal_SetNsel(void)
+     71          {
+   \                     radio_hal_SetNsel: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+     72          //    RF_NSEL = 1;
+     73               HAL_GPIO_WritePin(SPI_CSN_GPIO_Port,SPI_CSN_Pin,GPIO_PIN_SET);
+   \        0x2   0x2201             MOVS     R2,#+1
+   \        0x4   0x2110             MOVS     R1,#+16
+   \        0x6   0x....             LDR.N    R0,??DataTable9_2
+   \        0x8   0x.... 0x....      BL       HAL_GPIO_WritePin
+     74          }
+   \        0xC   0xBD01             POP      {R0,PC}
+     75          
+
+   \                                 In section .text, align 2, keep-with-next
+     76          BIT radio_hal_NirqLevel(void)
+     77          {
+   \                     radio_hal_NirqLevel: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+     78          //	return (GPIO_PinState) RF_NIRQ;
+     79              return HAL_GPIO_ReadPin(RF_INT_GPIO_Port,RF_INT_Pin);
+   \        0x2   0x2110             MOVS     R1,#+16
+   \        0x4   0x....             LDR.N    R0,??DataTable9_1
+   \        0x6   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \        0xA   0xBD02             POP      {R1,PC}
+     80          }
+     81          
+     82          
+
+   \                                 In section .bss, align 4
+     83          U8 spi_wbyte[64];
+   \                     spi_wbyte:
+   \        0x0                      DS8 64
+
+   \                                 In section .bss, align 4
+     84          U8 spi_rbyte[64];
+   \                     spi_rbyte:
+   \        0x0                      DS8 64
+     85          
+
+   \                                 In section .text, align 2, keep-with-next
+     86          void radio_SPI_ReadWrite(U8 byteCount, U8* wdata, U8* rdata)
+     87          {
+   \                     radio_SPI_ReadWrite: (+1)
+   \        0x0   0xB57C             PUSH     {R2-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+     88            HAL_StatusTypeDef status;
+                                     ^
+Warning[Pe177]: variable "status" was declared but never referenced
+     89          
+     90          #if defined(USE_SPI_DMA)
+     91            status = HAL_SPI_TransmitReceive_DMA(&hspi1, wdata, rdata, byteCount);
+     92            if(status != HAL_OK)
+     93            {
+     94              //printf("%s(%d) Error (%d)!!\n", __func__, __LINE__, status);
+     95            }
+     96          
+     97            while (HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY){}
+     98          #else
+     99          
+    100          	HAL_SPI_TransmitReceive(&hspi1, wdata, rdata, byteCount,HAL_MAX_DELAY);
+   \        0x8   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \        0xC   0x9000             STR      R0,[SP, #+0]
+   \        0xE   0x0023             MOVS     R3,R4
+   \       0x10   0xB2DB             UXTB     R3,R3
+   \       0x12   0xB29B             UXTH     R3,R3
+   \       0x14   0x0032             MOVS     R2,R6
+   \       0x16   0x0029             MOVS     R1,R5
+   \       0x18   0x....             LDR.N    R0,??DataTable9_3
+   \       0x1A   0x.... 0x....      BL       HAL_SPI_TransmitReceive
+    101          
+    102          #endif
+    103            
+    104          }
+   \       0x1E   0xBD73             POP      {R0,R1,R4-R6,PC}
+    105          
+    106          
+
+   \                                 In section .text, align 2, keep-with-next
+    107          U8 SpiReadWrite( U8 byteToWrite )
+    108          {
+   \                     SpiReadWrite: (+1)
+   \        0x0   0xB530             PUSH     {R4,R5,LR}
+   \        0x2   0xB0A1             SUB      SP,SP,#+132
+   \        0x4   0x0004             MOVS     R4,R0
+    109          	U8 wdata[64];
+    110          	U8 rdata[64];
+    111          
+    112          	uint16_t byteCount;
+    113          
+    114          	wdata[0] = byteToWrite;	//	0xFF;
+   \        0x6   0xF88D 0x4044      STRB     R4,[SP, #+68]
+    115          	rdata[0] = 0;
+   \        0xA   0x2000             MOVS     R0,#+0
+   \        0xC   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    116          
+    117          	byteCount = 1;
+   \       0x10   0x2501             MOVS     R5,#+1
+    118          
+    119          	HAL_StatusTypeDef status;
+                 	                  ^
+Warning[Pe177]: variable "status" was declared but never referenced
+    120          
+    121          #if defined(USE_SPI_DMA)
+    122          	status = HAL_SPI_TransmitReceive_DMA(&hspi1, wdata, rdata, byteCount);
+    123          	if(status != HAL_OK)
+    124          	{
+    125          	    //printf("%s(%d) Error (%d)!!\n", __func__, __LINE__, status);
+    126          	}
+    127          
+    128          	while (HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY){}
+    129          #else
+    130          
+    131          	HAL_SPI_TransmitReceive(&hspi1, wdata, rdata, byteCount,HAL_MAX_DELAY);
+   \       0x12   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x16   0x9000             STR      R0,[SP, #+0]
+   \       0x18   0x002B             MOVS     R3,R5
+   \       0x1A   0xB29B             UXTH     R3,R3
+   \       0x1C   0xAA01             ADD      R2,SP,#+4
+   \       0x1E   0xA911             ADD      R1,SP,#+68
+   \       0x20   0x....             LDR.N    R0,??DataTable9_3
+   \       0x22   0x.... 0x....      BL       HAL_SPI_TransmitReceive
+    132          
+    133          #endif
+    134          
+    135          	return rdata[0];
+   \       0x26   0xF89D 0x0004      LDRB     R0,[SP, #+4]
+   \       0x2A   0xB021             ADD      SP,SP,#+132
+   \       0x2C   0xBD30             POP      {R4,R5,PC}
+    136          }
+    137          
+    138          
+
+   \                                 In section .text, align 2, keep-with-next
+    139          U8 *SpiWriteData( U16 byteCount, U8 *byteToWrite )
+    140          {
+   \                     SpiWriteData: (+1)
+   \        0x0   0xB578             PUSH     {R3-R6,LR}
+   \        0x2   0xB091             SUB      SP,SP,#+68
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+    141          	U8 rdata[64];
+    142          	U8 *wdata = byteToWrite;
+   \        0x8   0x002E             MOVS     R6,R5
+    143          
+    144          	rdata[0] = 0;
+   \        0xA   0x2000             MOVS     R0,#+0
+   \        0xC   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    145          
+    146          	memset( rdata, 0, sizeof(rdata) );
+                 	^
+Warning[Pe223]: function "memset" declared implicitly
+   \       0x10   0x2240             MOVS     R2,#+64
+   \       0x12   0x2100             MOVS     R1,#+0
+   \       0x14   0xA801             ADD      R0,SP,#+4
+   \       0x16   0x.... 0x....      BL       memset
+    147          
+    148          	HAL_StatusTypeDef status;
+                 	                  ^
+Warning[Pe177]: variable "status" was declared but never referenced
+    149          
+    150          #if defined(USE_SPI_DMA)
+    151          	status = HAL_SPI_TransmitReceive_DMA(&hspi1, wdata, rdata, byteCount);
+    152          	if(status != HAL_OK)
+    153          	{
+    154          	    //printf("%s(%d) Error (%d)!!\n", __func__, __LINE__, status);
+    155          	}
+    156          
+    157          	while (HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY){}
+    158          #else
+    159          
+    160          	HAL_SPI_TransmitReceive(&hspi1, wdata, rdata, byteCount,HAL_MAX_DELAY);
+   \       0x1A   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x1E   0x9000             STR      R0,[SP, #+0]
+   \       0x20   0x0023             MOVS     R3,R4
+   \       0x22   0xB29B             UXTH     R3,R3
+   \       0x24   0xAA01             ADD      R2,SP,#+4
+   \       0x26   0x0031             MOVS     R1,R6
+   \       0x28   0x....             LDR.N    R0,??DataTable9_3
+   \       0x2A   0x.... 0x....      BL       HAL_SPI_TransmitReceive
+    161          
+    162          #endif
+    163          
+    164          	return byteToWrite;
+   \       0x2E   0x0028             MOVS     R0,R5
+   \       0x30   0xB012             ADD      SP,SP,#+72
+   \       0x32   0xBD70             POP      {R4-R6,PC}
+    165          }
+    166          
+    167          
+
+   \                                 In section .text, align 2, keep-with-next
+    168          U8 *SpiReadData( U16 byteCount, U8 *byteToWrite )
+    169          {
+   \                     SpiReadData: (+1)
+   \        0x0   0xB578             PUSH     {R3-R6,LR}
+   \        0x2   0xB091             SUB      SP,SP,#+68
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+    170          
+    171          	U8 wdata[64];
+    172          	U8 *rdata = byteToWrite;
+   \        0x8   0x002E             MOVS     R6,R5
+    173          
+    174          	memset(wdata, 0xFF, byteCount);
+                 	^
+Warning[Pe223]: function "memset" declared implicitly
+   \        0xA   0x0022             MOVS     R2,R4
+   \        0xC   0x21FF             MOVS     R1,#+255
+   \        0xE   0xA801             ADD      R0,SP,#+4
+   \       0x10   0x.... 0x....      BL       memset
+    175          
+    176          	HAL_StatusTypeDef status;
+                 	                  ^
+Warning[Pe177]: variable "status" was declared but never referenced
+    177          
+    178          #if defined(USE_SPI_DMA)
+    179          	status = HAL_SPI_TransmitReceive_DMA(&hspi1, wdata, rdata, byteCount);
+    180          	if(status != HAL_OK)
+    181          	{
+    182          	    //printf("%s(%d) Error (%d)!!\n", __func__, __LINE__, status);
+    183          	}
+    184          
+    185          	while (HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY){}
+    186          #else
+    187          
+    188          	HAL_SPI_TransmitReceive(&hspi1, wdata, rdata, byteCount,HAL_MAX_DELAY);
+   \       0x14   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x18   0x9000             STR      R0,[SP, #+0]
+   \       0x1A   0x0023             MOVS     R3,R4
+   \       0x1C   0xB29B             UXTH     R3,R3
+   \       0x1E   0x0032             MOVS     R2,R6
+   \       0x20   0xA901             ADD      R1,SP,#+4
+   \       0x22   0x....             LDR.N    R0,??DataTable9_3
+   \       0x24   0x.... 0x....      BL       HAL_SPI_TransmitReceive
+    189          
+    190          #endif
+    191          
+    192          	return byteToWrite;
+   \       0x28   0x0028             MOVS     R0,R5
+   \       0x2A   0xB012             ADD      SP,SP,#+72
+   \       0x2C   0xBD70             POP      {R4-R6,PC}
+    193          }
+    194          
+
+   \                                 In section .text, align 2, keep-with-next
+    195          void radio_hal_SpiWriteByte(U8 byteToWrite)
+    196          {
+   \                     radio_hal_SpiWriteByte: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    197          #if (defined SILABS_PLATFORM_RFSTICK) || (defined SILABS_PLATFORM_LCDBB) || (defined SILABS_PLATFORM_WMB)
+    198            bSpi_ReadWriteSpi1(byteToWrite);
+    199          #else
+    200            SpiReadWrite(byteToWrite);
+   \        0x4   0x0020             MOVS     R0,R4
+   \        0x6   0xB2C0             UXTB     R0,R0
+   \        0x8   0x.... 0x....      BL       SpiReadWrite
+    201          #endif
+    202          }
+   \        0xC   0xBD10             POP      {R4,PC}
+    203          
+
+   \                                 In section .text, align 2, keep-with-next
+    204          U8 radio_hal_SpiReadByte(void)
+    205          {
+   \                     radio_hal_SpiReadByte: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    206          #if (defined SILABS_PLATFORM_RFSTICK) || (defined SILABS_PLATFORM_LCDBB) || (defined SILABS_PLATFORM_WMB)
+    207            return bSpi_ReadWriteSpi1(0xFF);
+    208          #else
+    209            return SpiReadWrite(0xFF);
+   \        0x2   0x20FF             MOVS     R0,#+255
+   \        0x4   0x.... 0x....      BL       SpiReadWrite
+   \        0x8   0xBD02             POP      {R1,PC}
+    210          #endif
+    211          }
+    212          
+
+   \                                 In section .text, align 2, keep-with-next
+    213          void radio_hal_SpiWriteData(U8 byteCount, U8* pData)
+    214          {
+   \                     radio_hal_SpiWriteData: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    215          #if (defined SILABS_PLATFORM_RFSTICK) || (defined SILABS_PLATFORM_LCDBB) || (defined SILABS_PLATFORM_WMB)
+    216            vSpi_WriteDataSpi1(byteCount, pData);
+    217          #else
+    218            SpiWriteData(byteCount, pData);
+   \        0x6   0x0029             MOVS     R1,R5
+   \        0x8   0x0020             MOVS     R0,R4
+   \        0xA   0xB2C0             UXTB     R0,R0
+   \        0xC   0x.... 0x....      BL       SpiWriteData
+    219          #endif
+    220          }
+   \       0x10   0xBD31             POP      {R0,R4,R5,PC}
+    221          
+
+   \                                 In section .text, align 2, keep-with-next
+    222          void radio_hal_SpiReadData(U8 byteCount, U8* pData)
+    223          {
+   \                     radio_hal_SpiReadData: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    224          #if (defined SILABS_PLATFORM_RFSTICK) || (defined SILABS_PLATFORM_LCDBB) || (defined SILABS_PLATFORM_WMB)
+    225            vSpi_ReadDataSpi1(byteCount, pData);
+    226          #else
+    227            SpiReadData(byteCount, pData);
+   \        0x6   0x0029             MOVS     R1,R5
+   \        0x8   0x0020             MOVS     R0,R4
+   \        0xA   0xB2C0             UXTB     R0,R0
+   \        0xC   0x.... 0x....      BL       SpiReadData
+    228          #endif
+    229          }
+   \       0x10   0xBD31             POP      {R0,R4,R5,PC}
+    230          
+    231          #ifdef RADIO_DRIVER_EXTENDED_SUPPORT
+
+   \                                 In section .text, align 2, keep-with-next
+    232          BIT radio_hal_Gpio0Level(void)
+    233          {
+    234            BIT retVal = FALSE;
+   \                     radio_hal_Gpio0Level: (+1)
+   \        0x0   0x2000             MOVS     R0,#+0
+    235          
+    236          #ifdef SILABS_PLATFORM_DKMB
+    237            retVal = FALSE;
+    238          #endif
+    239          #ifdef SILABS_PLATFORM_UDP
+    240            retVal = EZRP_RX_DOUT;
+    241          #endif
+    242          #if (defined SILABS_PLATFORM_RFSTICK) || (defined SILABS_PLATFORM_LCDBB)
+    243            retVal = RF_GPIO0;
+    244          #endif
+    245          #if (defined SILABS_PLATFORM_WMB930)
+    246            retVal = FALSE;
+    247          #endif
+    248          #if defined (SILABS_PLATFORM_WMB912)
+    249            #ifdef SILABS_IO_WITH_EXTENDER
+    250              //TODO
+    251              retVal = FALSE;
+    252            #endif
+    253          #endif
+    254          
+    255            return retVal;
+   \        0x2   0xB2C0             UXTB     R0,R0
+   \        0x4   0x4770             BX       LR
+    256          }
+    257          
+
+   \                                 In section .text, align 2, keep-with-next
+    258          BIT radio_hal_Gpio1Level(void)
+    259          {
+   \                     radio_hal_Gpio1Level: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    260          	return HAL_GPIO_ReadPin(GPIO1_GPIO_Port,GPIO1_Pin);
+   \        0x2   0x2140             MOVS     R1,#+64
+   \        0x4   0x....             LDR.N    R0,??DataTable9
+   \        0x6   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \        0xA   0xBD02             POP      {R1,PC}
+    261          
+    262            BIT retVal = FALSE;
+                       ^
+Warning[Pe185]: dynamic initialization in unreachable code
+    263          
+    264          #ifdef SILABS_PLATFORM_DKMB
+    265            retVal = FSK_CLK_OUT;
+    266          #endif
+    267          #ifdef SILABS_PLATFORM_UDP
+    268            retVal = FALSE; //No Pop
+    269          #endif
+    270          #if (defined SILABS_PLATFORM_RFSTICK) || (defined SILABS_PLATFORM_LCDBB) || (defined SILABS_PLATFORM_WMB930)
+    271            retVal = RF_GPIO1;
+    272          #endif
+    273          #if defined (SILABS_PLATFORM_WMB912)
+    274            #ifdef SILABS_IO_WITH_EXTENDER
+    275              //TODO
+    276              retVal = FALSE;
+    277            #endif
+    278          #endif
+    279          
+    280            return retVal;
+    281          }
+    282          
+
+   \                                 In section .text, align 2, keep-with-next
+    283          BIT radio_hal_Gpio2Level(void)
+    284          {
+    285            BIT retVal = FALSE;
+   \                     radio_hal_Gpio2Level: (+1)
+   \        0x0   0x2000             MOVS     R0,#+0
+    286          
+    287          #ifdef SILABS_PLATFORM_DKMB
+    288            retVal = DATA_NFFS;
+    289          #endif
+    290          #ifdef SILABS_PLATFORM_UDP
+    291            retVal = FALSE; //No Pop
+    292          #endif
+    293          #if (defined SILABS_PLATFORM_RFSTICK) || (defined SILABS_PLATFORM_LCDBB) || (defined SILABS_PLATFORM_WMB930)
+    294            retVal = RF_GPIO2;
+    295          #endif
+    296          #if defined (SILABS_PLATFORM_WMB912)
+    297            #ifdef SILABS_IO_WITH_EXTENDER
+    298              //TODO
+    299              retVal = FALSE;
+    300            #endif
+    301          #endif
+    302          
+    303            return retVal;
+   \        0x2   0xB2C0             UXTB     R0,R0
+   \        0x4   0x4770             BX       LR
+    304          }
+    305          
+
+   \                                 In section .text, align 2, keep-with-next
+    306          BIT radio_hal_Gpio3Level(void)
+    307          {
+    308            BIT retVal = FALSE;
+   \                     radio_hal_Gpio3Level: (+1)
+   \        0x0   0x2000             MOVS     R0,#+0
+    309          
+    310          #if (defined SILABS_PLATFORM_RFSTICK) || (defined SILABS_PLATFORM_LCDBB) || (defined SILABS_PLATFORM_WMB930)
+    311            retVal = RF_GPIO3;
+    312          #elif defined (SILABS_PLATFORM_WMB912)
+    313            #ifdef SILABS_IO_WITH_EXTENDER
+    314              //TODO
+    315              retVal = FALSE;
+    316            #endif
+    317          #endif
+    318          
+    319            return retVal;
+   \        0x2   0xB2C0             UXTB     R0,R0
+   \        0x4   0x4770             BX       LR
+    320          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9:
+   \        0x0   0x4002'1000        DC32     0x40021000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_1:
+   \        0x0   0x4002'0800        DC32     0x40020800
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_2:
+   \        0x0   0x4002'0000        DC32     0x40020000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_3:
+   \        0x0   0x....'....        DC32     hspi1
+    321          
+    322          #endif
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      88   SpiReadData
+        88   -> HAL_SPI_TransmitReceive
+        88   -> memset
+     144   SpiReadWrite
+       144   -> HAL_SPI_TransmitReceive
+      88   SpiWriteData
+        88   -> HAL_SPI_TransmitReceive
+        88   -> memset
+      24   radio_SPI_ReadWrite
+        24   -> HAL_SPI_TransmitReceive
+       8   radio_hal_AssertShutdown
+         8   -> HAL_Delay
+         8   -> HAL_GPIO_WritePin
+       8   radio_hal_ClearNsel
+         8   -> HAL_GPIO_WritePin
+       8   radio_hal_DeassertShutdown
+         8   -> HAL_GPIO_WritePin
+       0   radio_hal_Gpio0Level
+       8   radio_hal_Gpio1Level
+         8   -> HAL_GPIO_ReadPin
+       0   radio_hal_Gpio2Level
+       0   radio_hal_Gpio3Level
+       8   radio_hal_NirqLevel
+         8   -> HAL_GPIO_ReadPin
+       8   radio_hal_SetNsel
+         8   -> HAL_GPIO_WritePin
+       8   radio_hal_SpiReadByte
+         8   -> SpiReadWrite
+      16   radio_hal_SpiReadData
+        16   -> SpiReadData
+       8   radio_hal_SpiWriteByte
+         8   -> SpiReadWrite
+      16   radio_hal_SpiWriteData
+        16   -> SpiWriteData
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable9
+       4  ??DataTable9_1
+       4  ??DataTable9_2
+       4  ??DataTable9_3
+      46  SpiReadData
+      46  SpiReadWrite
+      52  SpiWriteData
+      32  radio_SPI_ReadWrite
+      30  radio_hal_AssertShutdown
+      14  radio_hal_ClearNsel
+      24  radio_hal_DeassertShutdown
+       6  radio_hal_Gpio0Level
+      12  radio_hal_Gpio1Level
+       6  radio_hal_Gpio2Level
+       6  radio_hal_Gpio3Level
+      12  radio_hal_NirqLevel
+      14  radio_hal_SetNsel
+      10  radio_hal_SpiReadByte
+      18  radio_hal_SpiReadData
+      14  radio_hal_SpiWriteByte
+      18  radio_hal_SpiWriteData
+      64  spi_rbyte
+      64  spi_wbyte
+
+ 
+ 128 bytes in section .bss
+ 376 bytes in section .text
+ 
+ 376 bytes of CODE memory
+ 128 bytes of DATA memory
+
+Errors: none
+Warnings: 19

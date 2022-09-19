@@ -1,0 +1,594 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:59
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                 =  thumb
+#    Endian                   =  little
+#    Source file              =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Library\QBuf.c
+#    Command line             =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\QBuf.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Library\QBuf.c -D USE_HAL_DRIVER
+#        -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library --no_cse
+#        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
+#        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
+#        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\QBuf.o.d
+#    Locale                   =  C
+#    List file                =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library\QBuf.lst
+#    Object file              =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\QBuf.o
+#    Runtime model:              
+#      __CPP_Runtime          =  1
+#      __SystemLibrary        =  DLib
+#      __dlib_file_descriptor =  1
+#      __dlib_version         =  6
+#      __iar_require _Printf  =  flags,widths
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Library\QBuf.c
+      1          /*------------------------------------------------------------------------------------------
+      2          	Project			: It Library
+      3          	Description		: Queue
+      4          
+      5          	Writer			: $Author: zlkit $
+      6          	Revision		: $Rev: 1891 $
+      7          	Date			: 2019. 10.
+      8          	Copyright		: Piranti Corp.	( zlkit@piranti.co.kr )
+      9          	 
+     10          	Revision History 
+     11          	1. 2019. 10.	: Created
+     12          -------------------------------------------------------------------------------------------*/
+     13          
+     14          //========================================================================
+     15          // Header
+     16          
+     17          #include <stdio.h>			//	printf()
+     18          #include <string.h>			//	memcpy()
+     19          
+     20          #include "QBuf.h"
+     21          
+     22          //========================================================================
+     23          // Define
+     24          
+     25          
+     26          //========================================================================
+     27          // Function
+     28          
+     29          //------------------------------------------------------------------------------
+     30          //         serial queue functions
+     31          //------------------------------------------------------------------------------
+     32          
+     33          
+     34          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     35          void init_queue( Queue_t *q )
+     36          //===========================================================================
+     37          {
+     38          	q->front = q->rear = 0;
+   \                     init_queue: (+1)
+   \        0x0   0x2100             MOVS     R1,#+0
+   \        0x2   0xF8C0 0x1104      STR      R1,[R0, #+260]
+   \        0x6   0xF8D0 0x1104      LDR      R1,[R0, #+260]
+   \        0xA   0xF8C0 0x1100      STR      R1,[R0, #+256]
+     39          }
+   \        0xE   0x4770             BX       LR
+     40          
+     41          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     42          void clear_queue( Queue_t *q )
+     43          //===========================================================================
+     44          {
+     45          	q->front = q->rear;
+   \                     clear_queue: (+1)
+   \        0x0   0xF8D0 0x1104      LDR      R1,[R0, #+260]
+   \        0x4   0xF8C0 0x1100      STR      R1,[R0, #+256]
+     46          }
+   \        0x8   0x4770             BX       LR
+     47          
+     48          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     49          int qcount( Queue_t *q )
+     50          //===========================================================================
+     51          {
+     52          	return (((q->rear+QMAX)-q->front) % QMAX);
+   \                     qcount: (+1)
+   \        0x0   0xF8D0 0x1104      LDR      R1,[R0, #+260]
+   \        0x4   0xF511 0x7180      ADDS     R1,R1,#+256
+   \        0x8   0xF8D0 0x0100      LDR      R0,[R0, #+256]
+   \        0xC   0x1A08             SUBS     R0,R1,R0
+   \        0xE   0xF44F 0x7180      MOV      R1,#+256
+   \       0x12   0xFB90 0xF2F1      SDIV     R2,R0,R1
+   \       0x16   0xFB01 0x0012      MLS      R0,R1,R2,R0
+   \       0x1A   0x4770             BX       LR
+     53          }
+     54          
+     55          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     56          int qput( Queue_t *q, unsigned char k )
+     57          //===========================================================================
+     58          {
+   \                     qput: (+1)
+   \        0x0   0xB410             PUSH     {R4}
+   \        0x2   0x0002             MOVS     R2,R0
+     59          	if ( (q->rear + 1) % QMAX == q->front )
+   \        0x4   0xF8D2 0x3104      LDR      R3,[R2, #+260]
+   \        0x8   0x1C5B             ADDS     R3,R3,#+1
+   \        0xA   0xF44F 0x7080      MOV      R0,#+256
+   \        0xE   0xFB93 0xF4F0      SDIV     R4,R3,R0
+   \       0x12   0xFB00 0x3314      MLS      R3,R0,R4,R3
+   \       0x16   0xF8D2 0x4100      LDR      R4,[R2, #+256]
+   \       0x1A   0x42A3             CMP      R3,R4
+   \       0x1C   0xD102             BNE.N    ??qput_0
+     60          	{
+     61          //		printf( "\n\tCircular Queue Overflow." );
+     62          //		printf( "\n\tQOver" );
+     63          		return -1;
+   \       0x1E   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x22   0xE00D             B.N      ??qput_1
+     64          	}
+     65          	q->queue[q->rear] = k;
+   \                     ??qput_0: (+1)
+   \       0x24   0xF8D2 0x3104      LDR      R3,[R2, #+260]
+   \       0x28   0x54D1             STRB     R1,[R2, R3]
+     66          	q->rear = (q->rear + 1) % QMAX;
+   \       0x2A   0xF8D2 0x3104      LDR      R3,[R2, #+260]
+   \       0x2E   0x1C5B             ADDS     R3,R3,#+1
+   \       0x30   0xFB93 0xF4F0      SDIV     R4,R3,R0
+   \       0x34   0xFB00 0x3014      MLS      R0,R0,R4,R3
+   \       0x38   0xF8C2 0x0104      STR      R0,[R2, #+260]
+     67          	return k;
+   \       0x3C   0xB2C9             UXTB     R1,R1
+   \       0x3E   0x0008             MOVS     R0,R1
+   \                     ??qput_1: (+1)
+   \       0x40   0xBC10             POP      {R4}
+   \       0x42   0x4770             BX       LR
+     68          }
+     69          
+     70          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     71          unsigned char qget( Queue_t *q )
+     72          //===========================================================================
+     73          {
+   \                     qget: (+1)
+   \        0x0   0xB410             PUSH     {R4}
+   \        0x2   0x0001             MOVS     R1,R0
+     74          	unsigned char i;
+     75          	/*
+     76          	if(front == rear){
+     77          		printf("\n\tCircular Queue Underflow.");
+     78          		return -1;
+     79          	}
+     80          	*/
+     81          	i = q->queue[q->front];
+   \        0x4   0xF8D1 0x0100      LDR      R0,[R1, #+256]
+   \        0x8   0x5C08             LDRB     R0,[R1, R0]
+     82          	q->front = (q->front + 1) % QMAX;
+   \        0xA   0xF8D1 0x2100      LDR      R2,[R1, #+256]
+   \        0xE   0x1C52             ADDS     R2,R2,#+1
+   \       0x10   0xF44F 0x7380      MOV      R3,#+256
+   \       0x14   0xFB92 0xF4F3      SDIV     R4,R2,R3
+   \       0x18   0xFB03 0x2214      MLS      R2,R3,R4,R2
+   \       0x1C   0xF8C1 0x2100      STR      R2,[R1, #+256]
+     83          
+     84          	return i;
+   \       0x20   0xB2C0             UXTB     R0,R0
+   \       0x22   0xBC10             POP      {R4}
+   \       0x24   0x4770             BX       LR
+     85          }
+     86          //------------------------------------------------------------------------------
+     87          
+     88          
+     89          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     90          void qBufInit( QBuf_t *q, uint8_t *_qBuf, int _size )
+     91          //===========================================================================
+     92          {
+     93          	q->front = q->rear = 0;
+   \                     qBufInit: (+1)
+   \        0x0   0x2300             MOVS     R3,#+0
+   \        0x2   0x60C3             STR      R3,[R0, #+12]
+   \        0x4   0x68C3             LDR      R3,[R0, #+12]
+   \        0x6   0x6083             STR      R3,[R0, #+8]
+     94          
+     95          	q->qBuf = _qBuf;
+   \        0x8   0x6001             STR      R1,[R0, #+0]
+     96          	q->size = _size;
+   \        0xA   0x6042             STR      R2,[R0, #+4]
+     97          
+     98          //	printf( "%s(%d) - q(%p) / _qBuf(%p) / _size(%d)\n", __func__, __LINE__,
+     99          //		q, _qBuf, _size);
+    100          }
+   \        0xC   0x4770             BX       LR
+    101          
+    102          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    103          void qBufClear( QBuf_t *q )
+    104          //===========================================================================
+    105          {
+    106          	q->front = q->rear;
+   \                     qBufClear: (+1)
+   \        0x0   0x68C1             LDR      R1,[R0, #+12]
+   \        0x2   0x6081             STR      R1,[R0, #+8]
+    107          }
+   \        0x4   0x4770             BX       LR
+    108          
+    109          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    110          int qBufCnt( QBuf_t *q )
+    111          //===========================================================================
+    112          {
+   \                     qBufCnt: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+    113          	return ( ( ( q->rear + q->size ) - q->front ) % q->size );
+   \        0x2   0x68CA             LDR      R2,[R1, #+12]
+   \        0x4   0x6848             LDR      R0,[R1, #+4]
+   \        0x6   0x1882             ADDS     R2,R0,R2
+   \        0x8   0x6888             LDR      R0,[R1, #+8]
+   \        0xA   0x1A10             SUBS     R0,R2,R0
+   \        0xC   0x6849             LDR      R1,[R1, #+4]
+   \        0xE   0xFB90 0xF2F1      SDIV     R2,R0,R1
+   \       0x12   0xFB01 0x0012      MLS      R0,R1,R2,R0
+   \       0x16   0x4770             BX       LR
+    114          }
+    115          
+    116          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    117          int qBufPut( QBuf_t *q, uint8_t *pBuf, int size )
+    118          //===========================================================================
+    119          {
+   \                     qBufPut: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+   \        0x8   0x0016             MOVS     R6,R2
+    120          	if ( ( q->rear + size ) % q->size == q->front )
+   \        0xA   0x68E0             LDR      R0,[R4, #+12]
+   \        0xC   0x1830             ADDS     R0,R6,R0
+   \        0xE   0x6861             LDR      R1,[R4, #+4]
+   \       0x10   0xFB90 0xF2F1      SDIV     R2,R0,R1
+   \       0x14   0xFB01 0x0012      MLS      R0,R1,R2,R0
+   \       0x18   0x68A1             LDR      R1,[R4, #+8]
+   \       0x1A   0x4288             CMP      R0,R1
+   \       0x1C   0xD102             BNE.N    ??qBufPut_0
+    121          	{
+    122          //		printf( "\n\tCircular Queue Overflow." );
+    123          		return -1;
+   \       0x1E   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x22   0xE013             B.N      ??qBufPut_1
+    124          	}
+    125          
+    126          	memcpy( &q->qBuf[q->rear], pBuf, size );
+   \                     ??qBufPut_0: (+1)
+   \       0x24   0x0037             MOVS     R7,R6
+   \       0x26   0x46A8             MOV      R8,R5
+   \       0x28   0x6820             LDR      R0,[R4, #+0]
+   \       0x2A   0x68E1             LDR      R1,[R4, #+12]
+   \       0x2C   0xEB00 0x0901      ADD      R9,R0,R1
+   \       0x30   0x003A             MOVS     R2,R7
+   \       0x32   0x4641             MOV      R1,R8
+   \       0x34   0x4648             MOV      R0,R9
+   \       0x36   0x.... 0x....      BL       __aeabi_memcpy
+    127          //	q->qBuf[q->rear] = k;
+    128          	q->rear = ( q->rear + size ) % q->size;
+   \       0x3A   0x68E0             LDR      R0,[R4, #+12]
+   \       0x3C   0x1830             ADDS     R0,R6,R0
+   \       0x3E   0x6861             LDR      R1,[R4, #+4]
+   \       0x40   0xFB90 0xF2F1      SDIV     R2,R0,R1
+   \       0x44   0xFB01 0x0012      MLS      R0,R1,R2,R0
+   \       0x48   0x60E0             STR      R0,[R4, #+12]
+    129          
+    130          //	printf( "%s(%d) - q(%p) / q->rear(%d) / q->front(%d)\n", __func__, __LINE__,
+    131          //		q, q->rear, q->front );
+    132          
+    133          	return size;
+   \       0x4A   0x0030             MOVS     R0,R6
+   \                     ??qBufPut_1: (+1)
+   \       0x4C   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}
+    134          }
+    135          
+    136          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    137          int qBufGet( QBuf_t *q, uint8_t *pBuf, int size )
+    138          //===========================================================================
+    139          {
+   \                     qBufGet: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+   \        0x8   0x0016             MOVS     R6,R2
+    140          	//*
+    141          	if ( q->front == q->rear )
+   \        0xA   0x68A0             LDR      R0,[R4, #+8]
+   \        0xC   0x68E1             LDR      R1,[R4, #+12]
+   \        0xE   0x4288             CMP      R0,R1
+   \       0x10   0xD102             BNE.N    ??qBufGet_0
+    142          	{
+    143          //		printf( "\n\tCircular Queue Underflow." );
+    144          		return -1;
+   \       0x12   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x16   0xE013             B.N      ??qBufGet_1
+    145          	}
+    146          	//	*/
+    147          
+    148          	memcpy( pBuf, &q->qBuf[q->front], size );
+   \                     ??qBufGet_0: (+1)
+   \       0x18   0x0037             MOVS     R7,R6
+   \       0x1A   0x6820             LDR      R0,[R4, #+0]
+   \       0x1C   0x68A1             LDR      R1,[R4, #+8]
+   \       0x1E   0xEB00 0x0801      ADD      R8,R0,R1
+   \       0x22   0x46A9             MOV      R9,R5
+   \       0x24   0x003A             MOVS     R2,R7
+   \       0x26   0x4641             MOV      R1,R8
+   \       0x28   0x4648             MOV      R0,R9
+   \       0x2A   0x.... 0x....      BL       __aeabi_memcpy
+    149          
+    150          	q->front = ( q->front + size ) % q->size;
+   \       0x2E   0x68A0             LDR      R0,[R4, #+8]
+   \       0x30   0x1830             ADDS     R0,R6,R0
+   \       0x32   0x6861             LDR      R1,[R4, #+4]
+   \       0x34   0xFB90 0xF2F1      SDIV     R2,R0,R1
+   \       0x38   0xFB01 0x0012      MLS      R0,R1,R2,R0
+   \       0x3C   0x60A0             STR      R0,[R4, #+8]
+    151          
+    152          //	printf( "%s(%d) - q(%p) / q->rear(%d) / q->front(%d)\n", __func__, __LINE__,
+    153          //		q, q->rear, q->front );
+    154          
+    155          	return size;
+   \       0x3E   0x0030             MOVS     R0,R6
+   \                     ??qBufGet_1: (+1)
+   \       0x40   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}
+    156          }
+    157          
+    158          
+    159          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    160          void	QBufTest	( QBuf_t *q, int blkSize )
+    161          //===========================================================================
+    162          {
+   \                     QBufTest: (+1)
+   \        0x0   0xE92D 0x4FF8      PUSH     {R3-R11,LR}
+   \        0x4   0xB0C0             SUB      SP,SP,#+256
+   \        0x6   0x0004             MOVS     R4,R0
+   \        0x8   0x000D             MOVS     R5,R1
+    163          	int i, j;
+    164          	int idx;
+    165          
+    166          	uint8_t	bufPut[128];
+    167          	uint8_t	bufGet[128];
+    168          
+    169          
+    170          	for ( i = 0, idx = 0; i < 20; i++, idx++ )
+   \        0xA   0x2600             MOVS     R6,#+0
+   \        0xC   0x2700             MOVS     R7,#+0
+   \                     ??QBufTest_0: (+1)
+   \        0xE   0x2E14             CMP      R6,#+20
+   \       0x10   0xDA3D             BGE.N    ??QBufTest_1
+    171          	{
+    172          		//===========================================================================
+    173          		memset( bufPut, idx, blkSize );
+   \       0x12   0x46AA             MOV      R10,R5
+   \       0x14   0x46BB             MOV      R11,R7
+   \       0x16   0xF10D 0x0880      ADD      R8,SP,#+128
+   \       0x1A   0x465A             MOV      R2,R11
+   \       0x1C   0x4651             MOV      R1,R10
+   \       0x1E   0x4640             MOV      R0,R8
+   \       0x20   0x.... 0x....      BL       __aeabi_memset
+    174          
+    175          		printf( "Put : " );
+   \       0x24   0x....             LDR.N    R0,??DataTable1_1
+   \       0x26   0x.... 0x....      BL       printf
+    176          		for ( j = 0; j < blkSize; j++ )
+   \       0x2A   0xF05F 0x0800      MOVS     R8,#+0
+   \                     ??QBufTest_2: (+1)
+   \       0x2E   0x45A8             CMP      R8,R5
+   \       0x30   0xDA08             BGE.N    ??QBufTest_3
+    177          		{
+    178          			printf( "%02X ", bufPut[j] );
+   \       0x32   0xA820             ADD      R0,SP,#+128
+   \       0x34   0xF810 0x1008      LDRB     R1,[R0, R8]
+   \       0x38   0x....             LDR.N    R0,??DataTable1_2
+   \       0x3A   0x.... 0x....      BL       printf
+    179          		}
+   \       0x3E   0xF118 0x0801      ADDS     R8,R8,#+1
+   \       0x42   0xE7F4             B.N      ??QBufTest_2
+    180          		printf( "\n" );
+   \                     ??QBufTest_3: (+1)
+   \       0x44   0x.... 0x....      ADR.W    R10,??DataTable1
+   \       0x48   0x4650             MOV      R0,R10
+   \       0x4A   0x.... 0x....      BL       printf
+    181          
+    182          		qBufPut( q, bufPut, blkSize );
+   \       0x4E   0x002A             MOVS     R2,R5
+   \       0x50   0xA920             ADD      R1,SP,#+128
+   \       0x52   0x0020             MOVS     R0,R4
+   \       0x54   0x.... 0x....      BL       qBufPut
+    183          
+    184          		//===========================================================================
+    185          		qBufGet( q, bufGet, blkSize );
+   \       0x58   0x002A             MOVS     R2,R5
+   \       0x5A   0x4669             MOV      R1,SP
+   \       0x5C   0x0020             MOVS     R0,R4
+   \       0x5E   0x.... 0x....      BL       qBufGet
+    186          
+    187          		printf( "Get : " );
+   \       0x62   0x....             LDR.N    R0,??DataTable1_3
+   \       0x64   0x.... 0x....      BL       printf
+    188          		for ( j = 0; j < blkSize; j++ )
+   \       0x68   0xF05F 0x0900      MOVS     R9,#+0
+   \                     ??QBufTest_4: (+1)
+   \       0x6C   0x45A9             CMP      R9,R5
+   \       0x6E   0xDA08             BGE.N    ??QBufTest_5
+    189          		{
+    190          			printf( "%02X ", bufGet[j] );
+   \       0x70   0x4668             MOV      R0,SP
+   \       0x72   0xF810 0x1009      LDRB     R1,[R0, R9]
+   \       0x76   0x....             LDR.N    R0,??DataTable1_2
+   \       0x78   0x.... 0x....      BL       printf
+    191          		}
+   \       0x7C   0xF119 0x0901      ADDS     R9,R9,#+1
+   \       0x80   0xE7F4             B.N      ??QBufTest_4
+    192          		printf( "\n" );
+   \                     ??QBufTest_5: (+1)
+   \       0x82   0x4650             MOV      R0,R10
+   \       0x84   0x.... 0x....      BL       printf
+    193          
+    194          		//===========================================================================
+    195          	}
+   \       0x88   0x1C76             ADDS     R6,R6,#+1
+   \       0x8A   0x1C7F             ADDS     R7,R7,#+1
+   \       0x8C   0xE7BF             B.N      ??QBufTest_0
+    196          }
+   \                     ??QBufTest_1: (+1)
+   \       0x8E   0xB041             ADD      SP,SP,#+260
+   \       0x90   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1:
+   \        0x0   0x0A 0x00          DC8      "\n",0x0,0x0   
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_1:
+   \        0x0   0x....'....        DC32     ?_0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_2:
+   \        0x0   0x....'....        DC32     ?_1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_3:
+   \        0x0   0x....'....        DC32     ?_3
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \        0x0   0x50 0x75          DC8 "Put : "
+
+   \              0x74 0x20    
+
+   \              0x3A 0x20    
+
+   \              0x00
+   \        0x7                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_1:
+   \        0x0   0x25 0x30          DC8 "%02X "
+
+   \              0x32 0x58    
+
+   \              0x20 0x00
+   \        0x6                      DS8 2
+
+   \                                 In section .rodata, align 2
+   \        0x0   0x0A 0x00          DC8 "\012"
+
+   \                                 In section .rodata, align 4
+   \                     ?_3:
+   \        0x0   0x47 0x65          DC8 "Get : "
+
+   \              0x74 0x20    
+
+   \              0x3A 0x20    
+
+   \              0x00
+   \        0x7                      DS8 1
+    197          
+    198          //========================================================================
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+     296   QBufTest
+       296   -> __aeabi_memset
+       296   -> printf
+       296   -> qBufGet
+       296   -> qBufPut
+       0   clear_queue
+       0   init_queue
+       0   qBufClear
+       0   qBufCnt
+      32   qBufGet
+        32   -> __aeabi_memcpy
+       0   qBufInit
+      32   qBufPut
+        32   -> __aeabi_memcpy
+       0   qcount
+       4   qget
+       4   qput
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable1
+       4  ??DataTable1_1
+       4  ??DataTable1_2
+       4  ??DataTable1_3
+       8  ?_0
+       8  ?_1
+       2  ?_2
+       8  ?_3
+     148  QBufTest
+      10  clear_queue
+      16  init_queue
+       6  qBufClear
+      24  qBufCnt
+      68  qBufGet
+      14  qBufInit
+      80  qBufPut
+      28  qcount
+      38  qget
+      68  qput
+
+ 
+  26 bytes in section .rodata
+ 516 bytes in section .text
+ 
+ 516 bytes of CODE  memory
+  26 bytes of CONST memory
+
+Errors: none
+Warnings: none

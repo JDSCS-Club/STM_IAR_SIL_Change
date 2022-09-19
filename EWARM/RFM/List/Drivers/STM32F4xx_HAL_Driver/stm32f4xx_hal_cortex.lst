@@ -1,0 +1,1263 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:56
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_cortex.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c
+#        -D USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\STM32F4xx_HAL_Driver
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_cortex.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_cortex.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_cortex.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c
+      1          /**
+      2            ******************************************************************************
+      3            * @file    stm32f4xx_hal_cortex.c
+      4            * @author  MCD Application Team
+      5            * @brief   CORTEX HAL module driver.
+      6            *          This file provides firmware functions to manage the following 
+      7            *          functionalities of the CORTEX:
+      8            *           + Initialization and de-initialization functions
+      9            *           + Peripheral Control functions 
+     10            *
+     11            @verbatim  
+     12            ==============================================================================
+     13                                  ##### How to use this driver #####
+     14            ==============================================================================
+     15          
+     16              [..]  
+     17              *** How to configure Interrupts using CORTEX HAL driver ***
+     18              ===========================================================
+     19              [..]     
+     20              This section provides functions allowing to configure the NVIC interrupts (IRQ).
+     21              The Cortex-M4 exceptions are managed by CMSIS functions.
+     22             
+     23              (#) Configure the NVIC Priority Grouping using HAL_NVIC_SetPriorityGrouping()
+     24                  function according to the following table.
+     25              (#) Configure the priority of the selected IRQ Channels using HAL_NVIC_SetPriority(). 
+     26              (#) Enable the selected IRQ Channels using HAL_NVIC_EnableIRQ().
+     27              (#) please refer to programming manual for details in how to configure priority. 
+     28                
+     29               -@- When the NVIC_PRIORITYGROUP_0 is selected, IRQ preemption is no more possible. 
+     30                   The pending IRQ priority will be managed only by the sub priority.
+     31             
+     32               -@- IRQ priority order (sorted by highest to lowest priority):
+     33                  (+@) Lowest preemption priority
+     34                  (+@) Lowest sub priority
+     35                  (+@) Lowest hardware priority (IRQ number)
+     36           
+     37              [..]  
+     38              *** How to configure Systick using CORTEX HAL driver ***
+     39              ========================================================
+     40              [..]
+     41              Setup SysTick Timer for time base.
+     42                     
+     43             (+) The HAL_SYSTICK_Config() function calls the SysTick_Config() function which
+     44                 is a CMSIS function that:
+     45                  (++) Configures the SysTick Reload register with value passed as function parameter.
+     46                  (++) Configures the SysTick IRQ priority to the lowest value 0x0F.
+     47                  (++) Resets the SysTick Counter register.
+     48                  (++) Configures the SysTick Counter clock source to be Core Clock Source (HCLK).
+     49                  (++) Enables the SysTick Interrupt.
+     50                  (++) Starts the SysTick Counter.
+     51              
+     52             (+) You can change the SysTick Clock source to be HCLK_Div8 by calling the macro
+     53                 __HAL_CORTEX_SYSTICKCLK_CONFIG(SYSTICK_CLKSOURCE_HCLK_DIV8) just after the
+     54                 HAL_SYSTICK_Config() function call. The __HAL_CORTEX_SYSTICKCLK_CONFIG() macro is defined
+     55                 inside the stm32f4xx_hal_cortex.h file.
+     56          
+     57             (+) You can change the SysTick IRQ priority by calling the
+     58                 HAL_NVIC_SetPriority(SysTick_IRQn,...) function just after the HAL_SYSTICK_Config() function 
+     59                 call. The HAL_NVIC_SetPriority() call the NVIC_SetPriority() function which is a CMSIS function.
+     60          
+     61             (+) To adjust the SysTick time base, use the following formula:
+     62                                      
+     63                 Reload Value = SysTick Counter Clock (Hz) x  Desired Time base (s)
+     64                 (++) Reload Value is the parameter to be passed for HAL_SYSTICK_Config() function
+     65                 (++) Reload Value should not exceed 0xFFFFFF
+     66             
+     67            @endverbatim
+     68            ******************************************************************************
+     69            * @attention
+     70            *
+     71            * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
+     72            * All rights reserved.</center></h2>
+     73            *
+     74            * This software component is licensed by ST under BSD 3-Clause license,
+     75            * the "License"; You may not use this file except in compliance with the
+     76            * License. You may obtain a copy of the License at:
+     77            *                        opensource.org/licenses/BSD-3-Clause
+     78            *
+     79            ******************************************************************************
+     80            */
+     81          
+     82          /* Includes ------------------------------------------------------------------*/
+     83          #include "stm32f4xx_hal.h"
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp void __NVIC_SetPriorityGrouping(uint32_t)
+   \                     __NVIC_SetPriorityGrouping: (+1)
+   \        0x0   0xB410             PUSH     {R4}
+   \        0x2   0xF010 0x0307      ANDS     R3,R0,#0x7
+   \        0x6   0x.... 0x....      LDR.W    R4,??DataTable15
+   \        0xA   0x6822             LDR      R2,[R4, #+0]
+   \        0xC   0xF64F 0x01FF      MOVW     R1,#+63743
+   \       0x10   0x400A             ANDS     R2,R1,R2
+   \       0x12   0xEA52 0x2203      ORRS     R2,R2,R3, LSL #+8
+   \       0x16   0x.... 0x....      LDR.W    R1,??DataTable15_1
+   \       0x1A   0x430A             ORRS     R2,R1,R2
+   \       0x1C   0x6022             STR      R2,[R4, #+0]
+   \       0x1E   0xBC10             POP      {R4}
+   \       0x20   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp uint32_t __NVIC_GetPriorityGrouping(void)
+   \                     __NVIC_GetPriorityGrouping: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable15
+   \        0x4   0x6800             LDR      R0,[R0, #+0]
+   \        0x6   0xF3C0 0x2002      UBFX     R0,R0,#+8,#+3
+   \        0xA   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp void __NVIC_EnableIRQ(IRQn_Type)
+   \                     __NVIC_EnableIRQ: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+   \        0x2   0xB249             SXTB     R1,R1
+   \        0x4   0x2900             CMP      R1,#+0
+   \        0x6   0xD409             BMI.N    ??__NVIC_EnableIRQ_0
+   \        0x8   0x2201             MOVS     R2,#+1
+   \        0xA   0xF010 0x011F      ANDS     R1,R0,#0x1F
+   \        0xE   0x408A             LSLS     R2,R2,R1
+   \       0x10   0x....             LDR.N    R1,??DataTable15_2
+   \       0x12   0x0003             MOVS     R3,R0
+   \       0x14   0xB25B             SXTB     R3,R3
+   \       0x16   0x095B             LSRS     R3,R3,#+5
+   \       0x18   0xF841 0x2023      STR      R2,[R1, R3, LSL #+2]
+   \                     ??__NVIC_EnableIRQ_0: (+1)
+   \       0x1C   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp void __NVIC_DisableIRQ(IRQn_Type)
+   \                     __NVIC_DisableIRQ: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+   \        0x2   0xB249             SXTB     R1,R1
+   \        0x4   0x2900             CMP      R1,#+0
+   \        0x6   0xD40D             BMI.N    ??__NVIC_DisableIRQ_0
+   \        0x8   0x2201             MOVS     R2,#+1
+   \        0xA   0xF010 0x011F      ANDS     R1,R0,#0x1F
+   \        0xE   0x408A             LSLS     R2,R2,R1
+   \       0x10   0x....             LDR.N    R1,??DataTable15_3
+   \       0x12   0x0003             MOVS     R3,R0
+   \       0x14   0xB25B             SXTB     R3,R3
+   \       0x16   0x095B             LSRS     R3,R3,#+5
+   \       0x18   0xF841 0x2023      STR      R2,[R1, R3, LSL #+2]
+   \       0x1C   0xF3BF 0x8F4F      DSB      SY
+   \       0x20   0xF3BF 0x8F6F      ISB      SY
+   \                     ??__NVIC_DisableIRQ_0: (+1)
+   \       0x24   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp uint32_t __NVIC_GetPendingIRQ(IRQn_Type)
+   \                     __NVIC_GetPendingIRQ: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+   \        0x2   0x0008             MOVS     R0,R1
+   \        0x4   0xB240             SXTB     R0,R0
+   \        0x6   0x2800             CMP      R0,#+0
+   \        0x8   0xD40B             BMI.N    ??__NVIC_GetPendingIRQ_0
+   \        0xA   0x....             LDR.N    R0,??DataTable15_4
+   \        0xC   0x000A             MOVS     R2,R1
+   \        0xE   0xB252             SXTB     R2,R2
+   \       0x10   0x0952             LSRS     R2,R2,#+5
+   \       0x12   0xF850 0x0022      LDR      R0,[R0, R2, LSL #+2]
+   \       0x16   0xF011 0x011F      ANDS     R1,R1,#0x1F
+   \       0x1A   0x40C8             LSRS     R0,R0,R1
+   \       0x1C   0xF010 0x0001      ANDS     R0,R0,#0x1
+   \       0x20   0xE000             B.N      ??__NVIC_GetPendingIRQ_1
+   \                     ??__NVIC_GetPendingIRQ_0: (+1)
+   \       0x22   0x2000             MOVS     R0,#+0
+   \                     ??__NVIC_GetPendingIRQ_1: (+1)
+   \       0x24   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp void __NVIC_SetPendingIRQ(IRQn_Type)
+   \                     __NVIC_SetPendingIRQ: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+   \        0x2   0xB249             SXTB     R1,R1
+   \        0x4   0x2900             CMP      R1,#+0
+   \        0x6   0xD409             BMI.N    ??__NVIC_SetPendingIRQ_0
+   \        0x8   0x2201             MOVS     R2,#+1
+   \        0xA   0xF010 0x011F      ANDS     R1,R0,#0x1F
+   \        0xE   0x408A             LSLS     R2,R2,R1
+   \       0x10   0x....             LDR.N    R1,??DataTable15_4
+   \       0x12   0x0003             MOVS     R3,R0
+   \       0x14   0xB25B             SXTB     R3,R3
+   \       0x16   0x095B             LSRS     R3,R3,#+5
+   \       0x18   0xF841 0x2023      STR      R2,[R1, R3, LSL #+2]
+   \                     ??__NVIC_SetPendingIRQ_0: (+1)
+   \       0x1C   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp void __NVIC_ClearPendingIRQ(IRQn_Type)
+   \                     __NVIC_ClearPendingIRQ: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+   \        0x2   0xB249             SXTB     R1,R1
+   \        0x4   0x2900             CMP      R1,#+0
+   \        0x6   0xD409             BMI.N    ??__NVIC_ClearPendingIRQ_0
+   \        0x8   0x2201             MOVS     R2,#+1
+   \        0xA   0xF010 0x011F      ANDS     R1,R0,#0x1F
+   \        0xE   0x408A             LSLS     R2,R2,R1
+   \       0x10   0x....             LDR.N    R1,??DataTable15_5
+   \       0x12   0x0003             MOVS     R3,R0
+   \       0x14   0xB25B             SXTB     R3,R3
+   \       0x16   0x095B             LSRS     R3,R3,#+5
+   \       0x18   0xF841 0x2023      STR      R2,[R1, R3, LSL #+2]
+   \                     ??__NVIC_ClearPendingIRQ_0: (+1)
+   \       0x1C   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp uint32_t __NVIC_GetActive(IRQn_Type)
+   \                     __NVIC_GetActive: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+   \        0x2   0x0008             MOVS     R0,R1
+   \        0x4   0xB240             SXTB     R0,R0
+   \        0x6   0x2800             CMP      R0,#+0
+   \        0x8   0xD40B             BMI.N    ??__NVIC_GetActive_0
+   \        0xA   0x....             LDR.N    R0,??DataTable15_6
+   \        0xC   0x000A             MOVS     R2,R1
+   \        0xE   0xB252             SXTB     R2,R2
+   \       0x10   0x0952             LSRS     R2,R2,#+5
+   \       0x12   0xF850 0x0022      LDR      R0,[R0, R2, LSL #+2]
+   \       0x16   0xF011 0x011F      ANDS     R1,R1,#0x1F
+   \       0x1A   0x40C8             LSRS     R0,R0,R1
+   \       0x1C   0xF010 0x0001      ANDS     R0,R0,#0x1
+   \       0x20   0xE000             B.N      ??__NVIC_GetActive_1
+   \                     ??__NVIC_GetActive_0: (+1)
+   \       0x22   0x2000             MOVS     R0,#+0
+   \                     ??__NVIC_GetActive_1: (+1)
+   \       0x24   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp void __NVIC_SetPriority(IRQn_Type, uint32_t)
+   \                     __NVIC_SetPriority: (+1)
+   \        0x0   0xB410             PUSH     {R4}
+   \        0x2   0x0002             MOVS     R2,R0
+   \        0x4   0xB252             SXTB     R2,R2
+   \        0x6   0x2A00             CMP      R2,#+0
+   \        0x8   0xD405             BMI.N    ??__NVIC_SetPriority_0
+   \        0xA   0x010A             LSLS     R2,R1,#+4
+   \        0xC   0x....             LDR.N    R3,??DataTable15_7
+   \        0xE   0x0004             MOVS     R4,R0
+   \       0x10   0xB264             SXTB     R4,R4
+   \       0x12   0x551A             STRB     R2,[R3, R4]
+   \       0x14   0xE008             B.N      ??__NVIC_SetPriority_1
+   \                     ??__NVIC_SetPriority_0: (+1)
+   \       0x16   0x010A             LSLS     R2,R1,#+4
+   \       0x18   0x....             LDR.N    R3,??DataTable15_8
+   \       0x1A   0x0004             MOVS     R4,R0
+   \       0x1C   0xB264             SXTB     R4,R4
+   \       0x1E   0xF014 0x040F      ANDS     R4,R4,#0xF
+   \       0x22   0x4423             ADD      R3,R3,R4
+   \       0x24   0xF803 0x2C04      STRB     R2,[R3, #-4]
+   \                     ??__NVIC_SetPriority_1: (+1)
+   \       0x28   0xBC10             POP      {R4}
+   \       0x2A   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp uint32_t __NVIC_GetPriority(IRQn_Type)
+   \                     __NVIC_GetPriority: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+   \        0x2   0xB249             SXTB     R1,R1
+   \        0x4   0x2900             CMP      R1,#+0
+   \        0x6   0xD404             BMI.N    ??__NVIC_GetPriority_0
+   \        0x8   0x....             LDR.N    R1,??DataTable15_7
+   \        0xA   0xB240             SXTB     R0,R0
+   \        0xC   0x5C08             LDRB     R0,[R1, R0]
+   \        0xE   0x0900             LSRS     R0,R0,#+4
+   \       0x10   0xE007             B.N      ??__NVIC_GetPriority_1
+   \                     ??__NVIC_GetPriority_0: (+1)
+   \       0x12   0x....             LDR.N    R1,??DataTable15_8
+   \       0x14   0xB240             SXTB     R0,R0
+   \       0x16   0xF010 0x000F      ANDS     R0,R0,#0xF
+   \       0x1A   0x4408             ADD      R0,R1,R0
+   \       0x1C   0xF810 0x0C04      LDRB     R0,[R0, #-4]
+   \       0x20   0x0900             LSRS     R0,R0,#+4
+   \                     ??__NVIC_GetPriority_1: (+1)
+   \       0x22   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp uint32_t NVIC_EncodePriority(uint32_t, uint32_t, uint32_t)
+   \                     NVIC_EncodePriority: (+1)
+   \        0x0   0xB470             PUSH     {R4-R6}
+   \        0x2   0x0003             MOVS     R3,R0
+   \        0x4   0xF013 0x0407      ANDS     R4,R3,#0x7
+   \        0x8   0xF1D4 0x0007      RSBS     R0,R4,#+7
+   \        0xC   0x2805             CMP      R0,#+5
+   \        0xE   0xD301             BCC.N    ??NVIC_EncodePriority_0
+   \       0x10   0x2004             MOVS     R0,#+4
+   \       0x12   0xE001             B.N      ??NVIC_EncodePriority_1
+   \                     ??NVIC_EncodePriority_0: (+1)
+   \       0x14   0xF1D4 0x0007      RSBS     R0,R4,#+7
+   \                     ??NVIC_EncodePriority_1: (+1)
+   \       0x18   0x1D25             ADDS     R5,R4,#+4
+   \       0x1A   0x2D07             CMP      R5,#+7
+   \       0x1C   0xD201             BCS.N    ??NVIC_EncodePriority_2
+   \       0x1E   0x2500             MOVS     R5,#+0
+   \       0x20   0xE000             B.N      ??NVIC_EncodePriority_3
+   \                     ??NVIC_EncodePriority_2: (+1)
+   \       0x22   0x1EE5             SUBS     R5,R4,#+3
+   \                     ??NVIC_EncodePriority_3: (+1)
+   \       0x24   0x2601             MOVS     R6,#+1
+   \       0x26   0xFA16 0xF000      LSLS     R0,R6,R0
+   \       0x2A   0x1E40             SUBS     R0,R0,#+1
+   \       0x2C   0x4001             ANDS     R1,R0,R1
+   \       0x2E   0x40A9             LSLS     R1,R1,R5
+   \       0x30   0xFA16 0xF505      LSLS     R5,R6,R5
+   \       0x34   0x1E6D             SUBS     R5,R5,#+1
+   \       0x36   0x402A             ANDS     R2,R5,R2
+   \       0x38   0x4311             ORRS     R1,R2,R1
+   \       0x3A   0x0008             MOVS     R0,R1
+   \       0x3C   0xBC70             POP      {R4-R6}
+   \       0x3E   0x4770             BX       LR
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp void NVIC_DecodePriority(uint32_t, uint32_t, uint32_t *const, uint32_t *const)
+   \                     NVIC_DecodePriority: (+1)
+   \        0x0   0xB5F0             PUSH     {R4-R7,LR}
+   \        0x2   0xF011 0x0407      ANDS     R4,R1,#0x7
+   \        0x6   0xF1D4 0x0507      RSBS     R5,R4,#+7
+   \        0xA   0x2D05             CMP      R5,#+5
+   \        0xC   0xD301             BCC.N    ??NVIC_DecodePriority_0
+   \        0xE   0x2504             MOVS     R5,#+4
+   \       0x10   0xE001             B.N      ??NVIC_DecodePriority_1
+   \                     ??NVIC_DecodePriority_0: (+1)
+   \       0x12   0xF1D4 0x0507      RSBS     R5,R4,#+7
+   \                     ??NVIC_DecodePriority_1: (+1)
+   \       0x16   0x1D26             ADDS     R6,R4,#+4
+   \       0x18   0x2E07             CMP      R6,#+7
+   \       0x1A   0xD201             BCS.N    ??NVIC_DecodePriority_2
+   \       0x1C   0x2600             MOVS     R6,#+0
+   \       0x1E   0xE000             B.N      ??NVIC_DecodePriority_3
+   \                     ??NVIC_DecodePriority_2: (+1)
+   \       0x20   0x1EE6             SUBS     R6,R4,#+3
+   \                     ??NVIC_DecodePriority_3: (+1)
+   \       0x22   0x2701             MOVS     R7,#+1
+   \       0x24   0x4684             MOV      R12,R0
+   \       0x26   0xFA3C 0xFC06      LSRS     R12,R12,R6
+   \       0x2A   0xFA17 0xFE05      LSLS     LR,R7,R5
+   \       0x2E   0xF1BE 0x0E01      SUBS     LR,LR,#+1
+   \       0x32   0xEA1E 0x0C0C      ANDS     R12,LR,R12
+   \       0x36   0xF8C2 0xC000      STR      R12,[R2, #+0]
+   \       0x3A   0x40B7             LSLS     R7,R7,R6
+   \       0x3C   0x1E7F             SUBS     R7,R7,#+1
+   \       0x3E   0x4007             ANDS     R7,R7,R0
+   \       0x40   0x601F             STR      R7,[R3, #+0]
+   \       0x42   0xBDF0             POP      {R4-R7,PC}
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp void __NVIC_SystemReset(void)
+   \                     __NVIC_SystemReset: (+1)
+   \        0x0   0xF3BF 0x8F4F      DSB      SY
+   \        0x4   0x....             LDR.N    R1,??DataTable15
+   \        0x6   0x680A             LDR      R2,[R1, #+0]
+   \        0x8   0xF412 0x62E0      ANDS     R2,R2,#0x700
+   \        0xC   0x....             LDR.N    R0,??DataTable15_9
+   \        0xE   0x4302             ORRS     R2,R0,R2
+   \       0x10   0x600A             STR      R2,[R1, #+0]
+   \       0x12   0xF3BF 0x8F4F      DSB      SY
+   \                     ??__NVIC_SystemReset_0: (+1)
+   \       0x16   0xBF00             Nop
+   \       0x18   0xE7FD             B.N      ??__NVIC_SystemReset_0
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp uint32_t SysTick_Config(uint32_t)
+   \                     SysTick_Config: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x1E60             SUBS     R0,R4,#+1
+   \        0x6   0xF1B0 0x7F80      CMP      R0,#+16777216
+   \        0xA   0xD301             BCC.N    ??SysTick_Config_0
+   \        0xC   0x2001             MOVS     R0,#+1
+   \        0xE   0xE00E             B.N      ??SysTick_Config_1
+   \                     ??SysTick_Config_0: (+1)
+   \       0x10   0x1E60             SUBS     R0,R4,#+1
+   \       0x12   0x....             LDR.N    R1,??DataTable15_10
+   \       0x14   0x6008             STR      R0,[R1, #+0]
+   \       0x16   0x210F             MOVS     R1,#+15
+   \       0x18   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x1C   0x.... 0x....      BL       __NVIC_SetPriority
+   \       0x20   0x2000             MOVS     R0,#+0
+   \       0x22   0x....             LDR.N    R1,??DataTable15_11
+   \       0x24   0x6008             STR      R0,[R1, #+0]
+   \       0x26   0x2007             MOVS     R0,#+7
+   \       0x28   0x....             LDR.N    R1,??DataTable15_12
+   \       0x2A   0x6008             STR      R0,[R1, #+0]
+   \       0x2C   0x2000             MOVS     R0,#+0
+   \                     ??SysTick_Config_1: (+1)
+   \       0x2E   0xBD10             POP      {R4,PC}
+     84          
+     85          /** @addtogroup STM32F4xx_HAL_Driver
+     86            * @{
+     87            */
+     88          
+     89          /** @defgroup CORTEX CORTEX
+     90            * @brief CORTEX HAL module driver
+     91            * @{
+     92            */
+     93          
+     94          #ifdef HAL_CORTEX_MODULE_ENABLED
+     95          
+     96          /* Private types -------------------------------------------------------------*/
+     97          /* Private variables ---------------------------------------------------------*/
+     98          /* Private constants ---------------------------------------------------------*/
+     99          /* Private macros ------------------------------------------------------------*/
+    100          /* Private functions ---------------------------------------------------------*/
+    101          /* Exported functions --------------------------------------------------------*/
+    102          
+    103          /** @defgroup CORTEX_Exported_Functions CORTEX Exported Functions
+    104            * @{
+    105            */
+    106          
+    107          
+    108          /** @defgroup CORTEX_Exported_Functions_Group1 Initialization and de-initialization functions
+    109           *  @brief    Initialization and Configuration functions 
+    110           *
+    111          @verbatim    
+    112            ==============================================================================
+    113                        ##### Initialization and de-initialization functions #####
+    114            ==============================================================================
+    115              [..]
+    116                This section provides the CORTEX HAL driver functions allowing to configure Interrupts
+    117                Systick functionalities 
+    118          
+    119          @endverbatim
+    120            * @{
+    121            */
+    122          
+    123          
+    124          /**
+    125            * @brief  Sets the priority grouping field (preemption priority and subpriority)
+    126            *         using the required unlock sequence.
+    127            * @param  PriorityGroup The priority grouping bits length. 
+    128            *         This parameter can be one of the following values:
+    129            *         @arg NVIC_PRIORITYGROUP_0: 0 bits for preemption priority
+    130            *                                    4 bits for subpriority
+    131            *         @arg NVIC_PRIORITYGROUP_1: 1 bits for preemption priority
+    132            *                                    3 bits for subpriority
+    133            *         @arg NVIC_PRIORITYGROUP_2: 2 bits for preemption priority
+    134            *                                    2 bits for subpriority
+    135            *         @arg NVIC_PRIORITYGROUP_3: 3 bits for preemption priority
+    136            *                                    1 bits for subpriority
+    137            *         @arg NVIC_PRIORITYGROUP_4: 4 bits for preemption priority
+    138            *                                    0 bits for subpriority
+    139            * @note   When the NVIC_PriorityGroup_0 is selected, IRQ preemption is no more possible. 
+    140            *         The pending IRQ priority will be managed only by the subpriority. 
+    141            * @retval None
+    142            */
+
+   \                                 In section .text, align 2, keep-with-next
+    143          void HAL_NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
+    144          {
+   \                     HAL_NVIC_SetPriorityGrouping: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    145            /* Check the parameters */
+    146            assert_param(IS_NVIC_PRIORITY_GROUP(PriorityGroup));
+    147            
+    148            /* Set the PRIGROUP[10:8] bits according to the PriorityGroup parameter value */
+    149            NVIC_SetPriorityGrouping(PriorityGroup);
+   \        0x4   0x0020             MOVS     R0,R4
+   \        0x6   0x.... 0x....      BL       __NVIC_SetPriorityGrouping
+    150          }
+   \        0xA   0xBD10             POP      {R4,PC}
+    151          
+    152          /**
+    153            * @brief  Sets the priority of an interrupt.
+    154            * @param  IRQn External interrupt number.
+    155            *         This parameter can be an enumerator of IRQn_Type enumeration
+    156            *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))
+    157            * @param  PreemptPriority The preemption priority for the IRQn channel.
+    158            *         This parameter can be a value between 0 and 15
+    159            *         A lower priority value indicates a higher priority 
+    160            * @param  SubPriority the subpriority level for the IRQ channel.
+    161            *         This parameter can be a value between 0 and 15
+    162            *         A lower priority value indicates a higher priority.          
+    163            * @retval None
+    164            */
+
+   \                                 In section .text, align 2, keep-with-next
+    165          void HAL_NVIC_SetPriority(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t SubPriority)
+    166          { 
+   \                     HAL_NVIC_SetPriority: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+   \        0x8   0x0016             MOVS     R6,R2
+    167            uint32_t prioritygroup = 0x00U;
+   \        0xA   0x2700             MOVS     R7,#+0
+    168            
+    169            /* Check the parameters */
+    170            assert_param(IS_NVIC_SUB_PRIORITY(SubPriority));
+    171            assert_param(IS_NVIC_PREEMPTION_PRIORITY(PreemptPriority));
+    172            
+    173            prioritygroup = NVIC_GetPriorityGrouping();
+   \        0xC   0x.... 0x....      BL       __NVIC_GetPriorityGrouping
+   \       0x10   0x4680             MOV      R8,R0
+    174            
+    175            NVIC_SetPriority(IRQn, NVIC_EncodePriority(prioritygroup, PreemptPriority, SubPriority));
+   \       0x12   0x0032             MOVS     R2,R6
+   \       0x14   0x0029             MOVS     R1,R5
+   \       0x16   0x4640             MOV      R0,R8
+   \       0x18   0x.... 0x....      BL       NVIC_EncodePriority
+   \       0x1C   0x0001             MOVS     R1,R0
+   \       0x1E   0x0020             MOVS     R0,R4
+   \       0x20   0xB240             SXTB     R0,R0
+   \       0x22   0x.... 0x....      BL       __NVIC_SetPriority
+    176          }
+   \       0x26   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    177          
+    178          /**
+    179            * @brief  Enables a device specific interrupt in the NVIC interrupt controller.
+    180            * @note   To configure interrupts priority correctly, the NVIC_PriorityGroupConfig()
+    181            *         function should be called before. 
+    182            * @param  IRQn External interrupt number.
+    183            *         This parameter can be an enumerator of IRQn_Type enumeration
+    184            *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))
+    185            * @retval None
+    186            */
+
+   \                                 In section .text, align 2, keep-with-next
+    187          void HAL_NVIC_EnableIRQ(IRQn_Type IRQn)
+    188          {
+   \                     HAL_NVIC_EnableIRQ: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    189            /* Check the parameters */
+    190            assert_param(IS_NVIC_DEVICE_IRQ(IRQn));
+    191            
+    192            /* Enable interrupt */
+    193            NVIC_EnableIRQ(IRQn);
+   \        0x4   0x0020             MOVS     R0,R4
+   \        0x6   0xB240             SXTB     R0,R0
+   \        0x8   0x.... 0x....      BL       __NVIC_EnableIRQ
+    194          }
+   \        0xC   0xBD10             POP      {R4,PC}
+    195          
+    196          /**
+    197            * @brief  Disables a device specific interrupt in the NVIC interrupt controller.
+    198            * @param  IRQn External interrupt number.
+    199            *         This parameter can be an enumerator of IRQn_Type enumeration
+    200            *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))
+    201            * @retval None
+    202            */
+
+   \                                 In section .text, align 2, keep-with-next
+    203          void HAL_NVIC_DisableIRQ(IRQn_Type IRQn)
+    204          {
+   \                     HAL_NVIC_DisableIRQ: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    205            /* Check the parameters */
+    206            assert_param(IS_NVIC_DEVICE_IRQ(IRQn));
+    207            
+    208            /* Disable interrupt */
+    209            NVIC_DisableIRQ(IRQn);
+   \        0x4   0x0020             MOVS     R0,R4
+   \        0x6   0xB240             SXTB     R0,R0
+   \        0x8   0x.... 0x....      BL       __NVIC_DisableIRQ
+    210          }
+   \        0xC   0xBD10             POP      {R4,PC}
+    211          
+    212          /**
+    213            * @brief  Initiates a system reset request to reset the MCU.
+    214            * @retval None
+    215            */
+
+   \                                 In section .text, align 2, keep-with-next
+    216          void HAL_NVIC_SystemReset(void)
+    217          {
+   \                     HAL_NVIC_SystemReset: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    218            /* System Reset */
+    219            NVIC_SystemReset();
+   \        0x2   0x.... 0x....      BL       __NVIC_SystemReset
+    220          }
+   \        0x6   0xBD01             POP      {R0,PC}
+    221          
+    222          /**
+    223            * @brief  Initializes the System Timer and its interrupt, and starts the System Tick Timer.
+    224            *         Counter is in free running mode to generate periodic interrupts.
+    225            * @param  TicksNumb Specifies the ticks Number of ticks between two interrupts.
+    226            * @retval status:  - 0  Function succeeded.
+    227            *                  - 1  Function failed.
+    228            */
+
+   \                                 In section .text, align 2, keep-with-next
+    229          uint32_t HAL_SYSTICK_Config(uint32_t TicksNumb)
+    230          {
+   \                     HAL_SYSTICK_Config: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    231             return SysTick_Config(TicksNumb);
+   \        0x4   0x0020             MOVS     R0,R4
+   \        0x6   0x.... 0x....      BL       SysTick_Config
+   \        0xA   0xBD10             POP      {R4,PC}
+    232          }
+    233          /**
+    234            * @}
+    235            */
+    236          
+    237          /** @defgroup CORTEX_Exported_Functions_Group2 Peripheral Control functions
+    238           *  @brief   Cortex control functions 
+    239           *
+    240          @verbatim   
+    241            ==============================================================================
+    242                                ##### Peripheral Control functions #####
+    243            ==============================================================================  
+    244              [..]
+    245                This subsection provides a set of functions allowing to control the CORTEX
+    246                (NVIC, SYSTICK, MPU) functionalities. 
+    247           
+    248                
+    249          @endverbatim
+    250            * @{
+    251            */
+    252          
+    253          #if (__MPU_PRESENT == 1U)
+    254          /**
+    255            * @brief  Disables the MPU
+    256            * @retval None
+    257            */
+
+   \                                 In section .text, align 2, keep-with-next
+    258          void HAL_MPU_Disable(void)
+    259          {
+    260            /* Make sure outstanding transfers are done */
+    261            __DMB();
+   \                     HAL_MPU_Disable: (+1)
+   \        0x0   0xF3BF 0x8F5F      DMB      SY
+    262          
+    263            /* Disable fault exceptions */
+    264            SCB->SHCSR &= ~SCB_SHCSR_MEMFAULTENA_Msk;
+   \        0x4   0x....             LDR.N    R0,??DataTable15_13
+   \        0x6   0x6801             LDR      R1,[R0, #+0]
+   \        0x8   0xF431 0x3180      BICS     R1,R1,#0x10000
+   \        0xC   0x6001             STR      R1,[R0, #+0]
+    265            
+    266            /* Disable the MPU and clear the control register*/
+    267            MPU->CTRL = 0U;
+   \        0xE   0x2000             MOVS     R0,#+0
+   \       0x10   0x....             LDR.N    R1,??DataTable15_14
+   \       0x12   0x6008             STR      R0,[R1, #+0]
+    268          }
+   \       0x14   0x4770             BX       LR
+    269          
+    270          /**
+    271            * @brief  Enable the MPU.
+    272            * @param  MPU_Control Specifies the control mode of the MPU during hard fault, 
+    273            *          NMI, FAULTMASK and privileged access to the default memory 
+    274            *          This parameter can be one of the following values:
+    275            *            @arg MPU_HFNMI_PRIVDEF_NONE
+    276            *            @arg MPU_HARDFAULT_NMI
+    277            *            @arg MPU_PRIVILEGED_DEFAULT
+    278            *            @arg MPU_HFNMI_PRIVDEF
+    279            * @retval None
+    280            */
+
+   \                                 In section .text, align 2, keep-with-next
+    281          void HAL_MPU_Enable(uint32_t MPU_Control)
+    282          {
+    283            /* Enable the MPU */
+    284            MPU->CTRL = MPU_Control | MPU_CTRL_ENABLE_Msk;
+   \                     HAL_MPU_Enable: (+1)
+   \        0x0   0xF050 0x0101      ORRS     R1,R0,#0x1
+   \        0x4   0x....             LDR.N    R2,??DataTable15_14
+   \        0x6   0x6011             STR      R1,[R2, #+0]
+    285            
+    286            /* Enable fault exceptions */
+    287            SCB->SHCSR |= SCB_SHCSR_MEMFAULTENA_Msk;
+   \        0x8   0x....             LDR.N    R1,??DataTable15_13
+   \        0xA   0x680A             LDR      R2,[R1, #+0]
+   \        0xC   0xF452 0x3280      ORRS     R2,R2,#0x10000
+   \       0x10   0x600A             STR      R2,[R1, #+0]
+    288            
+    289            /* Ensure MPU setting take effects */
+    290            __DSB();
+   \       0x12   0xF3BF 0x8F4F      DSB      SY
+    291            __ISB();
+   \       0x16   0xF3BF 0x8F6F      ISB      SY
+    292          }
+   \       0x1A   0x4770             BX       LR
+    293          
+    294          /**
+    295            * @brief  Initializes and configures the Region and the memory to be protected.
+    296            * @param  MPU_Init Pointer to a MPU_Region_InitTypeDef structure that contains
+    297            *                the initialization and configuration information.
+    298            * @retval None
+    299            */
+
+   \                                 In section .text, align 2, keep-with-next
+    300          void HAL_MPU_ConfigRegion(MPU_Region_InitTypeDef *MPU_Init)
+    301          {
+    302            /* Check the parameters */
+    303            assert_param(IS_MPU_REGION_NUMBER(MPU_Init->Number));
+    304            assert_param(IS_MPU_REGION_ENABLE(MPU_Init->Enable));
+    305          
+    306            /* Set the Region number */
+    307            MPU->RNR = MPU_Init->Number;
+   \                     HAL_MPU_ConfigRegion: (+1)
+   \        0x0   0x7841             LDRB     R1,[R0, #+1]
+   \        0x2   0x....             LDR.N    R2,??DataTable15_15
+   \        0x4   0x6011             STR      R1,[R2, #+0]
+    308          
+    309            if ((MPU_Init->Enable) != RESET)
+   \        0x6   0x7801             LDRB     R1,[R0, #+0]
+   \        0x8   0x2900             CMP      R1,#+0
+   \        0xA   0xD01E             BEQ.N    ??HAL_MPU_ConfigRegion_0
+    310            {
+    311              /* Check the parameters */
+    312              assert_param(IS_MPU_INSTRUCTION_ACCESS(MPU_Init->DisableExec));
+    313              assert_param(IS_MPU_REGION_PERMISSION_ATTRIBUTE(MPU_Init->AccessPermission));
+    314              assert_param(IS_MPU_TEX_LEVEL(MPU_Init->TypeExtField));
+    315              assert_param(IS_MPU_ACCESS_SHAREABLE(MPU_Init->IsShareable));
+    316              assert_param(IS_MPU_ACCESS_CACHEABLE(MPU_Init->IsCacheable));
+    317              assert_param(IS_MPU_ACCESS_BUFFERABLE(MPU_Init->IsBufferable));
+    318              assert_param(IS_MPU_SUB_REGION_DISABLE(MPU_Init->SubRegionDisable));
+    319              assert_param(IS_MPU_REGION_SIZE(MPU_Init->Size));
+    320              
+    321              MPU->RBAR = MPU_Init->BaseAddress;
+   \        0xC   0x6841             LDR      R1,[R0, #+4]
+   \        0xE   0x....             LDR.N    R2,??DataTable15_16
+   \       0x10   0x6011             STR      R1,[R2, #+0]
+    322              MPU->RASR = ((uint32_t)MPU_Init->DisableExec             << MPU_RASR_XN_Pos)   |
+    323                          ((uint32_t)MPU_Init->AccessPermission        << MPU_RASR_AP_Pos)   |
+    324                          ((uint32_t)MPU_Init->TypeExtField            << MPU_RASR_TEX_Pos)  |
+    325                          ((uint32_t)MPU_Init->IsShareable             << MPU_RASR_S_Pos)    |
+    326                          ((uint32_t)MPU_Init->IsCacheable             << MPU_RASR_C_Pos)    |
+    327                          ((uint32_t)MPU_Init->IsBufferable            << MPU_RASR_B_Pos)    |
+    328                          ((uint32_t)MPU_Init->SubRegionDisable        << MPU_RASR_SRD_Pos)  |
+    329                          ((uint32_t)MPU_Init->Size                    << MPU_RASR_SIZE_Pos) |
+    330                          ((uint32_t)MPU_Init->Enable                  << MPU_RASR_ENABLE_Pos);
+   \       0x12   0x7B01             LDRB     R1,[R0, #+12]
+   \       0x14   0x7AC2             LDRB     R2,[R0, #+11]
+   \       0x16   0x0612             LSLS     R2,R2,#+24
+   \       0x18   0xEA52 0x7201      ORRS     R2,R2,R1, LSL #+28
+   \       0x1C   0x7A81             LDRB     R1,[R0, #+10]
+   \       0x1E   0xEA52 0x42C1      ORRS     R2,R2,R1, LSL #+19
+   \       0x22   0x7B41             LDRB     R1,[R0, #+13]
+   \       0x24   0xEA52 0x4281      ORRS     R2,R2,R1, LSL #+18
+   \       0x28   0x7B81             LDRB     R1,[R0, #+14]
+   \       0x2A   0xEA52 0x4241      ORRS     R2,R2,R1, LSL #+17
+   \       0x2E   0x7BC1             LDRB     R1,[R0, #+15]
+   \       0x30   0xEA52 0x4201      ORRS     R2,R2,R1, LSL #+16
+   \       0x34   0x7A41             LDRB     R1,[R0, #+9]
+   \       0x36   0xEA52 0x2201      ORRS     R2,R2,R1, LSL #+8
+   \       0x3A   0x7A01             LDRB     R1,[R0, #+8]
+   \       0x3C   0xEA52 0x0241      ORRS     R2,R2,R1, LSL #+1
+   \       0x40   0x7801             LDRB     R1,[R0, #+0]
+   \       0x42   0x430A             ORRS     R2,R1,R2
+   \       0x44   0x....             LDR.N    R1,??DataTable15_17
+   \       0x46   0x600A             STR      R2,[R1, #+0]
+   \       0x48   0xE005             B.N      ??HAL_MPU_ConfigRegion_1
+    331            }
+    332            else
+    333            {
+    334              MPU->RBAR = 0x00U;
+   \                     ??HAL_MPU_ConfigRegion_0: (+1)
+   \       0x4A   0x2100             MOVS     R1,#+0
+   \       0x4C   0x....             LDR.N    R2,??DataTable15_16
+   \       0x4E   0x6011             STR      R1,[R2, #+0]
+    335              MPU->RASR = 0x00U;
+   \       0x50   0x2100             MOVS     R1,#+0
+   \       0x52   0x....             LDR.N    R2,??DataTable15_17
+   \       0x54   0x6011             STR      R1,[R2, #+0]
+    336            }
+    337          }
+   \                     ??HAL_MPU_ConfigRegion_1: (+1)
+   \       0x56   0x4770             BX       LR
+    338          #endif /* __MPU_PRESENT */
+    339          
+    340          /**
+    341            * @brief  Gets the priority grouping field from the NVIC Interrupt Controller.
+    342            * @retval Priority grouping field (SCB->AIRCR [10:8] PRIGROUP field)
+    343            */
+
+   \                                 In section .text, align 2, keep-with-next
+    344          uint32_t HAL_NVIC_GetPriorityGrouping(void)
+    345          {
+   \                     HAL_NVIC_GetPriorityGrouping: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    346            /* Get the PRIGROUP[10:8] field value */
+    347            return NVIC_GetPriorityGrouping();
+   \        0x2   0x.... 0x....      BL       __NVIC_GetPriorityGrouping
+   \        0x6   0xBD02             POP      {R1,PC}
+    348          }
+    349          
+    350          /**
+    351            * @brief  Gets the priority of an interrupt.
+    352            * @param  IRQn External interrupt number.
+    353            *         This parameter can be an enumerator of IRQn_Type enumeration
+    354            *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))
+    355            * @param   PriorityGroup the priority grouping bits length.
+    356            *         This parameter can be one of the following values:
+    357            *           @arg NVIC_PRIORITYGROUP_0: 0 bits for preemption priority
+    358            *                                      4 bits for subpriority
+    359            *           @arg NVIC_PRIORITYGROUP_1: 1 bits for preemption priority
+    360            *                                      3 bits for subpriority
+    361            *           @arg NVIC_PRIORITYGROUP_2: 2 bits for preemption priority
+    362            *                                      2 bits for subpriority
+    363            *           @arg NVIC_PRIORITYGROUP_3: 3 bits for preemption priority
+    364            *                                      1 bits for subpriority
+    365            *           @arg NVIC_PRIORITYGROUP_4: 4 bits for preemption priority
+    366            *                                      0 bits for subpriority
+    367            * @param  pPreemptPriority Pointer on the Preemptive priority value (starting from 0).
+    368            * @param  pSubPriority Pointer on the Subpriority value (starting from 0).
+    369            * @retval None
+    370            */
+
+   \                                 In section .text, align 2, keep-with-next
+    371          void HAL_NVIC_GetPriority(IRQn_Type IRQn, uint32_t PriorityGroup, uint32_t *pPreemptPriority, uint32_t *pSubPriority)
+    372          {
+   \                     HAL_NVIC_GetPriority: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+   \        0x8   0x001F             MOVS     R7,R3
+    373            /* Check the parameters */
+    374            assert_param(IS_NVIC_PRIORITY_GROUP(PriorityGroup));
+    375           /* Get priority for Cortex-M system or device specific interrupts */
+    376            NVIC_DecodePriority(NVIC_GetPriority(IRQn), PriorityGroup, pPreemptPriority, pSubPriority);
+   \        0xA   0x0020             MOVS     R0,R4
+   \        0xC   0xB240             SXTB     R0,R0
+   \        0xE   0x.... 0x....      BL       __NVIC_GetPriority
+   \       0x12   0x003B             MOVS     R3,R7
+   \       0x14   0x0032             MOVS     R2,R6
+   \       0x16   0x0029             MOVS     R1,R5
+   \       0x18   0x.... 0x....      BL       NVIC_DecodePriority
+    377          }
+   \       0x1C   0xBDF1             POP      {R0,R4-R7,PC}
+    378          
+    379          /**
+    380            * @brief  Sets Pending bit of an external interrupt.
+    381            * @param  IRQn External interrupt number
+    382            *         This parameter can be an enumerator of IRQn_Type enumeration
+    383            *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))
+    384            * @retval None
+    385            */
+
+   \                                 In section .text, align 2, keep-with-next
+    386          void HAL_NVIC_SetPendingIRQ(IRQn_Type IRQn)
+    387          {
+   \                     HAL_NVIC_SetPendingIRQ: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    388            /* Check the parameters */
+    389            assert_param(IS_NVIC_DEVICE_IRQ(IRQn));
+    390            
+    391            /* Set interrupt pending */
+    392            NVIC_SetPendingIRQ(IRQn);
+   \        0x4   0x0020             MOVS     R0,R4
+   \        0x6   0xB240             SXTB     R0,R0
+   \        0x8   0x.... 0x....      BL       __NVIC_SetPendingIRQ
+    393          }
+   \        0xC   0xBD10             POP      {R4,PC}
+    394          
+    395          /**
+    396            * @brief  Gets Pending Interrupt (reads the pending register in the NVIC 
+    397            *         and returns the pending bit for the specified interrupt).
+    398            * @param  IRQn External interrupt number.
+    399            *          This parameter can be an enumerator of IRQn_Type enumeration
+    400            *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))
+    401            * @retval status: - 0  Interrupt status is not pending.
+    402            *                 - 1  Interrupt status is pending.
+    403            */
+
+   \                                 In section .text, align 2, keep-with-next
+    404          uint32_t HAL_NVIC_GetPendingIRQ(IRQn_Type IRQn)
+    405          {
+   \                     HAL_NVIC_GetPendingIRQ: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    406            /* Check the parameters */
+    407            assert_param(IS_NVIC_DEVICE_IRQ(IRQn));
+    408            
+    409            /* Return 1 if pending else 0 */
+    410            return NVIC_GetPendingIRQ(IRQn);
+   \        0x4   0x0020             MOVS     R0,R4
+   \        0x6   0xB240             SXTB     R0,R0
+   \        0x8   0x.... 0x....      BL       __NVIC_GetPendingIRQ
+   \        0xC   0xBD10             POP      {R4,PC}
+    411          }
+    412          
+    413          /**
+    414            * @brief  Clears the pending bit of an external interrupt.
+    415            * @param  IRQn External interrupt number.
+    416            *         This parameter can be an enumerator of IRQn_Type enumeration
+    417            *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))
+    418            * @retval None
+    419            */
+
+   \                                 In section .text, align 2, keep-with-next
+    420          void HAL_NVIC_ClearPendingIRQ(IRQn_Type IRQn)
+    421          {
+   \                     HAL_NVIC_ClearPendingIRQ: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    422            /* Check the parameters */
+    423            assert_param(IS_NVIC_DEVICE_IRQ(IRQn));
+    424            
+    425            /* Clear pending interrupt */
+    426            NVIC_ClearPendingIRQ(IRQn);
+   \        0x4   0x0020             MOVS     R0,R4
+   \        0x6   0xB240             SXTB     R0,R0
+   \        0x8   0x.... 0x....      BL       __NVIC_ClearPendingIRQ
+    427          }
+   \        0xC   0xBD10             POP      {R4,PC}
+    428          
+    429          /**
+    430            * @brief Gets active interrupt ( reads the active register in NVIC and returns the active bit).
+    431            * @param IRQn External interrupt number
+    432            *         This parameter can be an enumerator of IRQn_Type enumeration
+    433            *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))
+    434            * @retval status: - 0  Interrupt status is not pending.
+    435            *                 - 1  Interrupt status is pending.
+    436            */
+
+   \                                 In section .text, align 2, keep-with-next
+    437          uint32_t HAL_NVIC_GetActive(IRQn_Type IRQn)
+    438          {
+   \                     HAL_NVIC_GetActive: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    439            /* Check the parameters */
+    440            assert_param(IS_NVIC_DEVICE_IRQ(IRQn));
+    441            
+    442            /* Return 1 if active else 0 */
+    443            return NVIC_GetActive(IRQn);
+   \        0x4   0x0020             MOVS     R0,R4
+   \        0x6   0xB240             SXTB     R0,R0
+   \        0x8   0x.... 0x....      BL       __NVIC_GetActive
+   \        0xC   0xBD10             POP      {R4,PC}
+    444          }
+    445          
+    446          /**
+    447            * @brief  Configures the SysTick clock source.
+    448            * @param  CLKSource specifies the SysTick clock source.
+    449            *          This parameter can be one of the following values:
+    450            *             @arg SYSTICK_CLKSOURCE_HCLK_DIV8: AHB clock divided by 8 selected as SysTick clock source.
+    451            *             @arg SYSTICK_CLKSOURCE_HCLK: AHB clock selected as SysTick clock source.
+    452            * @retval None
+    453            */
+
+   \                                 In section .text, align 2, keep-with-next
+    454          void HAL_SYSTICK_CLKSourceConfig(uint32_t CLKSource)
+    455          {
+    456            /* Check the parameters */
+    457            assert_param(IS_SYSTICK_CLK_SOURCE(CLKSource));
+    458            if (CLKSource == SYSTICK_CLKSOURCE_HCLK)
+   \                     HAL_SYSTICK_CLKSourceConfig: (+1)
+   \        0x0   0x2804             CMP      R0,#+4
+   \        0x2   0xD105             BNE.N    ??HAL_SYSTICK_CLKSourceConfig_0
+    459            {
+    460              SysTick->CTRL |= SYSTICK_CLKSOURCE_HCLK;
+   \        0x4   0x....             LDR.N    R1,??DataTable15_12
+   \        0x6   0x680A             LDR      R2,[R1, #+0]
+   \        0x8   0xF052 0x0204      ORRS     R2,R2,#0x4
+   \        0xC   0x600A             STR      R2,[R1, #+0]
+   \        0xE   0xE004             B.N      ??HAL_SYSTICK_CLKSourceConfig_1
+    461            }
+    462            else
+    463            {
+    464              SysTick->CTRL &= ~SYSTICK_CLKSOURCE_HCLK;
+   \                     ??HAL_SYSTICK_CLKSourceConfig_0: (+1)
+   \       0x10   0x....             LDR.N    R1,??DataTable15_12
+   \       0x12   0x680A             LDR      R2,[R1, #+0]
+   \       0x14   0xF032 0x0204      BICS     R2,R2,#0x4
+   \       0x18   0x600A             STR      R2,[R1, #+0]
+    465            }
+    466          }
+   \                     ??HAL_SYSTICK_CLKSourceConfig_1: (+1)
+   \       0x1A   0x4770             BX       LR
+    467          
+    468          /**
+    469            * @brief  This function handles SYSTICK interrupt request.
+    470            * @retval None
+    471            */
+
+   \                                 In section .text, align 2, keep-with-next
+    472          void HAL_SYSTICK_IRQHandler(void)
+    473          {
+   \                     HAL_SYSTICK_IRQHandler: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    474            HAL_SYSTICK_Callback();
+   \        0x2   0x.... 0x....      BL       HAL_SYSTICK_Callback
+    475          }
+   \        0x6   0xBD01             POP      {R0,PC}
+    476          
+    477          /**
+    478            * @brief  SYSTICK callback.
+    479            * @retval None
+    480            */
+
+   \                                 In section .text, align 2
+    481          __weak void HAL_SYSTICK_Callback(void)
+    482          {
+    483            /* NOTE : This function Should not be modified, when the callback is needed,
+    484                      the HAL_SYSTICK_Callback could be implemented in the user file
+    485             */
+    486          }
+   \                     HAL_SYSTICK_Callback: (+1)
+   \        0x0   0x4770             BX       LR
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15:
+   \        0x0   0xE000'ED0C        DC32     0xe000ed0c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_1:
+   \        0x0   0x05FA'0000        DC32     0x5fa0000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_2:
+   \        0x0   0xE000'E100        DC32     0xe000e100
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_3:
+   \        0x0   0xE000'E180        DC32     0xe000e180
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_4:
+   \        0x0   0xE000'E200        DC32     0xe000e200
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_5:
+   \        0x0   0xE000'E280        DC32     0xe000e280
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_6:
+   \        0x0   0xE000'E300        DC32     0xe000e300
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_7:
+   \        0x0   0xE000'E400        DC32     0xe000e400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_8:
+   \        0x0   0xE000'ED18        DC32     0xe000ed18
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_9:
+   \        0x0   0x05FA'0004        DC32     0x5fa0004
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_10:
+   \        0x0   0xE000'E014        DC32     0xe000e014
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_11:
+   \        0x0   0xE000'E018        DC32     0xe000e018
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_12:
+   \        0x0   0xE000'E010        DC32     0xe000e010
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_13:
+   \        0x0   0xE000'ED24        DC32     0xe000ed24
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_14:
+   \        0x0   0xE000'ED94        DC32     0xe000ed94
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_15:
+   \        0x0   0xE000'ED98        DC32     0xe000ed98
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_16:
+   \        0x0   0xE000'ED9C        DC32     0xe000ed9c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable15_17:
+   \        0x0   0xE000'EDA0        DC32     0xe000eda0
+    487          
+    488          /**
+    489            * @}
+    490            */
+    491          
+    492          /**
+    493            * @}
+    494            */
+    495          
+    496          #endif /* HAL_CORTEX_MODULE_ENABLED */
+    497          /**
+    498            * @}
+    499            */
+    500          
+    501          /**
+    502            * @}
+    503            */
+    504          
+    505          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   HAL_MPU_ConfigRegion
+       0   HAL_MPU_Disable
+       0   HAL_MPU_Enable
+       8   HAL_NVIC_ClearPendingIRQ
+         8   -> __NVIC_ClearPendingIRQ
+       8   HAL_NVIC_DisableIRQ
+         8   -> __NVIC_DisableIRQ
+       8   HAL_NVIC_EnableIRQ
+         8   -> __NVIC_EnableIRQ
+       8   HAL_NVIC_GetActive
+         8   -> __NVIC_GetActive
+       8   HAL_NVIC_GetPendingIRQ
+         8   -> __NVIC_GetPendingIRQ
+      24   HAL_NVIC_GetPriority
+        24   -> NVIC_DecodePriority
+        24   -> __NVIC_GetPriority
+       8   HAL_NVIC_GetPriorityGrouping
+         8   -> __NVIC_GetPriorityGrouping
+       8   HAL_NVIC_SetPendingIRQ
+         8   -> __NVIC_SetPendingIRQ
+      24   HAL_NVIC_SetPriority
+        24   -> NVIC_EncodePriority
+        24   -> __NVIC_GetPriorityGrouping
+        24   -> __NVIC_SetPriority
+       8   HAL_NVIC_SetPriorityGrouping
+         8   -> __NVIC_SetPriorityGrouping
+       8   HAL_NVIC_SystemReset
+         8   -> __NVIC_SystemReset
+       0   HAL_SYSTICK_CLKSourceConfig
+       0   HAL_SYSTICK_Callback
+       8   HAL_SYSTICK_Config
+         8   -> SysTick_Config
+       8   HAL_SYSTICK_IRQHandler
+         8   -> HAL_SYSTICK_Callback
+      20   NVIC_DecodePriority
+      12   NVIC_EncodePriority
+       8   SysTick_Config
+         8   -> __NVIC_SetPriority
+       0   __NVIC_ClearPendingIRQ
+       0   __NVIC_DisableIRQ
+       0   __NVIC_EnableIRQ
+       0   __NVIC_GetActive
+       0   __NVIC_GetPendingIRQ
+       0   __NVIC_GetPriority
+       0   __NVIC_GetPriorityGrouping
+       0   __NVIC_SetPendingIRQ
+       4   __NVIC_SetPriority
+       4   __NVIC_SetPriorityGrouping
+       0   __NVIC_SystemReset
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable15
+       4  ??DataTable15_1
+       4  ??DataTable15_10
+       4  ??DataTable15_11
+       4  ??DataTable15_12
+       4  ??DataTable15_13
+       4  ??DataTable15_14
+       4  ??DataTable15_15
+       4  ??DataTable15_16
+       4  ??DataTable15_17
+       4  ??DataTable15_2
+       4  ??DataTable15_3
+       4  ??DataTable15_4
+       4  ??DataTable15_5
+       4  ??DataTable15_6
+       4  ??DataTable15_7
+       4  ??DataTable15_8
+       4  ??DataTable15_9
+      88  HAL_MPU_ConfigRegion
+      22  HAL_MPU_Disable
+      28  HAL_MPU_Enable
+      14  HAL_NVIC_ClearPendingIRQ
+      14  HAL_NVIC_DisableIRQ
+      14  HAL_NVIC_EnableIRQ
+      14  HAL_NVIC_GetActive
+      14  HAL_NVIC_GetPendingIRQ
+      30  HAL_NVIC_GetPriority
+       8  HAL_NVIC_GetPriorityGrouping
+      14  HAL_NVIC_SetPendingIRQ
+      42  HAL_NVIC_SetPriority
+      12  HAL_NVIC_SetPriorityGrouping
+       8  HAL_NVIC_SystemReset
+      28  HAL_SYSTICK_CLKSourceConfig
+       2  HAL_SYSTICK_Callback
+      12  HAL_SYSTICK_Config
+       8  HAL_SYSTICK_IRQHandler
+      68  NVIC_DecodePriority
+      64  NVIC_EncodePriority
+      48  SysTick_Config
+      30  __NVIC_ClearPendingIRQ
+      38  __NVIC_DisableIRQ
+      30  __NVIC_EnableIRQ
+      38  __NVIC_GetActive
+      38  __NVIC_GetPendingIRQ
+      36  __NVIC_GetPriority
+      12  __NVIC_GetPriorityGrouping
+      30  __NVIC_SetPendingIRQ
+      44  __NVIC_SetPriority
+      34  __NVIC_SetPriorityGrouping
+      26  __NVIC_SystemReset
+
+ 
+ 980 bytes in section .text
+ 
+ 978 bytes of CODE memory (+ 2 bytes shared)
+
+Errors: none
+Warnings: none

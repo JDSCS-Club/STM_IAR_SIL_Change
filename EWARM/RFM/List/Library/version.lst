@@ -1,0 +1,315 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:50:00
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\version.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\version.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Library\version.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library --no_cse
+#        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
+#        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
+#        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\version.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library\version.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\version.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Library\version.c
+      1          /*------------------------------------------------------------------------------------------
+      2          	Project			: LED
+      3          	Description		: 
+      4          
+      5          	Writer			: $Author: zlkit $
+      6          	Revision		: $Rev: 1891 $
+      7          	Date			: 2019. 12.
+      8          	Copyright		: Piranti Corp. ( zlkit@piranti.co.kr )
+      9          	 
+     10          	Revision History 
+     11          	1. 2019. 12.	: Created
+     12          -------------------------------------------------------------------------------------------*/
+     13          
+     14          //========================================================================
+     15          // Header
+     16          
+     17          #include "version.h"
+     18          #include "VerInfo.h"		//	VER_INFO structure
+
+  typedef unsigned char       BYTE;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",73  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned short      WORD;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",77  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+     19          
+     20          //========================================================================
+     21          // Define
+     22          
+
+   \                                 In section .data, align 4
+     23          const char *g_sBoard = "RFM";
+   \                     g_sBoard:
+   \        0x0   0x....'....        DC32 ?_0
+     24          
+
+   \                                 In section .data, align 4
+     25          VER_INFO			g_Version = {
+   \                     g_Version:
+   \        0x0   0x0001 0x0001      DC16 1, 1, 0, 302, 0
+
+   \               0x0000 0x012
+
+   \              E 0x0000
+   \        0xA   0x00 0x00          DC8 0, 0, 0, 0, 0, 0
+
+   \              0x00 0x00    
+
+   \              0x00 0x00
+   \       0x10   0x0000'0000        DC32 0
+   \       0x14   0x00 0x00          DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00
+     26          	FILEVER,	//	APP_MAIN_VER, APP_SUB_VER, APP_DETAIL_VER, APP_BUILD_VER,
+     27          	0,
+     28          };			// Version Information
+     29          
+     30          /*
+     31          Version History
+     32          
+     33          v1.0.0
+     34          	19/12/04
+     35          	- 최초작성.
+     36          	
+     37          */
+     38          
+
+   \                                 In section .text, align 4, keep-with-next
+     39          void Version_History()
+     40          {
+   \                     Version_History: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+     41          	printf( "-----------------------------\r\n" );
+                 	^
+Warning[Pe223]: function "printf" declared implicitly
+   \        0x2   0x4806             LDR.N    R0,??Version_History_0
+   \        0x4   0x.... 0x....      BL       printf
+     42          	printf( "      RFM History			\r\n" );
+   \        0x8   0x4805             LDR.N    R0,??Version_History_0+0x4
+   \        0xA   0x.... 0x....      BL       printf
+     43          	printf( " v1.0.0 : 19/12/04			\r\n" );
+   \        0xE   0x4805             LDR.N    R0,??Version_History_0+0x8
+   \       0x10   0x.... 0x....      BL       printf
+     44          	printf( "        - 최초작성.		\r\n" );
+   \       0x14   0x4804             LDR.N    R0,??Version_History_0+0xC
+   \       0x16   0x.... 0x....      BL       printf
+     45          }
+   \       0x1A   0xBD01             POP      {R0,PC}
+   \                     ??Version_History_0:
+   \       0x1C   0x....'....        DC32     ?_1
+   \       0x20   0x....'....        DC32     ?_2
+   \       0x24   0x....'....        DC32     ?_3
+   \       0x28   0x....'....        DC32     ?_4
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \        0x0   0x52 0x46          DC8 "RFM"
+
+   \              0x4D 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_1:
+   \        0x0   0x2D 0x2D          DC8 "-----------------------------\015\012"
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x2D 0x0D    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_2:
+   \        0x0   0x20 0x20          DC8 "      RFM History\t\t\t\015\012"
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0x52 0x46    
+
+   \              0x4D 0x20    
+
+   \              0x48 0x69    
+
+   \              0x73 0x74    
+
+   \              0x6F 0x72    
+
+   \              0x79 0x09    
+
+   \              0x09 0x09    
+
+   \              0x0D 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_3:
+   \        0x0   0x20 0x76          DC8 " v1.0.0 : 19/12/04\t\t\t\015\012"
+
+   \              0x31 0x2E    
+
+   \              0x30 0x2E    
+
+   \              0x30 0x20    
+
+   \              0x3A 0x20    
+
+   \              0x31 0x39    
+
+   \              0x2F 0x31    
+
+   \              0x32 0x2F    
+
+   \              0x30 0x34    
+
+   \              0x09 0x09    
+
+   \              0x09 0x0D    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_4:
+   \        0x0   0x20 0x20          DC8 "        - \354\265\234\354\264\210\354\236\221\354\204\261.\t\t\015\012"
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0x2D 0x20    
+
+   \              0xEC 0xB5    
+
+   \              0x9C 0xEC    
+
+   \              0xB4 0x88    
+
+   \              0xEC 0x9E    
+
+   \              0x91 0xEC    
+
+   \              0x84 0xB1    
+
+   \              0x2E 0x09    
+
+   \              0x09 0x0D    
+
+   \              0x0A 0x00
+     46          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   Version_History
+         8   -> printf
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ?_0
+      32  ?_1
+      24  ?_2
+      24  ?_3
+      28  ?_4
+      44  Version_History
+      32  g_Version
+       4  g_sBoard
+
+ 
+  36 bytes in section .data
+ 112 bytes in section .rodata
+  44 bytes in section .text
+ 
+  44 bytes of CODE  memory
+ 112 bytes of CONST memory
+  36 bytes of DATA  memory
+
+Errors: none
+Warnings: 3

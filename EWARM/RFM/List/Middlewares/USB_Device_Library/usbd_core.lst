@@ -1,0 +1,1363 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:50:00
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_core.c
+#    Command line                 =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Middlewares\USB_Device_Library\usbd_core.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_core.c
+#        -D USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Middlewares\USB_Device_Library
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Middlewares\USB_Device_Library
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Middlewares\USB_Device_Library\usbd_core.o.d
+#    Locale                       =  C
+#    List file                    =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Middlewares\USB_Device_Library\usbd_core.lst
+#    Object file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Middlewares\USB_Device_Library\usbd_core.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_core.c
+      1          /**
+      2            ******************************************************************************
+      3            * @file    usbd_core.c
+      4            * @author  MCD Application Team
+      5            * @brief   This file provides all the USBD core functions.
+      6            ******************************************************************************
+      7            * @attention
+      8            *
+      9            * <h2><center>&copy; Copyright (c) 2015 STMicroelectronics.
+     10            * All rights reserved.</center></h2>
+     11            *
+     12            * This software component is licensed by ST under Ultimate Liberty license
+     13            * SLA0044, the "License"; You may not use this file except in compliance with
+     14            * the License. You may obtain a copy of the License at:
+     15            *                      www.st.com/SLA0044
+     16            *
+     17            ******************************************************************************
+     18            */
+     19          
+     20          /* Includes ------------------------------------------------------------------*/
+     21          #include "usbd_core.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     22          
+     23          /** @addtogroup STM32_USBD_DEVICE_LIBRARY
+     24          * @{
+     25          */
+     26          
+     27          
+     28          /** @defgroup USBD_CORE
+     29          * @brief usbd core module
+     30          * @{
+     31          */
+     32          
+     33          /** @defgroup USBD_CORE_Private_TypesDefinitions
+     34          * @{
+     35          */
+     36          
+     37          /**
+     38          * @}
+     39          */
+     40          
+     41          
+     42          /** @defgroup USBD_CORE_Private_Defines
+     43          * @{
+     44          */
+     45          
+     46          /**
+     47          * @}
+     48          */
+     49          
+     50          
+     51          /** @defgroup USBD_CORE_Private_Macros
+     52          * @{
+     53          */
+     54          
+     55          /**
+     56          * @}
+     57          */
+     58          
+     59          
+     60          /** @defgroup USBD_CORE_Private_FunctionPrototypes
+     61          * @{
+     62          */
+     63          
+     64          /**
+     65          * @}
+     66          */
+     67          
+     68          /** @defgroup USBD_CORE_Private_Variables
+     69          * @{
+     70          */
+     71          
+     72          /**
+     73          * @}
+     74          */
+     75          
+     76          
+     77          /** @defgroup USBD_CORE_Private_Functions
+     78          * @{
+     79          */
+     80          
+     81          /**
+     82          * @brief  USBD_Init
+     83          *         Initializes the device stack and load the class driver
+     84          * @param  pdev: device instance
+     85          * @param  pdesc: Descriptor structure address
+     86          * @param  id: Low level core index
+     87          * @retval None
+     88          */
+
+   \                                 In section .text, align 2, keep-with-next
+     89          USBD_StatusTypeDef USBD_Init(USBD_HandleTypeDef *pdev,
+     90                                       USBD_DescriptorsTypeDef *pdesc, uint8_t id)
+     91          {
+   \                     USBD_Init: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+     92            USBD_StatusTypeDef ret;
+     93          
+     94            /* Check whether the USB Host handle is valid */
+     95            if (pdev == NULL)
+   \        0x8   0x2C00             CMP      R4,#+0
+   \        0xA   0xD101             BNE.N    ??USBD_Init_0
+     96            {
+     97          #if (USBD_DEBUG_LEVEL > 1U)
+     98              USBD_ErrLog("Invalid Device handle");
+     99          #endif
+    100              return USBD_FAIL;
+   \        0xC   0x2003             MOVS     R0,#+3
+   \        0xE   0xE019             B.N      ??USBD_Init_1
+    101            }
+    102          
+    103            /* Unlink previous class */
+    104            if (pdev->pClass != NULL)
+   \                     ??USBD_Init_0: (+1)
+   \       0x10   0xF8D4 0x02B8      LDR      R0,[R4, #+696]
+   \       0x14   0x2800             CMP      R0,#+0
+   \       0x16   0xD002             BEQ.N    ??USBD_Init_2
+    105            {
+    106              pdev->pClass = NULL;
+   \       0x18   0x2000             MOVS     R0,#+0
+   \       0x1A   0xF8C4 0x02B8      STR      R0,[R4, #+696]
+    107            }
+    108          
+    109            if (pdev->pConfDesc != NULL)
+   \                     ??USBD_Init_2: (+1)
+   \       0x1E   0xF8D4 0x02CC      LDR      R0,[R4, #+716]
+   \       0x22   0x2800             CMP      R0,#+0
+   \       0x24   0xD002             BEQ.N    ??USBD_Init_3
+    110            {
+    111              pdev->pConfDesc = NULL;
+   \       0x26   0x2000             MOVS     R0,#+0
+   \       0x28   0xF8C4 0x02CC      STR      R0,[R4, #+716]
+    112            }
+    113          
+    114            /* Assign USBD Descriptors */
+    115            if (pdesc != NULL)
+   \                     ??USBD_Init_3: (+1)
+   \       0x2C   0x2D00             CMP      R5,#+0
+   \       0x2E   0xD001             BEQ.N    ??USBD_Init_4
+    116            {
+    117              pdev->pDesc = pdesc;
+   \       0x30   0xF8C4 0x52B4      STR      R5,[R4, #+692]
+    118            }
+    119          
+    120            /* Set Device initial State */
+    121            pdev->dev_state = USBD_STATE_DEFAULT;
+   \                     ??USBD_Init_4: (+1)
+   \       0x34   0x2001             MOVS     R0,#+1
+   \       0x36   0xF884 0x029C      STRB     R0,[R4, #+668]
+    122            pdev->id = id;
+   \       0x3A   0x7026             STRB     R6,[R4, #+0]
+    123          
+    124            /* Initialize low level driver */
+    125            ret = USBD_LL_Init(pdev);
+   \       0x3C   0x0020             MOVS     R0,R4
+   \       0x3E   0x.... 0x....      BL       USBD_LL_Init
+    126          
+    127            return ret;
+   \       0x42   0xB2C0             UXTB     R0,R0
+   \                     ??USBD_Init_1: (+1)
+   \       0x44   0xBD70             POP      {R4-R6,PC}
+    128          }
+    129          
+    130          /**
+    131          * @brief  USBD_DeInit
+    132          *         Re-Initialize th device library
+    133          * @param  pdev: device instance
+    134          * @retval status: status
+    135          */
+
+   \                                 In section .text, align 2, keep-with-next
+    136          USBD_StatusTypeDef USBD_DeInit(USBD_HandleTypeDef *pdev)
+    137          {
+   \                     USBD_DeInit: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    138            USBD_StatusTypeDef ret;
+    139          
+    140            /* Set Default State */
+    141            pdev->dev_state = USBD_STATE_DEFAULT;
+   \        0x4   0x2001             MOVS     R0,#+1
+   \        0x6   0xF884 0x029C      STRB     R0,[R4, #+668]
+    142          
+    143            /* Free Class Resources */
+    144            if (pdev->pClass != NULL)
+   \        0xA   0xF8D4 0x02B8      LDR      R0,[R4, #+696]
+   \        0xE   0x2800             CMP      R0,#+0
+   \       0x10   0xD006             BEQ.N    ??USBD_DeInit_0
+    145            {
+    146              pdev->pClass->DeInit(pdev, (uint8_t)pdev->dev_config);
+   \       0x12   0x6861             LDR      R1,[R4, #+4]
+   \       0x14   0xB2C9             UXTB     R1,R1
+   \       0x16   0x0020             MOVS     R0,R4
+   \       0x18   0xF8D4 0x22B8      LDR      R2,[R4, #+696]
+   \       0x1C   0x6852             LDR      R2,[R2, #+4]
+   \       0x1E   0x4790             BLX      R2
+    147            }
+    148          
+    149            if (pdev->pConfDesc != NULL)
+   \                     ??USBD_DeInit_0: (+1)
+   \       0x20   0xF8D4 0x02CC      LDR      R0,[R4, #+716]
+   \       0x24   0x2800             CMP      R0,#+0
+   \       0x26   0xD002             BEQ.N    ??USBD_DeInit_1
+    150            {
+    151              pdev->pConfDesc = NULL;
+   \       0x28   0x2000             MOVS     R0,#+0
+   \       0x2A   0xF8C4 0x02CC      STR      R0,[R4, #+716]
+    152            }
+    153          
+    154            /* Stop the low level driver  */
+    155            ret = USBD_LL_Stop(pdev);
+   \                     ??USBD_DeInit_1: (+1)
+   \       0x2E   0x0020             MOVS     R0,R4
+   \       0x30   0x.... 0x....      BL       USBD_LL_Stop
+   \       0x34   0x0005             MOVS     R5,R0
+    156          
+    157            if (ret != USBD_OK)
+   \       0x36   0x0028             MOVS     R0,R5
+   \       0x38   0xB2C0             UXTB     R0,R0
+   \       0x3A   0x2800             CMP      R0,#+0
+   \       0x3C   0xD002             BEQ.N    ??USBD_DeInit_2
+    158            {
+    159              return ret;
+   \       0x3E   0x0028             MOVS     R0,R5
+   \       0x40   0xB2C0             UXTB     R0,R0
+   \       0x42   0xE003             B.N      ??USBD_DeInit_3
+    160            }
+    161          
+    162            /* Initialize low level driver */
+    163            ret = USBD_LL_DeInit(pdev);
+   \                     ??USBD_DeInit_2: (+1)
+   \       0x44   0x0020             MOVS     R0,R4
+   \       0x46   0x.... 0x....      BL       USBD_LL_DeInit
+    164          
+    165            return ret;
+   \       0x4A   0xB2C0             UXTB     R0,R0
+   \                     ??USBD_DeInit_3: (+1)
+   \       0x4C   0xBD32             POP      {R1,R4,R5,PC}
+    166          }
+    167          
+    168          /**
+    169            * @brief  USBD_RegisterClass
+    170            *         Link class driver to Device Core.
+    171            * @param  pDevice : Device Handle
+    172            * @param  pclass: Class handle
+    173            * @retval USBD Status
+    174            */
+
+   \                                 In section .text, align 2, keep-with-next
+    175          USBD_StatusTypeDef USBD_RegisterClass(USBD_HandleTypeDef *pdev, USBD_ClassTypeDef *pclass)
+    176          {
+   \                     USBD_RegisterClass: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0005             MOVS     R5,R0
+   \        0x4   0x000C             MOVS     R4,R1
+    177            uint16_t len = 0U;
+   \        0x6   0x2000             MOVS     R0,#+0
+   \        0x8   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+    178          
+    179            if (pclass == NULL)
+   \        0xC   0x2C00             CMP      R4,#+0
+   \        0xE   0xD101             BNE.N    ??USBD_RegisterClass_0
+    180            {
+    181          #if (USBD_DEBUG_LEVEL > 1U)
+    182              USBD_ErrLog("Invalid Class handle");
+    183          #endif
+    184              return USBD_FAIL;
+   \       0x10   0x2003             MOVS     R0,#+3
+   \       0x12   0xE009             B.N      ??USBD_RegisterClass_1
+    185            }
+    186          
+    187            /* link the class to the USB Device handle */
+    188            pdev->pClass = pclass;
+   \                     ??USBD_RegisterClass_0: (+1)
+   \       0x14   0xF8C5 0x42B8      STR      R4,[R5, #+696]
+    189          
+    190            /* Get Device Configuration Descriptor */
+    191          #ifdef USE_USB_FS
+    192            pdev->pConfDesc = (void *)pdev->pClass->GetFSConfigDescriptor(&len);
+    193          #else /* USE_USB_HS */
+    194            pdev->pConfDesc = (void *)pdev->pClass->GetHSConfigDescriptor(&len);
+   \       0x18   0x4668             MOV      R0,SP
+   \       0x1A   0xF8D5 0x12B8      LDR      R1,[R5, #+696]
+   \       0x1E   0x6A89             LDR      R1,[R1, #+40]
+   \       0x20   0x4788             BLX      R1
+   \       0x22   0xF8C5 0x02CC      STR      R0,[R5, #+716]
+    195          #endif /* USE_USB_FS */
+    196          
+    197          
+    198            return USBD_OK;
+   \       0x26   0x2000             MOVS     R0,#+0
+   \                     ??USBD_RegisterClass_1: (+1)
+   \       0x28   0xBD32             POP      {R1,R4,R5,PC}
+    199          }
+    200          
+    201          /**
+    202            * @brief  USBD_Start
+    203            *         Start the USB Device Core.
+    204            * @param  pdev: Device Handle
+    205            * @retval USBD Status
+    206            */
+
+   \                                 In section .text, align 2, keep-with-next
+    207          USBD_StatusTypeDef USBD_Start(USBD_HandleTypeDef *pdev)
+    208          {
+   \                     USBD_Start: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    209            /* Start the low level driver  */
+    210            return USBD_LL_Start(pdev);
+   \        0x4   0x0020             MOVS     R0,R4
+   \        0x6   0x.... 0x....      BL       USBD_LL_Start
+   \        0xA   0xBD10             POP      {R4,PC}
+    211          }
+    212          
+    213          /**
+    214            * @brief  USBD_Stop
+    215            *         Stop the USB Device Core.
+    216            * @param  pdev: Device Handle
+    217            * @retval USBD Status
+    218            */
+
+   \                                 In section .text, align 2, keep-with-next
+    219          USBD_StatusTypeDef USBD_Stop(USBD_HandleTypeDef *pdev)
+    220          {
+   \                     USBD_Stop: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    221            USBD_StatusTypeDef ret;
+    222          
+    223            /* Free Class Resources */
+    224            if (pdev->pClass != NULL)
+   \        0x4   0xF8D4 0x02B8      LDR      R0,[R4, #+696]
+   \        0x8   0x2800             CMP      R0,#+0
+   \        0xA   0xD006             BEQ.N    ??USBD_Stop_0
+    225            {
+    226              pdev->pClass->DeInit(pdev, (uint8_t)pdev->dev_config);
+   \        0xC   0x6861             LDR      R1,[R4, #+4]
+   \        0xE   0xB2C9             UXTB     R1,R1
+   \       0x10   0x0020             MOVS     R0,R4
+   \       0x12   0xF8D4 0x22B8      LDR      R2,[R4, #+696]
+   \       0x16   0x6852             LDR      R2,[R2, #+4]
+   \       0x18   0x4790             BLX      R2
+    227            }
+    228          
+    229            if (pdev->pConfDesc != NULL)
+   \                     ??USBD_Stop_0: (+1)
+   \       0x1A   0xF8D4 0x02CC      LDR      R0,[R4, #+716]
+   \       0x1E   0x2800             CMP      R0,#+0
+   \       0x20   0xD002             BEQ.N    ??USBD_Stop_1
+    230            {
+    231              pdev->pConfDesc = NULL;
+   \       0x22   0x2000             MOVS     R0,#+0
+   \       0x24   0xF8C4 0x02CC      STR      R0,[R4, #+716]
+    232            }
+    233          
+    234            /* Stop the low level driver */
+    235            ret = USBD_LL_Stop(pdev);
+   \                     ??USBD_Stop_1: (+1)
+   \       0x28   0x0020             MOVS     R0,R4
+   \       0x2A   0x.... 0x....      BL       USBD_LL_Stop
+    236          
+    237            return ret;
+   \       0x2E   0xB2C0             UXTB     R0,R0
+   \       0x30   0xBD10             POP      {R4,PC}
+    238          }
+    239          
+    240          /**
+    241          * @brief  USBD_RunTestMode
+    242          *         Launch test mode process
+    243          * @param  pdev: device instance
+    244          * @retval status
+    245          */
+
+   \                                 In section .text, align 2, keep-with-next
+    246          USBD_StatusTypeDef USBD_RunTestMode(USBD_HandleTypeDef  *pdev)
+    247          {
+   \                     USBD_RunTestMode: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+    248            /* Prevent unused argument compilation warning */
+    249            UNUSED(pdev);
+    250          
+    251            return USBD_OK;
+   \        0x2   0x2000             MOVS     R0,#+0
+   \        0x4   0x4770             BX       LR
+    252          }
+    253          
+    254          /**
+    255          * @brief  USBD_SetClassConfig
+    256          *        Configure device and start the interface
+    257          * @param  pdev: device instance
+    258          * @param  cfgidx: configuration index
+    259          * @retval status
+    260          */
+    261          
+
+   \                                 In section .text, align 2, keep-with-next
+    262          USBD_StatusTypeDef USBD_SetClassConfig(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
+    263          {
+   \                     USBD_SetClassConfig: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    264            USBD_StatusTypeDef ret = USBD_FAIL;
+   \        0x6   0x2603             MOVS     R6,#+3
+    265          
+    266            if (pdev->pClass != NULL)
+   \        0x8   0xF8D4 0x02B8      LDR      R0,[R4, #+696]
+   \        0xC   0x2800             CMP      R0,#+0
+   \        0xE   0xD007             BEQ.N    ??USBD_SetClassConfig_0
+    267            {
+    268              /* Set configuration and Start the Class */
+    269              ret = (USBD_StatusTypeDef)pdev->pClass->Init(pdev, cfgidx);
+   \       0x10   0x0029             MOVS     R1,R5
+   \       0x12   0xB2C9             UXTB     R1,R1
+   \       0x14   0x0020             MOVS     R0,R4
+   \       0x16   0xF8D4 0x22B8      LDR      R2,[R4, #+696]
+   \       0x1A   0x6812             LDR      R2,[R2, #+0]
+   \       0x1C   0x4790             BLX      R2
+   \       0x1E   0x0006             MOVS     R6,R0
+    270            }
+    271          
+    272            return ret;
+   \                     ??USBD_SetClassConfig_0: (+1)
+   \       0x20   0x0030             MOVS     R0,R6
+   \       0x22   0xB2C0             UXTB     R0,R0
+   \       0x24   0xBD70             POP      {R4-R6,PC}
+    273          }
+    274          
+    275          /**
+    276          * @brief  USBD_ClrClassConfig
+    277          *         Clear current configuration
+    278          * @param  pdev: device instance
+    279          * @param  cfgidx: configuration index
+    280          * @retval status: USBD_StatusTypeDef
+    281          */
+
+   \                                 In section .text, align 2, keep-with-next
+    282          USBD_StatusTypeDef USBD_ClrClassConfig(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
+    283          {
+   \                     USBD_ClrClassConfig: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    284            /* Clear configuration and De-initialize the Class process */
+    285            if (pdev->pClass != NULL)
+   \        0x6   0xF8D4 0x02B8      LDR      R0,[R4, #+696]
+   \        0xA   0x2800             CMP      R0,#+0
+   \        0xC   0xD006             BEQ.N    ??USBD_ClrClassConfig_0
+    286            {
+    287              pdev->pClass->DeInit(pdev, cfgidx);
+   \        0xE   0x0029             MOVS     R1,R5
+   \       0x10   0xB2C9             UXTB     R1,R1
+   \       0x12   0x0020             MOVS     R0,R4
+   \       0x14   0xF8D4 0x22B8      LDR      R2,[R4, #+696]
+   \       0x18   0x6852             LDR      R2,[R2, #+4]
+   \       0x1A   0x4790             BLX      R2
+    288            }
+    289          
+    290            return USBD_OK;
+   \                     ??USBD_ClrClassConfig_0: (+1)
+   \       0x1C   0x2000             MOVS     R0,#+0
+   \       0x1E   0xBD32             POP      {R1,R4,R5,PC}
+    291          }
+    292          
+    293          
+    294          /**
+    295          * @brief  USBD_SetupStage
+    296          *         Handle the setup stage
+    297          * @param  pdev: device instance
+    298          * @retval status
+    299          */
+
+   \                                 In section .text, align 2, keep-with-next
+    300          USBD_StatusTypeDef USBD_LL_SetupStage(USBD_HandleTypeDef *pdev, uint8_t *psetup)
+    301          {
+   \                     USBD_LL_SetupStage: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    302            USBD_StatusTypeDef ret;
+    303          
+    304            USBD_ParseSetupRequest(&pdev->request, psetup);
+   \        0x6   0x0029             MOVS     R1,R5
+   \        0x8   0xF204 0x20AA      ADDW     R0,R4,#+682
+   \        0xC   0x.... 0x....      BL       USBD_ParseSetupRequest
+    305          
+    306            pdev->ep0_state = USBD_EP0_SETUP;
+   \       0x10   0x2001             MOVS     R0,#+1
+   \       0x12   0xF8C4 0x0294      STR      R0,[R4, #+660]
+    307          
+    308            pdev->ep0_data_len = pdev->request.wLength;
+   \       0x16   0xF8B4 0x02B0      LDRH     R0,[R4, #+688]
+   \       0x1A   0xF8C4 0x0298      STR      R0,[R4, #+664]
+    309          
+    310            switch (pdev->request.bmRequest & 0x1FU)
+   \       0x1E   0xF894 0x02AA      LDRB     R0,[R4, #+682]
+   \       0x22   0xF010 0x001F      ANDS     R0,R0,#0x1F
+   \       0x26   0x2800             CMP      R0,#+0
+   \       0x28   0xD003             BEQ.N    ??USBD_LL_SetupStage_0
+   \       0x2A   0x2802             CMP      R0,#+2
+   \       0x2C   0xD00D             BEQ.N    ??USBD_LL_SetupStage_1
+   \       0x2E   0xD306             BCC.N    ??USBD_LL_SetupStage_2
+   \       0x30   0xE011             B.N      ??USBD_LL_SetupStage_3
+    311            {
+    312              case USB_REQ_RECIPIENT_DEVICE:
+    313                ret = USBD_StdDevReq(pdev, &pdev->request);
+   \                     ??USBD_LL_SetupStage_0: (+1)
+   \       0x32   0xF204 0x21AA      ADDW     R1,R4,#+682
+   \       0x36   0x0020             MOVS     R0,R4
+   \       0x38   0x.... 0x....      BL       USBD_StdDevReq
+    314                break;
+   \       0x3C   0xE012             B.N      ??USBD_LL_SetupStage_4
+    315          
+    316              case USB_REQ_RECIPIENT_INTERFACE:
+    317                ret = USBD_StdItfReq(pdev, &pdev->request);
+   \                     ??USBD_LL_SetupStage_2: (+1)
+   \       0x3E   0xF204 0x21AA      ADDW     R1,R4,#+682
+   \       0x42   0x0020             MOVS     R0,R4
+   \       0x44   0x.... 0x....      BL       USBD_StdItfReq
+    318                break;
+   \       0x48   0xE00C             B.N      ??USBD_LL_SetupStage_4
+    319          
+    320              case USB_REQ_RECIPIENT_ENDPOINT:
+    321                ret = USBD_StdEPReq(pdev, &pdev->request);
+   \                     ??USBD_LL_SetupStage_1: (+1)
+   \       0x4A   0xF204 0x21AA      ADDW     R1,R4,#+682
+   \       0x4E   0x0020             MOVS     R0,R4
+   \       0x50   0x.... 0x....      BL       USBD_StdEPReq
+    322                break;
+   \       0x54   0xE006             B.N      ??USBD_LL_SetupStage_4
+    323          
+    324              default:
+    325                ret = USBD_LL_StallEP(pdev, (pdev->request.bmRequest & 0x80U));
+   \                     ??USBD_LL_SetupStage_3: (+1)
+   \       0x56   0xF894 0x12AA      LDRB     R1,[R4, #+682]
+   \       0x5A   0xF011 0x0180      ANDS     R1,R1,#0x80
+   \       0x5E   0x0020             MOVS     R0,R4
+   \       0x60   0x.... 0x....      BL       USBD_LL_StallEP
+    326                break;
+    327            }
+    328          
+    329            return ret;
+   \                     ??USBD_LL_SetupStage_4: (+1)
+   \       0x64   0xB2C0             UXTB     R0,R0
+   \       0x66   0xBD32             POP      {R1,R4,R5,PC}
+    330          }
+    331          
+    332          /**
+    333          * @brief  USBD_DataOutStage
+    334          *         Handle data OUT stage
+    335          * @param  pdev: device instance
+    336          * @param  epnum: endpoint index
+    337          * @retval status
+    338          */
+
+   \                                 In section .text, align 2, keep-with-next
+    339          USBD_StatusTypeDef USBD_LL_DataOutStage(USBD_HandleTypeDef *pdev,
+    340                                                  uint8_t epnum, uint8_t *pdata)
+    341          {
+   \                     USBD_LL_DataOutStage: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+   \        0x8   0x0016             MOVS     R6,R2
+    342            USBD_EndpointTypeDef *pep;
+    343            USBD_StatusTypeDef ret;
+    344          
+    345            if (epnum == 0U)
+   \        0xA   0x0028             MOVS     R0,R5
+   \        0xC   0xB2C0             UXTB     R0,R0
+   \        0xE   0x2800             CMP      R0,#+0
+   \       0x10   0xD12C             BNE.N    ??USBD_LL_DataOutStage_0
+    346            {
+    347              pep = &pdev->ep_out[0];
+   \       0x12   0xF514 0x70AA      ADDS     R0,R4,#+340
+   \       0x16   0x0007             MOVS     R7,R0
+    348          
+    349              if (pdev->ep0_state == USBD_EP0_DATA_OUT)
+   \       0x18   0xF8D4 0x0294      LDR      R0,[R4, #+660]
+   \       0x1C   0x2803             CMP      R0,#+3
+   \       0x1E   0xD13F             BNE.N    ??USBD_LL_DataOutStage_1
+    350              {
+    351                if (pep->rem_length > pep->maxpacket)
+   \       0x20   0x68F8             LDR      R0,[R7, #+12]
+   \       0x22   0x68B9             LDR      R1,[R7, #+8]
+   \       0x24   0x4288             CMP      R0,R1
+   \       0x26   0xD20F             BCS.N    ??USBD_LL_DataOutStage_2
+    352                {
+    353                  pep->rem_length -= pep->maxpacket;
+   \       0x28   0x68B9             LDR      R1,[R7, #+8]
+   \       0x2A   0x68F8             LDR      R0,[R7, #+12]
+   \       0x2C   0x1A09             SUBS     R1,R1,R0
+   \       0x2E   0x60B9             STR      R1,[R7, #+8]
+    354          
+    355                  (void)USBD_CtlContinueRx(pdev, pdata, MIN(pep->rem_length, pep->maxpacket));
+   \       0x30   0x68B8             LDR      R0,[R7, #+8]
+   \       0x32   0x68F9             LDR      R1,[R7, #+12]
+   \       0x34   0x4288             CMP      R0,R1
+   \       0x36   0xD201             BCS.N    ??USBD_LL_DataOutStage_3
+   \       0x38   0x68BA             LDR      R2,[R7, #+8]
+   \       0x3A   0xE000             B.N      ??USBD_LL_DataOutStage_4
+   \                     ??USBD_LL_DataOutStage_3: (+1)
+   \       0x3C   0x68FA             LDR      R2,[R7, #+12]
+   \                     ??USBD_LL_DataOutStage_4: (+1)
+   \       0x3E   0x0031             MOVS     R1,R6
+   \       0x40   0x0020             MOVS     R0,R4
+   \       0x42   0x.... 0x....      BL       USBD_CtlContinueRx
+   \       0x46   0xE02B             B.N      ??USBD_LL_DataOutStage_1
+    356                }
+    357                else
+    358                {
+    359                  if ((pdev->pClass->EP0_RxReady != NULL) &&
+    360                      (pdev->dev_state == USBD_STATE_CONFIGURED))
+   \                     ??USBD_LL_DataOutStage_2: (+1)
+   \       0x48   0xF8D4 0x02B8      LDR      R0,[R4, #+696]
+   \       0x4C   0x6900             LDR      R0,[R0, #+16]
+   \       0x4E   0x2800             CMP      R0,#+0
+   \       0x50   0xD008             BEQ.N    ??USBD_LL_DataOutStage_5
+   \       0x52   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \       0x56   0x2803             CMP      R0,#+3
+   \       0x58   0xD104             BNE.N    ??USBD_LL_DataOutStage_5
+    361                  {
+    362                    pdev->pClass->EP0_RxReady(pdev);
+   \       0x5A   0x0020             MOVS     R0,R4
+   \       0x5C   0xF8D4 0x12B8      LDR      R1,[R4, #+696]
+   \       0x60   0x6909             LDR      R1,[R1, #+16]
+   \       0x62   0x4788             BLX      R1
+    363                  }
+    364                  (void)USBD_CtlSendStatus(pdev);
+   \                     ??USBD_LL_DataOutStage_5: (+1)
+   \       0x64   0x0020             MOVS     R0,R4
+   \       0x66   0x.... 0x....      BL       USBD_CtlSendStatus
+   \       0x6A   0xE019             B.N      ??USBD_LL_DataOutStage_1
+    365                }
+    366              }
+    367              else
+    368              {
+    369          #if 0
+    370                if (pdev->ep0_state == USBD_EP0_STATUS_OUT)
+    371                {
+    372                  /*
+    373                   * STATUS PHASE completed, update ep0_state to idle
+    374                   */
+    375                  pdev->ep0_state = USBD_EP0_IDLE;
+    376                  (void)USBD_LL_StallEP(pdev, 0U);
+    377                }
+    378          #endif
+    379              }
+    380            }
+    381            else if ((pdev->pClass->DataOut != NULL) &&
+    382                     (pdev->dev_state == USBD_STATE_CONFIGURED))
+   \                     ??USBD_LL_DataOutStage_0: (+1)
+   \       0x6C   0xF8D4 0x02B8      LDR      R0,[R4, #+696]
+   \       0x70   0x6980             LDR      R0,[R0, #+24]
+   \       0x72   0x2800             CMP      R0,#+0
+   \       0x74   0xD012             BEQ.N    ??USBD_LL_DataOutStage_6
+   \       0x76   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \       0x7A   0x2803             CMP      R0,#+3
+   \       0x7C   0xD10E             BNE.N    ??USBD_LL_DataOutStage_6
+    383            {
+    384              ret = (USBD_StatusTypeDef)pdev->pClass->DataOut(pdev, epnum);
+   \       0x7E   0x0029             MOVS     R1,R5
+   \       0x80   0xB2C9             UXTB     R1,R1
+   \       0x82   0x0020             MOVS     R0,R4
+   \       0x84   0xF8D4 0x22B8      LDR      R2,[R4, #+696]
+   \       0x88   0x6992             LDR      R2,[R2, #+24]
+   \       0x8A   0x4790             BLX      R2
+   \       0x8C   0x4680             MOV      R8,R0
+    385          
+    386              if (ret != USBD_OK)
+   \       0x8E   0x4640             MOV      R0,R8
+   \       0x90   0xB2C0             UXTB     R0,R0
+   \       0x92   0x2800             CMP      R0,#+0
+   \       0x94   0xD004             BEQ.N    ??USBD_LL_DataOutStage_1
+    387              {
+    388                return ret;
+   \       0x96   0x4640             MOV      R0,R8
+   \       0x98   0xB2C0             UXTB     R0,R0
+   \       0x9A   0xE002             B.N      ??USBD_LL_DataOutStage_7
+    389              }
+    390            }
+    391            else
+    392            {
+    393              /* should never be in this condition */
+    394              return USBD_FAIL;
+   \                     ??USBD_LL_DataOutStage_6: (+1)
+   \       0x9C   0x2003             MOVS     R0,#+3
+   \       0x9E   0xE000             B.N      ??USBD_LL_DataOutStage_7
+    395            }
+    396          
+    397            return USBD_OK;
+   \                     ??USBD_LL_DataOutStage_1: (+1)
+   \       0xA0   0x2000             MOVS     R0,#+0
+   \                     ??USBD_LL_DataOutStage_7: (+1)
+   \       0xA2   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    398          }
+    399          
+    400          /**
+    401          * @brief  USBD_DataInStage
+    402          *         Handle data in stage
+    403          * @param  pdev: device instance
+    404          * @param  epnum: endpoint index
+    405          * @retval status
+    406          */
+
+   \                                 In section .text, align 2, keep-with-next
+    407          USBD_StatusTypeDef USBD_LL_DataInStage(USBD_HandleTypeDef *pdev,
+    408                                                 uint8_t epnum, uint8_t *pdata)
+    409          {
+   \                     USBD_LL_DataInStage: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+   \        0x8   0x0016             MOVS     R6,R2
+    410            USBD_EndpointTypeDef *pep;
+    411            USBD_StatusTypeDef ret;
+    412          
+    413            if (epnum == 0U)
+   \        0xA   0x0028             MOVS     R0,R5
+   \        0xC   0xB2C0             UXTB     R0,R0
+   \        0xE   0x2800             CMP      R0,#+0
+   \       0x10   0xD156             BNE.N    ??USBD_LL_DataInStage_0
+    414            {
+    415              pep = &pdev->ep_in[0];
+   \       0x12   0xF114 0x0014      ADDS     R0,R4,#+20
+   \       0x16   0x0007             MOVS     R7,R0
+    416          
+    417              if (pdev->ep0_state == USBD_EP0_DATA_IN)
+   \       0x18   0xF8D4 0x0294      LDR      R0,[R4, #+660]
+   \       0x1C   0x2802             CMP      R0,#+2
+   \       0x1E   0xD144             BNE.N    ??USBD_LL_DataInStage_1
+    418              {
+    419                if (pep->rem_length > pep->maxpacket)
+   \       0x20   0x68F8             LDR      R0,[R7, #+12]
+   \       0x22   0x68B9             LDR      R1,[R7, #+8]
+   \       0x24   0x4288             CMP      R0,R1
+   \       0x26   0xD20F             BCS.N    ??USBD_LL_DataInStage_2
+    420                {
+    421                  pep->rem_length -= pep->maxpacket;
+   \       0x28   0x68B9             LDR      R1,[R7, #+8]
+   \       0x2A   0x68F8             LDR      R0,[R7, #+12]
+   \       0x2C   0x1A09             SUBS     R1,R1,R0
+   \       0x2E   0x60B9             STR      R1,[R7, #+8]
+    422          
+    423                  (void)USBD_CtlContinueSendData(pdev, pdata, pep->rem_length);
+   \       0x30   0x68BA             LDR      R2,[R7, #+8]
+   \       0x32   0x0031             MOVS     R1,R6
+   \       0x34   0x0020             MOVS     R0,R4
+   \       0x36   0x.... 0x....      BL       USBD_CtlContinueSendData
+    424          
+    425                  /* Prepare endpoint for premature end of transfer */
+    426                 (void)USBD_LL_PrepareReceive(pdev, 0U, NULL, 0U);
+   \       0x3A   0x2300             MOVS     R3,#+0
+   \       0x3C   0x2200             MOVS     R2,#+0
+   \       0x3E   0x2100             MOVS     R1,#+0
+   \       0x40   0x0020             MOVS     R0,R4
+   \       0x42   0x.... 0x....      BL       USBD_LL_PrepareReceive
+   \       0x46   0xE030             B.N      ??USBD_LL_DataInStage_1
+    427                }
+    428                else
+    429                {
+    430                  /* last packet is MPS multiple, so send ZLP packet */
+    431                  if ((pep->maxpacket == pep->rem_length) &&
+    432                      (pep->total_length >= pep->maxpacket) &&
+    433                      (pep->total_length < pdev->ep0_data_len))
+   \                     ??USBD_LL_DataInStage_2: (+1)
+   \       0x48   0x68F8             LDR      R0,[R7, #+12]
+   \       0x4A   0x68B9             LDR      R1,[R7, #+8]
+   \       0x4C   0x4288             CMP      R0,R1
+   \       0x4E   0xD117             BNE.N    ??USBD_LL_DataInStage_3
+   \       0x50   0x6878             LDR      R0,[R7, #+4]
+   \       0x52   0x68F9             LDR      R1,[R7, #+12]
+   \       0x54   0x4288             CMP      R0,R1
+   \       0x56   0xD313             BCC.N    ??USBD_LL_DataInStage_3
+   \       0x58   0x6878             LDR      R0,[R7, #+4]
+   \       0x5A   0xF8D4 0x1298      LDR      R1,[R4, #+664]
+   \       0x5E   0x4288             CMP      R0,R1
+   \       0x60   0xD20E             BCS.N    ??USBD_LL_DataInStage_3
+    434                  {
+    435                    (void)USBD_CtlContinueSendData(pdev, NULL, 0U);
+   \       0x62   0x2200             MOVS     R2,#+0
+   \       0x64   0x2100             MOVS     R1,#+0
+   \       0x66   0x0020             MOVS     R0,R4
+   \       0x68   0x.... 0x....      BL       USBD_CtlContinueSendData
+    436                    pdev->ep0_data_len = 0U;
+   \       0x6C   0x2000             MOVS     R0,#+0
+   \       0x6E   0xF8C4 0x0298      STR      R0,[R4, #+664]
+    437          
+    438                    /* Prepare endpoint for premature end of transfer */
+    439                    (void)USBD_LL_PrepareReceive(pdev, 0U, NULL, 0U);
+   \       0x72   0x2300             MOVS     R3,#+0
+   \       0x74   0x2200             MOVS     R2,#+0
+   \       0x76   0x2100             MOVS     R1,#+0
+   \       0x78   0x0020             MOVS     R0,R4
+   \       0x7A   0x.... 0x....      BL       USBD_LL_PrepareReceive
+   \       0x7E   0xE014             B.N      ??USBD_LL_DataInStage_1
+    440                  }
+    441                  else
+    442                  {
+    443                    if ((pdev->pClass->EP0_TxSent != NULL) &&
+    444                        (pdev->dev_state == USBD_STATE_CONFIGURED))
+   \                     ??USBD_LL_DataInStage_3: (+1)
+   \       0x80   0xF8D4 0x02B8      LDR      R0,[R4, #+696]
+   \       0x84   0x68C0             LDR      R0,[R0, #+12]
+   \       0x86   0x2800             CMP      R0,#+0
+   \       0x88   0xD008             BEQ.N    ??USBD_LL_DataInStage_4
+   \       0x8A   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \       0x8E   0x2803             CMP      R0,#+3
+   \       0x90   0xD104             BNE.N    ??USBD_LL_DataInStage_4
+    445                    {
+    446                      pdev->pClass->EP0_TxSent(pdev);
+   \       0x92   0x0020             MOVS     R0,R4
+   \       0x94   0xF8D4 0x12B8      LDR      R1,[R4, #+696]
+   \       0x98   0x68C9             LDR      R1,[R1, #+12]
+   \       0x9A   0x4788             BLX      R1
+    447                    }
+    448                    (void)USBD_LL_StallEP(pdev, 0x80U);
+   \                     ??USBD_LL_DataInStage_4: (+1)
+   \       0x9C   0x2180             MOVS     R1,#+128
+   \       0x9E   0x0020             MOVS     R0,R4
+   \       0xA0   0x.... 0x....      BL       USBD_LL_StallEP
+    449                    (void)USBD_CtlReceiveStatus(pdev);
+   \       0xA4   0x0020             MOVS     R0,R4
+   \       0xA6   0x.... 0x....      BL       USBD_CtlReceiveStatus
+    450                  }
+    451                }
+    452              }
+    453              else
+    454              {
+    455          #if 0
+    456                if ((pdev->ep0_state == USBD_EP0_STATUS_IN) ||
+    457                    (pdev->ep0_state == USBD_EP0_IDLE))
+    458                {
+    459                  (void)USBD_LL_StallEP(pdev, 0x80U);
+    460                }
+    461          #endif
+    462              }
+    463          
+    464              if (pdev->dev_test_mode == 1U)
+   \                     ??USBD_LL_DataInStage_1: (+1)
+   \       0xAA   0xF894 0x02A0      LDRB     R0,[R4, #+672]
+   \       0xAE   0x2801             CMP      R0,#+1
+   \       0xB0   0xD120             BNE.N    ??USBD_LL_DataInStage_5
+    465              {
+    466                (void)USBD_RunTestMode(pdev);
+   \       0xB2   0x0020             MOVS     R0,R4
+   \       0xB4   0x.... 0x....      BL       USBD_RunTestMode
+    467                pdev->dev_test_mode = 0U;
+   \       0xB8   0x2000             MOVS     R0,#+0
+   \       0xBA   0xF884 0x02A0      STRB     R0,[R4, #+672]
+   \       0xBE   0xE019             B.N      ??USBD_LL_DataInStage_5
+    468              }
+    469            }
+    470            else if ((pdev->pClass->DataIn != NULL) &&
+    471                     (pdev->dev_state == USBD_STATE_CONFIGURED))
+   \                     ??USBD_LL_DataInStage_0: (+1)
+   \       0xC0   0xF8D4 0x02B8      LDR      R0,[R4, #+696]
+   \       0xC4   0x6940             LDR      R0,[R0, #+20]
+   \       0xC6   0x2800             CMP      R0,#+0
+   \       0xC8   0xD012             BEQ.N    ??USBD_LL_DataInStage_6
+   \       0xCA   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \       0xCE   0x2803             CMP      R0,#+3
+   \       0xD0   0xD10E             BNE.N    ??USBD_LL_DataInStage_6
+    472            {
+    473              ret = (USBD_StatusTypeDef)pdev->pClass->DataIn(pdev, epnum);
+   \       0xD2   0x0029             MOVS     R1,R5
+   \       0xD4   0xB2C9             UXTB     R1,R1
+   \       0xD6   0x0020             MOVS     R0,R4
+   \       0xD8   0xF8D4 0x22B8      LDR      R2,[R4, #+696]
+   \       0xDC   0x6952             LDR      R2,[R2, #+20]
+   \       0xDE   0x4790             BLX      R2
+   \       0xE0   0x4680             MOV      R8,R0
+    474          
+    475              if (ret != USBD_OK)
+   \       0xE2   0x4640             MOV      R0,R8
+   \       0xE4   0xB2C0             UXTB     R0,R0
+   \       0xE6   0x2800             CMP      R0,#+0
+   \       0xE8   0xD004             BEQ.N    ??USBD_LL_DataInStage_5
+    476              {
+    477                return ret;
+   \       0xEA   0x4640             MOV      R0,R8
+   \       0xEC   0xB2C0             UXTB     R0,R0
+   \       0xEE   0xE002             B.N      ??USBD_LL_DataInStage_7
+    478              }
+    479            }
+    480            else
+    481            {
+    482              /* should never be in this condition */
+    483              return USBD_FAIL;
+   \                     ??USBD_LL_DataInStage_6: (+1)
+   \       0xF0   0x2003             MOVS     R0,#+3
+   \       0xF2   0xE000             B.N      ??USBD_LL_DataInStage_7
+    484            }
+    485          
+    486            return USBD_OK;
+   \                     ??USBD_LL_DataInStage_5: (+1)
+   \       0xF4   0x2000             MOVS     R0,#+0
+   \                     ??USBD_LL_DataInStage_7: (+1)
+   \       0xF6   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    487          }
+    488          
+    489          /**
+    490          * @brief  USBD_LL_Reset
+    491          *         Handle Reset event
+    492          * @param  pdev: device instance
+    493          * @retval status
+    494          */
+    495          
+
+   \                                 In section .text, align 2, keep-with-next
+    496          USBD_StatusTypeDef USBD_LL_Reset(USBD_HandleTypeDef *pdev)
+    497          {
+   \                     USBD_LL_Reset: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    498            /* Upon Reset call user call back */
+    499            pdev->dev_state = USBD_STATE_DEFAULT;
+   \        0x4   0x2001             MOVS     R0,#+1
+   \        0x6   0xF884 0x029C      STRB     R0,[R4, #+668]
+    500            pdev->ep0_state = USBD_EP0_IDLE;
+   \        0xA   0x2000             MOVS     R0,#+0
+   \        0xC   0xF8C4 0x0294      STR      R0,[R4, #+660]
+    501            pdev->dev_config = 0U;
+   \       0x10   0x2000             MOVS     R0,#+0
+   \       0x12   0x6060             STR      R0,[R4, #+4]
+    502            pdev->dev_remote_wakeup = 0U;
+   \       0x14   0x2000             MOVS     R0,#+0
+   \       0x16   0xF8C4 0x02A4      STR      R0,[R4, #+676]
+    503          
+    504            if (pdev->pClassData != NULL)
+   \       0x1A   0xF8D4 0x02BC      LDR      R0,[R4, #+700]
+   \       0x1E   0x2800             CMP      R0,#+0
+   \       0x20   0xD006             BEQ.N    ??USBD_LL_Reset_0
+    505            {
+    506              pdev->pClass->DeInit(pdev, (uint8_t)pdev->dev_config);
+   \       0x22   0x6861             LDR      R1,[R4, #+4]
+   \       0x24   0xB2C9             UXTB     R1,R1
+   \       0x26   0x0020             MOVS     R0,R4
+   \       0x28   0xF8D4 0x22B8      LDR      R2,[R4, #+696]
+   \       0x2C   0x6852             LDR      R2,[R2, #+4]
+   \       0x2E   0x4790             BLX      R2
+    507            }
+    508          
+    509              /* Open EP0 OUT */
+    510            (void)USBD_LL_OpenEP(pdev, 0x00U, USBD_EP_TYPE_CTRL, USB_MAX_EP0_SIZE);
+   \                     ??USBD_LL_Reset_0: (+1)
+   \       0x30   0x2340             MOVS     R3,#+64
+   \       0x32   0x2200             MOVS     R2,#+0
+   \       0x34   0x2100             MOVS     R1,#+0
+   \       0x36   0x0020             MOVS     R0,R4
+   \       0x38   0x.... 0x....      BL       USBD_LL_OpenEP
+    511            pdev->ep_out[0x00U & 0xFU].is_used = 1U;
+   \       0x3C   0x2001             MOVS     R0,#+1
+   \       0x3E   0xF8A4 0x0164      STRH     R0,[R4, #+356]
+    512          
+    513            pdev->ep_out[0].maxpacket = USB_MAX_EP0_SIZE;
+   \       0x42   0x2040             MOVS     R0,#+64
+   \       0x44   0xF8C4 0x0160      STR      R0,[R4, #+352]
+    514          
+    515            /* Open EP0 IN */
+    516            (void)USBD_LL_OpenEP(pdev, 0x80U, USBD_EP_TYPE_CTRL, USB_MAX_EP0_SIZE);
+   \       0x48   0x2340             MOVS     R3,#+64
+   \       0x4A   0x2200             MOVS     R2,#+0
+   \       0x4C   0x2180             MOVS     R1,#+128
+   \       0x4E   0x0020             MOVS     R0,R4
+   \       0x50   0x.... 0x....      BL       USBD_LL_OpenEP
+    517            pdev->ep_in[0x80U & 0xFU].is_used = 1U;
+   \       0x54   0x2001             MOVS     R0,#+1
+   \       0x56   0x84A0             STRH     R0,[R4, #+36]
+    518          
+    519            pdev->ep_in[0].maxpacket = USB_MAX_EP0_SIZE;
+   \       0x58   0x2040             MOVS     R0,#+64
+   \       0x5A   0x6220             STR      R0,[R4, #+32]
+    520          
+    521            return USBD_OK;
+   \       0x5C   0x2000             MOVS     R0,#+0
+   \       0x5E   0xBD10             POP      {R4,PC}
+    522          }
+    523          
+    524          /**
+    525          * @brief  USBD_LL_Reset
+    526          *         Handle Reset event
+    527          * @param  pdev: device instance
+    528          * @retval status
+    529          */
+
+   \                                 In section .text, align 2, keep-with-next
+    530          USBD_StatusTypeDef USBD_LL_SetSpeed(USBD_HandleTypeDef *pdev,
+    531                                              USBD_SpeedTypeDef speed)
+    532          {
+   \                     USBD_LL_SetSpeed: (+1)
+   \        0x0   0x0002             MOVS     R2,R0
+    533            pdev->dev_speed = speed;
+   \        0x2   0x7411             STRB     R1,[R2, #+16]
+    534          
+    535            return USBD_OK;
+   \        0x4   0x2000             MOVS     R0,#+0
+   \        0x6   0x4770             BX       LR
+    536          }
+    537          
+    538          /**
+    539          * @brief  USBD_Suspend
+    540          *         Handle Suspend event
+    541          * @param  pdev: device instance
+    542          * @retval status
+    543          */
+    544          
+
+   \                                 In section .text, align 2, keep-with-next
+    545          USBD_StatusTypeDef USBD_LL_Suspend(USBD_HandleTypeDef *pdev)
+    546          {
+   \                     USBD_LL_Suspend: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+    547            pdev->dev_old_state = pdev->dev_state;
+   \        0x2   0xF891 0x029C      LDRB     R0,[R1, #+668]
+   \        0x6   0xF881 0x029D      STRB     R0,[R1, #+669]
+    548            pdev->dev_state = USBD_STATE_SUSPENDED;
+   \        0xA   0x2004             MOVS     R0,#+4
+   \        0xC   0xF881 0x029C      STRB     R0,[R1, #+668]
+    549          
+    550            return USBD_OK;
+   \       0x10   0x2000             MOVS     R0,#+0
+   \       0x12   0x4770             BX       LR
+    551          }
+    552          
+    553          /**
+    554          * @brief  USBD_Resume
+    555          *         Handle Resume event
+    556          * @param  pdev: device instance
+    557          * @retval status
+    558          */
+    559          
+
+   \                                 In section .text, align 2, keep-with-next
+    560          USBD_StatusTypeDef USBD_LL_Resume(USBD_HandleTypeDef *pdev)
+    561          {
+   \                     USBD_LL_Resume: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+    562            if (pdev->dev_state == USBD_STATE_SUSPENDED)
+   \        0x2   0xF891 0x029C      LDRB     R0,[R1, #+668]
+   \        0x6   0x2804             CMP      R0,#+4
+   \        0x8   0xD103             BNE.N    ??USBD_LL_Resume_0
+    563            {
+    564              pdev->dev_state = pdev->dev_old_state;
+   \        0xA   0xF891 0x029D      LDRB     R0,[R1, #+669]
+   \        0xE   0xF881 0x029C      STRB     R0,[R1, #+668]
+    565            }
+    566          
+    567            return USBD_OK;
+   \                     ??USBD_LL_Resume_0: (+1)
+   \       0x12   0x2000             MOVS     R0,#+0
+   \       0x14   0x4770             BX       LR
+    568          }
+    569          
+    570          /**
+    571          * @brief  USBD_SOF
+    572          *         Handle SOF event
+    573          * @param  pdev: device instance
+    574          * @retval status
+    575          */
+    576          
+
+   \                                 In section .text, align 2, keep-with-next
+    577          USBD_StatusTypeDef USBD_LL_SOF(USBD_HandleTypeDef *pdev)
+    578          {
+   \                     USBD_LL_SOF: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    579            if (pdev->dev_state == USBD_STATE_CONFIGURED)
+   \        0x4   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \        0x8   0x2803             CMP      R0,#+3
+   \        0xA   0xD109             BNE.N    ??USBD_LL_SOF_0
+    580            {
+    581              if (pdev->pClass->SOF != NULL)
+   \        0xC   0xF8D4 0x02B8      LDR      R0,[R4, #+696]
+   \       0x10   0x69C0             LDR      R0,[R0, #+28]
+   \       0x12   0x2800             CMP      R0,#+0
+   \       0x14   0xD004             BEQ.N    ??USBD_LL_SOF_0
+    582              {
+    583                pdev->pClass->SOF(pdev);
+   \       0x16   0x0020             MOVS     R0,R4
+   \       0x18   0xF8D4 0x12B8      LDR      R1,[R4, #+696]
+   \       0x1C   0x69C9             LDR      R1,[R1, #+28]
+   \       0x1E   0x4788             BLX      R1
+    584              }
+    585            }
+    586          
+    587            return USBD_OK;
+   \                     ??USBD_LL_SOF_0: (+1)
+   \       0x20   0x2000             MOVS     R0,#+0
+   \       0x22   0xBD10             POP      {R4,PC}
+    588          }
+    589          
+    590          /**
+    591          * @brief  USBD_IsoINIncomplete
+    592          *         Handle iso in incomplete event
+    593          * @param  pdev: device instance
+    594          * @retval status
+    595          */
+
+   \                                 In section .text, align 2, keep-with-next
+    596          USBD_StatusTypeDef USBD_LL_IsoINIncomplete(USBD_HandleTypeDef *pdev,
+    597                                                     uint8_t epnum)
+    598          {
+   \                     USBD_LL_IsoINIncomplete: (+1)
+   \        0x0   0x0002             MOVS     R2,R0
+    599            /* Prevent unused arguments compilation warning */
+    600            UNUSED(pdev);
+    601            UNUSED(epnum);
+    602          
+    603            return USBD_OK;
+   \        0x2   0x2000             MOVS     R0,#+0
+   \        0x4   0x4770             BX       LR
+    604          }
+    605          
+    606          /**
+    607          * @brief  USBD_IsoOUTIncomplete
+    608          *         Handle iso out incomplete event
+    609          * @param  pdev: device instance
+    610          * @retval status
+    611          */
+
+   \                                 In section .text, align 2, keep-with-next
+    612          USBD_StatusTypeDef USBD_LL_IsoOUTIncomplete(USBD_HandleTypeDef *pdev,
+    613                                                      uint8_t epnum)
+    614          {
+   \                     USBD_LL_IsoOUTIncomplete: (+1)
+   \        0x0   0x0002             MOVS     R2,R0
+    615            /* Prevent unused arguments compilation warning */
+    616            UNUSED(pdev);
+    617            UNUSED(epnum);
+    618          
+    619            return USBD_OK;
+   \        0x2   0x2000             MOVS     R0,#+0
+   \        0x4   0x4770             BX       LR
+    620          }
+    621          
+    622          /**
+    623          * @brief  USBD_DevConnected
+    624          *         Handle device connection event
+    625          * @param  pdev: device instance
+    626          * @retval status
+    627          */
+
+   \                                 In section .text, align 2, keep-with-next
+    628          USBD_StatusTypeDef USBD_LL_DevConnected(USBD_HandleTypeDef *pdev)
+    629          {
+   \                     USBD_LL_DevConnected: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+    630            /* Prevent unused argument compilation warning */
+    631            UNUSED(pdev);
+    632          
+    633            return USBD_OK;
+   \        0x2   0x2000             MOVS     R0,#+0
+   \        0x4   0x4770             BX       LR
+    634          }
+    635          
+    636          /**
+    637          * @brief  USBD_DevDisconnected
+    638          *         Handle device disconnection event
+    639          * @param  pdev: device instance
+    640          * @retval status
+    641          */
+
+   \                                 In section .text, align 2, keep-with-next
+    642          USBD_StatusTypeDef USBD_LL_DevDisconnected(USBD_HandleTypeDef *pdev)
+    643          {
+   \                     USBD_LL_DevDisconnected: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    644            /* Free Class Resources */
+    645            pdev->dev_state = USBD_STATE_DEFAULT;
+   \        0x4   0x2001             MOVS     R0,#+1
+   \        0x6   0xF884 0x029C      STRB     R0,[R4, #+668]
+    646          
+    647            if (pdev->pClass != NULL)
+   \        0xA   0xF8D4 0x02B8      LDR      R0,[R4, #+696]
+   \        0xE   0x2800             CMP      R0,#+0
+   \       0x10   0xD006             BEQ.N    ??USBD_LL_DevDisconnected_0
+    648            {
+    649              pdev->pClass->DeInit(pdev, (uint8_t)pdev->dev_config);
+   \       0x12   0x6861             LDR      R1,[R4, #+4]
+   \       0x14   0xB2C9             UXTB     R1,R1
+   \       0x16   0x0020             MOVS     R0,R4
+   \       0x18   0xF8D4 0x22B8      LDR      R2,[R4, #+696]
+   \       0x1C   0x6852             LDR      R2,[R2, #+4]
+   \       0x1E   0x4790             BLX      R2
+    650            }
+    651          
+    652            return USBD_OK;
+   \                     ??USBD_LL_DevDisconnected_0: (+1)
+   \       0x20   0x2000             MOVS     R0,#+0
+   \       0x22   0xBD10             POP      {R4,PC}
+    653          }
+    654          /**
+    655          * @}
+    656          */
+    657          
+    658          
+    659          /**
+    660          * @}
+    661          */
+    662          
+    663          
+    664          /**
+    665          * @}
+    666          */
+    667          
+    668          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+    669          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      16   USBD_ClrClassConfig
+        16   -- Indirect call
+      16   USBD_DeInit
+        16   -- Indirect call
+        16   -> USBD_LL_DeInit
+        16   -> USBD_LL_Stop
+      16   USBD_Init
+        16   -> USBD_LL_Init
+      24   USBD_LL_DataInStage
+        24   -- Indirect call
+        24   -> USBD_CtlContinueSendData
+        24   -> USBD_CtlReceiveStatus
+        24   -> USBD_LL_PrepareReceive
+        24   -> USBD_LL_StallEP
+        24   -> USBD_RunTestMode
+      24   USBD_LL_DataOutStage
+        24   -- Indirect call
+        24   -> USBD_CtlContinueRx
+        24   -> USBD_CtlSendStatus
+       0   USBD_LL_DevConnected
+       8   USBD_LL_DevDisconnected
+         8   -- Indirect call
+       0   USBD_LL_IsoINIncomplete
+       0   USBD_LL_IsoOUTIncomplete
+       8   USBD_LL_Reset
+         8   -- Indirect call
+         8   -> USBD_LL_OpenEP
+       0   USBD_LL_Resume
+       8   USBD_LL_SOF
+         8   -- Indirect call
+       0   USBD_LL_SetSpeed
+      16   USBD_LL_SetupStage
+        16   -> USBD_LL_StallEP
+        16   -> USBD_ParseSetupRequest
+        16   -> USBD_StdDevReq
+        16   -> USBD_StdEPReq
+        16   -> USBD_StdItfReq
+       0   USBD_LL_Suspend
+      16   USBD_RegisterClass
+        16   -- Indirect call
+       0   USBD_RunTestMode
+      16   USBD_SetClassConfig
+        16   -- Indirect call
+       8   USBD_Start
+         8   -> USBD_LL_Start
+       8   USBD_Stop
+         8   -- Indirect call
+         8   -> USBD_LL_Stop
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      32  USBD_ClrClassConfig
+      78  USBD_DeInit
+      70  USBD_Init
+     250  USBD_LL_DataInStage
+     166  USBD_LL_DataOutStage
+       6  USBD_LL_DevConnected
+      36  USBD_LL_DevDisconnected
+       6  USBD_LL_IsoINIncomplete
+       6  USBD_LL_IsoOUTIncomplete
+      96  USBD_LL_Reset
+      22  USBD_LL_Resume
+      36  USBD_LL_SOF
+       8  USBD_LL_SetSpeed
+     104  USBD_LL_SetupStage
+      20  USBD_LL_Suspend
+      42  USBD_RegisterClass
+       6  USBD_RunTestMode
+      38  USBD_SetClassConfig
+      12  USBD_Start
+      50  USBD_Stop
+
+ 
+ 1'084 bytes in section .text
+ 
+ 1'084 bytes of CODE memory
+
+Errors: none
+Warnings: 1

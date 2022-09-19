@@ -1,0 +1,698 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:56
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                 =  thumb
+#    Endian                   =  little
+#    Source file              =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\display\fonts\PHan_Lib.c
+#    Command line             =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\display\PHan_Lib.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\display\fonts\PHan_Lib.c
+#        -D USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\display -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\display
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\display\PHan_Lib.o.d
+#    Locale                   =  C
+#    List file                =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\display\PHan_Lib.lst
+#    Object file              =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\display\PHan_Lib.o
+#    Runtime model:              
+#      __CPP_Runtime          =  1
+#      __SystemLibrary        =  DLib
+#      __dlib_file_descriptor =  1
+#      __dlib_version         =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\display\fonts\PHan_Lib.c
+      1          /*------------------------------------------------------------------------------------------
+      2          	Project			: Font
+      3          	Description		:
+      4          
+      5          	Writer			:
+      6          	Revision		:
+      7          	Date			: 2020. 1.
+      8          	Copyright		: Piranti Corp.
+      9          
+     10          	Revision History
+     11          	1. 2020. 1.	: Created
+     12          -------------------------------------------------------------------------------------------*/
+     13          
+     14          //#define  PHAN_LIB_LOCAL
+     15          //#define  PHANFONT_LOCAL
+     16          //#define  PHANFONTENG_LOCAL
+     17          
+     18          #include "PHan_Lib.h"
+     19          #include "PHanFont.h"
+     20          #include "PHanFontEng.h"
+     21          
+     22          #include <stdio.h>
+     23          
+     24          #include <string.h>		//	memset()
+     25          
+     26          //========================================================================
+     27          #if defined(PHANFONT_LOCAL)
+     28          //========================================================================
+     29          
+     30          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     31          uint16_t PHan_CnvCodeWan2Johab(uint16_t WanCode)
+     32          //========================================================================
+     33          {
+   \                     PHan_CnvCodeWan2Johab: (+1)
+   \        0x0   0xB410             PUSH     {R4}
+   \        0x2   0x0001             MOVS     R1,R0
+     34          	uint16_t	index;
+     35          	uint16_t	hcode, lcode;
+     36          
+     37          	hcode = (WanCode >> 8) & 0xFF;
+   \        0x4   0x000A             MOVS     R2,R1
+   \        0x6   0xB292             UXTH     R2,R2
+   \        0x8   0x0A12             LSRS     R2,R2,#+8
+     38          	lcode = WanCode & 0x0ff;
+   \        0xA   0xF001 0x03FF      AND      R3,R1,#0xFF
+     39          
+     40          	index = (hcode - 0x0B0) * 94 + (lcode - 0x0A1);
+   \        0xE   0x205E             MOVS     R0,#+94
+   \       0x10   0xFB00 0x3002      MLA      R0,R0,R2,R3
+   \       0x14   0xF244 0x1441      MOVW     R4,#+16705
+   \       0x18   0x1B00             SUBS     R0,R0,R4
+     41          
+     42          	return wWanToJohabTable[index];
+   \       0x1A   0x....             LDR.N    R4,??DataTable2
+   \       0x1C   0xB280             UXTH     R0,R0
+   \       0x1E   0xF834 0x0010      LDRH     R0,[R4, R0, LSL #+1]
+   \       0x22   0xBC10             POP      {R4}
+   \       0x24   0x4770             BX       LR
+     43          }
+     44          
+     45          //static declaration 은 속도를 높이기 위한것임.
+
+   \                                 In section .bss, align 1
+     46          static uint8_t _uChosung, _uJoongsung, _uJongsung;
+   \                     _uChosung:
+   \        0x0                      DS8 1
+
+   \                                 In section .bss, align 1
+   \                     _uJoongsung:
+   \        0x0                      DS8 1
+
+   \                                 In section .bss, align 1
+   \                     _uJongsung:
+   \        0x0                      DS8 1
+
+   \                                 In section .bss, align 1
+     47          static uint8_t uChosung, uJoongsung, uJongsung;
+   \                     uChosung:
+   \        0x0                      DS8 1
+
+   \                                 In section .bss, align 1
+   \                     uJoongsung:
+   \        0x0                      DS8 1
+
+   \                                 In section .bss, align 1
+   \                     uJongsung:
+   \        0x0                      DS8 1
+
+   \                                 In section .bss, align 1
+     48          static uint8_t uChoType, uJooType, uJonType;
+   \                     uChoType:
+   \        0x0                      DS8 1
+
+   \                                 In section .bss, align 1
+   \                     uJooType:
+   \        0x0                      DS8 1
+
+   \                                 In section .bss, align 1
+   \                     uJonType:
+   \        0x0                      DS8 1
+     49          
+     50          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     51          void PHan_HanFontLoad( const uint8_t *HanCode, PHAN_FONT_OBJ *FontPtr )   /* 한글 일반 폰트 생성 */
+     52          //========================================================================
+     53          {
+   \                     PHan_HanFontLoad: (+1)
+   \        0x0   0xE92D 0x4FF8      PUSH     {R3-R11,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+     54          	uint8_t i;
+     55          	uint16_t wHanCode;
+     56          
+     57          	FontPtr->Code_Type = PHAN_HANGUL_CODE;
+   \        0x8   0x2001             MOVS     R0,#+1
+   \        0xA   0x70E8             STRB     R0,[R5, #+3]
+     58          	FontPtr->Size_Char = 2;
+   \        0xC   0x2002             MOVS     R0,#+2
+   \        0xE   0x70A8             STRB     R0,[R5, #+2]
+     59          
+     60          	wHanCode = (uint16_t)HanCode[0] << 8 | (uint16_t)HanCode[1] & 0x00FF;
+   \       0x10   0x7820             LDRB     R0,[R4, #+0]
+   \       0x12   0x7867             LDRB     R7,[R4, #+1]
+   \       0x14   0xEA57 0x2700      ORRS     R7,R7,R0, LSL #+8
+     61          
+     62          //	printf("%c%c : 0x%02X%02X\n", HanCode[0], HanCode[1], HanCode[0], HanCode[1] );
+     63          
+     64          	wHanCode = PHan_CnvCodeWan2Johab( wHanCode );
+   \       0x18   0x0038             MOVS     R0,R7
+   \       0x1A   0xB280             UXTH     R0,R0
+   \       0x1C   0x.... 0x....      BL       PHan_CnvCodeWan2Johab
+   \       0x20   0x0001             MOVS     R1,R0
+     65          	//printf("a %x \n", wHanCode );
+     66          
+     67          	//seperate phoneme code
+     68          	_uChosung	=	( wHanCode >> 10 ) & 0x001F;	//	Chosung code
+   \       0x22   0x....             LDR.N    R2,??DataTable2_1
+   \       0x24   0x0008             MOVS     R0,R1
+   \       0x26   0xB280             UXTH     R0,R0
+   \       0x28   0x0A80             LSRS     R0,R0,#+10
+   \       0x2A   0xF010 0x001F      ANDS     R0,R0,#0x1F
+   \       0x2E   0x7010             STRB     R0,[R2, #+0]
+     69          	_uJoongsung	=	( wHanCode >> 5 ) & 0x001F;		//	Joongsung code
+   \       0x30   0x....             LDR.N    R0,??DataTable2_2
+   \       0x32   0x000B             MOVS     R3,R1
+   \       0x34   0xB29B             UXTH     R3,R3
+   \       0x36   0x095B             LSRS     R3,R3,#+5
+   \       0x38   0xF013 0x031F      ANDS     R3,R3,#0x1F
+   \       0x3C   0x7003             STRB     R3,[R0, #+0]
+     70          	_uJongsung	=	wHanCode & 0x001F;				//	Jongsung code
+   \       0x3E   0x.... 0x....      LDR.W    R12,??DataTable2_3
+   \       0x42   0xF011 0x031F      ANDS     R3,R1,#0x1F
+   \       0x46   0xF88C 0x3000      STRB     R3,[R12, #+0]
+     71          
+     72          	//make font index
+     73          	uChosung	=	ChoIdxTbl[_uChosung];			//	Chosung index
+   \       0x4A   0x....             LDR.N    R3,??DataTable2_4
+   \       0x4C   0x....             LDR.N    R6,??DataTable2_5
+   \       0x4E   0x7812             LDRB     R2,[R2, #+0]
+   \       0x50   0x5CB2             LDRB     R2,[R6, R2]
+   \       0x52   0x701A             STRB     R2,[R3, #+0]
+     74          	uJoongsung	=	JooIdxTbl[_uJoongsung];			//	Joongsung index
+   \       0x54   0x....             LDR.N    R6,??DataTable2_6
+   \       0x56   0x....             LDR.N    R2,??DataTable2_7
+   \       0x58   0x7800             LDRB     R0,[R0, #+0]
+   \       0x5A   0x5C10             LDRB     R0,[R2, R0]
+   \       0x5C   0x7030             STRB     R0,[R6, #+0]
+     75          	uJongsung	=	JonIdxTbl[_uJongsung];			//	Jongsung index
+   \       0x5E   0x....             LDR.N    R2,??DataTable2_8
+   \       0x60   0x....             LDR.N    R0,??DataTable2_9
+   \       0x62   0xF89C 0xC000      LDRB     R12,[R12, #+0]
+   \       0x66   0xF810 0x000C      LDRB     R0,[R0, R12]
+   \       0x6A   0x7010             STRB     R0,[R2, #+0]
+     76          
+     77          	//decide a character type (몇번째 벌을 사용할지 결정)
+     78          	uChoType = uJongsung ? ChoTypeCaseJongYes[uJoongsung] : ChoTypeCaseJongNo[uJoongsung];
+   \       0x6C   0x7810             LDRB     R0,[R2, #+0]
+   \       0x6E   0x2800             CMP      R0,#+0
+   \       0x70   0xD005             BEQ.N    ??PHan_HanFontLoad_0
+   \       0x72   0x....             LDR.N    R0,??DataTable2_10
+   \       0x74   0x7837             LDRB     R7,[R6, #+0]
+   \       0x76   0x5DC0             LDRB     R0,[R0, R7]
+   \       0x78   0x....             LDR.N    R7,??DataTable2_11
+   \       0x7A   0x7038             STRB     R0,[R7, #+0]
+   \       0x7C   0xE004             B.N      ??PHan_HanFontLoad_1
+   \                     ??PHan_HanFontLoad_0: (+1)
+   \       0x7E   0x....             LDR.N    R0,??DataTable2_12
+   \       0x80   0x7837             LDRB     R7,[R6, #+0]
+   \       0x82   0x5DC0             LDRB     R0,[R0, R7]
+   \       0x84   0x....             LDR.N    R7,??DataTable2_11
+   \       0x86   0x7038             STRB     R0,[R7, #+0]
+     79          	//'ㄱ'(1) 이나 'ㅋ'(16) 인경우는
+     80          	uJooType	=	( ( uChosung == 0 || uChosung == 1 || uChosung == 16 ) ? 0 : 1 ) + ( uJongsung ? 2 : 0 );
+   \                     ??PHan_HanFontLoad_1: (+1)
+   \       0x88   0x7818             LDRB     R0,[R3, #+0]
+   \       0x8A   0x2800             CMP      R0,#+0
+   \       0x8C   0xD005             BEQ.N    ??PHan_HanFontLoad_2
+   \       0x8E   0x7818             LDRB     R0,[R3, #+0]
+   \       0x90   0x2801             CMP      R0,#+1
+   \       0x92   0xD002             BEQ.N    ??PHan_HanFontLoad_2
+   \       0x94   0x7818             LDRB     R0,[R3, #+0]
+   \       0x96   0x2810             CMP      R0,#+16
+   \       0x98   0xD101             BNE.N    ??PHan_HanFontLoad_3
+   \                     ??PHan_HanFontLoad_2: (+1)
+   \       0x9A   0x2700             MOVS     R7,#+0
+   \       0x9C   0xE000             B.N      ??PHan_HanFontLoad_4
+   \                     ??PHan_HanFontLoad_3: (+1)
+   \       0x9E   0x2701             MOVS     R7,#+1
+   \                     ??PHan_HanFontLoad_4: (+1)
+   \       0xA0   0x7810             LDRB     R0,[R2, #+0]
+   \       0xA2   0x2800             CMP      R0,#+0
+   \       0xA4   0xD001             BEQ.N    ??PHan_HanFontLoad_5
+   \       0xA6   0x2002             MOVS     R0,#+2
+   \       0xA8   0xE000             B.N      ??PHan_HanFontLoad_6
+   \                     ??PHan_HanFontLoad_5: (+1)
+   \       0xAA   0x2000             MOVS     R0,#+0
+   \                     ??PHan_HanFontLoad_6: (+1)
+   \       0xAC   0x.... 0x....      LDR.W    LR,??DataTable2_13
+   \       0xB0   0x19C7             ADDS     R7,R0,R7
+   \       0xB2   0xF88E 0x7000      STRB     R7,[LR, #+0]
+     81          	uJonType	=	JonType[uJoongsung];
+   \       0xB6   0x....             LDR.N    R7,??DataTable2_14
+   \       0xB8   0x....             LDR.N    R0,??DataTable2_15
+   \       0xBA   0xF896 0xC000      LDRB     R12,[R6, #+0]
+   \       0xBE   0xF810 0x000C      LDRB     R0,[R0, R12]
+   \       0xC2   0x7038             STRB     R0,[R7, #+0]
+     82          
+     83          	//printf( "%c%c : 0x%02X%02X ( 0x%04X : 0x%02X / 0x%02X / 0x%02X | 0x%02X / 0x%02X / 0x%02X )\n", 
+     84          	//		HanCode[0], HanCode[1], HanCode[0], HanCode[1],
+     85          	//		wHanCode, 
+     86          	//		_uChosung, _uJoongsung, _uJongsung,
+     87          	//		uChosung, uJoongsung, uJongsung );
+     88          
+     89          	for ( i = 0; i < 32; i++ )
+   \       0xC4   0xF05F 0x0C00      MOVS     R12,#+0
+   \                     ??PHan_HanFontLoad_7: (+1)
+   \       0xC8   0x4660             MOV      R0,R12
+   \       0xCA   0xB2C0             UXTB     R0,R0
+   \       0xCC   0x2820             CMP      R0,#+32
+   \       0xCE   0xDA3A             BGE.N    ??PHan_HanFontLoad_8
+     90          	{
+     91          		FontPtr->FontBuffer[i] = K_font[uChoType * 20 + uChosung][i];
+   \       0xD0   0x.... 0x....      LDR.W    R8,??DataTable2_16
+   \       0xD4   0x....             LDR.N    R0,??DataTable2_11
+   \       0xD6   0xF890 0x9000      LDRB     R9,[R0, #+0]
+   \       0xDA   0xF05F 0x0A14      MOVS     R10,#+20
+   \       0xDE   0x7818             LDRB     R0,[R3, #+0]
+   \       0xE0   0xFB0A 0x0909      MLA      R9,R10,R9,R0
+   \       0xE4   0xEA5F 0x1949      LSLS     R9,R9,#+5
+   \       0xE8   0xEB08 0x0009      ADD      R0,R8,R9
+   \       0xEC   0x46E1             MOV      R9,R12
+   \       0xEE   0xFA5F 0xF989      UXTB     R9,R9
+   \       0xF2   0xF810 0x0009      LDRB     R0,[R0, R9]
+   \       0xF6   0x46E1             MOV      R9,R12
+   \       0xF8   0xFA5F 0xF989      UXTB     R9,R9
+   \       0xFC   0x44A9             ADD      R9,R5,R9
+   \       0xFE   0xF889 0x0004      STRB     R0,[R9, #+4]
+     92          		FontPtr->FontBuffer[i] |= K_font[160 + uJooType * 22 + uJoongsung][i];
+   \      0x102   0x4660             MOV      R0,R12
+   \      0x104   0xB2C0             UXTB     R0,R0
+   \      0x106   0x4428             ADD      R0,R5,R0
+   \      0x108   0xF890 0x9004      LDRB     R9,[R0, #+4]
+   \      0x10C   0xF89E 0xA000      LDRB     R10,[LR, #+0]
+   \      0x110   0xF05F 0x0B16      MOVS     R11,#+22
+   \      0x114   0x7830             LDRB     R0,[R6, #+0]
+   \      0x116   0xFB0B 0x0A0A      MLA      R10,R11,R10,R0
+   \      0x11A   0xEA5F 0x1A4A      LSLS     R10,R10,#+5
+   \      0x11E   0xEB08 0x000A      ADD      R0,R8,R10
+   \      0x122   0x46E0             MOV      R8,R12
+   \      0x124   0xFA5F 0xF888      UXTB     R8,R8
+   \      0x128   0x4440             ADD      R0,R0,R8
+   \      0x12A   0xF510 0x50A0      ADDS     R0,R0,#+5120
+   \      0x12E   0x7800             LDRB     R0,[R0, #+0]
+   \      0x130   0xEA50 0x0009      ORRS     R0,R0,R9
+   \      0x134   0x46E0             MOV      R8,R12
+   \      0x136   0xFA5F 0xF888      UXTB     R8,R8
+   \      0x13A   0x44A8             ADD      R8,R5,R8
+   \      0x13C   0xF888 0x0004      STRB     R0,[R8, #+4]
+     93          	}
+   \      0x140   0xF11C 0x0C01      ADDS     R12,R12,#+1
+   \      0x144   0xE7C0             B.N      ??PHan_HanFontLoad_7
+     94          
+     95          	//combine Jongsung
+     96          	if ( uJongsung )
+   \                     ??PHan_HanFontLoad_8: (+1)
+   \      0x146   0x7810             LDRB     R0,[R2, #+0]
+   \      0x148   0x2800             CMP      R0,#+0
+   \      0x14A   0xD023             BEQ.N    ??PHan_HanFontLoad_9
+     97          	{
+     98          		for ( i = 0; i < 32; i++ )	FontPtr->FontBuffer[i] |= K_font[248 + uJonType * 28 + uJongsung][i];
+   \      0x14C   0x2000             MOVS     R0,#+0
+   \      0x14E   0x4684             MOV      R12,R0
+   \                     ??PHan_HanFontLoad_10: (+1)
+   \      0x150   0x4660             MOV      R0,R12
+   \      0x152   0xB2C0             UXTB     R0,R0
+   \      0x154   0x2820             CMP      R0,#+32
+   \      0x156   0xDA1D             BGE.N    ??PHan_HanFontLoad_9
+   \      0x158   0x4660             MOV      R0,R12
+   \      0x15A   0xB2C0             UXTB     R0,R0
+   \      0x15C   0x4428             ADD      R0,R5,R0
+   \      0x15E   0x7903             LDRB     R3,[R0, #+4]
+   \      0x160   0x....             LDR.N    R6,??DataTable2_16
+   \      0x162   0xF897 0xE000      LDRB     LR,[R7, #+0]
+   \      0x166   0xF05F 0x081C      MOVS     R8,#+28
+   \      0x16A   0x7810             LDRB     R0,[R2, #+0]
+   \      0x16C   0xFB08 0x0E0E      MLA      LR,R8,LR,R0
+   \      0x170   0xEA5F 0x1E4E      LSLS     LR,LR,#+5
+   \      0x174   0xEB06 0x000E      ADD      R0,R6,LR
+   \      0x178   0x4666             MOV      R6,R12
+   \      0x17A   0xB2F6             UXTB     R6,R6
+   \      0x17C   0x4430             ADD      R0,R0,R6
+   \      0x17E   0xF510 0x50F8      ADDS     R0,R0,#+7936
+   \      0x182   0x7800             LDRB     R0,[R0, #+0]
+   \      0x184   0x4303             ORRS     R3,R0,R3
+   \      0x186   0x4660             MOV      R0,R12
+   \      0x188   0xB2C0             UXTB     R0,R0
+   \      0x18A   0x4428             ADD      R0,R5,R0
+   \      0x18C   0x7103             STRB     R3,[R0, #+4]
+   \      0x18E   0xF11C 0x0C01      ADDS     R12,R12,#+1
+   \      0x192   0xE7DD             B.N      ??PHan_HanFontLoad_10
+     99          	}
+    100          }
+   \                     ??PHan_HanFontLoad_9: (+1)
+   \      0x194   0xE8BD 0x8FF1      POP      {R0,R4-R11,PC}
+    101          
+    102          //========================================================================
+    103          #else	//	defined(PHANFONT_LOCAL)
+    104          //========================================================================
+    105          
+    106          //========================================================================
+    107          void PHan_HanFontLoad( const uint8_t *HanCode, PHAN_FONT_OBJ *FontPtr )   /* 한글 일반 폰트 생성 */
+    108          //========================================================================
+    109          {
+    110          	int i;
+    111          
+    112          	FontPtr->Code_Type = PHAN_HANGUL_CODE;
+    113          	FontPtr->Size_Char = 2;
+    114          
+    115          	for ( i = 0; i < 32; i++ )
+    116          	{
+    117          		FontPtr->FontBuffer[i] = 0xFF;
+    118          	}
+    119          }
+    120          
+    121          //========================================================================
+    122          #endif	//	defined(PHANFONT_LOCAL)
+    123          //========================================================================
+    124          
+    125          
+    126          //========================================================================
+    127          #if defined(PHANFONTENG_LOCAL)
+    128          //========================================================================
+    129          
+    130          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    131          void PHan_EngFontLoad( const uint8_t *HanCode, PHAN_FONT_OBJ *FontPtr ) 
+    132          //========================================================================
+    133          {
+   \                     PHan_EngFontLoad: (+1)
+   \        0x0   0xB430             PUSH     {R4,R5}
+    134          	uint16_t i;
+    135          	char EngCode;
+    136          
+    137          	FontPtr->Code_Type = PHAN_ENG_CODE;
+   \        0x2   0x2202             MOVS     R2,#+2
+   \        0x4   0x70CA             STRB     R2,[R1, #+3]
+    138          	FontPtr->Size_Char = 1;
+   \        0x6   0x2201             MOVS     R2,#+1
+   \        0x8   0x708A             STRB     R2,[R1, #+2]
+    139          
+    140          	EngCode = *HanCode;
+   \        0xA   0x7802             LDRB     R2,[R0, #+0]
+    141          
+    142          	EngCode -= 0x20;  // FONT는 스페이스 부터 시작한다.
+   \        0xC   0xF1B2 0x0320      SUBS     R3,R2,#+32
+    143          
+    144          	for ( i = 0 ; i < 16 ; i++ )
+   \       0x10   0x2200             MOVS     R2,#+0
+   \                     ??PHan_EngFontLoad_0: (+1)
+   \       0x12   0x0014             MOVS     R4,R2
+   \       0x14   0xB2A4             UXTH     R4,R4
+   \       0x16   0x2C10             CMP      R4,#+16
+   \       0x18   0xDA0E             BGE.N    ??PHan_EngFontLoad_1
+    145          	{
+    146          		 FontPtr->FontBuffer[ i ] = wEngFon[EngCode][i];		
+   \       0x1A   0x....             LDR.N    R4,??DataTable2_17
+   \       0x1C   0x001D             MOVS     R5,R3
+   \       0x1E   0xB2ED             UXTB     R5,R5
+   \       0x20   0x01AD             LSLS     R5,R5,#+6
+   \       0x22   0x442C             ADD      R4,R4,R5
+   \       0x24   0x0015             MOVS     R5,R2
+   \       0x26   0xB2AD             UXTH     R5,R5
+   \       0x28   0xF854 0x4025      LDR      R4,[R4, R5, LSL #+2]
+   \       0x2C   0x0015             MOVS     R5,R2
+   \       0x2E   0xB2AD             UXTH     R5,R5
+   \       0x30   0x440D             ADD      R5,R1,R5
+   \       0x32   0x712C             STRB     R4,[R5, #+4]
+    147          	}
+   \       0x34   0x1C52             ADDS     R2,R2,#+1
+   \       0x36   0xE7EC             B.N      ??PHan_EngFontLoad_0
+    148          }
+   \                     ??PHan_EngFontLoad_1: (+1)
+   \       0x38   0xBC30             POP      {R4,R5}
+   \       0x3A   0x4770             BX       LR
+    149          
+    150          //========================================================================
+    151          #endif	//	defined(PHANFONTENG_LOCAL)
+    152          //========================================================================
+    153          
+    154          
+    155          /*----------------------------------------------------------------------*/
+    156          /*	한글 일반 폰트(24x24)를 bTemp1Font[72]에 LOAD한다.					*/
+    157          /*----------------------------------------------------------------------*/
+    158          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    159          uint16_t PHan_FontLoad( uint8_t *HanCode, PHAN_FONT_OBJ *FontPtr )   // 한글 일반 폰트 생성
+    160          //========================================================================
+    161          {
+   \                     PHan_FontLoad: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+    162          
+    163          	//static declaration 은 속도를 높이기 위한것임.
+    164          	//uint16_t uChosung, uJoongsung, uJongsung, uChoType, uJooType,uJonType;
+    165          
+    166          	// 버퍼 초기화
+    167          	memset(FontPtr->FontBuffer, 0x00, 32);
+   \        0x8   0x2620             MOVS     R6,#+32
+   \        0xA   0x2700             MOVS     R7,#+0
+   \        0xC   0xF115 0x0804      ADDS     R8,R5,#+4
+   \       0x10   0x003A             MOVS     R2,R7
+   \       0x12   0x0031             MOVS     R1,R6
+   \       0x14   0x4640             MOV      R0,R8
+   \       0x16   0x.... 0x....      BL       __aeabi_memset
+    168          
+    169          
+    170          	FontPtr->Code_Type = PHAN_NULL_CODE;
+   \       0x1A   0x2000             MOVS     R0,#+0
+   \       0x1C   0x70E8             STRB     R0,[R5, #+3]
+    171          	// 한글코드인지 감별
+    172          	//
+    173          	if( !HanCode[0] || HanCode[0] == 0x0A )   // 문자열 마지막
+   \       0x1E   0x7820             LDRB     R0,[R4, #+0]
+   \       0x20   0x2800             CMP      R0,#+0
+   \       0x22   0xD002             BEQ.N    ??PHan_FontLoad_0
+   \       0x24   0x7820             LDRB     R0,[R4, #+0]
+   \       0x26   0x280A             CMP      R0,#+10
+   \       0x28   0xD105             BNE.N    ??PHan_FontLoad_1
+    174          	{
+    175          		FontPtr->Code_Type = PHAN_END_CODE;
+   \                     ??PHan_FontLoad_0: (+1)
+   \       0x2A   0x2004             MOVS     R0,#+4
+   \       0x2C   0x70E8             STRB     R0,[R5, #+3]
+    176          		FontPtr->Size_Char = 1;
+   \       0x2E   0x2001             MOVS     R0,#+1
+   \       0x30   0x70A8             STRB     R0,[R5, #+2]
+    177          		return PHAN_END_CODE;
+   \       0x32   0x2004             MOVS     R0,#+4
+   \       0x34   0xE015             B.N      ??PHan_FontLoad_2
+    178          	}
+    179          	else if( HanCode[0] & 0x80 )              // 한글 코드인경우
+   \                     ??PHan_FontLoad_1: (+1)
+   \       0x36   0x7820             LDRB     R0,[R4, #+0]
+   \       0x38   0x0600             LSLS     R0,R0,#+24
+   \       0x3A   0xD509             BPL.N    ??PHan_FontLoad_3
+    180          	{
+    181          		FontPtr->Code_Type = PHAN_HANGUL_CODE;
+   \       0x3C   0x2001             MOVS     R0,#+1
+   \       0x3E   0x70E8             STRB     R0,[R5, #+3]
+    182          		FontPtr->Size_Char = 2;
+   \       0x40   0x2002             MOVS     R0,#+2
+   \       0x42   0x70A8             STRB     R0,[R5, #+2]
+    183          		PHan_HanFontLoad( HanCode, FontPtr );
+   \       0x44   0x0029             MOVS     R1,R5
+   \       0x46   0x0020             MOVS     R0,R4
+   \       0x48   0x.... 0x....      BL       PHan_HanFontLoad
+    184          		return PHAN_HANGUL_CODE;
+   \       0x4C   0x2001             MOVS     R0,#+1
+   \       0x4E   0xE008             B.N      ??PHan_FontLoad_2
+    185          	}
+    186          	else                                      // 영문 코드
+    187          	{
+    188          		FontPtr->Code_Type = PHAN_ENG_CODE;
+   \                     ??PHan_FontLoad_3: (+1)
+   \       0x50   0x2002             MOVS     R0,#+2
+   \       0x52   0x70E8             STRB     R0,[R5, #+3]
+    189          		FontPtr->Size_Char = 1;
+   \       0x54   0x2001             MOVS     R0,#+1
+   \       0x56   0x70A8             STRB     R0,[R5, #+2]
+    190          		PHan_EngFontLoad( HanCode, FontPtr );
+   \       0x58   0x0029             MOVS     R1,R5
+   \       0x5A   0x0020             MOVS     R0,R4
+   \       0x5C   0x.... 0x....      BL       PHan_EngFontLoad
+    191          		return PHAN_ENG_CODE;
+   \       0x60   0x2002             MOVS     R0,#+2
+   \                     ??PHan_FontLoad_2: (+1)
+   \       0x62   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    192          	}
+    193          
+    194          	return FontPtr->Code_Type;
+                 	^
+Warning[Pe111]: statement is unreachable
+    195          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2:
+   \        0x0   0x....'....        DC32     wWanToJohabTable
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_1:
+   \        0x0   0x....'....        DC32     _uChosung
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_2:
+   \        0x0   0x....'....        DC32     _uJoongsung
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_3:
+   \        0x0   0x....'....        DC32     _uJongsung
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_4:
+   \        0x0   0x....'....        DC32     uChosung
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_5:
+   \        0x0   0x....'....        DC32     ChoIdxTbl
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_6:
+   \        0x0   0x....'....        DC32     uJoongsung
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_7:
+   \        0x0   0x....'....        DC32     JooIdxTbl
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_8:
+   \        0x0   0x....'....        DC32     uJongsung
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_9:
+   \        0x0   0x....'....        DC32     JonIdxTbl
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_10:
+   \        0x0   0x....'....        DC32     ChoTypeCaseJongYes
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_11:
+   \        0x0   0x....'....        DC32     uChoType
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_12:
+   \        0x0   0x....'....        DC32     ChoTypeCaseJongNo
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_13:
+   \        0x0   0x....'....        DC32     uJooType
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_14:
+   \        0x0   0x....'....        DC32     uJonType
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_15:
+   \        0x0   0x....'....        DC32     JonType
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_16:
+   \        0x0   0x....'....        DC32     K_font
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_17:
+   \        0x0   0x....'....        DC32     wEngFon
+    196          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       4   PHan_CnvCodeWan2Johab
+       8   PHan_EngFontLoad
+      24   PHan_FontLoad
+        24   -> PHan_EngFontLoad
+        24   -> PHan_HanFontLoad
+        24   -> __aeabi_memset
+      40   PHan_HanFontLoad
+        40   -> PHan_CnvCodeWan2Johab
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable2
+       4  ??DataTable2_1
+       4  ??DataTable2_10
+       4  ??DataTable2_11
+       4  ??DataTable2_12
+       4  ??DataTable2_13
+       4  ??DataTable2_14
+       4  ??DataTable2_15
+       4  ??DataTable2_16
+       4  ??DataTable2_17
+       4  ??DataTable2_2
+       4  ??DataTable2_3
+       4  ??DataTable2_4
+       4  ??DataTable2_5
+       4  ??DataTable2_6
+       4  ??DataTable2_7
+       4  ??DataTable2_8
+       4  ??DataTable2_9
+      38  PHan_CnvCodeWan2Johab
+      60  PHan_EngFontLoad
+     102  PHan_FontLoad
+     408  PHan_HanFontLoad
+       1  _uChosung
+       1  _uJongsung
+       1  _uJoongsung
+       1  uChoType
+       1  uChosung
+       1  uJonType
+       1  uJongsung
+       1  uJooType
+       1  uJoongsung
+
+ 
+   9 bytes in section .bss
+ 680 bytes in section .text
+ 
+ 680 bytes of CODE memory
+   9 bytes of DATA memory
+
+Errors: none
+Warnings: 1

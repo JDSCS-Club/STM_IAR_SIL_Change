@@ -1,0 +1,2701 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:57
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2s_ex.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_i2s_ex.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2s_ex.c
+#        -D USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\STM32F4xx_HAL_Driver
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_i2s_ex.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_i2s_ex.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_i2s_ex.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2s_ex.c
+      1          /**
+      2            ******************************************************************************
+      3            * @file    stm32f4xx_hal_i2s_ex.c
+      4            * @author  MCD Application Team
+      5            * @brief   I2S HAL module driver.
+      6            *          This file provides firmware functions to manage the following
+      7            *          functionalities of I2S extension peripheral:
+      8            *           + Extension features Functions
+      9            *
+     10            @verbatim
+     11            ==============================================================================
+     12                              ##### I2S Extension features #####
+     13            ==============================================================================
+     14            [..]
+     15               (#) In I2S full duplex mode, each SPI peripheral is able to manage sending and receiving
+     16                   data simultaneously using two data lines. Each SPI peripheral has an extended block
+     17                   called I2Sxext (i.e I2S2ext for SPI2 and I2S3ext for SPI3).
+     18               (#) The extension block is not a full SPI IP, it is used only as I2S slave to
+     19                   implement full duplex mode. The extension block uses the same clock sources
+     20                   as its master.
+     21          
+     22               (#) Both I2Sx and I2Sx_ext can be configured as transmitters or receivers.
+     23          
+     24               [..]
+     25                 (@) Only I2Sx can deliver SCK and WS to I2Sx_ext in full duplex mode, where
+     26                   I2Sx can be I2S2 or I2S3.
+     27          
+     28                            ##### How to use this driver #####
+     29           ===============================================================================
+     30           [..]
+     31             Three operation modes are available within this driver :
+     32          
+     33             *** Polling mode IO operation ***
+     34             =================================
+     35             [..]
+     36               (+) Send and receive in the same time an amount of data in blocking mode using HAL_I2SEx_TransmitReceive()
+     37          
+     38             *** Interrupt mode IO operation ***
+     39             ===================================
+     40             [..]
+     41               (+) Send and receive in the same time an amount of data in non blocking mode using HAL_I2SEx_TransmitReceive_IT()
+     42               (+) At transmission/reception end of transfer HAL_I2SEx_TxRxCpltCallback is executed and user can
+     43                   add his own code by customization of function pointer HAL_I2SEx_TxRxCpltCallback
+     44               (+) In case of transfer Error, HAL_I2S_ErrorCallback() function is executed and user can
+     45                   add his own code by customization of function pointer HAL_I2S_ErrorCallback
+     46          
+     47             *** DMA mode IO operation ***
+     48             ==============================
+     49             [..]
+     50               (+) Send and receive an amount of data in non blocking mode (DMA) using HAL_I2SEx_TransmitReceive_DMA()
+     51               (+) At transmission/reception end of transfer HAL_I2SEx_TxRxCpltCallback is executed and user can
+     52                   add his own code by customization of function pointer HAL_I2S_TxRxCpltCallback
+     53               (+) In case of transfer Error, HAL_I2S_ErrorCallback() function is executed and user can
+     54                   add his own code by customization of function pointer HAL_I2S_ErrorCallback
+     55               (+) __HAL_I2SEXT_FLUSH_RX_DR: In Full-Duplex Slave mode, if HAL_I2S_DMAStop is used to stop the
+     56                   communication, an error HAL_I2S_ERROR_BUSY_LINE_RX is raised as the master continue to transmit data.
+     57                   In this case __HAL_I2SEXT_FLUSH_RX_DR macro must be used to flush the remaining data
+     58                   inside I2Sx and I2Sx_ext DR registers and avoid using DeInit/Init process for the next transfer.
+     59            @endverbatim
+     60          
+     61           Additional Figure: The Extended block uses the same clock sources as its master.
+     62          
+     63                          +-----------------------+
+     64              I2Sx_SCK    |                       |
+     65           ----------+-->|          I2Sx         |------------------->I2Sx_SD(in/out)
+     66                   +--|-->|                       |
+     67                  |   |   +-----------------------+
+     68                  |   |
+     69           I2S_WS |   |
+     70           ------>|   |
+     71                  |   |   +-----------------------+
+     72                  |   +-->|                       |
+     73                  |       |       I2Sx_ext        |------------------->I2Sx_extSD(in/out)
+     74                   +----->|                       |
+     75                          +-----------------------+
+     76            ******************************************************************************
+     77            * @attention
+     78            *
+     79            * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+     80            * All rights reserved.</center></h2>
+     81            *
+     82            * This software component is licensed by ST under BSD 3-Clause license,
+     83            * the "License"; You may not use this file except in compliance with the
+     84            * License. You may obtain a copy of the License at:
+     85            *                        opensource.org/licenses/BSD-3-Clause
+     86            *
+     87            ******************************************************************************
+     88            */
+     89          
+     90          /* Includes ------------------------------------------------------------------*/
+     91          #include "stm32f4xx_hal.h"
+     92          
+     93          /** @addtogroup STM32F4xx_HAL_Driver
+     94            * @{
+     95            */
+     96          
+     97          #ifdef HAL_I2S_MODULE_ENABLED
+     98          
+     99          /** @defgroup I2SEx I2SEx
+    100            * @brief I2S Extended HAL module driver
+    101            * @{
+    102            */
+    103          
+    104          #if defined (SPI_I2S_FULLDUPLEX_SUPPORT)
+    105          
+    106          /* Private typedef -----------------------------------------------------------*/
+    107          /** @defgroup I2SEx_Private_Typedef I2S Extended Private Typedef
+    108            * @{
+    109            */
+    110          typedef enum
+    111          {
+    112            I2S_USE_I2S      = 0x00U,   /*!< I2Sx should be used      */
+    113            I2S_USE_I2SEXT   = 0x01U,   /*!< I2Sx_ext should be used  */
+    114          } I2S_UseTypeDef;
+    115          /**
+    116            * @}
+    117            */
+    118          /* Private define ------------------------------------------------------------*/
+    119          /* Private macro -------------------------------------------------------------*/
+    120          /* Private variables ---------------------------------------------------------*/
+    121          /* Private function prototypes -----------------------------------------------*/
+    122          /** @defgroup I2SEx_Private_Functions I2S Extended Private Functions
+    123            * @{
+    124            */
+    125          static void I2SEx_TxRxDMAHalfCplt(DMA_HandleTypeDef *hdma);
+    126          static void I2SEx_TxRxDMACplt(DMA_HandleTypeDef *hdma);
+    127          static void I2SEx_TxRxDMAError(DMA_HandleTypeDef *hdma);
+    128          static void I2SEx_RxISR_I2S(I2S_HandleTypeDef *hi2s);
+    129          static void I2SEx_RxISR_I2SExt(I2S_HandleTypeDef *hi2s);
+    130          static void I2SEx_TxISR_I2S(I2S_HandleTypeDef *hi2s);
+    131          static void I2SEx_TxISR_I2SExt(I2S_HandleTypeDef *hi2s);
+    132          static HAL_StatusTypeDef I2SEx_FullDuplexWaitFlagStateUntilTimeout(I2S_HandleTypeDef *hi2s, uint32_t Flag,
+    133                                                                             uint32_t State, uint32_t Timeout, I2S_UseTypeDef i2sUsed);
+    134          /**
+    135            * @}
+    136            */
+    137          
+    138          /**
+    139            * @}
+    140            */
+    141          
+    142          /* Private functions ---------------------------------------------------------*/
+    143          /* Exported functions --------------------------------------------------------*/
+    144          
+    145          /** @addtogroup I2SEx I2SEx
+    146            * @{
+    147            */
+    148          
+    149          /** @addtogroup I2SEx_Exported_Functions I2S Extended Exported Functions
+    150            * @{
+    151            */
+    152          
+    153          /** @defgroup I2SEx_Exported_Functions_Group1 I2S Extended IO operation functions
+    154            *  @brief   I2SEx IO operation functions
+    155            *
+    156          @verbatim
+    157           ===============================================================================
+    158                                 ##### IO operation functions#####
+    159           ===============================================================================
+    160              [..]
+    161              This subsection provides a set of functions allowing to manage the I2S data
+    162              transfers.
+    163          
+    164              (#) There are two modes of transfer:
+    165                 (++) Blocking mode : The communication is performed in the polling mode.
+    166                      The status of all data processing is returned by the same function
+    167                      after finishing transfer.
+    168                 (++) No-Blocking mode : The communication is performed using Interrupts
+    169                      or DMA. These functions return the status of the transfer startup.
+    170                      The end of the data processing will be indicated through the
+    171                      dedicated I2S IRQ when using Interrupt mode or the DMA IRQ when
+    172                      using DMA mode.
+    173          
+    174              (#) Blocking mode functions are :
+    175                  (++) HAL_I2SEx_TransmitReceive()
+    176          
+    177              (#) No-Blocking mode functions with Interrupt are :
+    178                  (++) HAL_I2SEx_TransmitReceive_IT()
+    179                  (++) HAL_I2SEx_FullDuplex_IRQHandler()
+    180          
+    181              (#) No-Blocking mode functions with DMA are :
+    182                  (++) HAL_I2SEx_TransmitReceive_DMA()
+    183          
+    184              (#) A set of Transfer Complete Callback are provided in non Blocking mode:
+    185                  (++) HAL_I2SEx_TxRxCpltCallback()
+    186          @endverbatim
+    187            * @{
+    188            */
+    189          /**
+    190            * @brief  Full-Duplex Transmit/Receive data in blocking mode.
+    191            * @param  hi2s pointer to a I2S_HandleTypeDef structure that contains
+    192            *         the configuration information for I2S module
+    193            * @param  pTxData a 16-bit pointer to the Transmit data buffer.
+    194            * @param  pRxData a 16-bit pointer to the Receive data buffer.
+    195            * @param  Size number of data sample to be sent:
+    196            * @note   When a 16-bit data frame or a 16-bit data frame extended is selected during the I2S
+    197            *         configuration phase, the Size parameter means the number of 16-bit data length
+    198            *         in the transaction and when a 24-bit data frame or a 32-bit data frame is selected
+    199            *         the Size parameter means the number of 16-bit data length.
+    200            * @param  Timeout Timeout duration
+    201            * @note   The I2S is kept enabled at the end of transaction to avoid the clock de-synchronization
+    202            *         between Master and Slave(example: audio streaming).
+    203            * @retval HAL status
+    204            */
+
+   \                                 In section .text, align 2, keep-with-next
+    205          HAL_StatusTypeDef HAL_I2SEx_TransmitReceive(I2S_HandleTypeDef *hi2s, uint16_t *pTxData, uint16_t *pRxData,
+    206                                                      uint16_t Size, uint32_t Timeout)
+    207          {
+   \                     HAL_I2SEx_TransmitReceive: (+1)
+   \        0x0   0xE92D 0x4FF8      PUSH     {R3-R11,LR}
+   \        0x4   0x4683             MOV      R11,R0
+   \        0x6   0x000E             MOVS     R6,R1
+   \        0x8   0x0015             MOVS     R5,R2
+   \        0xA   0x001F             MOVS     R7,R3
+   \        0xC   0xF8DD 0x8028      LDR      R8,[SP, #+40]
+    208            uint32_t tmp1 = 0U;
+   \       0x10   0x2400             MOVS     R4,#+0
+    209            HAL_StatusTypeDef errorcode = HAL_OK;
+   \       0x12   0xF05F 0x0900      MOVS     R9,#+0
+    210          
+    211            if (hi2s->State != HAL_I2S_STATE_READY)
+   \       0x16   0xF89B 0x0041      LDRB     R0,[R11, #+65]
+   \       0x1A   0x2801             CMP      R0,#+1
+   \       0x1C   0xD002             BEQ.N    ??HAL_I2SEx_TransmitReceive_0
+    212            {
+    213              errorcode = HAL_BUSY;
+   \       0x1E   0x2002             MOVS     R0,#+2
+   \       0x20   0x4681             MOV      R9,R0
+    214              goto error;
+   \       0x22   0xE1CD             B.N      ??HAL_I2SEx_TransmitReceive_1
+    215            }
+    216          
+    217            if ((pTxData == NULL) || (pRxData == NULL) || (Size == 0U))
+   \                     ??HAL_I2SEx_TransmitReceive_0: (+1)
+   \       0x24   0x2E00             CMP      R6,#+0
+   \       0x26   0xD005             BEQ.N    ??HAL_I2SEx_TransmitReceive_2
+   \       0x28   0x2D00             CMP      R5,#+0
+   \       0x2A   0xD003             BEQ.N    ??HAL_I2SEx_TransmitReceive_2
+   \       0x2C   0x0038             MOVS     R0,R7
+   \       0x2E   0xB280             UXTH     R0,R0
+   \       0x30   0x2800             CMP      R0,#+0
+   \       0x32   0xD101             BNE.N    ??HAL_I2SEx_TransmitReceive_3
+    218            {
+    219              return  HAL_ERROR;
+   \                     ??HAL_I2SEx_TransmitReceive_2: (+1)
+   \       0x34   0x2001             MOVS     R0,#+1
+   \       0x36   0xE1CB             B.N      ??HAL_I2SEx_TransmitReceive_4
+    220            }
+    221          
+    222            /* Process Locked */
+    223            __HAL_LOCK(hi2s);
+   \                     ??HAL_I2SEx_TransmitReceive_3: (+1)
+   \       0x38   0xF89B 0x0040      LDRB     R0,[R11, #+64]
+   \       0x3C   0x2801             CMP      R0,#+1
+   \       0x3E   0xD101             BNE.N    ??HAL_I2SEx_TransmitReceive_5
+   \       0x40   0x2002             MOVS     R0,#+2
+   \       0x42   0xE1C5             B.N      ??HAL_I2SEx_TransmitReceive_4
+   \                     ??HAL_I2SEx_TransmitReceive_5: (+1)
+   \       0x44   0x2001             MOVS     R0,#+1
+   \       0x46   0xF88B 0x0040      STRB     R0,[R11, #+64]
+    224          
+    225            tmp1 = hi2s->Instance->I2SCFGR & (SPI_I2SCFGR_DATLEN | SPI_I2SCFGR_CHLEN);
+   \       0x4A   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \       0x4E   0x69C0             LDR      R0,[R0, #+28]
+   \       0x50   0xF010 0x0007      ANDS     R0,R0,#0x7
+    226            /* Check the Data format: When a 16-bit data frame or a 16-bit data frame extended
+    227               is selected during the I2S configuration phase, the Size parameter means the number
+    228               of 16-bit data length in the transaction and when a 24-bit data frame or a 32-bit data
+    229               frame is selected the Size parameter means the number of 16-bit data length. */
+    230            if ((tmp1 == I2S_DATAFORMAT_24B) || (tmp1 == I2S_DATAFORMAT_32B))
+   \       0x54   0x2803             CMP      R0,#+3
+   \       0x56   0xD001             BEQ.N    ??HAL_I2SEx_TransmitReceive_6
+   \       0x58   0x2805             CMP      R0,#+5
+   \       0x5A   0xD10C             BNE.N    ??HAL_I2SEx_TransmitReceive_7
+    231            {
+    232              hi2s->TxXferSize  = (Size << 1U);
+   \                     ??HAL_I2SEx_TransmitReceive_6: (+1)
+   \       0x5C   0x0079             LSLS     R1,R7,#+1
+   \       0x5E   0xF8AB 0x1028      STRH     R1,[R11, #+40]
+    233              hi2s->TxXferCount = (Size << 1U);
+   \       0x62   0x0079             LSLS     R1,R7,#+1
+   \       0x64   0xF8AB 0x102A      STRH     R1,[R11, #+42]
+    234              hi2s->RxXferSize  = (Size << 1U);
+   \       0x68   0x0079             LSLS     R1,R7,#+1
+   \       0x6A   0xF8AB 0x1030      STRH     R1,[R11, #+48]
+    235              hi2s->RxXferCount = (Size << 1U);
+   \       0x6E   0x0079             LSLS     R1,R7,#+1
+   \       0x70   0xF8AB 0x1032      STRH     R1,[R11, #+50]
+   \       0x74   0xE007             B.N      ??HAL_I2SEx_TransmitReceive_8
+    236            }
+    237            else
+    238            {
+    239              hi2s->TxXferSize  = Size;
+   \                     ??HAL_I2SEx_TransmitReceive_7: (+1)
+   \       0x76   0xF8AB 0x7028      STRH     R7,[R11, #+40]
+    240              hi2s->TxXferCount = Size;
+   \       0x7A   0xF8AB 0x702A      STRH     R7,[R11, #+42]
+    241              hi2s->RxXferSize  = Size;
+   \       0x7E   0xF8AB 0x7030      STRH     R7,[R11, #+48]
+    242              hi2s->RxXferCount = Size;
+   \       0x82   0xF8AB 0x7032      STRH     R7,[R11, #+50]
+    243            }
+    244          
+    245            /* Set state and reset error code */
+    246            hi2s->ErrorCode = HAL_I2S_ERROR_NONE;
+   \                     ??HAL_I2SEx_TransmitReceive_8: (+1)
+   \       0x86   0x2100             MOVS     R1,#+0
+   \       0x88   0xF8CB 0x1044      STR      R1,[R11, #+68]
+    247            hi2s->State = HAL_I2S_STATE_BUSY_TX_RX;
+   \       0x8C   0x2105             MOVS     R1,#+5
+   \       0x8E   0xF88B 0x1041      STRB     R1,[R11, #+65]
+    248          
+    249            tmp1 = hi2s->Instance->I2SCFGR & SPI_I2SCFGR_I2SCFG;
+   \       0x92   0xF8DB 0x1000      LDR      R1,[R11, #+0]
+   \       0x96   0x69CC             LDR      R4,[R1, #+28]
+   \       0x98   0xF414 0x7440      ANDS     R4,R4,#0x300
+    250            /* Check if the I2S_MODE_MASTER_TX or I2S_MODE_SLAVE_TX Mode is selected */
+    251            if ((tmp1 == I2S_MODE_MASTER_TX) || (tmp1 == I2S_MODE_SLAVE_TX))
+   \       0x9C   0xF5B4 0x7F00      CMP      R4,#+512
+   \       0xA0   0xD002             BEQ.N    ??HAL_I2SEx_TransmitReceive_9
+   \       0xA2   0x2C00             CMP      R4,#+0
+   \       0xA4   0xF040 0x80C7      BNE.W    ??HAL_I2SEx_TransmitReceive_10
+    252            {
+    253              /* Prepare the First Data before enabling the I2S */
+    254              hi2s->Instance->DR = (*pTxData++);
+   \                     ??HAL_I2SEx_TransmitReceive_9: (+1)
+   \       0xA8   0x8830             LDRH     R0,[R6, #+0]
+   \       0xAA   0xF8DB 0x1000      LDR      R1,[R11, #+0]
+   \       0xAE   0x60C8             STR      R0,[R1, #+12]
+   \       0xB0   0x1CB6             ADDS     R6,R6,#+2
+    255              hi2s->TxXferCount--;
+   \       0xB2   0xF8BB 0x002A      LDRH     R0,[R11, #+42]
+   \       0xB6   0x1E40             SUBS     R0,R0,#+1
+   \       0xB8   0xF8AB 0x002A      STRH     R0,[R11, #+42]
+    256          
+    257              /* Enable I2Sext(receiver) before enabling I2Sx peripheral */
+    258              __HAL_I2SEXT_ENABLE(hi2s);
+   \       0xBC   0x.... 0x....      LDR.W    R10,??DataTable8
+   \       0xC0   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \       0xC4   0x4550             CMP      R0,R10
+   \       0xC6   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_11
+   \       0xC8   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \       0xCC   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_12
+   \                     ??HAL_I2SEx_TransmitReceive_11: (+1)
+   \       0xCE   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_12: (+1)
+   \       0xD2   0x69C1             LDR      R1,[R0, #+28]
+   \       0xD4   0xF451 0x6180      ORRS     R1,R1,#0x400
+   \       0xD8   0x61C1             STR      R1,[R0, #+28]
+    259          
+    260              /* Enable I2Sx peripheral */
+    261              __HAL_I2S_ENABLE(hi2s);
+   \       0xDA   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \       0xDE   0x69C0             LDR      R0,[R0, #+28]
+   \       0xE0   0xF450 0x6080      ORRS     R0,R0,#0x400
+   \       0xE4   0xF8DB 0x1000      LDR      R1,[R11, #+0]
+   \       0xE8   0x61C8             STR      R0,[R1, #+28]
+    262          
+    263              /* Check if Master Receiver mode is selected */
+    264              if ((hi2s->Instance->I2SCFGR & SPI_I2SCFGR_I2SCFG) == I2S_MODE_MASTER_TX)
+   \       0xEA   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \       0xEE   0x69C0             LDR      R0,[R0, #+28]
+   \       0xF0   0xF410 0x7040      ANDS     R0,R0,#0x300
+   \       0xF4   0xF5B0 0x7F00      CMP      R0,#+512
+   \       0xF8   0xD118             BNE.N    ??HAL_I2SEx_TransmitReceive_13
+    265              {
+    266                /* Clear the Overrun Flag by a read operation on the SPI_DR register followed by a read
+    267                access to the SPI_SR register. */
+    268                __HAL_I2SEXT_CLEAR_OVRFLAG(hi2s);
+   \       0xFA   0x2000             MOVS     R0,#+0
+   \       0xFC   0x9000             STR      R0,[SP, #+0]
+   \       0xFE   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x102   0x4550             CMP      R0,R10
+   \      0x104   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_14
+   \      0x106   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x10A   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_15
+   \                     ??HAL_I2SEx_TransmitReceive_14: (+1)
+   \      0x10C   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_15: (+1)
+   \      0x110   0x68C0             LDR      R0,[R0, #+12]
+   \      0x112   0x9000             STR      R0,[SP, #+0]
+   \      0x114   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x118   0x4550             CMP      R0,R10
+   \      0x11A   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_16
+   \      0x11C   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x120   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_17
+   \                     ??HAL_I2SEx_TransmitReceive_16: (+1)
+   \      0x122   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_17: (+1)
+   \      0x126   0x6880             LDR      R0,[R0, #+8]
+   \      0x128   0x9000             STR      R0,[SP, #+0]
+   \      0x12A   0x9800             LDR      R0,[SP, #+0]
+    269              }
+    270          
+    271              while ((hi2s->RxXferCount > 0U) || (hi2s->TxXferCount > 0U))
+   \                     ??HAL_I2SEx_TransmitReceive_13: (+1)
+   \      0x12C   0xF8BB 0x0032      LDRH     R0,[R11, #+50]
+   \      0x130   0x2800             CMP      R0,#+0
+   \      0x132   0xD104             BNE.N    ??HAL_I2SEx_TransmitReceive_18
+   \      0x134   0xF8BB 0x002A      LDRH     R0,[R11, #+42]
+   \      0x138   0x2800             CMP      R0,#+0
+   \      0x13A   0xF000 0x813B      BEQ.W    ??HAL_I2SEx_TransmitReceive_19
+    272              {
+    273                if (hi2s->TxXferCount > 0U)
+   \                     ??HAL_I2SEx_TransmitReceive_18: (+1)
+   \      0x13E   0xF8BB 0x002A      LDRH     R0,[R11, #+42]
+   \      0x142   0x2800             CMP      R0,#+0
+   \      0x144   0xD030             BEQ.N    ??HAL_I2SEx_TransmitReceive_20
+    274                {
+    275                  /* Wait until TXE flag is set */
+    276                  if (I2SEx_FullDuplexWaitFlagStateUntilTimeout(hi2s, I2S_FLAG_TXE, SET, Timeout, I2S_USE_I2S) != HAL_OK)
+   \      0x146   0x2000             MOVS     R0,#+0
+   \      0x148   0x9000             STR      R0,[SP, #+0]
+   \      0x14A   0x4643             MOV      R3,R8
+   \      0x14C   0x2201             MOVS     R2,#+1
+   \      0x14E   0x2102             MOVS     R1,#+2
+   \      0x150   0x4658             MOV      R0,R11
+   \      0x152   0x.... 0x....      BL       I2SEx_FullDuplexWaitFlagStateUntilTimeout
+   \      0x156   0x2800             CMP      R0,#+0
+   \      0x158   0xD008             BEQ.N    ??HAL_I2SEx_TransmitReceive_21
+    277                  {
+    278                    /* Set the error code */
+    279                    SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_TIMEOUT);
+   \      0x15A   0xF8DB 0x0044      LDR      R0,[R11, #+68]
+   \      0x15E   0xF050 0x0001      ORRS     R0,R0,#0x1
+   \      0x162   0xF8CB 0x0044      STR      R0,[R11, #+68]
+    280                    errorcode = HAL_ERROR;
+   \      0x166   0x2001             MOVS     R0,#+1
+   \      0x168   0x4681             MOV      R9,R0
+    281                    goto error;
+   \      0x16A   0xE129             B.N      ??HAL_I2SEx_TransmitReceive_1
+    282                  }
+    283                  /* Write Data on DR register */
+    284                  hi2s->Instance->DR = (*pTxData++);
+   \                     ??HAL_I2SEx_TransmitReceive_21: (+1)
+   \      0x16C   0x8830             LDRH     R0,[R6, #+0]
+   \      0x16E   0xF8DB 0x1000      LDR      R1,[R11, #+0]
+   \      0x172   0x60C8             STR      R0,[R1, #+12]
+   \      0x174   0x1CB6             ADDS     R6,R6,#+2
+    285                  hi2s->TxXferCount--;
+   \      0x176   0xF8BB 0x002A      LDRH     R0,[R11, #+42]
+   \      0x17A   0x1E40             SUBS     R0,R0,#+1
+   \      0x17C   0xF8AB 0x002A      STRH     R0,[R11, #+42]
+    286          
+    287                  /* Check if an underrun occurs */
+    288                  if ((__HAL_I2S_GET_FLAG(hi2s, I2S_FLAG_UDR) == SET) && (tmp1 == I2S_MODE_SLAVE_TX))
+   \      0x180   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x184   0x6880             LDR      R0,[R0, #+8]
+   \      0x186   0x0700             LSLS     R0,R0,#+28
+   \      0x188   0xD50E             BPL.N    ??HAL_I2SEx_TransmitReceive_20
+   \      0x18A   0x2C00             CMP      R4,#+0
+   \      0x18C   0xD10C             BNE.N    ??HAL_I2SEx_TransmitReceive_20
+    289                  {
+    290                    /* Clear Underrun flag */
+    291                    __HAL_I2S_CLEAR_UDRFLAG(hi2s);
+   \      0x18E   0x2000             MOVS     R0,#+0
+   \      0x190   0x9000             STR      R0,[SP, #+0]
+   \      0x192   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x196   0x6880             LDR      R0,[R0, #+8]
+   \      0x198   0x9000             STR      R0,[SP, #+0]
+   \      0x19A   0x9800             LDR      R0,[SP, #+0]
+    292          
+    293                    /* Set the error code */
+    294                    SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_UDR);
+   \      0x19C   0xF8DB 0x0044      LDR      R0,[R11, #+68]
+   \      0x1A0   0xF050 0x0004      ORRS     R0,R0,#0x4
+   \      0x1A4   0xF8CB 0x0044      STR      R0,[R11, #+68]
+    295                  }
+    296                }
+    297                if (hi2s->RxXferCount > 0U)
+   \                     ??HAL_I2SEx_TransmitReceive_20: (+1)
+   \      0x1A8   0xF8BB 0x0032      LDRH     R0,[R11, #+50]
+   \      0x1AC   0x2800             CMP      R0,#+0
+   \      0x1AE   0xD0BD             BEQ.N    ??HAL_I2SEx_TransmitReceive_13
+    298                {
+    299                  /* Wait until RXNE flag is set */
+    300                  if (I2SEx_FullDuplexWaitFlagStateUntilTimeout(hi2s, I2S_FLAG_RXNE, SET, Timeout, I2S_USE_I2SEXT) != HAL_OK)
+   \      0x1B0   0x2001             MOVS     R0,#+1
+   \      0x1B2   0x9000             STR      R0,[SP, #+0]
+   \      0x1B4   0x4643             MOV      R3,R8
+   \      0x1B6   0x2201             MOVS     R2,#+1
+   \      0x1B8   0x2101             MOVS     R1,#+1
+   \      0x1BA   0x4658             MOV      R0,R11
+   \      0x1BC   0x.... 0x....      BL       I2SEx_FullDuplexWaitFlagStateUntilTimeout
+   \      0x1C0   0x2800             CMP      R0,#+0
+   \      0x1C2   0xD008             BEQ.N    ??HAL_I2SEx_TransmitReceive_22
+    301                  {
+    302                    /* Set the error code */
+    303                    SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_TIMEOUT);
+   \      0x1C4   0xF8DB 0x0044      LDR      R0,[R11, #+68]
+   \      0x1C8   0xF050 0x0001      ORRS     R0,R0,#0x1
+   \      0x1CC   0xF8CB 0x0044      STR      R0,[R11, #+68]
+    304                    errorcode = HAL_ERROR;
+   \      0x1D0   0x2001             MOVS     R0,#+1
+   \      0x1D2   0x4681             MOV      R9,R0
+    305                    goto error;
+   \      0x1D4   0xE0F4             B.N      ??HAL_I2SEx_TransmitReceive_1
+    306                  }
+    307                  /* Read Data from DR register */
+    308                  (*pRxData++) = I2SxEXT(hi2s->Instance)->DR;
+   \                     ??HAL_I2SEx_TransmitReceive_22: (+1)
+   \      0x1D6   0x0028             MOVS     R0,R5
+   \      0x1D8   0x1C85             ADDS     R5,R0,#+2
+   \      0x1DA   0xF8DB 0x1000      LDR      R1,[R11, #+0]
+   \      0x1DE   0x4551             CMP      R1,R10
+   \      0x1E0   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_23
+   \      0x1E2   0x.... 0x....      LDR.W    R1,??DataTable8_1
+   \      0x1E6   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_24
+   \                     ??HAL_I2SEx_TransmitReceive_23: (+1)
+   \      0x1E8   0xF05F 0x2140      MOVS     R1,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_24: (+1)
+   \      0x1EC   0x68C9             LDR      R1,[R1, #+12]
+   \      0x1EE   0x8001             STRH     R1,[R0, #+0]
+    309                  hi2s->RxXferCount--;
+   \      0x1F0   0xF8BB 0x0032      LDRH     R0,[R11, #+50]
+   \      0x1F4   0x1E40             SUBS     R0,R0,#+1
+   \      0x1F6   0xF8AB 0x0032      STRH     R0,[R11, #+50]
+    310          
+    311                  /* Check if an overrun occurs */
+    312                  if (__HAL_I2SEXT_GET_FLAG(hi2s, I2S_FLAG_OVR) == SET)
+   \      0x1FA   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x1FE   0x4550             CMP      R0,R10
+   \      0x200   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_25
+   \      0x202   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x206   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_26
+   \                     ??HAL_I2SEx_TransmitReceive_25: (+1)
+   \      0x208   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_26: (+1)
+   \      0x20C   0x6880             LDR      R0,[R0, #+8]
+   \      0x20E   0x0640             LSLS     R0,R0,#+25
+   \      0x210   0xD58C             BPL.N    ??HAL_I2SEx_TransmitReceive_13
+    313                  {
+    314                    /* Clear Overrun flag */
+    315                    __HAL_I2S_CLEAR_OVRFLAG(hi2s);
+   \      0x212   0x2000             MOVS     R0,#+0
+   \      0x214   0x9000             STR      R0,[SP, #+0]
+   \      0x216   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x21A   0x68C0             LDR      R0,[R0, #+12]
+   \      0x21C   0x9000             STR      R0,[SP, #+0]
+   \      0x21E   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x222   0x6880             LDR      R0,[R0, #+8]
+   \      0x224   0x9000             STR      R0,[SP, #+0]
+   \      0x226   0x9800             LDR      R0,[SP, #+0]
+    316          
+    317                    /* Set the error code */
+    318                    SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_OVR);
+   \      0x228   0xF8DB 0x0044      LDR      R0,[R11, #+68]
+   \      0x22C   0xF050 0x0002      ORRS     R0,R0,#0x2
+   \      0x230   0xF8CB 0x0044      STR      R0,[R11, #+68]
+   \      0x234   0xE77A             B.N      ??HAL_I2SEx_TransmitReceive_13
+    319                  }
+    320                }
+    321              }
+    322            }
+    323            /* The I2S_MODE_MASTER_RX or I2S_MODE_SLAVE_RX Mode is selected */
+    324            else
+    325            {
+    326              /* Prepare the First Data before enabling the I2S */
+    327              I2SxEXT(hi2s->Instance)->DR = (*pTxData++);
+   \                     ??HAL_I2SEx_TransmitReceive_10: (+1)
+   \      0x236   0x.... 0x....      LDR.W    R10,??DataTable8
+   \      0x23A   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x23E   0x4550             CMP      R0,R10
+   \      0x240   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_27
+   \      0x242   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x246   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_28
+   \                     ??HAL_I2SEx_TransmitReceive_27: (+1)
+   \      0x248   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_28: (+1)
+   \      0x24C   0x8831             LDRH     R1,[R6, #+0]
+   \      0x24E   0x60C1             STR      R1,[R0, #+12]
+   \      0x250   0x1CB6             ADDS     R6,R6,#+2
+    328              hi2s->TxXferCount--;
+   \      0x252   0xF8BB 0x002A      LDRH     R0,[R11, #+42]
+   \      0x256   0x1E40             SUBS     R0,R0,#+1
+   \      0x258   0xF8AB 0x002A      STRH     R0,[R11, #+42]
+    329          
+    330              /* Enable I2Sext(transmitter) after enabling I2Sx peripheral */
+    331              __HAL_I2SEXT_ENABLE(hi2s);
+   \      0x25C   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x260   0x4550             CMP      R0,R10
+   \      0x262   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_29
+   \      0x264   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x268   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_30
+   \                     ??HAL_I2SEx_TransmitReceive_29: (+1)
+   \      0x26A   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_30: (+1)
+   \      0x26E   0x69C1             LDR      R1,[R0, #+28]
+   \      0x270   0xF451 0x6180      ORRS     R1,R1,#0x400
+   \      0x274   0x61C1             STR      R1,[R0, #+28]
+    332          
+    333              /* Enable I2S peripheral before the I2Sext*/
+    334              __HAL_I2S_ENABLE(hi2s);
+   \      0x276   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x27A   0x69C0             LDR      R0,[R0, #+28]
+   \      0x27C   0xF450 0x6080      ORRS     R0,R0,#0x400
+   \      0x280   0xF8DB 0x1000      LDR      R1,[R11, #+0]
+   \      0x284   0x61C8             STR      R0,[R1, #+28]
+    335          
+    336              /* Check if Master Receiver mode is selected */
+    337              if ((hi2s->Instance->I2SCFGR & SPI_I2SCFGR_I2SCFG) == I2S_MODE_MASTER_RX)
+   \      0x286   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x28A   0x69C0             LDR      R0,[R0, #+28]
+   \      0x28C   0xF410 0x7040      ANDS     R0,R0,#0x300
+   \      0x290   0xF5B0 0x7F40      CMP      R0,#+768
+   \      0x294   0xD10A             BNE.N    ??HAL_I2SEx_TransmitReceive_31
+    338              {
+    339                /* Clear the Overrun Flag by a read operation on the SPI_DR register followed by a read
+    340                access to the SPI_SR register. */
+    341                __HAL_I2S_CLEAR_OVRFLAG(hi2s);
+   \      0x296   0x2000             MOVS     R0,#+0
+   \      0x298   0x9000             STR      R0,[SP, #+0]
+   \      0x29A   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x29E   0x68C0             LDR      R0,[R0, #+12]
+   \      0x2A0   0x9000             STR      R0,[SP, #+0]
+   \      0x2A2   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x2A6   0x6880             LDR      R0,[R0, #+8]
+   \      0x2A8   0x9000             STR      R0,[SP, #+0]
+   \      0x2AA   0x9800             LDR      R0,[SP, #+0]
+    342              }
+    343          
+    344              while ((hi2s->RxXferCount > 0U) || (hi2s->TxXferCount > 0U))
+   \                     ??HAL_I2SEx_TransmitReceive_31: (+1)
+   \      0x2AC   0xF8BB 0x0032      LDRH     R0,[R11, #+50]
+   \      0x2B0   0x2800             CMP      R0,#+0
+   \      0x2B2   0xD103             BNE.N    ??HAL_I2SEx_TransmitReceive_32
+   \      0x2B4   0xF8BB 0x002A      LDRH     R0,[R11, #+42]
+   \      0x2B8   0x2800             CMP      R0,#+0
+   \      0x2BA   0xD07B             BEQ.N    ??HAL_I2SEx_TransmitReceive_19
+    345              {
+    346                if (hi2s->TxXferCount > 0U)
+   \                     ??HAL_I2SEx_TransmitReceive_32: (+1)
+   \      0x2BC   0xF8BB 0x002A      LDRH     R0,[R11, #+42]
+   \      0x2C0   0x2800             CMP      R0,#+0
+   \      0x2C2   0xD03F             BEQ.N    ??HAL_I2SEx_TransmitReceive_33
+    347                {
+    348                  /* Wait until TXE flag is set */
+    349                  if (I2SEx_FullDuplexWaitFlagStateUntilTimeout(hi2s, I2S_FLAG_TXE, SET, Timeout, I2S_USE_I2SEXT) != HAL_OK)
+   \      0x2C4   0x2001             MOVS     R0,#+1
+   \      0x2C6   0x9000             STR      R0,[SP, #+0]
+   \      0x2C8   0x4643             MOV      R3,R8
+   \      0x2CA   0x2201             MOVS     R2,#+1
+   \      0x2CC   0x2102             MOVS     R1,#+2
+   \      0x2CE   0x4658             MOV      R0,R11
+   \      0x2D0   0x.... 0x....      BL       I2SEx_FullDuplexWaitFlagStateUntilTimeout
+   \      0x2D4   0x2800             CMP      R0,#+0
+   \      0x2D6   0xD008             BEQ.N    ??HAL_I2SEx_TransmitReceive_34
+    350                  {
+    351                    /* Set the error code */
+    352                    SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_TIMEOUT);
+   \      0x2D8   0xF8DB 0x0044      LDR      R0,[R11, #+68]
+   \      0x2DC   0xF050 0x0001      ORRS     R0,R0,#0x1
+   \      0x2E0   0xF8CB 0x0044      STR      R0,[R11, #+68]
+    353                    errorcode = HAL_ERROR;
+   \      0x2E4   0x2001             MOVS     R0,#+1
+   \      0x2E6   0x4681             MOV      R9,R0
+    354                    goto error;
+   \      0x2E8   0xE06A             B.N      ??HAL_I2SEx_TransmitReceive_1
+    355                  }
+    356                  /* Write Data on DR register */
+    357                  I2SxEXT(hi2s->Instance)->DR = (*pTxData++);
+   \                     ??HAL_I2SEx_TransmitReceive_34: (+1)
+   \      0x2EA   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x2EE   0x4550             CMP      R0,R10
+   \      0x2F0   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_35
+   \      0x2F2   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x2F6   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_36
+   \                     ??HAL_I2SEx_TransmitReceive_35: (+1)
+   \      0x2F8   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_36: (+1)
+   \      0x2FC   0x8831             LDRH     R1,[R6, #+0]
+   \      0x2FE   0x60C1             STR      R1,[R0, #+12]
+   \      0x300   0x1CB6             ADDS     R6,R6,#+2
+    358                  hi2s->TxXferCount--;
+   \      0x302   0xF8BB 0x002A      LDRH     R0,[R11, #+42]
+   \      0x306   0x1E40             SUBS     R0,R0,#+1
+   \      0x308   0xF8AB 0x002A      STRH     R0,[R11, #+42]
+    359          
+    360                  /* Check if an underrun occurs */
+    361                  if ((__HAL_I2SEXT_GET_FLAG(hi2s, I2S_FLAG_UDR) == SET) && (tmp1 == I2S_MODE_SLAVE_RX))
+   \      0x30C   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x310   0x4550             CMP      R0,R10
+   \      0x312   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_37
+   \      0x314   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x318   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_38
+   \                     ??HAL_I2SEx_TransmitReceive_37: (+1)
+   \      0x31A   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_38: (+1)
+   \      0x31E   0x6880             LDR      R0,[R0, #+8]
+   \      0x320   0x0700             LSLS     R0,R0,#+28
+   \      0x322   0xD50F             BPL.N    ??HAL_I2SEx_TransmitReceive_33
+   \      0x324   0xF5B4 0x7F80      CMP      R4,#+256
+   \      0x328   0xD10C             BNE.N    ??HAL_I2SEx_TransmitReceive_33
+    362                  {
+    363                    /* Clear Underrun flag */
+    364                    __HAL_I2S_CLEAR_UDRFLAG(hi2s);
+   \      0x32A   0x2000             MOVS     R0,#+0
+   \      0x32C   0x9000             STR      R0,[SP, #+0]
+   \      0x32E   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x332   0x6880             LDR      R0,[R0, #+8]
+   \      0x334   0x9000             STR      R0,[SP, #+0]
+   \      0x336   0x9800             LDR      R0,[SP, #+0]
+    365          
+    366                    /* Set the error code */
+    367                    SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_UDR);
+   \      0x338   0xF8DB 0x0044      LDR      R0,[R11, #+68]
+   \      0x33C   0xF050 0x0004      ORRS     R0,R0,#0x4
+   \      0x340   0xF8CB 0x0044      STR      R0,[R11, #+68]
+    368                  }
+    369                }
+    370                if (hi2s->RxXferCount > 0U)
+   \                     ??HAL_I2SEx_TransmitReceive_33: (+1)
+   \      0x344   0xF8BB 0x0032      LDRH     R0,[R11, #+50]
+   \      0x348   0x2800             CMP      R0,#+0
+   \      0x34A   0xD0AF             BEQ.N    ??HAL_I2SEx_TransmitReceive_31
+    371                {
+    372                  /* Wait until RXNE flag is set */
+    373                  if (I2SEx_FullDuplexWaitFlagStateUntilTimeout(hi2s, I2S_FLAG_RXNE, SET, Timeout, I2S_USE_I2S) != HAL_OK)
+   \      0x34C   0x2000             MOVS     R0,#+0
+   \      0x34E   0x9000             STR      R0,[SP, #+0]
+   \      0x350   0x4643             MOV      R3,R8
+   \      0x352   0x2201             MOVS     R2,#+1
+   \      0x354   0x2101             MOVS     R1,#+1
+   \      0x356   0x4658             MOV      R0,R11
+   \      0x358   0x.... 0x....      BL       I2SEx_FullDuplexWaitFlagStateUntilTimeout
+   \      0x35C   0x2800             CMP      R0,#+0
+   \      0x35E   0xD008             BEQ.N    ??HAL_I2SEx_TransmitReceive_39
+    374                  {
+    375                    /* Set the error code */
+    376                    SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_TIMEOUT);
+   \      0x360   0xF8DB 0x0044      LDR      R0,[R11, #+68]
+   \      0x364   0xF050 0x0001      ORRS     R0,R0,#0x1
+   \      0x368   0xF8CB 0x0044      STR      R0,[R11, #+68]
+    377                    errorcode = HAL_ERROR;
+   \      0x36C   0x2001             MOVS     R0,#+1
+   \      0x36E   0x4681             MOV      R9,R0
+    378                    goto error;
+   \      0x370   0xE026             B.N      ??HAL_I2SEx_TransmitReceive_1
+    379                  }
+    380                  /* Read Data from DR register */
+    381                  (*pRxData++) = hi2s->Instance->DR;
+   \                     ??HAL_I2SEx_TransmitReceive_39: (+1)
+   \      0x372   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x376   0x68C0             LDR      R0,[R0, #+12]
+   \      0x378   0x8028             STRH     R0,[R5, #+0]
+   \      0x37A   0x1CAD             ADDS     R5,R5,#+2
+    382                  hi2s->RxXferCount--;
+   \      0x37C   0xF8BB 0x0032      LDRH     R0,[R11, #+50]
+   \      0x380   0x1E40             SUBS     R0,R0,#+1
+   \      0x382   0xF8AB 0x0032      STRH     R0,[R11, #+50]
+    383          
+    384                  /* Check if an overrun occurs */
+    385                  if (__HAL_I2S_GET_FLAG(hi2s, I2S_FLAG_OVR) == SET)
+   \      0x386   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x38A   0x6880             LDR      R0,[R0, #+8]
+   \      0x38C   0x0640             LSLS     R0,R0,#+25
+   \      0x38E   0xD58D             BPL.N    ??HAL_I2SEx_TransmitReceive_31
+    386                  {
+    387                    /* Clear Overrun flag */
+    388                    __HAL_I2S_CLEAR_OVRFLAG(hi2s);
+   \      0x390   0x2000             MOVS     R0,#+0
+   \      0x392   0x9000             STR      R0,[SP, #+0]
+   \      0x394   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x398   0x68C0             LDR      R0,[R0, #+12]
+   \      0x39A   0x9000             STR      R0,[SP, #+0]
+   \      0x39C   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x3A0   0x6880             LDR      R0,[R0, #+8]
+   \      0x3A2   0x9000             STR      R0,[SP, #+0]
+   \      0x3A4   0x9800             LDR      R0,[SP, #+0]
+    389          
+    390                    /* Set the error code */
+    391                    SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_OVR);
+   \      0x3A6   0xF8DB 0x0044      LDR      R0,[R11, #+68]
+   \      0x3AA   0xF050 0x0002      ORRS     R0,R0,#0x2
+   \      0x3AE   0xF8CB 0x0044      STR      R0,[R11, #+68]
+   \      0x3B2   0xE77B             B.N      ??HAL_I2SEx_TransmitReceive_31
+    392                  }
+    393                }
+    394              }
+    395            }
+    396          
+    397            if (hi2s->ErrorCode != HAL_I2S_ERROR_NONE)
+   \                     ??HAL_I2SEx_TransmitReceive_19: (+1)
+   \      0x3B4   0xF8DB 0x0044      LDR      R0,[R11, #+68]
+   \      0x3B8   0x2800             CMP      R0,#+0
+   \      0x3BA   0xD001             BEQ.N    ??HAL_I2SEx_TransmitReceive_1
+    398            {
+    399              errorcode = HAL_ERROR;
+   \      0x3BC   0x2001             MOVS     R0,#+1
+   \      0x3BE   0x4681             MOV      R9,R0
+    400            }
+    401          
+    402          error :
+    403            hi2s->State = HAL_I2S_STATE_READY;
+   \                     ??HAL_I2SEx_TransmitReceive_1: (+1)
+   \      0x3C0   0x2001             MOVS     R0,#+1
+   \      0x3C2   0xF88B 0x0041      STRB     R0,[R11, #+65]
+    404            __HAL_UNLOCK(hi2s);
+   \      0x3C6   0x2000             MOVS     R0,#+0
+   \      0x3C8   0xF88B 0x0040      STRB     R0,[R11, #+64]
+    405            return errorcode;
+   \      0x3CC   0x4648             MOV      R0,R9
+   \      0x3CE   0xB2C0             UXTB     R0,R0
+   \                     ??HAL_I2SEx_TransmitReceive_4: (+1)
+   \      0x3D0   0xE8BD 0x8FF2      POP      {R1,R4-R11,PC}
+    406          }
+    407          
+    408          /**
+    409            * @brief  Full-Duplex Transmit/Receive data in non-blocking mode using Interrupt
+    410            * @param  hi2s pointer to a I2S_HandleTypeDef structure that contains
+    411            *         the configuration information for I2S module
+    412            * @param  pTxData a 16-bit pointer to the Transmit data buffer.
+    413            * @param  pRxData a 16-bit pointer to the Receive data buffer.
+    414            * @param  Size number of data sample to be sent:
+    415            * @note   When a 16-bit data frame or a 16-bit data frame extended is selected during the I2S
+    416            *         configuration phase, the Size parameter means the number of 16-bit data length
+    417            *         in the transaction and when a 24-bit data frame or a 32-bit data frame is selected
+    418            *         the Size parameter means the number of 16-bit data length.
+    419            * @note   The I2S is kept enabled at the end of transaction to avoid the clock de-synchronization
+    420            *         between Master and Slave(example: audio streaming).
+    421            * @retval HAL status
+    422            */
+
+   \                                 In section .text, align 2, keep-with-next
+    423          HAL_StatusTypeDef HAL_I2SEx_TransmitReceive_IT(I2S_HandleTypeDef *hi2s, uint16_t *pTxData, uint16_t *pRxData,
+    424                                                         uint16_t Size)
+    425          {
+   \                     HAL_I2SEx_TransmitReceive_IT: (+1)
+   \        0x0   0xB5F0             PUSH     {R4-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    426            uint32_t tmp1 = 0U;
+   \        0x4   0x2500             MOVS     R5,#+0
+    427            HAL_StatusTypeDef errorcode = HAL_OK;
+   \        0x6   0x2600             MOVS     R6,#+0
+    428          
+    429            if (hi2s->State != HAL_I2S_STATE_READY)
+   \        0x8   0xF894 0x0041      LDRB     R0,[R4, #+65]
+   \        0xC   0x2801             CMP      R0,#+1
+   \        0xE   0xD002             BEQ.N    ??HAL_I2SEx_TransmitReceive_IT_0
+    430            {
+    431              errorcode = HAL_BUSY;
+   \       0x10   0x2002             MOVS     R0,#+2
+   \       0x12   0x0006             MOVS     R6,R0
+    432              goto error;
+   \       0x14   0xE0AD             B.N      ??HAL_I2SEx_TransmitReceive_IT_1
+    433            }
+    434          
+    435            if ((pTxData == NULL) || (pRxData == NULL) || (Size == 0U))
+   \                     ??HAL_I2SEx_TransmitReceive_IT_0: (+1)
+   \       0x16   0x2900             CMP      R1,#+0
+   \       0x18   0xD005             BEQ.N    ??HAL_I2SEx_TransmitReceive_IT_2
+   \       0x1A   0x2A00             CMP      R2,#+0
+   \       0x1C   0xD003             BEQ.N    ??HAL_I2SEx_TransmitReceive_IT_2
+   \       0x1E   0x0018             MOVS     R0,R3
+   \       0x20   0xB280             UXTH     R0,R0
+   \       0x22   0x2800             CMP      R0,#+0
+   \       0x24   0xD101             BNE.N    ??HAL_I2SEx_TransmitReceive_IT_3
+    436            {
+    437              return  HAL_ERROR;
+   \                     ??HAL_I2SEx_TransmitReceive_IT_2: (+1)
+   \       0x26   0x2001             MOVS     R0,#+1
+   \       0x28   0xE0A8             B.N      ??HAL_I2SEx_TransmitReceive_IT_4
+    438            }
+    439          
+    440            /* Process Locked */
+    441            __HAL_LOCK(hi2s);
+   \                     ??HAL_I2SEx_TransmitReceive_IT_3: (+1)
+   \       0x2A   0xF894 0x0040      LDRB     R0,[R4, #+64]
+   \       0x2E   0x2801             CMP      R0,#+1
+   \       0x30   0xD101             BNE.N    ??HAL_I2SEx_TransmitReceive_IT_5
+   \       0x32   0x2002             MOVS     R0,#+2
+   \       0x34   0xE0A2             B.N      ??HAL_I2SEx_TransmitReceive_IT_4
+   \                     ??HAL_I2SEx_TransmitReceive_IT_5: (+1)
+   \       0x36   0x2001             MOVS     R0,#+1
+   \       0x38   0xF884 0x0040      STRB     R0,[R4, #+64]
+    442          
+    443            hi2s->pTxBuffPtr = pTxData;
+   \       0x3C   0x6261             STR      R1,[R4, #+36]
+    444            hi2s->pRxBuffPtr = pRxData;
+   \       0x3E   0x62E2             STR      R2,[R4, #+44]
+    445          
+    446            tmp1 = hi2s->Instance->I2SCFGR & (SPI_I2SCFGR_DATLEN | SPI_I2SCFGR_CHLEN);
+   \       0x40   0x6820             LDR      R0,[R4, #+0]
+   \       0x42   0x69C0             LDR      R0,[R0, #+28]
+   \       0x44   0xF010 0x0007      ANDS     R0,R0,#0x7
+   \       0x48   0x0005             MOVS     R5,R0
+    447            /* Check the Data format: When a 16-bit data frame or a 16-bit data frame extended
+    448            is selected during the I2S configuration phase, the Size parameter means the number
+    449            of 16-bit data length in the transaction and when a 24-bit data frame or a 32-bit data
+    450            frame is selected the Size parameter means the number of 16-bit data length. */
+    451            if ((tmp1 == I2S_DATAFORMAT_24B) || (tmp1 == I2S_DATAFORMAT_32B))
+   \       0x4A   0x2D03             CMP      R5,#+3
+   \       0x4C   0xD001             BEQ.N    ??HAL_I2SEx_TransmitReceive_IT_6
+   \       0x4E   0x2D05             CMP      R5,#+5
+   \       0x50   0xD108             BNE.N    ??HAL_I2SEx_TransmitReceive_IT_7
+    452            {
+    453              hi2s->TxXferSize  = (Size << 1U);
+   \                     ??HAL_I2SEx_TransmitReceive_IT_6: (+1)
+   \       0x52   0x0058             LSLS     R0,R3,#+1
+   \       0x54   0x8520             STRH     R0,[R4, #+40]
+    454              hi2s->TxXferCount = (Size << 1U);
+   \       0x56   0x0058             LSLS     R0,R3,#+1
+   \       0x58   0x8560             STRH     R0,[R4, #+42]
+    455              hi2s->RxXferSize  = (Size << 1U);
+   \       0x5A   0x0058             LSLS     R0,R3,#+1
+   \       0x5C   0x8620             STRH     R0,[R4, #+48]
+    456              hi2s->RxXferCount = (Size << 1U);
+   \       0x5E   0x0058             LSLS     R0,R3,#+1
+   \       0x60   0x8660             STRH     R0,[R4, #+50]
+   \       0x62   0xE003             B.N      ??HAL_I2SEx_TransmitReceive_IT_8
+    457            }
+    458            else
+    459            {
+    460              hi2s->TxXferSize  = Size;
+   \                     ??HAL_I2SEx_TransmitReceive_IT_7: (+1)
+   \       0x64   0x8523             STRH     R3,[R4, #+40]
+    461              hi2s->TxXferCount = Size;
+   \       0x66   0x8563             STRH     R3,[R4, #+42]
+    462              hi2s->RxXferSize  = Size;
+   \       0x68   0x8623             STRH     R3,[R4, #+48]
+    463              hi2s->RxXferCount = Size;
+   \       0x6A   0x8663             STRH     R3,[R4, #+50]
+    464            }
+    465          
+    466            hi2s->ErrorCode = HAL_I2S_ERROR_NONE;
+   \                     ??HAL_I2SEx_TransmitReceive_IT_8: (+1)
+   \       0x6C   0x2000             MOVS     R0,#+0
+   \       0x6E   0x6460             STR      R0,[R4, #+68]
+    467            hi2s->State     = HAL_I2S_STATE_BUSY_TX_RX;
+   \       0x70   0x2005             MOVS     R0,#+5
+   \       0x72   0xF884 0x0041      STRB     R0,[R4, #+65]
+    468          
+    469            /* Set the function for IT treatment */
+    470            if ((hi2s->Init.Mode == I2S_MODE_MASTER_TX) || (hi2s->Init.Mode == I2S_MODE_SLAVE_TX))
+   \       0x76   0x6860             LDR      R0,[R4, #+4]
+   \       0x78   0xF5B0 0x7F00      CMP      R0,#+512
+   \       0x7C   0xD002             BEQ.N    ??HAL_I2SEx_TransmitReceive_IT_9
+   \       0x7E   0x6860             LDR      R0,[R4, #+4]
+   \       0x80   0x2800             CMP      R0,#+0
+   \       0x82   0xD126             BNE.N    ??HAL_I2SEx_TransmitReceive_IT_10
+    471            {
+    472              /* Enable I2Sext RXNE and ERR interrupts */
+    473              __HAL_I2SEXT_ENABLE_IT(hi2s, (I2S_IT_RXNE | I2S_IT_ERR));
+   \                     ??HAL_I2SEx_TransmitReceive_IT_9: (+1)
+   \       0x84   0x6820             LDR      R0,[R4, #+0]
+   \       0x86   0x.... 0x....      LDR.W    R7,??DataTable8
+   \       0x8A   0x42B8             CMP      R0,R7
+   \       0x8C   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_IT_11
+   \       0x8E   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \       0x92   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_IT_12
+   \                     ??HAL_I2SEx_TransmitReceive_IT_11: (+1)
+   \       0x94   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_IT_12: (+1)
+   \       0x98   0x6847             LDR      R7,[R0, #+4]
+   \       0x9A   0xF057 0x0760      ORRS     R7,R7,#0x60
+   \       0x9E   0x6047             STR      R7,[R0, #+4]
+    474          
+    475              /* Enable I2Sx TXE and ERR interrupts */
+    476              __HAL_I2S_ENABLE_IT(hi2s, (I2S_IT_TXE | I2S_IT_ERR));
+   \       0xA0   0x6820             LDR      R0,[R4, #+0]
+   \       0xA2   0x6840             LDR      R0,[R0, #+4]
+   \       0xA4   0xF050 0x00A0      ORRS     R0,R0,#0xA0
+   \       0xA8   0x6827             LDR      R7,[R4, #+0]
+   \       0xAA   0x6078             STR      R0,[R7, #+4]
+    477          
+    478              /* Transmit First data */
+    479              hi2s->Instance->DR = (*hi2s->pTxBuffPtr++);
+   \       0xAC   0x6A60             LDR      R0,[R4, #+36]
+   \       0xAE   0x1C87             ADDS     R7,R0,#+2
+   \       0xB0   0x6267             STR      R7,[R4, #+36]
+   \       0xB2   0x8800             LDRH     R0,[R0, #+0]
+   \       0xB4   0x6827             LDR      R7,[R4, #+0]
+   \       0xB6   0x60F8             STR      R0,[R7, #+12]
+    480              hi2s->TxXferCount--;
+   \       0xB8   0x8D60             LDRH     R0,[R4, #+42]
+   \       0xBA   0x1E40             SUBS     R0,R0,#+1
+   \       0xBC   0x8560             STRH     R0,[R4, #+42]
+    481          
+    482              if (hi2s->TxXferCount == 0U)
+   \       0xBE   0x8D60             LDRH     R0,[R4, #+42]
+   \       0xC0   0x2800             CMP      R0,#+0
+   \       0xC2   0xD142             BNE.N    ??HAL_I2SEx_TransmitReceive_IT_13
+    483              {
+    484                /* Disable TXE and ERR interrupt */
+    485                __HAL_I2S_DISABLE_IT(hi2s, (I2S_IT_TXE | I2S_IT_ERR));
+   \       0xC4   0x6820             LDR      R0,[R4, #+0]
+   \       0xC6   0x6840             LDR      R0,[R0, #+4]
+   \       0xC8   0xF030 0x00A0      BICS     R0,R0,#0xA0
+   \       0xCC   0x6827             LDR      R7,[R4, #+0]
+   \       0xCE   0x6078             STR      R0,[R7, #+4]
+   \       0xD0   0xE03B             B.N      ??HAL_I2SEx_TransmitReceive_IT_13
+    486              }
+    487            }
+    488            else  /* The I2S_MODE_MASTER_RX or I2S_MODE_SLAVE_RX Mode is selected */
+    489            {
+    490              /* Enable I2Sext TXE and ERR interrupts */
+    491              __HAL_I2SEXT_ENABLE_IT(hi2s, (I2S_IT_TXE | I2S_IT_ERR));
+   \                     ??HAL_I2SEx_TransmitReceive_IT_10: (+1)
+   \       0xD2   0x.... 0x....      LDR.W    R7,??DataTable8
+   \       0xD6   0x6820             LDR      R0,[R4, #+0]
+   \       0xD8   0x42B8             CMP      R0,R7
+   \       0xDA   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_IT_14
+   \       0xDC   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \       0xE0   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_IT_15
+   \                     ??HAL_I2SEx_TransmitReceive_IT_14: (+1)
+   \       0xE2   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_IT_15: (+1)
+   \       0xE6   0xF8D0 0xC004      LDR      R12,[R0, #+4]
+   \       0xEA   0xF05C 0x0CA0      ORRS     R12,R12,#0xA0
+   \       0xEE   0xF8C0 0xC004      STR      R12,[R0, #+4]
+    492          
+    493              /* Enable I2Sext RXNE and ERR interrupts */
+    494              __HAL_I2S_ENABLE_IT(hi2s, (I2S_IT_RXNE | I2S_IT_ERR));
+   \       0xF2   0x6820             LDR      R0,[R4, #+0]
+   \       0xF4   0x6840             LDR      R0,[R0, #+4]
+   \       0xF6   0xF050 0x0060      ORRS     R0,R0,#0x60
+   \       0xFA   0xF8D4 0xC000      LDR      R12,[R4, #+0]
+   \       0xFE   0xF8CC 0x0004      STR      R0,[R12, #+4]
+    495          
+    496              /* Transmit First data */
+    497              I2SxEXT(hi2s->Instance)->DR = (*hi2s->pTxBuffPtr++);
+   \      0x102   0x6820             LDR      R0,[R4, #+0]
+   \      0x104   0x42B8             CMP      R0,R7
+   \      0x106   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_IT_16
+   \      0x108   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x10C   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_IT_17
+   \                     ??HAL_I2SEx_TransmitReceive_IT_16: (+1)
+   \      0x10E   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_IT_17: (+1)
+   \      0x112   0xF8D4 0xC024      LDR      R12,[R4, #+36]
+   \      0x116   0xF11C 0x0E02      ADDS     LR,R12,#+2
+   \      0x11A   0xF8C4 0xE024      STR      LR,[R4, #+36]
+   \      0x11E   0xF8BC 0xC000      LDRH     R12,[R12, #+0]
+   \      0x122   0xF8C0 0xC00C      STR      R12,[R0, #+12]
+    498              hi2s->TxXferCount--;
+   \      0x126   0x8D60             LDRH     R0,[R4, #+42]
+   \      0x128   0x1E40             SUBS     R0,R0,#+1
+   \      0x12A   0x8560             STRH     R0,[R4, #+42]
+    499          
+    500              if (hi2s->TxXferCount == 0U)
+   \      0x12C   0x8D60             LDRH     R0,[R4, #+42]
+   \      0x12E   0x2800             CMP      R0,#+0
+   \      0x130   0xD10B             BNE.N    ??HAL_I2SEx_TransmitReceive_IT_13
+    501              {
+    502                /* Disable I2Sext TXE and ERR interrupt */
+    503                __HAL_I2SEXT_DISABLE_IT(hi2s, (I2S_IT_TXE | I2S_IT_ERR));
+   \      0x132   0x6820             LDR      R0,[R4, #+0]
+   \      0x134   0x42B8             CMP      R0,R7
+   \      0x136   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_IT_18
+   \      0x138   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x13C   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_IT_19
+   \                     ??HAL_I2SEx_TransmitReceive_IT_18: (+1)
+   \      0x13E   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_IT_19: (+1)
+   \      0x142   0x6847             LDR      R7,[R0, #+4]
+   \      0x144   0xF037 0x07A0      BICS     R7,R7,#0xA0
+   \      0x148   0x6047             STR      R7,[R0, #+4]
+    504              }
+    505            }
+    506          
+    507            /* Enable I2Sext peripheral */
+    508            __HAL_I2SEXT_ENABLE(hi2s);
+   \                     ??HAL_I2SEx_TransmitReceive_IT_13: (+1)
+   \      0x14A   0x6820             LDR      R0,[R4, #+0]
+   \      0x14C   0x.... 0x....      LDR.W    R7,??DataTable8
+   \      0x150   0x42B8             CMP      R0,R7
+   \      0x152   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_IT_20
+   \      0x154   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x158   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_IT_21
+   \                     ??HAL_I2SEx_TransmitReceive_IT_20: (+1)
+   \      0x15A   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_IT_21: (+1)
+   \      0x15E   0x69C7             LDR      R7,[R0, #+28]
+   \      0x160   0xF457 0x6780      ORRS     R7,R7,#0x400
+   \      0x164   0x61C7             STR      R7,[R0, #+28]
+    509          
+    510            /* Enable I2S peripheral */
+    511            __HAL_I2S_ENABLE(hi2s);
+   \      0x166   0x6820             LDR      R0,[R4, #+0]
+   \      0x168   0x69C0             LDR      R0,[R0, #+28]
+   \      0x16A   0xF450 0x6080      ORRS     R0,R0,#0x400
+   \      0x16E   0x6827             LDR      R7,[R4, #+0]
+   \      0x170   0x61F8             STR      R0,[R7, #+28]
+    512          
+    513          error :
+    514            __HAL_UNLOCK(hi2s);
+   \                     ??HAL_I2SEx_TransmitReceive_IT_1: (+1)
+   \      0x172   0x2000             MOVS     R0,#+0
+   \      0x174   0xF884 0x0040      STRB     R0,[R4, #+64]
+    515            return errorcode;
+   \      0x178   0x0030             MOVS     R0,R6
+   \      0x17A   0xB2C0             UXTB     R0,R0
+   \                     ??HAL_I2SEx_TransmitReceive_IT_4: (+1)
+   \      0x17C   0xBDF0             POP      {R4-R7,PC}
+    516          }
+    517          
+    518          /**
+    519            * @brief  Full-Duplex Transmit/Receive data in non-blocking mode using DMA
+    520            * @param  hi2s pointer to a I2S_HandleTypeDef structure that contains
+    521            *         the configuration information for I2S module
+    522            * @param  pTxData a 16-bit pointer to the Transmit data buffer.
+    523            * @param  pRxData a 16-bit pointer to the Receive data buffer.
+    524            * @param  Size number of data sample to be sent:
+    525            * @note   When a 16-bit data frame or a 16-bit data frame extended is selected during the I2S
+    526            *         configuration phase, the Size parameter means the number of 16-bit data length
+    527            *         in the transaction and when a 24-bit data frame or a 32-bit data frame is selected
+    528            *         the Size parameter means the number of 16-bit data length.
+    529            * @note   The I2S is kept enabled at the end of transaction to avoid the clock de-synchronization
+    530            *         between Master and Slave(example: audio streaming).
+    531            * @retval HAL status
+    532            */
+
+   \                                 In section .text, align 2, keep-with-next
+    533          HAL_StatusTypeDef HAL_I2SEx_TransmitReceive_DMA(I2S_HandleTypeDef *hi2s, uint16_t *pTxData, uint16_t *pRxData,
+    534                                                          uint16_t Size)
+    535          {
+   \                     HAL_I2SEx_TransmitReceive_DMA: (+1)
+   \        0x0   0xE92D 0x47F7      PUSH     {R0-R2,R4-R10,LR}
+   \        0x4   0xB081             SUB      SP,SP,#+4
+   \        0x6   0x0005             MOVS     R5,R0
+   \        0x8   0x001E             MOVS     R6,R3
+    536            uint32_t *tmp = NULL;
+   \        0xA   0x2700             MOVS     R7,#+0
+    537            uint32_t tmp1 = 0U;
+   \        0xC   0x2400             MOVS     R4,#+0
+    538            HAL_StatusTypeDef errorcode = HAL_OK;
+   \        0xE   0xF05F 0x0800      MOVS     R8,#+0
+    539          
+    540            if (hi2s->State != HAL_I2S_STATE_READY)
+   \       0x12   0xF895 0x0041      LDRB     R0,[R5, #+65]
+   \       0x16   0x2801             CMP      R0,#+1
+   \       0x18   0xD002             BEQ.N    ??HAL_I2SEx_TransmitReceive_DMA_0
+    541            {
+    542              errorcode = HAL_BUSY;
+   \       0x1A   0x2002             MOVS     R0,#+2
+   \       0x1C   0x4680             MOV      R8,R0
+    543              goto error;
+   \       0x1E   0xE0EA             B.N      ??HAL_I2SEx_TransmitReceive_DMA_1
+    544            }
+    545          
+    546            if ((pTxData == NULL) || (pRxData == NULL) || (Size == 0U))
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_0: (+1)
+   \       0x20   0x9802             LDR      R0,[SP, #+8]
+   \       0x22   0x2800             CMP      R0,#+0
+   \       0x24   0xD006             BEQ.N    ??HAL_I2SEx_TransmitReceive_DMA_2
+   \       0x26   0x9803             LDR      R0,[SP, #+12]
+   \       0x28   0x2800             CMP      R0,#+0
+   \       0x2A   0xD003             BEQ.N    ??HAL_I2SEx_TransmitReceive_DMA_2
+   \       0x2C   0x0030             MOVS     R0,R6
+   \       0x2E   0xB280             UXTH     R0,R0
+   \       0x30   0x2800             CMP      R0,#+0
+   \       0x32   0xD101             BNE.N    ??HAL_I2SEx_TransmitReceive_DMA_3
+    547            {
+    548              return  HAL_ERROR;
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_2: (+1)
+   \       0x34   0x2001             MOVS     R0,#+1
+   \       0x36   0xE0E3             B.N      ??HAL_I2SEx_TransmitReceive_DMA_4
+    549            }
+    550          
+    551            /* Process Locked */
+    552            __HAL_LOCK(hi2s);
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_3: (+1)
+   \       0x38   0xF895 0x0040      LDRB     R0,[R5, #+64]
+   \       0x3C   0x2801             CMP      R0,#+1
+   \       0x3E   0xD101             BNE.N    ??HAL_I2SEx_TransmitReceive_DMA_5
+   \       0x40   0x2002             MOVS     R0,#+2
+   \       0x42   0xE0DD             B.N      ??HAL_I2SEx_TransmitReceive_DMA_4
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_5: (+1)
+   \       0x44   0x2001             MOVS     R0,#+1
+   \       0x46   0xF885 0x0040      STRB     R0,[R5, #+64]
+    553          
+    554            hi2s->pTxBuffPtr = pTxData;
+   \       0x4A   0x9802             LDR      R0,[SP, #+8]
+   \       0x4C   0x6268             STR      R0,[R5, #+36]
+    555            hi2s->pRxBuffPtr = pRxData;
+   \       0x4E   0x9803             LDR      R0,[SP, #+12]
+   \       0x50   0x62E8             STR      R0,[R5, #+44]
+    556          
+    557            tmp1 = hi2s->Instance->I2SCFGR & (SPI_I2SCFGR_DATLEN | SPI_I2SCFGR_CHLEN);
+   \       0x52   0x6828             LDR      R0,[R5, #+0]
+   \       0x54   0x69C0             LDR      R0,[R0, #+28]
+   \       0x56   0xF010 0x0007      ANDS     R0,R0,#0x7
+    558            /* Check the Data format: When a 16-bit data frame or a 16-bit data frame extended
+    559            is selected during the I2S configuration phase, the Size parameter means the number
+    560            of 16-bit data length in the transaction and when a 24-bit data frame or a 32-bit data
+    561            frame is selected the Size parameter means the number of 16-bit data length. */
+    562            if ((tmp1 == I2S_DATAFORMAT_24B) || (tmp1 == I2S_DATAFORMAT_32B))
+   \       0x5A   0x2803             CMP      R0,#+3
+   \       0x5C   0xD001             BEQ.N    ??HAL_I2SEx_TransmitReceive_DMA_6
+   \       0x5E   0x2805             CMP      R0,#+5
+   \       0x60   0xD108             BNE.N    ??HAL_I2SEx_TransmitReceive_DMA_7
+    563            {
+    564              hi2s->TxXferSize  = (Size << 1U);
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_6: (+1)
+   \       0x62   0x0071             LSLS     R1,R6,#+1
+   \       0x64   0x8529             STRH     R1,[R5, #+40]
+    565              hi2s->TxXferCount = (Size << 1U);
+   \       0x66   0x0071             LSLS     R1,R6,#+1
+   \       0x68   0x8569             STRH     R1,[R5, #+42]
+    566              hi2s->RxXferSize  = (Size << 1U);
+   \       0x6A   0x0071             LSLS     R1,R6,#+1
+   \       0x6C   0x8629             STRH     R1,[R5, #+48]
+    567              hi2s->RxXferCount = (Size << 1U);
+   \       0x6E   0x0071             LSLS     R1,R6,#+1
+   \       0x70   0x8669             STRH     R1,[R5, #+50]
+   \       0x72   0xE003             B.N      ??HAL_I2SEx_TransmitReceive_DMA_8
+    568            }
+    569            else
+    570            {
+    571              hi2s->TxXferSize  = Size;
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_7: (+1)
+   \       0x74   0x852E             STRH     R6,[R5, #+40]
+    572              hi2s->TxXferCount = Size;
+   \       0x76   0x856E             STRH     R6,[R5, #+42]
+    573              hi2s->RxXferSize  = Size;
+   \       0x78   0x862E             STRH     R6,[R5, #+48]
+    574              hi2s->RxXferCount = Size;
+   \       0x7A   0x866E             STRH     R6,[R5, #+50]
+    575            }
+    576          
+    577            hi2s->ErrorCode = HAL_I2S_ERROR_NONE;
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_8: (+1)
+   \       0x7C   0x2100             MOVS     R1,#+0
+   \       0x7E   0x6469             STR      R1,[R5, #+68]
+    578            hi2s->State     = HAL_I2S_STATE_BUSY_TX_RX;
+   \       0x80   0x2105             MOVS     R1,#+5
+   \       0x82   0xF885 0x1041      STRB     R1,[R5, #+65]
+    579          
+    580            /* Set the I2S Rx DMA Half transfer complete callback */
+    581            hi2s->hdmarx->XferHalfCpltCallback = I2SEx_TxRxDMAHalfCplt;
+   \       0x86   0x.... 0x....      ADR.W    R1,I2SEx_TxRxDMAHalfCplt
+   \       0x8A   0x6BEA             LDR      R2,[R5, #+60]
+   \       0x8C   0x6411             STR      R1,[R2, #+64]
+    582          
+    583            /* Set the I2S Rx DMA transfer complete callback */
+    584            hi2s->hdmarx->XferCpltCallback  = I2SEx_TxRxDMACplt;
+   \       0x8E   0x.... 0x....      ADR.W    R2,I2SEx_TxRxDMACplt
+   \       0x92   0x6BEB             LDR      R3,[R5, #+60]
+   \       0x94   0x63DA             STR      R2,[R3, #+60]
+    585          
+    586            /* Set the I2S Rx DMA error callback */
+    587            hi2s->hdmarx->XferErrorCallback = I2SEx_TxRxDMAError;
+   \       0x96   0x.... 0x....      ADR.W    R3,I2SEx_TxRxDMAError
+   \       0x9A   0x6BEC             LDR      R4,[R5, #+60]
+   \       0x9C   0x64E3             STR      R3,[R4, #+76]
+    588          
+    589            /* Set the I2S Tx DMA Half transfer complete callback */
+    590            hi2s->hdmatx->XferHalfCpltCallback  = I2SEx_TxRxDMAHalfCplt;
+   \       0x9E   0x6BAC             LDR      R4,[R5, #+56]
+   \       0xA0   0x6421             STR      R1,[R4, #+64]
+    591          
+    592            /* Set the I2S Tx DMA transfer complete callback */
+    593            hi2s->hdmatx->XferCpltCallback  = I2SEx_TxRxDMACplt;
+   \       0xA2   0x6BA9             LDR      R1,[R5, #+56]
+   \       0xA4   0x63CA             STR      R2,[R1, #+60]
+    594          
+    595            /* Set the I2S Tx DMA error callback */
+    596            hi2s->hdmatx->XferErrorCallback = I2SEx_TxRxDMAError;
+   \       0xA6   0x6BA9             LDR      R1,[R5, #+56]
+   \       0xA8   0x64CB             STR      R3,[R1, #+76]
+    597          
+    598            tmp1 = hi2s->Instance->I2SCFGR & SPI_I2SCFGR_I2SCFG;
+   \       0xAA   0x6829             LDR      R1,[R5, #+0]
+   \       0xAC   0x69CC             LDR      R4,[R1, #+28]
+   \       0xAE   0xF414 0x7440      ANDS     R4,R4,#0x300
+    599            /* Check if the I2S_MODE_MASTER_TX or I2S_MODE_SLAVE_TX Mode is selected */
+    600            if ((tmp1 == I2S_MODE_MASTER_TX) || (tmp1 == I2S_MODE_SLAVE_TX))
+   \       0xB2   0xF5B4 0x7F00      CMP      R4,#+512
+   \       0xB6   0xD001             BEQ.N    ??HAL_I2SEx_TransmitReceive_DMA_9
+   \       0xB8   0x2C00             CMP      R4,#+0
+   \       0xBA   0xD146             BNE.N    ??HAL_I2SEx_TransmitReceive_DMA_10
+    601            {
+    602              /* Enable the Rx DMA Stream */
+    603              tmp = (uint32_t *)&pRxData;
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_9: (+1)
+   \       0xBC   0xF10D 0x090C      ADD      R9,SP,#+12
+    604              HAL_DMA_Start_IT(hi2s->hdmarx, (uint32_t)&I2SxEXT(hi2s->Instance)->DR, *(uint32_t *)tmp, hi2s->RxXferSize);
+   \       0xC0   0x8E2B             LDRH     R3,[R5, #+48]
+   \       0xC2   0x.... 0x....      LDR.W    R10,??DataTable8
+   \       0xC6   0x6828             LDR      R0,[R5, #+0]
+   \       0xC8   0x4550             CMP      R0,R10
+   \       0xCA   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_DMA_11
+   \       0xCC   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \       0xD0   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_DMA_12
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_11: (+1)
+   \       0xD2   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_12: (+1)
+   \       0xD6   0xB29B             UXTH     R3,R3
+   \       0xD8   0xF8D9 0x2000      LDR      R2,[R9, #+0]
+   \       0xDC   0xF110 0x010C      ADDS     R1,R0,#+12
+   \       0xE0   0x6BE8             LDR      R0,[R5, #+60]
+   \       0xE2   0x.... 0x....      BL       HAL_DMA_Start_IT
+    605          
+    606              /* Enable Rx DMA Request */
+    607              SET_BIT(I2SxEXT(hi2s->Instance)->CR2, SPI_CR2_RXDMAEN);
+   \       0xE6   0x6828             LDR      R0,[R5, #+0]
+   \       0xE8   0x4550             CMP      R0,R10
+   \       0xEA   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_DMA_13
+   \       0xEC   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \       0xF0   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_DMA_14
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_13: (+1)
+   \       0xF2   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_14: (+1)
+   \       0xF6   0x6841             LDR      R1,[R0, #+4]
+   \       0xF8   0xF051 0x0101      ORRS     R1,R1,#0x1
+   \       0xFC   0x6041             STR      R1,[R0, #+4]
+    608          
+    609              /* Enable the Tx DMA Stream */
+    610              tmp = (uint32_t *)&pTxData;
+   \       0xFE   0xAF02             ADD      R7,SP,#+8
+    611              HAL_DMA_Start_IT(hi2s->hdmatx, *(uint32_t *)tmp, (uint32_t)&hi2s->Instance->DR, hi2s->TxXferSize);
+   \      0x100   0x8D2B             LDRH     R3,[R5, #+40]
+   \      0x102   0x6828             LDR      R0,[R5, #+0]
+   \      0x104   0xF110 0x020C      ADDS     R2,R0,#+12
+   \      0x108   0x6839             LDR      R1,[R7, #+0]
+   \      0x10A   0x6BA8             LDR      R0,[R5, #+56]
+   \      0x10C   0x.... 0x....      BL       HAL_DMA_Start_IT
+    612          
+    613              /* Enable Tx DMA Request */
+    614              SET_BIT(hi2s->Instance->CR2, SPI_CR2_TXDMAEN);
+   \      0x110   0x6828             LDR      R0,[R5, #+0]
+   \      0x112   0x6840             LDR      R0,[R0, #+4]
+   \      0x114   0xF050 0x0002      ORRS     R0,R0,#0x2
+   \      0x118   0x6829             LDR      R1,[R5, #+0]
+   \      0x11A   0x6048             STR      R0,[R1, #+4]
+    615          
+    616              /* Check if the I2S is already enabled */
+    617              if ((hi2s->Instance->I2SCFGR & SPI_I2SCFGR_I2SE) != SPI_I2SCFGR_I2SE)
+   \      0x11C   0x6828             LDR      R0,[R5, #+0]
+   \      0x11E   0x69C0             LDR      R0,[R0, #+28]
+   \      0x120   0x0540             LSLS     R0,R0,#+21
+   \      0x122   0xD468             BMI.N    ??HAL_I2SEx_TransmitReceive_DMA_1
+    618              {
+    619                /* Enable I2Sext(receiver) before enabling I2Sx peripheral */
+    620                __HAL_I2SEXT_ENABLE(hi2s);
+   \      0x124   0x6828             LDR      R0,[R5, #+0]
+   \      0x126   0x4550             CMP      R0,R10
+   \      0x128   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_DMA_15
+   \      0x12A   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x12E   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_DMA_16
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_15: (+1)
+   \      0x130   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_16: (+1)
+   \      0x134   0x69C1             LDR      R1,[R0, #+28]
+   \      0x136   0xF451 0x6180      ORRS     R1,R1,#0x400
+   \      0x13A   0x61C1             STR      R1,[R0, #+28]
+    621          
+    622                /* Enable I2S peripheral after the I2Sext */
+    623                __HAL_I2S_ENABLE(hi2s);
+   \      0x13C   0x6828             LDR      R0,[R5, #+0]
+   \      0x13E   0x69C0             LDR      R0,[R0, #+28]
+   \      0x140   0xF450 0x6080      ORRS     R0,R0,#0x400
+   \      0x144   0x6829             LDR      R1,[R5, #+0]
+   \      0x146   0x61C8             STR      R0,[R1, #+28]
+   \      0x148   0xE055             B.N      ??HAL_I2SEx_TransmitReceive_DMA_1
+    624              }
+    625            }
+    626            else
+    627            {
+    628              /* Check if Master Receiver mode is selected */
+    629              if ((hi2s->Instance->I2SCFGR & SPI_I2SCFGR_I2SCFG) == I2S_MODE_MASTER_RX)
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_10: (+1)
+   \      0x14A   0x6828             LDR      R0,[R5, #+0]
+   \      0x14C   0x69C0             LDR      R0,[R0, #+28]
+   \      0x14E   0xF410 0x7040      ANDS     R0,R0,#0x300
+   \      0x152   0xF5B0 0x7F40      CMP      R0,#+768
+   \      0x156   0xD108             BNE.N    ??HAL_I2SEx_TransmitReceive_DMA_17
+    630              {
+    631                /* Clear the Overrun Flag by a read operation on the SPI_DR register followed by a read
+    632                access to the SPI_SR register. */
+    633                __HAL_I2S_CLEAR_OVRFLAG(hi2s);
+   \      0x158   0x2000             MOVS     R0,#+0
+   \      0x15A   0x9000             STR      R0,[SP, #+0]
+   \      0x15C   0x6828             LDR      R0,[R5, #+0]
+   \      0x15E   0x68C0             LDR      R0,[R0, #+12]
+   \      0x160   0x9000             STR      R0,[SP, #+0]
+   \      0x162   0x6828             LDR      R0,[R5, #+0]
+   \      0x164   0x6880             LDR      R0,[R0, #+8]
+   \      0x166   0x9000             STR      R0,[SP, #+0]
+   \      0x168   0x9800             LDR      R0,[SP, #+0]
+    634              }
+    635              /* Enable the Tx DMA Stream */
+    636              tmp = (uint32_t *)&pTxData;
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_17: (+1)
+   \      0x16A   0xF10D 0x0908      ADD      R9,SP,#+8
+    637              HAL_DMA_Start_IT(hi2s->hdmatx, *(uint32_t *)tmp, (uint32_t)&I2SxEXT(hi2s->Instance)->DR, hi2s->TxXferSize);
+   \      0x16E   0x8D2B             LDRH     R3,[R5, #+40]
+   \      0x170   0x.... 0x....      LDR.W    R10,??DataTable8
+   \      0x174   0x6828             LDR      R0,[R5, #+0]
+   \      0x176   0x4550             CMP      R0,R10
+   \      0x178   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_DMA_18
+   \      0x17A   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x17E   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_DMA_19
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_18: (+1)
+   \      0x180   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_19: (+1)
+   \      0x184   0xB29B             UXTH     R3,R3
+   \      0x186   0xF110 0x020C      ADDS     R2,R0,#+12
+   \      0x18A   0xF8D9 0x1000      LDR      R1,[R9, #+0]
+   \      0x18E   0x6BA8             LDR      R0,[R5, #+56]
+   \      0x190   0x.... 0x....      BL       HAL_DMA_Start_IT
+    638          
+    639              /* Enable Tx DMA Request */
+    640              SET_BIT(I2SxEXT(hi2s->Instance)->CR2, SPI_CR2_TXDMAEN);
+   \      0x194   0x6828             LDR      R0,[R5, #+0]
+   \      0x196   0x4550             CMP      R0,R10
+   \      0x198   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_DMA_20
+   \      0x19A   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x19E   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_DMA_21
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_20: (+1)
+   \      0x1A0   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_21: (+1)
+   \      0x1A4   0x6841             LDR      R1,[R0, #+4]
+   \      0x1A6   0xF051 0x0102      ORRS     R1,R1,#0x2
+   \      0x1AA   0x6041             STR      R1,[R0, #+4]
+    641          
+    642              /* Enable the Rx DMA Stream */
+    643              tmp = (uint32_t *)&pRxData;
+   \      0x1AC   0xAF03             ADD      R7,SP,#+12
+    644              HAL_DMA_Start_IT(hi2s->hdmarx, (uint32_t)&hi2s->Instance->DR, *(uint32_t *)tmp, hi2s->RxXferSize);
+   \      0x1AE   0x8E2B             LDRH     R3,[R5, #+48]
+   \      0x1B0   0x683A             LDR      R2,[R7, #+0]
+   \      0x1B2   0x6828             LDR      R0,[R5, #+0]
+   \      0x1B4   0xF110 0x010C      ADDS     R1,R0,#+12
+   \      0x1B8   0x6BE8             LDR      R0,[R5, #+60]
+   \      0x1BA   0x.... 0x....      BL       HAL_DMA_Start_IT
+    645          
+    646              /* Enable Rx DMA Request */
+    647              SET_BIT(hi2s->Instance->CR2, SPI_CR2_RXDMAEN);
+   \      0x1BE   0x6828             LDR      R0,[R5, #+0]
+   \      0x1C0   0x6840             LDR      R0,[R0, #+4]
+   \      0x1C2   0xF050 0x0001      ORRS     R0,R0,#0x1
+   \      0x1C6   0x6829             LDR      R1,[R5, #+0]
+   \      0x1C8   0x6048             STR      R0,[R1, #+4]
+    648          
+    649              /* Check if the I2S is already enabled */
+    650              if ((hi2s->Instance->I2SCFGR & SPI_I2SCFGR_I2SE) != SPI_I2SCFGR_I2SE)
+   \      0x1CA   0x6828             LDR      R0,[R5, #+0]
+   \      0x1CC   0x69C0             LDR      R0,[R0, #+28]
+   \      0x1CE   0x0540             LSLS     R0,R0,#+21
+   \      0x1D0   0xD411             BMI.N    ??HAL_I2SEx_TransmitReceive_DMA_1
+    651              {
+    652                /* Enable I2Sext(transmitter) before enabling I2Sx peripheral */
+    653                __HAL_I2SEXT_ENABLE(hi2s);
+   \      0x1D2   0x6828             LDR      R0,[R5, #+0]
+   \      0x1D4   0x4550             CMP      R0,R10
+   \      0x1D6   0xD102             BNE.N    ??HAL_I2SEx_TransmitReceive_DMA_22
+   \      0x1D8   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x1DC   0xE001             B.N      ??HAL_I2SEx_TransmitReceive_DMA_23
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_22: (+1)
+   \      0x1DE   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_23: (+1)
+   \      0x1E2   0x69C1             LDR      R1,[R0, #+28]
+   \      0x1E4   0xF451 0x6180      ORRS     R1,R1,#0x400
+   \      0x1E8   0x61C1             STR      R1,[R0, #+28]
+    654                /* Enable I2S peripheral before the I2Sext */
+    655                __HAL_I2S_ENABLE(hi2s);
+   \      0x1EA   0x6828             LDR      R0,[R5, #+0]
+   \      0x1EC   0x69C0             LDR      R0,[R0, #+28]
+   \      0x1EE   0xF450 0x6080      ORRS     R0,R0,#0x400
+   \      0x1F2   0x6829             LDR      R1,[R5, #+0]
+   \      0x1F4   0x61C8             STR      R0,[R1, #+28]
+    656              }
+    657            }
+    658          
+    659          error :
+    660            __HAL_UNLOCK(hi2s);
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_1: (+1)
+   \      0x1F6   0x2000             MOVS     R0,#+0
+   \      0x1F8   0xF885 0x0040      STRB     R0,[R5, #+64]
+    661            return errorcode;
+   \      0x1FC   0x4640             MOV      R0,R8
+   \      0x1FE   0xB2C0             UXTB     R0,R0
+   \                     ??HAL_I2SEx_TransmitReceive_DMA_4: (+1)
+   \      0x200   0xB004             ADD      SP,SP,#+16
+   \      0x202   0xE8BD 0x87F0      POP      {R4-R10,PC}
+    662          }
+    663          
+    664          /**
+    665            * @brief  This function handles I2S/I2Sext interrupt requests in full-duplex mode.
+    666            * @param  hi2s I2S handle
+    667            * @retval HAL status
+    668            */
+
+   \                                 In section .text, align 2, keep-with-next
+    669          void HAL_I2SEx_FullDuplex_IRQHandler(I2S_HandleTypeDef *hi2s)
+    670          {
+   \                     HAL_I2SEx_FullDuplex_IRQHandler: (+1)
+   \        0x0   0xB530             PUSH     {R4,R5,LR}
+   \        0x2   0xB085             SUB      SP,SP,#+20
+   \        0x4   0x0004             MOVS     R4,R0
+    671            __IO uint32_t i2ssr     = hi2s->Instance->SR;
+   \        0x6   0x6820             LDR      R0,[R4, #+0]
+   \        0x8   0x6880             LDR      R0,[R0, #+8]
+   \        0xA   0x9003             STR      R0,[SP, #+12]
+    672            __IO uint32_t i2sextsr  = I2SxEXT(hi2s->Instance)->SR;
+   \        0xC   0x.... 0x....      LDR.W    R5,??DataTable8
+   \       0x10   0x6820             LDR      R0,[R4, #+0]
+   \       0x12   0x42A8             CMP      R0,R5
+   \       0x14   0xD102             BNE.N    ??HAL_I2SEx_FullDuplex_IRQHandler_0
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \       0x1A   0xE001             B.N      ??HAL_I2SEx_FullDuplex_IRQHandler_1
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_0: (+1)
+   \       0x1C   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_1: (+1)
+   \       0x20   0x6880             LDR      R0,[R0, #+8]
+   \       0x22   0x9002             STR      R0,[SP, #+8]
+    673            __IO uint32_t i2scr2    = hi2s->Instance->CR2;
+   \       0x24   0x6820             LDR      R0,[R4, #+0]
+   \       0x26   0x6840             LDR      R0,[R0, #+4]
+   \       0x28   0x9001             STR      R0,[SP, #+4]
+    674            __IO uint32_t i2sextcr2 = I2SxEXT(hi2s->Instance)->CR2;
+   \       0x2A   0x6820             LDR      R0,[R4, #+0]
+   \       0x2C   0x42A8             CMP      R0,R5
+   \       0x2E   0xD102             BNE.N    ??HAL_I2SEx_FullDuplex_IRQHandler_2
+   \       0x30   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \       0x34   0xE001             B.N      ??HAL_I2SEx_FullDuplex_IRQHandler_3
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_2: (+1)
+   \       0x36   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_3: (+1)
+   \       0x3A   0x6840             LDR      R0,[R0, #+4]
+   \       0x3C   0x9000             STR      R0,[SP, #+0]
+    675          
+    676            /* Check if the I2S_MODE_MASTER_TX or I2S_MODE_SLAVE_TX Mode is selected */
+    677            if ((hi2s->Init.Mode == I2S_MODE_MASTER_TX) || (hi2s->Init.Mode == I2S_MODE_SLAVE_TX))
+   \       0x3E   0x6860             LDR      R0,[R4, #+4]
+   \       0x40   0xF5B0 0x7F00      CMP      R0,#+512
+   \       0x44   0xD002             BEQ.N    ??HAL_I2SEx_FullDuplex_IRQHandler_4
+   \       0x46   0x6860             LDR      R0,[R4, #+4]
+   \       0x48   0x2800             CMP      R0,#+0
+   \       0x4A   0xD165             BNE.N    ??HAL_I2SEx_FullDuplex_IRQHandler_5
+    678            {
+    679              /* I2S in mode Transmitter -------------------------------------------------*/
+    680              if (((i2ssr & I2S_FLAG_TXE) == I2S_FLAG_TXE) && ((i2scr2 & I2S_IT_TXE) != RESET))
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_4: (+1)
+   \       0x4C   0x9803             LDR      R0,[SP, #+12]
+   \       0x4E   0x0780             LSLS     R0,R0,#+30
+   \       0x50   0xD505             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_6
+   \       0x52   0x9801             LDR      R0,[SP, #+4]
+   \       0x54   0x0600             LSLS     R0,R0,#+24
+   \       0x56   0xD502             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_6
+    681              {
+    682                /* When the I2S mode is configured as I2S_MODE_MASTER_TX or I2S_MODE_SLAVE_TX,
+    683                the I2S TXE interrupt will be generated to manage the full-duplex transmit phase. */
+    684                I2SEx_TxISR_I2S(hi2s);
+   \       0x58   0x0020             MOVS     R0,R4
+   \       0x5A   0x.... 0x....      BL       I2SEx_TxISR_I2S
+    685              }
+    686          
+    687              /* I2Sext in mode Receiver -----------------------------------------------*/
+    688              if (((i2sextsr & I2S_FLAG_RXNE) == I2S_FLAG_RXNE) && ((i2sextcr2 & I2S_IT_RXNE) != RESET))
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_6: (+1)
+   \       0x5E   0x9802             LDR      R0,[SP, #+8]
+   \       0x60   0x07C0             LSLS     R0,R0,#+31
+   \       0x62   0xD505             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_7
+   \       0x64   0x9800             LDR      R0,[SP, #+0]
+   \       0x66   0x0640             LSLS     R0,R0,#+25
+   \       0x68   0xD502             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_7
+    689              {
+    690                /* When the I2S mode is configured as I2S_MODE_MASTER_TX or I2S_MODE_SLAVE_TX,
+    691                the I2Sext RXNE interrupt will be generated to manage the full-duplex receive phase. */
+    692                I2SEx_RxISR_I2SExt(hi2s);
+   \       0x6A   0x0020             MOVS     R0,R4
+   \       0x6C   0x.... 0x....      BL       I2SEx_RxISR_I2SExt
+    693              }
+    694          
+    695              /* I2Sext Overrun error interrupt occurred --------------------------------*/
+    696              if (((i2sextsr & I2S_FLAG_OVR) == I2S_FLAG_OVR) && ((i2sextcr2 & I2S_IT_ERR) != RESET))
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_7: (+1)
+   \       0x70   0x9802             LDR      R0,[SP, #+8]
+   \       0x72   0x0640             LSLS     R0,R0,#+25
+   \       0x74   0xD527             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_8
+   \       0x76   0x9800             LDR      R0,[SP, #+0]
+   \       0x78   0x0680             LSLS     R0,R0,#+26
+   \       0x7A   0xD524             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_8
+    697              {
+    698                /* Disable RXNE and ERR interrupt */
+    699                __HAL_I2SEXT_DISABLE_IT(hi2s, (I2S_IT_RXNE | I2S_IT_ERR));
+   \       0x7C   0x6820             LDR      R0,[R4, #+0]
+   \       0x7E   0x42A8             CMP      R0,R5
+   \       0x80   0xD102             BNE.N    ??HAL_I2SEx_FullDuplex_IRQHandler_9
+   \       0x82   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \       0x86   0xE001             B.N      ??HAL_I2SEx_FullDuplex_IRQHandler_10
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_9: (+1)
+   \       0x88   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_10: (+1)
+   \       0x8C   0x6841             LDR      R1,[R0, #+4]
+   \       0x8E   0xF031 0x0160      BICS     R1,R1,#0x60
+   \       0x92   0x6041             STR      R1,[R0, #+4]
+    700          
+    701                /* Disable TXE and ERR interrupt */
+    702                __HAL_I2S_DISABLE_IT(hi2s, (I2S_IT_TXE | I2S_IT_ERR));
+   \       0x94   0x6820             LDR      R0,[R4, #+0]
+   \       0x96   0x6840             LDR      R0,[R0, #+4]
+   \       0x98   0xF030 0x00A0      BICS     R0,R0,#0xA0
+   \       0x9C   0x6821             LDR      R1,[R4, #+0]
+   \       0x9E   0x6048             STR      R0,[R1, #+4]
+    703          
+    704                /* Clear Overrun flag */
+    705                __HAL_I2S_CLEAR_OVRFLAG(hi2s);
+   \       0xA0   0x2000             MOVS     R0,#+0
+   \       0xA2   0x9004             STR      R0,[SP, #+16]
+   \       0xA4   0x6820             LDR      R0,[R4, #+0]
+   \       0xA6   0x68C0             LDR      R0,[R0, #+12]
+   \       0xA8   0x9004             STR      R0,[SP, #+16]
+   \       0xAA   0x6820             LDR      R0,[R4, #+0]
+   \       0xAC   0x6880             LDR      R0,[R0, #+8]
+   \       0xAE   0x9004             STR      R0,[SP, #+16]
+   \       0xB0   0x9804             LDR      R0,[SP, #+16]
+    706          
+    707                /* Set the I2S State ready */
+    708                hi2s->State = HAL_I2S_STATE_READY;
+   \       0xB2   0x2001             MOVS     R0,#+1
+   \       0xB4   0xF884 0x0041      STRB     R0,[R4, #+65]
+    709          
+    710                /* Set the error code and execute error callback*/
+    711                SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_OVR);
+   \       0xB8   0x6C60             LDR      R0,[R4, #+68]
+   \       0xBA   0xF050 0x0002      ORRS     R0,R0,#0x2
+   \       0xBE   0x6460             STR      R0,[R4, #+68]
+    712                /* Call user error callback */
+    713          #if (USE_HAL_I2S_REGISTER_CALLBACKS == 1U)
+    714                hi2s->ErrorCallback(hi2s);
+    715          #else
+    716                HAL_I2S_ErrorCallback(hi2s);
+   \       0xC0   0x0020             MOVS     R0,R4
+   \       0xC2   0x.... 0x....      BL       HAL_I2S_ErrorCallback
+    717          #endif /* USE_HAL_I2S_REGISTER_CALLBACKS */
+    718              }
+    719          
+    720              /* I2S Underrun error interrupt occurred ----------------------------------*/
+    721              if (((i2ssr & I2S_FLAG_UDR) == I2S_FLAG_UDR) && ((i2scr2 & I2S_IT_ERR) != RESET))
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_8: (+1)
+   \       0xC6   0x9803             LDR      R0,[SP, #+12]
+   \       0xC8   0x0700             LSLS     R0,R0,#+28
+   \       0xCA   0xD57B             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_11
+   \       0xCC   0x9801             LDR      R0,[SP, #+4]
+   \       0xCE   0x0680             LSLS     R0,R0,#+26
+   \       0xD0   0xD578             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_11
+    722              {
+    723                /* Disable TXE and ERR interrupt */
+    724                __HAL_I2S_DISABLE_IT(hi2s, (I2S_IT_TXE | I2S_IT_ERR));
+   \       0xD2   0x6820             LDR      R0,[R4, #+0]
+   \       0xD4   0x6840             LDR      R0,[R0, #+4]
+   \       0xD6   0xF030 0x00A0      BICS     R0,R0,#0xA0
+   \       0xDA   0x6821             LDR      R1,[R4, #+0]
+   \       0xDC   0x6048             STR      R0,[R1, #+4]
+    725          
+    726                /* Disable RXNE and ERR interrupt */
+    727                __HAL_I2SEXT_DISABLE_IT(hi2s, (I2S_IT_RXNE | I2S_IT_ERR));
+   \       0xDE   0x6820             LDR      R0,[R4, #+0]
+   \       0xE0   0x42A8             CMP      R0,R5
+   \       0xE2   0xD102             BNE.N    ??HAL_I2SEx_FullDuplex_IRQHandler_12
+   \       0xE4   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \       0xE8   0xE001             B.N      ??HAL_I2SEx_FullDuplex_IRQHandler_13
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_12: (+1)
+   \       0xEA   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_13: (+1)
+   \       0xEE   0x6841             LDR      R1,[R0, #+4]
+   \       0xF0   0xF031 0x0160      BICS     R1,R1,#0x60
+   \       0xF4   0x6041             STR      R1,[R0, #+4]
+    728          
+    729                /* Clear underrun flag */
+    730                __HAL_I2S_CLEAR_UDRFLAG(hi2s);
+   \       0xF6   0x2000             MOVS     R0,#+0
+   \       0xF8   0x9004             STR      R0,[SP, #+16]
+   \       0xFA   0x6820             LDR      R0,[R4, #+0]
+   \       0xFC   0x6880             LDR      R0,[R0, #+8]
+   \       0xFE   0x9004             STR      R0,[SP, #+16]
+   \      0x100   0x9804             LDR      R0,[SP, #+16]
+    731          
+    732                /* Set the I2S State ready */
+    733                hi2s->State = HAL_I2S_STATE_READY;
+   \      0x102   0x2001             MOVS     R0,#+1
+   \      0x104   0xF884 0x0041      STRB     R0,[R4, #+65]
+    734          
+    735                /* Set the error code and execute error callback*/
+    736                SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_UDR);
+   \      0x108   0x6C60             LDR      R0,[R4, #+68]
+   \      0x10A   0xF050 0x0004      ORRS     R0,R0,#0x4
+   \      0x10E   0x6460             STR      R0,[R4, #+68]
+    737                /* Call user error callback */
+    738          #if (USE_HAL_I2S_REGISTER_CALLBACKS == 1U)
+    739                hi2s->ErrorCallback(hi2s);
+    740          #else
+    741                HAL_I2S_ErrorCallback(hi2s);
+   \      0x110   0x0020             MOVS     R0,R4
+   \      0x112   0x.... 0x....      BL       HAL_I2S_ErrorCallback
+   \      0x116   0xE055             B.N      ??HAL_I2SEx_FullDuplex_IRQHandler_11
+    742          #endif /* USE_HAL_I2S_REGISTER_CALLBACKS */
+    743              }
+    744            }
+    745            /* The I2S_MODE_MASTER_RX or I2S_MODE_SLAVE_RX Mode is selected */
+    746            else
+    747            {
+    748              /* I2Sext in mode Transmitter ----------------------------------------------*/
+    749              if (((i2sextsr & I2S_FLAG_TXE) == I2S_FLAG_TXE) && ((i2sextcr2 & I2S_IT_TXE) != RESET))
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_5: (+1)
+   \      0x118   0x9802             LDR      R0,[SP, #+8]
+   \      0x11A   0x0780             LSLS     R0,R0,#+30
+   \      0x11C   0xD505             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_14
+   \      0x11E   0x9800             LDR      R0,[SP, #+0]
+   \      0x120   0x0600             LSLS     R0,R0,#+24
+   \      0x122   0xD502             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_14
+    750              {
+    751                /* When the I2S mode is configured as I2S_MODE_MASTER_RX or I2S_MODE_SLAVE_RX,
+    752                the I2Sext TXE interrupt will be generated to manage the full-duplex transmit phase. */
+    753                I2SEx_TxISR_I2SExt(hi2s);
+   \      0x124   0x0020             MOVS     R0,R4
+   \      0x126   0x.... 0x....      BL       I2SEx_TxISR_I2SExt
+    754              }
+    755          
+    756              /* I2S in mode Receiver --------------------------------------------------*/
+    757              if (((i2ssr & I2S_FLAG_RXNE) == I2S_FLAG_RXNE) && ((i2scr2 & I2S_IT_RXNE) != RESET))
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_14: (+1)
+   \      0x12A   0x9803             LDR      R0,[SP, #+12]
+   \      0x12C   0x07C0             LSLS     R0,R0,#+31
+   \      0x12E   0xD505             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_15
+   \      0x130   0x9801             LDR      R0,[SP, #+4]
+   \      0x132   0x0640             LSLS     R0,R0,#+25
+   \      0x134   0xD502             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_15
+    758              {
+    759                /* When the I2S mode is configured as I2S_MODE_MASTER_RX or I2S_MODE_SLAVE_RX,
+    760                the I2S RXNE interrupt will be generated to manage the full-duplex receive phase. */
+    761                I2SEx_RxISR_I2S(hi2s);
+   \      0x136   0x0020             MOVS     R0,R4
+   \      0x138   0x.... 0x....      BL       I2SEx_RxISR_I2S
+    762              }
+    763          
+    764              /* I2S Overrun error interrupt occurred -------------------------------------*/
+    765              if (((i2ssr & I2S_FLAG_OVR) == I2S_FLAG_OVR) && ((i2scr2 & I2S_IT_ERR) != RESET))
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_15: (+1)
+   \      0x13C   0x9803             LDR      R0,[SP, #+12]
+   \      0x13E   0x0640             LSLS     R0,R0,#+25
+   \      0x140   0xD51E             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_16
+   \      0x142   0x9801             LDR      R0,[SP, #+4]
+   \      0x144   0x0680             LSLS     R0,R0,#+26
+   \      0x146   0xD51B             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_16
+    766              {
+    767                /* Disable RXNE and ERR interrupt */
+    768                __HAL_I2S_DISABLE_IT(hi2s, (I2S_IT_RXNE | I2S_IT_ERR));
+   \      0x148   0x6820             LDR      R0,[R4, #+0]
+   \      0x14A   0x6840             LDR      R0,[R0, #+4]
+   \      0x14C   0xF030 0x0060      BICS     R0,R0,#0x60
+   \      0x150   0x6821             LDR      R1,[R4, #+0]
+   \      0x152   0x6048             STR      R0,[R1, #+4]
+    769          
+    770                /* Disable TXE and ERR interrupt */
+    771                __HAL_I2SEXT_DISABLE_IT(hi2s, (I2S_IT_TXE | I2S_IT_ERR));
+   \      0x154   0x6820             LDR      R0,[R4, #+0]
+   \      0x156   0x42A8             CMP      R0,R5
+   \      0x158   0xD102             BNE.N    ??HAL_I2SEx_FullDuplex_IRQHandler_17
+   \      0x15A   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x15E   0xE001             B.N      ??HAL_I2SEx_FullDuplex_IRQHandler_18
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_17: (+1)
+   \      0x160   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_18: (+1)
+   \      0x164   0x6841             LDR      R1,[R0, #+4]
+   \      0x166   0xF031 0x01A0      BICS     R1,R1,#0xA0
+   \      0x16A   0x6041             STR      R1,[R0, #+4]
+    772          
+    773                /* Set the I2S State ready */
+    774                hi2s->State = HAL_I2S_STATE_READY;
+   \      0x16C   0x2001             MOVS     R0,#+1
+   \      0x16E   0xF884 0x0041      STRB     R0,[R4, #+65]
+    775          
+    776                /* Set the error code and execute error callback*/
+    777                SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_OVR);
+   \      0x172   0x6C60             LDR      R0,[R4, #+68]
+   \      0x174   0xF050 0x0002      ORRS     R0,R0,#0x2
+   \      0x178   0x6460             STR      R0,[R4, #+68]
+    778                /* Call user error callback */
+    779          #if (USE_HAL_I2S_REGISTER_CALLBACKS == 1U)
+    780                hi2s->ErrorCallback(hi2s);
+    781          #else
+    782                HAL_I2S_ErrorCallback(hi2s);
+   \      0x17A   0x0020             MOVS     R0,R4
+   \      0x17C   0x.... 0x....      BL       HAL_I2S_ErrorCallback
+    783          #endif /* USE_HAL_I2S_REGISTER_CALLBACKS */
+    784              }
+    785          
+    786              /* I2Sext Underrun error interrupt occurred -------------------------------*/
+    787              if (((i2sextsr & I2S_FLAG_UDR) == I2S_FLAG_UDR) && ((i2sextcr2 & I2S_IT_ERR) != RESET))
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_16: (+1)
+   \      0x180   0x9802             LDR      R0,[SP, #+8]
+   \      0x182   0x0700             LSLS     R0,R0,#+28
+   \      0x184   0xD51E             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_11
+   \      0x186   0x9800             LDR      R0,[SP, #+0]
+   \      0x188   0x0680             LSLS     R0,R0,#+26
+   \      0x18A   0xD51B             BPL.N    ??HAL_I2SEx_FullDuplex_IRQHandler_11
+    788              {
+    789                /* Disable TXE and ERR interrupt */
+    790                __HAL_I2SEXT_DISABLE_IT(hi2s, (I2S_IT_TXE | I2S_IT_ERR));
+   \      0x18C   0x6820             LDR      R0,[R4, #+0]
+   \      0x18E   0x42A8             CMP      R0,R5
+   \      0x190   0xD102             BNE.N    ??HAL_I2SEx_FullDuplex_IRQHandler_19
+   \      0x192   0x.... 0x....      LDR.W    R0,??DataTable8_1
+   \      0x196   0xE001             B.N      ??HAL_I2SEx_FullDuplex_IRQHandler_20
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_19: (+1)
+   \      0x198   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_20: (+1)
+   \      0x19C   0x6841             LDR      R1,[R0, #+4]
+   \      0x19E   0xF031 0x01A0      BICS     R1,R1,#0xA0
+   \      0x1A2   0x6041             STR      R1,[R0, #+4]
+    791          
+    792                /* Disable RXNE and ERR interrupt */
+    793                __HAL_I2S_DISABLE_IT(hi2s, (I2S_IT_RXNE | I2S_IT_ERR));
+   \      0x1A4   0x6820             LDR      R0,[R4, #+0]
+   \      0x1A6   0x6840             LDR      R0,[R0, #+4]
+   \      0x1A8   0xF030 0x0060      BICS     R0,R0,#0x60
+   \      0x1AC   0x6821             LDR      R1,[R4, #+0]
+   \      0x1AE   0x6048             STR      R0,[R1, #+4]
+    794          
+    795                /* Set the I2S State ready */
+    796                hi2s->State = HAL_I2S_STATE_READY;
+   \      0x1B0   0x2001             MOVS     R0,#+1
+   \      0x1B2   0xF884 0x0041      STRB     R0,[R4, #+65]
+    797          
+    798                /* Set the error code and execute error callback*/
+    799                SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_UDR);
+   \      0x1B6   0x6C60             LDR      R0,[R4, #+68]
+   \      0x1B8   0xF050 0x0004      ORRS     R0,R0,#0x4
+   \      0x1BC   0x6460             STR      R0,[R4, #+68]
+    800                /* Call user error callback */
+    801          #if (USE_HAL_I2S_REGISTER_CALLBACKS == 1U)
+    802                hi2s->ErrorCallback(hi2s);
+    803          #else
+    804                HAL_I2S_ErrorCallback(hi2s);
+   \      0x1BE   0x0020             MOVS     R0,R4
+   \      0x1C0   0x.... 0x....      BL       HAL_I2S_ErrorCallback
+    805          #endif /* USE_HAL_I2S_REGISTER_CALLBACKS */
+    806              }
+    807            }
+    808          }
+   \                     ??HAL_I2SEx_FullDuplex_IRQHandler_11: (+1)
+   \      0x1C4   0xB005             ADD      SP,SP,#+20
+   \      0x1C6   0xBD30             POP      {R4,R5,PC}
+    809          
+    810          /**
+    811            * @brief  Tx and Rx Transfer half completed callback
+    812            * @param  hi2s I2S handle
+    813            * @retval None
+    814            */
+
+   \                                 In section .text, align 2
+    815          __weak void HAL_I2SEx_TxRxHalfCpltCallback(I2S_HandleTypeDef *hi2s)
+    816          {
+    817            /* Prevent unused argument(s) compilation warning */
+    818            UNUSED(hi2s);
+    819          
+    820            /* NOTE : This function Should not be modified, when the callback is needed,
+    821                      the HAL_I2SEx_TxRxHalfCpltCallback could be implemented in the user file
+    822             */
+    823          }
+   \                     HAL_I2SEx_TxRxHalfCpltCallback: (+1)
+   \        0x0   0x4770             BX       LR
+    824          
+    825          /**
+    826            * @brief  Tx and Rx Transfer completed callback
+    827            * @param  hi2s I2S handle
+    828            * @retval None
+    829            */
+
+   \                                 In section .text, align 2
+    830          __weak void HAL_I2SEx_TxRxCpltCallback(I2S_HandleTypeDef *hi2s)
+    831          {
+    832            /* Prevent unused argument(s) compilation warning */
+    833            UNUSED(hi2s);
+    834          
+    835            /* NOTE : This function should not be modified, when the callback is needed,
+    836                      the HAL_I2SEx_TxRxCpltCallback could be implemented in the user file
+    837             */
+    838          }
+   \                     HAL_I2SEx_TxRxCpltCallback: (+1)
+   \        0x0   0x4770             BX       LR
+    839          
+    840          /**
+    841            * @}
+    842            */
+    843          
+    844          /**
+    845            * @}
+    846            */
+    847          
+    848          /** @addtogroup I2SEx_Private_Functions I2S Extended Private Functions
+    849            * @{
+    850            */
+    851          
+    852          /**
+    853            * @brief  DMA I2S transmit receive process half complete callback
+    854            * @param  hdma pointer to a DMA_HandleTypeDef structure that contains
+    855            *               the configuration information for the specified DMA module.
+    856            * @retval None
+    857            */
+
+   \                                 In section .text, align 4, keep-with-next
+    858          static void I2SEx_TxRxDMAHalfCplt(DMA_HandleTypeDef *hdma)
+    859          {
+   \                     I2SEx_TxRxDMAHalfCplt: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    860            I2S_HandleTypeDef *hi2s = (I2S_HandleTypeDef *)((DMA_HandleTypeDef *)hdma)->Parent;
+   \        0x4   0x6BA5             LDR      R5,[R4, #+56]
+    861          
+    862            /* Call user TxRx Half complete callback */
+    863          #if (USE_HAL_I2S_REGISTER_CALLBACKS == 1U)
+    864            hi2s->TxRxHalfCpltCallback(hi2s);
+    865          #else
+    866            HAL_I2SEx_TxRxHalfCpltCallback(hi2s);
+   \        0x6   0x0028             MOVS     R0,R5
+   \        0x8   0x.... 0x....      BL       HAL_I2SEx_TxRxHalfCpltCallback
+    867          #endif /* USE_HAL_I2S_REGISTER_CALLBACKS */
+    868          }
+   \        0xC   0xBD31             POP      {R0,R4,R5,PC}
+    869          
+    870          /**
+    871            * @brief  DMA I2S transmit receive process complete callback
+    872            * @param  hdma pointer to a DMA_HandleTypeDef structure that contains
+    873            *               the configuration information for the specified DMA module.
+    874            * @retval None
+    875            */
+
+   \                                 In section .text, align 4, keep-with-next
+    876          static void I2SEx_TxRxDMACplt(DMA_HandleTypeDef *hdma)
+    877          {
+   \                     I2SEx_TxRxDMACplt: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    878            I2S_HandleTypeDef *hi2s = (I2S_HandleTypeDef *)((DMA_HandleTypeDef *)hdma)->Parent;
+   \        0x4   0x6BA5             LDR      R5,[R4, #+56]
+    879          
+    880            /* if DMA is configured in DMA_NORMAL mode */
+    881            if (hdma->Init.Mode == DMA_NORMAL)
+   \        0x6   0x69E0             LDR      R0,[R4, #+28]
+   \        0x8   0x2800             CMP      R0,#+0
+   \        0xA   0xD159             BNE.N    ??I2SEx_TxRxDMACplt_0
+    882            {
+    883              if (hi2s->hdmarx == hdma)
+   \        0xC   0x6BE8             LDR      R0,[R5, #+60]
+   \        0xE   0x42A0             CMP      R0,R4
+   \       0x10   0xD129             BNE.N    ??I2SEx_TxRxDMACplt_1
+    884              {
+    885                /* Disable Rx DMA Request */
+    886                if (((hi2s->Instance->I2SCFGR & SPI_I2SCFGR_I2SCFG) == I2S_MODE_MASTER_TX) || \
+    887                    ((hi2s->Instance->I2SCFGR & SPI_I2SCFGR_I2SCFG) == I2S_MODE_SLAVE_TX))
+   \       0x12   0x6828             LDR      R0,[R5, #+0]
+   \       0x14   0x69C0             LDR      R0,[R0, #+28]
+   \       0x16   0xF410 0x7040      ANDS     R0,R0,#0x300
+   \       0x1A   0xF5B0 0x7F00      CMP      R0,#+512
+   \       0x1E   0xD004             BEQ.N    ??I2SEx_TxRxDMACplt_2
+   \       0x20   0x6828             LDR      R0,[R5, #+0]
+   \       0x22   0x69C0             LDR      R0,[R0, #+28]
+   \       0x24   0xF410 0x7F40      TST      R0,#0x300
+   \       0x28   0xD10C             BNE.N    ??I2SEx_TxRxDMACplt_3
+    888                {
+    889                  CLEAR_BIT(I2SxEXT(hi2s->Instance)->CR2, SPI_CR2_RXDMAEN);
+   \                     ??I2SEx_TxRxDMACplt_2: (+1)
+   \       0x2A   0x6828             LDR      R0,[R5, #+0]
+   \       0x2C   0x....             LDR.N    R1,??DataTable8
+   \       0x2E   0x4288             CMP      R0,R1
+   \       0x30   0xD101             BNE.N    ??I2SEx_TxRxDMACplt_4
+   \       0x32   0x....             LDR.N    R0,??DataTable8_1
+   \       0x34   0xE001             B.N      ??I2SEx_TxRxDMACplt_5
+   \                     ??I2SEx_TxRxDMACplt_4: (+1)
+   \       0x36   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??I2SEx_TxRxDMACplt_5: (+1)
+   \       0x3A   0x6841             LDR      R1,[R0, #+4]
+   \       0x3C   0x0849             LSRS     R1,R1,#+1
+   \       0x3E   0x0049             LSLS     R1,R1,#+1
+   \       0x40   0x6041             STR      R1,[R0, #+4]
+   \       0x42   0xE005             B.N      ??I2SEx_TxRxDMACplt_6
+    890                }
+    891                else
+    892                {
+    893                  CLEAR_BIT(hi2s->Instance->CR2, SPI_CR2_RXDMAEN);
+   \                     ??I2SEx_TxRxDMACplt_3: (+1)
+   \       0x44   0x6828             LDR      R0,[R5, #+0]
+   \       0x46   0x6840             LDR      R0,[R0, #+4]
+   \       0x48   0x0840             LSRS     R0,R0,#+1
+   \       0x4A   0x0040             LSLS     R0,R0,#+1
+   \       0x4C   0x6829             LDR      R1,[R5, #+0]
+   \       0x4E   0x6048             STR      R0,[R1, #+4]
+    894                }
+    895          
+    896                hi2s->RxXferCount = 0U;
+   \                     ??I2SEx_TxRxDMACplt_6: (+1)
+   \       0x50   0x2000             MOVS     R0,#+0
+   \       0x52   0x8668             STRH     R0,[R5, #+50]
+    897          
+    898                if (hi2s->TxXferCount == 0U)
+   \       0x54   0x8D68             LDRH     R0,[R5, #+42]
+   \       0x56   0x2800             CMP      R0,#+0
+   \       0x58   0xD105             BNE.N    ??I2SEx_TxRxDMACplt_1
+    899                {
+    900                  hi2s->State = HAL_I2S_STATE_READY;
+   \       0x5A   0x2001             MOVS     R0,#+1
+   \       0x5C   0xF885 0x0041      STRB     R0,[R5, #+65]
+    901          
+    902                  /* Call user TxRx complete callback */
+    903          #if (USE_HAL_I2S_REGISTER_CALLBACKS == 1U)
+    904                  hi2s->TxRxCpltCallback(hi2s);
+    905          #else
+    906                  HAL_I2SEx_TxRxCpltCallback(hi2s);
+   \       0x60   0x0028             MOVS     R0,R5
+   \       0x62   0x.... 0x....      BL       HAL_I2SEx_TxRxCpltCallback
+    907          #endif /* USE_HAL_I2S_REGISTER_CALLBACKS */
+    908                }
+    909              }
+    910          
+    911              if (hi2s->hdmatx == hdma)
+   \                     ??I2SEx_TxRxDMACplt_1: (+1)
+   \       0x66   0x6BA8             LDR      R0,[R5, #+56]
+   \       0x68   0x42A0             CMP      R0,R4
+   \       0x6A   0xD129             BNE.N    ??I2SEx_TxRxDMACplt_0
+    912              {
+    913                /* Disable Tx DMA Request */
+    914                if (((hi2s->Instance->I2SCFGR & SPI_I2SCFGR_I2SCFG) == I2S_MODE_MASTER_TX) || \
+    915                    ((hi2s->Instance->I2SCFGR & SPI_I2SCFGR_I2SCFG) == I2S_MODE_SLAVE_TX))
+   \       0x6C   0x6828             LDR      R0,[R5, #+0]
+   \       0x6E   0x69C0             LDR      R0,[R0, #+28]
+   \       0x70   0xF410 0x7040      ANDS     R0,R0,#0x300
+   \       0x74   0xF5B0 0x7F00      CMP      R0,#+512
+   \       0x78   0xD004             BEQ.N    ??I2SEx_TxRxDMACplt_7
+   \       0x7A   0x6828             LDR      R0,[R5, #+0]
+   \       0x7C   0x69C0             LDR      R0,[R0, #+28]
+   \       0x7E   0xF410 0x7F40      TST      R0,#0x300
+   \       0x82   0xD106             BNE.N    ??I2SEx_TxRxDMACplt_8
+    916                {
+    917                  CLEAR_BIT(hi2s->Instance->CR2, SPI_CR2_TXDMAEN);
+   \                     ??I2SEx_TxRxDMACplt_7: (+1)
+   \       0x84   0x6828             LDR      R0,[R5, #+0]
+   \       0x86   0x6840             LDR      R0,[R0, #+4]
+   \       0x88   0xF030 0x0002      BICS     R0,R0,#0x2
+   \       0x8C   0x6829             LDR      R1,[R5, #+0]
+   \       0x8E   0x6048             STR      R0,[R1, #+4]
+   \       0x90   0xE00B             B.N      ??I2SEx_TxRxDMACplt_9
+    918                }
+    919                else
+    920                {
+    921                  CLEAR_BIT(I2SxEXT(hi2s->Instance)->CR2, SPI_CR2_TXDMAEN);
+   \                     ??I2SEx_TxRxDMACplt_8: (+1)
+   \       0x92   0x6828             LDR      R0,[R5, #+0]
+   \       0x94   0x....             LDR.N    R1,??DataTable8
+   \       0x96   0x4288             CMP      R0,R1
+   \       0x98   0xD101             BNE.N    ??I2SEx_TxRxDMACplt_10
+   \       0x9A   0x....             LDR.N    R0,??DataTable8_1
+   \       0x9C   0xE001             B.N      ??I2SEx_TxRxDMACplt_11
+   \                     ??I2SEx_TxRxDMACplt_10: (+1)
+   \       0x9E   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??I2SEx_TxRxDMACplt_11: (+1)
+   \       0xA2   0x6841             LDR      R1,[R0, #+4]
+   \       0xA4   0xF031 0x0102      BICS     R1,R1,#0x2
+   \       0xA8   0x6041             STR      R1,[R0, #+4]
+    922                }
+    923          
+    924                hi2s->TxXferCount = 0U;
+   \                     ??I2SEx_TxRxDMACplt_9: (+1)
+   \       0xAA   0x2000             MOVS     R0,#+0
+   \       0xAC   0x8568             STRH     R0,[R5, #+42]
+    925          
+    926                if (hi2s->RxXferCount == 0U)
+   \       0xAE   0x8E68             LDRH     R0,[R5, #+50]
+   \       0xB0   0x2800             CMP      R0,#+0
+   \       0xB2   0xD105             BNE.N    ??I2SEx_TxRxDMACplt_0
+    927                {
+    928                  hi2s->State = HAL_I2S_STATE_READY;
+   \       0xB4   0x2001             MOVS     R0,#+1
+   \       0xB6   0xF885 0x0041      STRB     R0,[R5, #+65]
+    929          
+    930                  /* Call user TxRx complete callback */
+    931          #if (USE_HAL_I2S_REGISTER_CALLBACKS == 1U)
+    932                  hi2s->TxRxCpltCallback(hi2s);
+    933          #else
+    934                  HAL_I2SEx_TxRxCpltCallback(hi2s);
+   \       0xBA   0x0028             MOVS     R0,R5
+   \       0xBC   0x.... 0x....      BL       HAL_I2SEx_TxRxCpltCallback
+    935          #endif /* USE_HAL_I2S_REGISTER_CALLBACKS */
+    936                }
+    937              }
+    938            }
+    939          }
+   \                     ??I2SEx_TxRxDMACplt_0: (+1)
+   \       0xC0   0xBD31             POP      {R0,R4,R5,PC}
+    940          
+    941          /**
+    942            * @brief  DMA I2S communication error callback
+    943            * @param  hdma DMA handle
+    944            * @retval None
+    945            */
+
+   \                                 In section .text, align 4, keep-with-next
+    946          static void I2SEx_TxRxDMAError(DMA_HandleTypeDef *hdma)
+    947          {
+   \                     I2SEx_TxRxDMAError: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    948            I2S_HandleTypeDef *hi2s = (I2S_HandleTypeDef *)((DMA_HandleTypeDef *)hdma)->Parent;
+   \        0x4   0x6BA5             LDR      R5,[R4, #+56]
+    949          
+    950            /* Disable Rx and Tx DMA Request */
+    951            CLEAR_BIT(hi2s->Instance->CR2, (SPI_CR2_RXDMAEN | SPI_CR2_TXDMAEN));
+   \        0x6   0x6828             LDR      R0,[R5, #+0]
+   \        0x8   0x6840             LDR      R0,[R0, #+4]
+   \        0xA   0x0880             LSRS     R0,R0,#+2
+   \        0xC   0x0080             LSLS     R0,R0,#+2
+   \        0xE   0x6829             LDR      R1,[R5, #+0]
+   \       0x10   0x6048             STR      R0,[R1, #+4]
+    952            CLEAR_BIT(I2SxEXT(hi2s->Instance)->CR2, (SPI_CR2_RXDMAEN | SPI_CR2_TXDMAEN));
+   \       0x12   0x6828             LDR      R0,[R5, #+0]
+   \       0x14   0x....             LDR.N    R1,??DataTable8
+   \       0x16   0x4288             CMP      R0,R1
+   \       0x18   0xD101             BNE.N    ??I2SEx_TxRxDMAError_0
+   \       0x1A   0x....             LDR.N    R0,??DataTable8_1
+   \       0x1C   0xE001             B.N      ??I2SEx_TxRxDMAError_1
+   \                     ??I2SEx_TxRxDMAError_0: (+1)
+   \       0x1E   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??I2SEx_TxRxDMAError_1: (+1)
+   \       0x22   0x6841             LDR      R1,[R0, #+4]
+   \       0x24   0x0889             LSRS     R1,R1,#+2
+   \       0x26   0x0089             LSLS     R1,R1,#+2
+   \       0x28   0x6041             STR      R1,[R0, #+4]
+    953          
+    954            hi2s->TxXferCount = 0U;
+   \       0x2A   0x2000             MOVS     R0,#+0
+   \       0x2C   0x8568             STRH     R0,[R5, #+42]
+    955            hi2s->RxXferCount = 0U;
+   \       0x2E   0x2000             MOVS     R0,#+0
+   \       0x30   0x8668             STRH     R0,[R5, #+50]
+    956          
+    957            hi2s->State = HAL_I2S_STATE_READY;
+   \       0x32   0x2001             MOVS     R0,#+1
+   \       0x34   0xF885 0x0041      STRB     R0,[R5, #+65]
+    958          
+    959            /* Set the error code and execute error callback*/
+    960            SET_BIT(hi2s->ErrorCode, HAL_I2S_ERROR_DMA);
+   \       0x38   0x6C68             LDR      R0,[R5, #+68]
+   \       0x3A   0xF050 0x0008      ORRS     R0,R0,#0x8
+   \       0x3E   0x6468             STR      R0,[R5, #+68]
+    961            /* Call user error callback */
+    962          #if (USE_HAL_I2S_REGISTER_CALLBACKS == 1U)
+    963            hi2s->ErrorCallback(hi2s);
+    964          #else
+    965            HAL_I2S_ErrorCallback(hi2s);
+   \       0x40   0x0028             MOVS     R0,R5
+   \       0x42   0x.... 0x....      BL       HAL_I2S_ErrorCallback
+    966          #endif /* USE_HAL_I2S_REGISTER_CALLBACKS */
+    967          }
+   \       0x46   0xBD31             POP      {R0,R4,R5,PC}
+    968          
+    969          /**
+    970            * @brief  I2S Full-Duplex IT handler transmit function
+    971            * @param  hi2s I2S handle
+    972            * @retval None
+    973            */
+
+   \                                 In section .text, align 2, keep-with-next
+    974          static void I2SEx_TxISR_I2S(I2S_HandleTypeDef *hi2s)
+    975          {
+   \                     I2SEx_TxISR_I2S: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    976            /* Write Data on DR register */
+    977            hi2s->Instance->DR = (*hi2s->pTxBuffPtr++);
+   \        0x4   0x6A60             LDR      R0,[R4, #+36]
+   \        0x6   0x1C81             ADDS     R1,R0,#+2
+   \        0x8   0x6261             STR      R1,[R4, #+36]
+   \        0xA   0x8800             LDRH     R0,[R0, #+0]
+   \        0xC   0x6821             LDR      R1,[R4, #+0]
+   \        0xE   0x60C8             STR      R0,[R1, #+12]
+    978            hi2s->TxXferCount--;
+   \       0x10   0x8D60             LDRH     R0,[R4, #+42]
+   \       0x12   0x1E40             SUBS     R0,R0,#+1
+   \       0x14   0x8560             STRH     R0,[R4, #+42]
+    979          
+    980            if (hi2s->TxXferCount == 0U)
+   \       0x16   0x8D60             LDRH     R0,[R4, #+42]
+   \       0x18   0x2800             CMP      R0,#+0
+   \       0x1A   0xD10E             BNE.N    ??I2SEx_TxISR_I2S_0
+    981            {
+    982              /* Disable TXE and ERR interrupt */
+    983              __HAL_I2S_DISABLE_IT(hi2s, (I2S_IT_TXE | I2S_IT_ERR));
+   \       0x1C   0x6820             LDR      R0,[R4, #+0]
+   \       0x1E   0x6840             LDR      R0,[R0, #+4]
+   \       0x20   0xF030 0x00A0      BICS     R0,R0,#0xA0
+   \       0x24   0x6821             LDR      R1,[R4, #+0]
+   \       0x26   0x6048             STR      R0,[R1, #+4]
+    984          
+    985              if (hi2s->RxXferCount == 0U)
+   \       0x28   0x8E60             LDRH     R0,[R4, #+50]
+   \       0x2A   0x2800             CMP      R0,#+0
+   \       0x2C   0xD105             BNE.N    ??I2SEx_TxISR_I2S_0
+    986              {
+    987                hi2s->State = HAL_I2S_STATE_READY;
+   \       0x2E   0x2001             MOVS     R0,#+1
+   \       0x30   0xF884 0x0041      STRB     R0,[R4, #+65]
+    988                /* Call user TxRx complete callback */
+    989          #if (USE_HAL_I2S_REGISTER_CALLBACKS == 1U)
+    990                hi2s->TxRxCpltCallback(hi2s);
+    991          #else
+    992                HAL_I2SEx_TxRxCpltCallback(hi2s);
+   \       0x34   0x0020             MOVS     R0,R4
+   \       0x36   0x.... 0x....      BL       HAL_I2SEx_TxRxCpltCallback
+    993          #endif /* USE_HAL_I2S_REGISTER_CALLBACKS */
+    994              }
+    995            }
+    996          }
+   \                     ??I2SEx_TxISR_I2S_0: (+1)
+   \       0x3A   0xBD10             POP      {R4,PC}
+    997          
+    998          /**
+    999            * @brief  I2SExt Full-Duplex IT handler transmit function
+   1000            * @param  hi2s I2S handle
+   1001            * @retval None
+   1002            */
+
+   \                                 In section .text, align 2, keep-with-next
+   1003          static void I2SEx_TxISR_I2SExt(I2S_HandleTypeDef *hi2s)
+   1004          {
+   \                     I2SEx_TxISR_I2SExt: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   1005            /* Write Data on DR register */
+   1006            I2SxEXT(hi2s->Instance)->DR = (*hi2s->pTxBuffPtr++);
+   \        0x4   0x....             LDR.N    R1,??DataTable8
+   \        0x6   0x6820             LDR      R0,[R4, #+0]
+   \        0x8   0x4288             CMP      R0,R1
+   \        0xA   0xD101             BNE.N    ??I2SEx_TxISR_I2SExt_0
+   \        0xC   0x....             LDR.N    R0,??DataTable8_1
+   \        0xE   0xE001             B.N      ??I2SEx_TxISR_I2SExt_1
+   \                     ??I2SEx_TxISR_I2SExt_0: (+1)
+   \       0x10   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??I2SEx_TxISR_I2SExt_1: (+1)
+   \       0x14   0x6A62             LDR      R2,[R4, #+36]
+   \       0x16   0x1C93             ADDS     R3,R2,#+2
+   \       0x18   0x6263             STR      R3,[R4, #+36]
+   \       0x1A   0x8812             LDRH     R2,[R2, #+0]
+   \       0x1C   0x60C2             STR      R2,[R0, #+12]
+   1007            hi2s->TxXferCount--;
+   \       0x1E   0x8D60             LDRH     R0,[R4, #+42]
+   \       0x20   0x1E40             SUBS     R0,R0,#+1
+   \       0x22   0x8560             STRH     R0,[R4, #+42]
+   1008          
+   1009            if (hi2s->TxXferCount == 0U)
+   \       0x24   0x8D60             LDRH     R0,[R4, #+42]
+   \       0x26   0x2800             CMP      R0,#+0
+   \       0x28   0xD113             BNE.N    ??I2SEx_TxISR_I2SExt_2
+   1010            {
+   1011              /* Disable I2Sext TXE and ERR interrupt */
+   1012              __HAL_I2SEXT_DISABLE_IT(hi2s, (I2S_IT_TXE | I2S_IT_ERR));
+   \       0x2A   0x6820             LDR      R0,[R4, #+0]
+   \       0x2C   0x4288             CMP      R0,R1
+   \       0x2E   0xD101             BNE.N    ??I2SEx_TxISR_I2SExt_3
+   \       0x30   0x....             LDR.N    R0,??DataTable8_1
+   \       0x32   0xE001             B.N      ??I2SEx_TxISR_I2SExt_4
+   \                     ??I2SEx_TxISR_I2SExt_3: (+1)
+   \       0x34   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??I2SEx_TxISR_I2SExt_4: (+1)
+   \       0x38   0x6841             LDR      R1,[R0, #+4]
+   \       0x3A   0xF031 0x01A0      BICS     R1,R1,#0xA0
+   \       0x3E   0x6041             STR      R1,[R0, #+4]
+   1013          
+   1014              if (hi2s->RxXferCount == 0U)
+   \       0x40   0x8E60             LDRH     R0,[R4, #+50]
+   \       0x42   0x2800             CMP      R0,#+0
+   \       0x44   0xD105             BNE.N    ??I2SEx_TxISR_I2SExt_2
+   1015              {
+   1016                hi2s->State = HAL_I2S_STATE_READY;
+   \       0x46   0x2001             MOVS     R0,#+1
+   \       0x48   0xF884 0x0041      STRB     R0,[R4, #+65]
+   1017                /* Call user TxRx complete callback */
+   1018          #if (USE_HAL_I2S_REGISTER_CALLBACKS == 1U)
+   1019                hi2s->TxRxCpltCallback(hi2s);
+   1020          #else
+   1021                HAL_I2SEx_TxRxCpltCallback(hi2s);
+   \       0x4C   0x0020             MOVS     R0,R4
+   \       0x4E   0x.... 0x....      BL       HAL_I2SEx_TxRxCpltCallback
+   1022          #endif /* USE_HAL_I2S_REGISTER_CALLBACKS */
+   1023              }
+   1024            }
+   1025          }
+   \                     ??I2SEx_TxISR_I2SExt_2: (+1)
+   \       0x52   0xBD10             POP      {R4,PC}
+   1026          
+   1027          /**
+   1028            * @brief  I2S Full-Duplex IT handler receive function
+   1029            * @param  hi2s I2S handle
+   1030            * @retval None
+   1031            */
+
+   \                                 In section .text, align 2, keep-with-next
+   1032          static void I2SEx_RxISR_I2S(I2S_HandleTypeDef *hi2s)
+   1033          {
+   \                     I2SEx_RxISR_I2S: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   1034            /* Read Data from DR register */
+   1035            (*hi2s->pRxBuffPtr++) = hi2s->Instance->DR;
+   \        0x4   0x6AE0             LDR      R0,[R4, #+44]
+   \        0x6   0x1C81             ADDS     R1,R0,#+2
+   \        0x8   0x62E1             STR      R1,[R4, #+44]
+   \        0xA   0x6821             LDR      R1,[R4, #+0]
+   \        0xC   0x68C9             LDR      R1,[R1, #+12]
+   \        0xE   0x8001             STRH     R1,[R0, #+0]
+   1036            hi2s->RxXferCount--;
+   \       0x10   0x8E60             LDRH     R0,[R4, #+50]
+   \       0x12   0x1E40             SUBS     R0,R0,#+1
+   \       0x14   0x8660             STRH     R0,[R4, #+50]
+   1037          
+   1038            if (hi2s->RxXferCount == 0U)
+   \       0x16   0x8E60             LDRH     R0,[R4, #+50]
+   \       0x18   0x2800             CMP      R0,#+0
+   \       0x1A   0xD10E             BNE.N    ??I2SEx_RxISR_I2S_0
+   1039            {
+   1040              /* Disable RXNE and ERR interrupt */
+   1041              __HAL_I2S_DISABLE_IT(hi2s, (I2S_IT_RXNE | I2S_IT_ERR));
+   \       0x1C   0x6820             LDR      R0,[R4, #+0]
+   \       0x1E   0x6840             LDR      R0,[R0, #+4]
+   \       0x20   0xF030 0x0060      BICS     R0,R0,#0x60
+   \       0x24   0x6821             LDR      R1,[R4, #+0]
+   \       0x26   0x6048             STR      R0,[R1, #+4]
+   1042          
+   1043              if (hi2s->TxXferCount == 0U)
+   \       0x28   0x8D60             LDRH     R0,[R4, #+42]
+   \       0x2A   0x2800             CMP      R0,#+0
+   \       0x2C   0xD105             BNE.N    ??I2SEx_RxISR_I2S_0
+   1044              {
+   1045                hi2s->State = HAL_I2S_STATE_READY;
+   \       0x2E   0x2001             MOVS     R0,#+1
+   \       0x30   0xF884 0x0041      STRB     R0,[R4, #+65]
+   1046                /* Call user TxRx complete callback */
+   1047          #if (USE_HAL_I2S_REGISTER_CALLBACKS == 1U)
+   1048                hi2s->TxRxCpltCallback(hi2s);
+   1049          #else
+   1050                HAL_I2SEx_TxRxCpltCallback(hi2s);
+   \       0x34   0x0020             MOVS     R0,R4
+   \       0x36   0x.... 0x....      BL       HAL_I2SEx_TxRxCpltCallback
+   1051          #endif /* USE_HAL_I2S_REGISTER_CALLBACKS */
+   1052              }
+   1053            }
+   1054          }
+   \                     ??I2SEx_RxISR_I2S_0: (+1)
+   \       0x3A   0xBD10             POP      {R4,PC}
+   1055          
+   1056          /**
+   1057            * @brief  I2SExt Full-Duplex IT handler receive function
+   1058            * @param  hi2s I2S handle
+   1059            * @retval None
+   1060            */
+
+   \                                 In section .text, align 2, keep-with-next
+   1061          static void I2SEx_RxISR_I2SExt(I2S_HandleTypeDef *hi2s)
+   1062          {
+   \                     I2SEx_RxISR_I2SExt: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   1063            /* Read Data from DR register */
+   1064            (*hi2s->pRxBuffPtr++) = I2SxEXT(hi2s->Instance)->DR;
+   \        0x4   0x6AE0             LDR      R0,[R4, #+44]
+   \        0x6   0x1C81             ADDS     R1,R0,#+2
+   \        0x8   0x62E1             STR      R1,[R4, #+44]
+   \        0xA   0x....             LDR.N    R1,??DataTable8
+   \        0xC   0x6822             LDR      R2,[R4, #+0]
+   \        0xE   0x428A             CMP      R2,R1
+   \       0x10   0xD101             BNE.N    ??I2SEx_RxISR_I2SExt_0
+   \       0x12   0x....             LDR.N    R2,??DataTable8_1
+   \       0x14   0xE001             B.N      ??I2SEx_RxISR_I2SExt_1
+   \                     ??I2SEx_RxISR_I2SExt_0: (+1)
+   \       0x16   0xF05F 0x2240      MOVS     R2,#+1073758208
+   \                     ??I2SEx_RxISR_I2SExt_1: (+1)
+   \       0x1A   0x68D2             LDR      R2,[R2, #+12]
+   \       0x1C   0x8002             STRH     R2,[R0, #+0]
+   1065            hi2s->RxXferCount--;
+   \       0x1E   0x8E60             LDRH     R0,[R4, #+50]
+   \       0x20   0x1E40             SUBS     R0,R0,#+1
+   \       0x22   0x8660             STRH     R0,[R4, #+50]
+   1066          
+   1067            if (hi2s->RxXferCount == 0U)
+   \       0x24   0x8E60             LDRH     R0,[R4, #+50]
+   \       0x26   0x2800             CMP      R0,#+0
+   \       0x28   0xD113             BNE.N    ??I2SEx_RxISR_I2SExt_2
+   1068            {
+   1069              /* Disable I2Sext RXNE and ERR interrupt */
+   1070              __HAL_I2SEXT_DISABLE_IT(hi2s, (I2S_IT_RXNE | I2S_IT_ERR));
+   \       0x2A   0x6820             LDR      R0,[R4, #+0]
+   \       0x2C   0x4288             CMP      R0,R1
+   \       0x2E   0xD101             BNE.N    ??I2SEx_RxISR_I2SExt_3
+   \       0x30   0x....             LDR.N    R0,??DataTable8_1
+   \       0x32   0xE001             B.N      ??I2SEx_RxISR_I2SExt_4
+   \                     ??I2SEx_RxISR_I2SExt_3: (+1)
+   \       0x34   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??I2SEx_RxISR_I2SExt_4: (+1)
+   \       0x38   0x6841             LDR      R1,[R0, #+4]
+   \       0x3A   0xF031 0x0160      BICS     R1,R1,#0x60
+   \       0x3E   0x6041             STR      R1,[R0, #+4]
+   1071          
+   1072              if (hi2s->TxXferCount == 0U)
+   \       0x40   0x8D60             LDRH     R0,[R4, #+42]
+   \       0x42   0x2800             CMP      R0,#+0
+   \       0x44   0xD105             BNE.N    ??I2SEx_RxISR_I2SExt_2
+   1073              {
+   1074                hi2s->State = HAL_I2S_STATE_READY;
+   \       0x46   0x2001             MOVS     R0,#+1
+   \       0x48   0xF884 0x0041      STRB     R0,[R4, #+65]
+   1075                /* Call user TxRx complete callback */
+   1076          #if (USE_HAL_I2S_REGISTER_CALLBACKS == 1U)
+   1077                hi2s->TxRxCpltCallback(hi2s);
+   1078          #else
+   1079                HAL_I2SEx_TxRxCpltCallback(hi2s);
+   \       0x4C   0x0020             MOVS     R0,R4
+   \       0x4E   0x.... 0x....      BL       HAL_I2SEx_TxRxCpltCallback
+   1080          #endif /* USE_HAL_I2S_REGISTER_CALLBACKS */
+   1081              }
+   1082            }
+   1083          }
+   \                     ??I2SEx_RxISR_I2SExt_2: (+1)
+   \       0x52   0xBD10             POP      {R4,PC}
+   1084          
+   1085          /**
+   1086            * @brief This function handles I2S Communication Timeout.
+   1087            * @param hi2s I2S handle
+   1088            * @param Flag Flag checked
+   1089            * @param State Value of the flag expected
+   1090            * @param Timeout Duration of the timeout
+   1091            * @param i2sUsed I2S instance reference
+   1092            * @retval HAL status
+   1093            */
+
+   \                                 In section .text, align 2, keep-with-next
+   1094          static HAL_StatusTypeDef I2SEx_FullDuplexWaitFlagStateUntilTimeout(I2S_HandleTypeDef *hi2s, uint32_t Flag,
+   1095                                                                             uint32_t State, uint32_t Timeout, I2S_UseTypeDef i2sUsed)
+   1096          {
+   \                     I2SEx_FullDuplexWaitFlagStateUntilTimeout: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0x0006             MOVS     R6,R0
+   \        0x6   0x000F             MOVS     R7,R1
+   \        0x8   0x4690             MOV      R8,R2
+   \        0xA   0x001C             MOVS     R4,R3
+   \        0xC   0x9D08             LDR      R5,[SP, #+32]
+   1097            uint32_t tickstart = HAL_GetTick();
+   \        0xE   0x.... 0x....      BL       HAL_GetTick
+   \       0x12   0x4681             MOV      R9,R0
+   1098          
+   1099            if (i2sUsed == I2S_USE_I2S)
+   \       0x14   0x0028             MOVS     R0,R5
+   \       0x16   0xB2C0             UXTB     R0,R0
+   \       0x18   0x2800             CMP      R0,#+0
+   \       0x1A   0xD11C             BNE.N    ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_0
+   1100            {
+   1101              /* Wait until flag is reset */
+   1102              while (((__HAL_I2S_GET_FLAG(hi2s, Flag)) ? SET : RESET) != State)
+   \                     ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_1: (+1)
+   \       0x1C   0x6830             LDR      R0,[R6, #+0]
+   \       0x1E   0x6880             LDR      R0,[R0, #+8]
+   \       0x20   0x4038             ANDS     R0,R7,R0
+   \       0x22   0x42B8             CMP      R0,R7
+   \       0x24   0xD101             BNE.N    ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_2
+   \       0x26   0x2001             MOVS     R0,#+1
+   \       0x28   0xE000             B.N      ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_3
+   \                     ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_2: (+1)
+   \       0x2A   0x2000             MOVS     R0,#+0
+   \                     ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_3: (+1)
+   \       0x2C   0x4540             CMP      R0,R8
+   \       0x2E   0xD036             BEQ.N    ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_4
+   1103              {
+   1104                if (Timeout != HAL_MAX_DELAY)
+   \       0x30   0xF114 0x0F01      CMN      R4,#+1
+   \       0x34   0xD0F2             BEQ.N    ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_1
+   1105                {
+   1106                  if ((Timeout == 0U) || ((HAL_GetTick() - tickstart) > Timeout))
+   \       0x36   0x2C00             CMP      R4,#+0
+   \       0x38   0xD005             BEQ.N    ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_5
+   \       0x3A   0x.... 0x....      BL       HAL_GetTick
+   \       0x3E   0xEBB0 0x0009      SUBS     R0,R0,R9
+   \       0x42   0x4284             CMP      R4,R0
+   \       0x44   0xD2EA             BCS.N    ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_1
+   1107                  {
+   1108                    /* Set the I2S State ready */
+   1109                    hi2s->State = HAL_I2S_STATE_READY;
+   \                     ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_5: (+1)
+   \       0x46   0x2001             MOVS     R0,#+1
+   \       0x48   0xF886 0x0041      STRB     R0,[R6, #+65]
+   1110          
+   1111                    /* Process Unlocked */
+   1112                    __HAL_UNLOCK(hi2s);
+   \       0x4C   0x2000             MOVS     R0,#+0
+   \       0x4E   0xF886 0x0040      STRB     R0,[R6, #+64]
+   1113          
+   1114                    return HAL_TIMEOUT;
+   \       0x52   0x2003             MOVS     R0,#+3
+   \       0x54   0xE024             B.N      ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_6
+   1115                  }
+   1116                }
+   1117              }
+   1118            }
+   1119            else /* i2sUsed == I2S_USE_I2SEXT */
+   1120            {
+   1121              /* Wait until flag is reset */
+   1122              while (((__HAL_I2SEXT_GET_FLAG(hi2s, Flag)) ? SET : RESET) != State)
+   \                     ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_0: (+1)
+   \       0x56   0x6830             LDR      R0,[R6, #+0]
+   \       0x58   0x....             LDR.N    R1,??DataTable8
+   \       0x5A   0x4288             CMP      R0,R1
+   \       0x5C   0xD101             BNE.N    ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_7
+   \       0x5E   0x....             LDR.N    R0,??DataTable8_1
+   \       0x60   0xE001             B.N      ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_8
+   \                     ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_7: (+1)
+   \       0x62   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \                     ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_8: (+1)
+   \       0x66   0x6880             LDR      R0,[R0, #+8]
+   \       0x68   0x4038             ANDS     R0,R7,R0
+   \       0x6A   0x42B8             CMP      R0,R7
+   \       0x6C   0xD101             BNE.N    ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_9
+   \       0x6E   0x2001             MOVS     R0,#+1
+   \       0x70   0xE000             B.N      ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_10
+   \                     ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_9: (+1)
+   \       0x72   0x2000             MOVS     R0,#+0
+   \                     ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_10: (+1)
+   \       0x74   0x4540             CMP      R0,R8
+   \       0x76   0xD012             BEQ.N    ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_4
+   1123              {
+   1124                if (Timeout != HAL_MAX_DELAY)
+   \       0x78   0xF114 0x0F01      CMN      R4,#+1
+   \       0x7C   0xD0EB             BEQ.N    ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_0
+   1125                {
+   1126                  if ((Timeout == 0U) || ((HAL_GetTick() - tickstart) > Timeout))
+   \       0x7E   0x2C00             CMP      R4,#+0
+   \       0x80   0xD005             BEQ.N    ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_11
+   \       0x82   0x.... 0x....      BL       HAL_GetTick
+   \       0x86   0xEBB0 0x0009      SUBS     R0,R0,R9
+   \       0x8A   0x4284             CMP      R4,R0
+   \       0x8C   0xD2E3             BCS.N    ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_0
+   1127                  {
+   1128                    /* Set the I2S State ready */
+   1129                    hi2s->State = HAL_I2S_STATE_READY;
+   \                     ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_11: (+1)
+   \       0x8E   0x2001             MOVS     R0,#+1
+   \       0x90   0xF886 0x0041      STRB     R0,[R6, #+65]
+   1130          
+   1131                    /* Process Unlocked */
+   1132                    __HAL_UNLOCK(hi2s);
+   \       0x94   0x2000             MOVS     R0,#+0
+   \       0x96   0xF886 0x0040      STRB     R0,[R6, #+64]
+   1133          
+   1134                    return HAL_TIMEOUT;
+   \       0x9A   0x2003             MOVS     R0,#+3
+   \       0x9C   0xE000             B.N      ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_6
+   1135                  }
+   1136                }
+   1137              }
+   1138            }
+   1139            return HAL_OK;
+   \                     ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_4: (+1)
+   \       0x9E   0x2000             MOVS     R0,#+0
+   \                     ??I2SEx_FullDuplexWaitFlagStateUntilTimeout_6: (+1)
+   \       0xA0   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}
+   1140          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8:
+   \        0x0   0x4000'3800        DC32     0x40003800
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_1:
+   \        0x0   0x4000'3400        DC32     0x40003400
+   1141          
+   1142          /**
+   1143            * @}
+   1144            */
+   1145          #endif /* SPI_I2S_FULLDUPLEX_SUPPORT */
+   1146          
+   1147          /**
+   1148            * @}
+   1149            */
+   1150          #endif /* HAL_I2S_MODULE_ENABLED */
+   1151          
+   1152          /**
+   1153            * @}
+   1154            */
+   1155          
+   1156          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      32   HAL_I2SEx_FullDuplex_IRQHandler
+        32   -> HAL_I2S_ErrorCallback
+        32   -> I2SEx_RxISR_I2S
+        32   -> I2SEx_RxISR_I2SExt
+        32   -> I2SEx_TxISR_I2S
+        32   -> I2SEx_TxISR_I2SExt
+      40   HAL_I2SEx_TransmitReceive
+        40   -> I2SEx_FullDuplexWaitFlagStateUntilTimeout
+      48   HAL_I2SEx_TransmitReceive_DMA
+        48   -> HAL_DMA_Start_IT
+      20   HAL_I2SEx_TransmitReceive_IT
+       0   HAL_I2SEx_TxRxCpltCallback
+       0   HAL_I2SEx_TxRxHalfCpltCallback
+      32   I2SEx_FullDuplexWaitFlagStateUntilTimeout
+        32   -> HAL_GetTick
+       8   I2SEx_RxISR_I2S
+         8   -> HAL_I2SEx_TxRxCpltCallback
+       8   I2SEx_RxISR_I2SExt
+         8   -> HAL_I2SEx_TxRxCpltCallback
+       8   I2SEx_TxISR_I2S
+         8   -> HAL_I2SEx_TxRxCpltCallback
+       8   I2SEx_TxISR_I2SExt
+         8   -> HAL_I2SEx_TxRxCpltCallback
+      16   I2SEx_TxRxDMACplt
+        16   -> HAL_I2SEx_TxRxCpltCallback
+      16   I2SEx_TxRxDMAError
+        16   -> HAL_I2S_ErrorCallback
+      16   I2SEx_TxRxDMAHalfCplt
+        16   -> HAL_I2SEx_TxRxHalfCpltCallback
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable8
+       4  ??DataTable8_1
+     456  HAL_I2SEx_FullDuplex_IRQHandler
+     980  HAL_I2SEx_TransmitReceive
+     518  HAL_I2SEx_TransmitReceive_DMA
+     382  HAL_I2SEx_TransmitReceive_IT
+       2  HAL_I2SEx_TxRxCpltCallback
+       2  HAL_I2SEx_TxRxHalfCpltCallback
+     164  I2SEx_FullDuplexWaitFlagStateUntilTimeout
+      60  I2SEx_RxISR_I2S
+      84  I2SEx_RxISR_I2SExt
+      60  I2SEx_TxISR_I2S
+      84  I2SEx_TxISR_I2SExt
+     194  I2SEx_TxRxDMACplt
+      72  I2SEx_TxRxDMAError
+      14  I2SEx_TxRxDMAHalfCplt
+
+ 
+ 3'080 bytes in section .text
+ 
+ 3'076 bytes of CODE memory (+ 4 bytes shared)
+
+Errors: none
+Warnings: none

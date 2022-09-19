@@ -1,0 +1,238 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:55
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\USB_DEVICE\App\usb_device.c
+#    Command line                 =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\USB_DEVICE\App\usb_device.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\USB_DEVICE\App\usb_device.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Application\User\USB_DEVICE\App
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\USB_DEVICE\App
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\USB_DEVICE\App\usb_device.o.d
+#    Locale                       =  C
+#    List file                    =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Application\User\USB_DEVICE\App\usb_device.lst
+#    Object file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\USB_DEVICE\App\usb_device.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\USB_DEVICE\App\usb_device.c
+      1          /* USER CODE BEGIN Header */
+      2          /**
+      3            ******************************************************************************
+      4            * @file           : usb_device.c
+      5            * @version        : v1.0_Cube
+      6            * @brief          : This file implements the USB Device
+      7            ******************************************************************************
+      8            * @attention
+      9            *
+     10            * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+     11            * All rights reserved.</center></h2>
+     12            *
+     13            * This software component is licensed by ST under Ultimate Liberty license
+     14            * SLA0044, the "License"; You may not use this file except in compliance with
+     15            * the License. You may obtain a copy of the License at:
+     16            *                             www.st.com/SLA0044
+     17            *
+     18            ******************************************************************************
+     19            */
+     20          /* USER CODE END Header */
+     21          
+     22          /* Includes ------------------------------------------------------------------*/
+     23          
+     24          #include "usb_device.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     25          #include "usbd_core.h"
+     26          #include "usbd_desc.h"
+     27          #include "usbd_cdc.h"
+     28          #include "usbd_cdc_if.h"
+     29          
+     30          /* USER CODE BEGIN Includes */
+     31          
+     32          /* USER CODE END Includes */
+     33          
+     34          /* USER CODE BEGIN PV */
+     35          /* Private variables ---------------------------------------------------------*/
+     36          
+     37          /* USER CODE END PV */
+     38          
+     39          /* USER CODE BEGIN PFP */
+     40          /* Private function prototypes -----------------------------------------------*/
+     41          
+     42          /* USER CODE END PFP */
+     43          
+     44          /* USB Device Core handle declaration. */
+
+   \                                 In section .bss, align 4
+     45          USBD_HandleTypeDef hUsbDeviceFS;
+   \                     hUsbDeviceFS:
+   \        0x0                      DS8 720
+     46          
+     47          /*
+     48           * -- Insert your variables declaration here --
+     49           */
+     50          /* USER CODE BEGIN 0 */
+     51          
+     52          /* USER CODE END 0 */
+     53          
+     54          /*
+     55           * -- Insert your external function declaration here --
+     56           */
+     57          /* USER CODE BEGIN 1 */
+     58          
+     59          /* USER CODE END 1 */
+     60          
+     61          /**
+     62            * Init USB device Library, add supported class and start the library
+     63            * @retval None
+     64            */
+
+   \                                 In section .text, align 4, keep-with-next
+     65          void MX_USB_DEVICE_Init(void)
+     66          {
+   \                     MX_USB_DEVICE_Init: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+     67            /* USER CODE BEGIN USB_DEVICE_Init_PreTreatment */
+     68          
+     69            /* USER CODE END USB_DEVICE_Init_PreTreatment */
+     70          
+     71            /* Init Device Library, add supported class and start the library. */
+     72            if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK)
+   \        0x2   0x4C11             LDR.N    R4,??MX_USB_DEVICE_Init_0
+   \        0x4   0x2200             MOVS     R2,#+0
+   \        0x6   0x4911             LDR.N    R1,??MX_USB_DEVICE_Init_0+0x4
+   \        0x8   0x0020             MOVS     R0,R4
+   \        0xA   0x.... 0x....      BL       USBD_Init
+   \        0xE   0x2800             CMP      R0,#+0
+   \       0x10   0xD001             BEQ.N    ??MX_USB_DEVICE_Init_1
+     73            {
+     74              Error_Handler();
+   \       0x12   0x.... 0x....      BL       Error_Handler
+     75            }
+     76            if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_CDC) != USBD_OK)
+   \                     ??MX_USB_DEVICE_Init_1: (+1)
+   \       0x16   0x490E             LDR.N    R1,??MX_USB_DEVICE_Init_0+0x8
+   \       0x18   0x0020             MOVS     R0,R4
+   \       0x1A   0x.... 0x....      BL       USBD_RegisterClass
+   \       0x1E   0x2800             CMP      R0,#+0
+   \       0x20   0xD001             BEQ.N    ??MX_USB_DEVICE_Init_2
+     77            {
+     78              Error_Handler();
+   \       0x22   0x.... 0x....      BL       Error_Handler
+     79            }
+     80            if (USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS) != USBD_OK)
+   \                     ??MX_USB_DEVICE_Init_2: (+1)
+   \       0x26   0x490B             LDR.N    R1,??MX_USB_DEVICE_Init_0+0xC
+   \       0x28   0x0020             MOVS     R0,R4
+   \       0x2A   0x.... 0x....      BL       USBD_CDC_RegisterInterface
+   \       0x2E   0x2800             CMP      R0,#+0
+   \       0x30   0xD001             BEQ.N    ??MX_USB_DEVICE_Init_3
+     81            {
+     82              Error_Handler();
+   \       0x32   0x.... 0x....      BL       Error_Handler
+     83            }
+     84            if (USBD_Start(&hUsbDeviceFS) != USBD_OK)
+   \                     ??MX_USB_DEVICE_Init_3: (+1)
+   \       0x36   0x0020             MOVS     R0,R4
+   \       0x38   0x.... 0x....      BL       USBD_Start
+   \       0x3C   0x2800             CMP      R0,#+0
+   \       0x3E   0xD001             BEQ.N    ??MX_USB_DEVICE_Init_4
+     85            {
+     86              Error_Handler();
+   \       0x40   0x.... 0x....      BL       Error_Handler
+     87            }
+     88          
+     89            /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
+     90          
+     91            /* USER CODE END USB_DEVICE_Init_PostTreatment */
+     92          }
+   \                     ??MX_USB_DEVICE_Init_4: (+1)
+   \       0x44   0xBD10             POP      {R4,PC}
+   \       0x46   0xBF00             Nop
+   \                     ??MX_USB_DEVICE_Init_0:
+   \       0x48   0x....'....        DC32     hUsbDeviceFS
+   \       0x4C   0x....'....        DC32     FS_Desc
+   \       0x50   0x....'....        DC32     USBD_CDC
+   \       0x54   0x....'....        DC32     USBD_Interface_fops_FS
+     93          
+     94          /**
+     95            * @}
+     96            */
+     97          
+     98          /**
+     99            * @}
+    100            */
+    101          
+    102          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   MX_USB_DEVICE_Init
+         8   -> Error_Handler
+         8   -> USBD_CDC_RegisterInterface
+         8   -> USBD_Init
+         8   -> USBD_RegisterClass
+         8   -> USBD_Start
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      88  MX_USB_DEVICE_Init
+     720  hUsbDeviceFS
+
+ 
+ 720 bytes in section .bss
+  88 bytes in section .text
+ 
+  88 bytes of CODE memory
+ 720 bytes of DATA memory
+
+Errors: none
+Warnings: 1

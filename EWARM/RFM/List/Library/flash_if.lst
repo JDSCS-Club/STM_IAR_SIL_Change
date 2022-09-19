@@ -1,0 +1,874 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:59
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Library\flash_if.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\flash_if.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Library\flash_if.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library --no_cse
+#        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
+#        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
+#        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\flash_if.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library\flash_if.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\flash_if.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Library\flash_if.c
+      1          /**
+      2            ******************************************************************************
+      3            * @file    IAP/IAP_Main/Src/flash_if.c 
+      4            * @author  MCD Application Team
+      5            * @brief   This file provides all the memory related operation functions.
+      6            ******************************************************************************
+      7            * @attention
+      8            *
+      9            * <h2><center>&copy; Copyright (c) 2018 STMicroelectronics.
+     10            * All rights reserved.</center></h2>
+     11            *
+     12            * This software component is licensed by ST under BSD 3-Clause license,
+     13            * the "License"; You may not use this file except in compliance with the
+     14            * License. You may obtain a copy of the License at:
+     15            *                        opensource.org/licenses/BSD-3-Clause
+     16            *
+     17            ******************************************************************************
+     18            */ 
+     19          
+     20          /** @addtogroup STM32F2xx_IAP_Main
+     21            * @{
+     22            */
+     23          
+     24          /* Includes ------------------------------------------------------------------*/
+     25          #include "flash_if.h"
+     26          
+     27          /* Private typedef -----------------------------------------------------------*/
+     28          /* Private define ------------------------------------------------------------*/
+     29          /* Private macro -------------------------------------------------------------*/
+     30          /* Private variables ---------------------------------------------------------*/
+     31          /* Private function prototypes -----------------------------------------------*/
+     32          static uint32_t GetSector(uint32_t Address);
+     33          
+     34          /* Private functions ---------------------------------------------------------*/
+     35          
+     36          /**
+     37            * @brief  Unlocks Flash for write access
+     38            * @param  None
+     39            * @retval None
+     40            */
+
+   \                                 In section .text, align 2, keep-with-next
+     41          void FLASH_If_Init(void)
+     42          { 
+   \                     FLASH_If_Init: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+     43            HAL_FLASH_Unlock(); 
+   \        0x2   0x.... 0x....      BL       HAL_FLASH_Unlock
+     44          
+     45            /* Clear pending flags (if any) */  
+     46            __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | 
+     47                                   FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR);
+   \        0x6   0x20F3             MOVS     R0,#+243
+   \        0x8   0x....             LDR.N    R1,??DataTable5
+   \        0xA   0x6008             STR      R0,[R1, #+0]
+     48          }
+   \        0xC   0xBD01             POP      {R0,PC}
+     49          
+     50          /**
+     51            * @brief  This function does an erase of all user flash area
+     52            * @param  StartSector: start of user flash area
+     53            * @retval 0: user flash area successfully erased
+     54            *         1: error occurred
+     55            */
+
+   \                                 In section .text, align 2, keep-with-next
+     56          uint32_t FLASH_If_Erase(uint32_t StartSector)
+     57          {
+   \                     FLASH_If_Erase: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0xB086             SUB      SP,SP,#+24
+   \        0x4   0x0004             MOVS     R4,R0
+     58            uint32_t UserStartSector;
+     59            uint32_t SectorError;
+     60            FLASH_EraseInitTypeDef pEraseInit;
+     61          
+     62            /* Unlock the Flash to enable the flash control register access *************/ 
+     63            FLASH_If_Init();
+   \        0x6   0x.... 0x....      BL       FLASH_If_Init
+     64            
+     65            /* Get the sector where start the user flash area */
+     66            UserStartSector = GetSector(StartSector);
+   \        0xA   0x0020             MOVS     R0,R4
+   \        0xC   0x.... 0x....      BL       GetSector
+   \       0x10   0x0005             MOVS     R5,R0
+     67            
+     68            pEraseInit.TypeErase = TYPEERASE_SECTORS;
+   \       0x12   0x2000             MOVS     R0,#+0
+   \       0x14   0x9001             STR      R0,[SP, #+4]
+     69            pEraseInit.Sector = UserStartSector;
+   \       0x16   0x9503             STR      R5,[SP, #+12]
+     70            pEraseInit.NbSectors = 10;
+   \       0x18   0x200A             MOVS     R0,#+10
+   \       0x1A   0x9004             STR      R0,[SP, #+16]
+     71            pEraseInit.VoltageRange = VOLTAGE_RANGE_3;
+   \       0x1C   0x2002             MOVS     R0,#+2
+   \       0x1E   0x9005             STR      R0,[SP, #+20]
+     72              
+     73            if (HAL_FLASHEx_Erase(&pEraseInit, &SectorError) != HAL_OK)
+   \       0x20   0x4669             MOV      R1,SP
+   \       0x22   0xA801             ADD      R0,SP,#+4
+   \       0x24   0x.... 0x....      BL       HAL_FLASHEx_Erase
+   \       0x28   0x2800             CMP      R0,#+0
+   \       0x2A   0xD001             BEQ.N    ??FLASH_If_Erase_0
+     74            {
+     75               /* Error occurred while page erase */
+     76               return (1);
+   \       0x2C   0x2001             MOVS     R0,#+1
+   \       0x2E   0xE000             B.N      ??FLASH_If_Erase_1
+     77            }
+     78            
+     79            return (0);
+   \                     ??FLASH_If_Erase_0: (+1)
+   \       0x30   0x2000             MOVS     R0,#+0
+   \                     ??FLASH_If_Erase_1: (+1)
+   \       0x32   0xB007             ADD      SP,SP,#+28
+   \       0x34   0xBD30             POP      {R4,R5,PC}
+     80          }
+     81          
+     82          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     83          uint32_t FLASH_If_EraseSectors(uint32_t StartSector, uint32_t nSectorNum)
+     84          //========================================================================
+     85          {
+   \                     FLASH_If_EraseSectors: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0xB086             SUB      SP,SP,#+24
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+     86            uint32_t UserStartSector;
+     87            uint32_t SectorError;
+     88            FLASH_EraseInitTypeDef pEraseInit;
+     89          
+     90            /* Unlock the Flash to enable the flash control register access *************/
+     91            FLASH_If_Init();
+   \        0x8   0x.... 0x....      BL       FLASH_If_Init
+     92          
+     93            /* Get the sector where start the user flash area */
+     94            UserStartSector = GetSector(StartSector);
+   \        0xC   0x0020             MOVS     R0,R4
+   \        0xE   0x.... 0x....      BL       GetSector
+   \       0x12   0x0006             MOVS     R6,R0
+     95          
+     96            pEraseInit.TypeErase = TYPEERASE_SECTORS;
+   \       0x14   0x2000             MOVS     R0,#+0
+   \       0x16   0x9001             STR      R0,[SP, #+4]
+     97            pEraseInit.Sector = UserStartSector;
+   \       0x18   0x9603             STR      R6,[SP, #+12]
+     98            pEraseInit.NbSectors = nSectorNum;
+   \       0x1A   0x9504             STR      R5,[SP, #+16]
+     99            pEraseInit.VoltageRange = VOLTAGE_RANGE_3;
+   \       0x1C   0x2002             MOVS     R0,#+2
+   \       0x1E   0x9005             STR      R0,[SP, #+20]
+    100          
+    101            if (HAL_FLASHEx_Erase(&pEraseInit, &SectorError) != HAL_OK)
+   \       0x20   0x4669             MOV      R1,SP
+   \       0x22   0xA801             ADD      R0,SP,#+4
+   \       0x24   0x.... 0x....      BL       HAL_FLASHEx_Erase
+   \       0x28   0x2800             CMP      R0,#+0
+   \       0x2A   0xD001             BEQ.N    ??FLASH_If_EraseSectors_0
+    102            {
+    103               /* Error occurred while page erase */
+    104               return (1);
+   \       0x2C   0x2001             MOVS     R0,#+1
+   \       0x2E   0xE000             B.N      ??FLASH_If_EraseSectors_1
+    105            }
+    106          
+    107            return (0);
+   \                     ??FLASH_If_EraseSectors_0: (+1)
+   \       0x30   0x2000             MOVS     R0,#+0
+   \                     ??FLASH_If_EraseSectors_1: (+1)
+   \       0x32   0xB006             ADD      SP,SP,#+24
+   \       0x34   0xBD70             POP      {R4-R6,PC}
+    108          }
+    109          
+    110          /**
+    111            * @brief  This function writes a data buffer in flash (data are 32-bit aligned).
+    112            * @note   After writing data buffer, the flash content is checked.
+    113            * @param  FlashAddress: start address for writing data buffer
+    114            * @param  Data: pointer on data buffer
+    115            * @param  DataLength: length of data buffer (unit is 32-bit word)   
+    116            * @retval 0: Data successfully written to Flash memory
+    117            *         1: Error occurred while writing data in Flash memory
+    118            *         2: Written Data in flash memory is different from expected one
+    119            */
+
+   \                                 In section .text, align 2, keep-with-next
+    120          uint32_t FLASH_If_Write(uint32_t FlashAddress, uint32_t* Data ,uint32_t DataLength)
+    121          {
+   \                     FLASH_If_Write: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    122            uint32_t i = 0;
+   \        0x8   0x2000             MOVS     R0,#+0
+    123          
+    124            for (i = 0; (i < DataLength) && (FlashAddress <= (USER_FLASH_END_ADDRESS-4)); i++)
+   \        0xA   0x2700             MOVS     R7,#+0
+   \                     ??FLASH_If_Write_0: (+1)
+   \        0xC   0x42B7             CMP      R7,R6
+   \        0xE   0xD217             BCS.N    ??FLASH_If_Write_1
+   \       0x10   0x....             LDR.N    R0,??DataTable5_1
+   \       0x12   0x4284             CMP      R4,R0
+   \       0x14   0xD214             BCS.N    ??FLASH_If_Write_1
+    125            {
+    126              /* Device voltage range supposed to be [2.7V to 3.6V], the operation will
+    127                 be done by word */ 
+    128              if (HAL_FLASH_Program(TYPEPROGRAM_WORD, FlashAddress, *(uint32_t*)(Data+i)) == HAL_OK)      
+   \       0x16   0xF855 0x2027      LDR      R2,[R5, R7, LSL #+2]
+   \       0x1A   0x2300             MOVS     R3,#+0
+   \       0x1C   0x0021             MOVS     R1,R4
+   \       0x1E   0x2002             MOVS     R0,#+2
+   \       0x20   0x.... 0x....      BL       HAL_FLASH_Program
+   \       0x24   0x2800             CMP      R0,#+0
+   \       0x26   0xD109             BNE.N    ??FLASH_If_Write_2
+    129              {
+    130               /* Check the written value */
+    131                if (*(uint32_t*)FlashAddress != *(uint32_t*)(Data+i))
+   \       0x28   0x6820             LDR      R0,[R4, #+0]
+   \       0x2A   0xF855 0x1027      LDR      R1,[R5, R7, LSL #+2]
+   \       0x2E   0x4288             CMP      R0,R1
+   \       0x30   0xD001             BEQ.N    ??FLASH_If_Write_3
+    132                {
+    133                  /* Flash content doesn't match SRAM content */
+    134                  return(FLASHIF_WRITINGCTRL_ERROR);
+   \       0x32   0x2002             MOVS     R0,#+2
+   \       0x34   0xE005             B.N      ??FLASH_If_Write_4
+    135                }
+    136                /* Increment FLASH destination address */
+    137                FlashAddress += 4;
+   \                     ??FLASH_If_Write_3: (+1)
+   \       0x36   0x1D24             ADDS     R4,R4,#+4
+    138              }
+   \       0x38   0x1C7F             ADDS     R7,R7,#+1
+   \       0x3A   0xE7E7             B.N      ??FLASH_If_Write_0
+    139              else
+    140              {
+    141                /* Error occurred while writing data in Flash memory */
+    142                return (FLASHIF_WRITING_ERROR);
+   \                     ??FLASH_If_Write_2: (+1)
+   \       0x3C   0x2003             MOVS     R0,#+3
+   \       0x3E   0xE000             B.N      ??FLASH_If_Write_4
+    143              }
+    144            }
+    145          
+    146            return (FLASHIF_OK);
+   \                     ??FLASH_If_Write_1: (+1)
+   \       0x40   0x2000             MOVS     R0,#+0
+   \                     ??FLASH_If_Write_4: (+1)
+   \       0x42   0xBDF2             POP      {R1,R4-R7,PC}
+    147          }
+    148          
+    149          /**
+    150            * @brief  Returns the write protection status of user flash area.
+    151            * @param  None
+    152            * @retval 0: No write protected sectors inside the user flash area
+    153            *         1: Some sectors inside the user flash area are write protected
+    154            */
+
+   \                                 In section .text, align 2, keep-with-next
+    155          uint16_t FLASH_If_GetWriteProtectionStatus(void)
+    156          {
+   \                     FLASH_If_GetWriteProtectionStatus: (+1)
+   \        0x0   0xB518             PUSH     {R3,R4,LR}
+   \        0x2   0xB087             SUB      SP,SP,#+28
+    157            uint32_t ProtectedSECTOR = 0xFFF;
+   \        0x4   0xF640 0x74FF      MOVW     R4,#+4095
+    158            FLASH_OBProgramInitTypeDef OptionsBytesStruct;
+    159          
+    160            /* Unlock the Flash to enable the flash control register access *************/
+    161            HAL_FLASH_Unlock();
+   \        0x8   0x.... 0x....      BL       HAL_FLASH_Unlock
+    162          
+    163            /* Check if there are write protected sectors inside the user flash area ****/
+    164            HAL_FLASHEx_OBGetConfig(&OptionsBytesStruct);
+   \        0xC   0x4668             MOV      R0,SP
+   \        0xE   0x.... 0x....      BL       HAL_FLASHEx_OBGetConfig
+    165          
+    166            /* Lock the Flash to disable the flash control register access (recommended
+    167               to protect the FLASH memory against possible unwanted operation) *********/
+    168            HAL_FLASH_Lock();
+   \       0x12   0x.... 0x....      BL       HAL_FLASH_Lock
+    169          
+    170            /* Get pages already write protected ****************************************/
+    171            ProtectedSECTOR = ~(OptionsBytesStruct.WRPSector) & FLASH_SECTOR_TO_BE_PROTECTED;
+   \       0x16   0x9902             LDR      R1,[SP, #+8]
+   \       0x18   0x43C9             MVNS     R1,R1
+   \       0x1A   0x0509             LSLS     R1,R1,#+20
+   \       0x1C   0x0D09             LSRS     R1,R1,#+20
+    172          
+    173            /* Check if desired pages are already write protected ***********************/
+    174            if(ProtectedSECTOR != 0)
+   \       0x1E   0x2900             CMP      R1,#+0
+   \       0x20   0xD001             BEQ.N    ??FLASH_If_GetWriteProtectionStatus_0
+    175            {
+    176              /* Some sectors inside the user flash area are write protected */
+    177              return FLASHIF_PROTECTION_WRPENABLED;
+   \       0x22   0x2002             MOVS     R0,#+2
+   \       0x24   0xE000             B.N      ??FLASH_If_GetWriteProtectionStatus_1
+    178            }
+    179            else
+    180            { 
+    181              /* No write protected sectors inside the user flash area */
+    182              return FLASHIF_PROTECTION_NONE;
+   \                     ??FLASH_If_GetWriteProtectionStatus_0: (+1)
+   \       0x26   0x2000             MOVS     R0,#+0
+   \                     ??FLASH_If_GetWriteProtectionStatus_1: (+1)
+   \       0x28   0xB008             ADD      SP,SP,#+32
+   \       0x2A   0xBD10             POP      {R4,PC}
+    183            }
+    184          }
+    185          
+    186          /**
+    187            * @brief  Gets the sector of a given address
+    188            * @param  Address: Flash address
+    189            * @retval The sector of a given address
+    190            */
+
+   \                                 In section .text, align 2, keep-with-next
+    191          static uint32_t GetSector(uint32_t Address)
+    192          {
+   \                     GetSector: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+    193            uint32_t sector = 0;
+   \        0x2   0x2200             MOVS     R2,#+0
+    194            
+    195            if((Address < ADDR_FLASH_SECTOR_1) && (Address >= ADDR_FLASH_SECTOR_0))
+   \        0x4   0x....             LDR.N    R0,??DataTable5_2
+   \        0x6   0x4281             CMP      R1,R0
+   \        0x8   0xD204             BCS.N    ??GetSector_0
+   \        0xA   0xF1B1 0x6F00      CMP      R1,#+134217728
+   \        0xE   0xD301             BCC.N    ??GetSector_0
+    196            {
+    197              sector = FLASH_SECTOR_0;  
+   \       0x10   0x2000             MOVS     R0,#+0
+   \       0x12   0xE046             B.N      ??GetSector_1
+    198            }
+    199            else if((Address < ADDR_FLASH_SECTOR_2) && (Address >= ADDR_FLASH_SECTOR_1))
+   \                     ??GetSector_0: (+1)
+   \       0x14   0x....             LDR.N    R3,??DataTable5_3
+   \       0x16   0x4299             CMP      R1,R3
+   \       0x18   0xD203             BCS.N    ??GetSector_2
+   \       0x1A   0x4281             CMP      R1,R0
+   \       0x1C   0xD301             BCC.N    ??GetSector_2
+    200            {
+    201              sector = FLASH_SECTOR_1;  
+   \       0x1E   0x2001             MOVS     R0,#+1
+   \       0x20   0xE03F             B.N      ??GetSector_1
+    202            }
+    203            else if((Address < ADDR_FLASH_SECTOR_3) && (Address >= ADDR_FLASH_SECTOR_2))
+   \                     ??GetSector_2: (+1)
+   \       0x22   0x....             LDR.N    R0,??DataTable5_4
+   \       0x24   0x4281             CMP      R1,R0
+   \       0x26   0xD203             BCS.N    ??GetSector_3
+   \       0x28   0x4299             CMP      R1,R3
+   \       0x2A   0xD301             BCC.N    ??GetSector_3
+    204            {
+    205              sector = FLASH_SECTOR_2;  
+   \       0x2C   0x2002             MOVS     R0,#+2
+   \       0x2E   0xE038             B.N      ??GetSector_1
+    206            }
+    207            else if((Address < ADDR_FLASH_SECTOR_4) && (Address >= ADDR_FLASH_SECTOR_3))
+   \                     ??GetSector_3: (+1)
+   \       0x30   0x....             LDR.N    R3,??DataTable5_5
+   \       0x32   0x4299             CMP      R1,R3
+   \       0x34   0xD203             BCS.N    ??GetSector_4
+   \       0x36   0x4281             CMP      R1,R0
+   \       0x38   0xD301             BCC.N    ??GetSector_4
+    208            {
+    209              sector = FLASH_SECTOR_3;  
+   \       0x3A   0x2003             MOVS     R0,#+3
+   \       0x3C   0xE031             B.N      ??GetSector_1
+    210            }
+    211            else if((Address < ADDR_FLASH_SECTOR_5) && (Address >= ADDR_FLASH_SECTOR_4))
+   \                     ??GetSector_4: (+1)
+   \       0x3E   0x....             LDR.N    R0,??DataTable5_6
+   \       0x40   0x4281             CMP      R1,R0
+   \       0x42   0xD203             BCS.N    ??GetSector_5
+   \       0x44   0x4299             CMP      R1,R3
+   \       0x46   0xD301             BCC.N    ??GetSector_5
+    212            {
+    213              sector = FLASH_SECTOR_4;  
+   \       0x48   0x2004             MOVS     R0,#+4
+   \       0x4A   0xE02A             B.N      ??GetSector_1
+    214            }
+    215            else if((Address < ADDR_FLASH_SECTOR_6) && (Address >= ADDR_FLASH_SECTOR_5))
+   \                     ??GetSector_5: (+1)
+   \       0x4C   0x....             LDR.N    R3,??DataTable5_7
+   \       0x4E   0x4299             CMP      R1,R3
+   \       0x50   0xD203             BCS.N    ??GetSector_6
+   \       0x52   0x4281             CMP      R1,R0
+   \       0x54   0xD301             BCC.N    ??GetSector_6
+    216            {
+    217              sector = FLASH_SECTOR_5;  
+   \       0x56   0x2005             MOVS     R0,#+5
+   \       0x58   0xE023             B.N      ??GetSector_1
+    218            }
+    219            else if((Address < ADDR_FLASH_SECTOR_7) && (Address >= ADDR_FLASH_SECTOR_6))
+   \                     ??GetSector_6: (+1)
+   \       0x5A   0x....             LDR.N    R0,??DataTable5_8
+   \       0x5C   0x4281             CMP      R1,R0
+   \       0x5E   0xD203             BCS.N    ??GetSector_7
+   \       0x60   0x4299             CMP      R1,R3
+   \       0x62   0xD301             BCC.N    ??GetSector_7
+    220            {
+    221              sector = FLASH_SECTOR_6;  
+   \       0x64   0x2006             MOVS     R0,#+6
+   \       0x66   0xE01C             B.N      ??GetSector_1
+    222            }
+    223            else if((Address < ADDR_FLASH_SECTOR_8) && (Address >= ADDR_FLASH_SECTOR_7))
+   \                     ??GetSector_7: (+1)
+   \       0x68   0x....             LDR.N    R3,??DataTable5_9
+   \       0x6A   0x4299             CMP      R1,R3
+   \       0x6C   0xD203             BCS.N    ??GetSector_8
+   \       0x6E   0x4281             CMP      R1,R0
+   \       0x70   0xD301             BCC.N    ??GetSector_8
+    224            {
+    225              sector = FLASH_SECTOR_7;  
+   \       0x72   0x2007             MOVS     R0,#+7
+   \       0x74   0xE015             B.N      ??GetSector_1
+    226            }
+    227            else if((Address < ADDR_FLASH_SECTOR_9) && (Address >= ADDR_FLASH_SECTOR_8))
+   \                     ??GetSector_8: (+1)
+   \       0x76   0x....             LDR.N    R0,??DataTable5_10
+   \       0x78   0x4281             CMP      R1,R0
+   \       0x7A   0xD203             BCS.N    ??GetSector_9
+   \       0x7C   0x4299             CMP      R1,R3
+   \       0x7E   0xD301             BCC.N    ??GetSector_9
+    228            {
+    229              sector = FLASH_SECTOR_8;  
+   \       0x80   0x2008             MOVS     R0,#+8
+   \       0x82   0xE00E             B.N      ??GetSector_1
+    230            }
+    231            else if((Address < ADDR_FLASH_SECTOR_10) && (Address >= ADDR_FLASH_SECTOR_9))
+   \                     ??GetSector_9: (+1)
+   \       0x84   0x....             LDR.N    R3,??DataTable5_11
+   \       0x86   0x4299             CMP      R1,R3
+   \       0x88   0xD203             BCS.N    ??GetSector_10
+   \       0x8A   0x4281             CMP      R1,R0
+   \       0x8C   0xD301             BCC.N    ??GetSector_10
+    232            {
+    233              sector = FLASH_SECTOR_9;  
+   \       0x8E   0x2009             MOVS     R0,#+9
+   \       0x90   0xE007             B.N      ??GetSector_1
+    234            }
+    235            else if((Address < ADDR_FLASH_SECTOR_11) && (Address >= ADDR_FLASH_SECTOR_10))
+   \                     ??GetSector_10: (+1)
+   \       0x92   0x....             LDR.N    R0,??DataTable5_12
+   \       0x94   0x4281             CMP      R1,R0
+   \       0x96   0xD203             BCS.N    ??GetSector_11
+   \       0x98   0x4299             CMP      R1,R3
+   \       0x9A   0xD301             BCC.N    ??GetSector_11
+    236            {
+    237              sector = FLASH_SECTOR_10;  
+   \       0x9C   0x200A             MOVS     R0,#+10
+   \       0x9E   0xE000             B.N      ??GetSector_1
+    238            }
+    239            else /*(Address < FLASH_END_ADDR) && (Address >= ADDR_FLASH_SECTOR_11))*/
+    240            {
+    241              sector = FLASH_SECTOR_11;  
+   \                     ??GetSector_11: (+1)
+   \       0xA0   0x200B             MOVS     R0,#+11
+    242            }
+    243            return sector;
+   \                     ??GetSector_1: (+1)
+   \       0xA2   0x4770             BX       LR
+    244          }
+    245          
+    246          /**
+    247            * @brief  Configure the write protection status of user flash area.
+    248            * @param  modifier DISABLE or ENABLE the protection
+    249            * @retval HAL_StatusTypeDef HAL_OK if change is applied.
+    250            */
+
+   \                                 In section .text, align 2, keep-with-next
+    251          HAL_StatusTypeDef FLASH_If_WriteProtectionConfig(uint32_t modifier)
+    252          {
+   \                     FLASH_If_WriteProtectionConfig: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0xB08E             SUB      SP,SP,#+56
+   \        0x6   0x0004             MOVS     R4,R0
+    253            uint32_t ProtectedSECTOR = 0xFFF;
+   \        0x8   0xF640 0x77FF      MOVW     R7,#+4095
+   \        0xC   0x003D             MOVS     R5,R7
+    254            FLASH_OBProgramInitTypeDef config_new, config_old;
+    255            HAL_StatusTypeDef result = HAL_OK;
+   \        0xE   0x2600             MOVS     R6,#+0
+    256            
+    257            /* Get pages write protection status ****************************************/
+    258            HAL_FLASHEx_OBGetConfig(&config_old);
+   \       0x10   0xA807             ADD      R0,SP,#+28
+   \       0x12   0x.... 0x....      BL       HAL_FLASHEx_OBGetConfig
+    259          
+    260            /* The parameter says whether we turn the protection on or off */
+    261            config_new.WRPState = modifier;
+   \       0x16   0x9401             STR      R4,[SP, #+4]
+    262          
+    263            /* We want to modify only the Write protection */
+    264            config_new.OptionType = OPTIONBYTE_WRP;
+   \       0x18   0x2001             MOVS     R0,#+1
+   \       0x1A   0x9000             STR      R0,[SP, #+0]
+    265            
+    266            /* No read protection, keep BOR and reset settings */
+    267            config_new.RDPLevel = OB_RDP_LEVEL_0;
+   \       0x1C   0x20AA             MOVS     R0,#+170
+   \       0x1E   0x9004             STR      R0,[SP, #+16]
+    268            config_new.USERConfig = config_old.USERConfig;  
+   \       0x20   0xF89D 0x0034      LDRB     R0,[SP, #+52]
+   \       0x24   0xF88D 0x0018      STRB     R0,[SP, #+24]
+    269            /* Get pages already write protected ****************************************/
+    270            ProtectedSECTOR = config_old.WRPSector | FLASH_SECTOR_TO_BE_PROTECTED;
+   \       0x28   0xF8DD 0x8024      LDR      R8,[SP, #+36]
+   \       0x2C   0xEA57 0x0808      ORRS     R8,R7,R8
+    271          
+    272            /* Unlock the Flash to enable the flash control register access *************/ 
+    273            HAL_FLASH_Unlock();
+   \       0x30   0x.... 0x....      BL       HAL_FLASH_Unlock
+    274          
+    275            /* Unlock the Options Bytes *************************************************/
+    276            HAL_FLASH_OB_Unlock();
+   \       0x34   0x.... 0x....      BL       HAL_FLASH_OB_Unlock
+    277            
+    278            config_new.WRPSector    = ProtectedSECTOR;
+   \       0x38   0xF8CD 0x8008      STR      R8,[SP, #+8]
+    279            result = HAL_FLASHEx_OBProgram(&config_new);
+   \       0x3C   0x4668             MOV      R0,SP
+   \       0x3E   0x.... 0x....      BL       HAL_FLASHEx_OBProgram
+    280            
+    281            return result;
+   \       0x42   0xB2C0             UXTB     R0,R0
+   \       0x44   0xB00E             ADD      SP,SP,#+56
+   \       0x46   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    282          }
+    283          
+    284          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    285          uint32_t	FLASH_If_FindLastData	( uint32_t baseAddr, uint32_t endAddr )
+    286          //========================================================================
+    287          {
+   \                     FLASH_If_FindLastData: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    288          	//	해당영역의 마지막 Data를 찾는다.
+    289          	//	Flash 영역 Binary Data Size 확인용.
+    290          	printf( "%s(%d)\n", __func__, __LINE__ );
+                 	^
+Warning[Pe223]: function "printf" declared implicitly
+   \        0x6   0xF44F 0x7291      MOV      R2,#+290
+   \        0xA   0x....             LDR.N    R1,??DataTable5_13
+   \        0xC   0x....             LDR.N    R0,??DataTable5_14
+   \        0xE   0x.... 0x....      BL       printf
+    291          
+    292          	uint32_t findAddr;
+    293          
+    294          	int	nFound = 0;
+   \       0x12   0x2100             MOVS     R1,#+0
+    295          
+    296          	for( findAddr = endAddr; findAddr > baseAddr; findAddr -= 4 )
+   \       0x14   0x002A             MOVS     R2,R5
+   \                     ??FLASH_If_FindLastData_0: (+1)
+   \       0x16   0x4294             CMP      R4,R2
+   \       0x18   0xD208             BCS.N    ??FLASH_If_FindLastData_1
+    297          	{
+    298          		if( *(__IO uint32_t*)findAddr != 0xFFFFFFFF )
+   \       0x1A   0x6810             LDR      R0,[R2, #+0]
+   \       0x1C   0xF110 0x0F01      CMN      R0,#+1
+   \       0x20   0xD002             BEQ.N    ??FLASH_If_FindLastData_2
+    299          		{
+    300          			//	Found Last Valid Data.
+    301          			nFound = 1;
+   \       0x22   0x2001             MOVS     R0,#+1
+   \       0x24   0x0001             MOVS     R1,R0
+    302          			break;
+   \       0x26   0xE001             B.N      ??FLASH_If_FindLastData_1
+    303          		}
+    304          	}
+   \                     ??FLASH_If_FindLastData_2: (+1)
+   \       0x28   0x1F12             SUBS     R2,R2,#+4
+   \       0x2A   0xE7F4             B.N      ??FLASH_If_FindLastData_0
+    305          
+    306          	if ( nFound == 0 )	return 0;		//	Not Found
+   \                     ??FLASH_If_FindLastData_1: (+1)
+   \       0x2C   0x2900             CMP      R1,#+0
+   \       0x2E   0xD101             BNE.N    ??FLASH_If_FindLastData_3
+   \       0x30   0x2000             MOVS     R0,#+0
+   \       0x32   0xE002             B.N      ??FLASH_If_FindLastData_4
+    307          	else 				return (findAddr - baseAddr) + 4;
+   \                     ??FLASH_If_FindLastData_3: (+1)
+   \       0x34   0x1B14             SUBS     R4,R2,R4
+   \       0x36   0x1D24             ADDS     R4,R4,#+4
+   \       0x38   0x0020             MOVS     R0,R4
+   \                     ??FLASH_If_FindLastData_4: (+1)
+   \       0x3A   0xBD32             POP      {R1,R4,R5,PC}
+    308          }
+    309          
+    310          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    311          uint32_t	FLASH_If_GetBootSize	( void )
+    312          //========================================================================
+    313          {
+   \                     FLASH_If_GetBootSize: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    314          	printf( "%s(%d)\n", __func__, __LINE__ );
+                 	^
+Warning[Pe223]: function "printf" declared implicitly
+   \        0x2   0xF44F 0x729D      MOV      R2,#+314
+   \        0x6   0x....             LDR.N    R1,??DataTable5_15
+   \        0x8   0x....             LDR.N    R0,??DataTable5_14
+   \        0xA   0x.... 0x....      BL       printf
+    315          
+    316          	return FLASH_If_FindLastData( ADDR_FLASH_BOOT, (ADDR_FLASH_CONF - 4) );
+   \        0xE   0x....             LDR.N    R1,??DataTable5_16
+   \       0x10   0xF05F 0x6000      MOVS     R0,#+134217728
+   \       0x14   0x.... 0x....      BL       FLASH_If_FindLastData
+   \       0x18   0xBD02             POP      {R1,PC}
+    317          }
+    318          
+    319          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    320          uint32_t	FLASH_If_GetAppSize		( void )
+    321          //========================================================================
+    322          {
+   \                     FLASH_If_GetAppSize: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    323          	printf( "%s(%d)\n", __func__, __LINE__ );
+                 	^
+Warning[Pe223]: function "printf" declared implicitly
+   \        0x2   0xF240 0x1243      MOVW     R2,#+323
+   \        0x6   0x....             LDR.N    R1,??DataTable5_17
+   \        0x8   0x....             LDR.N    R0,??DataTable5_14
+   \        0xA   0x.... 0x....      BL       printf
+    324          
+    325          	return FLASH_If_FindLastData( ADDR_FLASH_APP, (ADDR_FLASH_IMGBOOT - 4) );
+   \        0xE   0x....             LDR.N    R1,??DataTable5_18
+   \       0x10   0x....             LDR.N    R0,??DataTable5_6
+   \       0x12   0x.... 0x....      BL       FLASH_If_FindLastData
+   \       0x16   0xBD02             POP      {R1,PC}
+    326          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5:
+   \        0x0   0x4002'3C0C        DC32     0x40023c0c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_1:
+   \        0x0   0x080F'FFFC        DC32     0x80ffffc
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_2:
+   \        0x0   0x0800'4000        DC32     0x8004000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_3:
+   \        0x0   0x0800'8000        DC32     0x8008000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_4:
+   \        0x0   0x0800'C000        DC32     0x800c000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_5:
+   \        0x0   0x0801'0000        DC32     0x8010000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_6:
+   \        0x0   0x0802'0000        DC32     0x8020000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_7:
+   \        0x0   0x0804'0000        DC32     0x8040000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_8:
+   \        0x0   0x0806'0000        DC32     0x8060000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_9:
+   \        0x0   0x0808'0000        DC32     0x8080000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_10:
+   \        0x0   0x080A'0000        DC32     0x80a0000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_11:
+   \        0x0   0x080C'0000        DC32     0x80c0000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_12:
+   \        0x0   0x080E'0000        DC32     0x80e0000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_13:
+   \        0x0   0x....'....        DC32     `FLASH_If_FindLastData::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_14:
+   \        0x0   0x....'....        DC32     ?_0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_15:
+   \        0x0   0x....'....        DC32     `FLASH_If_GetBootSize::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_16:
+   \        0x0   0x0800'FFFC        DC32     0x800fffc
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_17:
+   \        0x0   0x....'....        DC32     `FLASH_If_GetAppSize::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_18:
+   \        0x0   0x0807'FFFC        DC32     0x807fffc
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \        0x0   0x25 0x73          DC8 "%s(%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x0A 0x00
+    327          
+    328          
+    329          /**
+    330            * @}
+    331            */
+    332          
+    333          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      40   FLASH_If_Erase
+        40   -> FLASH_If_Init
+        40   -> GetSector
+        40   -> HAL_FLASHEx_Erase
+      40   FLASH_If_EraseSectors
+        40   -> FLASH_If_Init
+        40   -> GetSector
+        40   -> HAL_FLASHEx_Erase
+      16   FLASH_If_FindLastData
+        16   -> printf
+       8   FLASH_If_GetAppSize
+         8   -> FLASH_If_FindLastData
+         8   -> printf
+       8   FLASH_If_GetBootSize
+         8   -> FLASH_If_FindLastData
+         8   -> printf
+      40   FLASH_If_GetWriteProtectionStatus
+        40   -> HAL_FLASHEx_OBGetConfig
+        40   -> HAL_FLASH_Lock
+        40   -> HAL_FLASH_Unlock
+       8   FLASH_If_Init
+         8   -> HAL_FLASH_Unlock
+      24   FLASH_If_Write
+        24   -> HAL_FLASH_Program
+      80   FLASH_If_WriteProtectionConfig
+        80   -> HAL_FLASHEx_OBGetConfig
+        80   -> HAL_FLASHEx_OBProgram
+        80   -> HAL_FLASH_OB_Unlock
+        80   -> HAL_FLASH_Unlock
+       0   GetSector
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable5
+       4  ??DataTable5_1
+       4  ??DataTable5_10
+       4  ??DataTable5_11
+       4  ??DataTable5_12
+       4  ??DataTable5_13
+       4  ??DataTable5_14
+       4  ??DataTable5_15
+       4  ??DataTable5_16
+       4  ??DataTable5_17
+       4  ??DataTable5_18
+       4  ??DataTable5_2
+       4  ??DataTable5_3
+       4  ??DataTable5_4
+       4  ??DataTable5_5
+       4  ??DataTable5_6
+       4  ??DataTable5_7
+       4  ??DataTable5_8
+       4  ??DataTable5_9
+       8  ?_0
+      54  FLASH_If_Erase
+      54  FLASH_If_EraseSectors
+      60  FLASH_If_FindLastData
+      24  FLASH_If_GetAppSize
+      26  FLASH_If_GetBootSize
+      44  FLASH_If_GetWriteProtectionStatus
+      14  FLASH_If_Init
+      68  FLASH_If_Write
+      74  FLASH_If_WriteProtectionConfig
+     164  GetSector
+      68  -- Other
+
+ 
+  76 bytes in section .rodata
+ 658 bytes in section .text
+ 
+ 658 bytes of CODE  memory
+  76 bytes of CONST memory
+
+Errors: none
+Warnings: 3

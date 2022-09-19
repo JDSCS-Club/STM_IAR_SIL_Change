@@ -1,0 +1,422 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:50:00
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c
+#    Command line                 =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Middlewares\USB_Device_Library\usbd_ioreq.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c
+#        -D USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Middlewares\USB_Device_Library
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Middlewares\USB_Device_Library
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Middlewares\USB_Device_Library\usbd_ioreq.o.d
+#    Locale                       =  C
+#    List file                    =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Middlewares\USB_Device_Library\usbd_ioreq.lst
+#    Object file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Middlewares\USB_Device_Library\usbd_ioreq.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c
+      1          /**
+      2            ******************************************************************************
+      3            * @file    usbd_ioreq.c
+      4            * @author  MCD Application Team
+      5            * @brief   This file provides the IO requests APIs for control endpoints.
+      6            ******************************************************************************
+      7            * @attention
+      8            *
+      9            * <h2><center>&copy; Copyright (c) 2015 STMicroelectronics.
+     10            * All rights reserved.</center></h2>
+     11            *
+     12            * This software component is licensed by ST under Ultimate Liberty license
+     13            * SLA0044, the "License"; You may not use this file except in compliance with
+     14            * the License. You may obtain a copy of the License at:
+     15            *                      www.st.com/SLA0044
+     16            *
+     17            ******************************************************************************
+     18            */
+     19          
+     20          /* Includes ------------------------------------------------------------------*/
+     21          #include "usbd_ioreq.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     22          
+     23          /** @addtogroup STM32_USB_DEVICE_LIBRARY
+     24            * @{
+     25            */
+     26          
+     27          
+     28          /** @defgroup USBD_IOREQ
+     29            * @brief control I/O requests module
+     30            * @{
+     31            */
+     32          
+     33          /** @defgroup USBD_IOREQ_Private_TypesDefinitions
+     34            * @{
+     35            */
+     36          /**
+     37            * @}
+     38            */
+     39          
+     40          
+     41          /** @defgroup USBD_IOREQ_Private_Defines
+     42            * @{
+     43            */
+     44          
+     45          /**
+     46            * @}
+     47            */
+     48          
+     49          
+     50          /** @defgroup USBD_IOREQ_Private_Macros
+     51            * @{
+     52            */
+     53          /**
+     54            * @}
+     55            */
+     56          
+     57          
+     58          /** @defgroup USBD_IOREQ_Private_Variables
+     59            * @{
+     60            */
+     61          
+     62          /**
+     63            * @}
+     64            */
+     65          
+     66          
+     67          /** @defgroup USBD_IOREQ_Private_FunctionPrototypes
+     68            * @{
+     69            */
+     70          /**
+     71            * @}
+     72            */
+     73          
+     74          
+     75          /** @defgroup USBD_IOREQ_Private_Functions
+     76            * @{
+     77            */
+     78          
+     79          /**
+     80          * @brief  USBD_CtlSendData
+     81          *         send data on the ctl pipe
+     82          * @param  pdev: device instance
+     83          * @param  buff: pointer to data buffer
+     84          * @param  len: length of data to be sent
+     85          * @retval status
+     86          */
+
+   \                                 In section .text, align 2, keep-with-next
+     87          USBD_StatusTypeDef USBD_CtlSendData(USBD_HandleTypeDef *pdev,
+     88                                              uint8_t *pbuf, uint32_t len)
+     89          {
+   \                     USBD_CtlSendData: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+     90            /* Set EP0 State */
+     91            pdev->ep0_state = USBD_EP0_DATA_IN;
+   \        0x8   0x2002             MOVS     R0,#+2
+   \        0xA   0xF8C4 0x0294      STR      R0,[R4, #+660]
+     92            pdev->ep_in[0].total_length = len;
+   \        0xE   0x61A6             STR      R6,[R4, #+24]
+     93            pdev->ep_in[0].rem_length = len;
+   \       0x10   0x61E6             STR      R6,[R4, #+28]
+     94          
+     95            /* Start the transfer */
+     96            (void)USBD_LL_Transmit(pdev, 0x00U, pbuf, len);
+   \       0x12   0x0033             MOVS     R3,R6
+   \       0x14   0x002A             MOVS     R2,R5
+   \       0x16   0x2100             MOVS     R1,#+0
+   \       0x18   0x0020             MOVS     R0,R4
+   \       0x1A   0x.... 0x....      BL       USBD_LL_Transmit
+     97          
+     98            return USBD_OK;
+   \       0x1E   0x2000             MOVS     R0,#+0
+   \       0x20   0xBD70             POP      {R4-R6,PC}
+     99          }
+    100          
+    101          /**
+    102          * @brief  USBD_CtlContinueSendData
+    103          *         continue sending data on the ctl pipe
+    104          * @param  pdev: device instance
+    105          * @param  buff: pointer to data buffer
+    106          * @param  len: length of data to be sent
+    107          * @retval status
+    108          */
+
+   \                                 In section .text, align 2, keep-with-next
+    109          USBD_StatusTypeDef USBD_CtlContinueSendData(USBD_HandleTypeDef *pdev,
+    110                                                      uint8_t *pbuf, uint32_t len)
+    111          {
+   \                     USBD_CtlContinueSendData: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    112            /* Start the next transfer */
+    113            (void)USBD_LL_Transmit(pdev, 0x00U, pbuf, len);
+   \        0x8   0x0033             MOVS     R3,R6
+   \        0xA   0x002A             MOVS     R2,R5
+   \        0xC   0x2100             MOVS     R1,#+0
+   \        0xE   0x0020             MOVS     R0,R4
+   \       0x10   0x.... 0x....      BL       USBD_LL_Transmit
+    114          
+    115            return USBD_OK;
+   \       0x14   0x2000             MOVS     R0,#+0
+   \       0x16   0xBD70             POP      {R4-R6,PC}
+    116          }
+    117          
+    118          /**
+    119          * @brief  USBD_CtlPrepareRx
+    120          *         receive data on the ctl pipe
+    121          * @param  pdev: device instance
+    122          * @param  buff: pointer to data buffer
+    123          * @param  len: length of data to be received
+    124          * @retval status
+    125          */
+
+   \                                 In section .text, align 2, keep-with-next
+    126          USBD_StatusTypeDef USBD_CtlPrepareRx(USBD_HandleTypeDef *pdev,
+    127                                               uint8_t *pbuf, uint32_t len)
+    128          {
+   \                     USBD_CtlPrepareRx: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    129            /* Set EP0 State */
+    130            pdev->ep0_state = USBD_EP0_DATA_OUT;
+   \        0x8   0x2003             MOVS     R0,#+3
+   \        0xA   0xF8C4 0x0294      STR      R0,[R4, #+660]
+    131            pdev->ep_out[0].total_length = len;
+   \        0xE   0xF8C4 0x6158      STR      R6,[R4, #+344]
+    132            pdev->ep_out[0].rem_length = len;
+   \       0x12   0xF8C4 0x615C      STR      R6,[R4, #+348]
+    133          
+    134            /* Start the transfer */
+    135            (void)USBD_LL_PrepareReceive(pdev, 0U, pbuf, len);
+   \       0x16   0x0033             MOVS     R3,R6
+   \       0x18   0x002A             MOVS     R2,R5
+   \       0x1A   0x2100             MOVS     R1,#+0
+   \       0x1C   0x0020             MOVS     R0,R4
+   \       0x1E   0x.... 0x....      BL       USBD_LL_PrepareReceive
+    136          
+    137            return USBD_OK;
+   \       0x22   0x2000             MOVS     R0,#+0
+   \       0x24   0xBD70             POP      {R4-R6,PC}
+    138          }
+    139          
+    140          /**
+    141          * @brief  USBD_CtlContinueRx
+    142          *         continue receive data on the ctl pipe
+    143          * @param  pdev: device instance
+    144          * @param  buff: pointer to data buffer
+    145          * @param  len: length of data to be received
+    146          * @retval status
+    147          */
+
+   \                                 In section .text, align 2, keep-with-next
+    148          USBD_StatusTypeDef USBD_CtlContinueRx(USBD_HandleTypeDef *pdev,
+    149                                                uint8_t *pbuf, uint32_t len)
+    150          {
+   \                     USBD_CtlContinueRx: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    151            (void)USBD_LL_PrepareReceive(pdev, 0U, pbuf, len);
+   \        0x8   0x0033             MOVS     R3,R6
+   \        0xA   0x002A             MOVS     R2,R5
+   \        0xC   0x2100             MOVS     R1,#+0
+   \        0xE   0x0020             MOVS     R0,R4
+   \       0x10   0x.... 0x....      BL       USBD_LL_PrepareReceive
+    152          
+    153            return USBD_OK;
+   \       0x14   0x2000             MOVS     R0,#+0
+   \       0x16   0xBD70             POP      {R4-R6,PC}
+    154          }
+    155          
+    156          /**
+    157          * @brief  USBD_CtlSendStatus
+    158          *         send zero lzngth packet on the ctl pipe
+    159          * @param  pdev: device instance
+    160          * @retval status
+    161          */
+
+   \                                 In section .text, align 2, keep-with-next
+    162          USBD_StatusTypeDef USBD_CtlSendStatus(USBD_HandleTypeDef *pdev)
+    163          {
+   \                     USBD_CtlSendStatus: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    164            /* Set EP0 State */
+    165            pdev->ep0_state = USBD_EP0_STATUS_IN;
+   \        0x4   0x2004             MOVS     R0,#+4
+   \        0x6   0xF8C4 0x0294      STR      R0,[R4, #+660]
+    166          
+    167            /* Start the transfer */
+    168            (void)USBD_LL_Transmit(pdev, 0x00U, NULL, 0U);
+   \        0xA   0x2300             MOVS     R3,#+0
+   \        0xC   0x2200             MOVS     R2,#+0
+   \        0xE   0x2100             MOVS     R1,#+0
+   \       0x10   0x0020             MOVS     R0,R4
+   \       0x12   0x.... 0x....      BL       USBD_LL_Transmit
+    169          
+    170            return USBD_OK;
+   \       0x16   0x2000             MOVS     R0,#+0
+   \       0x18   0xBD10             POP      {R4,PC}
+    171          }
+    172          
+    173          /**
+    174          * @brief  USBD_CtlReceiveStatus
+    175          *         receive zero lzngth packet on the ctl pipe
+    176          * @param  pdev: device instance
+    177          * @retval status
+    178          */
+
+   \                                 In section .text, align 2, keep-with-next
+    179          USBD_StatusTypeDef USBD_CtlReceiveStatus(USBD_HandleTypeDef *pdev)
+    180          {
+   \                     USBD_CtlReceiveStatus: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    181            /* Set EP0 State */
+    182            pdev->ep0_state = USBD_EP0_STATUS_OUT;
+   \        0x4   0x2005             MOVS     R0,#+5
+   \        0x6   0xF8C4 0x0294      STR      R0,[R4, #+660]
+    183          
+    184            /* Start the transfer */
+    185            (void)USBD_LL_PrepareReceive(pdev, 0U, NULL, 0U);
+   \        0xA   0x2300             MOVS     R3,#+0
+   \        0xC   0x2200             MOVS     R2,#+0
+   \        0xE   0x2100             MOVS     R1,#+0
+   \       0x10   0x0020             MOVS     R0,R4
+   \       0x12   0x.... 0x....      BL       USBD_LL_PrepareReceive
+    186          
+    187            return USBD_OK;
+   \       0x16   0x2000             MOVS     R0,#+0
+   \       0x18   0xBD10             POP      {R4,PC}
+    188          }
+    189          
+    190          /**
+    191          * @brief  USBD_GetRxCount
+    192          *         returns the received data length
+    193          * @param  pdev: device instance
+    194          * @param  ep_addr: endpoint address
+    195          * @retval Rx Data blength
+    196          */
+
+   \                                 In section .text, align 2, keep-with-next
+    197          uint32_t USBD_GetRxCount(USBD_HandleTypeDef *pdev, uint8_t ep_addr)
+    198          {
+   \                     USBD_GetRxCount: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    199            return USBD_LL_GetRxDataSize(pdev, ep_addr);
+   \        0x6   0x0029             MOVS     R1,R5
+   \        0x8   0xB2C9             UXTB     R1,R1
+   \        0xA   0x0020             MOVS     R0,R4
+   \        0xC   0x.... 0x....      BL       USBD_LL_GetRxDataSize
+   \       0x10   0xBD32             POP      {R1,R4,R5,PC}
+    200          }
+    201          
+    202          /**
+    203            * @}
+    204            */
+    205          
+    206          
+    207          /**
+    208            * @}
+    209            */
+    210          
+    211          
+    212          /**
+    213            * @}
+    214            */
+    215          
+    216          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      16   USBD_CtlContinueRx
+        16   -> USBD_LL_PrepareReceive
+      16   USBD_CtlContinueSendData
+        16   -> USBD_LL_Transmit
+      16   USBD_CtlPrepareRx
+        16   -> USBD_LL_PrepareReceive
+       8   USBD_CtlReceiveStatus
+         8   -> USBD_LL_PrepareReceive
+      16   USBD_CtlSendData
+        16   -> USBD_LL_Transmit
+       8   USBD_CtlSendStatus
+         8   -> USBD_LL_Transmit
+      16   USBD_GetRxCount
+        16   -> USBD_LL_GetRxDataSize
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      24  USBD_CtlContinueRx
+      24  USBD_CtlContinueSendData
+      38  USBD_CtlPrepareRx
+      26  USBD_CtlReceiveStatus
+      34  USBD_CtlSendData
+      26  USBD_CtlSendStatus
+      18  USBD_GetRxCount
+
+ 
+ 190 bytes in section .text
+ 
+ 190 bytes of CODE memory
+
+Errors: none
+Warnings: 1

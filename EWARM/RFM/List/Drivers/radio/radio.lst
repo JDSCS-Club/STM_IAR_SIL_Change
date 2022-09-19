@@ -1,0 +1,2113 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:56
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\radio.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\radio\radio.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\radio.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\radio -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\radio
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\radio\radio.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\radio\radio.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\radio\radio.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\radio.c
+      1          /*! @file radio.c
+      2           * @brief This file contains functions to interface with the radio chip.
+      3           *
+      4           * @b COPYRIGHT
+      5           * @n Silicon Laboratories Confidential
+      6           * @n Copyright 2012 Silicon Laboratories, Inc.
+      7           * @n http://www.silabs.com
+      8           */
+      9          
+     10          #include "si446x_defs.h"        //  U8, U16, ...
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     11          #include "si446x_api_lib.h"     //  SI446X_SUCCESS
+     12          
+     13          #include "main.h"				//	GPIO1_Pin
+     14          
+     15          #include "radio.h"				//	tRadioConfiguration
+     16          
+     17          #include "radio_config.h"		//	RadioConfiguration
+     18          
+     19          #include "radio_hal.h"			//	RF_NIRQ
+
+  typedef unsigned char       BYTE;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",73  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned short      WORD;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",77  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		BIT;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",83  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		U8;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",84  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned int 		U16;
+                       		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",85  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned long 		U32;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",86  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed char 		S8;
+                      		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",88  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed int 			S16;
+                     			^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",89  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed long 		S32;
+                      		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",90  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+     20          
+     21          #include "ProcPkt.h"			//	nRxErr / nCrcErr
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",304  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",322  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",468  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",506  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",511  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",533  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",559  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",567  Warning[Pe040]: 
+          expected an identifier
+     22          
+     23          #include "rfm.h"				//	g_nRSSI
+     24          
+     25          /*****************************************************************************
+     26           *  Local Macros & Definitions
+     27           *****************************************************************************/
+     28          
+     29          
+     30          /*****************************************************************************
+     31           *  Global Variables
+     32           *****************************************************************************/
+
+   \                                 In section .rodata, align 4
+     33          const SEGMENT_VARIABLE(Radio_Configuration_Data_Array[], U8, SEG_CODE) = \
+   \                     Radio_Configuration_Data_Array:
+   \        0x0   0x08 0x04          DC8 8, 4, 33, 113, 75, 0, 0, 220, 149, 8, 5, 166, 34, 33, 240, 65, 91
+
+   \              0x21 0x71    
+
+   \              0x4B 0x00    
+
+   \              0x00 0xDC    
+
+   \              0x95 0x08    
+
+   \              0x05 0xA6    
+
+   \              0x22 0x21    
+
+   \              0xF0 0x41    
+
+   \              0x5B
+   \       0x11   0x26 0x08          DC8 38, 8, 226, 47, 28, 187, 10, 168, 148, 40, 8, 5, 135, 103, 226, 88
+
+   \              0xE2 0x2F    
+
+   \              0x1C 0xBB    
+
+   \              0x0A 0xA8    
+
+   \              0x94 0x28    
+
+   \              0x08 0x05    
+
+   \              0x87 0x67    
+
+   \              0xE2 0x58
+   \       0x21   0x1A 0x07          DC8 26, 7, 91, 8, 225, 208, 114, 216, 138, 184, 91, 125, 8, 5, 17, 236
+
+   \              0x5B 0x08    
+
+   \              0xE1 0xD0    
+
+   \              0x72 0xD8    
+
+   \              0x8A 0xB8    
+
+   \              0x5B 0x7D    
+
+   \              0x08 0x05    
+
+   \              0x11 0xEC
+   \       0x31   0x9E 0x28          DC8 158, 40, 35, 27, 109, 8, 226, 79, 138, 178, 169, 41, 20, 19, 8, 5
+
+   \              0x23 0x1B    
+
+   \              0x6D 0x08    
+
+   \              0xE2 0x4F    
+
+   \              0x8A 0xB2    
+
+   \              0xA9 0x29    
+
+   \              0x14 0x13    
+
+   \              0x08 0x05
+   \       0x41   0xD1 0x2E          DC8 209, 46, 113, 106, 81, 76, 44, 8, 229, 128, 39, 66, 164, 105, 176
+
+   \              0x71 0x6A    
+
+   \              0x51 0x4C    
+
+   \              0x2C 0x08    
+
+   \              0xE5 0x80    
+
+   \              0x27 0x42    
+
+   \              0xA4 0x69    
+
+   \              0xB0
+   \       0x50   0x7F 0x08          DC8 127, 8, 5, 170, 129, 42, 189, 69, 232, 168, 8, 234, 228, 240, 36
+
+   \              0x05 0xAA    
+
+   \              0x81 0x2A    
+
+   \              0xBD 0x45    
+
+   \              0xE8 0xA8    
+
+   \              0x08 0xEA    
+
+   \              0xE4 0xF0    
+
+   \              0x24
+   \       0x5F   0xC9 0x9F          DC8 201, 159, 204, 60, 8, 5, 8, 245, 5, 4, 39, 98, 152, 8, 234, 107, 98
+
+   \              0xCC 0x3C    
+
+   \              0x08 0x05    
+
+   \              0x08 0xF5    
+
+   \              0x05 0x04    
+
+   \              0x27 0x62    
+
+   \              0x98 0x08    
+
+   \              0xEA 0x6B    
+
+   \              0x62
+   \       0x70   0x84 0xA1          DC8 132, 161, 249, 74, 226, 8, 5, 233, 119, 5, 79, 132, 238, 53, 8, 226
+
+   \              0xF9 0x4A    
+
+   \              0xE2 0x08    
+
+   \              0x05 0xE9    
+
+   \              0x77 0x05    
+
+   \              0x4F 0x84    
+
+   \              0xEE 0x35    
+
+   \              0x08 0xE2
+   \       0x80   0x43 0xC3          DC8 67, 195, 141, 251, 173, 84, 37, 8, 5, 20, 6, 94, 57, 54, 47, 69, 8
+
+   \              0x8D 0xFB    
+
+   \              0xAD 0x54    
+
+   \              0x25 0x08    
+
+   \              0x05 0x14    
+
+   \              0x06 0x5E    
+
+   \              0x39 0x36    
+
+   \              0x2F 0x45    
+
+   \              0x08
+   \       0x91   0xEA 0x0C          DC8 234, 12, 28, 116, 208, 17, 252, 50, 8, 5, 218, 56, 186, 14, 60, 231
+
+   \              0x1C 0x74    
+
+   \              0xD0 0x11    
+
+   \              0xFC 0x32    
+
+   \              0x08 0x05    
+
+   \              0xDA 0x38    
+
+   \              0xBA 0x0E    
+
+   \              0x3C 0xE7
+   \       0xA1   0x8B 0x08          DC8 139, 8, 234, 176, 9, 230, 255, 148, 187, 169, 8, 5, 215, 17, 41
+
+   \              0xEA 0xB0    
+
+   \              0x09 0xE6    
+
+   \              0xFF 0x94    
+
+   \              0xBB 0xA9    
+
+   \              0x08 0x05    
+
+   \              0xD7 0x11    
+
+   \              0x29
+   \       0xB0   0xFE 0xDC          DC8 254, 220, 113, 213, 8, 234, 127, 131, 167, 96, 144, 98, 24, 8, 5
+
+   \              0x71 0xD5    
+
+   \              0x08 0xEA    
+
+   \              0x7F 0x83    
+
+   \              0xA7 0x60    
+
+   \              0x90 0x62    
+
+   \              0x18 0x08    
+
+   \              0x05
+   \       0xBF   0x84 0x7F          DC8 132, 127, 106, 209, 145, 198, 82, 8, 234, 42, 216, 123, 142, 74
+
+   \              0x6A 0xD1    
+
+   \              0x91 0xC6    
+
+   \              0x52 0x08    
+
+   \              0xEA 0x2A    
+
+   \              0xD8 0x7B    
+
+   \              0x8E 0x4A
+   \       0xCD   0x9F 0x91          DC8 159, 145, 8, 5, 189, 170, 157, 22, 24, 6, 21, 8, 226, 85, 173, 45
+
+   \              0x08 0x05    
+
+   \              0xBD 0xAA    
+
+   \              0x9D 0x16    
+
+   \              0x18 0x06    
+
+   \              0x15 0x08    
+
+   \              0xE2 0x55    
+
+   \              0xAD 0x2D
+   \       0xDD   0x0A 0x14          DC8 10, 20, 31, 93, 8, 5, 211, 224, 124, 57, 207, 1, 240, 8, 239, 58
+
+   \              0x1F 0x5D    
+
+   \              0x08 0x05    
+
+   \              0xD3 0xE0    
+
+   \              0x7C 0x39    
+
+   \              0xCF 0x01    
+
+   \              0xF0 0x08    
+
+   \              0xEF 0x3A
+   \       0xED   0x91 0x72          DC8 145, 114, 106, 3, 187, 150, 8, 231, 131, 109, 164, 146, 252, 19
+
+   \              0x6A 0x03    
+
+   \              0xBB 0x96    
+
+   \              0x08 0xE7    
+
+   \              0x83 0x6D    
+
+   \              0xA4 0x92    
+
+   \              0xFC 0x13
+   \       0xFB   0xA7 0x08          DC8 167, 8, 239, 248, 253, 207, 98, 7, 111, 30, 8, 231, 76, 234, 74
+
+   \              0xEF 0xF8    
+
+   \              0xFD 0xCF    
+
+   \              0x62 0x07    
+
+   \              0x6F 0x1E    
+
+   \              0x08 0xE7    
+
+   \              0x4C 0xEA    
+
+   \              0x4A
+   \      0x10A   0x75 0x4F          DC8 117, 79, 214, 207, 8, 226, 246, 17, 228, 38, 13, 77, 198, 8, 5, 251
+
+   \              0xD6 0xCF    
+
+   \              0x08 0xE2    
+
+   \              0xF6 0x11    
+
+   \              0xE4 0x26    
+
+   \              0x0D 0x4D    
+
+   \              0xC6 0x08    
+
+   \              0x05 0xFB
+   \      0x11A   0xBF 0xE8          DC8 191, 232, 7, 137, 195, 81, 8, 239, 130, 39, 4, 63, 150, 168, 88, 8
+
+   \              0x07 0x89    
+
+   \              0xC3 0x51    
+
+   \              0x08 0xEF    
+
+   \              0x82 0x27    
+
+   \              0x04 0x3F    
+
+   \              0x96 0xA8    
+
+   \              0x58 0x08
+   \      0x12A   0xE7 0x41          DC8 231, 65, 41, 60, 117, 42, 3, 28, 8, 239, 175, 89, 152, 54, 170, 15
+
+   \              0x29 0x3C    
+
+   \              0x75 0x2A    
+
+   \              0x03 0x1C    
+
+   \              0x08 0xEF    
+
+   \              0xAF 0x59    
+
+   \              0x98 0x36    
+
+   \              0xAA 0x0F
+   \      0x13A   0x06 0x08          DC8 6, 8, 230, 246, 147, 65, 45, 236, 14, 153, 8, 5, 41, 25, 144, 229
+
+   \              0xE6 0xF6    
+
+   \              0x93 0x41    
+
+   \              0x2D 0xEC    
+
+   \              0x0E 0x99    
+
+   \              0x08 0x05    
+
+   \              0x29 0x19    
+
+   \              0x90 0xE5
+   \      0x14A   0xAA 0x36          DC8 170, 54, 64, 8, 231, 251, 104, 16, 125, 119, 93, 192, 8, 231, 203
+
+   \              0x40 0x08    
+
+   \              0xE7 0xFB    
+
+   \              0x68 0x10    
+
+   \              0x7D 0x77    
+
+   \              0x5D 0xC0    
+
+   \              0x08 0xE7    
+
+   \              0xCB
+   \      0x159   0xB4 0xDD          DC8 180, 221, 206, 144, 84, 190, 8, 231, 114, 138, 214, 2, 244, 221
+
+   \              0xCE 0x90    
+
+   \              0x54 0xBE    
+
+   \              0x08 0xE7    
+
+   \              0x72 0x8A    
+
+   \              0xD6 0x02    
+
+   \              0xF4 0xDD
+   \      0x167   0xCC 0x08          DC8 204, 8, 231, 106, 33, 11, 2, 134, 236, 21, 8, 231, 123, 124, 61
+
+   \              0xE7 0x6A    
+
+   \              0x21 0x0B    
+
+   \              0x02 0x86    
+
+   \              0xEC 0x15    
+
+   \              0x08 0xE7    
+
+   \              0x7B 0x7C    
+
+   \              0x3D
+   \      0x176   0x6B 0x81          DC8 107, 129, 3, 208, 8, 239, 125, 97, 54, 148, 124, 160, 223, 8, 239
+
+   \              0x03 0xD0    
+
+   \              0x08 0xEF    
+
+   \              0x7D 0x61    
+
+   \              0x36 0x94    
+
+   \              0x7C 0xA0    
+
+   \              0xDF 0x08    
+
+   \              0xEF
+   \      0x185   0xCC 0x85          DC8 204, 133, 59, 218, 224, 92, 28, 8, 231, 227, 117, 187, 57, 34, 75
+
+   \              0x3B 0xDA    
+
+   \              0xE0 0x5C    
+
+   \              0x1C 0x08    
+
+   \              0xE7 0xE3    
+
+   \              0x75 0xBB    
+
+   \              0x39 0x22    
+
+   \              0x4B
+   \      0x194   0xA8 0x08          DC8 168, 8, 239, 249, 206, 224, 94, 235, 29, 203, 8, 231, 189, 226, 112
+
+   \              0xEF 0xF9    
+
+   \              0xCE 0xE0    
+
+   \              0x5E 0xEB    
+
+   \              0x1D 0xCB    
+
+   \              0x08 0xE7    
+
+   \              0xBD 0xE2    
+
+   \              0x70
+   \      0x1A3   0xD5 0xAB          DC8 213, 171, 78, 63, 8, 231, 183, 141, 32, 104, 107, 9, 82, 8, 239
+
+   \              0x4E 0x3F    
+
+   \              0x08 0xE7    
+
+   \              0xB7 0x8D    
+
+   \              0x20 0x68    
+
+   \              0x6B 0x09    
+
+   \              0x52 0x08    
+
+   \              0xEF
+   \      0x1B2   0xA1 0x1B          DC8 161, 27, 144, 205, 152, 0, 99, 8, 239, 84, 103, 93, 156, 17, 252
+
+   \              0x90 0xCD    
+
+   \              0x98 0x00    
+
+   \              0x63 0x08    
+
+   \              0xEF 0x54    
+
+   \              0x67 0x5D    
+
+   \              0x9C 0x11    
+
+   \              0xFC
+   \      0x1C1   0x45 0x08          DC8 69, 8, 231, 212, 155, 200, 151, 190, 138, 7, 8, 239, 82, 141, 144
+
+   \              0xE7 0xD4    
+
+   \              0x9B 0xC8    
+
+   \              0x97 0xBE    
+
+   \              0x8A 0x07    
+
+   \              0x08 0xEF    
+
+   \              0x52 0x8D    
+
+   \              0x90
+   \      0x1D0   0x63 0x73          DC8 99, 115, 213, 42, 8, 239, 3, 188, 110, 28, 118, 190, 74, 8, 231
+
+   \              0xD5 0x2A    
+
+   \              0x08 0xEF    
+
+   \              0x03 0xBC    
+
+   \              0x6E 0x1C    
+
+   \              0x76 0xBE    
+
+   \              0x4A 0x08    
+
+   \              0xE7
+   \      0x1DF   0xC2 0xED          DC8 194, 237, 103, 186, 94, 102, 33, 8, 239, 231, 63, 135, 190, 224
+
+   \              0x67 0xBA    
+
+   \              0x5E 0x66    
+
+   \              0x21 0x08    
+
+   \              0xEF 0xE7    
+
+   \              0x3F 0x87    
+
+   \              0xBE 0xE0
+   \      0x1ED   0x7A 0x6D          DC8 122, 109, 8, 231, 201, 112, 147, 29, 100, 245, 108, 8, 239, 245, 40
+
+   \              0x08 0xE7    
+
+   \              0xC9 0x70    
+
+   \              0x93 0x1D    
+
+   \              0x64 0xF5    
+
+   \              0x6C 0x08    
+
+   \              0xEF 0xF5    
+
+   \              0x28
+   \      0x1FC   0x08 0x34          DC8 8, 52, 179, 182, 44, 8, 239, 58, 10, 236, 15, 219, 86, 202, 8, 239
+
+   \              0xB3 0xB6    
+
+   \              0x2C 0x08    
+
+   \              0xEF 0x3A    
+
+   \              0x0A 0xEC    
+
+   \              0x0F 0xDB    
+
+   \              0x56 0xCA    
+
+   \              0x08 0xEF
+   \      0x20C   0x39 0xA0          DC8 57, 160, 110, 237, 121, 208, 36, 8, 231, 108, 11, 175, 169, 78, 64
+
+   \              0x6E 0xED    
+
+   \              0x79 0xD0    
+
+   \              0x24 0x08    
+
+   \              0xE7 0x6C    
+
+   \              0x0B 0xAF    
+
+   \              0xA9 0x4E    
+
+   \              0x40
+   \      0x21B   0xB5 0x08          DC8 181, 8, 233, 185, 175, 191, 37, 80, 209, 55, 8, 5, 158, 219, 222
+
+   \              0xE9 0xB9    
+
+   \              0xAF 0xBF    
+
+   \              0x25 0x50    
+
+   \              0xD1 0x37    
+
+   \              0x08 0x05    
+
+   \              0x9E 0xDB    
+
+   \              0xDE
+   \      0x22A   0x3F 0x94          DC8 63, 148, 233, 107, 8, 236, 197, 5, 170, 87, 220, 138, 94, 8, 5, 112
+
+   \              0xE9 0x6B    
+
+   \              0x08 0xEC    
+
+   \              0xC5 0x05    
+
+   \              0xAA 0x57    
+
+   \              0xDC 0x8A    
+
+   \              0x5E 0x08    
+
+   \              0x05 0x70
+   \      0x23A   0xDA 0x84          DC8 218, 132, 132, 221, 202, 144, 7, 2, 129, 1, 1, 201, 195, 128, 8, 19
+
+   \              0x84 0xDD    
+
+   \              0xCA 0x90    
+
+   \              0x07 0x02    
+
+   \              0x81 0x01    
+
+   \              0x01 0xC9    
+
+   \              0xC3 0x80    
+
+   \              0x08 0x13
+   \      0x24A   0x00 0x1B          DC8 0, 27, 3, 32, 0, 0, 0, 6, 17, 0, 2, 0, 0, 0, 5, 17, 0, 1, 3, 32, 6
+
+   \              0x03 0x20    
+
+   \              0x00 0x00    
+
+   \              0x00 0x06    
+
+   \              0x11 0x00    
+
+   \              0x02 0x00    
+
+   \              0x00 0x00    
+
+   \              0x05 0x11    
+
+   \              0x00 0x01    
+
+   \              0x03 0x20    
+
+   \              0x06
+   \      0x25F   0x11 0x01          DC8 17, 1, 2, 0, 1, 56, 8, 17, 2, 4, 0, 7, 10, 0, 0, 13, 17, 16, 9, 0
+
+   \              0x02 0x00    
+
+   \              0x01 0x38    
+
+   \              0x08 0x11    
+
+   \              0x02 0x04    
+
+   \              0x00 0x07    
+
+   \              0x0A 0x00    
+
+   \              0x00 0x0D    
+
+   \              0x11 0x10    
+
+   \              0x09 0x00
+   \      0x273   0x08 0x14          DC8 8, 20, 0, 15, 18, 0, 0, 0, 0, 10, 17, 17, 6, 0, 1, 9, 114, 0, 0, 0
+
+   \              0x00 0x0F    
+
+   \              0x12 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x0A    
+
+   \              0x11 0x11    
+
+   \              0x06 0x00    
+
+   \              0x01 0x09    
+
+   \              0x72 0x00    
+
+   \              0x00 0x00
+   \      0x287   0x10 0x11          DC8 16, 17, 18, 12, 0, 4, 0, 48, 255, 255, 32, 3, 128, 0, 0, 0, 64, 16
+
+   \              0x12 0x0C    
+
+   \              0x00 0x04    
+
+   \              0x00 0x30    
+
+   \              0xFF 0xFF    
+
+   \              0x20 0x03    
+
+   \              0x80 0x00    
+
+   \              0x00 0x00    
+
+   \              0x40 0x10
+   \      0x299   0x11 0x12          DC8 17, 18, 12, 12, 64, 0, 64, 6, 170, 0, 0, 0, 0, 0, 0, 0, 16, 17, 18
+
+   \              0x0C 0x0C    
+
+   \              0x40 0x00    
+
+   \              0x40 0x06    
+
+   \              0xAA 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x10 0x11    
+
+   \              0x12
+   \      0x2AC   0x0C 0x18          DC8 12, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 17, 18, 12, 36, 0
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x10 0x11    
+
+   \              0x12 0x0C    
+
+   \              0x24 0x00
+   \      0x2C0   0x00 0x00          DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 17, 18, 5, 48, 0, 0, 0, 0, 0, 8
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x09    
+
+   \              0x11 0x12    
+
+   \              0x05 0x30    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x08
+   \      0x2D6   0x11 0x12          DC8 17, 18, 4, 54, 0, 0, 0, 0, 16, 17, 32, 12, 0, 3, 0, 7, 76, 75, 64
+
+   \              0x04 0x36    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x10 0x11    
+
+   \              0x20 0x0C    
+
+   \              0x00 0x03    
+
+   \              0x00 0x07    
+
+   \              0x4C 0x4B    
+
+   \              0x40
+   \      0x2E9   0x01 0xC9          DC8 1, 201, 195, 128, 0, 4, 5, 17, 32, 1, 12, 199, 16, 17, 32, 12, 24
+
+   \              0xC3 0x80    
+
+   \              0x00 0x04    
+
+   \              0x05 0x11    
+
+   \              0x20 0x01    
+
+   \              0x0C 0xC7    
+
+   \              0x10 0x11    
+
+   \              0x20 0x0C    
+
+   \              0x18
+   \      0x2FA   0x01 0x00          DC8 1, 0, 8, 3, 192, 0, 0, 48, 0, 232, 0, 60, 16, 17, 32, 12, 36, 8
+
+   \              0x08 0x03    
+
+   \              0xC0 0x00    
+
+   \              0x00 0x30    
+
+   \              0x00 0xE8    
+
+   \              0x00 0x3C    
+
+   \              0x10 0x11    
+
+   \              0x20 0x0C    
+
+   \              0x24 0x08
+   \      0x30C   0x88 0x89          DC8 136, 137, 7, 255, 2, 0, 0, 0, 35, 136, 137, 7, 17, 32, 3, 48, 0
+
+   \              0x07 0xFF    
+
+   \              0x02 0x00    
+
+   \              0x00 0x00    
+
+   \              0x23 0x88    
+
+   \              0x89 0x07    
+
+   \              0x11 0x20    
+
+   \              0x03 0x30    
+
+   \              0x00
+   \      0x31D   0xE9 0xA0          DC8 233, 160, 5, 17, 32, 1, 53, 226, 16, 17, 32, 12, 56, 34, 7, 7, 128
+
+   \              0x05 0x11    
+
+   \              0x20 0x01    
+
+   \              0x35 0xE2    
+
+   \              0x10 0x11    
+
+   \              0x20 0x0C    
+
+   \              0x38 0x22    
+
+   \              0x07 0x07    
+
+   \              0x80
+   \      0x32E   0x1A 0x08          DC8 26, 8, 246, 0, 39, 12, 164, 35, 14, 17, 32, 10, 69, 3, 0, 48, 1, 0
+
+   \              0xF6 0x00    
+
+   \              0x27 0x0C    
+
+   \              0xA4 0x23    
+
+   \              0x0E 0x11    
+
+   \              0x20 0x0A    
+
+   \              0x45 0x03    
+
+   \              0x00 0x30    
+
+   \              0x01 0x00
+   \      0x340   0x50 0x08          DC8 80, 8, 33, 24, 64, 6, 17, 32, 2, 80, 132, 8, 6, 17, 32, 2, 84, 3, 7
+
+   \              0x21 0x18    
+
+   \              0x40 0x06    
+
+   \              0x11 0x20    
+
+   \              0x02 0x50    
+
+   \              0x84 0x08    
+
+   \              0x06 0x11    
+
+   \              0x20 0x02    
+
+   \              0x54 0x03    
+
+   \              0x07
+   \      0x353   0x05 0x11          DC8 5, 17, 32, 1, 87, 0, 9, 17, 32, 5, 91, 64, 4, 1, 120, 32, 16, 17
+
+   \              0x20 0x01    
+
+   \              0x57 0x00    
+
+   \              0x09 0x11    
+
+   \              0x20 0x05    
+
+   \              0x5B 0x40    
+
+   \              0x04 0x01    
+
+   \              0x78 0x20    
+
+   \              0x10 0x11
+   \      0x365   0x21 0x0C          DC8 33, 12, 0, 91, 71, 15, 192, 109, 37, 244, 219, 214, 223, 236, 247
+
+   \              0x00 0x5B    
+
+   \              0x47 0x0F    
+
+   \              0xC0 0x6D    
+
+   \              0x25 0xF4    
+
+   \              0xDB 0xD6    
+
+   \              0xDF 0xEC    
+
+   \              0xF7
+   \      0x374   0x10 0x11          DC8 16, 17, 33, 12, 12, 254, 1, 21, 240, 255, 3, 91, 71, 15, 192, 109
+
+   \              0x21 0x0C    
+
+   \              0x0C 0xFE    
+
+   \              0x01 0x15    
+
+   \              0xF0 0xFF    
+
+   \              0x03 0x5B    
+
+   \              0x47 0x0F    
+
+   \              0xC0 0x6D
+   \      0x384   0x25 0x10          DC8 37, 16, 17, 33, 12, 24, 244, 219, 214, 223, 236, 247, 254, 1, 21
+
+   \              0x11 0x21    
+
+   \              0x0C 0x18    
+
+   \              0xF4 0xDB    
+
+   \              0xD6 0xDF    
+
+   \              0xEC 0xF7    
+
+   \              0xFE 0x01    
+
+   \              0x15
+   \      0x393   0xF0 0xFF          DC8 240, 255, 3, 8, 17, 34, 4, 0, 8, 127, 0, 93, 11, 17, 35, 7, 0, 1, 5
+
+   \              0x03 0x08    
+
+   \              0x11 0x22    
+
+   \              0x04 0x00    
+
+   \              0x08 0x7F    
+
+   \              0x00 0x5D    
+
+   \              0x0B 0x11    
+
+   \              0x23 0x07    
+
+   \              0x00 0x01    
+
+   \              0x05
+   \      0x3A6   0x0B 0x05          DC8 11, 5, 2, 0, 3, 16, 17, 48, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+   \              0x02 0x00    
+
+   \              0x03 0x10    
+
+   \              0x11 0x30    
+
+   \              0x0C 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00
+   \      0x3BB   0x00 0x0C          DC8 0, 12, 17, 64, 8, 0, 60, 8, 0, 0, 34, 34, 32, 255, 0
+
+   \              0x11 0x40    
+
+   \              0x08 0x00    
+
+   \              0x3C 0x08    
+
+   \              0x00 0x00    
+
+   \              0x22 0x22    
+
+   \              0x20 0xFF    
+
+   \              0x00
+   \      0x3CA                      DS8 2
+     34          		RADIO_CONFIGURATION_DATA_ARRAY;
+     35          
+
+   \                                 In section .data, align 4
+     36           SEGMENT_VARIABLE(RadioConfiguration, tRadioConfiguration, SEG_CODE) = \
+   \                     RadioConfiguration:
+   \        0x0   0x....'....        DC32 Radio_Configuration_Data_Array
+   \        0x4   0x40 0x40          DC8 64, 64, 3
+
+   \              0x03
+   \        0x7                      DS8 1
+   \        0x8   0x0000'F000        DC32 61'440
+   \        0xC   0xC5 0xC5          DC8 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5
+   \       0x19   0xC5 0xC5          DC8 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5
+   \       0x26   0xC5 0xC5          DC8 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5
+   \       0x33   0xC5 0xC5          DC8 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5
+   \       0x40   0xC5 0xC5          DC8 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197, 197
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5    
+
+   \              0xC5 0xC5
+     37          		RADIO_CONFIGURATION_DATA;
+     38          
+     39          //const SEGMENT_VARIABLE_SEGMENT_POINTER(pRadioConfiguration, tRadioConfiguration, SEG_CODE, SEG_CODE) = \
+     40          //                        &RadioConfiguration;
+
+   \                                 In section .data, align 4
+     41          SEGMENT_VARIABLE_SEGMENT_POINTER(pRadioConfiguration, tRadioConfiguration, SEG_CODE, SEG_CODE) = \
+   \                     pRadioConfiguration:
+   \        0x0   0x....'....        DC32 RadioConfiguration
+     42          		&RadioConfiguration;
+     43          
+     44          
+     45          //SEGMENT_VARIABLE(customRadioPacket[RADIO_MAX_PACKET_LENGTH], U8, SEG_XDATA);
+     46          
+
+   \                                 In section .bss, align 4
+     47          U8	*g_pRadioRxPkt;
+   \                     g_pRadioRxPkt:
+   \        0x0                      DS8 4
+
+   \                                 In section .bss, align 4
+     48          U8	g_RadioRxPkt[2][RADIO_MAX_PACKET_LENGTH];
+   \                     g_RadioRxPkt:
+   \        0x0                      DS8 128
+     49          
+     50          extern U8 bPktConfig1ForRx;
+     51          
+     52          /*****************************************************************************
+     53           *  Local Function Declarations
+     54           *****************************************************************************/
+     55          void vRadio_PowerUp(void);
+     56          
+     57          /*!
+     58           *  Power up the Radio.
+     59           *
+     60           *  @note
+     61           *
+     62           */
+
+   \                                 In section .text, align 2, keep-with-next
+     63          void vRadio_PowerUp(void)
+     64          {
+   \                     vRadio_PowerUp: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+     65          	SEGMENT_VARIABLE(wDelay,  U16, SEG_XDATA) = 0u;
+                 	                 ^
+Warning[Pe177]: variable "wDelay" was declared but never referenced
+   \        0x2   0x2400             MOVS     R4,#+0
+     66          
+     67          	/* Hardware reset the chip */
+     68          	si446x_reset();
+   \        0x4   0x.... 0x....      BL       si446x_reset
+     69          
+     70          	/* Wait until reset timeout or Reset IT signal */
+     71          	//  for (; wDelay < pRadioConfiguration->Radio_Delay_Cnt_After_Reset; wDelay++);
+     72          	HAL_Delay(10);
+   \        0x8   0x200A             MOVS     R0,#+10
+   \        0xA   0x.... 0x....      BL       HAL_Delay
+     73          }
+   \        0xE   0xBD10             POP      {R4,PC}
+     74          
+     75          /*!
+     76           *  Radio Initialization.
+     77           *
+     78           *  @author Sz. Papp
+     79           *
+     80           *  @note
+     81           *
+     82           */
+
+   \                                 In section .text, align 2, keep-with-next
+     83          void vRadio_Init(void)
+     84          {
+   \                     vRadio_Init: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+     85          	U16 wDelay;
+                 	    ^
+Warning[Pe177]: variable "wDelay" was declared but never referenced
+     86          
+     87          	/* Power Up the radio chip */
+     88          	vRadio_PowerUp();
+   \        0x2   0x.... 0x....      BL       vRadio_PowerUp
+     89          
+     90          	HAL_Delay(200);
+   \        0x6   0x20C8             MOVS     R0,#+200
+   \        0x8   0x.... 0x....      BL       HAL_Delay
+     91          
+     92          	/* Load radio configuration */
+     93          	while (SI446X_SUCCESS != si446x_configuration_init(pRadioConfiguration->Radio_ConfigurationArray))
+   \                     ??vRadio_Init_0: (+1)
+   \        0xC   0x....             LDR.N    R0,??DataTable3
+   \        0xE   0x6800             LDR      R0,[R0, #+0]
+   \       0x10   0x6800             LDR      R0,[R0, #+0]
+   \       0x12   0x.... 0x....      BL       si446x_configuration_init
+   \       0x16   0x2800             CMP      R0,#+0
+   \       0x18   0xD006             BEQ.N    ??vRadio_Init_1
+     94          	{
+     95          		/* Error hook */
+     96          		//    for (wDelay = 0x7FFF; wDelay--; ) ;
+     97          		HAL_Delay(500);
+   \       0x1A   0xF44F 0x70FA      MOV      R0,#+500
+   \       0x1E   0x.... 0x....      BL       HAL_Delay
+     98          
+     99          		/* Power Up the radio chip */
+    100          		vRadio_PowerUp();
+   \       0x22   0x.... 0x....      BL       vRadio_PowerUp
+   \       0x26   0xE7F1             B.N      ??vRadio_Init_0
+    101          	}
+    102          
+    103          	HAL_Delay(100);
+   \                     ??vRadio_Init_1: (+1)
+   \       0x28   0x2064             MOVS     R0,#+100
+   \       0x2A   0x.... 0x....      BL       HAL_Delay
+    104          
+    105          	// Read ITs, clear pending ones
+    106          	si446x_get_int_status(0u, 0u, 0u);
+   \       0x2E   0x2200             MOVS     R2,#+0
+   \       0x30   0x2100             MOVS     R1,#+0
+   \       0x32   0x2000             MOVS     R0,#+0
+   \       0x34   0x.... 0x....      BL       si446x_get_int_status
+    107          
+    108          }
+   \       0x38   0xBD01             POP      {R0,PC}
+    109          
+    110          /*!
+    111           *  Check if Packet sent IT flag or Packet Received IT is pending.
+    112           *
+    113           *  @return   SI4455_CMD_GET_INT_STATUS_REP_PACKET_SENT_PEND_BIT / SI4455_CMD_GET_INT_STATUS_REP_PACKET_RX_PEND_BIT
+    114           *
+    115           *  @note
+    116           *
+    117           */
+
+   \                                 In section .text, align 2, keep-with-next
+    118          U8 bRadio_Check_Tx_RX(void)
+    119          {
+   \                     bRadio_Check_Tx_RX: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+    120          	int ret = 0;
+   \        0x2   0x2400             MOVS     R4,#+0
+    121          	static int s_idxRxPkt = 0;
+    122          
+    123          	if (RF_NIRQ == FALSE)
+   \        0x4   0x....             LDR.N    R0,??DataTable3_1
+   \        0x6   0x7800             LDRB     R0,[R0, #+0]
+   \        0x8   0x2800             CMP      R0,#+0
+   \        0xA   0xD15A             BNE.N    ??bRadio_Check_Tx_RX_0
+    124          	{
+    125          		//	  printf("!\n");
+    126          		/* Read ITs, clear pending ones */
+    127          		si446x_get_int_status_fast_clear_read();
+                 		^
+Warning[Pe223]: function "si446x_get_int_status_fast_clear_read" declared
+          implicitly
+   \        0xC   0x.... 0x....      BL       si446x_get_int_status_fast_clear_read
+    128          
+    129          		if (Si446xCmd.GET_INT_STATUS.CHIP_PEND & SI446X_CMD_GET_CHIP_STATUS_REP_CHIP_PEND_CMD_ERROR_PEND_BIT)
+   \       0x10   0x....             LDR.N    R5,??DataTable3_2
+   \       0x12   0x79A8             LDRB     R0,[R5, #+6]
+   \       0x14   0x0700             LSLS     R0,R0,#+28
+   \       0x16   0xD50E             BPL.N    ??bRadio_Check_Tx_RX_1
+    130          		{
+    131          			/* State change to */
+    132          			si446x_change_state(SI446X_CMD_CHANGE_STATE_ARG_NEXT_STATE1_NEW_STATE_ENUM_SLEEP);
+   \       0x18   0x2001             MOVS     R0,#+1
+   \       0x1A   0x.... 0x....      BL       si446x_change_state
+    133          
+    134          			/* Reset FIFO */
+    135          			si446x_fifo_info(SI446X_CMD_FIFO_INFO_ARG_FIFO_RX_BIT);
+                 			^
+Warning[Pe223]: function "si446x_fifo_info" declared implicitly
+   \       0x1E   0x2002             MOVS     R0,#+2
+   \       0x20   0x.... 0x....      BL       si446x_fifo_info
+    136          
+    137          			/* State change to */
+    138          			si446x_change_state(SI446X_CMD_CHANGE_STATE_ARG_NEXT_STATE1_NEW_STATE_ENUM_RX);
+   \       0x24   0x2008             MOVS     R0,#+8
+   \       0x26   0x.... 0x....      BL       si446x_change_state
+    139          
+    140          			nRxErr++;
+   \       0x2A   0x....             LDR.N    R0,??DataTable3_3
+   \       0x2C   0x6801             LDR      R1,[R0, #+0]
+   \       0x2E   0x1C49             ADDS     R1,R1,#+1
+   \       0x30   0x6001             STR      R1,[R0, #+0]
+    141          
+    142          			ret |= SI446X_CMD_GET_CHIP_STATUS_REP_CHIP_PEND_CMD_ERROR_PEND_BIT;
+   \       0x32   0xF054 0x0408      ORRS     R4,R4,#0x8
+    143          		}
+    144          
+    145          		if (Si446xCmd.GET_INT_STATUS.PH_PEND & SI446X_CMD_GET_INT_STATUS_REP_PH_STATUS_CRC_ERROR_BIT)
+   \                     ??bRadio_Check_Tx_RX_1: (+1)
+   \       0x36   0x78A8             LDRB     R0,[R5, #+2]
+   \       0x38   0x0700             LSLS     R0,R0,#+28
+   \       0x3A   0xD508             BPL.N    ??bRadio_Check_Tx_RX_2
+    146          		{
+    147          			/* Reset FIFO */
+    148          			si446x_fifo_info(SI446X_CMD_FIFO_INFO_ARG_FIFO_RX_BIT);
+                 			^
+Warning[Pe223]: function "si446x_fifo_info" declared implicitly
+   \       0x3C   0x2002             MOVS     R0,#+2
+   \       0x3E   0x.... 0x....      BL       si446x_fifo_info
+    149          
+    150          			nCrcErr++;
+   \       0x42   0x....             LDR.N    R0,??DataTable3_4
+   \       0x44   0x6801             LDR      R1,[R0, #+0]
+   \       0x46   0x1C49             ADDS     R1,R1,#+1
+   \       0x48   0x6001             STR      R1,[R0, #+0]
+    151          
+    152          			ret |= SI446X_CMD_GET_INT_STATUS_REP_PH_STATUS_CRC_ERROR_BIT;
+   \       0x4A   0xF054 0x0408      ORRS     R4,R4,#0x8
+    153          		}
+    154          
+    155          		if(Si446xCmd.GET_INT_STATUS.PH_PEND & SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_SENT_PEND_BIT)
+   \                     ??bRadio_Check_Tx_RX_2: (+1)
+   \       0x4E   0x78A8             LDRB     R0,[R5, #+2]
+   \       0x50   0x0680             LSLS     R0,R0,#+26
+   \       0x52   0xD509             BPL.N    ??bRadio_Check_Tx_RX_3
+    156          		{
+    157          			//        printf("tx\n");
+    158          			//        printf("\n[tx]");
+    159          			// Configure PKT_CONFIG1 for RX
+    160          
+    161          			//	수신기
+    162          			vRadio_StartRX (
+    163          				g_nChRx,	//g_idxTrainSet,	//	pRadioConfiguration->Radio_ChannelNumber,
+    164          				pRadioConfiguration->Radio_PacketLength );
+   \       0x54   0x....             LDR.N    R0,??DataTable3
+   \       0x56   0x6800             LDR      R0,[R0, #+0]
+   \       0x58   0x7941             LDRB     R1,[R0, #+5]
+   \       0x5A   0x....             LDR.N    R0,??DataTable3_5
+   \       0x5C   0x6800             LDR      R0,[R0, #+0]
+   \       0x5E   0xB2C0             UXTB     R0,R0
+   \       0x60   0x.... 0x....      BL       vRadio_StartRX
+    165          
+    166          			ret |= SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_SENT_PEND_BIT;
+   \       0x64   0xF054 0x0420      ORRS     R4,R4,#0x20
+    167          		}
+    168          
+    169          		if(Si446xCmd.GET_INT_STATUS.PH_PEND & SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_RX_PEND_BIT)
+   \                     ??bRadio_Check_Tx_RX_3: (+1)
+   \       0x68   0x78A8             LDRB     R0,[R5, #+2]
+   \       0x6A   0x06C0             LSLS     R0,R0,#+27
+   \       0x6C   0xD529             BPL.N    ??bRadio_Check_Tx_RX_0
+    170          		{
+    171          			/* Packet RX */
+    172          
+    173          			/* Get payload length */
+    174                      si446x_fifo_info ( 0x00 );
+                             ^
+Warning[Pe223]: function "si446x_fifo_info" declared implicitly
+   \       0x6E   0x2000             MOVS     R0,#+0
+   \       0x70   0x.... 0x....      BL       si446x_fifo_info
+    175          
+    176          //			si446x_read_rx_fifo(Si446xCmd.FIFO_INFO.RX_FIFO_COUNT, &customRadioPacket[0]);
+    177                  	s_idxRxPkt = ( s_idxRxPkt + 1 )%2;
+   \       0x74   0x....             LDR.N    R0,??DataTable3_6
+   \       0x76   0x6801             LDR      R1,[R0, #+0]
+   \       0x78   0x1C49             ADDS     R1,R1,#+1
+   \       0x7A   0x2202             MOVS     R2,#+2
+   \       0x7C   0xFB91 0xF3F2      SDIV     R3,R1,R2
+   \       0x80   0xFB02 0x1113      MLS      R1,R2,R3,R1
+   \       0x84   0x6001             STR      R1,[R0, #+0]
+    178                  	g_pRadioRxPkt = &g_RadioRxPkt[s_idxRxPkt][0];
+   \       0x86   0x....             LDR.N    R1,??DataTable3_7
+   \       0x88   0x....             LDR.N    R2,??DataTable3_8
+   \       0x8A   0x6800             LDR      R0,[R0, #+0]
+   \       0x8C   0x0180             LSLS     R0,R0,#+6
+   \       0x8E   0x4410             ADD      R0,R2,R0
+   \       0x90   0x6008             STR      R0,[R1, #+0]
+    179          			si446x_read_rx_fifo(Si446xCmd.FIFO_INFO.RX_FIFO_COUNT, g_pRadioRxPkt);
+                 			^
+Warning[Pe223]: function "si446x_read_rx_fifo" declared implicitly
+   \       0x92   0x6809             LDR      R1,[R1, #+0]
+   \       0x94   0x7828             LDRB     R0,[R5, #+0]
+   \       0x96   0x.... 0x....      BL       si446x_read_rx_fifo
+    180          
+    181          			//========================================================================
+    182          			si446x_frr_b_read(1);
+                 			^
+Warning[Pe223]: function "si446x_frr_b_read" declared implicitly
+   \       0x9A   0x2001             MOVS     R0,#+1
+   \       0x9C   0x.... 0x....      BL       si446x_frr_b_read
+    183          
+    184          			g_nRSSI = Si446xCmd.FRR_B_READ.FRR_B_VALUE;		//	RSSI Value
+   \       0xA0   0x7828             LDRB     R0,[R5, #+0]
+   \       0xA2   0x....             LDR.N    R1,??DataTable3_9
+   \       0xA4   0x6008             STR      R0,[R1, #+0]
+    185          
+    186          			if( GetDbg() > 2 )
+                 			    ^
+Warning[Pe223]: function "GetDbg" declared implicitly
+   \       0xA6   0x.... 0x....      BL       GetDbg
+   \       0xAA   0x2803             CMP      R0,#+3
+   \       0xAC   0xDB07             BLT.N    ??bRadio_Check_Tx_RX_4
+    187          				//printf("Latch RSSI : %02d\n",Si446xCmd.FRR_B_READ.FRR_B_VALUE);
+    188          			//========================================================================
+    189          
+    190          			//      printf("rx");
+    191          			// Configure PKT_CONFIG1 for RX
+    192          			vRadio_StartRX (
+    193          				g_nChRx, //g_idxTrainSet,	//				pRadioConfiguration->Radio_ChannelNumber,
+    194          				pRadioConfiguration->Radio_PacketLength );
+   \       0xAE   0x....             LDR.N    R0,??DataTable3
+   \       0xB0   0x6800             LDR      R0,[R0, #+0]
+   \       0xB2   0x7941             LDRB     R1,[R0, #+5]
+   \       0xB4   0x....             LDR.N    R0,??DataTable3_5
+   \       0xB6   0x6800             LDR      R0,[R0, #+0]
+   \       0xB8   0xB2C0             UXTB     R0,R0
+   \       0xBA   0x.... 0x....      BL       vRadio_StartRX
+    195          
+    196          			ret |= SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_RX_PEND_BIT;
+   \                     ??bRadio_Check_Tx_RX_4: (+1)
+   \       0xBE   0xF054 0x0410      ORRS     R4,R4,#0x10
+    197          		}
+    198          
+    199          	}
+    200          
+    201          	return ret;
+   \                     ??bRadio_Check_Tx_RX_0: (+1)
+   \       0xC2   0x0020             MOVS     R0,R4
+   \       0xC4   0xB2C0             UXTB     R0,R0
+   \       0xC6   0xBD32             POP      {R1,R4,R5,PC}
+    202          }
+
+   \                                 In section .bss, align 4
+   \                     `bRadio_Check_Tx_RX::s_idxRxPkt`:
+   \        0x0                      DS8 4
+    203          
+    204          
+    205          /*!
+    206           *  Set Radio to RX mode. .
+    207           *
+    208           *  @param channel Freq. Channel,  packetLength : 0 Packet handler fields are used , nonzero: only Field1 is used
+    209           *
+    210           *  @note
+    211           *
+    212           */
+
+   \                                 In section .text, align 2, keep-with-next
+    213          void vRadio_StartRX(U8 channel, U8 packetLenght )
+    214          {
+   \                     vRadio_StartRX: (+1)
+   \        0x0   0xB53E             PUSH     {R1-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    215          	// Read ITs, clear pending ones
+    216          	si446x_get_int_status(0u, 0u, 0u);
+   \        0x6   0x2200             MOVS     R2,#+0
+   \        0x8   0x2100             MOVS     R1,#+0
+   \        0xA   0x2000             MOVS     R0,#+0
+   \        0xC   0x.... 0x....      BL       si446x_get_int_status
+    217          
+    218          	// Reset the Rx Fifo
+    219          	si446x_fifo_info(SI446X_CMD_FIFO_INFO_ARG_FIFO_RX_BIT);
+                 	^
+Warning[Pe223]: function "si446x_fifo_info" declared implicitly
+   \       0x10   0x2002             MOVS     R0,#+2
+   \       0x12   0x.... 0x....      BL       si446x_fifo_info
+    220          
+    221          	/* Start Receiving packet, channel 0, START immediately, Packet length used or not according to packetLength */
+    222          	si446x_start_rx(channel, 0u, packetLenght,
+    223          			SI446X_CMD_START_RX_ARG_NEXT_STATE1_RXTIMEOUT_STATE_ENUM_NOCHANGE,
+    224          			SI446X_CMD_START_RX_ARG_NEXT_STATE2_RXVALID_STATE_ENUM_READY,
+    225          			SI446X_CMD_START_RX_ARG_NEXT_STATE3_RXINVALID_STATE_ENUM_RX );
+   \       0x16   0x2008             MOVS     R0,#+8
+   \       0x18   0x9001             STR      R0,[SP, #+4]
+   \       0x1A   0x2003             MOVS     R0,#+3
+   \       0x1C   0x9000             STR      R0,[SP, #+0]
+   \       0x1E   0x2300             MOVS     R3,#+0
+   \       0x20   0x002A             MOVS     R2,R5
+   \       0x22   0xB2D2             UXTB     R2,R2
+   \       0x24   0x2100             MOVS     R1,#+0
+   \       0x26   0x0020             MOVS     R0,R4
+   \       0x28   0xB2C0             UXTB     R0,R0
+   \       0x2A   0x.... 0x....      BL       si446x_start_rx
+    226          }
+   \       0x2E   0xBD37             POP      {R0-R2,R4,R5,PC}
+    227          
+    228          
+
+   \                                 In section .text, align 2, keep-with-next
+    229          U8 get_CCA(void)
+    230          {
+   \                     get_CCA: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    231          #if 1
+    232          	//	CCA - GPIO1 ( CCA )
+    233          
+    234          	//	Si4463 - GPIO1 ( 0 : Clear / 1 : Busy )
+    235          
+    236          	return !( HAL_GPIO_ReadPin( GPIO1_GPIO_Port, GPIO1_Pin ) );
+   \        0x2   0x2140             MOVS     R1,#+64
+   \        0x4   0x....             LDR.N    R0,??DataTable3_10
+   \        0x6   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \        0xA   0x2800             CMP      R0,#+0
+   \        0xC   0xD101             BNE.N    ??get_CCA_0
+   \        0xE   0x2001             MOVS     R0,#+1
+   \       0x10   0xE000             B.N      ??get_CCA_1
+   \                     ??get_CCA_0: (+1)
+   \       0x12   0x2000             MOVS     R0,#+0
+   \                     ??get_CCA_1: (+1)
+   \       0x14   0xB2C0             UXTB     R0,R0
+   \       0x16   0xBD02             POP      {R1,PC}
+    237          
+    238          #else
+    239          
+    240          	//	Get Clear Channel Assessment
+    241          	U8 tmp[10];
+    242          	int8_t value;
+    243          
+    244          	si446x_get_modem_status(0xff);
+    245          	//	*(int8_t *)value = (Si446xCmd.GET_MODEM_STATUS.CURR_RSSI/2)-0x40-70;
+    246          
+    247          	//	printf("CCA(%d)\n", value);
+    248          
+    249          	//	printf("CCA(%d,%d)",
+    250          	//			Si446xCmd.GET_MODEM_STATUS.CURR_RSSI,
+    251          	//			Si446xCmd.GET_MODEM_STATUS.LATCH_RSSI
+    252          	//			);
+    253          
+    254          	//	return 0;
+    255          	//	if(tmp[3] > 0xa0)
+    256          //	if(Si446xCmd.GET_MODEM_STATUS.CURR_RSSI < 0xa0)
+    257          //	if(Si446xCmd.GET_MODEM_STATUS.CURR_RSSI < 0x80)
+    258          //	if(Si446xCmd.GET_MODEM_STATUS.CURR_RSSI < 0x40)
+    259          //	if(Si446xCmd.GET_MODEM_STATUS.CURR_RSSI < 0x10)
+    260          //	if(Si446xCmd.GET_MODEM_STATUS.CURR_RSSI < 0x08)
+    261          	if(Si446xCmd.GET_MODEM_STATUS.CURR_RSSI < 0x06)
+    262          //	if(Si446xCmd.GET_MODEM_STATUS.CURR_RSSI < 0x04)
+    263          	{
+    264          		//		printk(KERN_ALERT "rssi: %d\n", tmp[3]);
+    265          		//	Clear Channel
+    266          		return 1;
+    267          	}
+    268          	else
+    269          	{
+    270          		//printf("C");
+    271          		//	Busy Channel
+    272          		return 0;
+    273          	}
+    274          
+    275          	//	return tmp[3] > 0xa0 ? 1 : 0;
+    276          	//	return gpio_get_value(GPIO0)>0 ? 1 : 0;
+    277          #endif
+    278          }
+    279          
+    280          
+    281          //=============================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    282          void vRadio_Set_TxPower( U8 powerlvl )
+    283          //=============================================================================
+    284          {
+   \                     vRadio_Set_TxPower: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    285          	//	dBm			powerlvl
+    286          	//	20 dBm	-	0x7F		Max
+    287          	//	0 dBm	-	0x07		환경시험
+    288          	si446x_set_property( 0x22, 0x01, 0x01, powerlvl );
+   \        0x4   0x0023             MOVS     R3,R4
+   \        0x6   0xB2DB             UXTB     R3,R3
+   \        0x8   0x2201             MOVS     R2,#+1
+   \        0xA   0x2101             MOVS     R1,#+1
+   \        0xC   0x2022             MOVS     R0,#+34
+   \        0xE   0x.... 0x....      BL       si446x_set_property
+    289          }
+   \       0x12   0xBD10             POP      {R4,PC}
+    290          
+    291          
+    292          /*!
+    293           *  Set Radio to TX mode, variable packet length.
+    294           *
+    295           *  @param channel Freq. Channel, Packet to be sent length of of the packet sent to TXFIFO
+    296           *
+    297           *  @note
+    298           *
+    299           */
+
+   \                                 In section .text, align 2, keep-with-next
+    300          void vRadio_StartTx_Variable_Packet(U8 channel, U8 *pioRadioPacket, U8 length)
+    301          {
+   \                     vRadio_StartTx_Variable_Packet: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    302          	/* Leave RX state */
+    303          	si446x_change_state(SI446X_CMD_CHANGE_STATE_ARG_NEXT_STATE1_NEW_STATE_ENUM_READY);
+   \        0x8   0x2003             MOVS     R0,#+3
+   \        0xA   0x.... 0x....      BL       si446x_change_state
+    304          
+    305          	/* Read ITs, clear pending ones */
+    306          	si446x_get_int_status(0u, 0u, 0u);
+   \        0xE   0x2200             MOVS     R2,#+0
+   \       0x10   0x2100             MOVS     R1,#+0
+   \       0x12   0x2000             MOVS     R0,#+0
+   \       0x14   0x.... 0x....      BL       si446x_get_int_status
+    307          
+    308          	/* Reset the Tx Fifo */
+    309          	si446x_fifo_info(SI446X_CMD_FIFO_INFO_ARG_FIFO_TX_BIT);
+                 	^
+Warning[Pe223]: function "si446x_fifo_info" declared implicitly
+   \       0x18   0x2001             MOVS     R0,#+1
+   \       0x1A   0x.... 0x....      BL       si446x_fifo_info
+    310          
+    311          	/* Fill the TX fifo with datas */
+    312          	si446x_write_tx_fifo(length, pioRadioPacket);
+                 	^
+Warning[Pe223]: function "si446x_write_tx_fifo" declared implicitly
+   \       0x1E   0x0029             MOVS     R1,R5
+   \       0x20   0x0030             MOVS     R0,R6
+   \       0x22   0xB2C0             UXTB     R0,R0
+   \       0x24   0x.... 0x....      BL       si446x_write_tx_fifo
+    313          
+    314          	//	CCA ( Clear Channel Assessment )
+    315          	//	Wait CCA
+    316          	while (!get_CCA())
+   \                     ??vRadio_StartTx_Variable_Packet_0: (+1)
+   \       0x28   0x.... 0x....      BL       get_CCA
+   \       0x2C   0x2800             CMP      R0,#+0
+   \       0x2E   0xD103             BNE.N    ??vRadio_StartTx_Variable_Packet_1
+    317          	{
+    318          		//			ndelay(1000);
+    319          		//			tx_approved = 0;
+    320          		//			add_timer(&tx_withdraw_timer);
+    321          		//			wait_event_interruptible(wait_withdraw, tx_approved);
+    322          		HAL_Delay(1);
+   \       0x30   0x2001             MOVS     R0,#+1
+   \       0x32   0x.... 0x....      BL       HAL_Delay
+   \       0x36   0xE7F7             B.N      ??vRadio_StartTx_Variable_Packet_0
+    323          		//		goto again;
+    324          	}
+    325          
+    326          	/* Start sending packet, channel 0, START immediately */
+    327          	si446x_start_tx(channel, 0x80, length);
+   \                     ??vRadio_StartTx_Variable_Packet_1: (+1)
+   \       0x38   0x0032             MOVS     R2,R6
+   \       0x3A   0xB2D2             UXTB     R2,R2
+   \       0x3C   0x2180             MOVS     R1,#+128
+   \       0x3E   0x0020             MOVS     R0,R4
+   \       0x40   0xB2C0             UXTB     R0,R0
+   \       0x42   0x.... 0x....      BL       si446x_start_tx
+    328          }
+   \       0x46   0xBD70             POP      {R4-R6,PC}
+    329          
+    330          /*!
+    331           *  Set Radio to TX mode, variable packet length. 
+    332           *  Use it when multiple fields are in use (START_TX is called with 0 length).
+    333           *
+    334           *  @param channel Freq. Channel, Packet to be sent length of of the packet sent to TXFIFO
+    335           *
+    336           *  @note
+    337           *
+    338           */
+
+   \                                 In section .text, align 2, keep-with-next
+    339          void vRadio_StartTx_Variable_Packet_MultiField(U8 channel, U8 *pioRadioPacket, U8 length)
+    340          {
+   \                     vRadio_StartTx_Variable_Packet_MultiField: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    341          	/* Read ITs, clear pending ones */
+    342          	si446x_get_int_status_fast_clear();
+                 	^
+Warning[Pe223]: function "si446x_get_int_status_fast_clear" declared implicitly
+   \        0x8   0x.... 0x....      BL       si446x_get_int_status_fast_clear
+    343          
+    344          	/* Reset the Tx Fifo */
+    345          	si446x_fifo_info_fast_reset(SI446X_CMD_FIFO_INFO_ARG_FIFO_TX_BIT);
+                 	^
+Warning[Pe223]: function "si446x_fifo_info_fast_reset" declared implicitly
+   \        0xC   0x2001             MOVS     R0,#+1
+   \        0xE   0x.... 0x....      BL       si446x_fifo_info_fast_reset
+    346          
+    347          	/* Fill the TX fifo with datas */
+    348          	si446x_write_tx_fifo(length, pioRadioPacket);
+                 	^
+Warning[Pe223]: function "si446x_write_tx_fifo" declared implicitly
+   \       0x12   0x0029             MOVS     R1,R5
+   \       0x14   0x0030             MOVS     R0,R6
+   \       0x16   0xB2C0             UXTB     R0,R0
+   \       0x18   0x.... 0x....      BL       si446x_write_tx_fifo
+    349          
+    350          	//	CCA ( Clear Channel Assessment )
+    351          	//	Wait CCA
+    352          	while (!get_CCA())
+   \                     ??vRadio_StartTx_Variable_Packet_MultiField_0: (+1)
+   \       0x1C   0x.... 0x....      BL       get_CCA
+   \       0x20   0x2800             CMP      R0,#+0
+   \       0x22   0xD103             BNE.N    ??vRadio_StartTx_Variable_Packet_MultiField_1
+    353          	{
+    354          		//			ndelay(1000);
+    355          		//			tx_approved = 0;
+    356          		//			add_timer(&tx_withdraw_timer);
+    357          		//			wait_event_interruptible(wait_withdraw, tx_approved);
+    358          		HAL_Delay(1);
+   \       0x24   0x2001             MOVS     R0,#+1
+   \       0x26   0x.... 0x....      BL       HAL_Delay
+   \       0x2A   0xE7F7             B.N      ??vRadio_StartTx_Variable_Packet_MultiField_0
+    359          		//		goto again;
+    360          	}
+    361          	//
+    362          	//  int i;
+    363          	//  again:
+    364          	//	for (i = 0; i < 5; i++)
+    365          	//	{
+    366          	////		rssi = get_CCA();
+    367          	//		if (get_CCA())
+    368          	//		{
+    369          	//	//			ndelay(1000);
+    370          	////			tx_approved = 0;
+    371          	////			add_timer(&tx_withdraw_timer);
+    372          	////			wait_event_interruptible(wait_withdraw, tx_approved);
+    373          	//			HAL_Delay(1);
+    374          	//			goto again;
+    375          	//		}
+    376          	////		ndelay(95);
+    377          	//	}
+    378          
+    379          	/* Start sending packet, channel 0, START immediately */
+    380          	si446x_start_tx(channel, 0x80, 0);
+   \                     ??vRadio_StartTx_Variable_Packet_MultiField_1: (+1)
+   \       0x2C   0x2200             MOVS     R2,#+0
+   \       0x2E   0x2180             MOVS     R1,#+128
+   \       0x30   0x0020             MOVS     R0,R4
+   \       0x32   0xB2C0             UXTB     R0,R0
+   \       0x34   0x.... 0x....      BL       si446x_start_tx
+    381          }
+   \       0x38   0xBD70             POP      {R4-R6,PC}
+    382          
+    383          
+    384          /**
+    385           *  Find a property value in the dynamic Radio Configuration Array
+    386           *  (I.e. get property value that is in radio_config.h, but unknown where it is within the array)
+    387           *
+    388           *  @note This code is capable of finding a property's configuration value in a standard configuration byte array.
+    389           *  Byte array pattern is: Length, [Command, GroupId, NumOfProps, StartPropId, Val1, ..., ValN], 0x00   
+    390           *  Used when some property value is needed out of a generated configuration header or hex file.
+    391           *  If more then one write is available the last one will be returned. 
+    392           */
+
+   \                                 In section .text, align 2, keep-with-next
+    393          U8 bRadio_FindProperty(U8* pbArray, U8 bGroup, U8 bAddress, U8* pbValue)
+    394          {   
+   \                     bRadio_FindProperty: (+1)
+   \        0x0   0xB5F0             PUSH     {R4-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    395          	U16 wInd = 0;
+   \        0x4   0x2700             MOVS     R7,#+0
+    396          	U8 bPropertyValue = 0x00;
+   \        0x6   0x2500             MOVS     R5,#+0
+    397          	BIT gPropertyFound = FALSE;
+   \        0x8   0x2600             MOVS     R6,#+0
+    398          
+    399          	// Input validation
+    400          	if (pbArray == NULL)
+   \        0xA   0x2C00             CMP      R4,#+0
+   \        0xC   0xD101             BNE.N    ??bRadio_FindProperty_0
+    401          	{
+    402          		return FALSE;
+   \        0xE   0x2000             MOVS     R0,#+0
+   \       0x10   0xE055             B.N      ??bRadio_FindProperty_1
+    403          	}
+    404          
+    405          	// Search until reaching the terminating 0
+    406          	while (pbArray[wInd] != 0)
+   \                     ??bRadio_FindProperty_0: (+1)
+   \       0x12   0x5DE0             LDRB     R0,[R4, R7]
+   \       0x14   0x2800             CMP      R0,#+0
+   \       0x16   0xD04B             BEQ.N    ??bRadio_FindProperty_2
+    407          	{
+    408          		// Looking for SET_PROPERTY = 0x11 command
+    409          		if (pbArray[wInd+1] != 0x11)
+   \       0x18   0xEB04 0x0007      ADD      R0,R4,R7
+   \       0x1C   0x7840             LDRB     R0,[R0, #+1]
+   \       0x1E   0x2811             CMP      R0,#+17
+   \       0x20   0xD003             BEQ.N    ??bRadio_FindProperty_3
+    410          		{
+    411          			wInd += pbArray[wInd] + 1;
+   \       0x22   0x5DE0             LDRB     R0,[R4, R7]
+   \       0x24   0x1C40             ADDS     R0,R0,#+1
+   \       0x26   0x19C7             ADDS     R7,R0,R7
+    412          			continue;
+   \       0x28   0xE7F3             B.N      ??bRadio_FindProperty_0
+    413          		}
+    414          
+    415          		// It is a SET_PROPERTY command, check if the corresponding row makes sense (i.e. the array is not broken)
+    416          		if ( pbArray[wInd] < 0x05 || pbArray[wInd] > 0x10 || pbArray[wInd] != (pbArray[wInd + 3] + 4) ) // Command length in line with API length
+   \                     ??bRadio_FindProperty_3: (+1)
+   \       0x2A   0x5DE0             LDRB     R0,[R4, R7]
+   \       0x2C   0x2805             CMP      R0,#+5
+   \       0x2E   0xDB0B             BLT.N    ??bRadio_FindProperty_4
+   \       0x30   0x5DE0             LDRB     R0,[R4, R7]
+   \       0x32   0x2811             CMP      R0,#+17
+   \       0x34   0xDA08             BGE.N    ??bRadio_FindProperty_4
+   \       0x36   0x5DE0             LDRB     R0,[R4, R7]
+   \       0x38   0xEB04 0x0C07      ADD      R12,R4,R7
+   \       0x3C   0xF89C 0xC003      LDRB     R12,[R12, #+3]
+   \       0x40   0xF11C 0x0C04      ADDS     R12,R12,#+4
+   \       0x44   0x4560             CMP      R0,R12
+   \       0x46   0xD001             BEQ.N    ??bRadio_FindProperty_5
+    417          		{
+    418          			return FALSE;
+   \                     ??bRadio_FindProperty_4: (+1)
+   \       0x48   0x2000             MOVS     R0,#+0
+   \       0x4A   0xE038             B.N      ??bRadio_FindProperty_1
+    419          		}
+    420          
+    421          		// Look for property value
+    422          		if (pbArray[wInd + 2] == bGroup)
+   \                     ??bRadio_FindProperty_5: (+1)
+   \       0x4C   0xEB04 0x0007      ADD      R0,R4,R7
+   \       0x50   0x7880             LDRB     R0,[R0, #+2]
+   \       0x52   0x468C             MOV      R12,R1
+   \       0x54   0xFA5F 0xFC8C      UXTB     R12,R12
+   \       0x58   0x4560             CMP      R0,R12
+   \       0x5A   0xD125             BNE.N    ??bRadio_FindProperty_6
+    423          		{
+    424          			if ( (pbArray[wInd + 4] <= bAddress ) && ( bAddress < pbArray[wInd + 3] + pbArray[wInd + 4] ) )
+   \       0x5C   0x0010             MOVS     R0,R2
+   \       0x5E   0xEB04 0x0C07      ADD      R12,R4,R7
+   \       0x62   0xF89C 0xC004      LDRB     R12,[R12, #+4]
+   \       0x66   0xB2C0             UXTB     R0,R0
+   \       0x68   0x4560             CMP      R0,R12
+   \       0x6A   0xD31D             BCC.N    ??bRadio_FindProperty_6
+   \       0x6C   0x0010             MOVS     R0,R2
+   \       0x6E   0xB2C0             UXTB     R0,R0
+   \       0x70   0xEB04 0x0C07      ADD      R12,R4,R7
+   \       0x74   0xF89C 0xC003      LDRB     R12,[R12, #+3]
+   \       0x78   0xEB04 0x0E07      ADD      LR,R4,R7
+   \       0x7C   0xF89E 0xE004      LDRB     LR,[LR, #+4]
+   \       0x80   0xFA5E 0xFC8C      UXTAB    R12,LR,R12
+   \       0x84   0x4560             CMP      R0,R12
+   \       0x86   0xDA0F             BGE.N    ??bRadio_FindProperty_6
+    425          			{
+    426          				bPropertyValue = pbArray[wInd + 5 + (bAddress - pbArray[wInd + 4])];
+   \       0x88   0x4694             MOV      R12,R2
+   \       0x8A   0xFA5F 0xFC8C      UXTB     R12,R12
+   \       0x8E   0xEB04 0x0007      ADD      R0,R4,R7
+   \       0x92   0x7900             LDRB     R0,[R0, #+4]
+   \       0x94   0xEBBC 0x0C00      SUBS     R12,R12,R0
+   \       0x98   0xEB1C 0x0C07      ADDS     R12,R12,R7
+   \       0x9C   0xEB04 0x000C      ADD      R0,R4,R12
+   \       0xA0   0x7940             LDRB     R0,[R0, #+5]
+   \       0xA2   0x0005             MOVS     R5,R0
+    427          				gPropertyFound = TRUE;
+   \       0xA4   0x2001             MOVS     R0,#+1
+   \       0xA6   0x0006             MOVS     R6,R0
+    428          				// Don't break the loop here, check the rest of the array
+    429          			}
+    430          		}
+    431          		wInd += pbArray[wInd] + 1;
+   \                     ??bRadio_FindProperty_6: (+1)
+   \       0xA8   0x5DE0             LDRB     R0,[R4, R7]
+   \       0xAA   0x1C40             ADDS     R0,R0,#+1
+   \       0xAC   0x19C7             ADDS     R7,R0,R7
+   \       0xAE   0xE7B0             B.N      ??bRadio_FindProperty_0
+    432          	}
+    433          
+    434          	if (gPropertyFound)
+   \                     ??bRadio_FindProperty_2: (+1)
+   \       0xB0   0x0030             MOVS     R0,R6
+   \       0xB2   0xB2C0             UXTB     R0,R0
+   \       0xB4   0x2800             CMP      R0,#+0
+   \       0xB6   0xD000             BEQ.N    ??bRadio_FindProperty_7
+    435          	{
+    436          		*pbValue = bPropertyValue;
+   \       0xB8   0x701D             STRB     R5,[R3, #+0]
+    437          	}
+    438          	return gPropertyFound;
+   \                     ??bRadio_FindProperty_7: (+1)
+   \       0xBA   0x0030             MOVS     R0,R6
+   \       0xBC   0xB2C0             UXTB     R0,R0
+   \                     ??bRadio_FindProperty_1: (+1)
+   \       0xBE   0xBDF0             POP      {R4-R7,PC}
+    439          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3:
+   \        0x0   0x....'....        DC32     pRadioConfiguration
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_1:
+   \        0x0   0x....'....        DC32     RF_NIRQ
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_2:
+   \        0x0   0x....'....        DC32     Si446xCmd
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_3:
+   \        0x0   0x....'....        DC32     nRxErr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_4:
+   \        0x0   0x....'....        DC32     nCrcErr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_5:
+   \        0x0   0x....'....        DC32     g_nChRx
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_6:
+   \        0x0   0x....'....        DC32     `bRadio_Check_Tx_RX::s_idxRxPkt`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_7:
+   \        0x0   0x....'....        DC32     g_pRadioRxPkt
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_8:
+   \        0x0   0x....'....        DC32     g_RadioRxPkt
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_9:
+   \        0x0   0x....'....        DC32     g_nRSSI
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_10:
+   \        0x0   0x4002'1000        DC32     0x40021000
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      16   bRadio_Check_Tx_RX
+        16   -> GetDbg
+        16   -> si446x_change_state
+        16   -> si446x_fifo_info
+        16   -> si446x_frr_b_read
+        16   -> si446x_get_int_status_fast_clear_read
+        16   -> si446x_read_rx_fifo
+        16   -> vRadio_StartRX
+      20   bRadio_FindProperty
+       8   get_CCA
+         8   -> HAL_GPIO_ReadPin
+       8   vRadio_Init
+         8   -> HAL_Delay
+         8   -> si446x_configuration_init
+         8   -> si446x_get_int_status
+         8   -> vRadio_PowerUp
+       8   vRadio_PowerUp
+         8   -> HAL_Delay
+         8   -> si446x_reset
+       8   vRadio_Set_TxPower
+         8   -> si446x_set_property
+      24   vRadio_StartRX
+        24   -> si446x_fifo_info
+        24   -> si446x_get_int_status
+        24   -> si446x_start_rx
+      16   vRadio_StartTx_Variable_Packet
+        16   -> HAL_Delay
+        16   -> get_CCA
+        16   -> si446x_change_state
+        16   -> si446x_fifo_info
+        16   -> si446x_get_int_status
+        16   -> si446x_start_tx
+        16   -> si446x_write_tx_fifo
+      16   vRadio_StartTx_Variable_Packet_MultiField
+        16   -> HAL_Delay
+        16   -> get_CCA
+        16   -> si446x_fifo_info_fast_reset
+        16   -> si446x_get_int_status_fast_clear
+        16   -> si446x_start_tx
+        16   -> si446x_write_tx_fifo
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable3
+       4  ??DataTable3_1
+       4  ??DataTable3_10
+       4  ??DataTable3_2
+       4  ??DataTable3_3
+       4  ??DataTable3_4
+       4  ??DataTable3_5
+       4  ??DataTable3_6
+       4  ??DataTable3_7
+       4  ??DataTable3_8
+       4  ??DataTable3_9
+      76  RadioConfiguration
+     972  Radio_Configuration_Data_Array
+     200  bRadio_Check_Tx_RX
+     192  bRadio_FindProperty
+     128  g_RadioRxPkt
+       4  g_pRadioRxPkt
+      24  get_CCA
+       4  pRadioConfiguration
+       4  s_idxRxPkt
+      58  vRadio_Init
+      16  vRadio_PowerUp
+      20  vRadio_Set_TxPower
+      48  vRadio_StartRX
+      72  vRadio_StartTx_Variable_Packet
+      58  vRadio_StartTx_Variable_Packet_MultiField
+
+ 
+ 136 bytes in section .bss
+  80 bytes in section .data
+ 972 bytes in section .rodata
+ 732 bytes in section .text
+ 
+ 732 bytes of CODE  memory
+ 972 bytes of CONST memory
+ 216 bytes of DATA  memory
+
+Errors: none
+Warnings: 33

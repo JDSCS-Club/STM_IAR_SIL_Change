@@ -1,0 +1,176 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:55
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Src\stm32f4xx_hal_timebase_tim.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\Core\stm32f4xx_hal_timebase_tim.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Src\stm32f4xx_hal_timebase_tim.c
+#        -D USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Application\User\Core
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\Core
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\Core\stm32f4xx_hal_timebase_tim.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Application\User\Core\stm32f4xx_hal_timebase_tim.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\Core\stm32f4xx_hal_timebase_tim.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Src\stm32f4xx_hal_timebase_tim.c
+      1          /* USER CODE BEGIN Header */
+      2          /**
+      3            ******************************************************************************
+      4            * @file    stm32f4xx_hal_timebase_TIM.c 
+      5            * @brief   HAL time base based on the hardware TIM.
+      6            ******************************************************************************
+      7            * @attention
+      8            *
+      9            * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+     10            * All rights reserved.</center></h2>
+     11            *
+     12            * This software component is licensed by ST under BSD 3-Clause license,
+     13            * the "License"; You may not use this file except in compliance with the
+     14            * License. You may obtain a copy of the License at:
+     15            *                        opensource.org/licenses/BSD-3-Clause
+     16            *
+     17            ******************************************************************************
+     18            */
+     19          /* USER CODE END Header */
+     20          
+     21          /* Includes ------------------------------------------------------------------*/
+     22          #include "stm32f4xx_hal.h"
+     23          #include "stm32f4xx_hal_tim.h"
+     24          
+     25          /* Private typedef -----------------------------------------------------------*/
+     26          /* Private define ------------------------------------------------------------*/
+     27          /* Private macro -------------------------------------------------------------*/
+     28          /* Private variables ---------------------------------------------------------*/
+     29          //TIM_HandleTypeDef        htim1;
+     30          /* Private function prototypes -----------------------------------------------*/
+     31          /* Private functions ---------------------------------------------------------*/
+     32          
+     33          /**
+     34            * @brief  This function configures the TIM1 as a time base source.
+     35            *         The time source is configured  to have 1ms time base with a dedicated
+     36            *         Tick interrupt priority.
+     37            * @note   This function is called  automatically at the beginning of program after
+     38            *         reset by HAL_Init() or at any time when clock is configured, by HAL_RCC_ClockConfig().
+     39            * @param  TickPriority: Tick interrupt priority.
+     40            * @retval HAL status
+     41            */
+     42          //
+     43          //HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
+     44          //{
+     45          //  RCC_ClkInitTypeDef    clkconfig;
+     46          //  uint32_t              uwTimclock = 0;
+     47          //  uint32_t              uwPrescalerValue = 0;
+     48          //  uint32_t              pFLatency;
+     49          //  /*Configure the TIM1 IRQ priority */
+     50          //  HAL_NVIC_SetPriority(TIM1_UP_TIM10_IRQn, TickPriority ,0);
+     51          //
+     52          //  /* Enable the TIM1 global Interrupt */
+     53          //  HAL_NVIC_EnableIRQ(TIM1_UP_TIM10_IRQn);
+     54          //  /* Enable TIM1 clock */
+     55          //  __HAL_RCC_TIM1_CLK_ENABLE();
+     56          //
+     57          //  /* Get clock configuration */
+     58          //  HAL_RCC_GetClockConfig(&clkconfig, &pFLatency);
+     59          //
+     60          //  /* Compute TIM1 clock */
+     61          //  uwTimclock = HAL_RCC_GetPCLK2Freq();
+     62          //  /* Compute the prescaler value to have TIM1 counter clock equal to 1MHz */
+     63          //  uwPrescalerValue = (uint32_t) ((uwTimclock / 1000000U) - 1U);
+     64          //
+     65          //  /* Initialize TIM1 */
+     66          //  htim1.Instance = TIM1;
+     67          //
+     68          //  /* Initialize TIMx peripheral as follow:
+     69          //  + Period = [(TIM1CLK/1000) - 1]. to have a (1/1000) s time base.
+     70          //  + Prescaler = (uwTimclock/1000000 - 1) to have a 1MHz counter clock.
+     71          //  + ClockDivision = 0
+     72          //  + Counter direction = Up
+     73          //  */
+     74          //  htim1.Init.Period = (1000000U / 1000U) - 1U;
+     75          //  htim1.Init.Prescaler = uwPrescalerValue;
+     76          //  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+     77          //  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+     78          //  if(HAL_TIM_Base_Init(&htim1) == HAL_OK)
+     79          //  {
+     80          //    /* Start the TIM time Base generation in interrupt mode */
+     81          //    return HAL_TIM_Base_Start_IT(&htim1);
+     82          //  }
+     83          //
+     84          //  /* Return function status */
+     85          //  return HAL_ERROR;
+     86          //}
+     87          
+     88          /**
+     89            * @brief  Suspend Tick increment.
+     90            * @note   Disable the tick increment by disabling TIM1 update interrupt.
+     91            * @param  None
+     92            * @retval None
+     93            */
+     94          //void HAL_SuspendTick(void)
+     95          //{
+     96          //  /* Disable TIM1 update Interrupt */
+     97          //  __HAL_TIM_DISABLE_IT(&htim1, TIM_IT_UPDATE);
+     98          //}
+     99          
+    100          /**
+    101            * @brief  Resume Tick increment.
+    102            * @note   Enable the tick increment by Enabling TIM1 update interrupt.
+    103            * @param  None
+    104            * @retval None
+    105            */
+    106          //void HAL_ResumeTick(void)
+    107          //{
+    108          //  /* Enable TIM1 Update interrupt */
+    109          //  __HAL_TIM_ENABLE_IT(&htim1, TIM_IT_UPDATE);
+    110          //}
+    111          
+    112          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+
+ 
+ 
+ 0 bytes of memory
+
+Errors: none
+Warnings: none

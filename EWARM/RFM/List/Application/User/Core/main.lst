@@ -1,0 +1,2270 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:59
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                 =  thumb
+#    Endian                   =  little
+#    Source file              =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Src\main.c
+#    Command line             =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\Core\main.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Src\main.c -D USE_HAL_DRIVER
+#        -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Application\User\Core
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\Core
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\Core\main.o.d
+#    Locale                   =  C
+#    List file                =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Application\User\Core\main.lst
+#    Object file              =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\Core\main.o
+#    Runtime model:              
+#      __CPP_Runtime          =  1
+#      __SystemLibrary        =  DLib
+#      __dlib_file_descriptor =  1
+#      __dlib_version         =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Src\main.c
+      1          /* USER CODE BEGIN Header */
+      2          /**
+      3            ******************************************************************************
+      4            * @file           : main.c
+      5            * @brief          : Main program body
+      6            ******************************************************************************
+      7            * @attention
+      8            *
+      9            * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+     10            * All rights reserved.</center></h2>
+     11            *
+     12            * This software component is licensed by ST under BSD 3-Clause license,
+     13            * the "License"; You may not use this file except in compliance with the
+     14            * License. You may obtain a copy of the License at:
+     15            *                        opensource.org/licenses/BSD-3-Clause
+     16            *
+     17            ******************************************************************************
+     18            */
+     19          
+     20          #include <stdio.h>
+     21          #include <stdint.h>         //  uint16_t
+     22          
+     23          /* USER CODE END Header */
+     24          /* Includes ------------------------------------------------------------------*/
+     25          #include "main.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     26          //#include "usb_device.h"
+     27          
+     28          /* Private includes ----------------------------------------------------------*/
+     29          /* USER CODE BEGIN Includes */
+     30          
+     31          #include "typedef.h"	//	TRUE, FALSE, ...
+
+  typedef unsigned char       BYTE;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",73  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned short      WORD;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",77  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		BIT;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",83  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		U8;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",84  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned int 		U16;
+                       		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",85  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned long 		U32;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",86  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed char 		S8;
+                      		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",88  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed int 			S16;
+                     			^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",89  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed long 		S32;
+                      		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Inc\typedef.h",90  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+     32          
+     33          /* USER CODE END Includes */
+     34          
+     35          /* Private typedef -----------------------------------------------------------*/
+     36          /* USER CODE BEGIN PTD */
+     37          
+     38          /* USER CODE END PTD */
+     39          
+     40          /* Private define ------------------------------------------------------------*/
+     41          /* USER CODE BEGIN PD */
+     42          /* USER CODE END PD */
+     43          
+     44          /* Private macro -------------------------------------------------------------*/
+     45          /* USER CODE BEGIN PM */
+     46          
+     47          /* USER CODE END PM */
+     48          
+     49          /* Private variables ---------------------------------------------------------*/
+
+   \                                 In section .bss, align 4
+     50          ADC_HandleTypeDef hadc1;
+   \                     hadc1:
+   \        0x0                      DS8 72
+     51          
+
+   \                                 In section .bss, align 4
+     52          I2C_HandleTypeDef hi2c1;
+   \                     hi2c1:
+   \        0x0                      DS8 84
+
+   \                                 In section .bss, align 4
+     53          I2C_HandleTypeDef hi2c3;
+   \                     hi2c3:
+   \        0x0                      DS8 84
+     54          
+
+   \                                 In section .bss, align 4
+     55          I2S_HandleTypeDef hi2s3;
+   \                     hi2s3:
+   \        0x0                      DS8 72
+
+   \                                 In section .bss, align 4
+     56          DMA_HandleTypeDef hdma_i2s3_ext_rx;
+   \                     hdma_i2s3_ext_rx:
+   \        0x0                      DS8 96
+
+   \                                 In section .bss, align 4
+     57          DMA_HandleTypeDef hdma_spi3_tx;
+   \                     hdma_spi3_tx:
+   \        0x0                      DS8 96
+     58          
+
+   \                                 In section .bss, align 4
+     59          IWDG_HandleTypeDef hiwdg;
+   \                     hiwdg:
+   \        0x0                      DS8 12
+     60          
+
+   \                                 In section .bss, align 4
+     61          SPI_HandleTypeDef hspi1;
+   \                     hspi1:
+   \        0x0                      DS8 88
+
+   \                                 In section .bss, align 4
+     62          SPI_HandleTypeDef hspi2;
+   \                     hspi2:
+   \        0x0                      DS8 88
+
+   \                                 In section .bss, align 4
+     63          DMA_HandleTypeDef hdma_spi1_tx;
+   \                     hdma_spi1_tx:
+   \        0x0                      DS8 96
+
+   \                                 In section .bss, align 4
+     64          DMA_HandleTypeDef hdma_spi1_rx;
+   \                     hdma_spi1_rx:
+   \        0x0                      DS8 96
+     65          
+
+   \                                 In section .bss, align 4
+     66          TIM_HandleTypeDef htim3;
+   \                     htim3:
+   \        0x0                      DS8 64
+     67          
+
+   \                                 In section .bss, align 4
+     68          TIM_HandleTypeDef htim1;
+   \                     htim1:
+   \        0x0                      DS8 64
+     69          
+     70          
+
+   \                                 In section .bss, align 4
+     71          UART_HandleTypeDef huart1;
+   \                     huart1:
+   \        0x0                      DS8 64
+
+   \                                 In section .bss, align 4
+     72          UART_HandleTypeDef huart2;
+   \                     huart2:
+   \        0x0                      DS8 64
+     73          
+     74          /* USER CODE BEGIN PV */
+     75          
+     76          /* USER CODE END PV */
+     77          
+     78          /* Private function prototypes -----------------------------------------------*/
+     79          void SystemClock_Config(void);
+     80          static void MX_GPIO_Init(void);
+     81          static void MX_DMA_Init(void);
+     82          static void MX_I2C1_Init(void);
+     83          static void MX_SPI1_Init(void);
+     84          static void MX_SPI2_Init(void);
+     85          static void MX_USART1_UART_Init(void);
+     86          static void MX_USART2_UART_Init(void);
+     87          static void MX_I2S3_Init(void);
+     88          static void MX_TIM3_Init(void);
+     89          static void MX_ADC1_Init(void);
+     90          static void MX_I2C3_Init(void);
+     91          static void MX_IWDG_Init(void);
+     92          /* USER CODE BEGIN PFP */
+     93          
+     94          /* USER CODE END PFP */
+     95          
+     96          /* Private user code ---------------------------------------------------------*/
+     97          /* USER CODE BEGIN 0 */
+     98          
+     99          #if	defined(USE_BOOTLOADER)
+    100          
+    101          #include "bootloader.h"
+    102          
+    103          #else	//	defined(USE_BOOTLOADER)
+    104          
+    105          
+    106          #include "serial.h"
+    107          
+    108          #include "Adafruit_SSD1306.h"   //  I2C LCD
+    109          
+    110          #include "radio_hal.h"			//	RF_NIRQ
+    111          #include "si446x_api_lib.h"		//	si446x_part_info()
+    112          
+    113          #include "keypad.h"				//	RFM Keypad
+    114          
+    115          #include "audio.h"				//	MAX9860
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",304  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",322  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",468  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",506  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",511  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",533  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",559  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",567  Warning[Pe040]: 
+          expected an identifier
+    116          
+    117          #include "rfm.h"				//	SetDevID()
+    118          
+    119          
+    120          //si4463 Interrupt
+    121          
+
+   \                                 In section .bss, align 1
+    122          uint8_t RF_NIRQ;
+   \                     RF_NIRQ:
+   \        0x0                      DS8 1
+    123          
+    124          
+    125          
+    126          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    127          void HAL_GPIO_EXTI_Callback ( uint16_t GPIO_Pin )
+    128          //========================================================================
+    129          {
+   \                     HAL_GPIO_EXTI_Callback: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    130              uint8_t st;
+    131          
+    132          //    printf( " HAL_GPIO_EXTI_Callback\n" );
+    133          
+    134              st = HAL_GPIO_ReadPin ( RF_INT_GPIO_Port, RF_INT_Pin );
+   \        0x4   0x2110             MOVS     R1,#+16
+   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable14
+   \        0xA   0x.... 0x....      BL       HAL_GPIO_ReadPin
+    135              if ( st )	//	rising edge
+   \        0xE   0x0001             MOVS     R1,R0
+   \       0x10   0xB2C9             UXTB     R1,R1
+   \       0x12   0x2900             CMP      R1,#+0
+   \       0x14   0xD004             BEQ.N    ??HAL_GPIO_EXTI_Callback_0
+    136              {
+    137                  RF_NIRQ = TRUE;
+   \       0x16   0x2101             MOVS     R1,#+1
+   \       0x18   0x.... 0x....      LDR.W    R2,??DataTable14_1
+   \       0x1C   0x7011             STRB     R1,[R2, #+0]
+   \       0x1E   0xE003             B.N      ??HAL_GPIO_EXTI_Callback_1
+    138              }
+    139              else		//	falling edge
+    140              {
+    141                  RF_NIRQ = FALSE;
+   \                     ??HAL_GPIO_EXTI_Callback_0: (+1)
+   \       0x20   0x2100             MOVS     R1,#+0
+   \       0x22   0x.... 0x....      LDR.W    R2,??DataTable14_1
+   \       0x26   0x7011             STRB     R1,[R2, #+0]
+    142              }
+    143          }
+   \                     ??HAL_GPIO_EXTI_Callback_1: (+1)
+   \       0x28   0xBD10             POP      {R4,PC}
+    144          
+    145          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    146          void LoopProcMain( int nTick )
+    147          //========================================================================
+    148          {
+    149          	//	Watchdog Reload
+    150          	__HAL_IWDG_RELOAD_COUNTER(&hiwdg);
+   \                     LoopProcMain: (+1)
+   \        0x0   0xF64A 0x21AA      MOVW     R1,#+43690
+   \        0x4   0x.... 0x....      LDR.W    R2,??DataTable14_2
+   \        0x8   0x6812             LDR      R2,[R2, #+0]
+   \        0xA   0x6011             STR      R1,[R2, #+0]
+    151          
+    152          //	static int s_nTick = 0;
+    153          //
+    154          //	if ( ( nTick - s_nTick ) >= 1000 )
+    155          //	{
+    156          //		char *sTest = "USB 가나다라\n\r";
+    157          //		CDC_Transmit_FS(sTest, strlen(sTest) + 1);
+    158          //		s_nTick = nTick;
+    159          //	}
+    160          }
+   \        0xC   0x4770             BX       LR
+    161          
+    162          #endif
+    163          
+    164          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    165          void MX_IWDG_Disable( void )
+    166          //========================================================================
+    167          {
+    168          	//	iWdg : iWatchdog의 경우 처음 시작 이후에 Stop 불가.
+    169          	//			-> Reset이후에만 종료됨.
+    170          //	IWDG_DISABLE_WRITE_ACCESS( &hiwdg );
+    171          }
+   \                     MX_IWDG_Disable: (+1)
+   \        0x0   0x4770             BX       LR
+    172          
+    173          
+    174          
+    175          
+    176          
+    177          /* USER CODE END 0 */
+    178          
+    179          /**
+    180            * @brief  The application entry point.
+    181            * @retval int
+    182            */
+
+   \                                 In section .text, align 2, keep-with-next
+    183          int main(void)
+    184          {
+   \                     main: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+    185            /* USER CODE BEGIN 1 */
+    186          
+    187            /* USER CODE END 1 */
+    188          
+    189            /* MCU Configuration--------------------------------------------------------*/
+    190          
+    191            /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+    192            HAL_Init();
+   \        0x2   0x.... 0x....      BL       HAL_Init
+    193          
+    194            /* USER CODE BEGIN Init */
+    195          
+    196            /* USER CODE END Init */
+    197          
+    198            /* Configure the system clock */
+    199            SystemClock_Config();
+   \        0x6   0x.... 0x....      BL       SystemClock_Config
+    200          
+    201            /* USER CODE BEGIN SysInit */
+    202          
+    203          #if	defined(USE_BOOTLOADER)
+    204          
+    205            MX_GPIO_Init();
+    206            MX_DMA_Init();
+    207            MX_I2C1_Init();
+    208            MX_SPI1_Init();
+    209            MX_SPI2_Init();
+    210            //MX_USART1_UART_Init();
+    211            MX_USART2_UART_Init();
+    212            MX_I2S3_Init();
+    213            MX_TIM3_Init();
+    214          //  MX_ADC1_Init();
+    215            MX_I2C3_Init();
+    216          //  MX_IWDG_Init();
+    217          //DEL  MX_USB_DEVICE_Init();
+    218          
+    219          #else	//	Application
+    220          
+    221            /* USER CODE END SysInit */
+    222          
+    223            /* Initialize all configured peripherals */
+    224            MX_GPIO_Init();
+   \        0xA   0x.... 0x....      BL       MX_GPIO_Init
+    225            MX_DMA_Init();
+   \        0xE   0x.... 0x....      BL       MX_DMA_Init
+    226            MX_I2C1_Init();
+   \       0x12   0x.... 0x....      BL       MX_I2C1_Init
+    227            MX_SPI1_Init();
+   \       0x16   0x.... 0x....      BL       MX_SPI1_Init
+    228            MX_SPI2_Init();
+   \       0x1A   0x.... 0x....      BL       MX_SPI2_Init
+    229            //MX_USART1_UART_Init();
+    230            MX_USART2_UART_Init();
+   \       0x1E   0x.... 0x....      BL       MX_USART2_UART_Init
+    231            MX_I2S3_Init();
+   \       0x22   0x.... 0x....      BL       MX_I2S3_Init
+    232            MX_TIM3_Init();
+   \       0x26   0x.... 0x....      BL       MX_TIM3_Init
+    233            MX_ADC1_Init();
+   \       0x2A   0x.... 0x....      BL       MX_ADC1_Init
+    234            MX_I2C3_Init();
+   \       0x2E   0x.... 0x....      BL       MX_I2C3_Init
+    235            MX_IWDG_Init();
+   \       0x32   0x.... 0x....      BL       MX_IWDG_Init
+    236            //MX_USB_DEVICE_Init();
+    237            /* USER CODE BEGIN 2 */
+    238          
+    239          #endif	//	Application
+    240          
+    241          
+    242              
+    243              
+    244              
+    245              
+    246          //    RCC_ClkInitTypeDef    clkconfig;
+    247          //    
+    248          //    uint32_t              uwTimclock = 0;
+    249          //    uint32_t              uwPrescalerValue = 0; 
+    250          //    uint32_t              pFLatency;
+    251          //    
+    252          // 
+    253          //     
+    254          //     
+    255          //    /* Get clock configuration */
+    256          //    HAL_RCC_GetClockConfig(&clkconfig, &pFLatency);
+    257          //  
+    258          //
+    259          //    uwTimclock = HAL_RCC_GetPCLK2Freq();
+    260          //    uwPrescalerValue = (uint32_t) ((uwTimclock / 1000000U) - 1U);
+    261          //
+    262          //    /* Initialize TIM1 */
+    263          //    htim1.Instance = TIM1;
+    264          //
+    265          //    /* Initialize TIMx peripheral as follow:
+    266          //    + Period = [(TIM1CLK/1000) - 1]. to have a (1/1000) s time base.
+    267          //    + Prescaler = (uwTimclock/1000000 - 1) to have a 1MHz counter clock.
+    268          //    + ClockDivision = 0
+    269          //    + Counter direction = Up
+    270          //    */
+    271          //    htim1.Init.Period = 10000-1;
+    272          //    htim1.Init.Prescaler = (uint32_t) ((SystemCoreClock/2)/10000000) - 1;;
+    273          //    htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+    274          //    htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+    275          //    
+    276          //    if(HAL_TIM_Base_Init(&htim1) == HAL_OK)
+    277          //    {
+    278          //        /* Start the TIM time Base generation in interrupt mode */
+    279          //        return HAL_TIM_Base_Start_IT(&htim1);
+    280          //    }
+    281              
+    282              
+    283              //========================================================================
+    284          	//    Start PWM
+    285          
+    286          	//    I2S MCLK - 12 MHz
+    287            	//		72000000 / 3 / 2 = 12000000 ( 12MHz ) - MCLK ( MAX9860+ )
+    288          	HAL_TIM_PWM_Start( &htim3, TIM_CHANNEL_2 );       //      12 MHz
+   \       0x36   0x.... 0x....      LDR.W    R5,??DataTable14_3
+   \       0x3A   0x2104             MOVS     R1,#+4
+   \       0x3C   0x0028             MOVS     R0,R5
+   \       0x3E   0x.... 0x....      BL       HAL_TIM_PWM_Start
+    289          	HAL_TIMEx_PWMN_Start( &htim3, TIM_CHANNEL_2 );
+   \       0x42   0x2104             MOVS     R1,#+4
+   \       0x44   0x0028             MOVS     R0,R5
+   \       0x46   0x.... 0x....      BL       HAL_TIMEx_PWMN_Start
+    290          
+    291          	//========================================================================
+    292          	//    Initial
+    293          
+    294          	//	Serial
+    295          	SerialInit( NULL, &huart2 );   //  Init Serial Handle
+   \       0x4A   0x.... 0x....      LDR.W    R1,??DataTable14_4
+   \       0x4E   0x2000             MOVS     R0,#+0
+   \       0x50   0x.... 0x....      BL       SerialInit
+    296          	//SerialInit( NULL, &huart2 );   //  Init Serial Handle
+    297          	setbuf ( stdout, NULL );		            //	1024 byte buffer clear
+   \       0x54   0x.... 0x....      LDR.W    R5,??DataTable14_5
+   \       0x58   0x2100             MOVS     R1,#+0
+   \       0x5A   0x0028             MOVS     R0,R5
+   \       0x5C   0x.... 0x....      BL       setbuf
+    298          	//  setvbuf ( stdout, NULL, _IOLBF, NULL );	//	Line Buffer
+    299          	setvbuf ( stdout, NULL, _IONBF, NULL );	//	No Buffer
+   \       0x60   0x2300             MOVS     R3,#+0
+   \       0x62   0x2202             MOVS     R2,#+2
+   \       0x64   0x2100             MOVS     R1,#+0
+   \       0x66   0x0028             MOVS     R0,R5
+   \       0x68   0x.... 0x....      BL       setvbuf
+    300          
+    301          	//printf( "%s(%d) - Start\n", __func__, __LINE__ );
+    302              
+    303            
+    304            
+    305          
+    306          #if	defined(USE_BOOTLOADER)
+    307          
+    308          	BootLoaderTask();
+    309          
+    310          #else	//	RFM
+    311          
+    312          	//========================================================================
+    313          	//    RFM Main Routine
+    314          
+    315          	RFM_main();
+   \       0x6C   0x.... 0x....      BL       RFM_main
+    316          
+    317          	//========================================================================
+    318          
+    319            /* USER CODE END 2 */
+    320          
+    321            /* Infinite loop */
+    322            /* USER CODE BEGIN WHILE */
+    323              
+    324          
+    325              
+    326              
+    327          
+    328            int nCurrTick;
+    329            static int nLedTick = 0;
+    330          
+    331            while (1)
+    332            {
+    333              /* USER CODE END WHILE */
+    334          
+    335              /* USER CODE BEGIN 3 */
+    336          
+    337          	nCurrTick = HAL_GetTick();
+   \                     ??main_0: (+1)
+   \       0x70   0x.... 0x....      BL       HAL_GetTick
+   \       0x74   0x0004             MOVS     R4,R0
+    338          
+    339          	LoopProcKey( nCurrTick );
+   \       0x76   0x0020             MOVS     R0,R4
+   \       0x78   0x.... 0x....      BL       LoopProcKey
+    340          
+    341          	if ( ( nCurrTick - nLedTick ) >= 1000 )
+   \       0x7C   0x.... 0x....      LDR.W    R5,??DataTable14_6
+   \       0x80   0x6828             LDR      R0,[R5, #+0]
+   \       0x82   0x1A20             SUBS     R0,R4,R0
+   \       0x84   0xF5B0 0x7F7A      CMP      R0,#+1000
+   \       0x88   0xDBF2             BLT.N    ??main_0
+    342          	{
+    343          	    HAL_GPIO_TogglePin( LED_ST_GPIO_Port, LED_ST_Pin );
+   \       0x8A   0xF44F 0x4100      MOV      R1,#+32768
+   \       0x8E   0x.... 0x....      LDR.W    R0,??DataTable14_7
+   \       0x92   0x.... 0x....      BL       HAL_GPIO_TogglePin
+    344          
+    345          	    //printf( "%s(%d) - Loop(%d)\n", __func__, __LINE__, nCurrTick );
+    346          
+    347          	    nLedTick = nCurrTick;
+   \       0x96   0x602C             STR      R4,[R5, #+0]
+   \       0x98   0xE7EA             B.N      ??main_0
+    348          	}
+    349            }
+    350          
+    351          #endif
+    352          
+    353          
+    354            /* USER CODE END 3 */
+    355          }
+
+   \                                 In section .bss, align 4
+   \                     `main::nLedTick`:
+   \        0x0                      DS8 4
+    356          
+    357          /**
+    358            * @brief System Clock Configuration
+    359            * @retval None
+    360            */
+
+   \                                 In section .text, align 2, keep-with-next
+    361          void SystemClock_Config(void)
+    362          {
+   \                     SystemClock_Config: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+   \        0x2   0xB096             SUB      SP,SP,#+88
+   \        0x4   0x2230             MOVS     R2,#+48
+   \        0x6   0x2100             MOVS     R1,#+0
+   \        0x8   0xA80A             ADD      R0,SP,#+40
+   \        0xA   0x.... 0x....      BL       memset
+   \        0xE   0x2214             MOVS     R2,#+20
+   \       0x10   0x2100             MOVS     R1,#+0
+   \       0x12   0xA805             ADD      R0,SP,#+20
+   \       0x14   0x.... 0x....      BL       memset
+   \       0x18   0x2210             MOVS     R2,#+16
+   \       0x1A   0x2100             MOVS     R1,#+0
+   \       0x1C   0xA801             ADD      R0,SP,#+4
+   \       0x1E   0x.... 0x....      BL       memset
+    363            RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+    364            RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+    365            RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+    366          
+    367            /** Configure the main internal regulator output voltage
+    368            */
+    369            __HAL_RCC_PWR_CLK_ENABLE();
+   \       0x22   0x2000             MOVS     R0,#+0
+   \       0x24   0x9000             STR      R0,[SP, #+0]
+   \       0x26   0x.... 0x....      LDR.W    R0,??DataTable14_8
+   \       0x2A   0x6801             LDR      R1,[R0, #+0]
+   \       0x2C   0xF051 0x5180      ORRS     R1,R1,#0x10000000
+   \       0x30   0x6001             STR      R1,[R0, #+0]
+   \       0x32   0x6800             LDR      R0,[R0, #+0]
+   \       0x34   0xF010 0x5080      ANDS     R0,R0,#0x10000000
+   \       0x38   0x9000             STR      R0,[SP, #+0]
+   \       0x3A   0x9800             LDR      R0,[SP, #+0]
+    370            __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+   \       0x3C   0x2000             MOVS     R0,#+0
+   \       0x3E   0x9000             STR      R0,[SP, #+0]
+   \       0x40   0x.... 0x....      LDR.W    R0,??DataTable14_9
+   \       0x44   0x6801             LDR      R1,[R0, #+0]
+   \       0x46   0xF451 0x4180      ORRS     R1,R1,#0x4000
+   \       0x4A   0x6001             STR      R1,[R0, #+0]
+   \       0x4C   0x6800             LDR      R0,[R0, #+0]
+   \       0x4E   0xF410 0x4080      ANDS     R0,R0,#0x4000
+   \       0x52   0x9000             STR      R0,[SP, #+0]
+   \       0x54   0x9800             LDR      R0,[SP, #+0]
+    371            /** Initializes the RCC Oscillators according to the specified parameters
+    372            * in the RCC_OscInitTypeDef structure.
+    373            */
+    374            RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI|RCC_OSCILLATORTYPE_HSE;
+   \       0x56   0x2009             MOVS     R0,#+9
+   \       0x58   0x900A             STR      R0,[SP, #+40]
+    375            RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+   \       0x5A   0xF45F 0x20A0      MOVS     R0,#+327680
+   \       0x5E   0x900B             STR      R0,[SP, #+44]
+    376            RCC_OscInitStruct.LSIState = RCC_LSI_ON;
+   \       0x60   0x2001             MOVS     R0,#+1
+   \       0x62   0x900F             STR      R0,[SP, #+60]
+    377            RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+   \       0x64   0x2002             MOVS     R0,#+2
+   \       0x66   0x9010             STR      R0,[SP, #+64]
+    378            RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+   \       0x68   0xF45F 0x0080      MOVS     R0,#+4194304
+   \       0x6C   0x9011             STR      R0,[SP, #+68]
+    379            RCC_OscInitStruct.PLL.PLLM = 15;
+   \       0x6E   0x200F             MOVS     R0,#+15
+   \       0x70   0x9012             STR      R0,[SP, #+72]
+    380            RCC_OscInitStruct.PLL.PLLN = 72;
+   \       0x72   0x2048             MOVS     R0,#+72
+   \       0x74   0x9013             STR      R0,[SP, #+76]
+    381            RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+   \       0x76   0x2002             MOVS     R0,#+2
+   \       0x78   0x9014             STR      R0,[SP, #+80]
+    382            RCC_OscInitStruct.PLL.PLLQ = 3;
+   \       0x7A   0x2003             MOVS     R0,#+3
+   \       0x7C   0x9015             STR      R0,[SP, #+84]
+    383            if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+   \       0x7E   0xA80A             ADD      R0,SP,#+40
+   \       0x80   0x.... 0x....      BL       HAL_RCC_OscConfig
+   \       0x84   0x2800             CMP      R0,#+0
+   \       0x86   0xD001             BEQ.N    ??SystemClock_Config_0
+    384            {
+    385              Error_Handler();
+   \       0x88   0x.... 0x....      BL       Error_Handler
+    386            }
+    387            /** Initializes the CPU, AHB and APB buses clocks
+    388            */
+    389            RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+    390                                        |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+   \                     ??SystemClock_Config_0: (+1)
+   \       0x8C   0x200F             MOVS     R0,#+15
+   \       0x8E   0x9005             STR      R0,[SP, #+20]
+    391            RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+   \       0x90   0x2002             MOVS     R0,#+2
+   \       0x92   0x9006             STR      R0,[SP, #+24]
+    392            RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+   \       0x94   0x2000             MOVS     R0,#+0
+   \       0x96   0x9007             STR      R0,[SP, #+28]
+    393            RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+   \       0x98   0xF44F 0x5080      MOV      R0,#+4096
+   \       0x9C   0x9008             STR      R0,[SP, #+32]
+    394            RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+   \       0x9E   0x2000             MOVS     R0,#+0
+   \       0xA0   0x9009             STR      R0,[SP, #+36]
+    395          
+    396            if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+   \       0xA2   0x2102             MOVS     R1,#+2
+   \       0xA4   0xA805             ADD      R0,SP,#+20
+   \       0xA6   0x.... 0x....      BL       HAL_RCC_ClockConfig
+   \       0xAA   0x2800             CMP      R0,#+0
+   \       0xAC   0xD001             BEQ.N    ??SystemClock_Config_1
+    397            {
+    398              Error_Handler();
+   \       0xAE   0x.... 0x....      BL       Error_Handler
+    399            }
+    400            
+    401            
+    402            PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_I2S;
+   \                     ??SystemClock_Config_1: (+1)
+   \       0xB2   0x2001             MOVS     R0,#+1
+   \       0xB4   0x9001             STR      R0,[SP, #+4]
+    403            PeriphClkInitStruct.PLLI2S.PLLI2SN = 128;
+   \       0xB6   0x2080             MOVS     R0,#+128
+   \       0xB8   0x9002             STR      R0,[SP, #+8]
+    404            PeriphClkInitStruct.PLLI2S.PLLI2SR = 5;
+   \       0xBA   0x2005             MOVS     R0,#+5
+   \       0xBC   0x9003             STR      R0,[SP, #+12]
+    405            if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+   \       0xBE   0xA801             ADD      R0,SP,#+4
+   \       0xC0   0x.... 0x....      BL       HAL_RCCEx_PeriphCLKConfig
+   \       0xC4   0x2800             CMP      R0,#+0
+   \       0xC6   0xD001             BEQ.N    ??SystemClock_Config_2
+    406            {
+    407              Error_Handler();
+   \       0xC8   0x.... 0x....      BL       Error_Handler
+    408            }
+    409          }
+   \                     ??SystemClock_Config_2: (+1)
+   \       0xCC   0xB017             ADD      SP,SP,#+92
+   \       0xCE   0xBD00             POP      {PC}
+    410          
+    411          /**
+    412            * @brief ADC1 Initialization Function
+    413            * @param None
+    414            * @retval None
+    415            */
+
+   \                                 In section .text, align 2, keep-with-next
+    416          static void MX_ADC1_Init(void)
+    417          {
+   \                     MX_ADC1_Init: (+1)
+   \        0x0   0xB51F             PUSH     {R0-R4,LR}
+   \        0x2   0x2210             MOVS     R2,#+16
+   \        0x4   0x2100             MOVS     R1,#+0
+   \        0x6   0x4668             MOV      R0,SP
+   \        0x8   0x.... 0x....      BL       memset
+    418          
+    419            /* USER CODE BEGIN ADC1_Init 0 */
+    420          
+    421            /* USER CODE END ADC1_Init 0 */
+    422          
+    423            ADC_ChannelConfTypeDef sConfig = {0};
+    424          
+    425            /* USER CODE BEGIN ADC1_Init 1 */
+    426          
+    427            /* USER CODE END ADC1_Init 1 */
+    428            /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
+    429            */
+    430            hadc1.Instance = ADC1;
+   \        0xC   0x.... 0x....      LDR.W    R4,??DataTable14_10
+   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable14_11
+   \       0x14   0x6020             STR      R0,[R4, #+0]
+    431            hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
+   \       0x16   0x2000             MOVS     R0,#+0
+   \       0x18   0x6060             STR      R0,[R4, #+4]
+    432            hadc1.Init.Resolution = ADC_RESOLUTION_12B;
+   \       0x1A   0x2000             MOVS     R0,#+0
+   \       0x1C   0x60A0             STR      R0,[R4, #+8]
+    433            hadc1.Init.ScanConvMode = DISABLE;
+   \       0x1E   0x2000             MOVS     R0,#+0
+   \       0x20   0x6120             STR      R0,[R4, #+16]
+    434            hadc1.Init.ContinuousConvMode = DISABLE;
+   \       0x22   0x2000             MOVS     R0,#+0
+   \       0x24   0x7620             STRB     R0,[R4, #+24]
+    435            hadc1.Init.DiscontinuousConvMode = DISABLE;
+   \       0x26   0x2000             MOVS     R0,#+0
+   \       0x28   0xF884 0x0020      STRB     R0,[R4, #+32]
+    436            hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+   \       0x2C   0x2000             MOVS     R0,#+0
+   \       0x2E   0x62E0             STR      R0,[R4, #+44]
+    437            hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+   \       0x30   0x.... 0x....      LDR.W    R0,??DataTable14_12
+   \       0x34   0x62A0             STR      R0,[R4, #+40]
+    438            hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+   \       0x36   0x2000             MOVS     R0,#+0
+   \       0x38   0x60E0             STR      R0,[R4, #+12]
+    439            hadc1.Init.NbrOfConversion = 1;
+   \       0x3A   0x2001             MOVS     R0,#+1
+   \       0x3C   0x61E0             STR      R0,[R4, #+28]
+    440            hadc1.Init.DMAContinuousRequests = DISABLE;
+   \       0x3E   0x2000             MOVS     R0,#+0
+   \       0x40   0xF884 0x0030      STRB     R0,[R4, #+48]
+    441            hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+   \       0x44   0x2001             MOVS     R0,#+1
+   \       0x46   0x6160             STR      R0,[R4, #+20]
+    442            if (HAL_ADC_Init(&hadc1) != HAL_OK)
+   \       0x48   0x0020             MOVS     R0,R4
+   \       0x4A   0x.... 0x....      BL       HAL_ADC_Init
+   \       0x4E   0x2800             CMP      R0,#+0
+   \       0x50   0xD001             BEQ.N    ??MX_ADC1_Init_0
+    443            {
+    444              Error_Handler();
+   \       0x52   0x.... 0x....      BL       Error_Handler
+    445            }
+    446            /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
+    447            */
+    448            sConfig.Channel = ADC_CHANNEL_11;
+   \                     ??MX_ADC1_Init_0: (+1)
+   \       0x56   0x200B             MOVS     R0,#+11
+   \       0x58   0x9000             STR      R0,[SP, #+0]
+    449            sConfig.Rank = 1;
+   \       0x5A   0x2001             MOVS     R0,#+1
+   \       0x5C   0x9001             STR      R0,[SP, #+4]
+    450            sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+   \       0x5E   0x2000             MOVS     R0,#+0
+   \       0x60   0x9002             STR      R0,[SP, #+8]
+    451            if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+   \       0x62   0x4669             MOV      R1,SP
+   \       0x64   0x0020             MOVS     R0,R4
+   \       0x66   0x.... 0x....      BL       HAL_ADC_ConfigChannel
+   \       0x6A   0x2800             CMP      R0,#+0
+   \       0x6C   0xD001             BEQ.N    ??MX_ADC1_Init_1
+    452            {
+    453              Error_Handler();
+   \       0x6E   0x.... 0x....      BL       Error_Handler
+    454            }
+    455            /* USER CODE BEGIN ADC1_Init 2 */
+    456          
+    457            /* USER CODE END ADC1_Init 2 */
+    458          
+    459          }
+   \                     ??MX_ADC1_Init_1: (+1)
+   \       0x72   0xBD1F             POP      {R0-R4,PC}
+    460          
+    461          /**
+    462            * @brief I2C1 Initialization Function
+    463            * @param None
+    464            * @retval None
+    465            */
+
+   \                                 In section .text, align 2, keep-with-next
+    466          static void MX_I2C1_Init(void)
+    467          {
+   \                     MX_I2C1_Init: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    468          
+    469            /* USER CODE BEGIN I2C1_Init 0 */
+    470          
+    471            /* USER CODE END I2C1_Init 0 */
+    472          
+    473            /* USER CODE BEGIN I2C1_Init 1 */
+    474          
+    475            /* USER CODE END I2C1_Init 1 */
+    476              
+    477            hi2c1.Instance = I2C1;
+   \        0x2   0x.... 0x....      LDR.W    R0,??DataTable14_13
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable14_14
+   \        0xA   0x6001             STR      R1,[R0, #+0]
+    478            hi2c1.Init.ClockSpeed = 100000;
+   \        0xC   0x.... 0x....      LDR.W    R1,??DataTable14_15
+   \       0x10   0x6041             STR      R1,[R0, #+4]
+    479            hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+   \       0x12   0x2100             MOVS     R1,#+0
+   \       0x14   0x6081             STR      R1,[R0, #+8]
+    480            hi2c1.Init.OwnAddress1 = 0;
+   \       0x16   0x2100             MOVS     R1,#+0
+   \       0x18   0x60C1             STR      R1,[R0, #+12]
+    481            hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+   \       0x1A   0xF44F 0x4180      MOV      R1,#+16384
+   \       0x1E   0x6101             STR      R1,[R0, #+16]
+    482            hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+   \       0x20   0x2100             MOVS     R1,#+0
+   \       0x22   0x6141             STR      R1,[R0, #+20]
+    483            hi2c1.Init.OwnAddress2 = 0;
+   \       0x24   0x2100             MOVS     R1,#+0
+   \       0x26   0x6181             STR      R1,[R0, #+24]
+    484            hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+   \       0x28   0x2100             MOVS     R1,#+0
+   \       0x2A   0x61C1             STR      R1,[R0, #+28]
+    485            hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+   \       0x2C   0x2100             MOVS     R1,#+0
+   \       0x2E   0x6201             STR      R1,[R0, #+32]
+    486            if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+   \       0x30   0x.... 0x....      BL       HAL_I2C_Init
+   \       0x34   0x2800             CMP      R0,#+0
+   \       0x36   0xD001             BEQ.N    ??MX_I2C1_Init_0
+    487            {
+    488              Error_Handler();
+   \       0x38   0x.... 0x....      BL       Error_Handler
+    489            }
+    490            /* USER CODE BEGIN I2C1_Init 2 */
+    491          
+    492            /* USER CODE END I2C1_Init 2 */
+    493          
+    494          }
+   \                     ??MX_I2C1_Init_0: (+1)
+   \       0x3C   0xBD01             POP      {R0,PC}
+    495          
+    496          /**
+    497            * @brief I2C3 Initialization Function
+    498            * @param None
+    499            * @retval None
+    500            */
+
+   \                                 In section .text, align 2, keep-with-next
+    501          static void MX_I2C3_Init(void)
+    502          {
+   \                     MX_I2C3_Init: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    503          
+    504            /* USER CODE BEGIN I2C3_Init 0 */
+    505          
+    506            /* USER CODE END I2C3_Init 0 */
+    507          
+    508            /* USER CODE BEGIN I2C3_Init 1 */
+    509          
+    510            /* USER CODE END I2C3_Init 1 */
+    511            hi2c3.Instance = I2C3;
+   \        0x2   0x.... 0x....      LDR.W    R0,??DataTable14_16
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable14_17
+   \        0xA   0x6001             STR      R1,[R0, #+0]
+    512            hi2c3.Init.ClockSpeed = 400000;
+   \        0xC   0x.... 0x....      LDR.W    R1,??DataTable14_18
+   \       0x10   0x6041             STR      R1,[R0, #+4]
+    513            hi2c3.Init.DutyCycle = I2C_DUTYCYCLE_2;
+   \       0x12   0x2100             MOVS     R1,#+0
+   \       0x14   0x6081             STR      R1,[R0, #+8]
+    514            hi2c3.Init.OwnAddress1 = 0;
+   \       0x16   0x2100             MOVS     R1,#+0
+   \       0x18   0x60C1             STR      R1,[R0, #+12]
+    515            hi2c3.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+   \       0x1A   0xF44F 0x4180      MOV      R1,#+16384
+   \       0x1E   0x6101             STR      R1,[R0, #+16]
+    516            hi2c3.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+   \       0x20   0x2100             MOVS     R1,#+0
+   \       0x22   0x6141             STR      R1,[R0, #+20]
+    517            hi2c3.Init.OwnAddress2 = 0;
+   \       0x24   0x2100             MOVS     R1,#+0
+   \       0x26   0x6181             STR      R1,[R0, #+24]
+    518            hi2c3.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+   \       0x28   0x2100             MOVS     R1,#+0
+   \       0x2A   0x61C1             STR      R1,[R0, #+28]
+    519            hi2c3.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+   \       0x2C   0x2100             MOVS     R1,#+0
+   \       0x2E   0x6201             STR      R1,[R0, #+32]
+    520            if (HAL_I2C_Init(&hi2c3) != HAL_OK)
+   \       0x30   0x.... 0x....      BL       HAL_I2C_Init
+   \       0x34   0x2800             CMP      R0,#+0
+   \       0x36   0xD001             BEQ.N    ??MX_I2C3_Init_0
+    521            {
+    522              Error_Handler();
+   \       0x38   0x.... 0x....      BL       Error_Handler
+    523            }
+    524            /* USER CODE BEGIN I2C3_Init 2 */
+    525          
+    526            /* USER CODE END I2C3_Init 2 */
+    527          
+    528          }
+   \                     ??MX_I2C3_Init_0: (+1)
+   \       0x3C   0xBD01             POP      {R0,PC}
+    529          
+    530          /**
+    531            * @brief I2S3 Initialization Function
+    532            * @param None
+    533            * @retval None
+    534            */
+
+   \                                 In section .text, align 2, keep-with-next
+    535          static void MX_I2S3_Init(void)
+    536          {
+   \                     MX_I2S3_Init: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    537          
+    538            /* USER CODE BEGIN I2S3_Init 0 */
+    539          
+    540            /* USER CODE END I2S3_Init 0 */
+    541          
+    542            /* USER CODE BEGIN I2S3_Init 1 */
+    543          
+    544            /* USER CODE END I2S3_Init 1 */
+    545            hi2s3.Instance = SPI3;
+   \        0x2   0x.... 0x....      LDR.W    R0,??DataTable14_19
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable14_20
+   \        0xA   0x6001             STR      R1,[R0, #+0]
+    546            hi2s3.Init.Mode = I2S_MODE_MASTER_TX;
+   \        0xC   0xF44F 0x7100      MOV      R1,#+512
+   \       0x10   0x6041             STR      R1,[R0, #+4]
+    547            hi2s3.Init.Standard = I2S_STANDARD_PCM_SHORT;
+   \       0x12   0x2130             MOVS     R1,#+48
+   \       0x14   0x6081             STR      R1,[R0, #+8]
+    548            hi2s3.Init.DataFormat = I2S_DATAFORMAT_16B_EXTENDED;
+   \       0x16   0x2101             MOVS     R1,#+1
+   \       0x18   0x60C1             STR      R1,[R0, #+12]
+    549            hi2s3.Init.MCLKOutput = I2S_MCLKOUTPUT_DISABLE;
+   \       0x1A   0x2100             MOVS     R1,#+0
+   \       0x1C   0x6101             STR      R1,[R0, #+16]
+    550            hi2s3.Init.AudioFreq = I2S_AUDIOFREQ_8K;
+   \       0x1E   0xF44F 0x51FA      MOV      R1,#+8000
+   \       0x22   0x6141             STR      R1,[R0, #+20]
+    551            hi2s3.Init.CPOL = I2S_CPOL_LOW;
+   \       0x24   0x2100             MOVS     R1,#+0
+   \       0x26   0x6181             STR      R1,[R0, #+24]
+    552            hi2s3.Init.ClockSource = I2S_CLOCK_PLL;
+   \       0x28   0x2100             MOVS     R1,#+0
+   \       0x2A   0x61C1             STR      R1,[R0, #+28]
+    553            hi2s3.Init.FullDuplexMode = I2S_FULLDUPLEXMODE_ENABLE;
+   \       0x2C   0x2101             MOVS     R1,#+1
+   \       0x2E   0x6201             STR      R1,[R0, #+32]
+    554            if (HAL_I2S_Init(&hi2s3) != HAL_OK)
+   \       0x30   0x.... 0x....      BL       HAL_I2S_Init
+   \       0x34   0x2800             CMP      R0,#+0
+   \       0x36   0xD001             BEQ.N    ??MX_I2S3_Init_0
+    555            {
+    556              Error_Handler();
+   \       0x38   0x.... 0x....      BL       Error_Handler
+    557            }
+    558            /* USER CODE BEGIN I2S3_Init 2 */
+    559          
+    560            /* USER CODE END I2S3_Init 2 */
+    561          
+    562          }
+   \                     ??MX_I2S3_Init_0: (+1)
+   \       0x3C   0xBD01             POP      {R0,PC}
+    563          
+    564          /**
+    565            * @brief IWDG Initialization Function
+    566            * @param None
+    567            * @retval None
+    568            */
+
+   \                                 In section .text, align 2, keep-with-next
+    569          static void MX_IWDG_Init(void)
+    570          {
+   \                     MX_IWDG_Init: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    571          
+    572            /* USER CODE BEGIN IWDG_Init 0 */
+    573          
+    574          	//	32 KHz
+    575          	//	1 / 32000 X 32 X 4000 = 4 sec
+    576          	//	1 / 32000 X 64 X 4000 = 8 sec
+    577          	//	1 / 32000 X 128 X 4000 = 16 sec
+    578          	//	1 / 32000 X 256 X 4000 = 32 sec
+    579          
+    580            /* USER CODE END IWDG_Init 0 */
+    581          
+    582            /* USER CODE BEGIN IWDG_Init 1 */
+    583          
+    584            /* USER CODE END IWDG_Init 1 */
+    585            hiwdg.Instance = IWDG;
+   \        0x2   0x.... 0x....      LDR.W    R0,??DataTable14_2
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable14_21
+   \        0xA   0x6001             STR      R1,[R0, #+0]
+    586            hiwdg.Init.Prescaler = IWDG_PRESCALER_128;
+   \        0xC   0x2105             MOVS     R1,#+5
+   \        0xE   0x6041             STR      R1,[R0, #+4]
+    587            hiwdg.Init.Reload = 4000;
+   \       0x10   0xF44F 0x617A      MOV      R1,#+4000
+   \       0x14   0x6081             STR      R1,[R0, #+8]
+    588            if (HAL_IWDG_Init(&hiwdg) != HAL_OK)
+   \       0x16   0x.... 0x....      BL       HAL_IWDG_Init
+   \       0x1A   0x2800             CMP      R0,#+0
+   \       0x1C   0xD001             BEQ.N    ??MX_IWDG_Init_0
+    589            {
+    590              Error_Handler();
+   \       0x1E   0x.... 0x....      BL       Error_Handler
+    591            }
+    592            /* USER CODE BEGIN IWDG_Init 2 */
+    593          
+    594            /* USER CODE END IWDG_Init 2 */
+    595          
+    596          }
+   \                     ??MX_IWDG_Init_0: (+1)
+   \       0x22   0xBD01             POP      {R0,PC}
+    597          
+    598          /**
+    599            * @brief SPI1 Initialization Function
+    600            * @param None
+    601            * @retval None
+    602            */
+
+   \                                 In section .text, align 2, keep-with-next
+    603          static void MX_SPI1_Init(void)
+    604          {
+   \                     MX_SPI1_Init: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    605          
+    606            /* USER CODE BEGIN SPI1_Init 0 */
+    607          
+    608            /* USER CODE END SPI1_Init 0 */
+    609          
+    610            /* USER CODE BEGIN SPI1_Init 1 */
+    611          
+    612            /* USER CODE END SPI1_Init 1 */
+    613            /* SPI1 parameter configuration*/
+    614            hspi1.Instance = SPI1;
+   \        0x2   0x.... 0x....      LDR.W    R0,??DataTable14_22
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable14_23
+   \        0xA   0x6001             STR      R1,[R0, #+0]
+    615            hspi1.Init.Mode = SPI_MODE_MASTER;
+   \        0xC   0xF44F 0x7182      MOV      R1,#+260
+   \       0x10   0x6041             STR      R1,[R0, #+4]
+    616            hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+   \       0x12   0x2100             MOVS     R1,#+0
+   \       0x14   0x6081             STR      R1,[R0, #+8]
+    617            hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+   \       0x16   0x2100             MOVS     R1,#+0
+   \       0x18   0x60C1             STR      R1,[R0, #+12]
+    618            hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+   \       0x1A   0x2100             MOVS     R1,#+0
+   \       0x1C   0x6101             STR      R1,[R0, #+16]
+    619            hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+   \       0x1E   0x2100             MOVS     R1,#+0
+   \       0x20   0x6141             STR      R1,[R0, #+20]
+    620            hspi1.Init.NSS = SPI_NSS_SOFT;
+   \       0x22   0xF44F 0x7100      MOV      R1,#+512
+   \       0x26   0x6181             STR      R1,[R0, #+24]
+    621            hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
+   \       0x28   0x2110             MOVS     R1,#+16
+   \       0x2A   0x61C1             STR      R1,[R0, #+28]
+    622            hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+   \       0x2C   0x2100             MOVS     R1,#+0
+   \       0x2E   0x6201             STR      R1,[R0, #+32]
+    623            hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+   \       0x30   0x2100             MOVS     R1,#+0
+   \       0x32   0x6241             STR      R1,[R0, #+36]
+    624            hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+   \       0x34   0x2100             MOVS     R1,#+0
+   \       0x36   0x6281             STR      R1,[R0, #+40]
+    625            hspi1.Init.CRCPolynomial = 10;
+   \       0x38   0x210A             MOVS     R1,#+10
+   \       0x3A   0x62C1             STR      R1,[R0, #+44]
+    626            if (HAL_SPI_Init(&hspi1) != HAL_OK)
+   \       0x3C   0x.... 0x....      BL       HAL_SPI_Init
+   \       0x40   0x2800             CMP      R0,#+0
+   \       0x42   0xD001             BEQ.N    ??MX_SPI1_Init_0
+    627            {
+    628              Error_Handler();
+   \       0x44   0x.... 0x....      BL       Error_Handler
+    629            }
+    630            /* USER CODE BEGIN SPI1_Init 2 */
+    631          
+    632            /* USER CODE END SPI1_Init 2 */
+    633          
+    634          }
+   \                     ??MX_SPI1_Init_0: (+1)
+   \       0x48   0xBD01             POP      {R0,PC}
+    635          
+    636          /**
+    637            * @brief SPI2 Initialization Function
+    638            * @param None
+    639            * @retval None
+    640            */
+
+   \                                 In section .text, align 2, keep-with-next
+    641          static void MX_SPI2_Init(void)
+    642          {
+   \                     MX_SPI2_Init: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    643          
+    644            /* USER CODE BEGIN SPI2_Init 0 */
+    645          
+    646            /* USER CODE END SPI2_Init 0 */
+    647          
+    648            /* USER CODE BEGIN SPI2_Init 1 */
+    649          
+    650            /* USER CODE END SPI2_Init 1 */
+    651            /* SPI2 parameter configuration*/
+    652            hspi2.Instance = SPI2;
+   \        0x2   0x.... 0x....      LDR.W    R0,??DataTable14_24
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable14_25
+   \        0xA   0x6001             STR      R1,[R0, #+0]
+    653            hspi2.Init.Mode = SPI_MODE_MASTER;
+   \        0xC   0xF44F 0x7182      MOV      R1,#+260
+   \       0x10   0x6041             STR      R1,[R0, #+4]
+    654            hspi2.Init.Direction = SPI_DIRECTION_2LINES;
+   \       0x12   0x2100             MOVS     R1,#+0
+   \       0x14   0x6081             STR      R1,[R0, #+8]
+    655            hspi2.Init.DataSize = SPI_DATASIZE_16BIT;
+   \       0x16   0xF44F 0x6100      MOV      R1,#+2048
+   \       0x1A   0x60C1             STR      R1,[R0, #+12]
+    656            hspi2.Init.CLKPolarity = SPI_POLARITY_HIGH;
+   \       0x1C   0x2102             MOVS     R1,#+2
+   \       0x1E   0x6101             STR      R1,[R0, #+16]
+    657            hspi2.Init.CLKPhase = SPI_PHASE_2EDGE;
+   \       0x20   0x2101             MOVS     R1,#+1
+   \       0x22   0x6141             STR      R1,[R0, #+20]
+    658            hspi2.Init.NSS = SPI_NSS_SOFT;
+   \       0x24   0xF44F 0x7100      MOV      R1,#+512
+   \       0x28   0x6181             STR      R1,[R0, #+24]
+    659            hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
+   \       0x2A   0x2128             MOVS     R1,#+40
+   \       0x2C   0x61C1             STR      R1,[R0, #+28]
+    660            hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
+   \       0x2E   0x2100             MOVS     R1,#+0
+   \       0x30   0x6201             STR      R1,[R0, #+32]
+    661            hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
+   \       0x32   0x2100             MOVS     R1,#+0
+   \       0x34   0x6241             STR      R1,[R0, #+36]
+    662            hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+   \       0x36   0x2100             MOVS     R1,#+0
+   \       0x38   0x6281             STR      R1,[R0, #+40]
+    663            hspi2.Init.CRCPolynomial = 10;
+   \       0x3A   0x210A             MOVS     R1,#+10
+   \       0x3C   0x62C1             STR      R1,[R0, #+44]
+    664            if (HAL_SPI_Init(&hspi2) != HAL_OK)
+   \       0x3E   0x.... 0x....      BL       HAL_SPI_Init
+   \       0x42   0x2800             CMP      R0,#+0
+   \       0x44   0xD001             BEQ.N    ??MX_SPI2_Init_0
+    665            {
+    666              Error_Handler();
+   \       0x46   0x.... 0x....      BL       Error_Handler
+    667            }
+    668            /* USER CODE BEGIN SPI2_Init 2 */
+    669          
+    670            /* USER CODE END SPI2_Init 2 */
+    671          
+    672          }
+   \                     ??MX_SPI2_Init_0: (+1)
+   \       0x4A   0xBD01             POP      {R0,PC}
+    673          
+    674          /**
+    675            * @brief TIM3 Initialization Function
+    676            * @param None
+    677            * @retval None
+    678            */
+
+   \                                 In section .text, align 2, keep-with-next
+    679          static void MX_TIM3_Init(void)
+    680          {
+   \                     MX_TIM3_Init: (+1)
+   \        0x0   0xB518             PUSH     {R3,R4,LR}
+   \        0x2   0xB089             SUB      SP,SP,#+36
+   \        0x4   0x2208             MOVS     R2,#+8
+   \        0x6   0x2100             MOVS     R1,#+0
+   \        0x8   0x4668             MOV      R0,SP
+   \        0xA   0x.... 0x....      BL       memset
+   \        0xE   0x221C             MOVS     R2,#+28
+   \       0x10   0x2100             MOVS     R1,#+0
+   \       0x12   0xA802             ADD      R0,SP,#+8
+   \       0x14   0x.... 0x....      BL       memset
+    681          
+    682            /* USER CODE BEGIN TIM3_Init 0 */
+    683          
+    684              //  72000000 / 18 / 2 = 2000000 ( 2MHz )
+    685              //  72000000 / 3 / 2 = 12000000 ( 12MHz ) - MCLK ( MAX9860+ )
+    686          
+    687            /* USER CODE END TIM3_Init 0 */
+    688          
+    689            TIM_MasterConfigTypeDef sMasterConfig = {0};
+    690            TIM_OC_InitTypeDef sConfigOC = {0};
+    691          
+    692            /* USER CODE BEGIN TIM3_Init 1 */
+    693          
+    694            /* USER CODE END TIM3_Init 1 */
+    695            htim3.Instance = TIM3;
+   \       0x18   0x....             LDR.N    R4,??DataTable14_3
+   \       0x1A   0x....             LDR.N    R0,??DataTable14_26
+   \       0x1C   0x6020             STR      R0,[R4, #+0]
+    696            htim3.Init.Prescaler = 3-1;
+   \       0x1E   0x2002             MOVS     R0,#+2
+   \       0x20   0x6060             STR      R0,[R4, #+4]
+    697            htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+   \       0x22   0x2000             MOVS     R0,#+0
+   \       0x24   0x60A0             STR      R0,[R4, #+8]
+    698            htim3.Init.Period = 2-1;
+   \       0x26   0x2001             MOVS     R0,#+1
+   \       0x28   0x60E0             STR      R0,[R4, #+12]
+    699            htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+   \       0x2A   0x2000             MOVS     R0,#+0
+   \       0x2C   0x6120             STR      R0,[R4, #+16]
+    700            htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+   \       0x2E   0x2000             MOVS     R0,#+0
+   \       0x30   0x61A0             STR      R0,[R4, #+24]
+    701            if (HAL_TIM_PWM_Init(&htim3) != HAL_OK)
+   \       0x32   0x0020             MOVS     R0,R4
+   \       0x34   0x.... 0x....      BL       HAL_TIM_PWM_Init
+   \       0x38   0x2800             CMP      R0,#+0
+   \       0x3A   0xD001             BEQ.N    ??MX_TIM3_Init_0
+    702            {
+    703              Error_Handler();
+   \       0x3C   0x.... 0x....      BL       Error_Handler
+    704            }
+    705            sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+   \                     ??MX_TIM3_Init_0: (+1)
+   \       0x40   0x2000             MOVS     R0,#+0
+   \       0x42   0x9000             STR      R0,[SP, #+0]
+    706            sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+   \       0x44   0x2000             MOVS     R0,#+0
+   \       0x46   0x9001             STR      R0,[SP, #+4]
+    707            if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+   \       0x48   0x4669             MOV      R1,SP
+   \       0x4A   0x0020             MOVS     R0,R4
+   \       0x4C   0x.... 0x....      BL       HAL_TIMEx_MasterConfigSynchronization
+   \       0x50   0x2800             CMP      R0,#+0
+   \       0x52   0xD001             BEQ.N    ??MX_TIM3_Init_1
+    708            {
+    709              Error_Handler();
+   \       0x54   0x.... 0x....      BL       Error_Handler
+    710            }
+    711            sConfigOC.OCMode = TIM_OCMODE_PWM1;
+   \                     ??MX_TIM3_Init_1: (+1)
+   \       0x58   0x2060             MOVS     R0,#+96
+   \       0x5A   0x9002             STR      R0,[SP, #+8]
+    712            sConfigOC.Pulse = 1;
+   \       0x5C   0x2001             MOVS     R0,#+1
+   \       0x5E   0x9003             STR      R0,[SP, #+12]
+    713            sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+   \       0x60   0x2000             MOVS     R0,#+0
+   \       0x62   0x9004             STR      R0,[SP, #+16]
+    714            sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+   \       0x64   0x2000             MOVS     R0,#+0
+   \       0x66   0x9006             STR      R0,[SP, #+24]
+    715            if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+   \       0x68   0x2204             MOVS     R2,#+4
+   \       0x6A   0xA902             ADD      R1,SP,#+8
+   \       0x6C   0x0020             MOVS     R0,R4
+   \       0x6E   0x.... 0x....      BL       HAL_TIM_PWM_ConfigChannel
+   \       0x72   0x2800             CMP      R0,#+0
+   \       0x74   0xD001             BEQ.N    ??MX_TIM3_Init_2
+    716            {
+    717              Error_Handler();
+   \       0x76   0x.... 0x....      BL       Error_Handler
+    718            }
+    719            /* USER CODE BEGIN TIM3_Init 2 */
+    720          
+    721            /* USER CODE END TIM3_Init 2 */
+    722            HAL_TIM_MspPostInit(&htim3);
+   \                     ??MX_TIM3_Init_2: (+1)
+   \       0x7A   0x0020             MOVS     R0,R4
+   \       0x7C   0x.... 0x....      BL       HAL_TIM_MspPostInit
+    723          
+    724          }
+   \       0x80   0xB00A             ADD      SP,SP,#+40
+   \       0x82   0xBD10             POP      {R4,PC}
+    725          
+    726          /**
+    727            * @brief USART1 Initialization Function
+    728            * @param None
+    729            * @retval None
+    730            */
+    731          static void MX_USART1_UART_Init(void)
+                             ^
+Warning[Pe177]: function "MX_USART1_UART_Init" was declared but never
+          referenced
+    732          {
+    733          
+    734            /* USER CODE BEGIN USART1_Init 0 */
+    735          
+    736            /* USER CODE END USART1_Init 0 */
+    737          
+    738            /* USER CODE BEGIN USART1_Init 1 */
+    739          
+    740            /* USER CODE END USART1_Init 1 */
+    741            huart1.Instance = USART1;
+    742            huart1.Init.BaudRate = 115200;
+    743            huart1.Init.WordLength = UART_WORDLENGTH_8B;
+    744            huart1.Init.StopBits = UART_STOPBITS_1;
+    745            huart1.Init.Parity = UART_PARITY_NONE;
+    746            huart1.Init.Mode = UART_MODE_TX_RX;
+    747            huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+    748            huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+    749            if (HAL_UART_Init(&huart1) != HAL_OK)
+    750            {
+    751              Error_Handler();
+    752            }
+    753            /* USER CODE BEGIN USART1_Init 2 */
+    754          
+    755            /* USER CODE END USART1_Init 2 */
+    756          
+    757          }
+    758          
+    759          /**
+    760            * @brief USART2 Initialization Function
+    761            * @param None
+    762            * @retval None
+    763            */
+
+   \                                 In section .text, align 2, keep-with-next
+    764          static void MX_USART2_UART_Init(void)
+    765          {
+   \                     MX_USART2_UART_Init: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    766          
+    767            /* USER CODE BEGIN USART2_Init 0 */
+    768          
+    769            /* USER CODE END USART2_Init 0 */
+    770          
+    771            /* USER CODE BEGIN USART2_Init 1 */
+    772          
+    773            /* USER CODE END USART2_Init 1 */
+    774            huart2.Instance = USART2;
+   \        0x2   0x....             LDR.N    R0,??DataTable14_4
+   \        0x4   0x....             LDR.N    R1,??DataTable14_27
+   \        0x6   0x6001             STR      R1,[R0, #+0]
+    775            huart2.Init.BaudRate = 115200;
+   \        0x8   0xF45F 0x31E1      MOVS     R1,#+115200
+   \        0xC   0x6041             STR      R1,[R0, #+4]
+    776            huart2.Init.WordLength = UART_WORDLENGTH_8B;
+   \        0xE   0x2100             MOVS     R1,#+0
+   \       0x10   0x6081             STR      R1,[R0, #+8]
+    777            huart2.Init.StopBits = UART_STOPBITS_1;
+   \       0x12   0x2100             MOVS     R1,#+0
+   \       0x14   0x60C1             STR      R1,[R0, #+12]
+    778            huart2.Init.Parity = UART_PARITY_NONE;
+   \       0x16   0x2100             MOVS     R1,#+0
+   \       0x18   0x6101             STR      R1,[R0, #+16]
+    779            huart2.Init.Mode = UART_MODE_TX_RX;
+   \       0x1A   0x210C             MOVS     R1,#+12
+   \       0x1C   0x6141             STR      R1,[R0, #+20]
+    780            huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+   \       0x1E   0x2100             MOVS     R1,#+0
+   \       0x20   0x6181             STR      R1,[R0, #+24]
+    781            huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+   \       0x22   0x2100             MOVS     R1,#+0
+   \       0x24   0x61C1             STR      R1,[R0, #+28]
+    782            if (HAL_UART_Init(&huart2) != HAL_OK)
+   \       0x26   0x.... 0x....      BL       HAL_UART_Init
+   \       0x2A   0x2800             CMP      R0,#+0
+   \       0x2C   0xD001             BEQ.N    ??MX_USART2_UART_Init_0
+    783            {
+    784              Error_Handler();
+   \       0x2E   0x.... 0x....      BL       Error_Handler
+    785            }
+    786            /* USER CODE BEGIN USART2_Init 2 */
+    787          
+    788            /* USER CODE END USART2_Init 2 */
+    789          
+    790          }
+   \                     ??MX_USART2_UART_Init_0: (+1)
+   \       0x32   0xBD01             POP      {R0,PC}
+    791          
+    792          /**
+    793            * Enable DMA controller clock
+    794            */
+
+   \                                 In section .text, align 2, keep-with-next
+    795          static void MX_DMA_Init(void)
+    796          {
+   \                     MX_DMA_Init: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    797          
+    798            /* DMA controller clock enable */
+    799            __HAL_RCC_DMA1_CLK_ENABLE();
+   \        0x2   0x2000             MOVS     R0,#+0
+   \        0x4   0x9000             STR      R0,[SP, #+0]
+   \        0x6   0x....             LDR.N    R0,??DataTable14_28
+   \        0x8   0x6801             LDR      R1,[R0, #+0]
+   \        0xA   0xF451 0x1100      ORRS     R1,R1,#0x200000
+   \        0xE   0x6001             STR      R1,[R0, #+0]
+   \       0x10   0x6801             LDR      R1,[R0, #+0]
+   \       0x12   0xF411 0x1100      ANDS     R1,R1,#0x200000
+   \       0x16   0x9100             STR      R1,[SP, #+0]
+   \       0x18   0x9900             LDR      R1,[SP, #+0]
+    800            __HAL_RCC_DMA2_CLK_ENABLE();
+   \       0x1A   0x2100             MOVS     R1,#+0
+   \       0x1C   0x9100             STR      R1,[SP, #+0]
+   \       0x1E   0x6801             LDR      R1,[R0, #+0]
+   \       0x20   0xF451 0x0180      ORRS     R1,R1,#0x400000
+   \       0x24   0x6001             STR      R1,[R0, #+0]
+   \       0x26   0x6800             LDR      R0,[R0, #+0]
+   \       0x28   0xF410 0x0080      ANDS     R0,R0,#0x400000
+   \       0x2C   0x9000             STR      R0,[SP, #+0]
+   \       0x2E   0x9800             LDR      R0,[SP, #+0]
+    801          
+    802            /* DMA interrupt init */
+    803            /* DMA1_Stream0_IRQn interrupt configuration */
+    804            HAL_NVIC_SetPriority(DMA1_Stream0_IRQn, 0, 0);
+   \       0x30   0x2200             MOVS     R2,#+0
+   \       0x32   0x2100             MOVS     R1,#+0
+   \       0x34   0x200B             MOVS     R0,#+11
+   \       0x36   0x.... 0x....      BL       HAL_NVIC_SetPriority
+    805            HAL_NVIC_EnableIRQ(DMA1_Stream0_IRQn);
+   \       0x3A   0x200B             MOVS     R0,#+11
+   \       0x3C   0x.... 0x....      BL       HAL_NVIC_EnableIRQ
+    806            /* DMA1_Stream5_IRQn interrupt configuration */
+    807            HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 0, 0);
+   \       0x40   0x2200             MOVS     R2,#+0
+   \       0x42   0x2100             MOVS     R1,#+0
+   \       0x44   0x2010             MOVS     R0,#+16
+   \       0x46   0x.... 0x....      BL       HAL_NVIC_SetPriority
+    808            HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
+   \       0x4A   0x2010             MOVS     R0,#+16
+   \       0x4C   0x.... 0x....      BL       HAL_NVIC_EnableIRQ
+    809            /* DMA2_Stream0_IRQn interrupt configuration */
+    810            HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
+   \       0x50   0x2200             MOVS     R2,#+0
+   \       0x52   0x2100             MOVS     R1,#+0
+   \       0x54   0x2038             MOVS     R0,#+56
+   \       0x56   0x.... 0x....      BL       HAL_NVIC_SetPriority
+    811            HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
+   \       0x5A   0x2038             MOVS     R0,#+56
+   \       0x5C   0x.... 0x....      BL       HAL_NVIC_EnableIRQ
+    812            /* DMA2_Stream3_IRQn interrupt configuration */
+    813            HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 0, 0);
+   \       0x60   0x2200             MOVS     R2,#+0
+   \       0x62   0x2100             MOVS     R1,#+0
+   \       0x64   0x203B             MOVS     R0,#+59
+   \       0x66   0x.... 0x....      BL       HAL_NVIC_SetPriority
+    814            HAL_NVIC_EnableIRQ(DMA2_Stream3_IRQn);
+   \       0x6A   0x203B             MOVS     R0,#+59
+   \       0x6C   0x.... 0x....      BL       HAL_NVIC_EnableIRQ
+    815          
+    816          }
+   \       0x70   0xBD01             POP      {R0,PC}
+    817          
+    818          /**
+    819            * @brief GPIO Initialization Function
+    820            * @param None
+    821            * @retval None
+    822            */
+
+   \                                 In section .text, align 2, keep-with-next
+    823          static void MX_GPIO_Init(void)
+    824          {
+   \                     MX_GPIO_Init: (+1)
+   \        0x0   0xE92D 0x47F0      PUSH     {R4-R10,LR}
+   \        0x4   0xB086             SUB      SP,SP,#+24
+   \        0x6   0x2214             MOVS     R2,#+20
+   \        0x8   0x2100             MOVS     R1,#+0
+   \        0xA   0x4668             MOV      R0,SP
+   \        0xC   0x.... 0x....      BL       memset
+    825            GPIO_InitTypeDef GPIO_InitStruct = {0};
+    826          
+    827            /* GPIO Ports Clock Enable */
+    828            __HAL_RCC_GPIOE_CLK_ENABLE();
+   \       0x10   0x2000             MOVS     R0,#+0
+   \       0x12   0x9005             STR      R0,[SP, #+20]
+   \       0x14   0x....             LDR.N    R0,??DataTable14_28
+   \       0x16   0x6801             LDR      R1,[R0, #+0]
+   \       0x18   0xF051 0x0110      ORRS     R1,R1,#0x10
+   \       0x1C   0x6001             STR      R1,[R0, #+0]
+   \       0x1E   0x6801             LDR      R1,[R0, #+0]
+   \       0x20   0xF011 0x0110      ANDS     R1,R1,#0x10
+   \       0x24   0x9105             STR      R1,[SP, #+20]
+   \       0x26   0x9905             LDR      R1,[SP, #+20]
+    829            __HAL_RCC_GPIOC_CLK_ENABLE();
+   \       0x28   0x2100             MOVS     R1,#+0
+   \       0x2A   0x9105             STR      R1,[SP, #+20]
+   \       0x2C   0x6801             LDR      R1,[R0, #+0]
+   \       0x2E   0xF051 0x0104      ORRS     R1,R1,#0x4
+   \       0x32   0x6001             STR      R1,[R0, #+0]
+   \       0x34   0x6801             LDR      R1,[R0, #+0]
+   \       0x36   0xF011 0x0104      ANDS     R1,R1,#0x4
+   \       0x3A   0x9105             STR      R1,[SP, #+20]
+   \       0x3C   0x9905             LDR      R1,[SP, #+20]
+    830            __HAL_RCC_GPIOH_CLK_ENABLE();
+   \       0x3E   0x2100             MOVS     R1,#+0
+   \       0x40   0x9105             STR      R1,[SP, #+20]
+   \       0x42   0x6801             LDR      R1,[R0, #+0]
+   \       0x44   0xF051 0x0180      ORRS     R1,R1,#0x80
+   \       0x48   0x6001             STR      R1,[R0, #+0]
+   \       0x4A   0x6801             LDR      R1,[R0, #+0]
+   \       0x4C   0xF011 0x0180      ANDS     R1,R1,#0x80
+   \       0x50   0x9105             STR      R1,[SP, #+20]
+   \       0x52   0x9905             LDR      R1,[SP, #+20]
+    831            __HAL_RCC_GPIOA_CLK_ENABLE();
+   \       0x54   0x2100             MOVS     R1,#+0
+   \       0x56   0x9105             STR      R1,[SP, #+20]
+   \       0x58   0x6801             LDR      R1,[R0, #+0]
+   \       0x5A   0xF051 0x0101      ORRS     R1,R1,#0x1
+   \       0x5E   0x6001             STR      R1,[R0, #+0]
+   \       0x60   0x6801             LDR      R1,[R0, #+0]
+   \       0x62   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \       0x66   0x9105             STR      R1,[SP, #+20]
+   \       0x68   0x9905             LDR      R1,[SP, #+20]
+    832            __HAL_RCC_GPIOB_CLK_ENABLE();
+   \       0x6A   0x2100             MOVS     R1,#+0
+   \       0x6C   0x9105             STR      R1,[SP, #+20]
+   \       0x6E   0x6801             LDR      R1,[R0, #+0]
+   \       0x70   0xF051 0x0102      ORRS     R1,R1,#0x2
+   \       0x74   0x6001             STR      R1,[R0, #+0]
+   \       0x76   0x6801             LDR      R1,[R0, #+0]
+   \       0x78   0xF011 0x0102      ANDS     R1,R1,#0x2
+   \       0x7C   0x9105             STR      R1,[SP, #+20]
+   \       0x7E   0x9905             LDR      R1,[SP, #+20]
+    833            __HAL_RCC_GPIOD_CLK_ENABLE();
+   \       0x80   0x2100             MOVS     R1,#+0
+   \       0x82   0x9105             STR      R1,[SP, #+20]
+   \       0x84   0x6801             LDR      R1,[R0, #+0]
+   \       0x86   0xF051 0x0108      ORRS     R1,R1,#0x8
+   \       0x8A   0x6001             STR      R1,[R0, #+0]
+   \       0x8C   0x6800             LDR      R0,[R0, #+0]
+   \       0x8E   0xF010 0x0008      ANDS     R0,R0,#0x8
+   \       0x92   0x9005             STR      R0,[SP, #+20]
+   \       0x94   0x9805             LDR      R0,[SP, #+20]
+    834          
+    835            /*Configure GPIO pin Output Level */
+    836            HAL_GPIO_WritePin(GPIOE, PWR_RF_Pin|PWR_AUDIO_Pin, GPIO_PIN_SET);
+   \       0x96   0x....             LDR.N    R4,??DataTable14_29
+   \       0x98   0x2201             MOVS     R2,#+1
+   \       0x9A   0x210C             MOVS     R1,#+12
+   \       0x9C   0x0020             MOVS     R0,R4
+   \       0x9E   0x.... 0x....      BL       HAL_GPIO_WritePin
+    837          
+    838            /*Configure GPIO pin Output Level */
+    839            HAL_GPIO_WritePin(GPIOE, SPK_ON_Pin|STANDBY_Pin|AUDIO_ON_Pin|LIGHT_ON_Pin
+    840                                    |GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14, GPIO_PIN_RESET);
+   \       0xA2   0x2200             MOVS     R2,#+0
+   \       0xA4   0xF647 0x31A0      MOVW     R1,#+31648
+   \       0xA8   0x0020             MOVS     R0,R4
+   \       0xAA   0x.... 0x....      BL       HAL_GPIO_WritePin
+    841          
+    842            /*Configure GPIO pin Output Level */
+    843            HAL_GPIO_WritePin(GPIOC, USB_ID_Pin|TRN_RST_Pin, GPIO_PIN_RESET);
+   \       0xAE   0xF248 0x0520      MOVW     R5,#+32800
+   \       0xB2   0x....             LDR.N    R6,??DataTable14
+   \       0xB4   0x2200             MOVS     R2,#+0
+   \       0xB6   0x0029             MOVS     R1,R5
+   \       0xB8   0x0030             MOVS     R0,R6
+   \       0xBA   0x.... 0x....      BL       HAL_GPIO_WritePin
+    844          
+    845            /*Configure GPIO pin Output Level */
+    846            HAL_GPIO_WritePin(SPI_CSN_GPIO_Port, SPI_CSN_Pin, GPIO_PIN_SET);
+   \       0xBE   0x....             LDR.N    R7,??DataTable14_30
+   \       0xC0   0x2201             MOVS     R2,#+1
+   \       0xC2   0x2110             MOVS     R1,#+16
+   \       0xC4   0x0038             MOVS     R0,R7
+   \       0xC6   0x.... 0x....      BL       HAL_GPIO_WritePin
+    847          
+    848            /*Configure GPIO pin Output Level */
+    849            HAL_GPIO_WritePin(GPIOB, RX_EN_Pin|RF_TX_Pin|RF_RX_Pin|LED_ON_A_Pin
+    850                                    |LED_ON_B_Pin|FLASH_ON_Pin, GPIO_PIN_RESET);
+   \       0xCA   0xF246 0x1807      MOVW     R8,#+24839
+   \       0xCE   0x.... 0x....      LDR.W    R9,??DataTable14_31
+   \       0xD2   0x2200             MOVS     R2,#+0
+   \       0xD4   0x4641             MOV      R1,R8
+   \       0xD6   0x4648             MOV      R0,R9
+   \       0xD8   0x.... 0x....      BL       HAL_GPIO_WritePin
+    851          
+    852            /*Configure GPIO pin Output Level */
+    853            HAL_GPIO_WritePin(SS_GPIO_Port, SS_Pin, GPIO_PIN_SET);
+   \       0xDC   0x2201             MOVS     R2,#+1
+   \       0xDE   0xF44F 0x5180      MOV      R1,#+4096
+   \       0xE2   0x4648             MOV      R0,R9
+   \       0xE4   0x.... 0x....      BL       HAL_GPIO_WritePin
+    854          
+    855            /*Configure GPIO pin Output Level */
+    856            HAL_GPIO_WritePin(ON_OFF_EN_GPIO_Port, ON_OFF_EN_Pin, GPIO_PIN_SET);
+   \       0xE8   0x.... 0x....      LDR.W    R10,??DataTable14_7
+   \       0xEC   0x2201             MOVS     R2,#+1
+   \       0xEE   0xF44F 0x6180      MOV      R1,#+1024
+   \       0xF2   0x4650             MOV      R0,R10
+   \       0xF4   0x.... 0x....      BL       HAL_GPIO_WritePin
+    857          
+    858            /*Configure GPIO pin Output Level */
+    859            HAL_GPIO_WritePin(LED_ST_GPIO_Port, LED_ST_Pin, GPIO_PIN_RESET);
+   \       0xF8   0x2200             MOVS     R2,#+0
+   \       0xFA   0xF44F 0x4100      MOV      R1,#+32768
+   \       0xFE   0x4650             MOV      R0,R10
+   \      0x100   0x.... 0x....      BL       HAL_GPIO_WritePin
+    860          
+    861            /*Configure GPIO pins : PWR_RF_Pin PWR_AUDIO_Pin SPK_ON_Pin STANDBY_Pin
+    862                                     AUDIO_ON_Pin LIGHT_ON_Pin PE11 PE12
+    863                                     PE13 PE14 */
+    864            GPIO_InitStruct.Pin = PWR_RF_Pin|PWR_AUDIO_Pin|SPK_ON_Pin|STANDBY_Pin
+    865                                    |AUDIO_ON_Pin|LIGHT_ON_Pin|GPIO_PIN_11|GPIO_PIN_12
+    866                                    |GPIO_PIN_13|GPIO_PIN_14;
+   \      0x104   0xF647 0x30AC      MOVW     R0,#+31660
+   \      0x108   0x9000             STR      R0,[SP, #+0]
+    867            GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+   \      0x10A   0x2001             MOVS     R0,#+1
+   \      0x10C   0x9001             STR      R0,[SP, #+4]
+    868            GPIO_InitStruct.Pull = GPIO_NOPULL;
+   \      0x10E   0x2000             MOVS     R0,#+0
+   \      0x110   0x9002             STR      R0,[SP, #+8]
+    869            GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+   \      0x112   0x2000             MOVS     R0,#+0
+   \      0x114   0x9003             STR      R0,[SP, #+12]
+    870            HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+   \      0x116   0x4669             MOV      R1,SP
+   \      0x118   0x0020             MOVS     R0,R4
+   \      0x11A   0x.... 0x....      BL       HAL_GPIO_Init
+    871          
+    872            /*Configure GPIO pins : GPIO1_Pin OVERRIDE_ON_Pin VDD_3_3V_RF_Pin */
+    873            GPIO_InitStruct.Pin = GPIO1_Pin|OVERRIDE_ON_Pin|VDD_3_3V_RF_Pin;
+   \      0x11E   0xF240 0x4041      MOVW     R0,#+1089
+   \      0x122   0x9000             STR      R0,[SP, #+0]
+    874            GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+   \      0x124   0x2000             MOVS     R0,#+0
+   \      0x126   0x9001             STR      R0,[SP, #+4]
+    875            GPIO_InitStruct.Pull = GPIO_NOPULL;
+   \      0x128   0x2000             MOVS     R0,#+0
+   \      0x12A   0x9002             STR      R0,[SP, #+8]
+    876            HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+   \      0x12C   0x4669             MOV      R1,SP
+   \      0x12E   0x0020             MOVS     R0,R4
+   \      0x130   0x.... 0x....      BL       HAL_GPIO_Init
+    877          
+    878            /*Configure GPIO pins : USB_ID_Pin TRN_RST_Pin */
+    879            GPIO_InitStruct.Pin = USB_ID_Pin|TRN_RST_Pin;
+   \      0x134   0x9500             STR      R5,[SP, #+0]
+    880            GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+   \      0x136   0x2001             MOVS     R0,#+1
+   \      0x138   0x9001             STR      R0,[SP, #+4]
+    881            GPIO_InitStruct.Pull = GPIO_NOPULL;
+   \      0x13A   0x2000             MOVS     R0,#+0
+   \      0x13C   0x9002             STR      R0,[SP, #+8]
+    882            GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+   \      0x13E   0x2000             MOVS     R0,#+0
+   \      0x140   0x9003             STR      R0,[SP, #+12]
+    883            HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+   \      0x142   0x4669             MOV      R1,SP
+   \      0x144   0x0030             MOVS     R0,R6
+   \      0x146   0x.... 0x....      BL       HAL_GPIO_Init
+    884          
+    885            /*Configure GPIO pin : BAT_CHRG_Pin */
+    886            GPIO_InitStruct.Pin = BAT_CHRG_Pin;
+   \      0x14A   0x2001             MOVS     R0,#+1
+   \      0x14C   0x9000             STR      R0,[SP, #+0]
+    887            GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+   \      0x14E   0x2000             MOVS     R0,#+0
+   \      0x150   0x9001             STR      R0,[SP, #+4]
+    888            GPIO_InitStruct.Pull = GPIO_NOPULL;
+   \      0x152   0x2000             MOVS     R0,#+0
+   \      0x154   0x9002             STR      R0,[SP, #+8]
+    889            HAL_GPIO_Init(BAT_CHRG_GPIO_Port, &GPIO_InitStruct);
+   \      0x156   0x4669             MOV      R1,SP
+   \      0x158   0x0030             MOVS     R0,R6
+   \      0x15A   0x.... 0x....      BL       HAL_GPIO_Init
+    890          
+    891            /*Configure GPIO pin : SPI_CSN_Pin */
+    892            GPIO_InitStruct.Pin = SPI_CSN_Pin;
+   \      0x15E   0x2010             MOVS     R0,#+16
+   \      0x160   0x9000             STR      R0,[SP, #+0]
+    893            GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+   \      0x162   0x2001             MOVS     R0,#+1
+   \      0x164   0x9001             STR      R0,[SP, #+4]
+    894            GPIO_InitStruct.Pull = GPIO_NOPULL;
+   \      0x166   0x2000             MOVS     R0,#+0
+   \      0x168   0x9002             STR      R0,[SP, #+8]
+    895            GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+   \      0x16A   0x2002             MOVS     R0,#+2
+   \      0x16C   0x9003             STR      R0,[SP, #+12]
+    896            HAL_GPIO_Init(SPI_CSN_GPIO_Port, &GPIO_InitStruct);
+   \      0x16E   0x4669             MOV      R1,SP
+   \      0x170   0x0038             MOVS     R0,R7
+   \      0x172   0x.... 0x....      BL       HAL_GPIO_Init
+    897          
+    898            /*Configure GPIO pin : RF_INT_Pin */
+    899            GPIO_InitStruct.Pin = RF_INT_Pin;
+   \      0x176   0x2010             MOVS     R0,#+16
+   \      0x178   0x9000             STR      R0,[SP, #+0]
+    900            GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
+   \      0x17A   0x....             LDR.N    R0,??DataTable14_32
+   \      0x17C   0x9001             STR      R0,[SP, #+4]
+    901            GPIO_InitStruct.Pull = GPIO_NOPULL;
+   \      0x17E   0x2000             MOVS     R0,#+0
+   \      0x180   0x9002             STR      R0,[SP, #+8]
+    902            HAL_GPIO_Init(RF_INT_GPIO_Port, &GPIO_InitStruct);
+   \      0x182   0x4669             MOV      R1,SP
+   \      0x184   0x0030             MOVS     R0,R6
+   \      0x186   0x.... 0x....      BL       HAL_GPIO_Init
+    903          
+    904            /*Configure GPIO pins : RX_EN_Pin RF_TX_Pin RF_RX_Pin LED_ON_A_Pin
+    905                                     LED_ON_B_Pin FLASH_ON_Pin */
+    906            GPIO_InitStruct.Pin = RX_EN_Pin|RF_TX_Pin|RF_RX_Pin|LED_ON_A_Pin
+    907                                    |LED_ON_B_Pin|FLASH_ON_Pin;
+   \      0x18A   0xF8CD 0x8000      STR      R8,[SP, #+0]
+    908            GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+   \      0x18E   0x2001             MOVS     R0,#+1
+   \      0x190   0x9001             STR      R0,[SP, #+4]
+    909            GPIO_InitStruct.Pull = GPIO_NOPULL;
+   \      0x192   0x2000             MOVS     R0,#+0
+   \      0x194   0x9002             STR      R0,[SP, #+8]
+    910            GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+   \      0x196   0x2000             MOVS     R0,#+0
+   \      0x198   0x9003             STR      R0,[SP, #+12]
+    911            HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+   \      0x19A   0x4669             MOV      R1,SP
+   \      0x19C   0x4648             MOV      R0,R9
+   \      0x19E   0x.... 0x....      BL       HAL_GPIO_Init
+    912          
+    913            /*Configure GPIO pin : SS_Pin */
+    914            GPIO_InitStruct.Pin = SS_Pin;
+   \      0x1A2   0xF44F 0x5080      MOV      R0,#+4096
+   \      0x1A6   0x9000             STR      R0,[SP, #+0]
+    915            GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+   \      0x1A8   0x2001             MOVS     R0,#+1
+   \      0x1AA   0x9001             STR      R0,[SP, #+4]
+    916            GPIO_InitStruct.Pull = GPIO_PULLUP;
+   \      0x1AC   0x2001             MOVS     R0,#+1
+   \      0x1AE   0x9002             STR      R0,[SP, #+8]
+    917            GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+   \      0x1B0   0x2002             MOVS     R0,#+2
+   \      0x1B2   0x9003             STR      R0,[SP, #+12]
+    918            HAL_GPIO_Init(SS_GPIO_Port, &GPIO_InitStruct);
+   \      0x1B4   0x4669             MOV      R1,SP
+   \      0x1B6   0x4648             MOV      R0,R9
+   \      0x1B8   0x.... 0x....      BL       HAL_GPIO_Init
+    919          
+    920            /*Configure GPIO pins : ON_OFF_KEY_Pin DOME1_Pin DOME2_Pin DOME3_Pin
+    921                                     DOME4_Pin DOME5_Pin DOME6_Pin SOS_KEY_Pin
+    922                                     PTT_KEY_Pin */
+    923            GPIO_InitStruct.Pin = ON_OFF_KEY_Pin|DOME1_Pin|DOME2_Pin|DOME3_Pin
+    924                                    |DOME4_Pin|DOME5_Pin|DOME6_Pin|SOS_KEY_Pin
+    925                                    |PTT_KEY_Pin;
+   \      0x1BC   0xF240 0x20FF      MOVW     R0,#+767
+   \      0x1C0   0x9000             STR      R0,[SP, #+0]
+    926            GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+   \      0x1C2   0x2000             MOVS     R0,#+0
+   \      0x1C4   0x9001             STR      R0,[SP, #+4]
+    927            GPIO_InitStruct.Pull = GPIO_NOPULL;
+   \      0x1C6   0x2000             MOVS     R0,#+0
+   \      0x1C8   0x9002             STR      R0,[SP, #+8]
+    928            HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+   \      0x1CA   0x4669             MOV      R1,SP
+   \      0x1CC   0x4650             MOV      R0,R10
+   \      0x1CE   0x.... 0x....      BL       HAL_GPIO_Init
+    929          
+    930            /*Configure GPIO pins : ON_OFF_EN_Pin LED_ST_Pin */
+    931            GPIO_InitStruct.Pin = ON_OFF_EN_Pin|LED_ST_Pin;
+   \      0x1D2   0xF44F 0x4004      MOV      R0,#+33792
+   \      0x1D6   0x9000             STR      R0,[SP, #+0]
+    932            GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+   \      0x1D8   0x2001             MOVS     R0,#+1
+   \      0x1DA   0x9001             STR      R0,[SP, #+4]
+    933            GPIO_InitStruct.Pull = GPIO_NOPULL;
+   \      0x1DC   0x2000             MOVS     R0,#+0
+   \      0x1DE   0x9002             STR      R0,[SP, #+8]
+    934            GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+   \      0x1E0   0x2000             MOVS     R0,#+0
+   \      0x1E2   0x9003             STR      R0,[SP, #+12]
+    935            HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+   \      0x1E4   0x4669             MOV      R1,SP
+   \      0x1E6   0x4650             MOV      R0,R10
+   \      0x1E8   0x.... 0x....      BL       HAL_GPIO_Init
+    936          
+    937            /* EXTI interrupt init*/
+    938            HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);
+   \      0x1EC   0x2200             MOVS     R2,#+0
+   \      0x1EE   0x2100             MOVS     R1,#+0
+   \      0x1F0   0x200A             MOVS     R0,#+10
+   \      0x1F2   0x.... 0x....      BL       HAL_NVIC_SetPriority
+    939            HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+   \      0x1F6   0x200A             MOVS     R0,#+10
+   \      0x1F8   0x.... 0x....      BL       HAL_NVIC_EnableIRQ
+    940          
+    941          
+    942          }
+   \      0x1FC   0xB006             ADD      SP,SP,#+24
+   \      0x1FE   0xE8BD 0x87F0      POP      {R4-R10,PC}
+    943          
+    944          /* USER CODE BEGIN 4 */
+    945          
+    946          /* USER CODE END 4 */
+    947          
+    948           /**
+    949            * @brief  Period elapsed callback in non blocking mode
+    950            * @note   This function is called  when TIM1 interrupt took place, inside
+    951            * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+    952            * a global variable "uwTick" used as application time base.
+    953            * @param  htim : TIM handle
+    954            * @retval None
+    955            */
+    956          //void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+    957          //{
+    958          //  /* USER CODE BEGIN Callback 0 */
+    959          //
+    960          //  /* USER CODE END Callback 0 */
+    961          ////  if (htim->Instance == TIM1) {
+    962          ////    HAL_IncTick();
+    963          ////  }
+    964          //  /* USER CODE BEGIN Callback 1 */
+    965          //
+    966          //  /* USER CODE END Callback 1 */
+    967          //}
+    968          
+    969          /**
+    970            * @brief  This function is executed in case of error occurrence.
+    971            * @retval None
+    972            */
+
+   \                                 In section .text, align 2, keep-with-next
+    973          void Error_Handler(void)
+    974          {
+    975            /* USER CODE BEGIN Error_Handler_Debug */
+    976            /* User can add his own implementation to report the HAL error return state */
+    977          
+    978            /* USER CODE END Error_Handler_Debug */
+    979          }
+   \                     Error_Handler: (+1)
+   \        0x0   0x4770             BX       LR
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14:
+   \        0x0   0x4002'0800        DC32     0x40020800
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_1:
+   \        0x0   0x....'....        DC32     RF_NIRQ
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_2:
+   \        0x0   0x....'....        DC32     hiwdg
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_3:
+   \        0x0   0x....'....        DC32     htim3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_4:
+   \        0x0   0x....'....        DC32     huart2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_5:
+   \        0x0   0x....'....        DC32     __iar_Stdout
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_6:
+   \        0x0   0x....'....        DC32     `main::nLedTick`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_7:
+   \        0x0   0x4002'0C00        DC32     0x40020c00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_8:
+   \        0x0   0x4002'3840        DC32     0x40023840
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_9:
+   \        0x0   0x4000'7000        DC32     0x40007000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_10:
+   \        0x0   0x....'....        DC32     hadc1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_11:
+   \        0x0   0x4001'2000        DC32     0x40012000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_12:
+   \        0x0   0x0F00'0001        DC32     0xf000001
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_13:
+   \        0x0   0x....'....        DC32     hi2c1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_14:
+   \        0x0   0x4000'5400        DC32     0x40005400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_15:
+   \        0x0   0x0001'86A0        DC32     0x186a0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_16:
+   \        0x0   0x....'....        DC32     hi2c3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_17:
+   \        0x0   0x4000'5C00        DC32     0x40005c00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_18:
+   \        0x0   0x0006'1A80        DC32     0x61a80
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_19:
+   \        0x0   0x....'....        DC32     hi2s3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_20:
+   \        0x0   0x4000'3C00        DC32     0x40003c00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_21:
+   \        0x0   0x4000'3000        DC32     0x40003000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_22:
+   \        0x0   0x....'....        DC32     hspi1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_23:
+   \        0x0   0x4001'3000        DC32     0x40013000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_24:
+   \        0x0   0x....'....        DC32     hspi2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_25:
+   \        0x0   0x4000'3800        DC32     0x40003800
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_26:
+   \        0x0   0x4000'0400        DC32     0x40000400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_27:
+   \        0x0   0x4000'4400        DC32     0x40004400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_28:
+   \        0x0   0x4002'3830        DC32     0x40023830
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_29:
+   \        0x0   0x4002'1000        DC32     0x40021000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_30:
+   \        0x0   0x4002'0000        DC32     0x40020000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_31:
+   \        0x0   0x4002'0400        DC32     0x40020400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable14_32:
+   \        0x0   0x1031'0000        DC32     0x10310000
+    980          
+    981          #ifdef  USE_FULL_ASSERT
+    982          /**
+    983            * @brief  Reports the name of the source file and the source line number
+    984            *         where the assert_param error has occurred.
+    985            * @param  file: pointer to the source file name
+    986            * @param  line: assert_param error line source number
+    987            * @retval None
+    988            */
+    989          void assert_failed(uint8_t *file, uint32_t line)
+    990          {
+    991            /* USER CODE BEGIN 6 */
+    992            /* User can add his own implementation to report the file name and line number,
+    993               tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+    994            /* USER CODE END 6 */
+    995          }
+    996          #endif /* USE_FULL_ASSERT */
+    997          
+    998          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   Error_Handler
+       8   HAL_GPIO_EXTI_Callback
+         8   -> HAL_GPIO_ReadPin
+       0   LoopProcMain
+      24   MX_ADC1_Init
+        24   -> Error_Handler
+        24   -> HAL_ADC_ConfigChannel
+        24   -> HAL_ADC_Init
+        24   -> memset
+       8   MX_DMA_Init
+         8   -> HAL_NVIC_EnableIRQ
+         8   -> HAL_NVIC_SetPriority
+      56   MX_GPIO_Init
+        56   -> HAL_GPIO_Init
+        56   -> HAL_GPIO_WritePin
+        56   -> HAL_NVIC_EnableIRQ
+        56   -> HAL_NVIC_SetPriority
+        56   -> memset
+       8   MX_I2C1_Init
+         8   -> Error_Handler
+         8   -> HAL_I2C_Init
+       8   MX_I2C3_Init
+         8   -> Error_Handler
+         8   -> HAL_I2C_Init
+       8   MX_I2S3_Init
+         8   -> Error_Handler
+         8   -> HAL_I2S_Init
+       0   MX_IWDG_Disable
+       8   MX_IWDG_Init
+         8   -> Error_Handler
+         8   -> HAL_IWDG_Init
+       8   MX_SPI1_Init
+         8   -> Error_Handler
+         8   -> HAL_SPI_Init
+       8   MX_SPI2_Init
+         8   -> Error_Handler
+         8   -> HAL_SPI_Init
+      48   MX_TIM3_Init
+        48   -> Error_Handler
+        48   -> HAL_TIMEx_MasterConfigSynchronization
+        48   -> HAL_TIM_MspPostInit
+        48   -> HAL_TIM_PWM_ConfigChannel
+        48   -> HAL_TIM_PWM_Init
+        48   -> memset
+       8   MX_USART2_UART_Init
+         8   -> Error_Handler
+         8   -> HAL_UART_Init
+      96   SystemClock_Config
+        96   -> Error_Handler
+        96   -> HAL_RCCEx_PeriphCLKConfig
+        96   -> HAL_RCC_ClockConfig
+        96   -> HAL_RCC_OscConfig
+        96   -> memset
+      16   main
+        16   -> HAL_GPIO_TogglePin
+        16   -> HAL_GetTick
+        16   -> HAL_Init
+        16   -> HAL_TIMEx_PWMN_Start
+        16   -> HAL_TIM_PWM_Start
+        16   -> LoopProcKey
+        16   -> MX_ADC1_Init
+        16   -> MX_DMA_Init
+        16   -> MX_GPIO_Init
+        16   -> MX_I2C1_Init
+        16   -> MX_I2C3_Init
+        16   -> MX_I2S3_Init
+        16   -> MX_IWDG_Init
+        16   -> MX_SPI1_Init
+        16   -> MX_SPI2_Init
+        16   -> MX_TIM3_Init
+        16   -> MX_USART2_UART_Init
+        16   -> RFM_main
+        16   -> SerialInit
+        16   -> SystemClock_Config
+        16   -> setbuf
+        16   -> setvbuf
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable14
+       4  ??DataTable14_1
+       4  ??DataTable14_10
+       4  ??DataTable14_11
+       4  ??DataTable14_12
+       4  ??DataTable14_13
+       4  ??DataTable14_14
+       4  ??DataTable14_15
+       4  ??DataTable14_16
+       4  ??DataTable14_17
+       4  ??DataTable14_18
+       4  ??DataTable14_19
+       4  ??DataTable14_2
+       4  ??DataTable14_20
+       4  ??DataTable14_21
+       4  ??DataTable14_22
+       4  ??DataTable14_23
+       4  ??DataTable14_24
+       4  ??DataTable14_25
+       4  ??DataTable14_26
+       4  ??DataTable14_27
+       4  ??DataTable14_28
+       4  ??DataTable14_29
+       4  ??DataTable14_3
+       4  ??DataTable14_30
+       4  ??DataTable14_31
+       4  ??DataTable14_32
+       4  ??DataTable14_4
+       4  ??DataTable14_5
+       4  ??DataTable14_6
+       4  ??DataTable14_7
+       4  ??DataTable14_8
+       4  ??DataTable14_9
+       2  Error_Handler
+      42  HAL_GPIO_EXTI_Callback
+      14  LoopProcMain
+     116  MX_ADC1_Init
+     114  MX_DMA_Init
+     514  MX_GPIO_Init
+      62  MX_I2C1_Init
+      62  MX_I2C3_Init
+      62  MX_I2S3_Init
+       2  MX_IWDG_Disable
+      36  MX_IWDG_Init
+      74  MX_SPI1_Init
+      76  MX_SPI2_Init
+     132  MX_TIM3_Init
+      52  MX_USART2_UART_Init
+       1  RF_NIRQ
+     208  SystemClock_Config
+      72  hadc1
+      96  hdma_i2s3_ext_rx
+      96  hdma_spi1_rx
+      96  hdma_spi1_tx
+      96  hdma_spi3_tx
+      84  hi2c1
+      84  hi2c3
+      72  hi2s3
+      12  hiwdg
+      88  hspi1
+      88  hspi2
+      64  htim1
+      64  htim3
+      64  huart1
+      64  huart2
+     154  main
+       4  nLedTick
+
+ 
+ 1'145 bytes in section .bss
+ 1'854 bytes in section .text
+ 
+ 1'854 bytes of CODE memory
+ 1'145 bytes of DATA memory
+
+Errors: none
+Warnings: 19

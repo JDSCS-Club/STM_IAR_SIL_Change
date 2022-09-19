@@ -1,0 +1,2480 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:50:00
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\ymodem.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\ymodem.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Library\ymodem.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library --no_cse
+#        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
+#        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
+#        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\ymodem.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library\ymodem.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\ymodem.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Library\ymodem.c
+      1          /**
+      2            ******************************************************************************
+      3            * @file    IAP/IAP_Main/Src/ymodem.c 
+      4            * @author  MCD Application Team
+      5            * @brief   This file provides all the software functions related to the ymodem 
+      6            *          protocol.
+      7            ******************************************************************************
+      8            * @attention
+      9            *
+     10            * <h2><center>&copy; Copyright (c) 2018 STMicroelectronics.
+     11            * All rights reserved.</center></h2>
+     12            *
+     13            * This software component is licensed by ST under BSD 3-Clause license,
+     14            * the "License"; You may not use this file except in compliance with the
+     15            * License. You may obtain a copy of the License at:
+     16            *                        opensource.org/licenses/BSD-3-Clause
+     17            *
+     18            ******************************************************************************
+     19            */
+     20          /** @addtogroup STM32F2xx_IAP_Main
+     21            * @{
+     22            */ 
+     23            
+     24          /* Includes ------------------------------------------------------------------*/
+     25          #include <stdint.h>
+     26          
+     27          #include "flash_if.h"
+     28          #include "iap_common.h"
+     29          #include "ymodem.h"
+     30          #include "string.h"
+     31          #include "main.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     32          #include "iap_menu.h"
+     33          
+     34          /* Private typedef -----------------------------------------------------------*/
+     35          /* Private define ------------------------------------------------------------*/
+     36          //#define CRC16_F       /* activate the CRC16 integrity */
+     37          /* Private macro -------------------------------------------------------------*/
+     38          /* Private variables ---------------------------------------------------------*/
+     39          
+     40          #if defined( USE_YMODEM_EXT_FLASH )
+     41          
+     42          int addrExtFlash;                   //  External Flash Address ( SPI Flash )
+     43          
+     44          #else
+     45          
+
+   \                                 In section .bss, align 4
+     46          __IO uint32_t flashdestination;     //  Direct Update ( Internal Flash )
+   \                     flashdestination:
+   \        0x0                      DS8 4
+     47          
+     48          #endif
+     49          
+     50          /* @note ATTENTION - please keep this variable 32bit alligned */
+
+   \                                 In section .bss, align 4
+     51          uint8_t aPacketData[PACKET_1K_SIZE + PACKET_DATA_INDEX + PACKET_TRAILER_SIZE];
+   \                     aPacketData:
+   \        0x0                      DS8 1'032
+     52          
+     53          //========================================================================
+     54          
+
+   \                                 In section .bss, align 1
+     55          uint8_t		g_masterYmodem = 0;			//	Master LED - Y-Modem Ack응답.
+   \                     g_masterYmodem:
+   \        0x0                      DS8 1
+     56          
+
+   \                                 In section .bss, align 4
+     57          int 		g_cntPktYModem = 0;         //	LED Y-Modem Packet Count
+   \                     g_cntPktYModem:
+   \        0x0                      DS8 4
+
+   \                                 In section .bss, align 4
+     58          int 		g_totPktYModem = 0;		    //	LED Y-Modem Packet Total
+   \                     g_totPktYModem:
+   \        0x0                      DS8 4
+     59          
+     60          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     61          void    DispLedText ( char *sText, int color )
+     62          //========================================================================
+     63          {
+     64          
+     65          #if 0
+     66              LedEFont( &stFDI, sText, color, 0, 0, 1 );
+     67          #endif
+     68          }
+   \                     DispLedText: (+1)
+   \        0x0   0x4770             BX       LR
+     69          
+     70          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     71          void    DispLedProgress ( int nProgress, int nTotal, int color )
+     72          //========================================================================
+     73          {
+   \                     DispLedProgress: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0xB088             SUB      SP,SP,#+32
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+   \        0x8   0x0016             MOVS     R6,R2
+     74          //    LedProgress( &stFDI, nProgress, nTotal, color );
+     75          //    LedProgress( &stTNI, nProgress, nTotal, color );
+     76          //    LedProgress( &stSDI, nProgress, nTotal, color );
+     77          //    LedProgress( &stGDI, nProgress, nTotal, color );
+     78              
+     79              char		sProgress[32];
+     80          
+     81              sprintf( sProgress, "%3d/%3d", nProgress, nTotal );
+                     ^
+Warning[Pe223]: function "sprintf" declared implicitly
+   \        0xA   0x002B             MOVS     R3,R5
+   \        0xC   0x0022             MOVS     R2,R4
+   \        0xE   0x.... 0x....      LDR.W    R1,??DataTable6
+   \       0x12   0x4668             MOV      R0,SP
+   \       0x14   0x.... 0x....      BL       sprintf
+     82          
+     83          #if 0
+     84              LedEFont( &stFDI, sProgress, color, 0, 0, 1 );
+     85              LedEFont( &stSDI, sProgress, color, 0, 0, 1 );
+     86              LedEFont( &stTNI, sProgress, color, 0, 0, 1 );
+     87              LedEFont( &stGDI, sProgress, color, 0, 0, 1 );
+     88          #endif
+     89          }
+   \       0x18   0xB008             ADD      SP,SP,#+32
+   \       0x1A   0xBD70             POP      {R4-R6,PC}
+     90          
+     91          //========================================================================
+     92          
+     93          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     94          void        SetYModemMaster ( int bMaster )
+     95          //========================================================================
+     96          {
+   \                     SetYModemMaster: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+     97              printf( "%s(%d) - %d\n", __func__, __LINE__, bMaster );
+                     ^
+Warning[Pe223]: function "printf" declared implicitly
+   \        0x4   0x0023             MOVS     R3,R4
+   \        0x6   0x2261             MOVS     R2,#+97
+   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable6_1
+   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable6_2
+   \       0x10   0x.... 0x....      BL       printf
+     98          
+     99              g_masterYmodem = bMaster;
+   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable6_3
+   \       0x18   0x7004             STRB     R4,[R0, #+0]
+    100          }
+   \       0x1A   0xBD10             POP      {R4,PC}
+    101          
+    102          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    103          uint8_t     IsYModemMaster  ( void )
+    104          //========================================================================
+    105          {
+    106              return g_masterYmodem;
+   \                     IsYModemMaster: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable6_3
+   \        0x4   0x7800             LDRB     R0,[R0, #+0]
+   \        0x6   0x4770             BX       LR
+    107          }
+    108          
+    109          //========================================================================
+    110          
+    111          
+    112          /* Private function prototypes -----------------------------------------------*/
+    113          static void PrepareIntialPacket(uint8_t *p_data, const uint8_t *p_file_name, uint32_t length);
+    114          static void PreparePacket(uint8_t *p_source, uint8_t *p_packet, uint8_t pkt_nr, uint32_t size_blk);
+    115          static HAL_StatusTypeDef ReceivePacket(uint8_t *p_data, uint32_t *p_length, uint32_t timeout);
+    116          uint16_t UpdateCRC16(uint16_t crc_in, uint8_t byte);
+    117          uint16_t Cal_CRC16(const uint8_t* p_data, uint32_t size);
+    118          uint8_t CalcChecksum(const uint8_t *p_data, uint32_t size);
+    119          
+    120          /* Private functions ---------------------------------------------------------*/
+    121          
+    122          /**
+    123            * @brief  Receive a packet from sender
+    124            * @param  data
+    125            * @param  length
+    126            *     0: end of transmission
+    127            *     2: abort by sender
+    128            *    >0: packet length
+    129            * @param  timeout
+    130            * @retval HAL_OK: normally return
+    131            *         HAL_BUSY: abort by user
+    132            */
+    133          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    134          static HAL_StatusTypeDef ReceivePacket(uint8_t *p_data, uint32_t *p_length, uint32_t timeout)
+    135          //========================================================================
+    136          {
+   \                     ReceivePacket: (+1)
+   \        0x0   0xE92D 0x47FC      PUSH     {R2-R10,LR}
+   \        0x4   0x0005             MOVS     R5,R0
+   \        0x6   0x000E             MOVS     R6,R1
+   \        0x8   0x0017             MOVS     R7,R2
+    137            uint32_t crc;
+    138            uint32_t packet_size = 0;
+   \        0xA   0xF05F 0x0900      MOVS     R9,#+0
+    139            HAL_StatusTypeDef status;
+    140            uint8_t char1;
+    141          
+    142            SKIP_C:   //  'C'
+    143          
+    144            *p_length = 0;
+   \                     ??ReceivePacket_0: (+1)
+   \        0xE   0x2000             MOVS     R0,#+0
+   \       0x10   0x6030             STR      R0,[R6, #+0]
+    145            status = HAL_UART_Receive(&huart2, &char1, 1, timeout);
+   \       0x12   0x.... 0x....      LDR.W    R10,??DataTable6_4
+   \       0x16   0x003B             MOVS     R3,R7
+   \       0x18   0x2201             MOVS     R2,#+1
+   \       0x1A   0x4669             MOV      R1,SP
+   \       0x1C   0x4650             MOV      R0,R10
+   \       0x1E   0x.... 0x....      BL       HAL_UART_Receive
+   \       0x22   0x0004             MOVS     R4,R0
+    146          
+    147            if (status == HAL_OK)
+   \       0x24   0x0020             MOVS     R0,R4
+   \       0x26   0xB2C0             UXTB     R0,R0
+   \       0x28   0x2800             CMP      R0,#+0
+   \       0x2A   0xD178             BNE.N    ??ReceivePacket_1
+    148            {
+    149          //      printf( "%s(%d) - 0x%02X\n", __func__, __LINE__, char1 );
+    150              printf( "[0x%02X]", char1 );
+                     ^
+Warning[Pe223]: function "printf" declared implicitly
+   \       0x2C   0xF89D 0x1000      LDRB     R1,[SP, #+0]
+   \       0x30   0x.... 0x....      LDR.W    R0,??DataTable6_5
+   \       0x34   0x.... 0x....      BL       printf
+    151          
+    152              switch (char1)
+   \       0x38   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \       0x3C   0x2800             CMP      R0,#+0
+   \       0x3E   0xD012             BEQ.N    ??ReceivePacket_2
+   \       0x40   0x2801             CMP      R0,#+1
+   \       0x42   0xD011             BEQ.N    ??ReceivePacket_3
+   \       0x44   0x2802             CMP      R0,#+2
+   \       0x46   0xD012             BEQ.N    ??ReceivePacket_4
+   \       0x48   0x2804             CMP      R0,#+4
+   \       0x4A   0xD014             BEQ.N    ??ReceivePacket_5
+   \       0x4C   0x2806             CMP      R0,#+6
+   \       0x4E   0xD00A             BEQ.N    ??ReceivePacket_2
+   \       0x50   0x2815             CMP      R0,#+21
+   \       0x52   0xD008             BEQ.N    ??ReceivePacket_2
+   \       0x54   0x2818             CMP      R0,#+24
+   \       0x56   0xD00F             BEQ.N    ??ReceivePacket_6
+   \       0x58   0x2841             CMP      R0,#+65
+   \       0x5A   0xD01F             BEQ.N    ??ReceivePacket_7
+   \       0x5C   0x2843             CMP      R0,#+67
+   \       0x5E   0xD002             BEQ.N    ??ReceivePacket_2
+   \       0x60   0x2861             CMP      R0,#+97
+   \       0x62   0xD01B             BEQ.N    ??ReceivePacket_7
+   \       0x64   0xE01D             B.N      ??ReceivePacket_8
+    153              {
+    154                case 0x00:    //  0x00 Skip
+    155                case CRC16:   //  'C'
+    156                case ACK:     //  ACK
+    157                case NAK:     //  NAK
+    158                    goto SKIP_C;
+   \                     ??ReceivePacket_2: (+1)
+   \       0x66   0xE7D2             B.N      ??ReceivePacket_0
+    159                    break;
+    160          
+    161                case SOH:
+    162                  packet_size = PACKET_SIZE;
+   \                     ??ReceivePacket_3: (+1)
+   \       0x68   0x2080             MOVS     R0,#+128
+   \       0x6A   0x4681             MOV      R9,R0
+    163                  break;
+   \       0x6C   0xE01B             B.N      ??ReceivePacket_9
+    164                case STX:
+    165                  packet_size = PACKET_1K_SIZE;
+   \                     ??ReceivePacket_4: (+1)
+   \       0x6E   0xF44F 0x6080      MOV      R0,#+1024
+   \       0x72   0x4681             MOV      R9,R0
+    166                  break;
+   \       0x74   0xE017             B.N      ??ReceivePacket_9
+    167                case EOT:
+    168                  break;
+   \                     ??ReceivePacket_5: (+1)
+   \       0x76   0xE016             B.N      ??ReceivePacket_9
+    169                case CA:
+    170                  if ((HAL_UART_Receive(&huart2, &char1, 1, timeout) == HAL_OK) && (char1 == CA))
+   \                     ??ReceivePacket_6: (+1)
+   \       0x78   0x003B             MOVS     R3,R7
+   \       0x7A   0x2201             MOVS     R2,#+1
+   \       0x7C   0x4669             MOV      R1,SP
+   \       0x7E   0x4650             MOV      R0,R10
+   \       0x80   0x.... 0x....      BL       HAL_UART_Receive
+   \       0x84   0x2800             CMP      R0,#+0
+   \       0x86   0xD106             BNE.N    ??ReceivePacket_10
+   \       0x88   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \       0x8C   0x2818             CMP      R0,#+24
+   \       0x8E   0xD102             BNE.N    ??ReceivePacket_10
+    171                  {
+    172                    packet_size = 2;
+   \       0x90   0x2002             MOVS     R0,#+2
+   \       0x92   0x4681             MOV      R9,R0
+   \       0x94   0xE001             B.N      ??ReceivePacket_11
+    173                  }
+    174                  else
+    175                  {
+    176                    status = HAL_ERROR;
+   \                     ??ReceivePacket_10: (+1)
+   \       0x96   0x2001             MOVS     R0,#+1
+   \       0x98   0x0004             MOVS     R4,R0
+    177                  }
+    178                  break;
+   \                     ??ReceivePacket_11: (+1)
+   \       0x9A   0xE004             B.N      ??ReceivePacket_9
+    179                case ABORT1:
+    180                case ABORT2:
+    181                  status = HAL_BUSY;
+   \                     ??ReceivePacket_7: (+1)
+   \       0x9C   0x2002             MOVS     R0,#+2
+   \       0x9E   0x0004             MOVS     R4,R0
+    182                  break;
+   \       0xA0   0xE001             B.N      ??ReceivePacket_9
+    183                default:
+    184                  status = HAL_ERROR;
+   \                     ??ReceivePacket_8: (+1)
+   \       0xA2   0x2001             MOVS     R0,#+1
+   \       0xA4   0x0004             MOVS     R4,R0
+    185                  break;
+    186              }
+    187              *p_data = char1;
+   \                     ??ReceivePacket_9: (+1)
+   \       0xA6   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \       0xAA   0x7028             STRB     R0,[R5, #+0]
+    188          
+    189              if (packet_size >= PACKET_SIZE )
+   \       0xAC   0xF1B9 0x0F80      CMP      R9,#+128
+   \       0xB0   0xD335             BCC.N    ??ReceivePacket_1
+    190              {
+    191                status = HAL_UART_Receive(&huart2, &p_data[PACKET_NUMBER_INDEX], packet_size + PACKET_OVERHEAD_SIZE, timeout);
+   \       0xB2   0x003B             MOVS     R3,R7
+   \       0xB4   0xF119 0x0204      ADDS     R2,R9,#+4
+   \       0xB8   0xB292             UXTH     R2,R2
+   \       0xBA   0x1CA9             ADDS     R1,R5,#+2
+   \       0xBC   0x4650             MOV      R0,R10
+   \       0xBE   0x.... 0x....      BL       HAL_UART_Receive
+   \       0xC2   0x0004             MOVS     R4,R0
+    192          
+    193                /* Simple packet sanity check */
+    194                if (status == HAL_OK )
+   \       0xC4   0x0020             MOVS     R0,R4
+   \       0xC6   0xB2C0             UXTB     R0,R0
+   \       0xC8   0x2800             CMP      R0,#+0
+   \       0xCA   0xD126             BNE.N    ??ReceivePacket_12
+    195                {
+    196          //        printf( "%s(%d)\n", __func__, __LINE__ );
+    197          
+    198                  if (p_data[PACKET_NUMBER_INDEX] != ((p_data[PACKET_CNUMBER_INDEX]) ^ NEGATIVE_BYTE))
+   \       0xCC   0x78A8             LDRB     R0,[R5, #+2]
+   \       0xCE   0x78E9             LDRB     R1,[R5, #+3]
+   \       0xD0   0xF091 0x01FF      EORS     R1,R1,#0xFF
+   \       0xD4   0x4288             CMP      R0,R1
+   \       0xD6   0xD004             BEQ.N    ??ReceivePacket_13
+    199                  {
+    200          //          printf( "%s(%d) - Error ( 0x%02X != ( 0x%02X ^ 0xFF ) )\n", __func__, __LINE__, 
+    201          //                                p_data[PACKET_NUMBER_INDEX], p_data[PACKET_CNUMBER_INDEX] );
+    202                    packet_size = 0;
+   \       0xD8   0x2000             MOVS     R0,#+0
+   \       0xDA   0x4681             MOV      R9,R0
+    203                    status = HAL_ERROR;
+   \       0xDC   0x2001             MOVS     R0,#+1
+   \       0xDE   0x0004             MOVS     R4,R0
+   \       0xE0   0xE01D             B.N      ??ReceivePacket_1
+    204                  }
+    205                  else
+    206                  {
+    207                    /* Check packet CRC */
+    208                    crc = p_data[ packet_size + PACKET_DATA_INDEX ] << 8;
+   \                     ??ReceivePacket_13: (+1)
+   \       0xE2   0xEB05 0x0009      ADD      R0,R5,R9
+   \       0xE6   0x7900             LDRB     R0,[R0, #+4]
+   \       0xE8   0x0200             LSLS     R0,R0,#+8
+    209                    crc += p_data[ packet_size + PACKET_DATA_INDEX + 1 ];
+   \       0xEA   0xEB05 0x0109      ADD      R1,R5,R9
+   \       0xEE   0x7949             LDRB     R1,[R1, #+5]
+   \       0xF0   0xFA50 0xF081      UXTAB    R0,R0,R1
+   \       0xF4   0x4680             MOV      R8,R0
+    210                    if (Cal_CRC16(&p_data[PACKET_DATA_INDEX], packet_size) != crc )
+   \       0xF6   0x4649             MOV      R1,R9
+   \       0xF8   0x1D28             ADDS     R0,R5,#+4
+   \       0xFA   0x.... 0x....      BL       Cal_CRC16
+   \       0xFE   0x4540             CMP      R0,R8
+   \      0x100   0xD00D             BEQ.N    ??ReceivePacket_1
+    211                    {
+    212                      printf( "%s(%d) - CRC Error\n", __func__, __LINE__ );
+   \      0x102   0x22D4             MOVS     R2,#+212
+   \      0x104   0x.... 0x....      LDR.W    R1,??DataTable6_6
+   \      0x108   0x.... 0x....      LDR.W    R0,??DataTable6_7
+   \      0x10C   0x.... 0x....      BL       printf
+    213                      packet_size = 0;
+   \      0x110   0x2000             MOVS     R0,#+0
+   \      0x112   0x4681             MOV      R9,R0
+    214                      status = HAL_ERROR;
+   \      0x114   0x2001             MOVS     R0,#+1
+   \      0x116   0x0004             MOVS     R4,R0
+   \      0x118   0xE001             B.N      ??ReceivePacket_1
+    215                    }
+    216                  }
+    217                }
+    218                else
+    219                {
+    220          //        printf( "%s(%d) - 0x%02X\n", __func__, __LINE__, char1 );
+    221          
+    222                  packet_size = 0;
+   \                     ??ReceivePacket_12: (+1)
+   \      0x11A   0x2000             MOVS     R0,#+0
+   \      0x11C   0x4681             MOV      R9,R0
+    223                }
+    224              }
+    225            }
+    226            *p_length = packet_size;
+   \                     ??ReceivePacket_1: (+1)
+   \      0x11E   0xF8C6 0x9000      STR      R9,[R6, #+0]
+    227            return status;
+   \      0x122   0x0020             MOVS     R0,R4
+   \      0x124   0xB2C0             UXTB     R0,R0
+   \      0x126   0xE8BD 0x87F6      POP      {R1,R2,R4-R10,PC}
+    228          }
+    229          
+    230          /**
+    231            * @brief  Prepare the first block
+    232            * @param  p_data:  output buffer
+    233            * @param  p_file_name: name of the file to be sent
+    234            * @param  length: length of the file to be sent in bytes
+    235            * @retval None
+    236            */
+    237          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    238          static void PrepareIntialPacket(uint8_t *p_data, const uint8_t *p_file_name, uint32_t length)
+    239          //========================================================================
+    240          {
+   \                     PrepareIntialPacket: (+1)
+   \        0x0   0xE92D 0x41FF      PUSH     {R0-R8,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+   \        0x8   0x0016             MOVS     R6,R2
+    241            uint32_t i, j = 0;
+   \        0xA   0x2700             MOVS     R7,#+0
+    242            uint8_t astring[10];
+    243          
+    244            /* first 3 bytes are constant */
+    245            p_data[PACKET_START_INDEX] = SOH;
+   \        0xC   0x2001             MOVS     R0,#+1
+   \        0xE   0x7060             STRB     R0,[R4, #+1]
+    246            p_data[PACKET_NUMBER_INDEX] = 0x00;
+   \       0x10   0x2000             MOVS     R0,#+0
+   \       0x12   0x70A0             STRB     R0,[R4, #+2]
+    247            p_data[PACKET_CNUMBER_INDEX] = 0xff;
+   \       0x14   0x20FF             MOVS     R0,#+255
+   \       0x16   0x70E0             STRB     R0,[R4, #+3]
+    248          
+    249            /* Filename written */
+    250            for (i = 0; (p_file_name[i] != '\0') && (i < FILE_NAME_LENGTH); i++)
+   \       0x18   0xF05F 0x0800      MOVS     R8,#+0
+   \                     ??PrepareIntialPacket_0: (+1)
+   \       0x1C   0xF815 0x0008      LDRB     R0,[R5, R8]
+   \       0x20   0x2800             CMP      R0,#+0
+   \       0x22   0xD00A             BEQ.N    ??PrepareIntialPacket_1
+   \       0x24   0xF1B8 0x0F40      CMP      R8,#+64
+   \       0x28   0xD207             BCS.N    ??PrepareIntialPacket_1
+    251            {
+    252              p_data[i + PACKET_DATA_INDEX] = p_file_name[i];
+   \       0x2A   0xF815 0x0008      LDRB     R0,[R5, R8]
+   \       0x2E   0xEB04 0x0108      ADD      R1,R4,R8
+   \       0x32   0x7108             STRB     R0,[R1, #+4]
+    253            }
+   \       0x34   0xF118 0x0801      ADDS     R8,R8,#+1
+   \       0x38   0xE7F0             B.N      ??PrepareIntialPacket_0
+    254          
+    255            p_data[i + PACKET_DATA_INDEX] = 0x00;
+   \                     ??PrepareIntialPacket_1: (+1)
+   \       0x3A   0x2000             MOVS     R0,#+0
+   \       0x3C   0xEB04 0x0108      ADD      R1,R4,R8
+   \       0x40   0x7108             STRB     R0,[R1, #+4]
+    256          
+    257            /* file size written */
+    258            Int2Str (astring, length);
+   \       0x42   0x0031             MOVS     R1,R6
+   \       0x44   0x4668             MOV      R0,SP
+   \       0x46   0x.... 0x....      BL       Int2Str
+    259            i = i + PACKET_DATA_INDEX + 1;
+   \       0x4A   0xF118 0x0805      ADDS     R8,R8,#+5
+    260            while (astring[j] != '\0')
+   \                     ??PrepareIntialPacket_2: (+1)
+   \       0x4E   0x4669             MOV      R1,SP
+   \       0x50   0x5DC8             LDRB     R0,[R1, R7]
+   \       0x52   0x2800             CMP      R0,#+0
+   \       0x54   0xD006             BEQ.N    ??PrepareIntialPacket_3
+    261            {
+    262              p_data[i++] = astring[j++];
+   \       0x56   0x5DC8             LDRB     R0,[R1, R7]
+   \       0x58   0xF804 0x0008      STRB     R0,[R4, R8]
+   \       0x5C   0x1C7F             ADDS     R7,R7,#+1
+   \       0x5E   0xF118 0x0801      ADDS     R8,R8,#+1
+   \       0x62   0xE7F4             B.N      ??PrepareIntialPacket_2
+    263            }
+    264          
+    265            /* padding with zeros */
+    266            for (j = i; j < PACKET_SIZE + PACKET_DATA_INDEX; j++)
+   \                     ??PrepareIntialPacket_3: (+1)
+   \       0x64   0x4640             MOV      R0,R8
+   \                     ??PrepareIntialPacket_4: (+1)
+   \       0x66   0x2884             CMP      R0,#+132
+   \       0x68   0xD203             BCS.N    ??PrepareIntialPacket_5
+    267            {
+    268              p_data[j] = 0;
+   \       0x6A   0x2100             MOVS     R1,#+0
+   \       0x6C   0x5421             STRB     R1,[R4, R0]
+    269            }
+   \       0x6E   0x1C40             ADDS     R0,R0,#+1
+   \       0x70   0xE7F9             B.N      ??PrepareIntialPacket_4
+    270          }
+   \                     ??PrepareIntialPacket_5: (+1)
+   \       0x72   0xE8BD 0x81FF      POP      {R0-R8,PC}
+    271          
+    272          /**
+    273            * @brief  Prepare the data packet
+    274            * @param  p_source: pointer to the data to be sent
+    275            * @param  p_packet: pointer to the output buffer
+    276            * @param  pkt_nr: number of the packet
+    277            * @param  size_blk: length of the block to be sent in bytes
+    278            * @retval None
+    279            */
+    280          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    281          static void PreparePacket(uint8_t *p_source, uint8_t *p_packet, uint8_t pkt_nr, uint32_t size_blk)
+    282          //========================================================================
+    283          {
+   \                     PreparePacket: (+1)
+   \        0x0   0xB4F0             PUSH     {R4-R7}
+    284            uint8_t *p_record;
+    285            uint32_t i, size, packet_size;
+    286          
+    287            /* Make first three packet */
+    288            packet_size = size_blk >= PACKET_1K_SIZE ? PACKET_1K_SIZE : PACKET_SIZE;
+   \        0x2   0xF5B3 0x6F80      CMP      R3,#+1024
+   \        0x6   0xD302             BCC.N    ??PreparePacket_0
+   \        0x8   0xF44F 0x6480      MOV      R4,#+1024
+   \        0xC   0xE000             B.N      ??PreparePacket_1
+   \                     ??PreparePacket_0: (+1)
+   \        0xE   0x2480             MOVS     R4,#+128
+    289            size = size_blk < packet_size ? size_blk : packet_size;
+   \                     ??PreparePacket_1: (+1)
+   \       0x10   0x42A3             CMP      R3,R4
+   \       0x12   0xD201             BCS.N    ??PreparePacket_2
+   \       0x14   0x001D             MOVS     R5,R3
+   \       0x16   0xE000             B.N      ??PreparePacket_3
+   \                     ??PreparePacket_2: (+1)
+   \       0x18   0x0025             MOVS     R5,R4
+    290            if (packet_size == PACKET_1K_SIZE)
+   \                     ??PreparePacket_3: (+1)
+   \       0x1A   0xF5B4 0x6F80      CMP      R4,#+1024
+   \       0x1E   0xD102             BNE.N    ??PreparePacket_4
+    291            {
+    292              p_packet[PACKET_START_INDEX] = STX;
+   \       0x20   0x2602             MOVS     R6,#+2
+   \       0x22   0x704E             STRB     R6,[R1, #+1]
+   \       0x24   0xE001             B.N      ??PreparePacket_5
+    293            }
+    294            else
+    295            {
+    296              p_packet[PACKET_START_INDEX] = SOH;
+   \                     ??PreparePacket_4: (+1)
+   \       0x26   0x2601             MOVS     R6,#+1
+   \       0x28   0x704E             STRB     R6,[R1, #+1]
+    297            }
+    298            p_packet[PACKET_NUMBER_INDEX] = pkt_nr;
+   \                     ??PreparePacket_5: (+1)
+   \       0x2A   0x708A             STRB     R2,[R1, #+2]
+    299            p_packet[PACKET_CNUMBER_INDEX] = (~pkt_nr);
+   \       0x2C   0x0016             MOVS     R6,R2
+   \       0x2E   0xB2F6             UXTB     R6,R6
+   \       0x30   0x43F6             MVNS     R6,R6
+   \       0x32   0x70CE             STRB     R6,[R1, #+3]
+    300            p_record = p_source;
+   \       0x34   0x0006             MOVS     R6,R0
+    301          
+    302            /* Filename packet has valid data */
+    303            for (i = PACKET_DATA_INDEX; i < size + PACKET_DATA_INDEX;i++)
+   \       0x36   0x2704             MOVS     R7,#+4
+   \                     ??PreparePacket_6: (+1)
+   \       0x38   0xF115 0x0C04      ADDS     R12,R5,#+4
+   \       0x3C   0x4567             CMP      R7,R12
+   \       0x3E   0xD206             BCS.N    ??PreparePacket_7
+    304            {
+    305              p_packet[i] = *p_record++;
+   \       0x40   0xF896 0xC000      LDRB     R12,[R6, #+0]
+   \       0x44   0xF801 0xC007      STRB     R12,[R1, R7]
+   \       0x48   0x1C76             ADDS     R6,R6,#+1
+    306            }
+   \       0x4A   0x1C7F             ADDS     R7,R7,#+1
+   \       0x4C   0xE7F4             B.N      ??PreparePacket_6
+    307            if ( size  <= packet_size)
+   \                     ??PreparePacket_7: (+1)
+   \       0x4E   0x42AC             CMP      R4,R5
+   \       0x50   0xD30C             BCC.N    ??PreparePacket_8
+    308            {
+    309              for (i = size + PACKET_DATA_INDEX; i < packet_size + PACKET_DATA_INDEX; i++)
+   \       0x52   0xF115 0x0C04      ADDS     R12,R5,#+4
+   \       0x56   0x4667             MOV      R7,R12
+   \                     ??PreparePacket_9: (+1)
+   \       0x58   0xF114 0x0C04      ADDS     R12,R4,#+4
+   \       0x5C   0x4567             CMP      R7,R12
+   \       0x5E   0xD205             BCS.N    ??PreparePacket_8
+    310              {
+    311                p_packet[i] = 0x1A; /* EOF (0x1A) or 0x00 */
+   \       0x60   0xF05F 0x0C1A      MOVS     R12,#+26
+   \       0x64   0xF801 0xC007      STRB     R12,[R1, R7]
+    312              }
+   \       0x68   0x1C7F             ADDS     R7,R7,#+1
+   \       0x6A   0xE7F5             B.N      ??PreparePacket_9
+    313            }
+    314          }
+   \                     ??PreparePacket_8: (+1)
+   \       0x6C   0xBCF0             POP      {R4-R7}
+   \       0x6E   0x4770             BX       LR
+    315          
+    316          /**
+    317            * @brief  Update CRC16 for input byte
+    318            * @param  crc_in input value 
+    319            * @param  input byte
+    320            * @retval None
+    321            */
+    322          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    323          uint16_t UpdateCRC16(uint16_t crc_in, uint8_t byte)
+    324          //========================================================================
+    325          {
+   \                     UpdateCRC16: (+1)
+   \        0x0   0xB410             PUSH     {R4}
+   \        0x2   0x0002             MOVS     R2,R0
+    326            uint32_t crc = crc_in;
+   \        0x4   0x0010             MOVS     R0,R2
+   \        0x6   0xB280             UXTH     R0,R0
+    327            uint32_t in = byte | 0x100;
+   \        0x8   0x000B             MOVS     R3,R1
+   \        0xA   0xB2DB             UXTB     R3,R3
+   \        0xC   0xF453 0x7380      ORRS     R3,R3,#0x100
+    328          
+    329            do
+    330            {
+    331              crc <<= 1;
+   \                     ??UpdateCRC16_0: (+1)
+   \       0x10   0x0040             LSLS     R0,R0,#+1
+    332              in <<= 1;
+   \       0x12   0x005B             LSLS     R3,R3,#+1
+    333              if(in & 0x100)
+   \       0x14   0x05DC             LSLS     R4,R3,#+23
+   \       0x16   0xD500             BPL.N    ??UpdateCRC16_1
+    334                ++crc;
+   \       0x18   0x1C40             ADDS     R0,R0,#+1
+    335              if(crc & 0x10000)
+   \                     ??UpdateCRC16_1: (+1)
+   \       0x1A   0x03C4             LSLS     R4,R0,#+15
+   \       0x1C   0xD503             BPL.N    ??UpdateCRC16_2
+    336                crc ^= 0x1021;
+   \       0x1E   0xF480 0x5080      EOR      R0,R0,#0x1000
+   \       0x22   0xF090 0x0021      EORS     R0,R0,#0x21
+    337            }
+    338            
+    339            while(!(in & 0x10000));
+   \                     ??UpdateCRC16_2: (+1)
+   \       0x26   0x03DC             LSLS     R4,R3,#+15
+   \       0x28   0xD5F2             BPL.N    ??UpdateCRC16_0
+    340          
+    341            return crc & 0xffffu;
+   \       0x2A   0xB280             UXTH     R0,R0
+   \       0x2C   0xBC10             POP      {R4}
+   \       0x2E   0x4770             BX       LR
+    342          }
+    343          
+    344          /**
+    345            * @brief  Cal CRC16 for YModem Packet
+    346            * @param  data
+    347            * @param  length
+    348            * @retval None
+    349            */
+    350          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    351          uint16_t Cal_CRC16(const uint8_t* p_data, uint32_t size)
+    352          //========================================================================
+    353          {
+   \                     Cal_CRC16: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+    354            uint32_t crc = 0;
+   \        0x8   0x2600             MOVS     R6,#+0
+    355            const uint8_t* dataEnd = p_data+size;
+   \        0xA   0xEB04 0x0805      ADD      R8,R4,R5
+    356          
+    357            while(p_data < dataEnd)
+   \                     ??Cal_CRC16_0: (+1)
+   \        0xE   0x4544             CMP      R4,R8
+   \       0x10   0xD208             BCS.N    ??Cal_CRC16_1
+    358              crc = UpdateCRC16(crc, *p_data++);
+   \       0x12   0x7821             LDRB     R1,[R4, #+0]
+   \       0x14   0x0030             MOVS     R0,R6
+   \       0x16   0xB280             UXTH     R0,R0
+   \       0x18   0x.... 0x....      BL       UpdateCRC16
+   \       0x1C   0x1C64             ADDS     R4,R4,#+1
+   \       0x1E   0xB280             UXTH     R0,R0
+   \       0x20   0x0006             MOVS     R6,R0
+   \       0x22   0xE7F4             B.N      ??Cal_CRC16_0
+    359           
+    360            crc = UpdateCRC16(crc, 0);
+   \                     ??Cal_CRC16_1: (+1)
+   \       0x24   0x2100             MOVS     R1,#+0
+   \       0x26   0x0030             MOVS     R0,R6
+   \       0x28   0xB280             UXTH     R0,R0
+   \       0x2A   0x.... 0x....      BL       UpdateCRC16
+   \       0x2E   0x0007             MOVS     R7,R0
+    361            crc = UpdateCRC16(crc, 0);
+   \       0x30   0x2100             MOVS     R1,#+0
+   \       0x32   0x0038             MOVS     R0,R7
+   \       0x34   0xB280             UXTH     R0,R0
+   \       0x36   0x.... 0x....      BL       UpdateCRC16
+    362          
+    363            return crc&0xffffu;
+   \       0x3A   0xB280             UXTH     R0,R0
+   \       0x3C   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    364          }
+    365          
+    366          /**
+    367            * @brief  Calculate Check sum for YModem Packet
+    368            * @param  p_data Pointer to input data
+    369            * @param  size length of input data
+    370            * @retval uint8_t checksum value
+    371            */
+    372          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    373          uint8_t CalcChecksum(const uint8_t *p_data, uint32_t size)
+    374          //========================================================================
+    375          {
+   \                     CalcChecksum: (+1)
+   \        0x0   0xB410             PUSH     {R4}
+   \        0x2   0x0002             MOVS     R2,R0
+    376            uint32_t sum = 0;
+   \        0x4   0x2000             MOVS     R0,#+0
+    377            const uint8_t *p_data_end = p_data + size;
+   \        0x6   0xEB02 0x0301      ADD      R3,R2,R1
+    378          
+    379            while (p_data < p_data_end )
+   \                     ??CalcChecksum_0: (+1)
+   \        0xA   0x429A             CMP      R2,R3
+   \        0xC   0xD204             BCS.N    ??CalcChecksum_1
+    380            {
+    381              sum += *p_data++;
+   \        0xE   0x7814             LDRB     R4,[R2, #+0]
+   \       0x10   0xFA50 0xF084      UXTAB    R0,R0,R4
+   \       0x14   0x1C52             ADDS     R2,R2,#+1
+   \       0x16   0xE7F8             B.N      ??CalcChecksum_0
+    382            }
+    383          
+    384            return (sum & 0xffu);
+   \                     ??CalcChecksum_1: (+1)
+   \       0x18   0xB2C0             UXTB     R0,R0
+   \       0x1A   0xBC10             POP      {R4}
+   \       0x1C   0x4770             BX       LR
+    385          }
+    386          
+    387          /* Public functions ---------------------------------------------------------*/
+    388          /**
+    389            * @brief  Receive a file using the ymodem protocol with CRC16.
+    390            * @param  p_size The size of the file.
+    391            * @retval COM_StatusTypeDef result of reception/programming
+    392            */
+    393          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    394          COM_StatusTypeDef Ymodem_Receive ( uint32_t *p_size )
+    395          //========================================================================
+    396          {
+   \                     Ymodem_Receive: (+1)
+   \        0x0   0xE92D 0x4FF1      PUSH     {R0,R4-R11,LR}
+   \        0x4   0xB08E             SUB      SP,SP,#+56
+    397            uint32_t i, packet_length, session_done = 0, file_done, errors = 0, session_begin = 0;
+   \        0x6   0x2000             MOVS     R0,#+0
+   \        0x8   0x9008             STR      R0,[SP, #+32]
+   \        0xA   0x2600             MOVS     R6,#+0
+   \        0xC   0x2000             MOVS     R0,#+0
+   \        0xE   0x9007             STR      R0,[SP, #+28]
+    398           // uint32_t flashdestination;
+    399            uint32_t ramsource, filesize;
+    400            uint8_t *file_ptr;
+    401            uint8_t file_size[FILE_SIZE_LENGTH], tmp, packets_received;
+    402            COM_StatusTypeDef result = COM_OK;
+   \       0x10   0x2700             MOVS     R7,#+0
+    403          
+    404            char buf[256];
+    405          
+    406            uint8_t ret = 0;
+   \       0x12   0x2000             MOVS     R0,#+0
+   \       0x14   0xF88D 0x0005      STRB     R0,[SP, #+5]
+    407            int tickStart, tickEnd;
+    408          
+    409            /* Initialize flashdestination variable */
+    410          
+    411          #if defined( USE_YMODEM_EXT_FLASH )
+    412          
+    413            addrExtFlash      =   0x020000;
+    414          
+    415          #else
+    416          
+    417            flashdestination  =   ADDR_FLASH_APP;
+   \       0x18   0x.... 0x....      LDR.W    R8,??DataTable6_8
+   \       0x1C   0x.... 0x....      LDR.W    R0,??DataTable6_9
+   \       0x20   0xF8C8 0x0000      STR      R0,[R8, #+0]
+    418          
+    419          #endif
+    420          
+    421            //========================================================================
+    422            DispLedText( "Upgrade LED App", 3 );   //    DIsplay LED Text
+   \       0x24   0x2103             MOVS     R1,#+3
+   \       0x26   0x.... 0x....      LDR.W    R0,??DataTable6_10
+   \       0x2A   0x.... 0x....      BL       DispLedText
+    423            //========================================================================
+    424          
+    425            while ((session_done == 0) && (result == COM_OK))
+   \                     ??Ymodem_Receive_0: (+1)
+   \       0x2E   0x9808             LDR      R0,[SP, #+32]
+   \       0x30   0x2800             CMP      R0,#+0
+   \       0x32   0xF040 0x8156      BNE.W    ??Ymodem_Receive_1
+   \       0x36   0x0038             MOVS     R0,R7
+   \       0x38   0xB2C0             UXTB     R0,R0
+   \       0x3A   0x2800             CMP      R0,#+0
+   \       0x3C   0xF040 0x8151      BNE.W    ??Ymodem_Receive_1
+    426            {
+    427              packets_received = 0;
+   \       0x40   0x2000             MOVS     R0,#+0
+   \       0x42   0x0004             MOVS     R4,R0
+    428              file_done = 0;
+   \       0x44   0x2000             MOVS     R0,#+0
+   \       0x46   0x9005             STR      R0,[SP, #+20]
+    429              while ((file_done == 0) && (result == COM_OK))
+   \                     ??Ymodem_Receive_2: (+1)
+   \       0x48   0x9805             LDR      R0,[SP, #+20]
+   \       0x4A   0x2800             CMP      R0,#+0
+   \       0x4C   0xD1EF             BNE.N    ??Ymodem_Receive_0
+   \       0x4E   0x0038             MOVS     R0,R7
+   \       0x50   0xB2C0             UXTB     R0,R0
+   \       0x52   0x2800             CMP      R0,#+0
+   \       0x54   0xD1EB             BNE.N    ??Ymodem_Receive_0
+    430              {
+    431                switch (ReceivePacket(aPacketData, &packet_length, DOWNLOAD_TIMEOUT))
+   \       0x56   0x.... 0x....      LDR.W    R11,??DataTable6_11
+   \       0x5A   0xF642 0x62E0      MOVW     R2,#+12000
+   \       0x5E   0xA902             ADD      R1,SP,#+8
+   \       0x60   0x4658             MOV      R0,R11
+   \       0x62   0x.... 0x....      BL       ReceivePacket
+   \       0x66   0x2800             CMP      R0,#+0
+   \       0x68   0xD003             BEQ.N    ??Ymodem_Receive_3
+   \       0x6A   0x2802             CMP      R0,#+2
+   \       0x6C   0xF000 0x810A      BEQ.W    ??Ymodem_Receive_4
+   \       0x70   0xE118             B.N      ??Ymodem_Receive_5
+    432                {
+    433                  case HAL_OK:
+    434                    errors = 0;
+   \                     ??Ymodem_Receive_3: (+1)
+   \       0x72   0x2000             MOVS     R0,#+0
+   \       0x74   0x0006             MOVS     R6,R0
+    435                    switch (packet_length)
+   \       0x76   0x9802             LDR      R0,[SP, #+8]
+   \       0x78   0x2800             CMP      R0,#+0
+   \       0x7A   0xD010             BEQ.N    ??Ymodem_Receive_6
+   \       0x7C   0x2802             CMP      R0,#+2
+   \       0x7E   0xD11D             BNE.N    ??Ymodem_Receive_7
+    436                    {
+    437                      case 2:
+    438                        /* Abort by sender */
+    439                        printf( "%s(%d) - Abort by sender (%d)\n", __func__, __LINE__, packet_length );
+                               ^
+Warning[Pe223]: function "printf" declared implicitly
+   \                     ??Ymodem_Receive_8: (+1)
+   \       0x80   0x9B02             LDR      R3,[SP, #+8]
+   \       0x82   0xF240 0x12B7      MOVW     R2,#+439
+   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable6_12
+   \       0x8A   0x.... 0x....      LDR.W    R0,??DataTable6_13
+   \       0x8E   0x.... 0x....      BL       printf
+    440          
+    441                        Serial_PutByte(ACK);
+   \       0x92   0x2006             MOVS     R0,#+6
+   \       0x94   0x.... 0x....      BL       Serial_PutByte
+    442                        result = COM_ABORT;
+   \       0x98   0x2002             MOVS     R0,#+2
+   \       0x9A   0x0007             MOVS     R7,R0
+    443                        break;
+   \       0x9C   0xE0F1             B.N      ??Ymodem_Receive_9
+    444                      case 0:
+    445                        /* End of transmission */
+    446                        printf( "%s(%d) - End of transmission (%d)\n", __func__, __LINE__, packet_length );
+   \                     ??Ymodem_Receive_6: (+1)
+   \       0x9E   0x9B02             LDR      R3,[SP, #+8]
+   \       0xA0   0xF44F 0x72DF      MOV      R2,#+446
+   \       0xA4   0x.... 0x....      LDR.W    R1,??DataTable6_12
+   \       0xA8   0x.... 0x....      LDR.W    R0,??DataTable6_14
+   \       0xAC   0x.... 0x....      BL       printf
+    447          
+    448          #if defined( USE_YMODEM_EXT_FLASH )
+    449          
+    450                        if ( g_cntPktYModem == g_totPktYModem )
+    451                        {
+    452                            //===========================================================================
+    453                            //    Write - 0xAA55 - Valid Download Application
+    454                            //===========================================================================
+    455                            //	Upgrade 이미지가 정상인 경우.
+    456                            //	
+    457                            SelectFlash( 0 );
+    458          
+    459                            //              Flash32KBErase( 0x0000 );
+    460                            FlashSectorErase( 0x0000 );
+    461          
+    462                            memset( buf, 0, sizeof( buf ) );
+    463          
+    464                            buf[0] = 0xaa;
+    465                            buf[1] = 0x55;
+    466                            buf[2] = ( filesize >> 16 ) & 0xFF;
+    467                            buf[3] = ( filesize >> 8 ) & 0xFF;
+    468                            buf[4] = ( filesize >> 0 ) & 0xFF;
+    469          
+    470                            FlashWriteData( 0, buf, 256 );
+    471          
+    472                            memset( buf, 0, sizeof( buf ) );
+    473          
+    474                            FlashReadData( 0, buf, 256 );
+    475          
+    476                            printf( "%s(%d) - ExtFlash[0,1] : 0x%02X 0x%02X\n", __func__, __LINE__, buf[0], buf[1] );
+    477                            //===========================================================================
+    478          
+    479                            //========================================================================
+    480                            DispLedText( "Upgrade Complete!!", 1 );   //    DIsplay LED Text
+    481                            //========================================================================
+    482          
+    483                        }
+    484                        else
+    485                        {
+    486                            printf( "%s(%d) - Upgrade Failed - totPkt(%d) != cntPkt(%d)\n", 
+    487                                __func__, __LINE__, g_totPktYModem, g_cntPktYModem );
+    488          
+    489                            //========================================================================
+    490                            DispLedText( "Upgrade Failed !!", 2 );   //    DIsplay LED Text
+    491                            //========================================================================
+    492                        }
+    493          
+    494          #endif
+    495          
+    496                        Serial_PutByte(ACK);
+   \       0xB0   0x2006             MOVS     R0,#+6
+   \       0xB2   0x.... 0x....      BL       Serial_PutByte
+    497                        file_done = 1;
+   \       0xB6   0x2001             MOVS     R0,#+1
+   \       0xB8   0x9005             STR      R0,[SP, #+20]
+    498                        break;
+   \       0xBA   0xE0E2             B.N      ??Ymodem_Receive_9
+    499                      default:
+    500                        /* Normal packet */
+    501                        if (aPacketData[PACKET_NUMBER_INDEX] != packets_received)
+   \                     ??Ymodem_Receive_7: (+1)
+   \       0xBC   0xF89B 0x0002      LDRB     R0,[R11, #+2]
+   \       0xC0   0x0021             MOVS     R1,R4
+   \       0xC2   0xB2C9             UXTB     R1,R1
+   \       0xC4   0x4288             CMP      R0,R1
+   \       0xC6   0xD003             BEQ.N    ??Ymodem_Receive_10
+    502                        {
+    503                          Serial_PutByte(NAK);
+   \       0xC8   0x2015             MOVS     R0,#+21
+   \       0xCA   0x.... 0x....      BL       Serial_PutByte
+   \       0xCE   0xE0D8             B.N      ??Ymodem_Receive_11
+    504                        }
+    505                        else
+    506                        {
+    507                          if (packets_received == 0)
+   \                     ??Ymodem_Receive_10: (+1)
+   \       0xD0   0x0020             MOVS     R0,R4
+   \       0xD2   0xB2C0             UXTB     R0,R0
+   \       0xD4   0x2800             CMP      R0,#+0
+   \       0xD6   0xF040 0x80A9      BNE.W    ??Ymodem_Receive_12
+    508                          {
+    509                            /* File name packet */
+    510                            if (aPacketData[PACKET_DATA_INDEX] != 0)
+   \       0xDA   0xF89B 0x0004      LDRB     R0,[R11, #+4]
+   \       0xDE   0x2800             CMP      R0,#+0
+   \       0xE0   0xF000 0x809C      BEQ.W    ??Ymodem_Receive_13
+    511                            {
+    512                              /* File name extraction */
+    513                              i = 0;
+   \       0xE4   0x2100             MOVS     R1,#+0
+    514                              file_ptr = aPacketData + PACKET_DATA_INDEX;
+   \       0xE6   0xF11B 0x0204      ADDS     R2,R11,#+4
+    515                              while ( (*file_ptr != 0) && (i < FILE_NAME_LENGTH))
+   \                     ??Ymodem_Receive_14: (+1)
+   \       0xEA   0x7810             LDRB     R0,[R2, #+0]
+   \       0xEC   0x2800             CMP      R0,#+0
+   \       0xEE   0xD008             BEQ.N    ??Ymodem_Receive_15
+   \       0xF0   0x2940             CMP      R1,#+64
+   \       0xF2   0xD206             BCS.N    ??Ymodem_Receive_15
+    516                              {
+    517                                aFileName[i++] = *file_ptr++;
+   \       0xF4   0x7810             LDRB     R0,[R2, #+0]
+   \       0xF6   0x.... 0x....      LDR.W    R3,??DataTable6_15
+   \       0xFA   0x5458             STRB     R0,[R3, R1]
+   \       0xFC   0x1C52             ADDS     R2,R2,#+1
+   \       0xFE   0x1C49             ADDS     R1,R1,#+1
+   \      0x100   0xE7F3             B.N      ??Ymodem_Receive_14
+    518                              }
+    519          
+    520                              /* File size extraction */
+    521                              aFileName[i++] = '\0';
+   \                     ??Ymodem_Receive_15: (+1)
+   \      0x102   0x2000             MOVS     R0,#+0
+   \      0x104   0x.... 0x....      LDR.W    R3,??DataTable6_15
+   \      0x108   0x5458             STRB     R0,[R3, R1]
+   \      0x10A   0x1C49             ADDS     R1,R1,#+1
+    522                              i = 0;
+   \      0x10C   0xF05F 0x0A00      MOVS     R10,#+0
+    523                              file_ptr ++;
+   \      0x110   0xF112 0x0901      ADDS     R9,R2,#+1
+    524                              while ( (*file_ptr != ' ') && (i < FILE_SIZE_LENGTH))
+   \                     ??Ymodem_Receive_16: (+1)
+   \      0x114   0xF899 0x0000      LDRB     R0,[R9, #+0]
+   \      0x118   0x2820             CMP      R0,#+32
+   \      0x11A   0xD00C             BEQ.N    ??Ymodem_Receive_17
+   \      0x11C   0xF1BA 0x0F10      CMP      R10,#+16
+   \      0x120   0xD209             BCS.N    ??Ymodem_Receive_17
+    525                              {
+    526                                file_size[i++] = *file_ptr++;
+   \      0x122   0xF899 0x0000      LDRB     R0,[R9, #+0]
+   \      0x126   0xA909             ADD      R1,SP,#+36
+   \      0x128   0xF801 0x000A      STRB     R0,[R1, R10]
+   \      0x12C   0xF119 0x0901      ADDS     R9,R9,#+1
+   \      0x130   0xF11A 0x0A01      ADDS     R10,R10,#+1
+   \      0x134   0xE7EE             B.N      ??Ymodem_Receive_16
+    527                              }
+    528                              file_size[i++] = '\0';
+   \                     ??Ymodem_Receive_17: (+1)
+   \      0x136   0x2000             MOVS     R0,#+0
+   \      0x138   0xA909             ADD      R1,SP,#+36
+   \      0x13A   0xF801 0x000A      STRB     R0,[R1, R10]
+   \      0x13E   0xF11A 0x0A01      ADDS     R10,R10,#+1
+    529                              Str2Int(file_size, &filesize);
+   \      0x142   0xA904             ADD      R1,SP,#+16
+   \      0x144   0xA809             ADD      R0,SP,#+36
+   \      0x146   0x.... 0x....      BL       Str2Int
+    530          
+    531                              /* Test the size of the image to be sent */
+    532                              /* Image size is greater than Flash size */
+    533                              if (*p_size > (USER_FLASH_SIZE + 1))
+   \      0x14A   0x980E             LDR      R0,[SP, #+56]
+   \      0x14C   0x6800             LDR      R0,[R0, #+0]
+   \      0x14E   0x.... 0x....      LDR.W    R1,??DataTable6_16
+   \      0x152   0x4288             CMP      R0,R1
+   \      0x154   0xD318             BCC.N    ??Ymodem_Receive_18
+    534                              {
+    535                                /* End session */
+    536                                tmp = CA;
+   \      0x156   0x2018             MOVS     R0,#+24
+   \      0x158   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    537          
+    538                                //===========================================================================
+    539                                //     RS485 Send
+    540                                if ( IsYModemMaster() )
+   \      0x15C   0x.... 0x....      BL       IsYModemMaster
+   \      0x160   0x2800             CMP      R0,#+0
+   \      0x162   0xD00F             BEQ.N    ??Ymodem_Receive_19
+    541                                {
+    542                                    HAL_UART_Transmit( &huart2, &tmp, 1, NAK_TIMEOUT );
+   \      0x164   0x.... 0x....      LDR.W    R11,??DataTable6_4
+   \      0x168   0xF45F 0x1380      MOVS     R3,#+1048576
+   \      0x16C   0x2201             MOVS     R2,#+1
+   \      0x16E   0xA901             ADD      R1,SP,#+4
+   \      0x170   0x4658             MOV      R0,R11
+   \      0x172   0x.... 0x....      BL       HAL_UART_Transmit
+    543                                    HAL_UART_Transmit( &huart2, &tmp, 1, NAK_TIMEOUT );
+   \      0x176   0xF45F 0x1380      MOVS     R3,#+1048576
+   \      0x17A   0x2201             MOVS     R2,#+1
+   \      0x17C   0xA901             ADD      R1,SP,#+4
+   \      0x17E   0x4658             MOV      R0,R11
+   \      0x180   0x.... 0x....      BL       HAL_UART_Transmit
+    544                                }
+    545                                //===========================================================================
+    546                                result = COM_LIMIT;
+   \                     ??Ymodem_Receive_19: (+1)
+   \      0x184   0x2005             MOVS     R0,#+5
+   \      0x186   0x0007             MOVS     R7,R0
+    547                              }
+    548          
+    549                              //===========================================================================
+    550                              /* erase user application area */
+    551                              tickStart = HAL_GetTick();
+   \                     ??Ymodem_Receive_18: (+1)
+   \      0x188   0x.... 0x....      BL       HAL_GetTick
+   \      0x18C   0x9003             STR      R0,[SP, #+12]
+    552          
+    553          #if defined( USE_YMODEM_EXT_FLASH )
+    554          
+    555                              int z, flashAddr;
+    556          
+    557                              FlashWriteEnable();
+    558                              FlashWait();
+    559                              flashAddr = 0x020000;
+    560                              for ( z = 0; z < 32 * 8; z++ )
+    561                              {
+    562                                  FlashSectorErase( flashAddr + ( z * 0x1000 ) );
+    563                              }
+    564                              printf( "extern flash 0x%08x erase\n", flashAddr );
+    565          #else
+    566          
+    567                              FLASH_If_Erase( ADDR_FLASH_APP );
+   \      0x18E   0x.... 0x....      LDR.W    R0,??DataTable6_9
+   \      0x192   0x.... 0x....      BL       FLASH_If_Erase
+    568          
+    569          #endif // defined( USE_YMODEM_EXT_FLASH )
+    570          
+    571                              tickEnd = HAL_GetTick();
+   \      0x196   0x.... 0x....      BL       HAL_GetTick
+   \      0x19A   0x0005             MOVS     R5,R0
+    572          
+    573                              printf( "Flash Erase Time [%d]\n", tickEnd - tickStart );
+   \      0x19C   0x9903             LDR      R1,[SP, #+12]
+   \      0x19E   0x1A69             SUBS     R1,R5,R1
+   \      0x1A0   0x.... 0x....      LDR.W    R0,??DataTable6_17
+   \      0x1A4   0x.... 0x....      BL       printf
+    574                              //===========================================================================
+    575          
+    576                              g_totPktYModem = ( filesize + PACKET_1K_SIZE - 1 ) / PACKET_1K_SIZE;
+   \      0x1A8   0x.... 0x....      LDR.W    R11,??DataTable6_18
+   \      0x1AC   0x9804             LDR      R0,[SP, #+16]
+   \      0x1AE   0xF200 0x30FF      ADDW     R0,R0,#+1023
+   \      0x1B2   0x0A80             LSRS     R0,R0,#+10
+   \      0x1B4   0xF8CB 0x0000      STR      R0,[R11, #+0]
+    577                              //===========================================================================
+    578          
+    579                              DispLedProgress( 0, g_totPktYModem, 3 );   //  Amber Progress
+   \      0x1B8   0x2203             MOVS     R2,#+3
+   \      0x1BA   0xF8DB 0x1000      LDR      R1,[R11, #+0]
+   \      0x1BE   0x2000             MOVS     R0,#+0
+   \      0x1C0   0x.... 0x....      BL       DispLedProgress
+    580          
+    581                              //===========================================================================
+    582                              //  Delay - 장치마다 Erase Timing이 다름.
+    583                              if ( IsYModemMaster() )
+   \      0x1C4   0x.... 0x....      BL       IsYModemMaster
+   \      0x1C8   0x2800             CMP      R0,#+0
+   \      0x1CA   0xD011             BEQ.N    ??Ymodem_Receive_20
+    584                              {
+    585                                  //  External Flash Erase Timing 최대 10초.
+    586                                  //     bootloader> [0x43][0x43][0x01]extern flash 0x00020000 erase
+    587                                  //      Flash Erase Time[10375]
+    588                                  if ( 15000 < ( tickEnd - tickStart ) )   HAL_Delay( 2000 );
+   \      0x1CC   0x9803             LDR      R0,[SP, #+12]
+   \      0x1CE   0x1A28             SUBS     R0,R5,R0
+   \      0x1D0   0xF643 0x2199      MOVW     R1,#+15001
+   \      0x1D4   0x4288             CMP      R0,R1
+   \      0x1D6   0xDB04             BLT.N    ??Ymodem_Receive_21
+   \      0x1D8   0xF44F 0x60FA      MOV      R0,#+2000
+   \      0x1DC   0x.... 0x....      BL       HAL_Delay
+   \      0x1E0   0xE006             B.N      ??Ymodem_Receive_20
+    589                                  else HAL_Delay( 15000 - ( tickEnd - tickStart ) );
+   \                     ??Ymodem_Receive_21: (+1)
+   \      0x1E2   0xF643 0x2098      MOVW     R0,#+15000
+   \      0x1E6   0x1B40             SUBS     R0,R0,R5
+   \      0x1E8   0x9903             LDR      R1,[SP, #+12]
+   \      0x1EA   0x1808             ADDS     R0,R1,R0
+   \      0x1EC   0x.... 0x....      BL       HAL_Delay
+    590                              }
+    591                              //===========================================================================
+    592          
+    593                              *p_size = filesize;
+   \                     ??Ymodem_Receive_20: (+1)
+   \      0x1F0   0x9804             LDR      R0,[SP, #+16]
+   \      0x1F2   0x990E             LDR      R1,[SP, #+56]
+   \      0x1F4   0x6008             STR      R0,[R1, #+0]
+    594          
+    595                              Serial_PutByte(ACK);
+   \      0x1F6   0x2006             MOVS     R0,#+6
+   \      0x1F8   0x.... 0x....      BL       Serial_PutByte
+    596                              Serial_PutByte(CRC16);
+   \      0x1FC   0x2043             MOVS     R0,#+67
+   \      0x1FE   0x.... 0x....      BL       Serial_PutByte
+    597          
+    598          
+    599                              printf( "%s(%d) - size (%d) / totPkt (%d)\n", __func__, __LINE__, filesize, g_totPktYModem );
+   \      0x202   0xF8DB 0x0000      LDR      R0,[R11, #+0]
+   \      0x206   0x9000             STR      R0,[SP, #+0]
+   \      0x208   0x9B04             LDR      R3,[SP, #+16]
+   \      0x20A   0xF240 0x2257      MOVW     R2,#+599
+   \      0x20E   0x.... 0x....      LDR.W    R1,??DataTable6_12
+   \      0x212   0x.... 0x....      LDR.W    R0,??DataTable6_19
+   \      0x216   0x.... 0x....      BL       printf
+   \      0x21A   0xE025             B.N      ??Ymodem_Receive_22
+    600                            }
+    601                            /* File header packet is empty, end session */
+    602                            else
+    603                            {
+    604                              Serial_PutByte(ACK);
+   \                     ??Ymodem_Receive_13: (+1)
+   \      0x21C   0x2006             MOVS     R0,#+6
+   \      0x21E   0x.... 0x....      BL       Serial_PutByte
+    605                              file_done = 1;
+   \      0x222   0x2001             MOVS     R0,#+1
+   \      0x224   0x9005             STR      R0,[SP, #+20]
+    606                              session_done = 1;
+   \      0x226   0x2001             MOVS     R0,#+1
+   \      0x228   0x9008             STR      R0,[SP, #+32]
+    607                              break;
+   \      0x22A   0xE02A             B.N      ??Ymodem_Receive_9
+    608                            }
+    609                          }
+    610                          else /* Data packet */
+    611                          {
+    612                            ramsource = (uint32_t) & aPacketData[PACKET_DATA_INDEX];
+   \                     ??Ymodem_Receive_12: (+1)
+   \      0x22C   0xF11B 0x0004      ADDS     R0,R11,#+4
+   \      0x230   0x9006             STR      R0,[SP, #+24]
+    613                            /* Write received data in Flash */
+    614          #if defined( USE_YMODEM_EXT_FLASH )
+    615          
+    616                            //===========================================================================
+    617                            //  Recv - Data Packet
+    618                            g_cntPktYModem++;
+    619                            DispLedProgress( g_cntPktYModem, g_totPktYModem, 3 );   //  Green Progress
+    620                            //===========================================================================
+    621          
+    622                            ret = 0;
+    623                            ret |= FlashWrite512( addrExtFlash, (uint8_t *)ramsource );
+    624                            ret |= FlashWrite512( addrExtFlash + 512, ( uint8_t * )(ramsource) + 512 );
+    625                            if ( ret == 1 )
+    626                            {
+    627                              addrExtFlash += packet_length;
+    628          
+    629                              if ( IsYModemMaster() )
+    630                              {
+    631                                  vTaskDelay( 250 );
+    632                                  Serial_PutByte( ACK );
+    633                              }
+    634                            }
+    635          #else
+    636                            if ( FLASH_If_Write( flashdestination, (uint32_t*)ramsource, packet_length / 4 ) == FLASHIF_OK )
+   \      0x232   0x9A02             LDR      R2,[SP, #+8]
+   \      0x234   0x0892             LSRS     R2,R2,#+2
+   \      0x236   0x9906             LDR      R1,[SP, #+24]
+   \      0x238   0xF8D8 0x0000      LDR      R0,[R8, #+0]
+   \      0x23C   0x.... 0x....      BL       FLASH_If_Write
+   \      0x240   0x2800             CMP      R0,#+0
+   \      0x242   0xD109             BNE.N    ??Ymodem_Receive_23
+    637                            {
+    638                                flashdestination += packet_length;
+   \      0x244   0xF8D8 0x1000      LDR      R1,[R8, #+0]
+   \      0x248   0x9802             LDR      R0,[SP, #+8]
+   \      0x24A   0x1841             ADDS     R1,R0,R1
+   \      0x24C   0xF8C8 0x1000      STR      R1,[R8, #+0]
+    639                                Serial_PutByte( ACK );
+   \      0x250   0x2006             MOVS     R0,#+6
+   \      0x252   0x.... 0x....      BL       Serial_PutByte
+   \      0x256   0xE007             B.N      ??Ymodem_Receive_22
+    640                            }
+    641          #endif
+    642                            else /* An error occurred while writing to Flash memory */
+    643                            {
+    644                              /* End session */
+    645                              Serial_PutByte(CA);
+   \                     ??Ymodem_Receive_23: (+1)
+   \      0x258   0x2018             MOVS     R0,#+24
+   \      0x25A   0x.... 0x....      BL       Serial_PutByte
+    646                              Serial_PutByte(CA);
+   \      0x25E   0x2018             MOVS     R0,#+24
+   \      0x260   0x.... 0x....      BL       Serial_PutByte
+    647                              result = COM_DATA;
+   \      0x264   0x2004             MOVS     R0,#+4
+   \      0x266   0x0007             MOVS     R7,R0
+    648                            }
+    649                          }
+    650                          packets_received ++;
+   \                     ??Ymodem_Receive_22: (+1)
+   \      0x268   0x1C64             ADDS     R4,R4,#+1
+    651                          session_begin = 1;
+   \      0x26A   0x2001             MOVS     R0,#+1
+   \      0x26C   0x9007             STR      R0,[SP, #+28]
+    652          
+    653                          printf( "%s(%d) - packets_received (%d)\n", __func__, __LINE__, packets_received );
+   \      0x26E   0x0023             MOVS     R3,R4
+   \      0x270   0xB2DB             UXTB     R3,R3
+   \      0x272   0xF240 0x228D      MOVW     R2,#+653
+   \      0x276   0x.... 0x....      LDR.W    R1,??DataTable6_12
+   \      0x27A   0x.... 0x....      LDR.W    R0,??DataTable6_20
+   \      0x27E   0x.... 0x....      BL       printf
+    654                        }
+    655                        break;
+    656                    }
+    657                    break;
+   \                     ??Ymodem_Receive_11: (+1)
+   \                     ??Ymodem_Receive_9: (+1)
+   \      0x282   0xE6E1             B.N      ??Ymodem_Receive_2
+    658                  case HAL_BUSY: /* Abort actually */
+    659                    printf( "%s(%d)Abort\n", __func__, __LINE__ );
+                           ^
+Warning[Pe223]: function "printf" declared implicitly
+
+    char buf[256];
+         ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\ymodem.c",404  Warning[Pe177]: 
+          variable "buf" was declared but never referenced
+
+    uint8_t ret = 0;
+            ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\ymodem.c",406  Warning[Pe177]: 
+          variable "ret" was declared but never referenced
+   \                     ??Ymodem_Receive_4: (+1)
+   \      0x284   0xF240 0x2293      MOVW     R2,#+659
+   \      0x288   0x....             LDR.N    R1,??DataTable6_12
+   \      0x28A   0x.... 0x....      LDR.W    R0,??DataTable6_21
+   \      0x28E   0x.... 0x....      BL       printf
+    660                    Serial_PutByte(CA);
+   \      0x292   0x2018             MOVS     R0,#+24
+   \      0x294   0x.... 0x....      BL       Serial_PutByte
+    661                    Serial_PutByte(CA);
+   \      0x298   0x2018             MOVS     R0,#+24
+   \      0x29A   0x.... 0x....      BL       Serial_PutByte
+    662                    result = COM_ABORT;
+   \      0x29E   0x2002             MOVS     R0,#+2
+   \      0x2A0   0x0007             MOVS     R7,R0
+    663                    break;
+   \      0x2A2   0xE6D1             B.N      ??Ymodem_Receive_2
+    664                  default:
+    665                    if (session_begin > 0)
+   \                     ??Ymodem_Receive_5: (+1)
+   \      0x2A4   0x9807             LDR      R0,[SP, #+28]
+   \      0x2A6   0x2800             CMP      R0,#+0
+   \      0x2A8   0xD007             BEQ.N    ??Ymodem_Receive_24
+    666                    {
+    667                        errors ++;
+   \      0x2AA   0x1C76             ADDS     R6,R6,#+1
+    668                        printf( "%s(%d) - errors (%u)\n", __func__, __LINE__, (unsigned int)errors );
+   \      0x2AC   0x0033             MOVS     R3,R6
+   \      0x2AE   0xF44F 0x7227      MOV      R2,#+668
+   \      0x2B2   0x....             LDR.N    R1,??DataTable6_12
+   \      0x2B4   0x....             LDR.N    R0,??DataTable6_22
+   \      0x2B6   0x.... 0x....      BL       printf
+    669                    }
+    670                    if (errors > MAX_ERRORS)
+   \                     ??Ymodem_Receive_24: (+1)
+   \      0x2BA   0x2E06             CMP      R6,#+6
+   \      0x2BC   0xD30D             BCC.N    ??Ymodem_Receive_25
+    671                    {
+    672                      /* Abort communication */
+    673                      Serial_PutByte(CA);
+   \      0x2BE   0x2018             MOVS     R0,#+24
+   \      0x2C0   0x.... 0x....      BL       Serial_PutByte
+    674                      Serial_PutByte(CA);
+   \      0x2C4   0x2018             MOVS     R0,#+24
+   \      0x2C6   0x.... 0x....      BL       Serial_PutByte
+    675          
+    676                      printf( "%s(%d) - errors (%u)\n", __func__, __LINE__, (unsigned int)errors );
+   \      0x2CA   0x0033             MOVS     R3,R6
+   \      0x2CC   0xF44F 0x7229      MOV      R2,#+676
+   \      0x2D0   0x....             LDR.N    R1,??DataTable6_12
+   \      0x2D2   0x....             LDR.N    R0,??DataTable6_22
+   \      0x2D4   0x.... 0x....      BL       printf
+   \      0x2D8   0xE002             B.N      ??Ymodem_Receive_26
+    677          
+    678                      //===========================================================================
+    679          //            DispLedProgress( g_cntPktYModem, g_totPktYModem, 2 );   //  Red Progress
+    680                      //  -> Default Task로 이동.
+    681                      //===========================================================================
+    682                    }
+    683                    else
+    684                    {
+    685                      Serial_PutByte(CRC16); /* Ask for a packet */
+   \                     ??Ymodem_Receive_25: (+1)
+   \      0x2DA   0x2043             MOVS     R0,#+67
+   \      0x2DC   0x.... 0x....      BL       Serial_PutByte
+    686                    }
+    687                    break;
+   \                     ??Ymodem_Receive_26: (+1)
+   \      0x2E0   0xE6B2             B.N      ??Ymodem_Receive_2
+    688                }
+    689              }
+    690            }
+    691          
+    692          //  printf( "%s(%d) - result (%d)\n", __func__, __LINE__, result );
+    693          
+    694            return result;
+   \                     ??Ymodem_Receive_1: (+1)
+   \      0x2E2   0x0038             MOVS     R0,R7
+   \      0x2E4   0xB2C0             UXTB     R0,R0
+   \      0x2E6   0xB00F             ADD      SP,SP,#+60
+   \      0x2E8   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+    695          }
+    696          
+    697          /**
+    698            * @brief  Transmit a file using the ymodem protocol
+    699            * @param  p_buf: Address of the first byte
+    700            * @param  p_file_name: Name of the file sent
+    701            * @param  file_size: Size of the transmission
+    702            * @retval COM_StatusTypeDef result of the communication
+    703            */
+    704          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    705          COM_StatusTypeDef Ymodem_Transmit (uint8_t *p_buf, const uint8_t *p_file_name, uint32_t file_size)
+    706          //========================================================================
+    707          {
+   \                     Ymodem_Transmit: (+1)
+   \        0x0   0xE92D 0x4FF7      PUSH     {R0-R2,R4-R11,LR}
+   \        0x4   0xB082             SUB      SP,SP,#+8
+    708            uint32_t errors = 0, ack_recpt = 0, size = 0, pkt_size;
+   \        0x6   0xF05F 0x0900      MOVS     R9,#+0
+   \        0xA   0x2000             MOVS     R0,#+0
+   \        0xC   0x9001             STR      R0,[SP, #+4]
+   \        0xE   0xF05F 0x0B00      MOVS     R11,#+0
+    709            uint8_t *p_buf_int;
+    710            COM_StatusTypeDef result = COM_OK;
+   \       0x12   0x2600             MOVS     R6,#+0
+    711            uint32_t blk_number = 1;
+   \       0x14   0x2701             MOVS     R7,#+1
+    712            uint8_t a_rx_ctrl[2];
+    713            uint8_t i;
+    714          #ifdef CRC16_F    
+    715            uint32_t temp_crc;
+    716          #else /* CRC16_F */   
+    717            uint8_t temp_chksum;
+    718          #endif /* CRC16_F */  
+    719          
+    720            /* Prepare first block - header */
+    721            PrepareIntialPacket(aPacketData, p_file_name, file_size);
+   \       0x16   0x.... 0x....      LDR.W    R8,??DataTable6_11
+   \       0x1A   0x9A04             LDR      R2,[SP, #+16]
+   \       0x1C   0x9903             LDR      R1,[SP, #+12]
+   \       0x1E   0x4640             MOV      R0,R8
+   \       0x20   0x.... 0x....      BL       PrepareIntialPacket
+    722          
+    723            while (( !ack_recpt ) && ( result == COM_OK ))
+   \                     ??Ymodem_Transmit_0: (+1)
+   \       0x24   0x9801             LDR      R0,[SP, #+4]
+   \       0x26   0x2800             CMP      R0,#+0
+   \       0x28   0xD148             BNE.N    ??Ymodem_Transmit_1
+   \       0x2A   0x0030             MOVS     R0,R6
+   \       0x2C   0xB2C0             UXTB     R0,R0
+   \       0x2E   0x2800             CMP      R0,#+0
+   \       0x30   0xD144             BNE.N    ??Ymodem_Transmit_1
+    724            {
+    725              /* Send Packet */
+    726              //========================================================================
+    727              //	Send RS485
+    728              HAL_UART_Transmit(&huart2, &aPacketData[PACKET_START_INDEX], PACKET_SIZE + PACKET_HEADER_SIZE, NAK_TIMEOUT);
+   \       0x32   0x....             LDR.N    R4,??DataTable6_4
+   \       0x34   0xF45F 0x1380      MOVS     R3,#+1048576
+   \       0x38   0x2283             MOVS     R2,#+131
+   \       0x3A   0xF118 0x0101      ADDS     R1,R8,#+1
+   \       0x3E   0x0020             MOVS     R0,R4
+   \       0x40   0x.... 0x....      BL       HAL_UART_Transmit
+    729              //========================================================================
+    730          
+    731              /* Send CRC or Check Sum based on CRC16_F */
+    732          #ifdef CRC16_F    
+    733              temp_crc = Cal_CRC16(&aPacketData[PACKET_DATA_INDEX], PACKET_SIZE);
+    734              Serial_PutByte(temp_crc >> 8);
+    735              Serial_PutByte(temp_crc & 0xFF);
+    736          #else /* CRC16_F */   
+    737              temp_chksum = CalcChecksum (&aPacketData[PACKET_DATA_INDEX], PACKET_SIZE);
+   \       0x44   0x2180             MOVS     R1,#+128
+   \       0x46   0xF118 0x0004      ADDS     R0,R8,#+4
+   \       0x4A   0x.... 0x....      BL       CalcChecksum
+   \       0x4E   0xF88D 0x0002      STRB     R0,[SP, #+2]
+    738              Serial_PutByte(temp_chksum);
+   \       0x52   0xF89D 0x0002      LDRB     R0,[SP, #+2]
+   \       0x56   0x.... 0x....      BL       Serial_PutByte
+    739          #endif /* CRC16_F */
+    740          
+    741              /* Wait for Ack and 'C' */
+    742              if (HAL_UART_Receive(&huart2, &a_rx_ctrl[0], 1, NAK_TIMEOUT) == HAL_OK)
+   \       0x5A   0xF45F 0x1380      MOVS     R3,#+1048576
+   \       0x5E   0x2201             MOVS     R2,#+1
+   \       0x60   0x4669             MOV      R1,SP
+   \       0x62   0x0020             MOVS     R0,R4
+   \       0x64   0x.... 0x....      BL       HAL_UART_Receive
+   \       0x68   0x2800             CMP      R0,#+0
+   \       0x6A   0xD11F             BNE.N    ??Ymodem_Transmit_2
+    743              {
+    744                if (a_rx_ctrl[0] == ACK)
+   \       0x6C   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \       0x70   0x2806             CMP      R0,#+6
+   \       0x72   0xD102             BNE.N    ??Ymodem_Transmit_3
+    745                {
+    746                  ack_recpt = 1;
+   \       0x74   0x2001             MOVS     R0,#+1
+   \       0x76   0x9001             STR      R0,[SP, #+4]
+   \       0x78   0xE01A             B.N      ??Ymodem_Transmit_4
+    747                }
+    748                else if (a_rx_ctrl[0] == CA)
+   \                     ??Ymodem_Transmit_3: (+1)
+   \       0x7A   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \       0x7E   0x2818             CMP      R0,#+24
+   \       0x80   0xD116             BNE.N    ??Ymodem_Transmit_4
+    749                {
+    750                  if ((HAL_UART_Receive(&huart2, &a_rx_ctrl[0], 1, NAK_TIMEOUT) == HAL_OK) && (a_rx_ctrl[0] == CA))
+   \       0x82   0xF45F 0x1380      MOVS     R3,#+1048576
+   \       0x86   0x2201             MOVS     R2,#+1
+   \       0x88   0x4669             MOV      R1,SP
+   \       0x8A   0x0020             MOVS     R0,R4
+   \       0x8C   0x.... 0x....      BL       HAL_UART_Receive
+   \       0x90   0x2800             CMP      R0,#+0
+   \       0x92   0xD10D             BNE.N    ??Ymodem_Transmit_4
+   \       0x94   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \       0x98   0x2818             CMP      R0,#+24
+   \       0x9A   0xD109             BNE.N    ??Ymodem_Transmit_4
+    751                  {
+    752                    HAL_Delay( 2 );
+   \       0x9C   0x2002             MOVS     R0,#+2
+   \       0x9E   0x.... 0x....      BL       HAL_Delay
+    753                    __HAL_UART_FLUSH_DRREGISTER(&huart2);
+   \       0xA2   0x6820             LDR      R0,[R4, #+0]
+   \       0xA4   0x6840             LDR      R0,[R0, #+4]
+    754                    result = COM_ABORT;
+   \       0xA6   0x2002             MOVS     R0,#+2
+   \       0xA8   0x0006             MOVS     R6,R0
+   \       0xAA   0xE001             B.N      ??Ymodem_Transmit_4
+    755                  }
+    756                }
+    757              }
+    758              else
+    759              {
+    760                errors++;
+   \                     ??Ymodem_Transmit_2: (+1)
+   \       0xAC   0xF119 0x0901      ADDS     R9,R9,#+1
+    761              }
+    762              if (errors >= MAX_ERRORS)
+   \                     ??Ymodem_Transmit_4: (+1)
+   \       0xB0   0xF1B9 0x0F05      CMP      R9,#+5
+   \       0xB4   0xD3B6             BCC.N    ??Ymodem_Transmit_0
+    763              {
+    764                result = COM_ERROR;
+   \       0xB6   0x2001             MOVS     R0,#+1
+   \       0xB8   0x0006             MOVS     R6,R0
+   \       0xBA   0xE7B3             B.N      ??Ymodem_Transmit_0
+    765              }
+    766            }
+    767          
+    768            p_buf_int = p_buf;
+   \                     ??Ymodem_Transmit_1: (+1)
+   \       0xBC   0xF8DD 0xA008      LDR      R10,[SP, #+8]
+    769            size = file_size;
+   \       0xC0   0x9C04             LDR      R4,[SP, #+16]
+    770          
+    771            /* Here 1024 bytes length is used to send the packets */
+    772            while ((size) && (result == COM_OK ))
+   \                     ??Ymodem_Transmit_5: (+1)
+   \       0xC2   0x2C00             CMP      R4,#+0
+   \       0xC4   0xD05E             BEQ.N    ??Ymodem_Transmit_6
+   \       0xC6   0x0030             MOVS     R0,R6
+   \       0xC8   0xB2C0             UXTB     R0,R0
+   \       0xCA   0x2800             CMP      R0,#+0
+   \       0xCC   0xD15A             BNE.N    ??Ymodem_Transmit_6
+    773            {
+    774              /* Prepare next packet */
+    775              PreparePacket(p_buf_int, aPacketData, blk_number, size);
+   \       0xCE   0x0023             MOVS     R3,R4
+   \       0xD0   0x003A             MOVS     R2,R7
+   \       0xD2   0xB2D2             UXTB     R2,R2
+   \       0xD4   0x4641             MOV      R1,R8
+   \       0xD6   0x4650             MOV      R0,R10
+   \       0xD8   0x.... 0x....      BL       PreparePacket
+    776              ack_recpt = 0;
+   \       0xDC   0x2000             MOVS     R0,#+0
+   \       0xDE   0x9001             STR      R0,[SP, #+4]
+    777              a_rx_ctrl[0] = 0;
+   \       0xE0   0x2000             MOVS     R0,#+0
+   \       0xE2   0xF88D 0x0000      STRB     R0,[SP, #+0]
+    778              errors = 0;
+   \       0xE6   0x2000             MOVS     R0,#+0
+   \       0xE8   0x4681             MOV      R9,R0
+    779          
+    780              /* Resend packet if NAK for few times else end of communication */
+    781              while (( !ack_recpt ) && ( result == COM_OK ))
+   \                     ??Ymodem_Transmit_7: (+1)
+   \       0xEA   0x9801             LDR      R0,[SP, #+4]
+   \       0xEC   0x2800             CMP      R0,#+0
+   \       0xEE   0xD1E8             BNE.N    ??Ymodem_Transmit_5
+   \       0xF0   0x0030             MOVS     R0,R6
+   \       0xF2   0xB2C0             UXTB     R0,R0
+   \       0xF4   0x2800             CMP      R0,#+0
+   \       0xF6   0xD1E4             BNE.N    ??Ymodem_Transmit_5
+    782              {
+    783                /* Send next packet */
+    784                if (size >= PACKET_1K_SIZE)
+   \       0xF8   0xF5B4 0x6F80      CMP      R4,#+1024
+   \       0xFC   0xD303             BCC.N    ??Ymodem_Transmit_8
+    785                {
+    786                  pkt_size = PACKET_1K_SIZE;
+   \       0xFE   0xF44F 0x6080      MOV      R0,#+1024
+   \      0x102   0x0005             MOVS     R5,R0
+   \      0x104   0xE001             B.N      ??Ymodem_Transmit_9
+    787                }
+    788                else
+    789                {
+    790                  pkt_size = PACKET_SIZE;
+   \                     ??Ymodem_Transmit_8: (+1)
+   \      0x106   0x2080             MOVS     R0,#+128
+   \      0x108   0x0005             MOVS     R5,R0
+    791                }
+    792          
+    793                HAL_UART_Transmit(&huart2, &aPacketData[PACKET_START_INDEX], pkt_size + PACKET_HEADER_SIZE, NAK_TIMEOUT);
+   \                     ??Ymodem_Transmit_9: (+1)
+   \      0x10A   0x.... 0x....      LDR.W    R11,??DataTable6_4
+   \      0x10E   0xF45F 0x1380      MOVS     R3,#+1048576
+   \      0x112   0x1CEA             ADDS     R2,R5,#+3
+   \      0x114   0xB292             UXTH     R2,R2
+   \      0x116   0xF118 0x0101      ADDS     R1,R8,#+1
+   \      0x11A   0x4658             MOV      R0,R11
+   \      0x11C   0x.... 0x....      BL       HAL_UART_Transmit
+    794                
+    795                /* Send CRC or Check Sum based on CRC16_F */
+    796          #ifdef CRC16_F    
+    797                temp_crc = Cal_CRC16(&aPacketData[PACKET_DATA_INDEX], pkt_size);
+    798                Serial_PutByte(temp_crc >> 8);
+    799                Serial_PutByte(temp_crc & 0xFF);
+    800          #else /* CRC16_F */   
+    801                temp_chksum = CalcChecksum (&aPacketData[PACKET_DATA_INDEX], pkt_size);
+   \      0x120   0x0029             MOVS     R1,R5
+   \      0x122   0xF118 0x0004      ADDS     R0,R8,#+4
+   \      0x126   0x.... 0x....      BL       CalcChecksum
+   \      0x12A   0xF88D 0x0002      STRB     R0,[SP, #+2]
+    802                Serial_PutByte(temp_chksum);
+   \      0x12E   0xF89D 0x0002      LDRB     R0,[SP, #+2]
+   \      0x132   0x.... 0x....      BL       Serial_PutByte
+    803          #endif /* CRC16_F */
+    804                
+    805                /* Wait for Ack */
+    806                if ((HAL_UART_Receive(&huart2, &a_rx_ctrl[0], 1, NAK_TIMEOUT) == HAL_OK) && (a_rx_ctrl[0] == ACK))
+   \      0x136   0xF45F 0x1380      MOVS     R3,#+1048576
+   \      0x13A   0x2201             MOVS     R2,#+1
+   \      0x13C   0x4669             MOV      R1,SP
+   \      0x13E   0x4658             MOV      R0,R11
+   \      0x140   0x.... 0x....      BL       HAL_UART_Receive
+   \      0x144   0x2800             CMP      R0,#+0
+   \      0x146   0xD115             BNE.N    ??Ymodem_Transmit_10
+   \      0x148   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \      0x14C   0x2806             CMP      R0,#+6
+   \      0x14E   0xD111             BNE.N    ??Ymodem_Transmit_10
+    807                {
+    808                  ack_recpt = 1;
+   \      0x150   0x2001             MOVS     R0,#+1
+   \      0x152   0x9001             STR      R0,[SP, #+4]
+    809                  if (size > pkt_size)
+   \      0x154   0x42A5             CMP      R5,R4
+   \      0x156   0xD209             BCS.N    ??Ymodem_Transmit_11
+    810                  {
+    811                    p_buf_int += pkt_size;
+   \      0x158   0x44AA             ADD      R10,R10,R5
+    812                    size -= pkt_size;
+   \      0x15A   0x1B64             SUBS     R4,R4,R5
+    813                    if (blk_number == (USER_FLASH_SIZE / PACKET_1K_SIZE))
+   \      0x15C   0xF5B7 0x7F60      CMP      R7,#+896
+   \      0x160   0xD102             BNE.N    ??Ymodem_Transmit_12
+    814                    {
+    815                      result = COM_LIMIT; /* boundary error */
+   \      0x162   0x2005             MOVS     R0,#+5
+   \      0x164   0x0006             MOVS     R6,R0
+   \      0x166   0xE007             B.N      ??Ymodem_Transmit_13
+    816                    }
+    817                    else
+    818                    {
+    819                      blk_number++;
+   \                     ??Ymodem_Transmit_12: (+1)
+   \      0x168   0x1C7F             ADDS     R7,R7,#+1
+   \      0x16A   0xE005             B.N      ??Ymodem_Transmit_13
+    820                    }
+    821                  }
+    822                  else
+    823                  {
+    824                    p_buf_int += pkt_size;
+   \                     ??Ymodem_Transmit_11: (+1)
+   \      0x16C   0x44AA             ADD      R10,R10,R5
+    825                    size = 0;
+   \      0x16E   0x2000             MOVS     R0,#+0
+   \      0x170   0x0004             MOVS     R4,R0
+   \      0x172   0xE001             B.N      ??Ymodem_Transmit_13
+    826                  }
+    827                }
+    828                else
+    829                {
+    830                  errors++;
+   \                     ??Ymodem_Transmit_10: (+1)
+   \      0x174   0xF119 0x0901      ADDS     R9,R9,#+1
+    831                }
+    832          
+    833                /* Resend packet if NAK  for a count of 10 else end of communication */
+    834                if (errors >= MAX_ERRORS)
+   \                     ??Ymodem_Transmit_13: (+1)
+   \      0x178   0xF1B9 0x0F05      CMP      R9,#+5
+   \      0x17C   0xD3B5             BCC.N    ??Ymodem_Transmit_7
+    835                {
+    836                  result = COM_ERROR;
+   \      0x17E   0x2001             MOVS     R0,#+1
+   \      0x180   0x0006             MOVS     R6,R0
+   \      0x182   0xE7B2             B.N      ??Ymodem_Transmit_7
+    837                }
+    838              }
+    839            }
+    840          
+    841            /* Sending End Of Transmission char */
+    842            ack_recpt = 0;
+   \                     ??Ymodem_Transmit_6: (+1)
+   \      0x184   0x2000             MOVS     R0,#+0
+   \      0x186   0x9001             STR      R0,[SP, #+4]
+    843            a_rx_ctrl[0] = 0x00;
+   \      0x188   0x2000             MOVS     R0,#+0
+   \      0x18A   0xF88D 0x0000      STRB     R0,[SP, #+0]
+    844            errors = 0;
+   \      0x18E   0xF05F 0x0B00      MOVS     R11,#+0
+    845            while (( !ack_recpt ) && ( result == COM_OK ))
+   \                     ??Ymodem_Transmit_14: (+1)
+   \      0x192   0x9801             LDR      R0,[SP, #+4]
+   \      0x194   0x2800             CMP      R0,#+0
+   \      0x196   0xD13A             BNE.N    ??Ymodem_Transmit_15
+   \      0x198   0x0030             MOVS     R0,R6
+   \      0x19A   0xB2C0             UXTB     R0,R0
+   \      0x19C   0x2800             CMP      R0,#+0
+   \      0x19E   0xD136             BNE.N    ??Ymodem_Transmit_15
+    846            {
+    847              Serial_PutByte(EOT);
+   \      0x1A0   0x2004             MOVS     R0,#+4
+   \      0x1A2   0x.... 0x....      BL       Serial_PutByte
+    848          
+    849              /* Wait for Ack */
+    850              if (HAL_UART_Receive(&huart2, &a_rx_ctrl[0], 1, NAK_TIMEOUT) == HAL_OK)
+   \      0x1A6   0x.... 0x....      LDR.W    R9,??DataTable6_4
+   \      0x1AA   0xF45F 0x1380      MOVS     R3,#+1048576
+   \      0x1AE   0x2201             MOVS     R2,#+1
+   \      0x1B0   0x4669             MOV      R1,SP
+   \      0x1B2   0x4648             MOV      R0,R9
+   \      0x1B4   0x.... 0x....      BL       HAL_UART_Receive
+   \      0x1B8   0x2800             CMP      R0,#+0
+   \      0x1BA   0xD120             BNE.N    ??Ymodem_Transmit_16
+    851              {
+    852                if (a_rx_ctrl[0] == ACK)
+   \      0x1BC   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \      0x1C0   0x2806             CMP      R0,#+6
+   \      0x1C2   0xD102             BNE.N    ??Ymodem_Transmit_17
+    853                {
+    854                  ack_recpt = 1;
+   \      0x1C4   0x2001             MOVS     R0,#+1
+   \      0x1C6   0x9001             STR      R0,[SP, #+4]
+   \      0x1C8   0xE01B             B.N      ??Ymodem_Transmit_18
+    855                }
+    856                else if (a_rx_ctrl[0] == CA)
+   \                     ??Ymodem_Transmit_17: (+1)
+   \      0x1CA   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \      0x1CE   0x2818             CMP      R0,#+24
+   \      0x1D0   0xD117             BNE.N    ??Ymodem_Transmit_18
+    857                {
+    858                  if ((HAL_UART_Receive(&huart2, &a_rx_ctrl[0], 1, NAK_TIMEOUT) == HAL_OK) && (a_rx_ctrl[0] == CA))
+   \      0x1D2   0xF45F 0x1380      MOVS     R3,#+1048576
+   \      0x1D6   0x2201             MOVS     R2,#+1
+   \      0x1D8   0x4669             MOV      R1,SP
+   \      0x1DA   0x4648             MOV      R0,R9
+   \      0x1DC   0x.... 0x....      BL       HAL_UART_Receive
+   \      0x1E0   0x2800             CMP      R0,#+0
+   \      0x1E2   0xD10E             BNE.N    ??Ymodem_Transmit_18
+   \      0x1E4   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \      0x1E8   0x2818             CMP      R0,#+24
+   \      0x1EA   0xD10A             BNE.N    ??Ymodem_Transmit_18
+    859                  {
+    860                    HAL_Delay( 2 );
+   \      0x1EC   0x2002             MOVS     R0,#+2
+   \      0x1EE   0x.... 0x....      BL       HAL_Delay
+    861                    __HAL_UART_FLUSH_DRREGISTER(&huart2);
+   \      0x1F2   0xF8D9 0x0000      LDR      R0,[R9, #+0]
+   \      0x1F6   0x6840             LDR      R0,[R0, #+4]
+    862                    result = COM_ABORT;
+   \      0x1F8   0x2002             MOVS     R0,#+2
+   \      0x1FA   0x0006             MOVS     R6,R0
+   \      0x1FC   0xE001             B.N      ??Ymodem_Transmit_18
+    863                  }
+    864                }
+    865              }
+    866              else
+    867              {
+    868                errors++;
+   \                     ??Ymodem_Transmit_16: (+1)
+   \      0x1FE   0xF11B 0x0B01      ADDS     R11,R11,#+1
+    869              }
+    870          
+    871              if (errors >=  MAX_ERRORS)
+   \                     ??Ymodem_Transmit_18: (+1)
+   \      0x202   0xF1BB 0x0F05      CMP      R11,#+5
+   \      0x206   0xD3C4             BCC.N    ??Ymodem_Transmit_14
+    872              {
+    873                result = COM_ERROR;
+   \      0x208   0x2001             MOVS     R0,#+1
+   \      0x20A   0x0006             MOVS     R6,R0
+   \      0x20C   0xE7C1             B.N      ??Ymodem_Transmit_14
+    874              }
+    875            }
+    876          
+    877            /* Empty packet sent - some terminal emulators need this to close session */
+    878            if ( result == COM_OK )
+   \                     ??Ymodem_Transmit_15: (+1)
+   \      0x20E   0x0030             MOVS     R0,R6
+   \      0x210   0xB2C0             UXTB     R0,R0
+   \      0x212   0x2800             CMP      R0,#+0
+   \      0x214   0xD144             BNE.N    ??Ymodem_Transmit_19
+    879            {
+    880              /* Preparing an empty packet */
+    881              aPacketData[PACKET_START_INDEX] = SOH;
+   \      0x216   0x2001             MOVS     R0,#+1
+   \      0x218   0xF888 0x0001      STRB     R0,[R8, #+1]
+    882              aPacketData[PACKET_NUMBER_INDEX] = 0;
+   \      0x21C   0x2000             MOVS     R0,#+0
+   \      0x21E   0xF888 0x0002      STRB     R0,[R8, #+2]
+    883              aPacketData[PACKET_CNUMBER_INDEX] = 0xFF;
+   \      0x222   0x20FF             MOVS     R0,#+255
+   \      0x224   0xF888 0x0003      STRB     R0,[R8, #+3]
+    884              for (i = PACKET_DATA_INDEX; i < (PACKET_SIZE + PACKET_DATA_INDEX); i++)
+   \      0x228   0x2004             MOVS     R0,#+4
+   \      0x22A   0xF88D 0x0003      STRB     R0,[SP, #+3]
+   \                     ??Ymodem_Transmit_20: (+1)
+   \      0x22E   0xF89D 0x0003      LDRB     R0,[SP, #+3]
+   \      0x232   0x2884             CMP      R0,#+132
+   \      0x234   0xD20A             BCS.N    ??Ymodem_Transmit_21
+    885              {
+    886                aPacketData [i] = 0x00;
+   \      0x236   0x2000             MOVS     R0,#+0
+   \      0x238   0xF89D 0x1003      LDRB     R1,[SP, #+3]
+   \      0x23C   0xF808 0x0001      STRB     R0,[R8, R1]
+    887              }
+   \      0x240   0xF89D 0x0003      LDRB     R0,[SP, #+3]
+   \      0x244   0x1C40             ADDS     R0,R0,#+1
+   \      0x246   0xF88D 0x0003      STRB     R0,[SP, #+3]
+   \      0x24A   0xE7F0             B.N      ??Ymodem_Transmit_20
+    888          
+    889              /* Send Packet */
+    890              //========================================================================
+    891              //	Send RS485
+    892              HAL_UART_Transmit(&huart2, &aPacketData[PACKET_START_INDEX], PACKET_SIZE + PACKET_HEADER_SIZE, NAK_TIMEOUT);
+   \                     ??Ymodem_Transmit_21: (+1)
+   \      0x24C   0x.... 0x....      LDR.W    R9,??DataTable6_4
+   \      0x250   0xF45F 0x1380      MOVS     R3,#+1048576
+   \      0x254   0x2283             MOVS     R2,#+131
+   \      0x256   0xF118 0x0101      ADDS     R1,R8,#+1
+   \      0x25A   0x4648             MOV      R0,R9
+   \      0x25C   0x.... 0x....      BL       HAL_UART_Transmit
+    893              //========================================================================
+    894          
+    895              /* Send CRC or Check Sum based on CRC16_F */
+    896          #ifdef CRC16_F    
+    897              temp_crc = Cal_CRC16(&aPacketData[PACKET_DATA_INDEX], PACKET_SIZE);
+    898              Serial_PutByte(temp_crc >> 8);
+    899              Serial_PutByte(temp_crc & 0xFF);
+    900          #else /* CRC16_F */   
+    901              temp_chksum = CalcChecksum (&aPacketData[PACKET_DATA_INDEX], PACKET_SIZE);
+   \      0x260   0x2180             MOVS     R1,#+128
+   \      0x262   0xF118 0x0004      ADDS     R0,R8,#+4
+   \      0x266   0x.... 0x....      BL       CalcChecksum
+   \      0x26A   0xF88D 0x0002      STRB     R0,[SP, #+2]
+    902              Serial_PutByte(temp_chksum);
+   \      0x26E   0xF89D 0x0002      LDRB     R0,[SP, #+2]
+   \      0x272   0x.... 0x....      BL       Serial_PutByte
+    903          #endif /* CRC16_F */
+    904          
+    905              /* Wait for Ack and 'C' */
+    906              if (HAL_UART_Receive(&huart2, &a_rx_ctrl[0], 1, NAK_TIMEOUT) == HAL_OK)
+   \      0x276   0xF45F 0x1380      MOVS     R3,#+1048576
+   \      0x27A   0x2201             MOVS     R2,#+1
+   \      0x27C   0x4669             MOV      R1,SP
+   \      0x27E   0x4648             MOV      R0,R9
+   \      0x280   0x.... 0x....      BL       HAL_UART_Receive
+   \      0x284   0x2800             CMP      R0,#+0
+   \      0x286   0xD10B             BNE.N    ??Ymodem_Transmit_19
+    907              {
+    908                if (a_rx_ctrl[0] == CA)
+   \      0x288   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \      0x28C   0x2818             CMP      R0,#+24
+   \      0x28E   0xD107             BNE.N    ??Ymodem_Transmit_19
+    909                {
+    910                    HAL_Delay( 2 );
+   \      0x290   0x2002             MOVS     R0,#+2
+   \      0x292   0x.... 0x....      BL       HAL_Delay
+    911                    __HAL_UART_FLUSH_DRREGISTER(&huart2);
+   \      0x296   0xF8D9 0x0000      LDR      R0,[R9, #+0]
+   \      0x29A   0x6840             LDR      R0,[R0, #+4]
+    912                    result = COM_ABORT;
+   \      0x29C   0x2002             MOVS     R0,#+2
+   \      0x29E   0x0006             MOVS     R6,R0
+    913                }
+    914              }
+    915            }
+    916          
+    917            return result; /* file transmitted successfully */
+   \                     ??Ymodem_Transmit_19: (+1)
+   \      0x2A0   0x0030             MOVS     R0,R6
+   \      0x2A2   0xB2C0             UXTB     R0,R0
+   \      0x2A4   0xB005             ADD      SP,SP,#+20
+   \      0x2A6   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+    918          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6:
+   \        0x0   0x....'....        DC32     ?_0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_1:
+   \        0x0   0x....'....        DC32     `SetYModemMaster::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_2:
+   \        0x0   0x....'....        DC32     ?_1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_3:
+   \        0x0   0x....'....        DC32     g_masterYmodem
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_4:
+   \        0x0   0x....'....        DC32     huart2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_5:
+   \        0x0   0x....'....        DC32     ?_2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_6:
+   \        0x0   0x....'....        DC32     `ReceivePacket::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_7:
+   \        0x0   0x....'....        DC32     ?_3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_8:
+   \        0x0   0x....'....        DC32     flashdestination
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_9:
+   \        0x0   0x0802'0000        DC32     0x8020000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_10:
+   \        0x0   0x....'....        DC32     ?_4
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_11:
+   \        0x0   0x....'....        DC32     aPacketData
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_12:
+   \        0x0   0x....'....        DC32     `Ymodem_Receive::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_13:
+   \        0x0   0x....'....        DC32     ?_5
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_14:
+   \        0x0   0x....'....        DC32     ?_6
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_15:
+   \        0x0   0x....'....        DC32     aFileName
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_16:
+   \        0x0   0x000E'0002        DC32     0xe0002
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_17:
+   \        0x0   0x....'....        DC32     ?_7
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_18:
+   \        0x0   0x....'....        DC32     g_totPktYModem
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_19:
+   \        0x0   0x....'....        DC32     ?_8
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_20:
+   \        0x0   0x....'....        DC32     ?_9
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_21:
+   \        0x0   0x....'....        DC32     ?_10
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_22:
+   \        0x0   0x....'....        DC32     ?_11
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \        0x0   0x25 0x33          DC8 "%3d/%3d"
+
+   \              0x64 0x2F    
+
+   \              0x25 0x33    
+
+   \              0x64 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_1:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - %d\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x25    
+
+   \              0x64 0x0A    
+
+   \              0x00
+   \        0xD                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_2:
+   \        0x0   0x5B 0x30          DC8 "[0x%02X]"
+
+   \              0x78 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x5D    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_3:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - CRC Error\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x43    
+
+   \              0x52 0x43    
+
+   \              0x20 0x45    
+
+   \              0x72 0x72    
+
+   \              0x6F 0x72    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_4:
+   \        0x0   0x55 0x70          DC8 "Upgrade LED App"
+
+   \              0x67 0x72    
+
+   \              0x61 0x64    
+
+   \              0x65 0x20    
+
+   \              0x4C 0x45    
+
+   \              0x44 0x20    
+
+   \              0x41 0x70    
+
+   \              0x70 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_5:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - Abort by sender (%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x41    
+
+   \              0x62 0x6F    
+
+   \              0x72 0x74    
+
+   \              0x20 0x62    
+
+   \              0x79 0x20    
+
+   \              0x73 0x65    
+
+   \              0x6E 0x64    
+
+   \              0x65 0x72    
+
+   \              0x20 0x28    
+
+   \              0x25 0x64    
+
+   \              0x29 0x0A    
+
+   \              0x00
+   \       0x1F                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_6:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - End of transmission (%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x45    
+
+   \              0x6E 0x64    
+
+   \              0x20 0x6F    
+
+   \              0x66 0x20    
+
+   \              0x74 0x72    
+
+   \              0x61 0x6E    
+
+   \              0x73 0x6D    
+
+   \              0x69 0x73    
+
+   \              0x73 0x69    
+
+   \              0x6F 0x6E    
+
+   \              0x20 0x28    
+
+   \              0x25 0x64    
+
+   \              0x29 0x0A    
+
+   \              0x00
+   \       0x23                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_7:
+   \        0x0   0x46 0x6C          DC8 "Flash Erase Time [%d]\012"
+
+   \              0x61 0x73    
+
+   \              0x68 0x20    
+
+   \              0x45 0x72    
+
+   \              0x61 0x73    
+
+   \              0x65 0x20    
+
+   \              0x54 0x69    
+
+   \              0x6D 0x65    
+
+   \              0x20 0x5B    
+
+   \              0x25 0x64    
+
+   \              0x5D 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_8:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - size (%d) / totPkt (%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x73    
+
+   \              0x69 0x7A    
+
+   \              0x65 0x20    
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2F    
+
+   \              0x20 0x74    
+
+   \              0x6F 0x74    
+
+   \              0x50 0x6B    
+
+   \              0x74 0x20    
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x0A 0x00
+   \       0x22                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_9:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - packets_received (%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x70    
+
+   \              0x61 0x63    
+
+   \              0x6B 0x65    
+
+   \              0x74 0x73    
+
+   \              0x5F 0x72    
+
+   \              0x65 0x63    
+
+   \              0x65 0x69    
+
+   \              0x76 0x65    
+
+   \              0x64 0x20    
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_10:
+   \        0x0   0x25 0x73          DC8 "%s(%d)Abort\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x41 0x62    
+
+   \              0x6F 0x72    
+
+   \              0x74 0x0A    
+
+   \              0x00
+   \        0xD                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_11:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - errors (%u)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x65    
+
+   \              0x72 0x72    
+
+   \              0x6F 0x72    
+
+   \              0x73 0x20    
+
+   \              0x28 0x25    
+
+   \              0x75 0x29    
+
+   \              0x0A 0x00
+   \       0x16                      DS8 2
+    919          
+    920          /**
+    921            * @}
+    922            */
+    923          
+    924          /*******************COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      24   Cal_CRC16
+        24   -> UpdateCRC16
+       4   CalcChecksum
+      48   DispLedProgress
+        48   -> sprintf
+       0   DispLedText
+       0   IsYModemMaster
+      40   PrepareIntialPacket
+        40   -> Int2Str
+      16   PreparePacket
+      40   ReceivePacket
+        40   -> Cal_CRC16
+        40   -> HAL_UART_Receive
+        40   -> printf
+       8   SetYModemMaster
+         8   -> printf
+       4   UpdateCRC16
+      96   Ymodem_Receive
+        96   -> DispLedProgress
+        96   -> DispLedText
+        96   -> FLASH_If_Erase
+        96   -> FLASH_If_Write
+        96   -> HAL_Delay
+        96   -> HAL_GetTick
+        96   -> HAL_UART_Transmit
+        96   -> IsYModemMaster
+        96   -> ReceivePacket
+        96   -> Serial_PutByte
+        96   -> Str2Int
+        96   -> printf
+      56   Ymodem_Transmit
+        56   -> CalcChecksum
+        56   -> HAL_Delay
+        56   -> HAL_UART_Receive
+        56   -> HAL_UART_Transmit
+        56   -> PrepareIntialPacket
+        56   -> PreparePacket
+        56   -> Serial_PutByte
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable6
+       4  ??DataTable6_1
+       4  ??DataTable6_10
+       4  ??DataTable6_11
+       4  ??DataTable6_12
+       4  ??DataTable6_13
+       4  ??DataTable6_14
+       4  ??DataTable6_15
+       4  ??DataTable6_16
+       4  ??DataTable6_17
+       4  ??DataTable6_18
+       4  ??DataTable6_19
+       4  ??DataTable6_2
+       4  ??DataTable6_20
+       4  ??DataTable6_21
+       4  ??DataTable6_22
+       4  ??DataTable6_3
+       4  ??DataTable6_4
+       4  ??DataTable6_5
+       4  ??DataTable6_6
+       4  ??DataTable6_7
+       4  ??DataTable6_8
+       4  ??DataTable6_9
+       8  ?_0
+      16  ?_1
+      16  ?_10
+      24  ?_11
+      12  ?_2
+      20  ?_3
+      16  ?_4
+      32  ?_5
+      36  ?_6
+      24  ?_7
+      36  ?_8
+      32  ?_9
+      64  Cal_CRC16
+      30  CalcChecksum
+      28  DispLedProgress
+       2  DispLedText
+       8  IsYModemMaster
+     118  PrepareIntialPacket
+     112  PreparePacket
+     298  ReceivePacket
+      28  SetYModemMaster
+      48  UpdateCRC16
+     748  Ymodem_Receive
+     682  Ymodem_Transmit
+   1'032  aPacketData
+       4  flashdestination
+       4  g_cntPktYModem
+       1  g_masterYmodem
+       4  g_totPktYModem
+      48  -- Other
+
+ 
+ 1'045 bytes in section .bss
+   320 bytes in section .rodata
+ 2'258 bytes in section .text
+ 
+ 2'258 bytes of CODE  memory
+   320 bytes of CONST memory
+ 1'045 bytes of DATA  memory
+
+Errors: none
+Warnings: 8

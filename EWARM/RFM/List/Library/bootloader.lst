@@ -1,0 +1,2090 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:58
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Library\bootloader.c
+#    Command line                 =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\bootloader.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Library\bootloader.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library --no_cse
+#        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
+#        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
+#        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\bootloader.o.d
+#    Locale                       =  C
+#    List file                    =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library\bootloader.lst
+#    Object file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\bootloader.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#      __iar_require _Printf      =  flags,widths
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Library\bootloader.c
+      1          /*------------------------------------------------------------------------------------------
+      2          	Project			: RFM
+      3          	Description		: Bootloader
+      4          
+      5          	Writer			: $Author: zlkit $
+      6          	Revision		: $Rev: 1891 $
+      7          	Date			: 2019. 01.
+      8          	Copyright		: Piranti Corp. ( zlkit@piranti.co.kr )
+      9          	 
+     10          	Revision History 
+     11          	1. 2019. 01.	: Created
+     12          -------------------------------------------------------------------------------------------*/
+     13          
+     14          #include <stdio.h>
+     15          #include <stdlib.h>
+     16          #include <stdarg.h>
+     17          #include <ctype.h>
+     18          #include <string.h>
+     19          #include <stdarg.h>
+     20          
+     21          #include "stm32f4xx_hal.h"
+     22          #include "stm32f4xx.h"
+     23          
+     24          #include "bootloader.h"
+     25          
+     26          #include "iap_common.h"		//	IAP Common
+     27          #include "iap_menu.h"		//	IAP ( In-Application Programming )
+     28          
+     29          #include "ymodem.h"			//	Y-Modem
+     30          
+     31          #include "main.h"			//	huart2 / MX_IWDG_Disable()
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     32          
+     33          #include "RFMProtocol.h"	//	DevRF900T / DevRF900M
+
+  typedef unsigned char       BYTE;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",73  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned short      WORD;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",77  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		BIT;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",83  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		U8;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",84  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned int 		U16;
+                       		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",85  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned long 		U32;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",86  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed char 		S8;
+                      		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",88  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed int 			S16;
+                     			^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",89  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed long 		S32;
+                      		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",90  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",304  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",322  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",468  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",506  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",511  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",533  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",559  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",567  Warning[Pe040]: 
+          expected an identifier
+     34          
+     35          #include "Adafruit_SSD1306.h"       //  I2C LCD
+     36          
+     37          #include "eeprom.h"			//	AddrEEPUpgrMGN1
+     38          
+     39          //	STM32F407 Embedded Bootloader ( AN2606 - P.29 )
+     40          //#define BOOT_ROM_ADDRESS		(uint32_t)0x1FFF77DE
+     41          
+     42          #define APPLICATION_ADDRESS1   (uint32_t)0x08020000 
+     43          
+     44          //	Sector 0 0x0800 0000 - 0x0800 3FFF 16 Kbyte
+     45          //	Sector 1 0x0800 4000 - 0x0800 7FFF 16 Kbyte
+     46          //	Sector 2 0x0800 8000 - 0x0800 BFFF 16 Kbyte
+     47          //	Sector 3 0x0800 C000 - 0x0800 FFFF 16 Kbyte
+     48          //	Sector 4 0x0801 0000 - 0x0801 FFFF 64 Kbyte
+     49          //	Sector 5 0x0802 0000 - 0x0803 FFFF 128 Kbyte
+     50          //	Sector 6 0x0804 0000 - 0x0805 FFFF 128 Kbyte
+     51          //			.
+     52          //			.
+     53          //			.
+     54          //	Sector 11 0x080E 0000 - 0x080F FFFF 128 Kbyte
+     55          
+     56          typedef  void (*pFunction)(void);
+                                 ^
+Warning[Pe301]: typedef name has already been declared (with same type)
+     57          
+
+   \                                 In section .bss, align 4
+     58          pFunction	Jump_To_Application;
+   \                     Jump_To_Application:
+   \        0x0                      DS8 4
+
+   \                                 In section .bss, align 4
+     59          uint32_t	JumpAddress;
+   \                     JumpAddress:
+   \        0x0                      DS8 4
+     60          
+
+   \                                 In section .bss, align 4
+     61          unsigned char id_buf[3];
+   \                     id_buf:
+   \        0x0                      DS8 4
+     62          
+     63          //========================================================================
+
+   \                                 In section .data, align 4
+     64          int g_nBootMode = BModeApp;			//	Default Application Boot
+   \                     g_nBootMode:
+   \        0x0   0x0000'0002        DC32 2
+     65          //========================================================================
+     66          
+     67          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     68          void SetBootMode( int nBootMode )
+     69          //========================================================================
+     70          {
+     71          	g_nBootMode = nBootMode;
+   \                     SetBootMode: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R1,??DataTable8_2
+   \        0x4   0x6008             STR      R0,[R1, #+0]
+     72          }
+   \        0x6   0x4770             BX       LR
+     73          
+     74          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     75          int GetBootMode( void )
+     76          //========================================================================
+     77          {
+     78          	return g_nBootMode;
+   \                     GetBootMode: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable8_2
+   \        0x4   0x6800             LDR      R0,[R0, #+0]
+   \        0x6   0x4770             BX       LR
+     79          }
+     80          
+     81          //========================================================================
+
+   \                                 In section .bss, align 4
+     82          int		s_nDevID		=	DevNone;			//  Device ID ( 1 : RF900M / 2 : RF900T )
+   \                     s_nDevID:
+   \        0x0                      DS8 4
+     83          //========================================================================
+     84          
+     85          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     86          int _GetDevID    ( void )
+     87          //========================================================================
+     88          {
+     89          	return s_nDevID;
+   \                     _GetDevID: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable8_3
+   \        0x4   0x6800             LDR      R0,[R0, #+0]
+   \        0x6   0x4770             BX       LR
+     90          }
+     91          
+     92          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     93          void _SetDevID    ( int nDevID )
+     94          //========================================================================
+     95          {
+   \                     _SetDevID: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+     96          	printf( "%s : %s(%d)\n", __func__,
+     97          							( nDevID == DevRF900M )? "RFM":"RFT",
+     98          							nDevID );
+   \        0x4   0x2C01             CMP      R4,#+1
+   \        0x6   0xD101             BNE.N    ??_SetDevID_0
+   \        0x8   0x....             ADR.N    R2,??DataTable6
+   \        0xA   0xE000             B.N      ??_SetDevID_1
+   \                     ??_SetDevID_0: (+1)
+   \        0xC   0x....             ADR.N    R2,??DataTable6_1
+   \                     ??_SetDevID_1: (+1)
+   \        0xE   0x0023             MOVS     R3,R4
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable8_4
+   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable8_5
+   \       0x18   0x.... 0x....      BL       printf
+     99          	s_nDevID = nDevID;
+   \       0x1C   0x.... 0x....      LDR.W    R0,??DataTable8_3
+   \       0x20   0x6004             STR      R4,[R0, #+0]
+    100          }
+   \       0x22   0xBD10             POP      {R4,PC}
+    101          
+    102          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    103          void JumpToSTBootloader(void)
+    104          //========================================================================
+    105          {
+   \                     JumpToSTBootloader: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+    106            typedef  void (*pFunction)(void);
+    107            /* OK for L4 and F446 */
+    108          #define SYS_MEM_ADDRESS     ((uint32_t)0x1FFF0000)
+    109          
+    110            pFunction JumpToApplication;
+    111            uint32_t JumpAddress;
+    112          
+    113            //========================================================================
+    114            //	Disable Watchdog
+    115            MX_IWDG_Disable();
+   \        0x2   0x.... 0x....      BL       MX_IWDG_Disable
+    116            //========================================================================
+    117          
+    118            /* Disable all interrupts, clocks and PLLs */
+    119            HAL_RCC_DeInit();
+   \        0x6   0x.... 0x....      BL       HAL_RCC_DeInit
+    120          
+    121          #ifdef STM32L476xx
+    122          
+    123            /* Enable the SYSCFG APB Clock */
+    124            RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
+    125            /*  System Flash memory mapped at 0x00000000  */
+    126            __HAL_SYSCFG_REMAPMEMORY_SYSTEMFLASH();
+    127          
+    128          #endif
+    129          
+    130            /* Jump to system memory */
+    131            JumpAddress = *(__IO uint32_t*) (SYS_MEM_ADDRESS + 4);
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable8_6
+   \        0xE   0x6805             LDR      R5,[R0, #+0]
+    132            JumpToApplication = (pFunction) JumpAddress;
+   \       0x10   0x002C             MOVS     R4,R5
+    133            /* Initialize user application's Stack Pointer */
+    134            __set_MSP(*(__IO uint32_t*) SYS_MEM_ADDRESS);
+   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable8_7
+   \       0x16   0x6800             LDR      R0,[R0, #+0]
+   \       0x18   0xF380 0x8808      MSR      MSP,R0
+    135            JumpToApplication();
+   \       0x1C   0x47A0             BLX      R4
+    136          }
+   \       0x1E   0xBD31             POP      {R0,R4,R5,PC}
+    137          
+    138          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    139          void	DispDFUMode( void )
+    140          //========================================================================
+    141          {
+   \                     DispDFUMode: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    142          	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c3, (uint16_t)( SSD1306_I2C_ADDRESS ), 2, 2 ) )
+   \        0x2   0x2302             MOVS     R3,#+2
+   \        0x4   0x2202             MOVS     R2,#+2
+   \        0x6   0x2178             MOVS     R1,#+120
+   \        0x8   0x.... 0x....      LDR.W    R0,??DataTable8_8
+   \        0xC   0x.... 0x....      BL       HAL_I2C_IsDeviceReady
+   \       0x10   0x2800             CMP      R0,#+0
+   \       0x12   0xD109             BNE.N    ??DispDFUMode_0
+    143          	{
+    144          		//  화면 Clear
+    145          		LCDClear();
+   \       0x14   0x.... 0x....      BL       LCDClear
+    146          
+    147          		LCDSetCursor( 0, 13 );
+   \       0x18   0x210D             MOVS     R1,#+13
+   \       0x1A   0x2000             MOVS     R0,#+0
+   \       0x1C   0x.... 0x....      BL       LCDSetCursor
+    148          //		LCDPrintf( "DFU Mode" );
+    149          		LCDPrintf( "USB Upgrade Mode" );
+   \       0x20   0x.... 0x....      LDR.W    R0,??DataTable8_9
+   \       0x24   0x.... 0x....      BL       LCDPrintf
+    150          	}
+    151          }
+   \                     ??DispDFUMode_0: (+1)
+   \       0x28   0xBD01             POP      {R0,PC}
+    152          
+    153          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    154          int InitBoot( void )
+    155          //========================================================================
+    156          {
+   \                     InitBoot: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+    157          	printf("%s(%d)\n", __func__, __LINE__);
+   \        0x2   0x.... 0x....      LDR.W    R4,??DataTable8_10
+   \        0x6   0x229D             MOVS     R2,#+157
+   \        0x8   0x0021             MOVS     R1,R4
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable8_11
+   \        0xE   0x.... 0x....      BL       printf
+    158          
+    159          	I2C_BusScan( &hi2c3 );
+   \       0x12   0x.... 0x....      LDR.W    R5,??DataTable8_8
+   \       0x16   0x0028             MOVS     R0,R5
+   \       0x18   0x.... 0x....      BL       I2C_BusScan
+    160          
+    161          	//========================================================================
+    162          	//	OLED
+    163          	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c3, (uint16_t)( SSD1306_I2C_ADDRESS ), 2, 2 ) )
+   \       0x1C   0x2302             MOVS     R3,#+2
+   \       0x1E   0x2202             MOVS     R2,#+2
+   \       0x20   0x2178             MOVS     R1,#+120
+   \       0x22   0x0028             MOVS     R0,R5
+   \       0x24   0x.... 0x....      BL       HAL_I2C_IsDeviceReady
+   \       0x28   0x2800             CMP      R0,#+0
+   \       0x2A   0xD10D             BNE.N    ??InitBoot_0
+    164          	{
+    165          		//========================================================================
+    166          		//	OLED가 연결되어있음.
+    167          		_SetDevID( DevRF900T );	 //  송신기.
+   \       0x2C   0x2002             MOVS     R0,#+2
+   \       0x2E   0x.... 0x....      BL       _SetDevID
+    168          
+    169          		printf("%s(%d) - Init OLED\n", __func__, __LINE__);
+   \       0x32   0x22A9             MOVS     R2,#+169
+   \       0x34   0x0021             MOVS     R1,R4
+   \       0x36   0x.... 0x....      LDR.W    R0,??DataTable8_12
+   \       0x3A   0x.... 0x....      BL       printf
+    170          
+    171          		//	LCD Init
+    172          		LCDInit();
+   \       0x3E   0x.... 0x....      BL       LCDInit
+    173          		LCDClear();
+   \       0x42   0x.... 0x....      BL       LCDClear
+   \       0x46   0xE002             B.N      ??InitBoot_1
+    174          
+    175          //		LCDDrawRect( 0, 0, 128, 32, 1 );
+    176          //		HAL_Delay( 100 );
+    177          	}
+    178          	else
+    179          	{
+    180          		//========================================================================
+    181          		//	OLED가 없으면 -> 수신기
+    182          		_SetDevID( DevRF900M );	 //  수신기.
+   \                     ??InitBoot_0: (+1)
+   \       0x48   0x2001             MOVS     R0,#+1
+   \       0x4A   0x.... 0x....      BL       _SetDevID
+    183          	}
+    184          	//========================================================================
+    185          }
+                 ^
+Warning[Pe940]: missing return statement at end of non-void function "InitBoot"
+   \                     ??InitBoot_1: (+1)
+   \       0x4E   0xBD32             POP      {R1,R4,R5,PC}
+    186          
+    187          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    188          void BootLoaderTask(void)
+    189          //========================================================================
+    190          {
+   \                     BootLoaderTask: (+1)
+   \        0x0   0xE92D 0x4FF8      PUSH     {R3-R11,LR}
+   \        0x4   0xF5AD 0x7D08      SUB      SP,SP,#+544
+    191          	/* The parameters are not used. */
+    192          	int		i, j, k;
+    193          	int		fsize = 0;
+   \        0x8   0x2600             MOVS     R6,#+0
+    194          
+    195          	int		readnum = 0, rremain = 0;
+   \        0xA   0x2000             MOVS     R0,#+0
+   \        0xC   0x9002             STR      R0,[SP, #+8]
+   \        0xE   0x2000             MOVS     R0,#+0
+   \       0x10   0x9004             STR      R0,[SP, #+16]
+    196          
+    197          //#if defined( USE_YMODEM_EXT_FLASH )
+    198          	uint8_t	adata[512];
+    199          //#else
+    200          //	uint8_t	*adata;
+    201          //#endif
+    202          
+    203          	uint32_t		flashAddr = ADDR_FLASH_APP;	//	0x08020000;
+   \       0x12   0x....             LDR.N    R4,??DataTable8_13
+   \       0x14   0x0027             MOVS     R7,R4
+    204          
+    205          	FLASH_EraseInitTypeDef flash1;
+    206          
+    207          	//========================================================================
+    208          	InitBoot();
+   \       0x16   0x.... 0x....      BL       InitBoot
+    209          	//========================================================================
+    210          
+    211          	HAL_Delay( 500 );
+   \       0x1A   0xF44F 0x70FA      MOV      R0,#+500
+   \       0x1E   0x.... 0x....      BL       HAL_Delay
+    212          
+    213          	printf( "BootLoader\n" );
+   \       0x22   0x....             LDR.N    R0,??DataTable8_14
+   \       0x24   0x.... 0x....      BL       printf
+    214          
+    215          	//========================================================================
+    216          	//	Y-Modem Master 설정.
+    217          	SetYModemMaster( 1 );
+   \       0x28   0x2001             MOVS     R0,#+1
+   \       0x2A   0x.... 0x....      BL       SetYModemMaster
+    218          	//========================================================================
+    219          
+    220          	//========================================================================
+    221          	//	IAP ( In-Application Programming )
+    222          
+    223          	//	Dev ID가 0x00인 경우 ">" 전송.
+    224          	uint8_t ch;
+    225          
+    226          	if ( IsYModemMaster() )
+   \       0x2E   0x.... 0x....      BL       IsYModemMaster
+   \       0x32   0x2800             CMP      R0,#+0
+   \       0x34   0xD008             BEQ.N    ??BootLoaderTask_0
+    227          	{
+    228          		ch = '>';
+   \       0x36   0x203E             MOVS     R0,#+62
+   \       0x38   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    229          		HAL_UART_Transmit( &huart2, &ch, 1, TX_TIMEOUT );
+   \       0x3C   0x2364             MOVS     R3,#+100
+   \       0x3E   0x2201             MOVS     R2,#+1
+   \       0x40   0xA901             ADD      R1,SP,#+4
+   \       0x42   0x....             LDR.N    R0,??DataTable8_15
+   \       0x44   0x.... 0x....      BL       HAL_UART_Transmit
+    230          	}
+    231          
+    232          	HAL_StatusTypeDef ret;
+    233          
+    234          	CHECK_ENTER:
+    235          	
+    236          	ret = HAL_UART_Receive( &huart2, &ch, 1, 3000 );		//	3 초 Timeout
+   \                     ??BootLoaderTask_0: (+1)
+   \                     ??BootLoaderTask_1: (+1)
+   \       0x48   0xF640 0x3AB8      MOVW     R10,#+3000
+   \       0x4C   0x4653             MOV      R3,R10
+   \       0x4E   0x2201             MOVS     R2,#+1
+   \       0x50   0xA901             ADD      R1,SP,#+4
+   \       0x52   0x....             LDR.N    R0,??DataTable8_15
+   \       0x54   0x.... 0x....      BL       HAL_UART_Receive
+   \       0x58   0xF88D 0x0005      STRB     R0,[SP, #+5]
+    237          
+    238          	if ( ret == HAL_OK )
+   \       0x5C   0xF89D 0x0005      LDRB     R0,[SP, #+5]
+   \       0x60   0x2800             CMP      R0,#+0
+   \       0x62   0xD110             BNE.N    ??BootLoaderTask_2
+    239          	{
+    240          		//	'\r' 엔터 키 수신시. - Y-Modem Upgrade 수행.
+    241          
+    242          		printf( "%s(%d) - RS485 Input : 0x%02X\n", __func__, __LINE__, ch );
+   \       0x64   0xF89D 0x3004      LDRB     R3,[SP, #+4]
+   \       0x68   0x22F2             MOVS     R2,#+242
+   \       0x6A   0x....             LDR.N    R1,??DataTable8_16
+   \       0x6C   0x....             LDR.N    R0,??DataTable8_17
+   \       0x6E   0x.... 0x....      BL       printf
+    243          
+    244          		if ( ch == '>' )
+   \       0x72   0xF89D 0x0004      LDRB     R0,[SP, #+4]
+   \       0x76   0x283E             CMP      R0,#+62
+   \       0x78   0xD0E6             BEQ.N    ??BootLoaderTask_1
+    245          		{
+    246          			goto CHECK_ENTER;
+    247          		}
+    248          
+    249          		if ( ch == '\r' )
+   \                     ??BootLoaderTask_3: (+1)
+   \       0x7A   0xF89D 0x0004      LDRB     R0,[SP, #+4]
+   \       0x7E   0x280D             CMP      R0,#+13
+   \       0x80   0xD101             BNE.N    ??BootLoaderTask_2
+    250          		{
+    251          			//IAP_Menu();
+    252          			SerialDownload();	//	Y-Modem Serial Download
+                 			^
+Warning[Pe223]: function "SerialDownload" declared implicitly
+
+  	int		i, j, k;
+  	   		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\bootloader.c",192  Warning[Pe177]: 
+          variable "i" was declared but never referenced
+
+  	int		i, j, k;
+  	   		      ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\bootloader.c",192  Warning[Pe177]: 
+          variable "k" was declared but never referenced
+
+  	int		readnum = 0, rremain = 0;
+  	   		             ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\bootloader.c",195  Warning[Pe550]: 
+          variable "rremain" was set but never used
+
+  	FLASH_EraseInitTypeDef flash1;
+  	                       ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\bootloader.c",205  Warning[Pe177]: 
+          variable "flash1" was declared but never referenced
+   \       0x82   0x.... 0x....      BL       SerialDownload
+    253          		}
+    254          	}
+    255          
+    256          //	if ( input_check() )
+    257          //	{
+    258          //		//	Console Key 입력이 있을 경우 IAP Menu로 진입.
+    259          //		IAP_Menu();
+    260          //	}
+    261          
+    262          //	vTaskDelay( 1000 * BOOTLOADER_START_DELAY );
+    263          
+    264          	//========================================================================
+    265          
+    266          #if defined( USE_YMODEM_EXT_FLASH )
+    267          
+    268          	char buf[256];
+    269          	FlashReadData( 0, buf, 256 );
+    270          
+    271          	printf( "Check Upgrade App : 0x%02X 0x%02X 0x%02X 0x%02X 0x%02X\n", 
+    272          		buf[0], buf[1], buf[2], buf[3], buf[4] );
+    273          
+    274          #else
+    275          
+    276          	char buf[10];
+    277              M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf, 5 );
+   \                     ??BootLoaderTask_2: (+1)
+   \       0x86   0x2005             MOVS     R0,#+5
+   \       0x88   0x9000             STR      R0,[SP, #+0]
+   \       0x8A   0xAB05             ADD      R3,SP,#+20
+   \       0x8C   0x2220             MOVS     R2,#+32
+   \       0x8E   0x21A0             MOVS     R1,#+160
+   \       0x90   0x....             LDR.N    R0,??DataTable8_18
+   \       0x92   0x.... 0x....      BL       M24_HAL_ReadBytes
+    278          
+    279          #endif
+    280          
+    281          	//========================================================================
+    282          	if	(	//	DFU Mode ( Menu + OK + SOS 버튼을 누른상태에서 전원 On )
+    283          			(_GetDevID() == DevRF900T) &&
+    284          				( 	HAL_GPIO_ReadPin( DOME1_GPIO_Port, DOME1_Pin ) == 0			//	Menu
+    285          					&& HAL_GPIO_ReadPin( DOME3_GPIO_Port, DOME3_Pin ) == 0		//	OK
+    286          					&& HAL_GPIO_ReadPin( SOS_KEY_GPIO_Port, SOS_KEY_Pin ) == 0	//	SOS
+    287          					)
+    288          		)
+   \       0x96   0x.... 0x....      BL       _GetDevID
+   \       0x9A   0x2802             CMP      R0,#+2
+   \       0x9C   0xD11B             BNE.N    ??BootLoaderTask_4
+   \       0x9E   0x.... 0x....      LDR.W    R9,??DataTable8_19
+   \       0xA2   0x2101             MOVS     R1,#+1
+   \       0xA4   0x4648             MOV      R0,R9
+   \       0xA6   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \       0xAA   0x2800             CMP      R0,#+0
+   \       0xAC   0xD113             BNE.N    ??BootLoaderTask_4
+   \       0xAE   0x2104             MOVS     R1,#+4
+   \       0xB0   0x4648             MOV      R0,R9
+   \       0xB2   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \       0xB6   0x2800             CMP      R0,#+0
+   \       0xB8   0xD10D             BNE.N    ??BootLoaderTask_4
+   \       0xBA   0x2140             MOVS     R1,#+64
+   \       0xBC   0x4648             MOV      R0,R9
+   \       0xBE   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \       0xC2   0x2800             CMP      R0,#+0
+   \       0xC4   0xD107             BNE.N    ??BootLoaderTask_4
+    289          	{
+    290          		//========================================================================
+    291          		//	Jump to Embedded Bootloader
+    292          		//	DFU Mode
+    293          		printf("STBootLoader Mode ( DFU Mode )\n");
+   \       0xC6   0x....             LDR.N    R0,??DataTable8_20
+   \       0xC8   0x.... 0x....      BL       printf
+    294          
+    295          		DispDFUMode();
+   \       0xCC   0x.... 0x....      BL       DispDFUMode
+    296          
+    297          		JumpToSTBootloader();
+   \       0xD0   0x.... 0x....      BL       JumpToSTBootloader
+   \       0xD4   0xE114             B.N      ??BootLoaderTask_5
+    298          		//========================================================================
+    299          	}
+    300          	else if	(	GetBootMode() == BModeBoot				//	Boot Mode로 진입 시.
+    301          			//|| HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_11) == 0	//	Test버튼 누른상태에서 Booting 시.
+    302          		)
+   \                     ??BootLoaderTask_4: (+1)
+   \       0xD6   0x.... 0x....      BL       GetBootMode
+   \       0xDA   0x2801             CMP      R0,#+1
+   \       0xDC   0xD106             BNE.N    ??BootLoaderTask_6
+    303          	{
+    304          		//	reset 할 때 test 버튼 누를 시
+    305          		printf("BootLoader Mode\n");
+   \       0xDE   0x....             LDR.N    R0,??DataTable8_21
+   \       0xE0   0x.... 0x....      BL       printf
+    306          		HAL_Delay(1);
+   \       0xE4   0x2001             MOVS     R0,#+1
+   \       0xE6   0x.... 0x....      BL       HAL_Delay
+   \       0xEA   0xE109             B.N      ??BootLoaderTask_5
+    307          	}
+    308          #if defined( USE_YMODEM_EXT_FLASH )
+    309          	else if ( ( buf[0] == 0xaa ) && ( buf[1] == 0x55 ) )
+    310          #else
+    311          //	else if ( (*(char*)(0x0801F020) == 0xaa) && (*(char*)(0x0801F021) == 0x55) )
+    312          	else if ( ( buf[0] == 0xaa ) && ( buf[1] == 0x55 )
+    313          			 &&	( ( ( *( __IO uint32_t* )ADDR_FLASH_IMGAPP ) & 0x2FF00000 ) == 0x20000000 )		//	Downlaod Image Correct
+    314          		)
+   \                     ??BootLoaderTask_6: (+1)
+   \       0xEC   0xF89D 0x0014      LDRB     R0,[SP, #+20]
+   \       0xF0   0x28AA             CMP      R0,#+170
+   \       0xF2   0xF040 0x80D0      BNE.W    ??BootLoaderTask_7
+   \       0xF6   0xF10D 0x0B14      ADD      R11,SP,#+20
+   \       0xFA   0xF89B 0x0001      LDRB     R0,[R11, #+1]
+   \       0xFE   0x2855             CMP      R0,#+85
+   \      0x100   0xF040 0x80C9      BNE.W    ??BootLoaderTask_7
+   \      0x104   0x.... 0x....      LDR.W    R9,??DataTable8_22
+   \      0x108   0x....             LDR.N    R0,??DataTable8_23
+   \      0x10A   0x6800             LDR      R0,[R0, #+0]
+   \      0x10C   0xEA19 0x0000      ANDS     R0,R9,R0
+   \      0x110   0xF1B0 0x5F00      CMP      R0,#+536870912
+   \      0x114   0xF040 0x80BF      BNE.W    ??BootLoaderTask_7
+    315          #endif
+    316          	{
+    317          		//	Upgrade 할 이미지가 존재하는 경우.
+    318          		printf("Find a New Version.\n");
+   \      0x118   0x....             LDR.N    R0,??DataTable8_24
+   \      0x11A   0x.... 0x....      BL       printf
+    319          
+    320          		//========================================================================
+    321          		//	Erase Internal Flash
+    322          		//	App 영역 삭제
+    323          
+    324          		//*
+    325          //		FLASH_If_Erase( ADDR_FLASH_APP );
+    326          
+    327          		//========================================================================
+    328          		//	FLASH_SECTOR_5 ~ FLASH_SECTOR_7
+    329          		FLASH_If_EraseSectors( ADDR_FLASH_APP, 3 );
+   \      0x11E   0x2103             MOVS     R1,#+3
+   \      0x120   0x0020             MOVS     R0,R4
+   \      0x122   0x.... 0x....      BL       FLASH_If_EraseSectors
+    330          
+    331          //		for ( int idxSector = FLASH_SECTOR_5; idxSector <= FLASH_SECTOR_7; idxSector++ )
+    332          //		{
+    333          //			HAL_FLASH_Unlock();
+    334          //			flash1.TypeErase	=	FLASH_TYPEERASE_SECTORS;
+    335          //			flash1.Banks		=	FLASH_BANK_1;
+    336          //			flash1.Sector		=	FLASH_SECTOR_5;		//	FLASH_SECTOR_5 ~ FLASH_SECTOR_11;
+    337          //			flash1.NbSectors	=	3;	//	5, 6, 7
+    338          //			flash1.VoltageRange =	FLASH_VOLTAGE_RANGE_3;
+    339          //			printf( "Internal flash erase old app #%d\n", flash1.Sector );
+    340          //			HAL_FLASHEx_Erase( &flash1, NULL );
+    341          //			HAL_FLASH_Lock();
+    342          //		}
+    343          
+    344          		/*/
+    345          
+    346          		//	FLASH_SECTOR_5 ~ FLASH_SECTOR_7 : 0x08020000 ~ 0x0807FFFF
+    347          		for ( int idxSector = FLASH_SECTOR_5; idxSector <= FLASH_SECTOR_7; idxSector++ )
+    348          		{
+    349          			HAL_FLASH_Unlock();
+    350          			flash1.TypeErase	=	FLASH_TYPEERASE_SECTORS;
+    351          			flash1.Banks		=	FLASH_BANK_1;
+    352          			flash1.Sector		=	idxSector;		//	FLASH_SECTOR_5 ~ FLASH_SECTOR_11;
+    353          			flash1.NbSectors	=	1;
+    354          			flash1.VoltageRange =	FLASH_VOLTAGE_RANGE_3;
+    355          			printf( "Internal flash erase old app #%d\n", flash1.Sector );
+    356          			HAL_FLASHEx_Erase( &flash1, NULL );
+    357          			HAL_FLASH_Lock();
+    358          		}
+    359          		//	*/
+    360          		printf( "Internal flash erase done.\n" );
+   \      0x126   0x....             LDR.N    R0,??DataTable8_25
+   \      0x128   0x.... 0x....      BL       printf
+    361          		//========================================================================
+    362          
+    363          		//========================================================================
+    364          		printf( "Erase Delay\n" );
+   \      0x12C   0x....             LDR.N    R0,??DataTable8_26
+   \      0x12E   0x.... 0x....      BL       printf
+    365          		HAL_Delay(3000);
+   \      0x132   0x4650             MOV      R0,R10
+   \      0x134   0x.... 0x....      BL       HAL_Delay
+    366          		//========================================================================
+    367          
+    368          #if defined( USE_YMODEM_EXT_FLASH )
+    369          		fsize = ( buf[2] << 16 | buf[3] << 8 | buf[4] );		//	S/W Size
+    370          #else
+    371          
+    372          //		fsize = (*(char*)0x08010022 << 16 | *(char*)0x08010023 << 8 | *(char*)0x08010024);  // s/w size
+    373          		fsize = ( buf[2] << 16 | buf[3] << 8 | buf[4] );		//	S/W Size
+   \      0x138   0xF89B 0x0002      LDRB     R0,[R11, #+2]
+   \      0x13C   0xF89B 0x1003      LDRB     R1,[R11, #+3]
+   \      0x140   0x0209             LSLS     R1,R1,#+8
+   \      0x142   0xEA51 0x4100      ORRS     R1,R1,R0, LSL #+16
+   \      0x146   0xF89B 0x0004      LDRB     R0,[R11, #+4]
+   \      0x14A   0x4301             ORRS     R1,R0,R1
+   \      0x14C   0x000E             MOVS     R6,R1
+    374          
+    375          #endif
+    376          		printf("New S/W size = %d\n", fsize);
+   \      0x14E   0x0031             MOVS     R1,R6
+   \      0x150   0x....             LDR.N    R0,??DataTable8_27
+   \      0x152   0x.... 0x....      BL       printf
+    377          
+    378          		//========================================================================
+    379          		/*
+    380          		printf("Erase Upgrade Config\n");
+    381          		memset(buf, 0, sizeof(buf));
+    382          	    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf, 5 );
+    383          	    //	*/
+    384          		//========================================================================
+    385          
+    386          		readnum = fsize / 512 + 1;
+   \      0x156   0xF44F 0x7000      MOV      R0,#+512
+   \      0x15A   0xFB96 0xF0F0      SDIV     R0,R6,R0
+   \      0x15E   0x1C40             ADDS     R0,R0,#+1
+   \      0x160   0x9002             STR      R0,[SP, #+8]
+    387          		rremain = fsize % 512;
+   \      0x162   0xF44F 0x7400      MOV      R4,#+512
+   \      0x166   0x0020             MOVS     R0,R4
+   \      0x168   0xFB96 0xF1F0      SDIV     R1,R6,R0
+   \      0x16C   0xFB00 0x6011      MLS      R0,R0,R1,R6
+   \      0x170   0x9004             STR      R0,[SP, #+16]
+    388          		printf("readnum = %d\n", readnum);
+   \      0x172   0x9902             LDR      R1,[SP, #+8]
+   \      0x174   0x....             LDR.N    R0,??DataTable8_28
+   \      0x176   0x.... 0x....      BL       printf
+    389          
+    390          		printf("%s(%d) - Flash WritePorection( %d )\n", __func__, __LINE__,
+    391          				FLASH_If_GetWriteProtectionStatus() );
+   \      0x17A   0x.... 0x....      BL       FLASH_If_GetWriteProtectionStatus
+   \      0x17E   0x.... 0x....      LDR.W    R10,??DataTable8_16
+   \      0x182   0xB280             UXTH     R0,R0
+   \      0x184   0x0003             MOVS     R3,R0
+   \      0x186   0xF44F 0x72C3      MOV      R2,#+390
+   \      0x18A   0x4651             MOV      R1,R10
+   \      0x18C   0x....             LDR.N    R0,??DataTable8_29
+   \      0x18E   0x.... 0x....      BL       printf
+    392          
+    393          		FLASH_If_WriteProtectionConfig( OB_WRPSTATE_DISABLE );
+   \      0x192   0x2000             MOVS     R0,#+0
+   \      0x194   0x.... 0x....      BL       FLASH_If_WriteProtectionConfig
+    394          
+    395          		//========================================================================
+    396          		//	Write External Flash to Internal App
+    397          
+    398          #if defined( USE_YMODEM_EXT_FLASH )
+    399          		SelectFlash( 0 );		//	MX25L128 ( PA4 - SPI_CS0 )
+    400          #endif
+    401          
+    402          		for ( j = 0; j < readnum; j++ )
+   \      0x198   0x2000             MOVS     R0,#+0
+   \      0x19A   0x0005             MOVS     R5,R0
+   \                     ??BootLoaderTask_8: (+1)
+   \      0x19C   0x9802             LDR      R0,[SP, #+8]
+   \      0x19E   0x4285             CMP      R5,R0
+   \      0x1A0   0xDA2F             BGE.N    ??BootLoaderTask_9
+    403          		{
+    404          #if defined( USE_YMODEM_EXT_FLASH )
+    405          			memset( adata, 0x00, sizeof(adata) );
+    406          			FlashRead512( flashAddr, adata );
+    407          			FlashWait();
+    408          #else
+    409          //			memset( adata, 0x00, sizeof(adata) );
+    410          //			adata = (uint8_t *)( ADDR_FLASH_IMGAPP + ( 512 * j ) );
+    411          			memcpy( adata, (uint8_t *)( ADDR_FLASH_IMGAPP + ( 512 * j ) ), 512 );
+   \      0x1A2   0x9403             STR      R4,[SP, #+12]
+   \      0x1A4   0x....             LDR.N    R0,??DataTable8_23
+   \      0x1A6   0xEB10 0x2045      ADDS     R0,R0,R5, LSL #+9
+   \      0x1AA   0x9000             STR      R0,[SP, #+0]
+   \      0x1AC   0xF10D 0x0B20      ADD      R11,SP,#+32
+   \      0x1B0   0x9A03             LDR      R2,[SP, #+12]
+   \      0x1B2   0x9900             LDR      R1,[SP, #+0]
+   \      0x1B4   0x4658             MOV      R0,R11
+   \      0x1B6   0x.... 0x....      BL       __aeabi_memcpy
+    412          #endif
+    413          
+    414          //			if ( j == ( readnum - 1 ) )
+    415          //			{
+    416          //				FLASH_If_Write( flashAddr, (uint32_t *)adata, 512 / 4 );
+    417          //			}
+    418          //			else
+    419          //			{
+    420          //				FLASH_If_Write( flashAddr, (uint32_t *)adata, 512 / 4 );
+    421          //			}
+    422          			HAL_FLASH_Unlock();
+   \      0x1BA   0x.... 0x....      BL       HAL_FLASH_Unlock
+    423          
+    424          			int nCntRetry;
+    425          
+    426          			nCntRetry = 5;	//	5회 Re-Try
+   \      0x1BE   0x2005             MOVS     R0,#+5
+   \      0x1C0   0x4680             MOV      R8,R0
+    427          
+    428          			while( FLASH_If_Write( flashAddr, (uint32_t *)adata, 512 / 4 ) != FLASHIF_OK && nCntRetry > 0 )
+   \                     ??BootLoaderTask_10: (+1)
+   \      0x1C2   0x2280             MOVS     R2,#+128
+   \      0x1C4   0xA908             ADD      R1,SP,#+32
+   \      0x1C6   0x0038             MOVS     R0,R7
+   \      0x1C8   0x.... 0x....      BL       FLASH_If_Write
+   \      0x1CC   0x2800             CMP      R0,#+0
+   \      0x1CE   0xD00F             BEQ.N    ??BootLoaderTask_11
+   \      0x1D0   0xF1B8 0x0F01      CMP      R8,#+1
+   \      0x1D4   0xDB0C             BLT.N    ??BootLoaderTask_11
+    429          			{
+    430          				printf("%s(%d) - Write Error\n", __func__, __LINE__ );
+   \      0x1D6   0xF44F 0x72D7      MOV      R2,#+430
+   \      0x1DA   0x4651             MOV      R1,R10
+   \      0x1DC   0x....             LDR.N    R0,??DataTable8_30
+   \      0x1DE   0x.... 0x....      BL       printf
+    431          				HAL_Delay( 1000 );
+   \      0x1E2   0xF44F 0x707A      MOV      R0,#+1000
+   \      0x1E6   0x.... 0x....      BL       HAL_Delay
+    432          				nCntRetry--;
+   \      0x1EA   0xF1B8 0x0801      SUBS     R8,R8,#+1
+   \      0x1EE   0xE7E8             B.N      ??BootLoaderTask_10
+    433          			}
+    434          
+    435          			HAL_FLASH_Lock();
+   \                     ??BootLoaderTask_11: (+1)
+   \      0x1F0   0x.... 0x....      BL       HAL_FLASH_Lock
+    436          
+    437          			//*
+    438          			printf ("#");
+   \      0x1F4   0x....             ADR.N    R0,??DataTable8
+   \      0x1F6   0x.... 0x....      BL       printf
+    439          			/*/
+    440          			printf("0x%08X -> 0x%08X\n", adata, flashAddr);
+    441          
+    442          			if( j <= 2 )
+    443          			{
+    444          				printf("0x%08X\n", adata);
+    445          				dump( (unsigned char *)adata, 512, 1 );
+    446          				printf("0x%08X\n", flashAddr);
+    447          				dump( (unsigned char *)flashAddr, 512, 1 );
+    448          			}
+    449          			//	*/
+    450          
+    451          			flashAddr = flashAddr + 512;
+   \      0x1FA   0xF517 0x7700      ADDS     R7,R7,#+512
+    452          
+    453          //			HAL_Delay(5);		//
+    454          		}
+   \      0x1FE   0x1C6D             ADDS     R5,R5,#+1
+   \      0x200   0xE7CC             B.N      ??BootLoaderTask_8
+    455          
+    456          		printf("\nNew SW Flash Done\n");
+   \                     ??BootLoaderTask_9: (+1)
+   \      0x202   0x....             LDR.N    R0,??DataTable8_31
+   \      0x204   0x.... 0x....      BL       printf
+    457          		//========================================================================
+    458          
+    459          #if defined( USE_YMODEM_EXT_FLASH )
+    460          
+    461          		//	Magic Number ( 0xaa55 )삭제.
+    462          		Flash32KBErase( 0x0000 );
+    463          
+    464          #else
+    465          
+    466          		//========================================================================
+    467          		printf("Erase Upgrade Config\n");
+   \      0x208   0x....             LDR.N    R0,??DataTable8_32
+   \      0x20A   0x.... 0x....      BL       printf
+    468          		memset(buf, 0, sizeof(buf));
+   \      0x20E   0xF05F 0x080A      MOVS     R8,#+10
+   \      0x212   0xF05F 0x0A00      MOVS     R10,#+0
+   \      0x216   0xAC05             ADD      R4,SP,#+20
+   \      0x218   0x4652             MOV      R2,R10
+   \      0x21A   0x4641             MOV      R1,R8
+   \      0x21C   0x0020             MOVS     R0,R4
+   \      0x21E   0x.... 0x....      BL       __aeabi_memset
+    469          	    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf, 5 );
+   \      0x222   0x2005             MOVS     R0,#+5
+   \      0x224   0x9000             STR      R0,[SP, #+0]
+   \      0x226   0xAB05             ADD      R3,SP,#+20
+   \      0x228   0x2220             MOVS     R2,#+32
+   \      0x22A   0x21A0             MOVS     R1,#+160
+   \      0x22C   0x....             LDR.N    R0,??DataTable8_18
+   \      0x22E   0x.... 0x....      BL       M24_HAL_WriteBytes
+    470          
+    471          		//========================================================================
+    472          		printf("Erase Upgrade Binary Image\n");
+   \      0x232   0x....             LDR.N    R0,??DataTable8_33
+   \      0x234   0x.... 0x....      BL       printf
+    473          		FLASH_If_Erase( ADDR_FLASH_IMGAPP );		//	0x080A0000
+   \      0x238   0x....             LDR.N    R0,??DataTable8_23
+   \      0x23A   0x.... 0x....      BL       FLASH_If_Erase
+    474          
+    475          		//========================================================================
+    476          
+    477          //		HAL_FLASH_Unlock();
+    478          //		flash1.TypeErase = FLASH_TYPEERASE_SECTORS;
+    479          //		flash1.Banks = FLASH_BANK_1;
+    480          //		flash1.Sector = FLASH_SECTOR_4;		//  0x08010000 ~ 0x0801ffff
+    481          //		flash1.NbSectors = 1;
+    482          //		flash1.VoltageRange = FLASH_VOLTAGE_RANGE_3;
+    483          //		printf("Internal flash command erase old app #%d\n", flash1.Sector);
+    484          //		HAL_FLASHEx_Erase(&flash1, NULL);
+    485          //		HAL_FLASH_Lock();
+    486          //		printf("Internal flash erase command\n");
+    487          
+    488          #endif
+    489          
+    490          		printf("\n");
+   \      0x23E   0x....             ADR.N    R0,??DataTable8_1
+   \      0x240   0x.... 0x....      BL       printf
+    491          		printf("New S/W Boot\n");
+   \      0x244   0x....             LDR.N    R0,??DataTable8_34
+   \      0x246   0x.... 0x....      BL       printf
+    492          		HAL_Delay(1000);
+   \      0x24A   0xF44F 0x707A      MOV      R0,#+1000
+   \      0x24E   0x.... 0x....      BL       HAL_Delay
+    493          		if	( (((*(__IO uint32_t*)APPLICATION_ADDRESS1) & 0x2FFE0000 ) == 0x20000000)
+    494          			 ||	( ( ( *( __IO uint32_t* )APPLICATION_ADDRESS1 ) & 0x2FF00000 ) == 0x20000000 )		//	ST4STM32(Ac6 SystemWorkbench) Binary Image
+    495          			)
+   \      0x252   0x....             LDR.N    R4,??DataTable8_13
+   \      0x254   0x6821             LDR      R1,[R4, #+0]
+   \      0x256   0x....             LDR.N    R0,??DataTable8_35
+   \      0x258   0x4001             ANDS     R1,R0,R1
+   \      0x25A   0xF1B1 0x5F00      CMP      R1,#+536870912
+   \      0x25E   0xD005             BEQ.N    ??BootLoaderTask_12
+   \      0x260   0x6820             LDR      R0,[R4, #+0]
+   \      0x262   0xEA19 0x0900      ANDS     R9,R9,R0
+   \      0x266   0xF1B9 0x5F00      CMP      R9,#+536870912
+   \      0x26A   0xD149             BNE.N    ??BootLoaderTask_5
+    496          		{
+    497          			printf(" Jump to Main Application......\n");
+   \                     ??BootLoaderTask_12: (+1)
+   \      0x26C   0x....             LDR.N    R0,??DataTable8_36
+   \      0x26E   0x.... 0x....      BL       printf
+    498          			JumpAddress = *(__IO uint32_t*) (APPLICATION_ADDRESS1 + 4);
+   \      0x272   0x....             LDR.N    R0,??DataTable8_37
+   \      0x274   0x....             LDR.N    R1,??DataTable8_38
+   \      0x276   0x6809             LDR      R1,[R1, #+0]
+   \      0x278   0x6001             STR      R1,[R0, #+0]
+    499          			Jump_To_Application = (pFunction) JumpAddress;
+   \      0x27A   0x.... 0x....      LDR.W    R8,??DataTable8_39
+   \      0x27E   0x6800             LDR      R0,[R0, #+0]
+   \      0x280   0xF8C8 0x0000      STR      R0,[R8, #+0]
+    500          //			vPortEnterCritical();
+    501          			HAL_DeInit();
+   \      0x284   0x.... 0x....      BL       HAL_DeInit
+    502          			/* Initialize user application's Stack Pointer */
+    503          			__set_MSP(*(__IO uint32_t*) APPLICATION_ADDRESS1);
+   \      0x288   0x6820             LDR      R0,[R4, #+0]
+   \      0x28A   0xF380 0x8808      MSR      MSP,R0
+    504          			Jump_To_Application();
+   \      0x28E   0xF8D8 0x0000      LDR      R0,[R8, #+0]
+   \      0x292   0x4780             BLX      R0
+   \      0x294   0xE034             B.N      ??BootLoaderTask_5
+    505          		}
+    506          	}
+    507          	else
+    508          	{
+    509          		printf("\n");
+   \                     ??BootLoaderTask_7: (+1)
+   \      0x296   0x....             ADR.N    R0,??DataTable8_1
+   \      0x298   0x.... 0x....      BL       printf
+    510          		printf("%s(%d) : Automatic Boot\n", __func__, __LINE__);
+   \      0x29C   0xF44F 0x72FF      MOV      R2,#+510
+   \      0x2A0   0x....             LDR.N    R1,??DataTable8_16
+   \      0x2A2   0x....             LDR.N    R0,??DataTable8_40
+   \      0x2A4   0x.... 0x....      BL       printf
+    511          		HAL_Delay(1000);
+   \      0x2A8   0xF44F 0x707A      MOV      R0,#+1000
+   \      0x2AC   0x.... 0x....      BL       HAL_Delay
+    512          
+    513          		printf("0x%08X : 0x%08X\n", APPLICATION_ADDRESS1, *(__IO uint32_t*)APPLICATION_ADDRESS1 );
+   \      0x2B0   0x.... 0x....      LDR.W    R8,??DataTable8_13
+   \      0x2B4   0xF8D8 0x2000      LDR      R2,[R8, #+0]
+   \      0x2B8   0x0021             MOVS     R1,R4
+   \      0x2BA   0x....             LDR.N    R0,??DataTable8_41
+   \      0x2BC   0x.... 0x....      BL       printf
+    514          
+    515          		if	( (((*(__IO uint32_t*)APPLICATION_ADDRESS1) & 0x2FFE0000 ) == 0x20000000)			//	Keil Binary Image
+    516          			|| (((*(__IO uint32_t*)APPLICATION_ADDRESS1) & 0x2FF00000 ) == 0x20000000)		//	ST4STM32(Ac6 SystemWorkbench) Binary Image
+    517          			)
+   \      0x2C0   0xF8D8 0x1000      LDR      R1,[R8, #+0]
+   \      0x2C4   0x....             LDR.N    R0,??DataTable8_35
+   \      0x2C6   0x4001             ANDS     R1,R0,R1
+   \      0x2C8   0xF1B1 0x5F00      CMP      R1,#+536870912
+   \      0x2CC   0xD006             BEQ.N    ??BootLoaderTask_13
+   \      0x2CE   0xF8D8 0x1000      LDR      R1,[R8, #+0]
+   \      0x2D2   0x....             LDR.N    R0,??DataTable8_22
+   \      0x2D4   0x4001             ANDS     R1,R0,R1
+   \      0x2D6   0xF1B1 0x5F00      CMP      R1,#+536870912
+   \      0x2DA   0xD102             BNE.N    ??BootLoaderTask_14
+    518          		{
+    519          			printf(" Jump to Main Application......\n");
+   \                     ??BootLoaderTask_13: (+1)
+   \      0x2DC   0x....             LDR.N    R0,??DataTable8_36
+   \      0x2DE   0x.... 0x....      BL       printf
+    520          		}
+    521          
+    522          		JumpAddress = *(__IO uint32_t*) (APPLICATION_ADDRESS1 + 4);
+   \                     ??BootLoaderTask_14: (+1)
+   \      0x2E2   0x....             LDR.N    R0,??DataTable8_37
+   \      0x2E4   0x....             LDR.N    R1,??DataTable8_38
+   \      0x2E6   0x6809             LDR      R1,[R1, #+0]
+   \      0x2E8   0x6001             STR      R1,[R0, #+0]
+    523          		Jump_To_Application = (pFunction) JumpAddress;
+   \      0x2EA   0x....             LDR.N    R4,??DataTable8_39
+   \      0x2EC   0x6800             LDR      R0,[R0, #+0]
+   \      0x2EE   0x6020             STR      R0,[R4, #+0]
+    524          
+    525          		//========================================================================
+    526          		//	De-Initialize
+    527          //		HAL_TIM_Base_Stop( &htim2 );
+    528          
+    529          //		vPortEnterCritical();
+    530          		HAL_DeInit();
+   \      0x2F0   0x.... 0x....      BL       HAL_DeInit
+    531          		//========================================================================
+    532          
+    533          		/* Initialize user application's Stack Pointer */
+    534          		__set_MSP(*(__IO uint32_t*) APPLICATION_ADDRESS1);
+   \      0x2F4   0xF8D8 0x0000      LDR      R0,[R8, #+0]
+   \      0x2F8   0xF380 0x8808      MSR      MSP,R0
+    535          
+    536          		Jump_To_Application();
+   \      0x2FC   0x6820             LDR      R0,[R4, #+0]
+   \      0x2FE   0x4780             BLX      R0
+    537          	}
+    538          
+    539          	while ( 1 )
+    540          	{
+    541          		//	while(1) - Task 종료시 Blocking 됨.
+    542          		HAL_Delay( 1000 );
+   \                     ??BootLoaderTask_5: (+1)
+   \      0x300   0xF44F 0x707A      MOV      R0,#+1000
+   \      0x304   0x.... 0x....      BL       HAL_Delay
+   \      0x308   0xE7FA             B.N      ??BootLoaderTask_5
+    543          	}
+    544          }
+    545          
+    546          
+    547          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    548          int cmd_stboot(int argc, char *argv[])
+    549          //========================================================================
+    550          {
+   \                     cmd_stboot: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    551          	printf( "Jump To STM32 Bootloader\n" );
+   \        0x6   0x....             LDR.N    R0,??DataTable8_42
+   \        0x8   0x.... 0x....      BL       printf
+    552          
+    553          	DispDFUMode();
+   \        0xC   0x.... 0x....      BL       DispDFUMode
+    554          
+    555          	JumpToSTBootloader();
+   \       0x10   0x.... 0x....      BL       JumpToSTBootloader
+    556          
+    557          	return 0;
+   \       0x14   0x2000             MOVS     R0,#+0
+   \       0x16   0xBD32             POP      {R1,R4,R5,PC}
+    558          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6:
+   \        0x0   0x52 0x46          DC8      "RFM"          
+
+   \              0x4D 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_1:
+   \        0x0   0x52 0x46          DC8      "RFT"          
+
+   \              0x54 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8:
+   \        0x0   0x23 0x00          DC8      "#",0x0,0x0    
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_1:
+   \        0x0   0x0A 0x00          DC8      "\n",0x0,0x0   
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_2:
+   \        0x0   0x....'....        DC32     g_nBootMode
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_3:
+   \        0x0   0x....'....        DC32     s_nDevID
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_4:
+   \        0x0   0x....'....        DC32     `_SetDevID::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_5:
+   \        0x0   0x....'....        DC32     ?_0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_6:
+   \        0x0   0x1FFF'0004        DC32     0x1fff0004
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_7:
+   \        0x0   0x1FFF'0000        DC32     0x1fff0000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_8:
+   \        0x0   0x....'....        DC32     hi2c3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_9:
+   \        0x0   0x....'....        DC32     ?_3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_10:
+   \        0x0   0x....'....        DC32     `InitBoot::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_11:
+   \        0x0   0x....'....        DC32     ?_4
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_12:
+   \        0x0   0x....'....        DC32     ?_5
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_13:
+   \        0x0   0x0802'0000        DC32     0x8020000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_14:
+   \        0x0   0x....'....        DC32     ?_6
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_15:
+   \        0x0   0x....'....        DC32     huart2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_16:
+   \        0x0   0x....'....        DC32     `BootLoaderTask::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_17:
+   \        0x0   0x....'....        DC32     ?_7
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_18:
+   \        0x0   0x....'....        DC32     hi2c1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_19:
+   \        0x0   0x4002'0C00        DC32     0x40020c00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_20:
+   \        0x0   0x....'....        DC32     ?_8
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_21:
+   \        0x0   0x....'....        DC32     ?_9
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_22:
+   \        0x0   0x2FF0'0000        DC32     0x2ff00000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_23:
+   \        0x0   0x080A'0000        DC32     0x80a0000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_24:
+   \        0x0   0x....'....        DC32     ?_10
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_25:
+   \        0x0   0x....'....        DC32     ?_11
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_26:
+   \        0x0   0x....'....        DC32     ?_12
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_27:
+   \        0x0   0x....'....        DC32     ?_13
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_28:
+   \        0x0   0x....'....        DC32     ?_14
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_29:
+   \        0x0   0x....'....        DC32     ?_15
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_30:
+   \        0x0   0x....'....        DC32     ?_16
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_31:
+   \        0x0   0x....'....        DC32     ?_18
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_32:
+   \        0x0   0x....'....        DC32     ?_19
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_33:
+   \        0x0   0x....'....        DC32     ?_20
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_34:
+   \        0x0   0x....'....        DC32     ?_22
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_35:
+   \        0x0   0x2FFE'0000        DC32     0x2ffe0000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_36:
+   \        0x0   0x....'....        DC32     ?_23
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_37:
+   \        0x0   0x....'....        DC32     JumpAddress
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_38:
+   \        0x0   0x0802'0004        DC32     0x8020004
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_39:
+   \        0x0   0x....'....        DC32     Jump_To_Application
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_40:
+   \        0x0   0x....'....        DC32     ?_24
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_41:
+   \        0x0   0x....'....        DC32     ?_25
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_42:
+   \        0x0   0x....'....        DC32     ?_26
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \        0x0   0x25 0x73          DC8 "%s : %s(%d)\012"
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x73 0x28    
+
+   \              0x25 0x64    
+
+   \              0x29 0x0A    
+
+   \              0x00
+   \        0xD                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \        0x0   0x52 0x46          DC8 "RFM"
+
+   \              0x4D 0x00
+
+   \                                 In section .rodata, align 4
+   \        0x0   0x52 0x46          DC8 "RFT"
+
+   \              0x54 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_3:
+   \        0x0   0x55 0x53          DC8 "USB Upgrade Mode"
+
+   \              0x42 0x20    
+
+   \              0x55 0x70    
+
+   \              0x67 0x72    
+
+   \              0x61 0x64    
+
+   \              0x65 0x20    
+
+   \              0x4D 0x6F    
+
+   \              0x64 0x65    
+
+   \              0x00
+   \       0x11                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_4:
+   \        0x0   0x25 0x73          DC8 "%s(%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_5:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - Init OLED\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x49    
+
+   \              0x6E 0x69    
+
+   \              0x74 0x20    
+
+   \              0x4F 0x4C    
+
+   \              0x45 0x44    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_6:
+   \        0x0   0x42 0x6F          DC8 "BootLoader\012"
+
+   \              0x6F 0x74    
+
+   \              0x4C 0x6F    
+
+   \              0x61 0x64    
+
+   \              0x65 0x72    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_7:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - RS485 Input : 0x%02X\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x52    
+
+   \              0x53 0x34    
+
+   \              0x38 0x35    
+
+   \              0x20 0x49    
+
+   \              0x6E 0x70    
+
+   \              0x75 0x74    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x30    
+
+   \              0x78 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x1F                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_8:
+   \        0x0   0x53 0x54          DC8 "STBootLoader Mode ( DFU Mode )\012"
+
+   \              0x42 0x6F    
+
+   \              0x6F 0x74    
+
+   \              0x4C 0x6F    
+
+   \              0x61 0x64    
+
+   \              0x65 0x72    
+
+   \              0x20 0x4D    
+
+   \              0x6F 0x64    
+
+   \              0x65 0x20    
+
+   \              0x28 0x20    
+
+   \              0x44 0x46    
+
+   \              0x55 0x20    
+
+   \              0x4D 0x6F    
+
+   \              0x64 0x65    
+
+   \              0x20 0x29    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_9:
+   \        0x0   0x42 0x6F          DC8 "BootLoader Mode\012"
+
+   \              0x6F 0x74    
+
+   \              0x4C 0x6F    
+
+   \              0x61 0x64    
+
+   \              0x65 0x72    
+
+   \              0x20 0x4D    
+
+   \              0x6F 0x64    
+
+   \              0x65 0x0A    
+
+   \              0x00
+   \       0x11                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_10:
+   \        0x0   0x46 0x69          DC8 "Find a New Version.\012"
+
+   \              0x6E 0x64    
+
+   \              0x20 0x61    
+
+   \              0x20 0x4E    
+
+   \              0x65 0x77    
+
+   \              0x20 0x56    
+
+   \              0x65 0x72    
+
+   \              0x73 0x69    
+
+   \              0x6F 0x6E    
+
+   \              0x2E 0x0A    
+
+   \              0x00
+   \       0x15                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_11:
+   \        0x0   0x49 0x6E          DC8 "Internal flash erase done.\012"
+
+   \              0x74 0x65    
+
+   \              0x72 0x6E    
+
+   \              0x61 0x6C    
+
+   \              0x20 0x66    
+
+   \              0x6C 0x61    
+
+   \              0x73 0x68    
+
+   \              0x20 0x65    
+
+   \              0x72 0x61    
+
+   \              0x73 0x65    
+
+   \              0x20 0x64    
+
+   \              0x6F 0x6E    
+
+   \              0x65 0x2E    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_12:
+   \        0x0   0x45 0x72          DC8 "Erase Delay\012"
+
+   \              0x61 0x73    
+
+   \              0x65 0x20    
+
+   \              0x44 0x65    
+
+   \              0x6C 0x61    
+
+   \              0x79 0x0A    
+
+   \              0x00
+   \        0xD                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_13:
+   \        0x0   0x4E 0x65          DC8 "New S/W size = %d\012"
+
+   \              0x77 0x20    
+
+   \              0x53 0x2F    
+
+   \              0x57 0x20    
+
+   \              0x73 0x69    
+
+   \              0x7A 0x65    
+
+   \              0x20 0x3D    
+
+   \              0x20 0x25    
+
+   \              0x64 0x0A    
+
+   \              0x00
+   \       0x13                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_14:
+   \        0x0   0x72 0x65          DC8 "readnum = %d\012"
+
+   \              0x61 0x64    
+
+   \              0x6E 0x75    
+
+   \              0x6D 0x20    
+
+   \              0x3D 0x20    
+
+   \              0x25 0x64    
+
+   \              0x0A 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_15:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - Flash WritePorection( %d )\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x46    
+
+   \              0x6C 0x61    
+
+   \              0x73 0x68    
+
+   \              0x20 0x57    
+
+   \              0x72 0x69    
+
+   \              0x74 0x65    
+
+   \              0x50 0x6F    
+
+   \              0x72 0x65    
+
+   \              0x63 0x74    
+
+   \              0x69 0x6F    
+
+   \              0x6E 0x28    
+
+   \              0x20 0x25    
+
+   \              0x64 0x20    
+
+   \              0x29 0x0A    
+
+   \              0x00
+   \       0x25                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_16:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - Write Error\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x57    
+
+   \              0x72 0x69    
+
+   \              0x74 0x65    
+
+   \              0x20 0x45    
+
+   \              0x72 0x72    
+
+   \              0x6F 0x72    
+
+   \              0x0A 0x00
+   \       0x16                      DS8 2
+
+   \                                 In section .rodata, align 2
+   \        0x0   0x23 0x00          DC8 "#"
+
+   \                                 In section .rodata, align 4
+   \                     ?_18:
+   \        0x0   0x0A 0x4E          DC8 "\012New SW Flash Done\012"
+
+   \              0x65 0x77    
+
+   \              0x20 0x53    
+
+   \              0x57 0x20    
+
+   \              0x46 0x6C    
+
+   \              0x61 0x73    
+
+   \              0x68 0x20    
+
+   \              0x44 0x6F    
+
+   \              0x6E 0x65    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_19:
+   \        0x0   0x45 0x72          DC8 "Erase Upgrade Config\012"
+
+   \              0x61 0x73    
+
+   \              0x65 0x20    
+
+   \              0x55 0x70    
+
+   \              0x67 0x72    
+
+   \              0x61 0x64    
+
+   \              0x65 0x20    
+
+   \              0x43 0x6F    
+
+   \              0x6E 0x66    
+
+   \              0x69 0x67    
+
+   \              0x0A 0x00
+   \       0x16                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_20:
+   \        0x0   0x45 0x72          DC8 "Erase Upgrade Binary Image\012"
+
+   \              0x61 0x73    
+
+   \              0x65 0x20    
+
+   \              0x55 0x70    
+
+   \              0x67 0x72    
+
+   \              0x61 0x64    
+
+   \              0x65 0x20    
+
+   \              0x42 0x69    
+
+   \              0x6E 0x61    
+
+   \              0x72 0x79    
+
+   \              0x20 0x49    
+
+   \              0x6D 0x61    
+
+   \              0x67 0x65    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 2
+   \        0x0   0x0A 0x00          DC8 "\012"
+
+   \                                 In section .rodata, align 4
+   \                     ?_22:
+   \        0x0   0x4E 0x65          DC8 "New S/W Boot\012"
+
+   \              0x77 0x20    
+
+   \              0x53 0x2F    
+
+   \              0x57 0x20    
+
+   \              0x42 0x6F    
+
+   \              0x6F 0x74    
+
+   \              0x0A 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_23:
+   \        0x0   0x20 0x4A          DC8 " Jump to Main Application......\012"
+
+   \              0x75 0x6D    
+
+   \              0x70 0x20    
+
+   \              0x74 0x6F    
+
+   \              0x20 0x4D    
+
+   \              0x61 0x69    
+
+   \              0x6E 0x20    
+
+   \              0x41 0x70    
+
+   \              0x70 0x6C    
+
+   \              0x69 0x63    
+
+   \              0x61 0x74    
+
+   \              0x69 0x6F    
+
+   \              0x6E 0x2E    
+
+   \              0x2E 0x2E    
+
+   \              0x2E 0x2E    
+
+   \              0x2E 0x0A    
+
+   \              0x00
+   \       0x21                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_24:
+   \        0x0   0x25 0x73          DC8 "%s(%d) : Automatic Boot\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x41    
+
+   \              0x75 0x74    
+
+   \              0x6F 0x6D    
+
+   \              0x61 0x74    
+
+   \              0x69 0x63    
+
+   \              0x20 0x42    
+
+   \              0x6F 0x6F    
+
+   \              0x74 0x0A    
+
+   \              0x00
+   \       0x19                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_25:
+   \        0x0   0x30 0x78          DC8 "0x%08X : 0x%08X\012"
+
+   \              0x25 0x30    
+
+   \              0x38 0x58    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x30    
+
+   \              0x78 0x25    
+
+   \              0x30 0x38    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x11                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_26:
+   \        0x0   0x4A 0x75          DC8 "Jump To STM32 Bootloader\012"
+
+   \              0x6D 0x70    
+
+   \              0x20 0x54    
+
+   \              0x6F 0x20    
+
+   \              0x53 0x54    
+
+   \              0x4D 0x33    
+
+   \              0x32 0x20    
+
+   \              0x42 0x6F    
+
+   \              0x6F 0x74    
+
+   \              0x6C 0x6F    
+
+   \              0x61 0x64    
+
+   \              0x65 0x72    
+
+   \              0x0A 0x00
+   \       0x1A                      DS8 2
+    559          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+     584   BootLoaderTask
+       584   -- Indirect call
+       584   -> DispDFUMode
+       584   -> FLASH_If_Erase
+       584   -> FLASH_If_EraseSectors
+       584   -> FLASH_If_GetWriteProtectionStatus
+       584   -> FLASH_If_Write
+       584   -> FLASH_If_WriteProtectionConfig
+       584   -> GetBootMode
+       584   -> HAL_DeInit
+       584   -> HAL_Delay
+       584   -> HAL_FLASH_Lock
+       584   -> HAL_FLASH_Unlock
+       584   -> HAL_GPIO_ReadPin
+       584   -> HAL_UART_Receive
+       584   -> HAL_UART_Transmit
+       584   -> InitBoot
+       584   -> IsYModemMaster
+       584   -> JumpToSTBootloader
+       584   -> M24_HAL_ReadBytes
+       584   -> M24_HAL_WriteBytes
+       584   -> SerialDownload
+       584   -> SetYModemMaster
+       584   -> _GetDevID
+       584   -> __aeabi_memcpy
+       584   -> __aeabi_memset
+       584   -> printf
+       8   DispDFUMode
+         8   -> HAL_I2C_IsDeviceReady
+         8   -> LCDClear
+         8   -> LCDPrintf
+         8   -> LCDSetCursor
+       0   GetBootMode
+      16   InitBoot
+        16   -> HAL_I2C_IsDeviceReady
+        16   -> I2C_BusScan
+        16   -> LCDClear
+        16   -> LCDInit
+        16   -> _SetDevID
+        16   -> printf
+      16   JumpToSTBootloader
+        16   -- Indirect call
+        16   -> HAL_RCC_DeInit
+        16   -> MX_IWDG_Disable
+       0   SetBootMode
+       0   _GetDevID
+       8   _SetDevID
+         8   -> printf
+      16   cmd_stboot
+        16   -> DispDFUMode
+        16   -> JumpToSTBootloader
+        16   -> printf
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable6
+       4  ??DataTable6_1
+       4  ??DataTable8
+       4  ??DataTable8_1
+       4  ??DataTable8_10
+       4  ??DataTable8_11
+       4  ??DataTable8_12
+       4  ??DataTable8_13
+       4  ??DataTable8_14
+       4  ??DataTable8_15
+       4  ??DataTable8_16
+       4  ??DataTable8_17
+       4  ??DataTable8_18
+       4  ??DataTable8_19
+       4  ??DataTable8_2
+       4  ??DataTable8_20
+       4  ??DataTable8_21
+       4  ??DataTable8_22
+       4  ??DataTable8_23
+       4  ??DataTable8_24
+       4  ??DataTable8_25
+       4  ??DataTable8_26
+       4  ??DataTable8_27
+       4  ??DataTable8_28
+       4  ??DataTable8_29
+       4  ??DataTable8_3
+       4  ??DataTable8_30
+       4  ??DataTable8_31
+       4  ??DataTable8_32
+       4  ??DataTable8_33
+       4  ??DataTable8_34
+       4  ??DataTable8_35
+       4  ??DataTable8_36
+       4  ??DataTable8_37
+       4  ??DataTable8_38
+       4  ??DataTable8_39
+       4  ??DataTable8_4
+       4  ??DataTable8_40
+       4  ??DataTable8_41
+       4  ??DataTable8_42
+       4  ??DataTable8_5
+       4  ??DataTable8_6
+       4  ??DataTable8_7
+       4  ??DataTable8_8
+       4  ??DataTable8_9
+      16  ?_0
+       4  ?_1
+      24  ?_10
+      28  ?_11
+      16  ?_12
+      20  ?_13
+      16  ?_14
+      40  ?_15
+      24  ?_16
+       2  ?_17
+      20  ?_18
+      24  ?_19
+       4  ?_2
+      28  ?_20
+       2  ?_21
+      16  ?_22
+      36  ?_23
+      28  ?_24
+      20  ?_25
+      28  ?_26
+      20  ?_3
+       8  ?_4
+      20  ?_5
+      12  ?_6
+      32  ?_7
+      32  ?_8
+      20  ?_9
+     778  BootLoaderTask
+      42  DispDFUMode
+       8  GetBootMode
+      80  InitBoot
+       4  JumpAddress
+      32  JumpToSTBootloader
+       4  Jump_To_Application
+       8  SetBootMode
+       8  _GetDevID
+      36  _SetDevID
+      24  cmd_stboot
+       4  g_nBootMode
+       4  id_buf
+       4  s_nDevID
+      40  -- Other
+
+ 
+    16 bytes in section .bss
+     4 bytes in section .data
+   580 bytes in section .rodata
+ 1'196 bytes in section .text
+ 
+ 1'196 bytes of CODE  memory
+   580 bytes of CONST memory
+    20 bytes of DATA  memory
+
+Errors: none
+Warnings: 25

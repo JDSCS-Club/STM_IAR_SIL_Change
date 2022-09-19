@@ -1,0 +1,619 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:55
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Src\stm32f4xx_it.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\Core\stm32f4xx_it.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Src\stm32f4xx_it.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Application\User\Core
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\Core
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\Core\stm32f4xx_it.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Application\User\Core\stm32f4xx_it.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\Core\stm32f4xx_it.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Core\Src\stm32f4xx_it.c
+      1          /* USER CODE BEGIN Header */
+      2          /**
+      3            ******************************************************************************
+      4            * @file    stm32f4xx_it.c
+      5            * @brief   Interrupt Service Routines.
+      6            ******************************************************************************
+      7            * @attention
+      8            *
+      9            * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+     10            * All rights reserved.</center></h2>
+     11            *
+     12            * This software component is licensed by ST under BSD 3-Clause license,
+     13            * the "License"; You may not use this file except in compliance with the
+     14            * License. You may obtain a copy of the License at:
+     15            *                        opensource.org/licenses/BSD-3-Clause
+     16            *
+     17            ******************************************************************************
+     18            */
+     19          /* USER CODE END Header */
+     20          
+     21          /* Includes ------------------------------------------------------------------*/
+     22          #include "main.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     23          #include "stm32f4xx_it.h"
+     24          /* Private includes ----------------------------------------------------------*/
+     25          /* USER CODE BEGIN Includes */
+     26          /* USER CODE END Includes */
+     27          
+     28          /* Private typedef -----------------------------------------------------------*/
+     29          /* USER CODE BEGIN TD */
+     30          
+     31          /* USER CODE END TD */
+     32          
+     33          /* Private define ------------------------------------------------------------*/
+     34          /* USER CODE BEGIN PD */
+     35           
+     36          /* USER CODE END PD */
+     37          
+     38          /* Private macro -------------------------------------------------------------*/
+     39          /* USER CODE BEGIN PM */
+     40          
+     41          /* USER CODE END PM */
+     42          
+     43          /* Private variables ---------------------------------------------------------*/
+     44          /* USER CODE BEGIN PV */
+     45          
+     46          /* USER CODE END PV */
+     47          
+     48          /* Private function prototypes -----------------------------------------------*/
+     49          /* USER CODE BEGIN PFP */
+     50          
+     51          /* USER CODE END PFP */
+     52          
+     53          /* Private user code ---------------------------------------------------------*/
+     54          /* USER CODE BEGIN 0 */
+     55          
+     56          /* USER CODE END 0 */
+     57          
+     58          /* External variables --------------------------------------------------------*/
+     59          #if defined(USE_BOOTLOADER)
+     60           //	Bootloader : Exclude
+     61          #else	//	Application
+     62          extern PCD_HandleTypeDef hpcd_USB_OTG_FS;
+     63          #endif	//	Application
+     64          
+     65          extern DMA_HandleTypeDef hdma_i2s3_ext_rx;
+     66          extern DMA_HandleTypeDef hdma_spi3_tx;
+     67          extern DMA_HandleTypeDef hdma_spi1_tx;
+     68          extern DMA_HandleTypeDef hdma_spi1_rx;
+     69          extern UART_HandleTypeDef huart1;
+     70          extern UART_HandleTypeDef huart2;
+     71          extern TIM_HandleTypeDef htim1;
+     72          
+     73          /* USER CODE BEGIN EV */
+     74          
+     75          /* USER CODE END EV */
+     76          
+     77          /******************************************************************************/
+     78          /*           Cortex-M4 Processor Interruption and Exception Handlers          */
+     79          /******************************************************************************/
+     80          /**
+     81            * @brief This function handles Non maskable interrupt.
+     82            */
+
+   \                                 In section .text, align 2, keep-with-next
+     83          void NMI_Handler(void)
+     84          {
+     85            /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+     86          
+     87            /* USER CODE END NonMaskableInt_IRQn 0 */
+     88            /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+     89          
+     90            /* USER CODE END NonMaskableInt_IRQn 1 */
+     91          }
+   \                     NMI_Handler: (+1)
+   \        0x0   0x4770             BX       LR
+     92          
+     93          /**
+     94            * @brief This function handles Hard fault interrupt.
+     95            */
+
+   \                                 In section .text, align 2, keep-with-next
+     96          void HardFault_Handler(void)
+     97          {
+     98            /* USER CODE BEGIN HardFault_IRQn 0 */
+     99          
+    100            /* USER CODE END HardFault_IRQn 0 */
+    101            while (1)
+   \                     HardFault_Handler: (+1)
+   \                     ??HardFault_Handler_0: (+1)
+   \        0x0   0xE7FE             B.N      ??HardFault_Handler_0
+    102            {
+    103              /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+    104              /* USER CODE END W1_HardFault_IRQn 0 */
+    105            }
+    106          }
+    107          
+    108          /**
+    109            * @brief This function handles Memory management fault.
+    110            */
+
+   \                                 In section .text, align 2, keep-with-next
+    111          void MemManage_Handler(void)
+    112          {
+    113            /* USER CODE BEGIN MemoryManagement_IRQn 0 */
+    114          
+    115            /* USER CODE END MemoryManagement_IRQn 0 */
+    116            while (1)
+   \                     MemManage_Handler: (+1)
+   \                     ??MemManage_Handler_0: (+1)
+   \        0x0   0xE7FE             B.N      ??MemManage_Handler_0
+    117            {
+    118              /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
+    119              /* USER CODE END W1_MemoryManagement_IRQn 0 */
+    120            }
+    121          }
+    122          
+    123          /**
+    124            * @brief This function handles Pre-fetch fault, memory access fault.
+    125            */
+
+   \                                 In section .text, align 2, keep-with-next
+    126          void BusFault_Handler(void)
+    127          {
+    128            /* USER CODE BEGIN BusFault_IRQn 0 */
+    129          
+    130            /* USER CODE END BusFault_IRQn 0 */
+    131            while (1)
+   \                     BusFault_Handler: (+1)
+   \                     ??BusFault_Handler_0: (+1)
+   \        0x0   0xE7FE             B.N      ??BusFault_Handler_0
+    132            {
+    133              /* USER CODE BEGIN W1_BusFault_IRQn 0 */
+    134              /* USER CODE END W1_BusFault_IRQn 0 */
+    135            }
+    136          }
+    137          
+    138          /**
+    139            * @brief This function handles Undefined instruction or illegal state.
+    140            */
+
+   \                                 In section .text, align 2, keep-with-next
+    141          void UsageFault_Handler(void)
+    142          {
+    143            /* USER CODE BEGIN UsageFault_IRQn 0 */
+    144          
+    145            /* USER CODE END UsageFault_IRQn 0 */
+    146            while (1)
+   \                     UsageFault_Handler: (+1)
+   \                     ??UsageFault_Handler_0: (+1)
+   \        0x0   0xE7FE             B.N      ??UsageFault_Handler_0
+    147            {
+    148              /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
+    149              /* USER CODE END W1_UsageFault_IRQn 0 */
+    150            }
+    151          }
+    152          
+    153          /**
+    154            * @brief This function handles System service call via SWI instruction.
+    155            */
+
+   \                                 In section .text, align 2, keep-with-next
+    156          void SVC_Handler(void)
+    157          {
+    158            /* USER CODE BEGIN SVCall_IRQn 0 */
+    159          
+    160            /* USER CODE END SVCall_IRQn 0 */
+    161            /* USER CODE BEGIN SVCall_IRQn 1 */
+    162          
+    163            /* USER CODE END SVCall_IRQn 1 */
+    164          }
+   \                     SVC_Handler: (+1)
+   \        0x0   0x4770             BX       LR
+    165          
+    166          /**
+    167            * @brief This function handles Debug monitor.
+    168            */
+
+   \                                 In section .text, align 2, keep-with-next
+    169          void DebugMon_Handler(void)
+    170          {
+    171            /* USER CODE BEGIN DebugMonitor_IRQn 0 */
+    172          
+    173            /* USER CODE END DebugMonitor_IRQn 0 */
+    174            /* USER CODE BEGIN DebugMonitor_IRQn 1 */
+    175          
+    176            /* USER CODE END DebugMonitor_IRQn 1 */
+    177          }
+   \                     DebugMon_Handler: (+1)
+   \        0x0   0x4770             BX       LR
+    178          
+    179          /**
+    180            * @brief This function handles Pendable request for system service.
+    181            */
+
+   \                                 In section .text, align 2, keep-with-next
+    182          void PendSV_Handler(void)
+    183          {
+    184            /* USER CODE BEGIN PendSV_IRQn 0 */
+    185          
+    186            /* USER CODE END PendSV_IRQn 0 */
+    187            /* USER CODE BEGIN PendSV_IRQn 1 */
+    188          
+    189            /* USER CODE END PendSV_IRQn 1 */
+    190          }
+   \                     PendSV_Handler: (+1)
+   \        0x0   0x4770             BX       LR
+    191          
+    192          
+    193          /**
+    194            * @brief  This function handles SysTick Handler.
+    195            * @param  None
+    196            * @retval None
+    197            */
+
+   \                                 In section .text, align 2, keep-with-next
+    198          void SysTick_Handler(void)
+    199          {
+   \                     SysTick_Handler: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    200            /* Update the LocalTime by adding 1 ms each SysTick interrupt */
+    201            HAL_IncTick();
+   \        0x2   0x.... 0x....      BL       HAL_IncTick
+    202          }
+   \        0x6   0xBD01             POP      {R0,PC}
+    203          
+    204          /******************************************************************************/
+    205          /* STM32F4xx Peripheral Interrupt Handlers                                    */
+    206          /* Add here the Interrupt Handlers for the used peripherals.                  */
+    207          /* For the available peripheral interrupt handler names,                      */
+    208          /* please refer to the startup file (startup_stm32f4xx.s).                    */
+    209          /******************************************************************************/
+    210          
+    211          /**
+    212            * @brief This function handles EXTI line4 interrupt.
+    213            */
+
+   \                                 In section .text, align 2, keep-with-next
+    214          void EXTI4_IRQHandler(void)
+    215          {
+   \                     EXTI4_IRQHandler: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    216            /* USER CODE BEGIN EXTI4_IRQn 0 */
+    217          
+    218            /* USER CODE END EXTI4_IRQn 0 */
+    219            HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
+   \        0x2   0x2010             MOVS     R0,#+16
+   \        0x4   0x.... 0x....      BL       HAL_GPIO_EXTI_IRQHandler
+    220            /* USER CODE BEGIN EXTI4_IRQn 1 */
+    221          
+    222            /* USER CODE END EXTI4_IRQn 1 */
+    223          }
+   \        0x8   0xBD01             POP      {R0,PC}
+    224          
+    225          /**
+    226            * @brief This function handles DMA1 stream0 global interrupt.
+    227            */
+
+   \                                 In section .text, align 2, keep-with-next
+    228          void DMA1_Stream0_IRQHandler(void)
+    229          {
+   \                     DMA1_Stream0_IRQHandler: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    230            /* USER CODE BEGIN DMA1_Stream0_IRQn 0 */
+    231          
+    232            /* USER CODE END DMA1_Stream0_IRQn 0 */
+    233            HAL_DMA_IRQHandler(&hdma_i2s3_ext_rx);
+   \        0x2   0x....             LDR.N    R0,??DataTable8
+   \        0x4   0x.... 0x....      BL       HAL_DMA_IRQHandler
+    234            /* USER CODE BEGIN DMA1_Stream0_IRQn 1 */
+    235          
+    236            /* USER CODE END DMA1_Stream0_IRQn 1 */
+    237          }
+   \        0x8   0xBD01             POP      {R0,PC}
+    238          
+    239          /**
+    240            * @brief This function handles DMA1 stream5 global interrupt.
+    241            */
+
+   \                                 In section .text, align 2, keep-with-next
+    242          void DMA1_Stream5_IRQHandler(void)
+    243          {
+   \                     DMA1_Stream5_IRQHandler: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    244            /* USER CODE BEGIN DMA1_Stream5_IRQn 0 */
+    245          
+    246            /* USER CODE END DMA1_Stream5_IRQn 0 */
+    247            HAL_DMA_IRQHandler(&hdma_spi3_tx);
+   \        0x2   0x....             LDR.N    R0,??DataTable8_1
+   \        0x4   0x.... 0x....      BL       HAL_DMA_IRQHandler
+    248            /* USER CODE BEGIN DMA1_Stream5_IRQn 1 */
+    249          
+    250            /* USER CODE END DMA1_Stream5_IRQn 1 */
+    251          }
+   \        0x8   0xBD01             POP      {R0,PC}
+    252          
+    253          /**
+    254            * @brief This function handles TIM1 update interrupt and TIM10 global interrupt.
+    255            */
+
+   \                                 In section .text, align 2, keep-with-next
+    256          void TIM1_UP_TIM10_IRQHandler(void)
+    257          {
+   \                     TIM1_UP_TIM10_IRQHandler: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    258            /* USER CODE BEGIN TIM1_UP_TIM10_IRQn 0 */
+    259          
+    260            /* USER CODE END TIM1_UP_TIM10_IRQn 0 */
+    261            HAL_TIM_IRQHandler(&htim1);
+   \        0x2   0x....             LDR.N    R0,??DataTable8_2
+   \        0x4   0x.... 0x....      BL       HAL_TIM_IRQHandler
+    262            /* USER CODE BEGIN TIM1_UP_TIM10_IRQn 1 */
+    263          
+    264            /* USER CODE END TIM1_UP_TIM10_IRQn 1 */
+    265          }
+   \        0x8   0xBD01             POP      {R0,PC}
+    266          
+    267          /**
+    268            * @brief This function handles USART1 global interrupt.
+    269            */
+
+   \                                 In section .text, align 2, keep-with-next
+    270          void USART1_IRQHandler(void)
+    271          {
+   \                     USART1_IRQHandler: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    272            /* USER CODE BEGIN USART1_IRQn 0 */
+    273          
+    274            /* USER CODE END USART1_IRQn 0 */
+    275            HAL_UART_IRQHandler(&huart1);
+   \        0x2   0x....             LDR.N    R0,??DataTable8_3
+   \        0x4   0x.... 0x....      BL       HAL_UART_IRQHandler
+    276            /* USER CODE BEGIN USART1_IRQn 1 */
+    277          
+    278            /* USER CODE END USART1_IRQn 1 */
+    279          }
+   \        0x8   0xBD01             POP      {R0,PC}
+    280          
+    281          /**
+    282            * @brief This function handles USART2 global interrupt.
+    283            */
+
+   \                                 In section .text, align 2, keep-with-next
+    284          void USART2_IRQHandler(void)
+    285          {
+   \                     USART2_IRQHandler: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    286            /* USER CODE BEGIN USART2_IRQn 0 */
+    287          
+    288            /* USER CODE END USART2_IRQn 0 */
+    289            HAL_UART_IRQHandler(&huart2);
+   \        0x2   0x....             LDR.N    R0,??DataTable8_4
+   \        0x4   0x.... 0x....      BL       HAL_UART_IRQHandler
+    290            /* USER CODE BEGIN USART2_IRQn 1 */
+    291          
+    292            /* USER CODE END USART2_IRQn 1 */
+    293          }
+   \        0x8   0xBD01             POP      {R0,PC}
+    294          
+    295          /**
+    296            * @brief This function handles DMA2 stream0 global interrupt.
+    297            */
+
+   \                                 In section .text, align 2, keep-with-next
+    298          void DMA2_Stream0_IRQHandler(void)
+    299          {
+   \                     DMA2_Stream0_IRQHandler: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    300            /* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
+    301          
+    302            /* USER CODE END DMA2_Stream0_IRQn 0 */
+    303            HAL_DMA_IRQHandler(&hdma_spi1_rx);
+   \        0x2   0x....             LDR.N    R0,??DataTable8_5
+   \        0x4   0x.... 0x....      BL       HAL_DMA_IRQHandler
+    304            /* USER CODE BEGIN DMA2_Stream0_IRQn 1 */
+    305          
+    306            /* USER CODE END DMA2_Stream0_IRQn 1 */
+    307          }
+   \        0x8   0xBD01             POP      {R0,PC}
+    308          
+    309          /**
+    310            * @brief This function handles DMA2 stream3 global interrupt.
+    311            */
+
+   \                                 In section .text, align 2, keep-with-next
+    312          void DMA2_Stream3_IRQHandler(void)
+    313          {
+   \                     DMA2_Stream3_IRQHandler: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    314            /* USER CODE BEGIN DMA2_Stream3_IRQn 0 */
+    315          
+    316            /* USER CODE END DMA2_Stream3_IRQn 0 */
+    317            HAL_DMA_IRQHandler(&hdma_spi1_tx);
+   \        0x2   0x....             LDR.N    R0,??DataTable8_6
+   \        0x4   0x.... 0x....      BL       HAL_DMA_IRQHandler
+    318            /* USER CODE BEGIN DMA2_Stream3_IRQn 1 */
+    319          
+    320            /* USER CODE END DMA2_Stream3_IRQn 1 */
+    321          }
+   \        0x8   0xBD01             POP      {R0,PC}
+    322          
+    323          
+    324          /**
+    325            * @brief This function handles USB On The Go FS global interrupt.
+    326            */
+
+   \                                 In section .text, align 2, keep-with-next
+    327          void OTG_FS_IRQHandler(void)
+    328          {
+   \                     OTG_FS_IRQHandler: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    329            /* USER CODE BEGIN OTG_FS_IRQn 0 */
+    330          
+    331          #if defined(USE_BOOTLOADER)
+    332           //	Bootloader : Exclude
+    333          #else	//	Application
+    334          
+    335            /* USER CODE END OTG_FS_IRQn 0 */
+    336            HAL_PCD_IRQHandler(&hpcd_USB_OTG_FS);
+   \        0x2   0x....             LDR.N    R0,??DataTable8_7
+   \        0x4   0x.... 0x....      BL       HAL_PCD_IRQHandler
+    337            /* USER CODE BEGIN OTG_FS_IRQn 1 */
+    338          
+    339          #endif	//	Application
+    340          
+    341            /* USER CODE END OTG_FS_IRQn 1 */
+    342          }
+   \        0x8   0xBD01             POP      {R0,PC}
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8:
+   \        0x0   0x....'....        DC32     hdma_i2s3_ext_rx
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_1:
+   \        0x0   0x....'....        DC32     hdma_spi3_tx
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_2:
+   \        0x0   0x....'....        DC32     htim1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_3:
+   \        0x0   0x....'....        DC32     huart1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_4:
+   \        0x0   0x....'....        DC32     huart2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_5:
+   \        0x0   0x....'....        DC32     hdma_spi1_rx
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_6:
+   \        0x0   0x....'....        DC32     hdma_spi1_tx
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable8_7:
+   \        0x0   0x....'....        DC32     hpcd_USB_OTG_FS
+    343          
+    344          
+    345          /* USER CODE BEGIN 1 */
+    346          
+    347          /* USER CODE END 1 */
+    348          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   BusFault_Handler
+       8   DMA1_Stream0_IRQHandler
+         8   -> HAL_DMA_IRQHandler
+       8   DMA1_Stream5_IRQHandler
+         8   -> HAL_DMA_IRQHandler
+       8   DMA2_Stream0_IRQHandler
+         8   -> HAL_DMA_IRQHandler
+       8   DMA2_Stream3_IRQHandler
+         8   -> HAL_DMA_IRQHandler
+       0   DebugMon_Handler
+       8   EXTI4_IRQHandler
+         8   -> HAL_GPIO_EXTI_IRQHandler
+       0   HardFault_Handler
+       0   MemManage_Handler
+       0   NMI_Handler
+       8   OTG_FS_IRQHandler
+         8   -> HAL_PCD_IRQHandler
+       0   PendSV_Handler
+       0   SVC_Handler
+       8   SysTick_Handler
+         8   -> HAL_IncTick
+       8   TIM1_UP_TIM10_IRQHandler
+         8   -> HAL_TIM_IRQHandler
+       8   USART1_IRQHandler
+         8   -> HAL_UART_IRQHandler
+       8   USART2_IRQHandler
+         8   -> HAL_UART_IRQHandler
+       0   UsageFault_Handler
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable8
+       4  ??DataTable8_1
+       4  ??DataTable8_2
+       4  ??DataTable8_3
+       4  ??DataTable8_4
+       4  ??DataTable8_5
+       4  ??DataTable8_6
+       4  ??DataTable8_7
+       2  BusFault_Handler
+      10  DMA1_Stream0_IRQHandler
+      10  DMA1_Stream5_IRQHandler
+      10  DMA2_Stream0_IRQHandler
+      10  DMA2_Stream3_IRQHandler
+       2  DebugMon_Handler
+      10  EXTI4_IRQHandler
+       2  HardFault_Handler
+       2  MemManage_Handler
+       2  NMI_Handler
+      10  OTG_FS_IRQHandler
+       2  PendSV_Handler
+       2  SVC_Handler
+       8  SysTick_Handler
+      10  TIM1_UP_TIM10_IRQHandler
+      10  USART1_IRQHandler
+      10  USART2_IRQHandler
+       2  UsageFault_Handler
+
+ 
+ 146 bytes in section .text
+ 
+ 146 bytes of CODE memory
+
+Errors: none
+Warnings: 1

@@ -1,0 +1,2322 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:59
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\ProcPkt.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\ProcPkt.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Library\ProcPkt.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library --no_cse
+#        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
+#        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
+#        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\ProcPkt.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library\ProcPkt.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\ProcPkt.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Library\ProcPkt.c
+      1          /*! @file main.c
+      2           * @brief The main.c file of the 802.15.4g bidirectional
+      3           * for Si446X devices.
+      4           *
+      5           * Contains the initialization of the MCU & the radio.
+      6           * @n The main loop controls the program flow & the radio.
+      7           *
+      8           * @b CREATED
+      9           * @n Silicon Laboratories Ltd.
+     10           *
+     11           * @b COPYRIGHT
+     12           * @n Silicon Laboratories Confidential
+     13           * @n Copyright 2014 Silicon Laboratories, Inc.
+     14           * @n http://www.silabs.com
+     15           *
+     16           */
+     17          
+     18          //#include "..\bsp.h"
+     19          
+     20          #include "typedef.h"			//	uint32_t, ...
+
+  typedef unsigned char       BYTE;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",73  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned short      WORD;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",77  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+     21          
+     22          #include "compiler_defs.h"		//	U8,
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+
+  typedef unsigned char U8;
+                        ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",788  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned int U16;
+                       ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",789  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned long U32;
+                        ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",790  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed char S8;
+                      ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",792  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed int S16;
+                     ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",793  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed long S32;
+                      ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",794  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef bit BIT;
+              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",820  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+     23          #include "si446x_defs.h"
+     24          
+     25          #include "radio.h"				//	pRadioConfiguration
+     26          
+     27          #include "ProcPkt.h"			//	TestProcPkt
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",304  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",322  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",468  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",506  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",511  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",533  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",559  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",567  Warning[Pe040]: 
+          expected an identifier
+     28          
+     29          #include "main.h"
+     30          
+     31          #include "RFMProtocol.h"		//	RFMPkt
+     32          #include "rfm.h"				//	eRFMMode
+     33          #include "audio.h"				//	I2S_DMA_LOOP_SIZE
+     34          
+     35          /*------------------------------------------------------------------------*/
+     36          /*                          Global variables                              */
+     37          /*------------------------------------------------------------------------*/
+
+   \                                 In section .bss, align 1
+     38          SEGMENT_VARIABLE(bMain_IT_Status, U8, SEG_XDATA);
+   \                     bMain_IT_Status:
+   \        0x0                      DS8 1
+     39          
+
+   \                                 In section .bss, align 4
+     40          int nTxPkt = 0;
+   \                     nTxPkt:
+   \        0x0                      DS8 4
+
+   \                                 In section .bss, align 4
+     41          int nRxPkt = 0;
+   \                     nRxPkt:
+   \        0x0                      DS8 4
+     42          
+
+   \                                 In section .bss, align 4
+     43          int nHopPkt = 0;		//	Hopping Packet Count
+   \                     nHopPkt:
+   \        0x0                      DS8 4
+
+   \                                 In section .bss, align 4
+     44          int nDropPkt = 0;		//	Drop Packet Count ( 처리된 Packet을 다시 받는 경우. )
+   \                     nDropPkt:
+   \        0x0                      DS8 4
+     45          
+
+   \                                 In section .bss, align 4
+     46          int nRxErr = 0;			//	Error Packet Count
+   \                     nRxErr:
+   \        0x0                      DS8 4
+
+   \                                 In section .bss, align 4
+     47          int nCrcErr = 0;
+   \                     nCrcErr:
+   \        0x0                      DS8 4
+     48          
+
+   \                                 In section .bss, align 4
+     49          int nTxStamp = 0;
+   \                     nTxStamp:
+   \        0x0                      DS8 4
+
+   \                                 In section .bss, align 4
+     50          int nTxStampComp = 0;	//	Tx Complete
+   \                     nTxStampComp:
+   \        0x0                      DS8 4
+
+   \                                 In section .bss, align 4
+     51          int nRxStamp = 0;
+   \                     nRxStamp:
+   \        0x0                      DS8 4
+     52          
+     53          //========================================================================
+
+   \                                 In section .bss, align 4
+     54          int			g_bSetRspIDManual	=	0;				//  RspID Flag 수동설정. ( 디버깅용 )
+   \                     g_bSetRspIDManual:
+   \        0x0                      DS8 4
+     55          //========================================================================
+     56          
+
+   \                                 In section .bss, align 2
+     57          uint16_t	g_flagRspID 	=	0x00;				//  범위 안의 Device ID Flag ( 0 ~ 15 bit )
+   \                     g_flagRspID:
+   \        0x0                      DS8 2
+
+   \                                 In section .bss, align 1
+     58          uint8_t	 	g_nPktSeq 		=	0x00;				//  Packet Sequence
+   \                     g_nPktSeq:
+   \        0x0                      DS8 1
+     59          
+
+   \                                 In section .bss, align 4
+     60          static int	s_bShowPkt		=	DEFAULT_EN_SHOW_PKT;	//	1;
+   \                     s_bShowPkt:
+   \        0x0                      DS8 4
+     61          
+     62          /*------------------------------------------------------------------------*/
+     63          /*                              Defines                                   */
+     64          /*------------------------------------------------------------------------*/
+     65          //#define PACKET_SEND_INTERVAL 2000u
+     66          //#define PACKET_SEND_INTERVAL 500u
+     67          #define PACKET_SEND_INTERVAL		50u
+     68          
+     69          #define PHR_CRC16_DW_DIS			0x10
+     70          #define PHR_CRC16_DW_EN				0x18
+     71          #define PHR_CRC32_DW_DIS			0x00
+     72          #define PHR_CRC32_DW_EN				0x08
+     73          
+     74          #define MOD_TYPE_2GFSK				0x03
+     75          #define MOD_TYPE_4GFSK				0x05
+     76          
+     77          #define COMPARE_PHR_AND_PAYLOAD_FULL			0
+     78          #define COMPARE_PHR_LENGTH_AND_PAYLOAD			1
+     79          
+     80          #define RADIO_CONFIGURATION_DATA_ACK_MAC_PAYLOAD_LENGTH     0x0003
+     81          #define RADIO_CONFIGURATION_DATA_ACK_PAYLOAD				{ 0x00, 0x00, 0x41, 0x43, 0x4B}
+     82          
+     83          /*------------------------------------------------------------------------*/
+     84          /*                             Enumeration                                */
+     85          /*------------------------------------------------------------------------*/
+     86          
+     87          /*------------------------------------------------------------------------*/
+     88          /*                             Typedefs                                   */
+     89          /*------------------------------------------------------------------------*/
+     90          
+     91          /*------------------------------------------------------------------------*/
+     92          /*                          Local variables                               */
+     93          /*------------------------------------------------------------------------*/
+     94          
+
+   \                                 In section .bss, align 1
+     95          SEGMENT_VARIABLE(bPropValue1, U8, SEG_XDATA);
+   \                     bPropValue1:
+   \        0x0                      DS8 1
+
+   \                                 In section .bss, align 1
+     96          SEGMENT_VARIABLE(bPropValue2, U8, SEG_XDATA);
+   \                     bPropValue2:
+   \        0x0                      DS8 1
+
+   \                                 In section .bss, align 1
+     97          SEGMENT_VARIABLE(bModulationType, U8, SEG_XDATA);
+   \                     bModulationType:
+   \        0x0                      DS8 1
+
+   \                                 In section .bss, align 1
+     98          SEGMENT_VARIABLE(bPktConfig1ForRx, U8, SEG_XDATA);
+   \                     bPktConfig1ForRx:
+   \        0x0                      DS8 1
+     99          
+    100          /*------------------------------------------------------------------------*/
+    101          /*                      Local function prototypes                         */
+    102          /*------------------------------------------------------------------------*/
+    103          
+    104          // Reverse bit order
+    105          U8 bBitOrderReverse(U8 bByteToReverse);
+    106          
+    107          // Extracts PHY payload length from PHR
+    108          U16 wPayloadLenghtFromPhr(U8* pbPhrMsb);
+    109          
+    110          
+    111          /*------------------------------------------------------------------------*/
+    112          /*                          Function implementations                      */
+    113          /*------------------------------------------------------------------------*/
+    114          
+    115          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    116          void Dump( const char *sTitle, const char *sBuf, int nSize )
+    117          //========================================================================
+    118          {
+   \                     Dump: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    119          	if ( GetDbg() < 2 )	return;
+                 	     ^
+Warning[Pe223]: function "GetDbg" declared implicitly
+   \        0x8   0x.... 0x....      BL       GetDbg
+   \        0xC   0x2802             CMP      R0,#+2
+   \        0xE   0xDB11             BLT.N    ??Dump_0
+    120          
+    121          	printf( "%s : ", sTitle );
+                 	^
+Warning[Pe223]: function "printf" declared implicitly
+   \                     ??Dump_1: (+1)
+   \       0x10   0x0021             MOVS     R1,R4
+   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable9_7
+   \       0x16   0x.... 0x....      BL       printf
+    122          
+    123          	int i;
+    124          
+    125          	for( i = 0; i < nSize; i++ )
+   \       0x1A   0x2700             MOVS     R7,#+0
+   \                     ??Dump_2: (+1)
+   \       0x1C   0x42B7             CMP      R7,R6
+   \       0x1E   0xDA06             BGE.N    ??Dump_3
+    126          	{
+    127          		printf("%02X ", sBuf[i]);
+   \       0x20   0x5DE9             LDRB     R1,[R5, R7]
+   \       0x22   0x.... 0x....      LDR.W    R0,??DataTable9_8
+   \       0x26   0x.... 0x....      BL       printf
+    128          	}
+   \       0x2A   0x1C7F             ADDS     R7,R7,#+1
+   \       0x2C   0xE7F6             B.N      ??Dump_2
+    129          
+    130          	printf("\n");
+   \                     ??Dump_3: (+1)
+   \       0x2E   0x....             ADR.N    R0,??DataTable3
+   \       0x30   0x.... 0x....      BL       printf
+    131          }
+   \                     ??Dump_0: (+1)
+   \       0x34   0xBDF1             POP      {R0,R4-R7,PC}
+    132          
+    133          
+    134          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    135          void TestProcPkt(void)
+    136          //========================================================================
+    137          {
+   \                     TestProcPkt: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    138          	InitProcPkt();
+   \        0x2   0x.... 0x....      BL       InitProcPkt
+    139          
+    140          	static uint32_t s_nTick;
+                 	                ^
+Warning[Pe550]: variable "s_nTick" was set but never used
+    141          
+    142          	uint32_t currTick;
+    143          
+    144          	s_nTick = HAL_GetTick();
+   \        0x6   0x.... 0x....      BL       HAL_GetTick
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable9_9
+   \        0xE   0x6008             STR      R0,[R1, #+0]
+    145          
+    146          	while (TRUE)
+    147          	{
+    148          		currTick = HAL_GetTick();
+   \                     ??TestProcPkt_0: (+1)
+   \       0x10   0x.... 0x....      BL       HAL_GetTick
+   \       0x14   0x0004             MOVS     R4,R0
+    149          
+    150          		// Demo Application Poll-Handler function
+    151          		LoopProcPkt( currTick );
+   \       0x16   0x0020             MOVS     R0,R4
+   \       0x18   0x.... 0x....      BL       LoopProcPkt
+   \       0x1C   0xE7F8             B.N      ??TestProcPkt_0
+    152          	}
+    153          }
+
+   \                                 In section .bss, align 4
+   \                     `TestProcPkt::s_nTick`:
+   \        0x0                      DS8 4
+    154          
+    155          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    156          int	InitProcPkt ( void )
+    157          //========================================================================
+    158          {
+   \                     InitProcPkt: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    159          
+    160          #if defined( USE_IEEE802_15_4G )
+    161          
+    162          	// Find out wheather it is 2GFSK or 4GFSK. PKT_CONFIG1 will have to be configured accordingly
+    163          	bRadio_FindProperty(pRadioConfiguration->Radio_ConfigurationArray, SI446X_PROP_GRP_ID_MODEM, SI446X_PROP_GRP_INDEX_MODEM_MOD_TYPE, &bModulationType);
+    164          
+    165          	// Configure PH field split, CRC endian, bit order for RX
+    166          	if (bModulationType == MOD_TYPE_2GFSK)
+    167          	{
+    168          		bPktConfig1ForRx = SI446X_PROP_PKT_CONFIG1_PH_FIELD_SPLIT_BIT | SI446X_PROP_PKT_CONFIG1_CRC_ENDIAN_BIT | SI446X_PROP_PKT_CONFIG1_BIT_ORDER_BIT;
+    169          	}
+    170          	else if (bModulationType == MOD_TYPE_4GFSK)
+    171          	{
+    172          		bPktConfig1ForRx = SI446X_PROP_PKT_CONFIG1_PH_FIELD_SPLIT_BIT | SI446X_PROP_PKT_CONFIG1_4FSK_EN_BIT | SI446X_PROP_PKT_CONFIG1_CRC_ENDIAN_BIT | SI446X_PROP_PKT_CONFIG1_BIT_ORDER_BIT;
+    173          	}
+    174          
+    175          	// Configure PKT_CONFIG1 for RX
+    176          	si446x_set_property(SI446X_PROP_GRP_ID_PKT, 1, SI446X_PROP_GRP_INDEX_PKT_CONFIG1, bPktConfig1ForRx);
+    177          	// Start RX with Packet handler settings
+    178          	vRadio_StartRX(pRadioConfiguration->Radio_ChannelNumber,0u);
+    179          
+    180          #else
+    181          
+    182          	//  RF 수신 Start
+    183          	g_nChRx = GetChRx();	//	ChTS1_1 + g_idxTrainSet * 2 + ((g_nCarNo+1) % 2);	// 현재 호차 채널
+   \        0x2   0x.... 0x....      LDR.W    R4,??DataTable9_10
+   \        0x6   0x.... 0x....      BL       GetChRx
+   \        0xA   0x6020             STR      R0,[R4, #+0]
+    184          
+    185          	vRadio_StartRX(
+    186          		g_nChRx,	//g_idxTrainSet,	//		pRadioConfiguration->Radio_ChannelNumber,
+    187          		pRadioConfiguration->Radio_PacketLength );
+   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable9_11
+   \       0x10   0x6800             LDR      R0,[R0, #+0]
+   \       0x12   0x7941             LDRB     R1,[R0, #+5]
+   \       0x14   0x6820             LDR      R0,[R4, #+0]
+   \       0x16   0xB2C0             UXTB     R0,R0
+   \       0x18   0x.... 0x....      BL       vRadio_StartRX
+    188          
+    189          #endif
+    190          
+    191          	return TRUE;
+   \       0x1C   0x2001             MOVS     R0,#+1
+   \       0x1E   0xBD10             POP      {R4,PC}
+    192          }
+    193          
+    194          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    195          int _ChkDropPktSeq( uint8_t _nRxSeq, uint8_t _currSeq )
+    196          //========================================================================
+    197          {
+   \                     _ChkDropPktSeq: (+1)
+   \        0x0   0xB430             PUSH     {R4,R5}
+   \        0x2   0x0002             MOVS     R2,R0
+    198          	//	현재 받은 Packet Sequence가 새로운 패킷인지 확인.
+    199          	//		-> 이전 Packet인 경우 Drop
+    200          
+    201          	if ( _nRxSeq == _currSeq )		//	Seq가 같은 Packet 수신시 Drop
+   \        0x4   0x0010             MOVS     R0,R2
+   \        0x6   0x000B             MOVS     R3,R1
+   \        0x8   0xB2C0             UXTB     R0,R0
+   \        0xA   0xB2DB             UXTB     R3,R3
+   \        0xC   0x4298             CMP      R0,R3
+   \        0xE   0xD101             BNE.N    ??_ChkDropPktSeq_0
+    202          	{
+    203          		return 1;	//	Pkt Drop
+   \       0x10   0x2001             MOVS     R0,#+1
+   \       0x12   0xE022             B.N      ??_ChkDropPktSeq_1
+    204          	}
+    205          
+    206          	//	Rx Packet이 currPkt보다 1크면 처리.
+    207          	uint8_t currSeq = _currSeq;
+   \                     ??_ChkDropPktSeq_0: (+1)
+   \       0x14   0x000B             MOVS     R3,R1
+    208          	if ( ++currSeq == 0 )	currSeq++;
+   \       0x16   0x1C5B             ADDS     R3,R3,#+1
+   \       0x18   0x0018             MOVS     R0,R3
+   \       0x1A   0xB2C0             UXTB     R0,R0
+   \       0x1C   0x2800             CMP      R0,#+0
+   \       0x1E   0xD100             BNE.N    ??_ChkDropPktSeq_2
+   \       0x20   0x1C5B             ADDS     R3,R3,#+1
+    209          	if ( _nRxSeq == currSeq )		//	Seq가 같은 Packet 수신시 Drop
+   \                     ??_ChkDropPktSeq_2: (+1)
+   \       0x22   0x0010             MOVS     R0,R2
+   \       0x24   0x001C             MOVS     R4,R3
+   \       0x26   0xB2C0             UXTB     R0,R0
+   \       0x28   0xB2E4             UXTB     R4,R4
+   \       0x2A   0x42A0             CMP      R0,R4
+   \       0x2C   0xD101             BNE.N    ??_ChkDropPktSeq_3
+    210          	{
+    211          		return 0;	//	Valid Pkt
+   \       0x2E   0x2000             MOVS     R0,#+0
+   \       0x30   0xE013             B.N      ??_ChkDropPktSeq_1
+    212          	}
+    213          
+    214          	//	현재 패킷보다 이전에 받은 5개 패킷은 Drop
+    215          	for( int i = 0; i < 5; i++ )
+   \                     ??_ChkDropPktSeq_3: (+1)
+   \       0x32   0x2400             MOVS     R4,#+0
+   \                     ??_ChkDropPktSeq_4: (+1)
+   \       0x34   0x2C05             CMP      R4,#+5
+   \       0x36   0xDA0F             BGE.N    ??_ChkDropPktSeq_5
+    216          	{
+    217          		if ( ++_nRxSeq == 0 )	_nRxSeq++;
+   \       0x38   0x1C52             ADDS     R2,R2,#+1
+   \       0x3A   0x0010             MOVS     R0,R2
+   \       0x3C   0xB2C0             UXTB     R0,R0
+   \       0x3E   0x2800             CMP      R0,#+0
+   \       0x40   0xD100             BNE.N    ??_ChkDropPktSeq_6
+   \       0x42   0x1C52             ADDS     R2,R2,#+1
+    218          		if ( _nRxSeq == _currSeq )		//	Seq가 같은 Packet 수신시 Drop
+   \                     ??_ChkDropPktSeq_6: (+1)
+   \       0x44   0x0010             MOVS     R0,R2
+   \       0x46   0x000D             MOVS     R5,R1
+   \       0x48   0xB2C0             UXTB     R0,R0
+   \       0x4A   0xB2ED             UXTB     R5,R5
+   \       0x4C   0x42A8             CMP      R0,R5
+   \       0x4E   0xD101             BNE.N    ??_ChkDropPktSeq_7
+    219          		{
+    220          			return 1;	//	Pkt Drop
+   \       0x50   0x2001             MOVS     R0,#+1
+   \       0x52   0xE002             B.N      ??_ChkDropPktSeq_1
+    221          		}
+    222          	}
+   \                     ??_ChkDropPktSeq_7: (+1)
+   \       0x54   0x1C64             ADDS     R4,R4,#+1
+   \       0x56   0xE7ED             B.N      ??_ChkDropPktSeq_4
+    223          
+    224          	return 0;	//	Valid Pkt
+   \                     ??_ChkDropPktSeq_5: (+1)
+   \       0x58   0x2000             MOVS     R0,#+0
+   \                     ??_ChkDropPktSeq_1: (+1)
+   \       0x5A   0xBC30             POP      {R4,R5}
+   \       0x5C   0x4770             BX       LR
+    225          }
+    226          
+    227          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    228          int ProcPktHdr1( const RFMPkt *pRFPkt, int nSize  )
+    229          //========================================================================
+    230          {
+   \                     ProcPktHdr1: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    231          
+    232          #if defined(USE_HOPPING)
+    233          	//========================================================================
+    234          	//	Packet Filtering
+    235          	//		- Pkt 처리 여부 확인.
+    236          	if	(	pRFPkt->hdr.nSeq != 0 &&
+    237          			(
+    238          //				(pRFPkt->hdr.nSeq == g_nPktSeq)		//	Seq가 같은 Packet 수신시 Drop
+    239          				_ChkDropPktSeq(pRFPkt->hdr.nSeq, g_nPktSeq)		//	Seq가 같은 Packet 수신시 Drop
+    240          				|| GetRFMMode() == RFMModeTx		//	송신모드에서는 Packet Drop
+    241          			)
+    242          		)
+   \        0x6   0x78A0             LDRB     R0,[R4, #+2]
+   \        0x8   0x2800             CMP      R0,#+0
+   \        0xA   0xD012             BEQ.N    ??ProcPktHdr1_0
+   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable9_12
+   \       0x10   0x7801             LDRB     R1,[R0, #+0]
+   \       0x12   0x78A0             LDRB     R0,[R4, #+2]
+   \       0x14   0x.... 0x....      BL       _ChkDropPktSeq
+   \       0x18   0x2800             CMP      R0,#+0
+   \       0x1A   0xD103             BNE.N    ??ProcPktHdr1_1
+   \       0x1C   0x.... 0x....      BL       GetRFMMode
+   \       0x20   0x2801             CMP      R0,#+1
+   \       0x22   0xD106             BNE.N    ??ProcPktHdr1_0
+    243          	{
+    244          		//	이미 처리된 Packet Skip.
+    245          		nDropPkt++;
+   \                     ??ProcPktHdr1_1: (+1)
+   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable9_13
+   \       0x28   0x6801             LDR      R1,[R0, #+0]
+   \       0x2A   0x1C49             ADDS     R1,R1,#+1
+   \       0x2C   0x6001             STR      R1,[R0, #+0]
+    246          		return 0;		//	Skip
+   \       0x2E   0x2000             MOVS     R0,#+0
+   \       0x30   0xE007             B.N      ??ProcPktHdr1_2
+    247          	}
+    248          
+    249          	//========================================================================
+    250          	//	Hopping
+    251          #if defined(USE_CH_ISO_DEV)
+    252          	//	Device 별로 채널분리.
+    253          
+    254          #else	//	Pkt Hdr1 사용 X
+    255          
+    256          	uint16_t flagID = g_flagRspID &	(~(0x1 << GetCarNo()));		//	자신의 ID Flag를 제외한 값.
+    257          
+    258          #if defined(USE_HOP_MANUAL)
+    259          	if ( ( pRFPkt->hdr.nSeq != 0 && pRFPkt->hdr.nIDFlag != 0
+    260          				&& (GetDevID() == DevRF900M) )		//	수신기만 중계함.
+    261          #if defined(USE_HOP_FORCE)
+    262          			//========================================================================
+    263          			//	강제 중계 설정.
+    264          			//========================================================================
+    265          #else
+    266          			&& ( ( ( (g_nManHopping == 0) && (((~pRFPkt->hdr.nIDFlag)&flagID) != 0) )	//	Default
+    267          				|| ( g_nManHopping == 1 ) )		//	Hopping On
+    268          				&& !( g_nManHopping == 2 ) )	//	Hopping Off
+    269          #endif
+    270          		)
+    271          #else
+    272          	if ( pRFPkt->hdr.nSeq != 0 && pRFPkt->hdr.nIDFlag != 0
+    273          			&& ( ( (~pRFPkt->hdr.nIDFlag) & flagID ) != 0 )
+    274          		)
+    275          #endif
+    276          	{
+    277          		//	전송 범위 밖의 Device가 수신된 경우.
+    278          		//	Rsp Flag 설정 후에 전송.
+    279          		nHopPkt++;
+    280          		char buf[64];
+    281          		memcpy( buf, pRFPkt, 64 );
+    282          		RFMPkt	*pSendPkt = (RFMPkt *)buf;
+    283          		pSendPkt->hdr.nIDFlag |= g_flagRspID;
+    284          
+    285          		//==========================================================================
+    286          #if defined(USE_CH_ISO_DEV)
+    287          
+    288          		//	수신채널 분리.
+    289          		int nCh = GetChRx() + 1;	//	Test : Hopping 시 Rx + 1 Channel로 전송.
+    290          
+    291          		//	1 - 2 - 3 - 4 - 5 - 6
+    292          		//	  <- ->	2번 수신시 1, 3으로 전송.
+    293          		//
+    294          
+    295          		//==========================================================================
+    296          		//	Tx #1
+    297          		SendPktCh( nCh, buf, nSize );
+    298          
+    299          //		//==========================================================================
+    300          //		//	Tx #2
+    301          //		HAL_Delay(2);		//	2 msec
+    302          //		SendPktCh( nCh + 10, buf, nSize );
+    303          		//==========================================================================
+    304          #elif defined(USE_HOP_CH)
+    305          
+    306          		int nCh = ChTS1_1 + g_idxTrainSet * 2 + ( (g_nCarNo) % 2);	//	타채널
+    307          		SendPktCh( nCh, buf, nSize );
+    308          
+    309          #else
+    310          
+    311          		SendPacket( buf, nSize );
+    312          
+    313          #endif
+    314          		//==========================================================================
+    315          	}
+    316          
+    317          #endif	//	defined(USE_CH_ISO_DEV)
+    318          
+    319          	if ( pRFPkt->hdr.nSeq != 0 )
+   \                     ??ProcPktHdr1_0: (+1)
+   \       0x32   0x78A0             LDRB     R0,[R4, #+2]
+   \       0x34   0x2800             CMP      R0,#+0
+   \       0x36   0xD003             BEQ.N    ??ProcPktHdr1_3
+    320          	{
+    321          		//	Seq No. 가 0이 아닌경우 Seq 갱신.
+    322          		g_nPktSeq = pRFPkt->hdr.nSeq;	//	Packet Seq 갱신.
+   \       0x38   0x78A0             LDRB     R0,[R4, #+2]
+   \       0x3A   0x.... 0x....      LDR.W    R1,??DataTable9_12
+   \       0x3E   0x7008             STRB     R0,[R1, #+0]
+    323          	}
+    324          
+    325          	//	Device ID Flag 확인.
+    326          
+    327          #endif	//	defined(USE_HOPPING)
+    328          	//========================================================================
+    329          
+    330          	return 1;
+   \                     ??ProcPktHdr1_3: (+1)
+   \       0x40   0x2001             MOVS     R0,#+1
+   \                     ??ProcPktHdr1_2: (+1)
+   \       0x42   0xBD32             POP      {R1,R4,R5,PC}
+    331          }
+    332          
+    333          
+    334          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    335          int ProcPktHdr2( const RFMPkt *pRFPkt, int nSize  )
+    336          //========================================================================
+    337          {
+   \                     ProcPktHdr2: (+1)
+   \        0x0   0xE92D 0x47F0      PUSH     {R4-R10,LR}
+   \        0x4   0xB090             SUB      SP,SP,#+64
+   \        0x6   0x0004             MOVS     R4,R0
+   \        0x8   0x000D             MOVS     R5,R1
+    338          	//	편성번호가 다른경우 Skip
+    339          
+    340          	const RFMPktHdr2 *pHdr = &pRFPkt->hdr2;
+   \        0xA   0x0026             MOVS     R6,R4
+    341          
+    342          	char buf[64];
+    343          
+    344          	if ( pHdr->nTS != GetTrainSetIdx() )
+   \        0xC   0x.... 0x....      BL       GetTrainSetIdx
+   \       0x10   0x7831             LDRB     R1,[R6, #+0]
+   \       0x12   0xF011 0x013F      ANDS     R1,R1,#0x3F
+   \       0x16   0x4281             CMP      R1,R0
+   \       0x18   0xD001             BEQ.N    ??ProcPktHdr2_0
+    345          	{
+    346          		//	열차번호가 다른경우 : Skip
+    347          		return 0;	//	Skip
+   \       0x1A   0x2000             MOVS     R0,#+0
+   \       0x1C   0xE134             B.N      ??ProcPktHdr2_1
+    348          	}
+    349          
+    350          #if defined(USE_HOPPING)
+    351          
+    352          	if ( GetDevID() == DevRF900T )
+   \                     ??ProcPktHdr2_0: (+1)
+   \       0x1E   0x.... 0x....      BL       GetDevID
+   \       0x22   0x2802             CMP      R0,#+2
+   \       0x24   0xD101             BNE.N    ??ProcPktHdr2_2
+    353          	{
+    354          		//	송신기의 경우 중계하지 않음.
+    355          		return 1;
+   \       0x26   0x2001             MOVS     R0,#+1
+   \       0x28   0xE12E             B.N      ??ProcPktHdr2_1
+    356          	}
+    357          	else if ( GetDevID() == DevRF900M )
+   \                     ??ProcPktHdr2_2: (+1)
+   \       0x2A   0x.... 0x....      BL       GetDevID
+   \       0x2E   0x2801             CMP      R0,#+1
+   \       0x30   0xF040 0x812A      BNE.W    ??ProcPktHdr2_3
+    358          	{
+    359          		//	송신기로부터 Data 수신 시
+    360          		if( pHdr->nSrcCh == ChTx_1 || pHdr->nSrcCh == ChTx_2 )
+   \       0x34   0x.... 0x....      LDR.W    R9,??DataTable9_14
+   \       0x38   0x7870             LDRB     R0,[R6, #+1]
+   \       0x3A   0xF010 0x003F      ANDS     R0,R0,#0x3F
+   \       0x3E   0xF8D9 0x1000      LDR      R1,[R9, #+0]
+   \       0x42   0x4288             CMP      R0,R1
+   \       0x44   0xD008             BEQ.N    ??ProcPktHdr2_4
+   \       0x46   0x.... 0x....      LDR.W    R8,??DataTable9_15
+   \       0x4A   0x7870             LDRB     R0,[R6, #+1]
+   \       0x4C   0xF010 0x003F      ANDS     R0,R0,#0x3F
+   \       0x50   0xF8D8 0x1000      LDR      R1,[R8, #+0]
+   \       0x54   0x4288             CMP      R0,R1
+   \       0x56   0xD141             BNE.N    ??ProcPktHdr2_5
+    361          		{
+    362          			//	상위 / 하위 채널로 중계.
+    363          			//	1 <= 2 => 3
+    364          			nHopPkt++;
+   \                     ??ProcPktHdr2_4: (+1)
+   \       0x58   0x.... 0x....      LDR.W    R0,??DataTable9_16
+   \       0x5C   0x6801             LDR      R1,[R0, #+0]
+   \       0x5E   0x1C49             ADDS     R1,R1,#+1
+   \       0x60   0x6001             STR      R1,[R0, #+0]
+    365          			memcpy( buf, pRFPkt, 64 );
+                 			^
+Warning[Pe223]: function "memcpy" declared implicitly
+   \       0x62   0x2240             MOVS     R2,#+64
+   \       0x64   0x0021             MOVS     R1,R4
+   \       0x66   0x4668             MOV      R0,SP
+   \       0x68   0x.... 0x....      BL       memcpy
+    366          			RFMPkt	*pSendPkt = (RFMPkt *)buf;
+   \       0x6C   0x466F             MOV      R7,SP
+    367          			pSendPkt->hdr2.nSrcCh = GetChRx();
+   \       0x6E   0x.... 0x....      BL       GetChRx
+   \       0x72   0x0039             MOVS     R1,R7
+   \       0x74   0x784A             LDRB     R2,[R1, #+1]
+   \       0x76   0xF360 0x0205      BFI      R2,R0,#+0,#+6
+   \       0x7A   0x704A             STRB     R2,[R1, #+1]
+    368          
+    369          
+    370          			if( g_nRFMode == RFMode2 )//#if defined(USE_COMM_MODE_CH_GRP)	//	그룹주파수 모드. - [ 1, 2 ] [ 3, 4 ] ...
+   \       0x7C   0x.... 0x....      LDR.W    R0,??DataTable9_17
+   \       0x80   0x6800             LDR      R0,[R0, #+0]
+   \       0x82   0x2802             CMP      R0,#+2
+   \       0x84   0xD114             BNE.N    ??ProcPktHdr2_6
+    371          			{
+    372          				if ( g_nCarNo % 2 == 0 )	SendPktCh( GetChRx() + ChGap, buf, nSize ); //	짝수 Car
+   \       0x86   0x.... 0x....      LDR.W    R0,??DataTable9_18
+   \       0x8A   0x7800             LDRB     R0,[R0, #+0]
+   \       0x8C   0x07C0             LSLS     R0,R0,#+31
+   \       0x8E   0xD407             BMI.N    ??ProcPktHdr2_7
+   \       0x90   0x.... 0x....      BL       GetChRx
+   \       0x94   0x002A             MOVS     R2,R5
+   \       0x96   0x4669             MOV      R1,SP
+   \       0x98   0x1D00             ADDS     R0,R0,#+4
+   \       0x9A   0x.... 0x....      BL       SendPktCh
+   \       0x9E   0xE0F3             B.N      ??ProcPktHdr2_3
+    373          				else						SendPktCh( GetChRx() - ChGap, buf, nSize ); //	홀수 Car
+   \                     ??ProcPktHdr2_7: (+1)
+   \       0xA0   0x.... 0x....      BL       GetChRx
+   \       0xA4   0x002A             MOVS     R2,R5
+   \       0xA6   0x4669             MOV      R1,SP
+   \       0xA8   0x1F00             SUBS     R0,R0,#+4
+   \       0xAA   0x.... 0x....      BL       SendPktCh
+   \       0xAE   0xE0EB             B.N      ??ProcPktHdr2_3
+    374          			}
+    375          			else	//#else
+    376          			{
+    377          				//	현재 동작중인 상위 / 하위 채널로 중계.
+    378          #if defined(USE_ROUTE_REQ)
+    379          				if( GetChRFMUp() )		SendPktCh( GetChRFMUp(), buf, nSize );
+   \                     ??ProcPktHdr2_6: (+1)
+   \       0xB0   0x.... 0x....      BL       GetChRFMUp
+   \       0xB4   0x2800             CMP      R0,#+0
+   \       0xB6   0xD005             BEQ.N    ??ProcPktHdr2_8
+   \       0xB8   0x.... 0x....      BL       GetChRFMUp
+   \       0xBC   0x002A             MOVS     R2,R5
+   \       0xBE   0x4669             MOV      R1,SP
+   \       0xC0   0x.... 0x....      BL       SendPktCh
+    380          
+    381          				if( GetChRFMDown() )	SendPktCh( GetChRFMDown(), buf, nSize );
+   \                     ??ProcPktHdr2_8: (+1)
+   \       0xC4   0x.... 0x....      BL       GetChRFMDown
+   \       0xC8   0x2800             CMP      R0,#+0
+   \       0xCA   0xF000 0x80DD      BEQ.W    ??ProcPktHdr2_3
+   \       0xCE   0x.... 0x....      BL       GetChRFMDown
+   \       0xD2   0x002A             MOVS     R2,R5
+   \       0xD4   0x4669             MOV      R1,SP
+   \       0xD6   0x.... 0x....      BL       SendPktCh
+   \       0xDA   0xE0D5             B.N      ??ProcPktHdr2_3
+    382          
+    383          #else
+    384          				SendPktCh( GetChRx() + ChGap, buf, nSize );
+    385          
+    386          	//DEL			HAL_Delay( 3 );		//	최소 Delay
+    387          
+    388          				if ( g_nCarNo != 1 )	//	1호차가 아닌 경우.
+    389          					SendPktCh( GetChRx() - ChGap, buf, nSize );
+    390          #endif
+    391          			}//#endif
+    392          		}
+    393          		//	수신기로부터 Data 수신 시
+    394          #if defined(USE_ROUTE_REQ)
+    395          		else if( pHdr->nSrcCh <= ( GetChRx() - ChGap ) )
+   \                     ??ProcPktHdr2_5: (+1)
+   \       0xDC   0x.... 0x....      BL       GetChRx
+   \       0xE0   0x1F00             SUBS     R0,R0,#+4
+   \       0xE2   0x7871             LDRB     R1,[R6, #+1]
+   \       0xE4   0xF011 0x013F      ANDS     R1,R1,#0x3F
+   \       0xE8   0x4288             CMP      R0,R1
+   \       0xEA   0xDB60             BLT.N    ??ProcPktHdr2_9
+    396          #else
+    397          		else if( pHdr->nSrcCh == ( GetChRx() - ChGap ) )
+    398          #endif
+    399          		{
+    400          			//	상위 채널로 중계.
+    401          			//	1 -> 2 => 3
+    402          			nHopPkt++;
+   \       0xEC   0x.... 0x....      LDR.W    R0,??DataTable9_16
+   \       0xF0   0x6801             LDR      R1,[R0, #+0]
+   \       0xF2   0x1C49             ADDS     R1,R1,#+1
+   \       0xF4   0x6001             STR      R1,[R0, #+0]
+    403          			memcpy( buf, pRFPkt, 64 );
+                 			^
+Warning[Pe223]: function "memcpy" declared implicitly
+   \       0xF6   0x2240             MOVS     R2,#+64
+   \       0xF8   0x0021             MOVS     R1,R4
+   \       0xFA   0x4668             MOV      R0,SP
+   \       0xFC   0x.... 0x....      BL       memcpy
+    404          			RFMPkt	*pSendPkt = (RFMPkt *)buf;
+   \      0x100   0x466F             MOV      R7,SP
+    405          			pSendPkt->hdr2.nSrcCh = GetChRx();
+   \      0x102   0x.... 0x....      BL       GetChRx
+   \      0x106   0x0039             MOVS     R1,R7
+   \      0x108   0x784A             LDRB     R2,[R1, #+1]
+   \      0x10A   0xF360 0x0205      BFI      R2,R0,#+0,#+6
+   \      0x10E   0x704A             STRB     R2,[R1, #+1]
+    406          
+    407          #if defined(USE_ROUTE_NEAREST_RFM)	//	수신기 -> 송신기 중계 연결. ( 가장가까운 수신기에서 송신기로 중계 )
+    408          			if ( g_devStat[RFTCarNo1].nNearCh == GetChRx()		//	송신기의 가까운 채널이 자신의 채널이면 송신기로 중계.
+    409          					&& pSendPkt->hdr2.bRFT1 == 0 )
+   \      0x110   0x.... 0x....      BL       GetChRx
+   \      0x114   0x.... 0x....      LDR.W    R10,??DataTable9_19
+   \      0x118   0xF51A 0x72DC      ADDS     R2,R10,#+440
+   \      0x11C   0x6811             LDR      R1,[R2, #+0]
+   \      0x11E   0x4281             CMP      R1,R0
+   \      0x120   0xD111             BNE.N    ??ProcPktHdr2_10
+   \      0x122   0x7878             LDRB     R0,[R7, #+1]
+   \      0x124   0xF3C0 0x1080      UBFX     R0,R0,#+6,#+1
+   \      0x128   0xB2C0             UXTB     R0,R0
+   \      0x12A   0x2800             CMP      R0,#+0
+   \      0x12C   0xD10B             BNE.N    ??ProcPktHdr2_10
+    410          			{
+    411          				pSendPkt->hdr2.bRFT1 = 1;
+   \      0x12E   0x0038             MOVS     R0,R7
+   \      0x130   0x7841             LDRB     R1,[R0, #+1]
+   \      0x132   0xF051 0x0140      ORRS     R1,R1,#0x40
+   \      0x136   0x7041             STRB     R1,[R0, #+1]
+    412          				SendPktCh( ChTx_1, buf, nSize );
+   \      0x138   0x002A             MOVS     R2,R5
+   \      0x13A   0x4669             MOV      R1,SP
+   \      0x13C   0xF8D9 0x0000      LDR      R0,[R9, #+0]
+   \      0x140   0x.... 0x....      BL       SendPktCh
+   \      0x144   0xE015             B.N      ??ProcPktHdr2_11
+    413          			}
+    414          			else if ( g_devStat[RFTCarNo2].nNearCh == GetChRx()	//	송신기의 가까운 채널이 자신의 채널이면 송신기로 중계.
+    415          					&& pSendPkt->hdr2.bRFT2 == 0 )
+   \                     ??ProcPktHdr2_10: (+1)
+   \      0x146   0x.... 0x....      BL       GetChRx
+   \      0x14A   0xF8DA 0x11DD      LDR      R1,[R10, #+477]
+   \      0x14E   0x4281             CMP      R1,R0
+   \      0x150   0xD10F             BNE.N    ??ProcPktHdr2_11
+   \      0x152   0x7878             LDRB     R0,[R7, #+1]
+   \      0x154   0xB2C0             UXTB     R0,R0
+   \      0x156   0x09C0             LSRS     R0,R0,#+7
+   \      0x158   0x2800             CMP      R0,#+0
+   \      0x15A   0xD10A             BNE.N    ??ProcPktHdr2_11
+    416          			{
+    417          				pSendPkt->hdr2.bRFT2 = 1;
+   \      0x15C   0x0038             MOVS     R0,R7
+   \      0x15E   0x7841             LDRB     R1,[R0, #+1]
+   \      0x160   0xF051 0x0180      ORRS     R1,R1,#0x80
+   \      0x164   0x7041             STRB     R1,[R0, #+1]
+    418          				SendPktCh( ChTx_2, buf, nSize );
+   \      0x166   0x002A             MOVS     R2,R5
+   \      0x168   0x4669             MOV      R1,SP
+   \      0x16A   0xF8D8 0x0000      LDR      R0,[R8, #+0]
+   \      0x16E   0x.... 0x....      BL       SendPktCh
+    419          			}
+    420          
+    421          #elif defined(USE_RFT_REG_TO_RFM)	//	송신기 가까운 수신기에 등록. (중계동작)
+    422          			if ( GetChPARFT() == ChTx_1 && pSendPkt->hdr2.bRFT1 == 0 )
+    423          			{
+    424          				pSendPkt->hdr2.bRFT1 = 1;
+    425          				SendPktCh( ChTx_1, buf, nSize );
+    426          			}
+    427          			else if ( GetChPARFT() == ChTx_2 && pSendPkt->hdr2.bRFT2 == 0 )
+    428          			{
+    429          				pSendPkt->hdr2.bRFT2 = 1;
+    430          				SendPktCh( ChTx_2, buf, nSize );
+    431          			}
+    432          #endif	//	defined(USE_RFT_REG_TO_RFM)
+    433          
+    434          			if( g_nRFMode == RFMode2 )//#if defined(USE_COMM_MODE_CH_GRP)	//	그룹주파수 모드. - [ 1, 2 ] [ 3, 4 ] ...
+   \                     ??ProcPktHdr2_11: (+1)
+   \      0x172   0x.... 0x....      LDR.W    R0,??DataTable9_17
+   \      0x176   0x6800             LDR      R0,[R0, #+0]
+   \      0x178   0x2802             CMP      R0,#+2
+   \      0x17A   0xD10D             BNE.N    ??ProcPktHdr2_12
+    435          			{
+    436          				if ( g_nCarNo % 2 == 0 )	SendPktCh( GetChRx() + ChGap, buf, nSize ); //	짝수 Car
+   \      0x17C   0x.... 0x....      LDR.W    R0,??DataTable9_18
+   \      0x180   0x7800             LDRB     R0,[R0, #+0]
+   \      0x182   0x07C0             LSLS     R0,R0,#+31
+   \      0x184   0xF100 0x8080      BMI.W    ??ProcPktHdr2_3
+   \      0x188   0x.... 0x....      BL       GetChRx
+   \      0x18C   0x002A             MOVS     R2,R5
+   \      0x18E   0x4669             MOV      R1,SP
+   \      0x190   0x1D00             ADDS     R0,R0,#+4
+   \      0x192   0x.... 0x....      BL       SendPktCh
+   \      0x196   0xE077             B.N      ??ProcPktHdr2_3
+    437          			}
+    438          			else	//	#else
+    439          			{
+    440          #if defined(USE_ROUTE_REQ)
+    441          				//	현재 동작중인 상위 채널로 중계
+    442          				if( GetChRFMUp() )	SendPktCh( GetChRFMUp(), buf, nSize );
+   \                     ??ProcPktHdr2_12: (+1)
+   \      0x198   0x.... 0x....      BL       GetChRFMUp
+   \      0x19C   0x2800             CMP      R0,#+0
+   \      0x19E   0xD073             BEQ.N    ??ProcPktHdr2_3
+   \      0x1A0   0x.... 0x....      BL       GetChRFMUp
+   \      0x1A4   0x002A             MOVS     R2,R5
+   \      0x1A6   0x4669             MOV      R1,SP
+   \      0x1A8   0x.... 0x....      BL       SendPktCh
+   \      0x1AC   0xE06C             B.N      ??ProcPktHdr2_3
+    443          #else
+    444          				SendPktCh( GetChRx() + ChGap, buf, nSize );
+    445          #endif
+    446          			}//#endif
+    447          		}
+    448          #if defined(USE_ROUTE_REQ)
+    449          		else if( pHdr->nSrcCh >= ( GetChRx() + ChGap ) )
+   \                     ??ProcPktHdr2_9: (+1)
+   \      0x1AE   0x.... 0x....      BL       GetChRx
+   \      0x1B2   0x7871             LDRB     R1,[R6, #+1]
+   \      0x1B4   0xF011 0x013F      ANDS     R1,R1,#0x3F
+   \      0x1B8   0x1D00             ADDS     R0,R0,#+4
+   \      0x1BA   0x4281             CMP      R1,R0
+   \      0x1BC   0xDB64             BLT.N    ??ProcPktHdr2_3
+    450          #else
+    451          		else if( pHdr->nSrcCh == ( GetChRx() + ChGap ) )
+    452          #endif
+    453          		{
+    454          			//	하위 채널로 중계.
+    455          			//	1 <= 2 <- 3
+    456          			nHopPkt++;
+   \      0x1BE   0x.... 0x....      LDR.W    R0,??DataTable9_16
+   \      0x1C2   0x6801             LDR      R1,[R0, #+0]
+   \      0x1C4   0x1C49             ADDS     R1,R1,#+1
+   \      0x1C6   0x6001             STR      R1,[R0, #+0]
+    457          			memcpy( buf, pRFPkt, 64 );
+                 			^
+Warning[Pe223]: function "memcpy" declared implicitly
+   \      0x1C8   0x2240             MOVS     R2,#+64
+   \      0x1CA   0x0021             MOVS     R1,R4
+   \      0x1CC   0x4668             MOV      R0,SP
+   \      0x1CE   0x.... 0x....      BL       memcpy
+    458          			RFMPkt	*pSendPkt = (RFMPkt *)buf;
+   \      0x1D2   0x466F             MOV      R7,SP
+    459          			pSendPkt->hdr2.nSrcCh = GetChRx();
+   \      0x1D4   0x.... 0x....      BL       GetChRx
+   \      0x1D8   0x0039             MOVS     R1,R7
+   \      0x1DA   0x784A             LDRB     R2,[R1, #+1]
+   \      0x1DC   0xF360 0x0205      BFI      R2,R0,#+0,#+6
+   \      0x1E0   0x704A             STRB     R2,[R1, #+1]
+    460          
+    461          #if defined(USE_ROUTE_NEAREST_RFM)	//	수신기 -> 송신기 중계 연결. ( 가장가까운 수신기에서 송신기로 중계 )
+    462          			if ( g_devStat[RFTCarNo1].nNearCh == GetChRx()		//	송신기의 가까운 채널이 자신의 채널이면 송신기로 중계.
+    463          					&& pSendPkt->hdr2.bRFT1 == 0 )
+   \      0x1E2   0x.... 0x....      BL       GetChRx
+   \      0x1E6   0x.... 0x....      LDR.W    R10,??DataTable9_19
+   \      0x1EA   0xF51A 0x72DC      ADDS     R2,R10,#+440
+   \      0x1EE   0x6811             LDR      R1,[R2, #+0]
+   \      0x1F0   0x4281             CMP      R1,R0
+   \      0x1F2   0xD111             BNE.N    ??ProcPktHdr2_13
+   \      0x1F4   0x7878             LDRB     R0,[R7, #+1]
+   \      0x1F6   0xF3C0 0x1080      UBFX     R0,R0,#+6,#+1
+   \      0x1FA   0xB2C0             UXTB     R0,R0
+   \      0x1FC   0x2800             CMP      R0,#+0
+   \      0x1FE   0xD10B             BNE.N    ??ProcPktHdr2_13
+    464          			{
+    465          				pSendPkt->hdr2.bRFT1 = 1;
+   \      0x200   0x0038             MOVS     R0,R7
+   \      0x202   0x7841             LDRB     R1,[R0, #+1]
+   \      0x204   0xF051 0x0140      ORRS     R1,R1,#0x40
+   \      0x208   0x7041             STRB     R1,[R0, #+1]
+    466          				SendPktCh( ChTx_1, buf, nSize );
+   \      0x20A   0x002A             MOVS     R2,R5
+   \      0x20C   0x4669             MOV      R1,SP
+   \      0x20E   0xF8D9 0x0000      LDR      R0,[R9, #+0]
+   \      0x212   0x.... 0x....      BL       SendPktCh
+   \      0x216   0xE015             B.N      ??ProcPktHdr2_14
+    467          			}
+    468          			else if ( g_devStat[RFTCarNo2].nNearCh == GetChRx()	//	송신기의 가까운 채널이 자신의 채널이면 송신기로 중계.
+    469          					&& pSendPkt->hdr2.bRFT2 == 0 )
+   \                     ??ProcPktHdr2_13: (+1)
+   \      0x218   0x.... 0x....      BL       GetChRx
+   \      0x21C   0xF8DA 0x11DD      LDR      R1,[R10, #+477]
+   \      0x220   0x4281             CMP      R1,R0
+   \      0x222   0xD10F             BNE.N    ??ProcPktHdr2_14
+   \      0x224   0x7878             LDRB     R0,[R7, #+1]
+   \      0x226   0xB2C0             UXTB     R0,R0
+   \      0x228   0x09C0             LSRS     R0,R0,#+7
+   \      0x22A   0x2800             CMP      R0,#+0
+   \      0x22C   0xD10A             BNE.N    ??ProcPktHdr2_14
+    470          			{
+    471          				pSendPkt->hdr2.bRFT2 = 1;
+   \      0x22E   0x0038             MOVS     R0,R7
+   \      0x230   0x7841             LDRB     R1,[R0, #+1]
+   \      0x232   0xF051 0x0180      ORRS     R1,R1,#0x80
+   \      0x236   0x7041             STRB     R1,[R0, #+1]
+    472          				SendPktCh( ChTx_2, buf, nSize );
+   \      0x238   0x002A             MOVS     R2,R5
+   \      0x23A   0x4669             MOV      R1,SP
+   \      0x23C   0xF8D8 0x0000      LDR      R0,[R8, #+0]
+   \      0x240   0x.... 0x....      BL       SendPktCh
+    473          			}
+    474          
+    475          #elif defined(USE_RFT_REG_TO_RFM)	//	송신기 가까운 수신기에 등록. (중계동작)
+    476          			if ( GetChPARFT() == ChTx_1 && pSendPkt->hdr2.bRFT1 == 0 )
+    477          			{
+    478          				pSendPkt->hdr2.bRFT1 = 1;
+    479          				SendPktCh( GetChPARFT(), buf, nSize );
+    480          			}
+    481          			else if ( GetChPARFT() == ChTx_2 && pSendPkt->hdr2.bRFT2 == 0 )
+    482          			{
+    483          				pSendPkt->hdr2.bRFT2 = 1;
+    484          				SendPktCh( GetChPARFT(), buf, nSize );
+    485          			}
+    486          #endif	//	defined(USE_RFT_REG_TO_RFM)
+    487          
+    488          			if( g_nRFMode == RFMode2 )	//#if defined(USE_COMM_MODE_CH_GRP)	//	그룹주파수 모드. - [ 1, 2 ] [ 3, 4 ] ...
+   \                     ??ProcPktHdr2_14: (+1)
+   \      0x244   0x.... 0x....      LDR.W    R0,??DataTable9_17
+   \      0x248   0x6800             LDR      R0,[R0, #+0]
+   \      0x24A   0x2802             CMP      R0,#+2
+   \      0x24C   0xD112             BNE.N    ??ProcPktHdr2_15
+    489          			{
+    490          				if ( g_nCarNo % 2 == 1 )	SendPktCh( GetChRx() - ChGap, buf, nSize ); //	홀수 Car
+   \      0x24E   0x2002             MOVS     R0,#+2
+   \      0x250   0x.... 0x....      LDR.W    R1,??DataTable9_18
+   \      0x254   0x680A             LDR      R2,[R1, #+0]
+   \      0x256   0x6809             LDR      R1,[R1, #+0]
+   \      0x258   0xFB91 0xF1F0      SDIV     R1,R1,R0
+   \      0x25C   0xFB00 0x2011      MLS      R0,R0,R1,R2
+   \      0x260   0x2801             CMP      R0,#+1
+   \      0x262   0xD111             BNE.N    ??ProcPktHdr2_3
+   \      0x264   0x.... 0x....      BL       GetChRx
+   \      0x268   0x002A             MOVS     R2,R5
+   \      0x26A   0x4669             MOV      R1,SP
+   \      0x26C   0x1F00             SUBS     R0,R0,#+4
+   \      0x26E   0x.... 0x....      BL       SendPktCh
+   \      0x272   0xE009             B.N      ??ProcPktHdr2_3
+    491          			}
+    492          			else//#else
+    493          			{
+    494          #if defined(USE_ROUTE_REQ)
+    495          				//	현재 동작중인 하위 채널로 중계
+    496          				if( GetChRFMDown() )	SendPktCh( GetChRFMDown(), buf, nSize );
+   \                     ??ProcPktHdr2_15: (+1)
+   \      0x274   0x.... 0x....      BL       GetChRFMDown
+   \      0x278   0x2800             CMP      R0,#+0
+   \      0x27A   0xD005             BEQ.N    ??ProcPktHdr2_3
+   \      0x27C   0x.... 0x....      BL       GetChRFMDown
+   \      0x280   0x002A             MOVS     R2,R5
+   \      0x282   0x4669             MOV      R1,SP
+   \      0x284   0x.... 0x....      BL       SendPktCh
+    497          #else
+    498          				if ( g_nCarNo != 1 )	//	1호차가 아닌 경우.
+    499          					SendPktCh( GetChRx() - ChGap, buf, nSize );
+    500          #endif
+    501          			}//#endif
+    502          		}
+    503          	}
+    504          #endif	//	defined(USE_HOPPING)
+    505          }
+                 ^
+Warning[Pe940]: missing return statement at end of non-void function
+          "ProcPktHdr2"
+   \                     ??ProcPktHdr2_3: (+1)
+   \                     ??ProcPktHdr2_1: (+1)
+   \      0x288   0xB010             ADD      SP,SP,#+64
+   \      0x28A   0xE8BD 0x87F0      POP      {R4-R10,PC}
+    506          
+    507          ////========================================================================
+    508          //int ProcPktHdr( const RFMPkt *pRFPkt, int nSize  )
+    509          ////========================================================================
+    510          //{
+    511          //	//========================================================================
+    512          //	//	Header ID
+    513          //	//		Data Drop & 중계 처리.
+    514          //	switch( pRFPkt->hdr.bHdrID )
+    515          //	{
+    516          //	case HdrID1:		return ProcPktHdr1( pRFPkt, nSize );
+    517          //	case HdrID2:		return ProcPktHdr2( pRFPkt, nSize );
+    518          //	default:			return 0;
+    519          //	}
+    520          //}
+    521          
+    522          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    523          void CallbackRecvPacket( const char *pData, int nSize )
+    524          //========================================================================
+    525          {
+   \                     CallbackRecvPacket: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    526          	const RFMPkt	*pRFPkt = (const RFMPkt *)pData;
+   \        0x6   0x0026             MOVS     R6,R4
+    527          
+    528          	//========================================================================
+    529          	//	Header
+    530          	//if ( ( pRFPkt->hdr2.nTS & 0xC0 ) == 0x00 )	//	[7:6] 00 : Hdr#1 / 01 : Hdr#2
+    531          	if ( pRFPkt->hdr2.bHdrID == 0 )
+   \        0x8   0x7830             LDRB     R0,[R6, #+0]
+   \        0xA   0xB2C0             UXTB     R0,R0
+   \        0xC   0x0980             LSRS     R0,R0,#+6
+   \        0xE   0x2800             CMP      R0,#+0
+   \       0x10   0xD106             BNE.N    ??CallbackRecvPacket_0
+    532          	{
+    533          		//	Header #1
+    534          		if ( ProcPktHdr1( pRFPkt, nSize ) == 0 )
+   \       0x12   0x0029             MOVS     R1,R5
+   \       0x14   0x0030             MOVS     R0,R6
+   \       0x16   0x.... 0x....      BL       ProcPktHdr1
+   \       0x1A   0x2800             CMP      R0,#+0
+   \       0x1C   0xD110             BNE.N    ??CallbackRecvPacket_1
+    535          		{
+    536          			return;
+   \       0x1E   0xE056             B.N      ??CallbackRecvPacket_2
+    537          		}
+    538          	}
+    539          	else if ( pRFPkt->hdr2.bHdrID == 0x01 )
+   \                     ??CallbackRecvPacket_0: (+1)
+   \       0x20   0x7830             LDRB     R0,[R6, #+0]
+   \       0x22   0xB2C0             UXTB     R0,R0
+   \       0x24   0x0980             LSRS     R0,R0,#+6
+   \       0x26   0x2801             CMP      R0,#+1
+   \       0x28   0xD106             BNE.N    ??CallbackRecvPacket_3
+    540          	{
+    541          		//	Header #2
+    542          		if ( ProcPktHdr2( pRFPkt, nSize ) == 0 )
+   \       0x2A   0x0029             MOVS     R1,R5
+   \       0x2C   0x0030             MOVS     R0,R6
+   \       0x2E   0x.... 0x....      BL       ProcPktHdr2
+   \       0x32   0x2800             CMP      R0,#+0
+   \       0x34   0xD104             BNE.N    ??CallbackRecvPacket_1
+    543          		{
+    544          			return;
+   \       0x36   0xE04A             B.N      ??CallbackRecvPacket_2
+    545          		}
+    546          	}
+    547          	else
+    548          	{
+    549          		printf( "H" );	//	Packet Header Error
+                 		^
+Warning[Pe223]: function "printf" declared implicitly
+   \                     ??CallbackRecvPacket_3: (+1)
+   \       0x38   0x....             ADR.N    R0,??DataTable6
+   \       0x3A   0x.... 0x....      BL       printf
+    550          		return ;
+   \       0x3E   0xE046             B.N      ??CallbackRecvPacket_2
+    551          	}
+    552          
+    553          	//========================================================================
+    554          	//	Proc Packet
+    555          	switch ( pRFPkt->hdr.nPktCmd )
+   \                     ??CallbackRecvPacket_1: (+1)
+   \       0x40   0x78F0             LDRB     R0,[R6, #+3]
+   \       0x42   0x2801             CMP      R0,#+1
+   \       0x44   0xD01C             BEQ.N    ??CallbackRecvPacket_4
+   \       0x46   0x2802             CMP      R0,#+2
+   \       0x48   0xD016             BEQ.N    ??CallbackRecvPacket_5
+   \       0x4A   0x2803             CMP      R0,#+3
+   \       0x4C   0xD010             BEQ.N    ??CallbackRecvPacket_6
+   \       0x4E   0x2804             CMP      R0,#+4
+   \       0x50   0xD01E             BEQ.N    ??CallbackRecvPacket_7
+   \       0x52   0x2808             CMP      R0,#+8
+   \       0x54   0xD020             BEQ.N    ??CallbackRecvPacket_8
+   \       0x56   0x2811             CMP      R0,#+17
+   \       0x58   0xD016             BEQ.N    ??CallbackRecvPacket_9
+   \       0x5A   0x2820             CMP      R0,#+32
+   \       0x5C   0xD020             BEQ.N    ??CallbackRecvPacket_10
+   \       0x5E   0x2831             CMP      R0,#+49
+   \       0x60   0xD02A             BEQ.N    ??CallbackRecvPacket_11
+   \       0x62   0x2832             CMP      R0,#+50
+   \       0x64   0xD02C             BEQ.N    ??CallbackRecvPacket_12
+   \       0x66   0x2840             CMP      R0,#+64
+   \       0x68   0xD01E             BEQ.N    ??CallbackRecvPacket_13
+   \       0x6A   0x2841             CMP      R0,#+65
+   \       0x6C   0xD020             BEQ.N    ??CallbackRecvPacket_14
+   \       0x6E   0xE02B             B.N      ??CallbackRecvPacket_15
+    556          	{
+    557          	case PktCall:		ProcPktCall			( pRFPkt );		break;
+   \                     ??CallbackRecvPacket_6: (+1)
+   \       0x70   0x0030             MOVS     R0,R6
+   \       0x72   0x.... 0x....      BL       ProcPktCall
+   \       0x76   0xE02A             B.N      ??CallbackRecvPacket_16
+    558          	case PktPA:			ProcPktPA			( pRFPkt );		break;
+   \                     ??CallbackRecvPacket_5: (+1)
+   \       0x78   0x0030             MOVS     R0,R6
+   \       0x7A   0x.... 0x....      BL       ProcPktPA
+   \       0x7E   0xE026             B.N      ??CallbackRecvPacket_16
+    559          	case PktStat:		ProcPktStat			( pRFPkt );		break;
+   \                     ??CallbackRecvPacket_4: (+1)
+   \       0x80   0x0030             MOVS     R0,R6
+   \       0x82   0x.... 0x....      BL       ProcPktStat
+   \       0x86   0xE022             B.N      ??CallbackRecvPacket_16
+    560          	case PktStatReq:	ProcPktStatReq		( pRFPkt );		break;
+   \                     ??CallbackRecvPacket_9: (+1)
+   \       0x88   0x0030             MOVS     R0,R6
+   \       0x8A   0x.... 0x....      BL       ProcPktStatReq
+   \       0x8E   0xE01E             B.N      ??CallbackRecvPacket_16
+    561          	case PktLight:		ProcPktLight		( pRFPkt );		break;
+   \                     ??CallbackRecvPacket_7: (+1)
+   \       0x90   0x0030             MOVS     R0,R6
+   \       0x92   0x.... 0x....      BL       ProcPktLight
+   \       0x96   0xE01A             B.N      ??CallbackRecvPacket_16
+    562          	case PktCtrlPaCall:	ProcPktCtrlPaCall	( pRFPkt );		break;
+   \                     ??CallbackRecvPacket_8: (+1)
+   \       0x98   0x0030             MOVS     R0,R6
+   \       0x9A   0x.... 0x....      BL       ProcPktCtrlPaCall
+   \       0x9E   0xE016             B.N      ??CallbackRecvPacket_16
+    563          	case PktCmd:		ProcPktCmd			( pRFPkt );		break;
+   \                     ??CallbackRecvPacket_10: (+1)
+   \       0xA0   0x0030             MOVS     R0,R6
+   \       0xA2   0x.... 0x....      BL       ProcPktCmd
+   \       0xA6   0xE012             B.N      ??CallbackRecvPacket_16
+    564          	case PktUpgr:		ProcPktUpgr			( pRFPkt );		break;
+   \                     ??CallbackRecvPacket_13: (+1)
+   \       0xA8   0x0030             MOVS     R0,R6
+   \       0xAA   0x.... 0x....      BL       ProcPktUpgr
+   \       0xAE   0xE00E             B.N      ??CallbackRecvPacket_16
+    565          	case PktUpgrStat:	ProcPktUpgrStat		( pRFPkt );		break;
+   \                     ??CallbackRecvPacket_14: (+1)
+   \       0xB0   0x0030             MOVS     R0,R6
+   \       0xB2   0x.... 0x....      BL       ProcPktUpgrStat
+   \       0xB6   0xE00A             B.N      ??CallbackRecvPacket_16
+    566          	case PktRouteReq:	ProcPktRouteReq		( pRFPkt );		break;
+   \                     ??CallbackRecvPacket_11: (+1)
+   \       0xB8   0x0030             MOVS     R0,R6
+   \       0xBA   0x.... 0x....      BL       ProcPktRouteReq
+   \       0xBE   0xE006             B.N      ??CallbackRecvPacket_16
+    567          	case PktRouteRsp:	ProcPktRouteRsp		( pRFPkt );		break;
+   \                     ??CallbackRecvPacket_12: (+1)
+   \       0xC0   0x0030             MOVS     R0,R6
+   \       0xC2   0x.... 0x....      BL       ProcPktRouteRsp
+   \       0xC6   0xE002             B.N      ??CallbackRecvPacket_16
+    568          	default:
+    569          //		printf( "%s(%d) - Invalid Value(%d)\n", __func__, __LINE__, pRFPkt->hdr.nPktCmd );
+    570          		printf( "E\n" );	//	Packet Error
+                 		^
+Warning[Pe223]: function "printf" declared implicitly
+   \                     ??CallbackRecvPacket_15: (+1)
+   \       0xC8   0x....             ADR.N    R0,??DataTable9
+   \       0xCA   0x.... 0x....      BL       printf
+    571          		break;
+    572          	}
+    573          }
+   \                     ??CallbackRecvPacket_16: (+1)
+   \                     ??CallbackRecvPacket_2: (+1)
+   \       0xCE   0xBD70             POP      {R4-R6,PC}
+    574          
+    575          /**
+    576           *  Demo Application Poll-Handler
+    577           *
+    578           *  @note This function must be called periodically.
+    579           *
+    580           */
+    581          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    582          void LoopProcPkt( int nTick )
+    583          //========================================================================
+    584          {
+   \                     LoopProcPkt: (+1)
+   \        0x0   0xB5F0             PUSH     {R4-R7,LR}
+   \        0x2   0xB085             SUB      SP,SP,#+20
+   \        0x4   0x0004             MOVS     R4,R0
+    585          	bMain_IT_Status = bRadio_Check_Tx_RX();
+   \        0x6   0x....             LDR.N    R5,??DataTable9_20
+   \        0x8   0x.... 0x....      BL       bRadio_Check_Tx_RX
+   \        0xC   0x7028             STRB     R0,[R5, #+0]
+    586          
+    587          	if( ( bMain_IT_Status & SI446X_CMD_GET_CHIP_STATUS_REP_CHIP_PEND_CMD_ERROR_PEND_BIT )
+    588          			|| ( bMain_IT_Status & SI446X_CMD_GET_INT_STATUS_REP_PH_STATUS_CRC_ERROR_BIT ) )
+                 			^
+Warning[Pa134]: left and right operands are identical
+   \        0xE   0x7828             LDRB     R0,[R5, #+0]
+   \       0x10   0x0700             LSLS     R0,R0,#+28
+   \       0x12   0xD503             BPL.N    ??LoopProcPkt_0
+    589          	{
+    590          		//	Rx Packet Error or CRC Error
+    591          		printf ( "E" );
+                 		^
+Warning[Pe223]: function "printf" declared implicitly
+   \       0x14   0x....             ADR.N    R0,??DataTable9_1
+   \       0x16   0x.... 0x....      BL       printf
+   \       0x1A   0xE02A             B.N      ??LoopProcPkt_1
+    592          	}
+    593          	else if( bMain_IT_Status & SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_RX_PEND_BIT )
+   \                     ??LoopProcPkt_0: (+1)
+   \       0x1C   0x7828             LDRB     R0,[R5, #+0]
+   \       0x1E   0x06C0             LSLS     R0,R0,#+27
+   \       0x20   0xD527             BPL.N    ??LoopProcPkt_1
+    594          	{
+    595          		//	Rx Packet Receive Complete
+    596          		HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
+   \       0x22   0xF44F 0x4100      MOV      R1,#+32768
+   \       0x26   0x....             LDR.N    R0,??DataTable9_21
+   \       0x28   0x.... 0x....      BL       HAL_GPIO_TogglePin
+    597          
+    598          		nRxPkt++;
+   \       0x2C   0x....             LDR.N    R7,??DataTable9_22
+   \       0x2E   0x6838             LDR      R0,[R7, #+0]
+   \       0x30   0x1C40             ADDS     R0,R0,#+1
+   \       0x32   0x6038             STR      R0,[R7, #+0]
+    599          		nRxStamp = HAL_GetTick();
+   \       0x34   0x.... 0x....      BL       HAL_GetTick
+   \       0x38   0x....             LDR.N    R1,??DataTable9_23
+   \       0x3A   0x6008             STR      R0,[R1, #+0]
+    600          
+    601          		Dump("Rx", g_pRadioRxPkt, 0x40);
+                 		           ^
+Warning[Pe167]: argument of type "U8 *" is incompatible with parameter of type
+          "char const *"
+   \       0x3C   0x....             LDR.N    R6,??DataTable9_24
+   \       0x3E   0x2240             MOVS     R2,#+64
+   \       0x40   0x6831             LDR      R1,[R6, #+0]
+   \       0x42   0x....             ADR.N    R0,??DataTable9_2
+   \       0x44   0x.... 0x....      BL       Dump
+    602          		if ( nRxPkt % 250 == 0 )
+   \       0x48   0x20FA             MOVS     R0,#+250
+   \       0x4A   0x6839             LDR      R1,[R7, #+0]
+   \       0x4C   0x683A             LDR      R2,[R7, #+0]
+   \       0x4E   0xFB92 0xF2F0      SDIV     R2,R2,R0
+   \       0x52   0xFB00 0x1012      MLS      R0,R0,R2,R1
+   \       0x56   0x2800             CMP      R0,#+0
+   \       0x58   0xD102             BNE.N    ??LoopProcPkt_2
+    603          		{
+    604          			printf ( "R" );
+                 			^
+Warning[Pe223]: function "printf" declared implicitly
+   \       0x5A   0x....             ADR.N    R0,??DataTable9_3
+   \       0x5C   0x.... 0x....      BL       printf
+    605          		}
+    606          
+    607          		CallbackRecvPacket( g_pRadioRxPkt, 0x40 );
+                 		                    ^
+Warning[Pe167]: argument of type "U8 *" is incompatible with parameter of type
+          "char const *"
+   \                     ??LoopProcPkt_2: (+1)
+   \       0x60   0x2140             MOVS     R1,#+64
+   \       0x62   0x6830             LDR      R0,[R6, #+0]
+   \       0x64   0x.... 0x....      BL       CallbackRecvPacket
+    608          		memset( g_pRadioRxPkt, 0, 0x40 );			//	Buffer Clear
+                 		^
+Warning[Pe223]: function "memset" declared implicitly
+   \       0x68   0x2240             MOVS     R2,#+64
+   \       0x6A   0x2100             MOVS     R1,#+0
+   \       0x6C   0x6830             LDR      R0,[R6, #+0]
+   \       0x6E   0x.... 0x....      BL       memset
+    609          	}
+    610          
+    611          	if( bMain_IT_Status & SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_SENT_PEND_BIT )
+   \                     ??LoopProcPkt_1: (+1)
+   \       0x72   0x7828             LDRB     R0,[R5, #+0]
+   \       0x74   0x0680             LSLS     R0,R0,#+26
+   \       0x76   0xD518             BPL.N    ??LoopProcPkt_3
+    612          	{
+    613          		HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
+   \       0x78   0xF44F 0x4100      MOV      R1,#+32768
+   \       0x7C   0x....             LDR.N    R0,??DataTable9_21
+   \       0x7E   0x.... 0x....      BL       HAL_GPIO_TogglePin
+    614          
+    615          		nTxPkt++;
+   \       0x82   0x....             LDR.N    R5,??DataTable9_25
+   \       0x84   0x6828             LDR      R0,[R5, #+0]
+   \       0x86   0x1C40             ADDS     R0,R0,#+1
+   \       0x88   0x6028             STR      R0,[R5, #+0]
+    616          		nTxStampComp = HAL_GetTick();	//	송신완료 Stamp
+   \       0x8A   0x.... 0x....      BL       HAL_GetTick
+   \       0x8E   0x....             LDR.N    R1,??DataTable9_26
+   \       0x90   0x6008             STR      R0,[R1, #+0]
+    617          
+    618          		// Custom message sent successfully
+    619          		if ( nTxPkt % 250 == 0 )
+   \       0x92   0x20FA             MOVS     R0,#+250
+   \       0x94   0x6829             LDR      R1,[R5, #+0]
+   \       0x96   0x682A             LDR      R2,[R5, #+0]
+   \       0x98   0xFB92 0xF2F0      SDIV     R2,R2,R0
+   \       0x9C   0xFB00 0x1012      MLS      R0,R0,R2,R1
+   \       0xA0   0x2800             CMP      R0,#+0
+   \       0xA2   0xD102             BNE.N    ??LoopProcPkt_3
+    620          		{
+    621          			printf ( "T" );
+                 			^
+Warning[Pe223]: function "printf" declared implicitly
+   \       0xA4   0x....             ADR.N    R0,??DataTable9_4
+   \       0xA6   0x.... 0x....      BL       printf
+    622          		}
+    623          	}
+    624          
+    625          #if defined(USE_SHOW_PKT)
+    626          
+    627          	static int s_oldTick = 0;
+    628          
+    629          	if ( s_bShowPkt != 0 &&
+    630          		( nTick - s_oldTick ) >= 1000 )
+   \                     ??LoopProcPkt_3: (+1)
+   \       0xAA   0x....             LDR.N    R0,??DataTable9_27
+   \       0xAC   0x6800             LDR      R0,[R0, #+0]
+   \       0xAE   0x2800             CMP      R0,#+0
+   \       0xB0   0xD01E             BEQ.N    ??LoopProcPkt_4
+   \       0xB2   0x....             LDR.N    R5,??DataTable9_28
+   \       0xB4   0x6828             LDR      R0,[R5, #+0]
+   \       0xB6   0x1A20             SUBS     R0,R4,R0
+   \       0xB8   0xF5B0 0x7F7A      CMP      R0,#+1000
+   \       0xBC   0xDB18             BLT.N    ??LoopProcPkt_4
+    631          	{
+    632          		//	1 sec
+    633          
+    634          		printf("PKT : Tx(%d) / Rx(%d) / Hop(%d) / Drop(%d) / RspID( 0x%04X ) / RxErr(%d) / Crc(%d) / RSSI(%d)\n", //__func__,
+                 		^
+Warning[Pe223]: function "printf" declared implicitly
+    635          				nTxPkt, nRxPkt, nHopPkt, nDropPkt, g_flagRspID, nRxErr, nCrcErr, g_nRSSI );
+   \       0xBE   0x....             LDR.N    R0,??DataTable9_29
+   \       0xC0   0x6800             LDR      R0,[R0, #+0]
+   \       0xC2   0x9004             STR      R0,[SP, #+16]
+   \       0xC4   0x....             LDR.N    R0,??DataTable9_30
+   \       0xC6   0x6800             LDR      R0,[R0, #+0]
+   \       0xC8   0x9003             STR      R0,[SP, #+12]
+   \       0xCA   0x....             LDR.N    R0,??DataTable9_31
+   \       0xCC   0x6800             LDR      R0,[R0, #+0]
+   \       0xCE   0x9002             STR      R0,[SP, #+8]
+   \       0xD0   0x....             LDR.N    R0,??DataTable9_32
+   \       0xD2   0x8800             LDRH     R0,[R0, #+0]
+   \       0xD4   0x9001             STR      R0,[SP, #+4]
+   \       0xD6   0x....             LDR.N    R0,??DataTable9_13
+   \       0xD8   0x6800             LDR      R0,[R0, #+0]
+   \       0xDA   0x9000             STR      R0,[SP, #+0]
+   \       0xDC   0x....             LDR.N    R0,??DataTable9_16
+   \       0xDE   0x6803             LDR      R3,[R0, #+0]
+   \       0xE0   0x....             LDR.N    R0,??DataTable9_22
+   \       0xE2   0x6802             LDR      R2,[R0, #+0]
+   \       0xE4   0x....             LDR.N    R0,??DataTable9_25
+   \       0xE6   0x6801             LDR      R1,[R0, #+0]
+   \       0xE8   0x....             LDR.N    R0,??DataTable9_33
+   \       0xEA   0x.... 0x....      BL       printf
+    636          
+    637          		s_oldTick = nTick;
+   \       0xEE   0x602C             STR      R4,[R5, #+0]
+    638          	}
+    639          #endif
+    640          }
+   \                     ??LoopProcPkt_4: (+1)
+   \       0xF0   0xB005             ADD      SP,SP,#+20
+   \       0xF2   0xBDF0             POP      {R4-R7,PC}
+
+   \                                 In section .bss, align 4
+   \                     `LoopProcPkt::s_oldTick`:
+   \        0x0                      DS8 4
+    641          
+    642          /*!
+    643           * This function returns the actual PHY payload length extracted from the PHR (i.e. length w/o FCS)
+    644           *
+    645           * @return  PHY payload lenght excluding FCS
+    646           */
+    647          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    648          U16 wPayloadLenghtFromPhr(U8* pbPhrMsb)
+    649          //========================================================================
+    650          {
+   \                     wPayloadLenghtFromPhr: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    651          	SEGMENT_VARIABLE(wLength, U16, SEG_XDATA);
+    652          	SEGMENT_VARIABLE(bPhrLsbUpperByte, U8, SEG_XDATA);
+    653          	SEGMENT_VARIABLE(bPhrLsbLowerByte, U8, SEG_XDATA);
+    654          
+    655          	// Get the lenght from the PHR in MSB
+    656          	bPhrLsbUpperByte = bBitOrderReverse(*pbPhrMsb);
+   \        0x4   0x7820             LDRB     R0,[R4, #+0]
+   \        0x6   0x.... 0x....      BL       bBitOrderReverse
+   \        0xA   0x0005             MOVS     R5,R0
+    657          	bPhrLsbLowerByte = bBitOrderReverse(*(pbPhrMsb+1));
+   \        0xC   0x7860             LDRB     R0,[R4, #+1]
+   \        0xE   0x.... 0x....      BL       bBitOrderReverse
+   \       0x12   0x0002             MOVS     R2,R0
+    658          	wLength = ((bPhrLsbUpperByte & 0x0003)<<8) | (bPhrLsbLowerByte & 0x00FF);
+   \       0x14   0x0028             MOVS     R0,R5
+   \       0x16   0xB2C0             UXTB     R0,R0
+   \       0x18   0x0200             LSLS     R0,R0,#+8
+   \       0x1A   0xF410 0x7040      ANDS     R0,R0,#0x300
+   \       0x1E   0x0011             MOVS     R1,R2
+   \       0x20   0xB2C9             UXTB     R1,R1
+   \       0x22   0x4308             ORRS     R0,R1,R0
+    659          
+    660          	// Lenght in PHR includes FCS length (2 or 4 bytes). Adjust returned value accordingly
+    661          	if ((bPhrLsbUpperByte & 0x10) == 0x10)
+   \       0x24   0x06E9             LSLS     R1,R5,#+27
+   \       0x26   0xD501             BPL.N    ??wPayloadLenghtFromPhr_0
+    662          	{
+    663          		// 2-byte FCS
+    664          		return (wLength-2);
+   \       0x28   0x1E80             SUBS     R0,R0,#+2
+   \       0x2A   0xE000             B.N      ??wPayloadLenghtFromPhr_1
+    665          	}
+    666          	else
+    667          	{
+    668          		// 4-byte FCS
+    669          		return (wLength-4);
+   \                     ??wPayloadLenghtFromPhr_0: (+1)
+   \       0x2C   0x1F00             SUBS     R0,R0,#+4
+   \                     ??wPayloadLenghtFromPhr_1: (+1)
+   \       0x2E   0xBD32             POP      {R1,R4,R5,PC}
+    670          	}
+    671          }
+    672          
+    673          /*!
+    674           * This function is used to reverse the bit order of the input byte
+    675           *
+    676           * @return  Reversed byte.
+    677           */
+    678          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    679          U8 bBitOrderReverse(U8 bByteToReverse)
+    680          //========================================================================
+    681          {
+   \                     bBitOrderReverse: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+    682          	bByteToReverse = (bByteToReverse & 0xF0) >> 4 | (bByteToReverse & 0x0F) << 4;
+   \        0x2   0x0008             MOVS     R0,R1
+   \        0x4   0xB2C0             UXTB     R0,R0
+   \        0x6   0x0900             LSRS     R0,R0,#+4
+   \        0x8   0xEA50 0x1001      ORRS     R0,R0,R1, LSL #+4
+    683          	bByteToReverse = (bByteToReverse & 0xCC) >> 2 | (bByteToReverse & 0x33) << 2;
+   \        0xC   0x0001             MOVS     R1,R0
+   \        0xE   0xB2C9             UXTB     R1,R1
+   \       0x10   0x0889             LSRS     R1,R1,#+2
+   \       0x12   0xF011 0x0133      ANDS     R1,R1,#0x33
+   \       0x16   0x0080             LSLS     R0,R0,#+2
+   \       0x18   0xF010 0x00CC      ANDS     R0,R0,#0xCC
+   \       0x1C   0x4308             ORRS     R0,R0,R1
+    684          	bByteToReverse = (bByteToReverse & 0xAA) >> 1 | (bByteToReverse & 0x55) << 1;
+   \       0x1E   0x0001             MOVS     R1,R0
+   \       0x20   0xB2C9             UXTB     R1,R1
+   \       0x22   0x0849             LSRS     R1,R1,#+1
+   \       0x24   0xF011 0x0155      ANDS     R1,R1,#0x55
+   \       0x28   0x0040             LSLS     R0,R0,#+1
+   \       0x2A   0xF010 0x00AA      ANDS     R0,R0,#0xAA
+   \       0x2E   0x4308             ORRS     R0,R0,R1
+    685          
+    686          	return bByteToReverse;
+   \       0x30   0xB2C0             UXTB     R0,R0
+   \       0x32   0x4770             BX       LR
+    687          }
+    688          
+    689          
+    690          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    691          int SendPacket( const char *sBuf, int nSize )
+    692          //========================================================================
+    693          {
+   \                     SendPacket: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    694          	//	printf("%s(%d)\n", __func__, __LINE__);
+    695          
+    696          	Dump("Tx", sBuf, 0x40);
+   \        0x6   0x2240             MOVS     R2,#+64
+   \        0x8   0x0021             MOVS     R1,R4
+   \        0xA   0x....             ADR.N    R0,??DataTable9_5
+   \        0xC   0x.... 0x....      BL       Dump
+    697          
+    698          	//	CH1 : 1, 3, 5
+    699          	//	CH2 :  2, 4, 6
+    700          	int nCh = ChTS1_1 + g_idxTrainSet * 2 + ((g_nCarNo + 1) % 2); // 현재 호차 채널
+   \       0x10   0x....             LDR.N    R0,??DataTable9_18
+   \       0x12   0x6800             LDR      R0,[R0, #+0]
+   \       0x14   0x1C40             ADDS     R0,R0,#+1
+   \       0x16   0x2102             MOVS     R1,#+2
+   \       0x18   0x....             LDR.N    R2,??DataTable9_34
+   \       0x1A   0x6812             LDR      R2,[R2, #+0]
+   \       0x1C   0x....             LDR.N    R3,??DataTable9_35
+   \       0x1E   0x681B             LDR      R3,[R3, #+0]
+   \       0x20   0xEB12 0x0243      ADDS     R2,R2,R3, LSL #+1
+   \       0x24   0x1882             ADDS     R2,R0,R2
+   \       0x26   0xFB90 0xF6F1      SDIV     R6,R0,R1
+   \       0x2A   0xFB01 0x2616      MLS      R6,R1,R6,R2
+    701          
+    702          	//========================================================================
+    703          	while( ( HAL_GetTick() - nTxStamp) <= 3 )	;	//	Tx 시작 후 완료까지 : 3msec
+   \                     ??SendPacket_0: (+1)
+   \       0x2E   0x.... 0x....      BL       HAL_GetTick
+   \       0x32   0x....             LDR.N    R7,??DataTable9_36
+   \       0x34   0x6839             LDR      R1,[R7, #+0]
+   \       0x36   0x1A40             SUBS     R0,R0,R1
+   \       0x38   0x2804             CMP      R0,#+4
+   \       0x3A   0xD3F8             BCC.N    ??SendPacket_0
+    704          	//========================================================================
+    705          
+    706          	vRadio_StartTx_Variable_Packet (
+    707          		nCh,	//g_idxTrainSet,	//		pRadioConfiguration->Radio_ChannelNumber,
+    708          		(U8 *)&sBuf[0],
+    709          		pRadioConfiguration->Radio_PacketLength );
+   \       0x3C   0x....             LDR.N    R0,??DataTable9_11
+   \       0x3E   0x6800             LDR      R0,[R0, #+0]
+   \       0x40   0x7942             LDRB     R2,[R0, #+5]
+   \       0x42   0x0021             MOVS     R1,R4
+   \       0x44   0x0030             MOVS     R0,R6
+   \       0x46   0xB2C0             UXTB     R0,R0
+   \       0x48   0x.... 0x....      BL       vRadio_StartTx_Variable_Packet
+    710          
+    711          	//========================================================================
+    712          	nTxStamp = HAL_GetTick();
+   \       0x4C   0x.... 0x....      BL       HAL_GetTick
+   \       0x50   0x6038             STR      R0,[R7, #+0]
+    713          	//========================================================================
+    714          
+    715          	return TRUE;
+   \       0x52   0x2001             MOVS     R0,#+1
+   \       0x54   0xBDF2             POP      {R1,R4-R7,PC}
+    716          }
+    717          
+    718          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    719          int SendPktCh	( int nCh, const char *sBuf, int nSize )
+    720          //========================================================================
+    721          {
+   \                     SendPktCh: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0007             MOVS     R7,R0
+   \        0x4   0x000C             MOVS     R4,R1
+   \        0x6   0x0015             MOVS     R5,R2
+    722          	Dump("Tx", sBuf, 0x40);
+   \        0x8   0x2240             MOVS     R2,#+64
+   \        0xA   0x0021             MOVS     R1,R4
+   \        0xC   0x....             ADR.N    R0,??DataTable9_5
+   \        0xE   0x.... 0x....      BL       Dump
+    723          
+    724          	//========================================================================
+    725          //	while( ( HAL_GetTick() - nTxStamp) <= 3 )	;	//	Tx 시작 후 완료까지 : 3msec
+    726          	while( ( HAL_GetTick() - nTxStamp) <= 4 )	;	//	Tx 시작 후 완료까지 : 3msec
+   \                     ??SendPktCh_0: (+1)
+   \       0x12   0x.... 0x....      BL       HAL_GetTick
+   \       0x16   0x....             LDR.N    R6,??DataTable9_36
+   \       0x18   0x6831             LDR      R1,[R6, #+0]
+   \       0x1A   0x1A40             SUBS     R0,R0,R1
+   \       0x1C   0x2805             CMP      R0,#+5
+   \       0x1E   0xD3F8             BCC.N    ??SendPktCh_0
+    727          	//========================================================================
+    728          
+    729          	vRadio_StartTx_Variable_Packet (
+    730          		nCh,	//		pRadioConfiguration->Radio_ChannelNumber,
+    731          		(U8 *)&sBuf[0],
+    732          		pRadioConfiguration->Radio_PacketLength );
+   \       0x20   0x....             LDR.N    R0,??DataTable9_11
+   \       0x22   0x6800             LDR      R0,[R0, #+0]
+   \       0x24   0x7942             LDRB     R2,[R0, #+5]
+   \       0x26   0x0021             MOVS     R1,R4
+   \       0x28   0x0038             MOVS     R0,R7
+   \       0x2A   0xB2C0             UXTB     R0,R0
+   \       0x2C   0x.... 0x....      BL       vRadio_StartTx_Variable_Packet
+    733          
+    734          	//========================================================================
+    735          	nTxStamp = HAL_GetTick();
+   \       0x30   0x.... 0x....      BL       HAL_GetTick
+   \       0x34   0x6030             STR      R0,[R6, #+0]
+    736          	//========================================================================
+    737          
+    738          	return TRUE;
+   \       0x36   0x2001             MOVS     R0,#+1
+   \       0x38   0xBDF2             POP      {R1,R4-R7,PC}
+    739          }
+    740          
+    741          
+    742          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    743          int cmd_pktmon      ( int argc, char * argv[] )
+    744          //========================================================================
+    745          {
+   \                     cmd_pktmon: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    746          	//	bEnable ( 1 / 0 )
+    747          	int bEnable = 1;	//	Default : Enable
+   \        0x6   0x2001             MOVS     R0,#+1
+   \        0x8   0x9000             STR      R0,[SP, #+0]
+    748          
+    749          	switch ( argc )
+   \        0xA   0x2C02             CMP      R4,#+2
+   \        0xC   0xD104             BNE.N    ??cmd_pktmon_0
+    750          	{
+    751          	case 2:		sscanf( argv[1], "%d", &bEnable );	//	cmd [Enable]
+                 	       		^
+Warning[Pe223]: function "sscanf" declared implicitly
+   \        0xE   0x466A             MOV      R2,SP
+   \       0x10   0x....             ADR.N    R1,??DataTable9_6
+   \       0x12   0x6868             LDR      R0,[R5, #+4]
+   \       0x14   0x.... 0x....      BL       sscanf
+    752          //	case 2:		sText = argv[1];					//	sscanf( argv[1], "%s", sText );		//	cmd [Text]
+    753          		break;
+    754          	}
+    755          
+    756          	printf( "%s(%d) - En(%d)\n", __func__, __LINE__, bEnable );
+                 	^
+Warning[Pe223]: function "printf" declared implicitly
+   \                     ??cmd_pktmon_0: (+1)
+   \       0x18   0x9B00             LDR      R3,[SP, #+0]
+   \       0x1A   0xF44F 0x723D      MOV      R2,#+756
+   \       0x1E   0x....             LDR.N    R1,??DataTable9_37
+   \       0x20   0x....             LDR.N    R0,??DataTable9_38
+   \       0x22   0x.... 0x....      BL       printf
+    757          
+    758          	s_bShowPkt = bEnable;
+   \       0x26   0x9800             LDR      R0,[SP, #+0]
+   \       0x28   0x....             LDR.N    R1,??DataTable9_27
+   \       0x2A   0x6008             STR      R0,[R1, #+0]
+    759          }
+                 ^
+Warning[Pe940]: missing return statement at end of non-void function
+          "cmd_pktmon"
+   \       0x2C   0xBD32             POP      {R1,R4,R5,PC}
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3:
+   \        0x0   0x0A 0x00          DC8      "\n",0x0,0x0   
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6:
+   \        0x0   0x48 0x00          DC8      "H",0x0,0x0    
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9:
+   \        0x0   0x45 0x0A          DC8      0x45, 0x0A, 0x00, 0x00
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_1:
+   \        0x0   0x45 0x00          DC8      "E",0x0,0x0    
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_2:
+   \        0x0   0x52 0x78          DC8      0x52, 0x78, 0x00, 0x00
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_3:
+   \        0x0   0x52 0x00          DC8      "R",0x0,0x0    
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_4:
+   \        0x0   0x54 0x00          DC8      "T",0x0,0x0    
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_5:
+   \        0x0   0x54 0x78          DC8      0x54, 0x78, 0x00, 0x00
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_6:
+   \        0x0   0x25 0x64          DC8      0x25, 0x64, 0x00, 0x00
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_7:
+   \        0x0   0x....'....        DC32     ?_0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_8:
+   \        0x0   0x....'....        DC32     ?_1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_9:
+   \        0x0   0x....'....        DC32     `TestProcPkt::s_nTick`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_10:
+   \        0x0   0x....'....        DC32     g_nChRx
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_11:
+   \        0x0   0x....'....        DC32     pRadioConfiguration
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_12:
+   \        0x0   0x....'....        DC32     g_nPktSeq
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_13:
+   \        0x0   0x....'....        DC32     nDropPkt
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_14:
+   \        0x0   0x....'....        DC32     ChTx_1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_15:
+   \        0x0   0x....'....        DC32     ChTx_2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_16:
+   \        0x0   0x....'....        DC32     nHopPkt
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_17:
+   \        0x0   0x....'....        DC32     g_nRFMode
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_18:
+   \        0x0   0x....'....        DC32     g_nCarNo
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_19:
+   \        0x0   0x....'....        DC32     g_devStat
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_20:
+   \        0x0   0x....'....        DC32     bMain_IT_Status
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_21:
+   \        0x0   0x4002'0C00        DC32     0x40020c00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_22:
+   \        0x0   0x....'....        DC32     nRxPkt
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_23:
+   \        0x0   0x....'....        DC32     nRxStamp
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_24:
+   \        0x0   0x....'....        DC32     g_pRadioRxPkt
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_25:
+   \        0x0   0x....'....        DC32     nTxPkt
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_26:
+   \        0x0   0x....'....        DC32     nTxStampComp
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_27:
+   \        0x0   0x....'....        DC32     s_bShowPkt
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_28:
+   \        0x0   0x....'....        DC32     `LoopProcPkt::s_oldTick`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_29:
+   \        0x0   0x....'....        DC32     g_nRSSI
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_30:
+   \        0x0   0x....'....        DC32     nCrcErr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_31:
+   \        0x0   0x....'....        DC32     nRxErr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_32:
+   \        0x0   0x....'....        DC32     g_flagRspID
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_33:
+   \        0x0   0x....'....        DC32     ?_9
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_34:
+   \        0x0   0x....'....        DC32     ChTS1_1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_35:
+   \        0x0   0x....'....        DC32     g_idxTrainSet
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_36:
+   \        0x0   0x....'....        DC32     nTxStamp
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_37:
+   \        0x0   0x....'....        DC32     `cmd_pktmon::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_38:
+   \        0x0   0x....'....        DC32     ?_12
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \        0x0   0x25 0x73          DC8 "%s : "
+
+   \              0x20 0x3A    
+
+   \              0x20 0x00
+   \        0x6                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_1:
+   \        0x0   0x25 0x30          DC8 "%02X "
+
+   \              0x32 0x58    
+
+   \              0x20 0x00
+   \        0x6                      DS8 2
+
+   \                                 In section .rodata, align 2
+   \        0x0   0x0A 0x00          DC8 "\012"
+
+   \                                 In section .rodata, align 2
+   \        0x0   0x48 0x00          DC8 "H"
+
+   \                                 In section .rodata, align 4
+   \        0x0   0x45 0x0A          DC8 "E\012"
+
+   \              0x00
+   \        0x3                      DS8 1
+
+   \                                 In section .rodata, align 2
+   \        0x0   0x45 0x00          DC8 "E"
+
+   \                                 In section .rodata, align 4
+   \        0x0   0x52 0x78          DC8 "Rx"
+
+   \              0x00
+   \        0x3                      DS8 1
+
+   \                                 In section .rodata, align 2
+   \        0x0   0x52 0x00          DC8 "R"
+
+   \                                 In section .rodata, align 2
+   \        0x0   0x54 0x00          DC8 "T"
+
+   \                                 In section .rodata, align 4
+   \                     ?_9:
+   \        0x0   0x50 0x4B          DC8 0x50, 0x4B, 0x54, 0x20, 0x3A, 0x20, 0x54, 0x78
+
+   \              0x54 0x20    
+
+   \              0x3A 0x20    
+
+   \              0x54 0x78
+   \        0x8   0x28 0x25          DC8 0x28, 0x25, 0x64, 0x29, 0x20, 0x2F, 0x20, 0x52
+
+   \              0x64 0x29    
+
+   \              0x20 0x2F    
+
+   \              0x20 0x52
+   \       0x10   0x78 0x28          DC8 0x78, 0x28, 0x25, 0x64, 0x29, 0x20, 0x2F, 0x20
+
+   \              0x25 0x64    
+
+   \              0x29 0x20    
+
+   \              0x2F 0x20
+   \       0x18   0x48 0x6F          DC8 0x48, 0x6F, 0x70, 0x28, 0x25, 0x64, 0x29, 0x20
+
+   \              0x70 0x28    
+
+   \              0x25 0x64    
+
+   \              0x29 0x20
+   \       0x20   0x2F 0x20          DC8 0x2F, 0x20, 0x44, 0x72, 0x6F, 0x70, 0x28, 0x25
+
+   \              0x44 0x72    
+
+   \              0x6F 0x70    
+
+   \              0x28 0x25
+   \       0x28   0x64 0x29          DC8 0x64, 0x29, 0x20, 0x2F, 0x20, 0x52, 0x73, 0x70
+
+   \              0x20 0x2F    
+
+   \              0x20 0x52    
+
+   \              0x73 0x70
+   \       0x30   0x49 0x44          DC8 0x49, 0x44, 0x28, 0x20, 0x30, 0x78, 0x25, 0x30
+
+   \              0x28 0x20    
+
+   \              0x30 0x78    
+
+   \              0x25 0x30
+   \       0x38   0x34 0x58          DC8 0x34, 0x58, 0x20, 0x29, 0x20, 0x2F, 0x20, 0x52
+
+   \              0x20 0x29    
+
+   \              0x20 0x2F    
+
+   \              0x20 0x52
+   \       0x40   0x78 0x45          DC8 0x78, 0x45, 0x72, 0x72, 0x28, 0x25, 0x64, 0x29
+
+   \              0x72 0x72    
+
+   \              0x28 0x25    
+
+   \              0x64 0x29
+   \       0x48   0x20 0x2F          DC8 0x20, 0x2F, 0x20, 0x43, 0x72, 0x63, 0x28, 0x25
+
+   \              0x20 0x43    
+
+   \              0x72 0x63    
+
+   \              0x28 0x25
+   \       0x50   0x64 0x29          DC8 0x64, 0x29, 0x20, 0x2F, 0x20, 0x52, 0x53, 0x53
+
+   \              0x20 0x2F    
+
+   \              0x20 0x52    
+
+   \              0x53 0x53
+   \       0x58   0x49 0x28          DC8 0x49, 0x28, 0x25, 0x64, 0x29, 0x0A, 0
+
+   \              0x25 0x64    
+
+   \              0x29 0x0A    
+
+   \              0x00
+   \       0x5F                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \        0x0   0x54 0x78          DC8 "Tx"
+
+   \              0x00
+   \        0x3                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \        0x0   0x25 0x64          DC8 "%d"
+
+   \              0x00
+   \        0x3                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_12:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - En(%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x45    
+
+   \              0x6E 0x28    
+
+   \              0x25 0x64    
+
+   \              0x29 0x0A    
+
+   \              0x00
+   \       0x11                      DS8 3
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      16   CallbackRecvPacket
+        16   -> ProcPktCall
+        16   -> ProcPktCmd
+        16   -> ProcPktCtrlPaCall
+        16   -> ProcPktHdr1
+        16   -> ProcPktHdr2
+        16   -> ProcPktLight
+        16   -> ProcPktPA
+        16   -> ProcPktRouteReq
+        16   -> ProcPktRouteRsp
+        16   -> ProcPktStat
+        16   -> ProcPktStatReq
+        16   -> ProcPktUpgr
+        16   -> ProcPktUpgrStat
+        16   -> printf
+      24   Dump
+        24   -> GetDbg
+        24   -> printf
+       8   InitProcPkt
+         8   -> GetChRx
+         8   -> vRadio_StartRX
+      40   LoopProcPkt
+        40   -> CallbackRecvPacket
+        40   -> Dump
+        40   -> HAL_GPIO_TogglePin
+        40   -> HAL_GetTick
+        40   -> bRadio_Check_Tx_RX
+        40   -> memset
+        40   -> printf
+      16   ProcPktHdr1
+        16   -> GetRFMMode
+        16   -> _ChkDropPktSeq
+      96   ProcPktHdr2
+        96   -> GetChRFMDown
+        96   -> GetChRFMUp
+        96   -> GetChRx
+        96   -> GetDevID
+        96   -> GetTrainSetIdx
+        96   -> SendPktCh
+        96   -> memcpy
+      24   SendPacket
+        24   -> Dump
+        24   -> HAL_GetTick
+        24   -> vRadio_StartTx_Variable_Packet
+      24   SendPktCh
+        24   -> Dump
+        24   -> HAL_GetTick
+        24   -> vRadio_StartTx_Variable_Packet
+       8   TestProcPkt
+         8   -> HAL_GetTick
+         8   -> InitProcPkt
+         8   -> LoopProcPkt
+       8   _ChkDropPktSeq
+       0   bBitOrderReverse
+      16   cmd_pktmon
+        16   -> printf
+        16   -> sscanf
+      16   wPayloadLenghtFromPhr
+        16   -> bBitOrderReverse
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable3
+       4  ??DataTable6
+       4  ??DataTable9
+       4  ??DataTable9_1
+       4  ??DataTable9_10
+       4  ??DataTable9_11
+       4  ??DataTable9_12
+       4  ??DataTable9_13
+       4  ??DataTable9_14
+       4  ??DataTable9_15
+       4  ??DataTable9_16
+       4  ??DataTable9_17
+       4  ??DataTable9_18
+       4  ??DataTable9_19
+       4  ??DataTable9_2
+       4  ??DataTable9_20
+       4  ??DataTable9_21
+       4  ??DataTable9_22
+       4  ??DataTable9_23
+       4  ??DataTable9_24
+       4  ??DataTable9_25
+       4  ??DataTable9_26
+       4  ??DataTable9_27
+       4  ??DataTable9_28
+       4  ??DataTable9_29
+       4  ??DataTable9_3
+       4  ??DataTable9_30
+       4  ??DataTable9_31
+       4  ??DataTable9_32
+       4  ??DataTable9_33
+       4  ??DataTable9_34
+       4  ??DataTable9_35
+       4  ??DataTable9_36
+       4  ??DataTable9_37
+       4  ??DataTable9_38
+       4  ??DataTable9_4
+       4  ??DataTable9_5
+       4  ??DataTable9_6
+       4  ??DataTable9_7
+       4  ??DataTable9_8
+       4  ??DataTable9_9
+       8  ?_0
+       8  ?_1
+       4  ?_10
+       4  ?_11
+      20  ?_12
+       2  ?_2
+       2  ?_3
+       4  ?_4
+       2  ?_5
+       4  ?_6
+       2  ?_7
+       2  ?_8
+      96  ?_9
+     208  CallbackRecvPacket
+      54  Dump
+      32  InitProcPkt
+     244  LoopProcPkt
+      68  ProcPktHdr1
+     654  ProcPktHdr2
+      86  SendPacket
+      58  SendPktCh
+      30  TestProcPkt
+      94  _ChkDropPktSeq
+      52  bBitOrderReverse
+       1  bMain_IT_Status
+       1  bModulationType
+       1  bPktConfig1ForRx
+       1  bPropValue1
+       1  bPropValue2
+      46  cmd_pktmon
+       4  g_bSetRspIDManual
+       2  g_flagRspID
+       1  g_nPktSeq
+       4  nCrcErr
+       4  nDropPkt
+       4  nHopPkt
+       4  nRxErr
+       4  nRxPkt
+       4  nRxStamp
+       4  nTxPkt
+       4  nTxStamp
+       4  nTxStampComp
+       4  s_bShowPkt
+       4  s_nTick
+       4  s_oldTick
+      48  wPayloadLenghtFromPhr
+      12  -- Other
+
+ 
+    60 bytes in section .bss
+   170 bytes in section .rodata
+ 1'838 bytes in section .text
+ 
+ 1'838 bytes of CODE  memory
+   170 bytes of CONST memory
+    60 bytes of DATA  memory
+
+Errors: none
+Warnings: 38

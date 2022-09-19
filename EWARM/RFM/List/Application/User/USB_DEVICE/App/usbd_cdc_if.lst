@@ -1,0 +1,596 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:55
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\USB_DEVICE\App\usbd_cdc_if.c
+#    Command line                 =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\USB_DEVICE\App\usbd_cdc_if.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\USB_DEVICE\App\usbd_cdc_if.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Application\User\USB_DEVICE\App
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\USB_DEVICE\App
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\USB_DEVICE\App\usbd_cdc_if.o.d
+#    Locale                       =  C
+#    List file                    =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Application\User\USB_DEVICE\App\usbd_cdc_if.lst
+#    Object file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\USB_DEVICE\App\usbd_cdc_if.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\USB_DEVICE\App\usbd_cdc_if.c
+      1          /* USER CODE BEGIN Header */
+      2          /**
+      3            ******************************************************************************
+      4            * @file           : usbd_cdc_if.c
+      5            * @version        : v1.0_Cube
+      6            * @brief          : Usb device for Virtual Com Port.
+      7            ******************************************************************************
+      8            * @attention
+      9            *
+     10            * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+     11            * All rights reserved.</center></h2>
+     12            *
+     13            * This software component is licensed by ST under Ultimate Liberty license
+     14            * SLA0044, the "License"; You may not use this file except in compliance with
+     15            * the License. You may obtain a copy of the License at:
+     16            *                             www.st.com/SLA0044
+     17            *
+     18            ******************************************************************************
+     19            */
+     20          /* USER CODE END Header */
+     21          
+     22          /* Includes ------------------------------------------------------------------*/
+     23          #include "usbd_cdc_if.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     24          
+     25          /* USER CODE BEGIN INCLUDE */
+     26          
+     27          /* USER CODE END INCLUDE */
+     28          
+     29          /* Private typedef -----------------------------------------------------------*/
+     30          /* Private define ------------------------------------------------------------*/
+     31          /* Private macro -------------------------------------------------------------*/
+     32          
+     33          /* USER CODE BEGIN PV */
+     34          /* Private variables ---------------------------------------------------------*/
+     35          
+     36          /* USER CODE END PV */
+     37          
+     38          /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
+     39            * @brief Usb device library.
+     40            * @{
+     41            */
+     42          
+     43          /** @addtogroup USBD_CDC_IF
+     44            * @{
+     45            */
+     46          
+     47          /** @defgroup USBD_CDC_IF_Private_TypesDefinitions USBD_CDC_IF_Private_TypesDefinitions
+     48            * @brief Private types.
+     49            * @{
+     50            */
+     51          
+     52          /* USER CODE BEGIN PRIVATE_TYPES */
+     53          
+     54          /* USER CODE END PRIVATE_TYPES */
+     55          
+     56          /**
+     57            * @}
+     58            */
+     59          
+     60          /** @defgroup USBD_CDC_IF_Private_Defines USBD_CDC_IF_Private_Defines
+     61            * @brief Private defines.
+     62            * @{
+     63            */
+     64          
+     65          /* USER CODE BEGIN PRIVATE_DEFINES */
+     66          /* USER CODE END PRIVATE_DEFINES */
+     67          
+     68          /**
+     69            * @}
+     70            */
+     71          
+     72          /** @defgroup USBD_CDC_IF_Private_Macros USBD_CDC_IF_Private_Macros
+     73            * @brief Private macros.
+     74            * @{
+     75            */
+     76          
+     77          /* USER CODE BEGIN PRIVATE_MACRO */
+     78          
+     79          /* USER CODE END PRIVATE_MACRO */
+     80          
+     81          /**
+     82            * @}
+     83            */
+     84          
+     85          /** @defgroup USBD_CDC_IF_Private_Variables USBD_CDC_IF_Private_Variables
+     86            * @brief Private variables.
+     87            * @{
+     88            */
+     89          /* Create buffer for reception and transmission           */
+     90          /* It's up to user to redefine and/or remove those define */
+     91          /** Received data over USB are stored in this buffer      */
+
+   \                                 In section .bss, align 4
+     92          uint8_t UserRxBufferFS[APP_RX_DATA_SIZE];
+   \                     UserRxBufferFS:
+   \        0x0                      DS8 2'048
+     93          
+     94          /** Data to send over USB CDC are stored in this buffer   */
+
+   \                                 In section .bss, align 4
+     95          uint8_t UserTxBufferFS[APP_TX_DATA_SIZE];
+   \                     UserTxBufferFS:
+   \        0x0                      DS8 2'048
+     96          
+     97          /* USER CODE BEGIN PRIVATE_VARIABLES */
+     98          
+     99          /* USER CODE END PRIVATE_VARIABLES */
+    100          
+    101          /**
+    102            * @}
+    103            */
+    104          
+    105          /** @defgroup USBD_CDC_IF_Exported_Variables USBD_CDC_IF_Exported_Variables
+    106            * @brief Public variables.
+    107            * @{
+    108            */
+    109          
+    110          extern USBD_HandleTypeDef hUsbDeviceFS;
+    111          
+    112          /* USER CODE BEGIN EXPORTED_VARIABLES */
+    113          
+    114          /* USER CODE END EXPORTED_VARIABLES */
+    115          
+    116          /**
+    117            * @}
+    118            */
+    119          
+    120          /** @defgroup USBD_CDC_IF_Private_FunctionPrototypes USBD_CDC_IF_Private_FunctionPrototypes
+    121            * @brief Private functions declaration.
+    122            * @{
+    123            */
+    124          
+    125          static int8_t CDC_Init_FS(void);
+    126          static int8_t CDC_DeInit_FS(void);
+    127          static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length);
+    128          static int8_t CDC_Receive_FS(uint8_t* pbuf, uint32_t *Len);
+    129          static int8_t CDC_TransmitCplt_FS(uint8_t *pbuf, uint32_t *Len, uint8_t epnum);
+    130          
+    131          /* USER CODE BEGIN PRIVATE_FUNCTIONS_DECLARATION */
+    132          
+    133          /* USER CODE END PRIVATE_FUNCTIONS_DECLARATION */
+    134          
+    135          /**
+    136            * @}
+    137            */
+    138          
+
+   \                                 In section .data, align 4
+    139          USBD_CDC_ItfTypeDef USBD_Interface_fops_FS =
+   \                     USBD_Interface_fops_FS:
+   \        0x0   0x....'....        DC32 CDC_Init_FS, CDC_DeInit_FS, CDC_Control_FS, CDC_Receive_FS
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....
+   \       0x10   0x....'....        DC32 CDC_TransmitCplt_FS
+    140          {
+    141            CDC_Init_FS,
+    142            CDC_DeInit_FS,
+    143            CDC_Control_FS,
+    144            CDC_Receive_FS,
+    145            CDC_TransmitCplt_FS
+    146          };
+    147          
+    148          /* Private functions ---------------------------------------------------------*/
+    149          /**
+    150            * @brief  Initializes the CDC media low layer over the FS USB IP
+    151            * @retval USBD_OK if all operations are OK else USBD_FAIL
+    152            */
+
+   \                                 In section .text, align 2, keep-with-next
+    153          static int8_t CDC_Init_FS(void)
+    154          {
+   \                     CDC_Init_FS: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+    155            /* USER CODE BEGIN 3 */
+    156            /* Set Application Buffers */
+    157            USBD_CDC_SetTxBuffer(&hUsbDeviceFS, UserTxBufferFS, 0);
+   \        0x2   0x....             LDR.N    R4,??DataTable2
+   \        0x4   0x2200             MOVS     R2,#+0
+   \        0x6   0x....             LDR.N    R1,??DataTable2_1
+   \        0x8   0x0020             MOVS     R0,R4
+   \        0xA   0x.... 0x....      BL       USBD_CDC_SetTxBuffer
+    158            USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
+   \        0xE   0x....             LDR.N    R1,??DataTable2_2
+   \       0x10   0x0020             MOVS     R0,R4
+   \       0x12   0x.... 0x....      BL       USBD_CDC_SetRxBuffer
+    159            return (USBD_OK);
+   \       0x16   0x2000             MOVS     R0,#+0
+   \       0x18   0xBD10             POP      {R4,PC}
+    160            /* USER CODE END 3 */
+    161          }
+    162          
+    163          /**
+    164            * @brief  DeInitializes the CDC media low layer
+    165            * @retval USBD_OK if all operations are OK else USBD_FAIL
+    166            */
+
+   \                                 In section .text, align 2, keep-with-next
+    167          static int8_t CDC_DeInit_FS(void)
+    168          {
+    169            /* USER CODE BEGIN 4 */
+    170            return (USBD_OK);
+   \                     CDC_DeInit_FS: (+1)
+   \        0x0   0x2000             MOVS     R0,#+0
+   \        0x2   0x4770             BX       LR
+    171            /* USER CODE END 4 */
+    172          }
+    173          
+    174          /**
+    175            * @brief  Manage the CDC class requests
+    176            * @param  cmd: Command code
+    177            * @param  pbuf: Buffer containing command data (request parameters)
+    178            * @param  length: Number of data to be sent (in bytes)
+    179            * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
+    180            */
+
+   \                                 In section .text, align 2, keep-with-next
+    181          static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
+    182          {
+   \                     CDC_Control_FS: (+1)
+   \        0x0   0x0003             MOVS     R3,R0
+    183            /* USER CODE BEGIN 5 */
+    184            switch(cmd)
+   \        0x2   0x0018             MOVS     R0,R3
+   \        0x4   0xB2C0             UXTB     R0,R0
+   \        0x6   0x2800             CMP      R0,#+0
+   \        0x8   0xD010             BEQ.N    ??CDC_Control_FS_0
+   \        0xA   0x2801             CMP      R0,#+1
+   \        0xC   0xD00F             BEQ.N    ??CDC_Control_FS_1
+   \        0xE   0x2802             CMP      R0,#+2
+   \       0x10   0xD00E             BEQ.N    ??CDC_Control_FS_2
+   \       0x12   0x2803             CMP      R0,#+3
+   \       0x14   0xD00D             BEQ.N    ??CDC_Control_FS_3
+   \       0x16   0x2804             CMP      R0,#+4
+   \       0x18   0xD00C             BEQ.N    ??CDC_Control_FS_4
+   \       0x1A   0x2820             CMP      R0,#+32
+   \       0x1C   0xD00B             BEQ.N    ??CDC_Control_FS_5
+   \       0x1E   0x2821             CMP      R0,#+33
+   \       0x20   0xD00A             BEQ.N    ??CDC_Control_FS_6
+   \       0x22   0x2822             CMP      R0,#+34
+   \       0x24   0xD009             BEQ.N    ??CDC_Control_FS_7
+   \       0x26   0x2823             CMP      R0,#+35
+   \       0x28   0xD008             BEQ.N    ??CDC_Control_FS_8
+   \       0x2A   0xE008             B.N      ??CDC_Control_FS_9
+    185            {
+    186              case CDC_SEND_ENCAPSULATED_COMMAND:
+    187          
+    188              break;
+   \                     ??CDC_Control_FS_0: (+1)
+   \       0x2C   0xE007             B.N      ??CDC_Control_FS_10
+    189          
+    190              case CDC_GET_ENCAPSULATED_RESPONSE:
+    191          
+    192              break;
+   \                     ??CDC_Control_FS_1: (+1)
+   \       0x2E   0xE006             B.N      ??CDC_Control_FS_10
+    193          
+    194              case CDC_SET_COMM_FEATURE:
+    195          
+    196              break;
+   \                     ??CDC_Control_FS_2: (+1)
+   \       0x30   0xE005             B.N      ??CDC_Control_FS_10
+    197          
+    198              case CDC_GET_COMM_FEATURE:
+    199          
+    200              break;
+   \                     ??CDC_Control_FS_3: (+1)
+   \       0x32   0xE004             B.N      ??CDC_Control_FS_10
+    201          
+    202              case CDC_CLEAR_COMM_FEATURE:
+    203          
+    204              break;
+   \                     ??CDC_Control_FS_4: (+1)
+   \       0x34   0xE003             B.N      ??CDC_Control_FS_10
+    205          
+    206            /*******************************************************************************/
+    207            /* Line Coding Structure                                                       */
+    208            /*-----------------------------------------------------------------------------*/
+    209            /* Offset | Field       | Size | Value  | Description                          */
+    210            /* 0      | dwDTERate   |   4  | Number |Data terminal rate, in bits per second*/
+    211            /* 4      | bCharFormat |   1  | Number | Stop bits                            */
+    212            /*                                        0 - 1 Stop bit                       */
+    213            /*                                        1 - 1.5 Stop bits                    */
+    214            /*                                        2 - 2 Stop bits                      */
+    215            /* 5      | bParityType |  1   | Number | Parity                               */
+    216            /*                                        0 - None                             */
+    217            /*                                        1 - Odd                              */
+    218            /*                                        2 - Even                             */
+    219            /*                                        3 - Mark                             */
+    220            /*                                        4 - Space                            */
+    221            /* 6      | bDataBits  |   1   | Number Data bits (5, 6, 7, 8 or 16).          */
+    222            /*******************************************************************************/
+    223              case CDC_SET_LINE_CODING:
+    224          
+    225              break;
+   \                     ??CDC_Control_FS_5: (+1)
+   \       0x36   0xE002             B.N      ??CDC_Control_FS_10
+    226          
+    227              case CDC_GET_LINE_CODING:
+    228          
+    229              break;
+   \                     ??CDC_Control_FS_6: (+1)
+   \       0x38   0xE001             B.N      ??CDC_Control_FS_10
+    230          
+    231              case CDC_SET_CONTROL_LINE_STATE:
+    232          
+    233              break;
+   \                     ??CDC_Control_FS_7: (+1)
+   \       0x3A   0xE000             B.N      ??CDC_Control_FS_10
+    234          
+    235              case CDC_SEND_BREAK:
+    236          
+    237              break;
+   \                     ??CDC_Control_FS_8: (+1)
+   \       0x3C   0xE7FF             B.N      ??CDC_Control_FS_10
+    238          
+    239            default:
+    240              break;
+    241            }
+    242          
+    243            return (USBD_OK);
+   \                     ??CDC_Control_FS_9: (+1)
+   \                     ??CDC_Control_FS_10: (+1)
+   \       0x3E   0x2000             MOVS     R0,#+0
+   \       0x40   0x4770             BX       LR
+    244            /* USER CODE END 5 */
+    245          }
+    246          
+    247          /**
+    248            * @brief  Data received over USB OUT endpoint are sent over CDC interface
+    249            *         through this function.
+    250            *
+    251            *         @note
+    252            *         This function will issue a NAK packet on any OUT packet received on
+    253            *         USB endpoint until exiting this function. If you exit this function
+    254            *         before transfer is complete on CDC interface (ie. using DMA controller)
+    255            *         it will result in receiving more data while previous ones are still
+    256            *         not sent.
+    257            *
+    258            * @param  Buf: Buffer of data to be received
+    259            * @param  Len: Number of data received (in bytes)
+    260            * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
+    261            */
+
+   \                                 In section .text, align 2, keep-with-next
+    262          static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
+    263          {
+   \                     CDC_Receive_FS: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    264            /* USER CODE BEGIN 6 */
+    265          
+    266          #if 1
+    267          
+    268          	//	Loopback
+    269          	CDC_Transmit_FS(Buf, *Len);
+   \        0x6   0x6829             LDR      R1,[R5, #+0]
+   \        0x8   0xB289             UXTH     R1,R1
+   \        0xA   0x0020             MOVS     R0,R4
+   \        0xC   0x.... 0x....      BL       CDC_Transmit_FS
+    270          
+    271          #endif
+    272          
+    273            USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
+   \       0x10   0x....             LDR.N    R6,??DataTable2
+   \       0x12   0x0021             MOVS     R1,R4
+   \       0x14   0x0030             MOVS     R0,R6
+   \       0x16   0x.... 0x....      BL       USBD_CDC_SetRxBuffer
+    274            USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+   \       0x1A   0x0030             MOVS     R0,R6
+   \       0x1C   0x.... 0x....      BL       USBD_CDC_ReceivePacket
+    275            return (USBD_OK);
+   \       0x20   0x2000             MOVS     R0,#+0
+   \       0x22   0xBD70             POP      {R4-R6,PC}
+    276            /* USER CODE END 6 */
+    277          }
+    278          
+    279          /**
+    280            * @brief  CDC_Transmit_FS
+    281            *         Data to send over USB IN endpoint are sent over CDC interface
+    282            *         through this function.
+    283            *         @note
+    284            *
+    285            *
+    286            * @param  Buf: Buffer of data to be sent
+    287            * @param  Len: Number of data to be sent (in bytes)
+    288            * @retval USBD_OK if all operations are OK else USBD_FAIL or USBD_BUSY
+    289            */
+
+   \                                 In section .text, align 2, keep-with-next
+    290          uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
+    291          {
+   \                     CDC_Transmit_FS: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+    292            uint8_t result = USBD_OK;
+   \        0x8   0x2600             MOVS     R6,#+0
+    293            /* USER CODE BEGIN 7 */
+    294            USBD_CDC_HandleTypeDef *hcdc = (USBD_CDC_HandleTypeDef*)hUsbDeviceFS.pClassData;
+   \        0xA   0x....             LDR.N    R7,??DataTable2
+   \        0xC   0xF8D7 0x82BC      LDR      R8,[R7, #+700]
+    295            if (hcdc->TxState != 0){
+   \       0x10   0xF8D8 0x0214      LDR      R0,[R8, #+532]
+   \       0x14   0x2800             CMP      R0,#+0
+   \       0x16   0xD001             BEQ.N    ??CDC_Transmit_FS_0
+    296              return USBD_BUSY;
+   \       0x18   0x2001             MOVS     R0,#+1
+   \       0x1A   0xE009             B.N      ??CDC_Transmit_FS_1
+    297            }
+    298            USBD_CDC_SetTxBuffer(&hUsbDeviceFS, Buf, Len);
+   \                     ??CDC_Transmit_FS_0: (+1)
+   \       0x1C   0x002A             MOVS     R2,R5
+   \       0x1E   0xB292             UXTH     R2,R2
+   \       0x20   0x0021             MOVS     R1,R4
+   \       0x22   0x0038             MOVS     R0,R7
+   \       0x24   0x.... 0x....      BL       USBD_CDC_SetTxBuffer
+    299            result = USBD_CDC_TransmitPacket(&hUsbDeviceFS);
+   \       0x28   0x0038             MOVS     R0,R7
+   \       0x2A   0x.... 0x....      BL       USBD_CDC_TransmitPacket
+    300            /* USER CODE END 7 */
+    301            return result;
+   \       0x2E   0xB2C0             UXTB     R0,R0
+   \                     ??CDC_Transmit_FS_1: (+1)
+   \       0x30   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    302          }
+    303          
+    304          /**
+    305            * @brief  CDC_TransmitCplt_FS
+    306            *         Data transmited callback
+    307            *
+    308            *         @note
+    309            *         This function is IN transfer complete callback used to inform user that
+    310            *         the submitted Data is successfully sent over USB.
+    311            *
+    312            * @param  Buf: Buffer of data to be received
+    313            * @param  Len: Number of data received (in bytes)
+    314            * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
+    315            */
+
+   \                                 In section .text, align 2, keep-with-next
+    316          static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
+    317          {
+   \                     CDC_TransmitCplt_FS: (+1)
+   \        0x0   0x0003             MOVS     R3,R0
+    318            uint8_t result = USBD_OK;
+   \        0x2   0x2000             MOVS     R0,#+0
+    319            /* USER CODE BEGIN 13 */
+    320            UNUSED(Buf);
+    321            UNUSED(Len);
+    322            UNUSED(epnum);
+    323            /* USER CODE END 13 */
+    324            return result;
+   \        0x4   0xB240             SXTB     R0,R0
+   \        0x6   0x4770             BX       LR
+    325          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2:
+   \        0x0   0x....'....        DC32     hUsbDeviceFS
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_1:
+   \        0x0   0x....'....        DC32     UserTxBufferFS
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_2:
+   \        0x0   0x....'....        DC32     UserRxBufferFS
+    326          
+    327          /* USER CODE BEGIN PRIVATE_FUNCTIONS_IMPLEMENTATION */
+    328          
+    329          /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
+    330          
+    331          /**
+    332            * @}
+    333            */
+    334          
+    335          /**
+    336            * @}
+    337            */
+    338          
+    339          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   CDC_Control_FS
+       0   CDC_DeInit_FS
+       8   CDC_Init_FS
+         8   -> USBD_CDC_SetRxBuffer
+         8   -> USBD_CDC_SetTxBuffer
+      16   CDC_Receive_FS
+        16   -> CDC_Transmit_FS
+        16   -> USBD_CDC_ReceivePacket
+        16   -> USBD_CDC_SetRxBuffer
+       0   CDC_TransmitCplt_FS
+      24   CDC_Transmit_FS
+        24   -> USBD_CDC_SetTxBuffer
+        24   -> USBD_CDC_TransmitPacket
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable2
+       4  ??DataTable2_1
+       4  ??DataTable2_2
+      66  CDC_Control_FS
+       4  CDC_DeInit_FS
+      26  CDC_Init_FS
+      36  CDC_Receive_FS
+       8  CDC_TransmitCplt_FS
+      52  CDC_Transmit_FS
+      20  USBD_Interface_fops_FS
+   2'048  UserRxBufferFS
+   2'048  UserTxBufferFS
+
+ 
+ 4'096 bytes in section .bss
+    20 bytes in section .data
+   204 bytes in section .text
+ 
+   204 bytes of CODE memory
+ 4'116 bytes of DATA memory
+
+Errors: none
+Warnings: 1

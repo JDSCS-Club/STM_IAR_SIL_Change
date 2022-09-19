@@ -1,0 +1,571 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:59
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Library\serial.c
+#    Command line                 =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\serial.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Library\serial.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library --no_cse
+#        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
+#        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
+#        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\serial.o.d
+#    Locale                       =  C
+#    List file                    =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library\serial.lst
+#    Object file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\serial.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Library\serial.c
+      1          
+      2          #include <stdio.h>
+      3          #include <stdlib.h>
+      4          #include <stdarg.h>
+      5          #include <ctype.h>
+      6          #include <string.h>
+      7          #include <stdarg.h>
+      8          #include <stdint.h>
+      9          
+     10          /* USER CODE BEGIN 1 */
+     11          
+     12          #include "serial.h"
+     13          
+     14          //=============================================================================
+     15          #if defined(_WIN32)
+     16          //=============================================================================
+     17          
+     18          #include "x86_hal_driver.h"
+     19          
+     20          //=============================================================================
+     21          #else	//	stm32f207
+     22          //=============================================================================
+     23          
+     24          #if defined(USE_FREERTOS)
+     25          #include "FreeRTOS.h"
+     26          #include "queue.h"
+     27          #include "task.h"
+     28          #endif
+     29          
+     30          #include "main.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     31          
+     32          #if defined(STM32F407xx)
+     33          #include "stm32f4xx_hal.h"
+     34          #elif defined(STM32F207xx)
+     35          #include "stm32f2xx_hal.h"
+     36          #endif
+     37          
+     38          //=============================================================================
+     39          #endif	//	stm32f207
+     40          //=============================================================================
+     41          
+     42          #include "QBuf.h"		//	Queue_t
+     43          
+
+   \                                 In section .bss, align 4
+     44          Queue_t		g_qDebug, g_qRS485;
+   \                     g_qDebug:
+   \        0x0                      DS8 264
+
+   \                                 In section .bss, align 4
+   \                     g_qRS485:
+   \        0x0                      DS8 264
+     45          
+
+   \                                 In section .bss, align 4
+     46          uint8_t		dataDbgTx[8];	//	console
+   \                     dataDbgTx:
+   \        0x0                      DS8 8
+     47          
+
+   \                                 In section .bss, align 4
+     48          uint8_t		dataTx1[8];		//	UART1 - RS485
+   \                     dataTx1:
+   \        0x0                      DS8 8
+     49          
+
+   \                                 In section .bss, align 4
+     50          UART_HandleTypeDef *phuart1 = NULL;
+   \                     phuart1:
+   \        0x0                      DS8 4
+
+   \                                 In section .bss, align 4
+     51          UART_HandleTypeDef *phuart2 = NULL;			//	Debug
+   \                     phuart2:
+   \        0x0                      DS8 4
+     52          
+     53          
+     54          
+     55          //=============================================================================
+     56          #if defined(_WIN32)
+     57          //=============================================================================
+     58          
+     59          //=============================================================================
+     60          #else	//	stm32f207
+     61          //=============================================================================
+     62          
+     63          
+     64          #ifdef __GNUC__
+     65            /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
+     66               set to 'Yes') calls __io_putchar() */
+     67            #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+     68            #define GETCHAR_PROTOTYPE int __io_getchar(void)
+     69          #else
+     70            #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+     71            #define GETCHAR_PROTOTYPE int fgetc(FILE *f)
+     72          #endif /* __GNUC__ */
+     73          
+     74          
+     75          /**
+     76            * @brief  Retargets the C library printf function to the USART.
+     77            * @param  None
+     78            * @retval None
+     79            */
+     80          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     81          int __io_putchar(int ch)
+     82          //===========================================================================
+     83          {
+   \                     __io_putchar: (+1)
+   \        0x0   0xB531             PUSH     {R0,R4,R5,LR}
+     84          	/* Place your implementation of fputc here */
+     85          	/* e.g. write a character to the EVAL_COM1 and Loop until the end of transmission */
+     86          
+     87          	//========================================================================
+     88          	//	Console
+     89          	if ( phuart2 )
+   \        0x2   0x....             LDR.N    R4,??DataTable5_1
+   \        0x4   0x6820             LDR      R0,[R4, #+0]
+   \        0x6   0x2800             CMP      R0,#+0
+   \        0x8   0xD010             BEQ.N    ??__io_putchar_0
+     90          	{
+     91          		HAL_UART_Transmit( phuart2, (uint8_t *)&ch, 1, 0xFFFF );
+   \        0xA   0xF64F 0x75FF      MOVW     R5,#+65535
+   \        0xE   0x002B             MOVS     R3,R5
+   \       0x10   0x2201             MOVS     R2,#+1
+   \       0x12   0x4669             MOV      R1,SP
+   \       0x14   0x6820             LDR      R0,[R4, #+0]
+   \       0x16   0x.... 0x....      BL       HAL_UART_Transmit
+     92          		if ( ch == '\n' )
+   \       0x1A   0x9800             LDR      R0,[SP, #+0]
+   \       0x1C   0x280A             CMP      R0,#+10
+   \       0x1E   0xD105             BNE.N    ??__io_putchar_0
+     93          		{
+     94          			HAL_UART_Transmit( phuart2, (uint8_t *)"\r", 1, 0xFFFF );
+   \       0x20   0x002B             MOVS     R3,R5
+   \       0x22   0x2201             MOVS     R2,#+1
+   \       0x24   0x....             ADR.N    R1,??DataTable5
+   \       0x26   0x6820             LDR      R0,[R4, #+0]
+   \       0x28   0x.... 0x....      BL       HAL_UART_Transmit
+     95          		}
+     96          	}
+     97          
+     98          	//========================================================================
+     99          	//	RS232
+    100          	//*
+    101          	if ( phuart1 )
+   \                     ??__io_putchar_0: (+1)
+   \       0x2C   0x....             LDR.N    R5,??DataTable5_2
+   \       0x2E   0x6828             LDR      R0,[R5, #+0]
+   \       0x30   0x2800             CMP      R0,#+0
+   \       0x32   0xD010             BEQ.N    ??__io_putchar_1
+    102          	{
+    103          		HAL_UART_Transmit( phuart1, (uint8_t *)&ch, 1, 0xFFFF );
+   \       0x34   0xF64F 0x74FF      MOVW     R4,#+65535
+   \       0x38   0x0023             MOVS     R3,R4
+   \       0x3A   0x2201             MOVS     R2,#+1
+   \       0x3C   0x4669             MOV      R1,SP
+   \       0x3E   0x6828             LDR      R0,[R5, #+0]
+   \       0x40   0x.... 0x....      BL       HAL_UART_Transmit
+    104          
+    105          		if ( ch == '\n' )
+   \       0x44   0x9800             LDR      R0,[SP, #+0]
+   \       0x46   0x280A             CMP      R0,#+10
+   \       0x48   0xD105             BNE.N    ??__io_putchar_1
+    106          		{
+    107          			HAL_UART_Transmit( phuart1, (uint8_t *)"\r", 1, 0xFFFF );
+   \       0x4A   0x0023             MOVS     R3,R4
+   \       0x4C   0x2201             MOVS     R2,#+1
+   \       0x4E   0x....             ADR.N    R1,??DataTable5
+   \       0x50   0x6828             LDR      R0,[R5, #+0]
+   \       0x52   0x.... 0x....      BL       HAL_UART_Transmit
+    108          		}
+    109          	}
+    110          	//	*/
+    111          	//========================================================================
+    112          
+    113          	return ch;
+   \                     ??__io_putchar_1: (+1)
+   \       0x56   0x9800             LDR      R0,[SP, #+0]
+   \       0x58   0xBD32             POP      {R1,R4,R5,PC}
+    114          }
+    115          
+    116          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    117          GETCHAR_PROTOTYPE
+    118          //===========================================================================
+    119          {
+   \                     fgetc: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    120          	char	c;
+    121          
+    122          	while( !qcount( &g_qDebug ) )
+   \        0x4   0x....             LDR.N    R5,??DataTable5_3
+   \        0x6   0x0028             MOVS     R0,R5
+   \        0x8   0x.... 0x....      BL       qcount
+   \        0xC   0x2800             CMP      R0,#+0
+   \        0xE   0xD102             BNE.N    ??fgetc_0
+    123          	{
+    124          //		osDelay(0);
+    125          #if defined( USE_FREERTOS )
+    126          		taskYIELD();
+    127          #else
+    128          		return -1;		//	Non-Blocking ( OS less )
+   \       0x10   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x14   0xE003             B.N      ??fgetc_1
+    129          //		HAL_Delay( 0 );
+    130          #endif
+    131          	}
+    132          	c = qget( &g_qDebug );
+   \                     ??fgetc_0: (+1)
+   \       0x16   0x0028             MOVS     R0,R5
+   \       0x18   0x.... 0x....      BL       qget
+    133          
+    134          	return c;
+   \       0x1C   0xB2C0             UXTB     R0,R0
+   \                     ??fgetc_1: (+1)
+   \       0x1E   0xBD32             POP      {R1,R4,R5,PC}
+    135          }
+    136          
+    137          
+    138          /**
+    139            * @brief  Rx Transfer completed callbacks.
+    140            * @param  huart pointer to a UART_HandleTypeDef structure that contains
+    141            *                the configuration information for the specified UART module.
+    142            * @retval None
+    143            */
+    144          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    145          void HAL_UART_RxCpltCallback( UART_HandleTypeDef *huart )
+    146          //===========================================================================
+    147          {
+   \                     HAL_UART_RxCpltCallback: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    148          	//	portBASE_TYPE	xHigherPriorityTaskWoken = pdFALSE;
+    149          	//	인터럽트.
+    150          
+    151          	//===========================================================================
+    152          	//	Debug Console
+    153          	if ( huart->Instance == USART2 )
+   \        0x4   0x6820             LDR      R0,[R4, #+0]
+   \        0x6   0x....             LDR.N    R1,??DataTable5_4
+   \        0x8   0x4288             CMP      R0,R1
+   \        0xA   0xD109             BNE.N    ??HAL_UART_RxCpltCallback_0
+    154          	{
+    155          		//	문자 Queue에 쌓기.
+    156          		qput( &g_qDebug, dataDbgTx[0] );
+   \        0xC   0x....             LDR.N    R5,??DataTable5_5
+   \        0xE   0x7829             LDRB     R1,[R5, #+0]
+   \       0x10   0x....             LDR.N    R0,??DataTable5_3
+   \       0x12   0x.... 0x....      BL       qput
+    157          
+    158          		//	입력내용 콘솔로 출력.
+    159          //DEL		HAL_UART_Transmit( huart, (uint8_t *)&dataDbgTx[0], 1, 0xFFFF );
+    160          
+    161          		HAL_UART_Receive_IT( huart, dataDbgTx, 1 );
+   \       0x16   0x2201             MOVS     R2,#+1
+   \       0x18   0x0029             MOVS     R1,R5
+   \       0x1A   0x0020             MOVS     R0,R4
+   \       0x1C   0x.... 0x....      BL       HAL_UART_Receive_IT
+    162          	}
+    163          
+    164          	//===========================================================================
+    165          	//	RS232
+    166          	if ( huart->Instance == USART1 )
+   \                     ??HAL_UART_RxCpltCallback_0: (+1)
+   \       0x20   0x6820             LDR      R0,[R4, #+0]
+   \       0x22   0x....             LDR.N    R1,??DataTable5_6
+   \       0x24   0x4288             CMP      R0,R1
+   \       0x26   0xD109             BNE.N    ??HAL_UART_RxCpltCallback_1
+    167          	{
+    168          		qput( &g_qDebug, dataTx1[0] );
+   \       0x28   0x....             LDR.N    R5,??DataTable5_7
+   \       0x2A   0x7829             LDRB     R1,[R5, #+0]
+   \       0x2C   0x....             LDR.N    R0,??DataTable5_3
+   \       0x2E   0x.... 0x....      BL       qput
+    169          //		qput( &g_qRS485, dataTx1[0] );	//	입력내용 콘솔로 출력.
+    170          
+    171          //DEL		HAL_UART_Transmit( huart, (uint8_t *)&dataTx1[0], 1, 0xFFFF );
+    172          
+    173          		HAL_UART_Receive_IT( huart, dataTx1, 1 );
+   \       0x32   0x2201             MOVS     R2,#+1
+   \       0x34   0x0029             MOVS     R1,R5
+   \       0x36   0x0020             MOVS     R0,R4
+   \       0x38   0x.... 0x....      BL       HAL_UART_Receive_IT
+    174          	}
+    175          
+    176          	//===========================================================================
+    177          }
+   \                     ??HAL_UART_RxCpltCallback_1: (+1)
+   \       0x3C   0xBD31             POP      {R0,R4,R5,PC}
+    178          
+    179          
+    180          //=============================================================================
+    181          #endif	//	stm32f207
+    182          //=============================================================================
+    183          
+    184          
+    185          
+    186          // ============================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    187          void SerialInitQueue( void )
+    188          //===========================================================================
+    189          {
+   \                     SerialInitQueue: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    190          //	xDebugQueueRx = xQueueCreate( DEBUG_RX_QUEUE_SIZE, sizeof( char ) );
+    191          
+    192          	//	Debug Queue
+    193          	init_queue( &g_qDebug );
+   \        0x2   0x....             LDR.N    R0,??DataTable5_3
+   \        0x4   0x.... 0x....      BL       init_queue
+    194          
+    195          	//	RS485 Queue
+    196          	init_queue( &g_qRS485 );
+   \        0x8   0x....             LDR.N    R0,??DataTable5_8
+   \        0xA   0x.... 0x....      BL       init_queue
+    197          }
+   \        0xE   0xBD01             POP      {R0,PC}
+    198          
+    199          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    200          void SerialInit( UART_HandleTypeDef *_phuart1, UART_HandleTypeDef *_phuart2 )
+    201          //===========================================================================
+    202          {
+   \                     SerialInit: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    203          	SerialInitQueue();
+   \        0x6   0x.... 0x....      BL       SerialInitQueue
+    204          
+    205          	//===========================================================================
+    206          	//	Set Serial Handle
+    207          	phuart1 = _phuart1;
+   \        0xA   0x....             LDR.N    R6,??DataTable5_2
+   \        0xC   0x6034             STR      R4,[R6, #+0]
+    208          	phuart2 = _phuart2;
+   \        0xE   0x....             LDR.N    R3,??DataTable5_1
+   \       0x10   0x601D             STR      R5,[R3, #+0]
+    209          
+    210          	//===========================================================================
+    211          
+    212          #if defined(_WIN32)
+    213          #else
+    214          
+    215          	//	UART Console
+    216          	if ( phuart2 )
+   \       0x12   0x6818             LDR      R0,[R3, #+0]
+   \       0x14   0x2800             CMP      R0,#+0
+   \       0x16   0xD004             BEQ.N    ??SerialInit_0
+    217          	{
+    218          		HAL_UART_Receive_IT( phuart2, dataDbgTx, 1 );
+   \       0x18   0x2201             MOVS     R2,#+1
+   \       0x1A   0x....             LDR.N    R1,??DataTable5_5
+   \       0x1C   0x6818             LDR      R0,[R3, #+0]
+   \       0x1E   0x.... 0x....      BL       HAL_UART_Receive_IT
+    219          	}
+    220          
+    221          	//	UART RS485
+    222          	if ( phuart1 )
+   \                     ??SerialInit_0: (+1)
+   \       0x22   0x6830             LDR      R0,[R6, #+0]
+   \       0x24   0x2800             CMP      R0,#+0
+   \       0x26   0xD004             BEQ.N    ??SerialInit_1
+    223          	{
+    224          		HAL_UART_Receive_IT( phuart1, dataTx1, 1 );
+   \       0x28   0x2201             MOVS     R2,#+1
+   \       0x2A   0x....             LDR.N    R1,??DataTable5_7
+   \       0x2C   0x6830             LDR      R0,[R6, #+0]
+   \       0x2E   0x.... 0x....      BL       HAL_UART_Receive_IT
+    225          	}
+    226          
+    227          #endif
+    228          }
+   \                     ??SerialInit_1: (+1)
+   \       0x32   0xBD70             POP      {R4-R6,PC}
+    229          
+    230          //===========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    231          int input_check( void )
+    232          //===========================================================================
+    233          {
+   \                     input_check: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    234          	return qcount( &g_qDebug );
+   \        0x2   0x....             LDR.N    R0,??DataTable5_3
+   \        0x4   0x.... 0x....      BL       qcount
+   \        0x8   0xBD02             POP      {R1,PC}
+    235          //	return (((rear+QMAX)-front) % QMAX);
+    236          	/*
+    237          	portBASE_TYPE xStatus;
+    238          	uint8_t	c;
+    239          
+    240          	xStatus = xQueuePeek(xDebugQueueRx, &c, 0);
+    241          	return xStatus;
+    242          	*/
+    243          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5:
+   \        0x0   0x0D 0x00          DC8      "\r",0x0,0x0   
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_1:
+   \        0x0   0x....'....        DC32     phuart2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_2:
+   \        0x0   0x....'....        DC32     phuart1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_3:
+   \        0x0   0x....'....        DC32     g_qDebug
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_4:
+   \        0x0   0x4000'4400        DC32     0x40004400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_5:
+   \        0x0   0x....'....        DC32     dataDbgTx
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_6:
+   \        0x0   0x4001'1000        DC32     0x40011000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_7:
+   \        0x0   0x....'....        DC32     dataTx1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_8:
+   \        0x0   0x....'....        DC32     g_qRS485
+
+   \                                 In section .rodata, align 2
+   \        0x0   0x0D 0x00          DC8 "\015"
+    244          
+    245          
+    246          /* USER CODE END 1 */
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      16   HAL_UART_RxCpltCallback
+        16   -> HAL_UART_Receive_IT
+        16   -> qput
+      16   SerialInit
+        16   -> HAL_UART_Receive_IT
+        16   -> SerialInitQueue
+       8   SerialInitQueue
+         8   -> init_queue
+      16   __io_putchar
+        16   -> HAL_UART_Transmit
+      16   fgetc
+        16   -> qcount
+        16   -> qget
+       8   input_check
+         8   -> qcount
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable5
+       4  ??DataTable5_1
+       4  ??DataTable5_2
+       4  ??DataTable5_3
+       4  ??DataTable5_4
+       4  ??DataTable5_5
+       4  ??DataTable5_6
+       4  ??DataTable5_7
+       4  ??DataTable5_8
+       2  ?_0
+      62  HAL_UART_RxCpltCallback
+      52  SerialInit
+      16  SerialInitQueue
+      90  __io_putchar
+       8  dataDbgTx
+       8  dataTx1
+      32  fgetc
+     264  g_qDebug
+     264  g_qRS485
+      10  input_check
+       4  phuart1
+       4  phuart2
+
+ 
+ 552 bytes in section .bss
+   2 bytes in section .rodata
+ 298 bytes in section .text
+ 
+ 298 bytes of CODE  memory
+   2 bytes of CONST memory
+ 552 bytes of DATA  memory
+
+Errors: none
+Warnings: 1

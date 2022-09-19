@@ -1,0 +1,5160 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:59
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Library\menu.c
+#    Command line                 =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\menu.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Library\menu.c -D USE_HAL_DRIVER
+#        -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library --no_cse
+#        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
+#        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
+#        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\menu.o.d
+#    Locale                       =  C
+#    List file                    =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library\menu.lst
+#    Object file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\menu.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#      __iar_require _Printf      =  flags,widths
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Library\menu.c
+      1          
+      2          #include "main.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+      3          
+      4          #include <stdio.h>
+      5          #include <string.h>
+      6          #include <math.h>
+      7          #include <stdlib.h>
+      8          #include <stdarg.h>
+      9          #include <stdbool.h>
+     10          
+     11          #include "QBuf.h"
+     12          
+     13          #include "RFMProtocol.h"			//  SendStat()
+
+  typedef unsigned char       BYTE;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",73  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned short      WORD;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",77  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		BIT;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",83  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		U8;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",84  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned int 		U16;
+                       		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",85  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned long 		U32;
+                        		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",86  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed char 		S8;
+                      		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",88  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed int 			S16;
+                     			^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",89  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed long 		S32;
+                      		^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",90  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",304  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",322  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",468  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",506  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",511  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",533  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",559  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",567  Warning[Pe040]: 
+          expected an identifier
+     14          
+     15          #include "audio.h"					//  g_bufAudioRFRx
+     16          
+     17          #include "adc.h"					//  Adc_Power()
+     18          
+     19          #include "version.h"				//  APP_VER
+     20          
+     21          #include "cli.h"
+     22          
+     23          #include "menu.h"
+     24          
+     25          #include "rfm.h"
+     26          
+     27          #include "radio.h"					//	pRadioConfiguration
+     28          
+     29          #include "ProcPkt.h"				//	g_flagRspID
+     30          
+     31          
+     32          #define RFM_IAR_BUILD   1               //      IAR Compiler Build
+     33          
+     34          #if defined(RFM_IAR_BUILD)
+     35          
+     36          //void    LCDPrintfXY             ( int x, int y, char *str ){}
+     37          //void    LCDClearMain            ( void ){}
+     38          //void    LCDPrintf               ( char * str ){}
+     39          //void    LCDSetCursor            ( int x, int y ){}
+     40          //void    LCDEnableDebug		( int bEnable ){}  		//  print LCD Display
+     41          //void    LCDSpeaker              ( int nLevel ){}
+     42          //void    LCDLight                ( int bOnOff ){}
+     43          //void    LCDClear                ( void ){}
+     44          //void    LCDBattery              ( int nLevel ){}
+     45          //int     LCDInit                 ( void ){ return 1; }
+     46          //void    LCDDrawRect             ( int x, int y, int w, int h, int color ) {} //  Clear LCD Display
+     47          //void    LCDMenu                 ( void ){}
+     48          //void    LCDMenuUpDown           ( int nUpDown ){} //  0( Off ) / 1( ▲Up ) / 2( ▼Down ) / 3( ▲Up/▼Down ) 
+     49          
+     50          //#define         LCDCleanMain    ()
+     51          //#/define         LCDPrintf       ()
+     52          //#define         LCDSetCursor    ()
+     53          //#define         LCDEnableDebug  ()
+     54          //#define         LCDSpeaker      ()
+     55          //#define         LCDLight        ()
+     56          //#define         LCDClear        ()
+     57          //#define         LCDBattery      ()
+     58          //#define         LCDInit         ()
+     59          //#define         LCDDrawRect     ()
+     60          //#define         LCDMenu         ()
+     61          
+     62          #else
+     63          
+     64          #include "Adafruit_SSD1306.h"		//  LCD Display
+     65          
+     66          #endif
+     67          
+     68          
+     69          //========================================================================
+     70          //	Menu LightCtrl
+     71          
+
+   \                                 In section .data, align 4
+     72          char *_sLightCtrl[] = {
+   \                     _sLightCtrl:
+   \        0x0   0x....'....        DC32 ?_0, ?_1
+
+   \              0x....'....
+     73          	"1. 조명소등",		//  조명소등
+     74          	"2. 조명점등"		//  조명점등
+     75          };
+     76          
+
+   \                                 In section .data, align 4
+     77          Menu_t	g_MenuLightCtrl = {
+   \                     g_MenuLightCtrl:
+   \        0x0   0x....'....        DC32 _sLightCtrl, 2, 0, ProcMenuLightCtrl
+
+   \              0x0000'0002  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+     78          	_sLightCtrl,
+     79          	sizeof(_sLightCtrl)/sizeof(char *),		//	Item Count
+     80          	0,						// 	curr Idx
+     81          	ProcMenuLightCtrl		//	Callback Function
+     82          };
+     83          
+     84          //========================================================================
+     85          //	Main Version Info
+     86          
+     87          #if defined(USE_RFT_MENU_DEV_VER)
+     88          
+
+   \                                 In section .data, align 4
+     89          char _sVerList[16][20] = {
+   \                     _sVerList:
+   \        0x0   0x52 0x46          DC8 "RFM v1.1.0.302"
+
+   \              0x4D 0x20    
+
+   \              0x76 0x31    
+
+   \              0x2E 0x31    
+
+   \              0x2E 0x30    
+
+   \              0x2E 0x33    
+
+   \              0x30 0x32    
+
+   \              0x00
+   \        0xF                      DS8 5
+   \       0x14   0x30 0x31          DC8 "01:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \       0x20                      DS8 8
+   \       0x28   0x30 0x32          DC8 "02:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \       0x34                      DS8 8
+   \       0x3C   0x30 0x33          DC8 "03:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \       0x48                      DS8 8
+   \       0x50   0x30 0x34          DC8 "04:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \       0x5C                      DS8 8
+   \       0x64   0x30 0x35          DC8 "05:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \       0x70                      DS8 8
+   \       0x78   0x30 0x36          DC8 "06:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \       0x84                      DS8 8
+   \       0x8C   0x30 0x37          DC8 "07:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \       0x98                      DS8 8
+   \       0xA0   0x30 0x38          DC8 "08:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \       0xAC                      DS8 8
+   \       0xB4   0x30 0x39          DC8 "09:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \       0xC0                      DS8 8
+   \       0xC8   0x31 0x30          DC8 "10:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \       0xD4                      DS8 8
+   \       0xDC   0x31 0x31          DC8 "11:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \       0xE8                      DS8 8
+   \       0xF0   0x31 0x32          DC8 "12:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \       0xFC                      DS8 8
+   \      0x104   0x31 0x33          DC8 "13:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \      0x110                      DS8 8
+   \      0x118   0x31 0x34          DC8 "14:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \      0x124                      DS8 8
+   \      0x12C   0x31 0x35          DC8 "15:    --- "
+
+   \              0x3A 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x2D    
+
+   \              0x2D 0x2D    
+
+   \              0x20 0x00
+   \      0x138                      DS8 8
+     90          	"RFM v" APP_VER,		//  Self Device Version
+     91          //	"01:v1.1.X.X",
+     92          	"01:    --- ",	//	"01:v1.1.X.X",
+     93          	"02:    --- ",	//
+     94          	"03:    --- ",	//
+     95          	"04:    --- ",	//
+     96          	"05:    --- ",	//
+     97          	"06:    --- ",	//
+     98          	"07:    --- ",	//
+     99          	"08:    --- ",	//
+    100          	"09:    --- ",	//
+    101          	"10:    --- ",	//
+    102          	"11:    --- ",	//
+    103          	"12:    --- ",	//
+    104          	"13:    --- ",	//
+    105          	"14:    --- ",	//
+    106          	"15:    --- ",	//
+    107          };
+    108          
+
+   \                                 In section .data, align 4
+    109          char *_psVerList[] = {
+   \                     _psVerList:
+   \        0x0   0x....'....        DC32 _sVerList, _sVerList + 0x14, _sVerList + 0x28, _sVerList + 0x3c
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....
+   \       0x10   0x....'....        DC32 _sVerList + 0x50, _sVerList + 0x64, _sVerList + 0x78
+
+   \              0x....'....  
+
+   \              0x....'....
+   \       0x1C   0x....'....        DC32 _sVerList + 0x8c, _sVerList + 0xa0, _sVerList + 0xb4
+
+   \              0x....'....  
+
+   \              0x....'....
+   \       0x28   0x....'....        DC32 _sVerList + 0xc8, _sVerList + 0xdc, _sVerList + 0xf0
+
+   \              0x....'....  
+
+   \              0x....'....
+   \       0x34   0x....'....        DC32 _sVerList + 0x104, _sVerList + 0x118, _sVerList + 0x12c
+
+   \              0x....'....  
+
+   \              0x....'....
+    110          	_sVerList[0],	_sVerList[1],	_sVerList[2],	_sVerList[3],
+    111          	_sVerList[4],	_sVerList[5],	_sVerList[6],	_sVerList[7],
+    112          	_sVerList[8],	_sVerList[9],	_sVerList[10],	_sVerList[11],
+    113          	_sVerList[12],	_sVerList[13],	_sVerList[14],	_sVerList[15],
+    114          };
+    115          
+    116          
+
+   \                                 In section .data, align 4
+    117          Menu_t	g_MenuVerList = {
+   \                     g_MenuVerList:
+   \        0x0   0x....'....        DC32 _psVerList, 16, 0, ProcMenuVer
+
+   \              0x0000'0010  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    118          	_psVerList,
+    119          	sizeof(_psVerList)/sizeof(char *),		//	Item Count
+    120          	0,						// 	curr Idx
+    121          	ProcMenuVer				//	Callback Function
+    122          };
+    123          
+    124          #endif	//	defined(USE_RFT_MENU_DEV_VER)
+    125          //========================================================================
+    126          
+    127          //========================================================================
+    128          //	Menu TrainSet	-	편성설정메뉴 ( 100 ~ 119 )
+    129          
+
+   \                                 In section .data, align 4
+    130          char *_sTrainSet[] = {
+   \                     _sTrainSet:
+   \        0x0   0x....'....        DC32 ?_2, ?_3, ?_4, ?_5, ?_6, ?_7, ?_8, ?_9, ?_10, ?_11, ?_12, ?_13
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....
+   \       0x30   0x....'....        DC32 ?_14, ?_15, ?_16, ?_17, ?_18, ?_19, ?_20, ?_21
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....
+    131          	" 100 편성",
+    132          	" 101 편성",
+    133          	" 102 편성",
+    134          	" 103 편성",
+    135          	" 104 편성",
+    136          	" 105 편성",
+    137          	" 106 편성",
+    138          	" 107 편성",
+    139          	" 108 편성",
+    140          	" 109 편성",
+    141          	" 110 편성",
+    142          	" 111 편성",
+    143          	" 112 편성",
+    144          	" 113 편성",
+    145          	" 114 편성",
+    146          	" 115 편성",
+    147          	" 116 편성",
+    148          	" 117 편성",
+    149          	" 118 편성",
+    150          	" 119 편성",
+    151          };
+    152          
+
+   \                                 In section .data, align 4
+    153          Menu_t	g_MenuTrainSet = {
+   \                     g_MenuTrainSet:
+   \        0x0   0x....'....        DC32 _sTrainSet, 20, 0, ProcMenuTrainSet
+
+   \              0x0000'0014  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    154          	_sTrainSet,
+    155          	sizeof(_sTrainSet)/sizeof(char *),		//	Item Count
+    156          	0,						// 	curr Idx
+    157          	ProcMenuTrainSet		//	Callback Function
+    158          };
+    159          
+    160          //========================================================================
+    161          //	Menu RFTID
+    162          
+    163          #if defined(USE_RFT_MENU_RFTID)
+
+   \                                 In section .data, align 4
+    164          char *_sRFTIDList[] = {
+   \                     _sRFTIDList:
+   \        0x0   0x....'....        DC32 ?_22, ?_23
+
+   \              0x....'....
+    165          	" 송신기#1",		//  11
+    166          	" 송신기#2",		//  12
+    167          };
+    168          
+
+   \                                 In section .data, align 4
+    169          Menu_t	g_MenuRFTIDList = {
+   \                     g_MenuRFTIDList:
+   \        0x0   0x....'....        DC32 _sRFTIDList, 2, 0, ProcMenuRFTID
+
+   \              0x0000'0002  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    170          	_sRFTIDList,
+    171          	sizeof(_sRFTIDList)/sizeof(char *),		//	Item Count
+    172          	0,						// 	curr Idx
+    173          	ProcMenuRFTID			//	Callback Function
+    174          };
+    175          #endif	//	defined(USE_RFT_MENU_RFTID)
+    176          
+    177          //========================================================================
+    178          //	Menu SelfTest - 자가진단
+    179          
+    180          #if defined(USE_RFT_MENU_SELFTEST)
+
+   \                                 In section .data, align 4
+    181          char *_sSelfTestList[] = {
+   \                     _sSelfTestList:
+   \        0x0   0x....'....        DC32 ?_24, ?_25, ?_26, ?_27, ?_28, ?_29
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....
+    182          	" 1 호차 : OK",	//
+    183          	" 2 호차 : OK",	//
+    184          	" 3 호차 : OK",	//
+    185          	" 4 호차 : N/A",	//
+    186          	" 5 호차 : N/A",	//
+    187          	" 6 호차 : OK",	//
+    188          };
+    189          
+
+   \                                 In section .data, align 4
+    190          Menu_t	g_MenuSelfTestList = {
+   \                     g_MenuSelfTestList:
+   \        0x0   0x....'....        DC32 _sSelfTestList, 6, 0, ProcMenuSelfTest
+
+   \              0x0000'0006  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    191          	_sSelfTestList,
+    192          	sizeof(_sSelfTestList)/sizeof(char *),		//	Item Count
+    193          	0,						// 	curr Idx
+    194          	ProcMenuSelfTest		//	Callback Function
+    195          };
+    196          #endif	//	defined(USE_RFT_MENU_SELFTEST)
+    197          
+    198          //========================================================================
+    199          //	Menu Diag - 진단
+    200          
+    201          #if defined(USE_RFT_MENU_DIAG)
+
+   \                                 In section .data, align 4
+    202          char *_sDiagList[] = {
+   \                     _sDiagList:
+   \        0x0   0x....'....        DC32 ?_30, ?_31, ?_32
+
+   \              0x....'....  
+
+   \              0x....'....
+    203          	" AudioLoop:Off",	//  Loopback Off
+    204          	" AudioLoop:On",	//  Loopback On
+    205          	" AudioSine:On",	//  Sine Wave On
+    206          };
+    207          
+
+   \                                 In section .data, align 4
+    208          Menu_t	g_MenuDiagList = {
+   \                     g_MenuDiagList:
+   \        0x0   0x....'....        DC32 _sDiagList, 3, 0, ProcMenuDiag
+
+   \              0x0000'0003  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    209          	_sDiagList,
+    210          	sizeof(_sDiagList)/sizeof(char *),		//	Item Count
+    211          	0,						// 	curr Idx
+    212          	ProcMenuDiag		//	Callback Function
+    213          };
+    214          #endif	//	defined(USE_RFT_MENU_DIAG)
+    215          
+    216          //========================================================================
+    217          //	Menu Setting
+    218          
+    219          #if defined(USE_RFT_MENU_SETTING)
+
+   \                                 In section .data, align 4
+    220          char *_sSettingList[] = {
+   \                     _sSettingList:
+   \        0x0   0x....'....        DC32 ?_33, ?_34, ?_35, ?_36
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....
+    221          	" Mic Vol",		//	Mic Volume
+    222          	" Spk Vol",		//	Spk Volume
+    223          	" RF Tx Pwr",	//	RF Tx Power
+    224          	" RF Mode",		//	RF Mode
+    225          };
+    226          
+
+   \                                 In section .data, align 4
+    227          Menu_t	g_MenuSettingList = {
+   \                     g_MenuSettingList:
+   \        0x0   0x....'....        DC32 _sSettingList, 4, 0, ProcMenuSetting
+
+   \              0x0000'0004  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    228          	_sSettingList,
+    229          	sizeof(_sSettingList)/sizeof(char *),		//	Item Count
+    230          	0,						// 	curr Idx
+    231          	ProcMenuSetting		//	Callback Function
+    232          };
+    233          
+
+   \                                 In section .data, align 4
+    234          char *_sSetMicList[] = { " Mic : 0",
+   \                     _sSetMicList:
+   \        0x0   0x....'....        DC32 ?_37, ?_38, ?_39, ?_40, ?_41, ?_42, ?_43, ?_44, ?_45, ?_46
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....
+    235          						" Mic : 1",
+    236          						" Mic : 2",
+    237          						" Mic : 3",
+    238          						" Mic : 4",
+    239          						" Mic : 5",
+    240          						" Mic : 6",
+    241          						" Mic : 7",
+    242          						" Mic : 8",
+    243          						" Mic : 9",
+    244          						};
+    245          
+
+   \                                 In section .data, align 4
+    246          Menu_t	g_MenuSetMicList = {
+   \                     g_MenuSetMicList:
+   \        0x0   0x....'....        DC32 _sSetMicList, 10, 0, ProcMenuSetMic
+
+   \              0x0000'000A  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    247          	_sSetMicList,
+    248          	sizeof(_sSetMicList)/sizeof(char *),		//	Item Count
+    249          	0,						// 	curr Idx
+    250          	ProcMenuSetMic			//	Callback Function
+    251          };
+    252          
+
+   \                                 In section .data, align 4
+    253          char *_sSetSpkList[] = { " Spk : 0",
+   \                     _sSetSpkList:
+   \        0x0   0x....'....        DC32 ?_47, ?_48, ?_49, ?_50
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....
+    254          						" Spk : 1",
+    255          						" Spk : 2",
+    256          						" Spk : 3",
+    257          						};
+    258          
+
+   \                                 In section .data, align 4
+    259          Menu_t	g_MenuSetSpkList = {
+   \                     g_MenuSetSpkList:
+   \        0x0   0x....'....        DC32 _sSetSpkList, 4, 0, ProcMenuSetSpk
+
+   \              0x0000'0004  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    260          	_sSetSpkList,
+    261          	sizeof(_sSetSpkList)/sizeof(char *),		//	Item Count
+    262          	0,						// 	curr Idx
+    263          	ProcMenuSetSpk			//	Callback Function
+    264          };
+    265          
+    266          //	[0(-38dBm)~7(0dBm)~12(5dBm)~22(10dBm)~40(15dBm)~127(20dBm)]",
+
+   \                                 In section .data, align 4
+    267          char *_sSetTxPwrList[] = { 	" Pwr : -38 dBm",	//	0
+   \                     _sSetTxPwrList:
+   \        0x0   0x....'....        DC32 ?_51, ?_52, ?_53, ?_54, ?_55, ?_56, ?_57, ?_58
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....
+    268          							" Pwr : -20 dBm",	//	1
+    269          							" Pwr : -5 dBm",	//	4
+    270          							" Pwr : 0 dBm",		//	7
+    271          							" Pwr : 5 dBm",		//	12
+    272          							" Pwr : 10 dBm",	//	22
+    273          							" Pwr : 15 dBm",	//	40
+    274          							" Pwr : 20 dBm",	//	127
+    275          						};
+    276          
+
+   \                                 In section .data, align 4
+    277          Menu_t	g_MenuSetTxPwrList = {
+   \                     g_MenuSetTxPwrList:
+   \        0x0   0x....'....        DC32 _sSetTxPwrList, 8, 0, ProcMenuSetTxPwr
+
+   \              0x0000'0008  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    278          	_sSetTxPwrList,
+    279          	sizeof(_sSetTxPwrList)/sizeof(char *),		//	Item Count
+    280          	0,							// 	curr Idx
+    281          	ProcMenuSetTxPwr			//	Callback Function
+    282          };
+    283          
+    284          
+    285          //	[RFMode : 1(1채널중계) / 2(2채널그룹)]",
+
+   \                                 In section .data, align 4
+    286          char *_sSetRFMode[] = { 	" RFMode 1",	//	1
+   \                     _sSetRFMode:
+   \        0x0   0x....'....        DC32 ?_59, ?_60
+
+   \              0x....'....
+    287          							" RFMode 2",	//	2
+    288          						};
+    289          
+
+   \                                 In section .data, align 4
+    290          Menu_t	g_MenuSetRFModeList = {
+   \                     g_MenuSetRFModeList:
+   \        0x0   0x....'....        DC32 _sSetRFMode, 2, 0, ProcMenuSetRFMode
+
+   \              0x0000'0002  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    291          	_sSetRFMode,
+    292          	sizeof(_sSetRFMode)/sizeof(char *),		//	Item Count
+    293          	0,							// 	curr Idx
+    294          	ProcMenuSetRFMode			//	Callback Function
+    295          };
+    296          
+    297          #endif	//	defined(USE_RFT_MENU_SETTING)
+    298          
+    299          //========================================================================
+    300          //	Menu Command
+    301          
+    302          #if defined(USE_RFT_MENU_CMD)
+
+   \                                 In section .data, align 4
+    303          char *_sCmdList[] = {
+   \                     _sCmdList:
+   \        0x0   0x....'....        DC32 ?_61, ?_62, ?_63, ?_64, ?_65, ?_66
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....
+    304          	" Reset", //  Reset
+    305          	//DEL	" DFU Mode",		//  DFU Mode
+    306          	" TS Set",
+    307          	" Car Set",
+    308          	" RFMode Set",
+    309          	" Upgrade ReTry", //  Upgrade Re-Try
+    310          	" Upgrade",		  //  Upgrade
+    311          };
+    312          
+
+   \                                 In section .data, align 4
+    313          Menu_t	g_MenuCmdList = {
+   \                     g_MenuCmdList:
+   \        0x0   0x....'....        DC32 _sCmdList, 6, 0, ProcMenuCmd
+
+   \              0x0000'0006  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    314          	_sCmdList,
+    315          	sizeof(_sCmdList)/sizeof(char *),		//	Item Count
+    316          	0,						// 	curr Idx
+    317          	ProcMenuCmd				//	Callback Function
+    318          };
+    319          #endif	//	defined(USE_RFT_MENU_CMD)
+    320          
+    321          //	호차 설정
+
+   \                                 In section .data, align 4
+    322          char *_sSetCmdCarList[] = {	" Car : 1",
+   \                     _sSetCmdCarList:
+   \        0x0   0x....'....        DC32 ?_67, ?_68, ?_69, ?_70, ?_71, ?_72, ?_73, ?_74, ?_75, ?_76
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....
+    323          							" Car : 2",
+    324          							" Car : 3",
+    325          							" Car : 4",
+    326          							" Car : 5",
+    327          							" Car : 6",
+    328          							" Car : 7",
+    329          							" Car : 8",
+    330          							" Car : 9",
+    331          							" Car : 10",
+    332          						};
+    333          
+
+   \                                 In section .data, align 4
+    334          Menu_t	g_MenuSetCmdCarList = {
+   \                     g_MenuSetCmdCarList:
+   \        0x0   0x....'....        DC32 _sSetCmdCarList, 10, 0, ProcMenuSetCmdCar
+
+   \              0x0000'000A  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    335          	_sSetCmdCarList,
+    336          	sizeof(_sSetCmdCarList)/sizeof(char *),		//	Item Count
+    337          	0,						// 	curr Idx
+    338          	ProcMenuSetCmdCar		//	Callback Function
+    339          };
+    340          
+    341          //	편성 설정
+
+   \                                 In section .data, align 4
+    342          Menu_t	g_MenuSetCmdTSList = {
+   \                     g_MenuSetCmdTSList:
+   \        0x0   0x....'....        DC32 _sTrainSet, 20, 0, ProcMenuSetCmdTS
+
+   \              0x0000'0014  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    343          	_sTrainSet,								//	편성 : 100, 편성 : 101, ...
+    344          	sizeof(_sTrainSet)/sizeof(char *),		//	Item Count
+    345          	0,						// 	curr Idx
+    346          	ProcMenuSetCmdTS		//	Callback Function
+    347          };
+    348          
+    349          //	RFMode 설정
+
+   \                                 In section .data, align 4
+    350          char *_sSetCmdRFModeList[] = {	" RFMode 1",
+   \                     _sSetCmdRFModeList:
+   \        0x0   0x....'....        DC32 ?_59, ?_60
+
+   \              0x....'....
+    351          								" RFMode 2",
+    352          								};
+    353          
+
+   \                                 In section .data, align 4
+    354          Menu_t	g_MenuSetCmdRFModeList = {
+   \                     g_MenuSetCmdRFModeList:
+   \        0x0   0x....'....        DC32 _sSetCmdRFModeList, 2, 0, ProcMenuSetCmdRFMode
+
+   \              0x0000'0002  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    355          	_sSetCmdRFModeList,
+    356          	sizeof(_sSetCmdRFModeList)/sizeof(char *),		//	Item Count
+    357          	0,						// 	curr Idx
+    358          	ProcMenuSetCmdRFMode		//	Callback Function
+    359          };
+    360          
+    361          //========================================================================
+    362          //	Main Menu
+    363          
+    364          enum eMenuIdx
+    365          {
+    366          	eMenuIdxCtlLight = 0,	//	조명제어
+    367          	eMenuIdxSWVer,			//	S/W버전
+    368          	eMenuIdxTrainSet,		//	편성설정
+    369          #if defined(USE_RFT_MENU_RFTID)
+    370          	eMenuIdxRFTID,			//	송신기 ID
+    371          #endif
+    372          #if defined(USE_RFT_MENU_SELFTEST)
+    373          	eMenuIdxSelfTest,		//	자가 진단
+    374          #endif
+    375          #if defined(USE_RFT_MENU_DIAG)
+    376          	eMenuIdxDiag,			//	진단
+    377          #endif
+    378          #if defined(USE_RFT_MENU_SETTING)
+    379          	eMenuIdxSetting,		//	설정
+    380          #endif
+    381          #if defined(USE_RFT_MENU_STAT)
+    382          	eMenuIdxStat,			//	상태정보
+    383          #endif
+    384          #if defined(USE_RFT_MENU_CMD)
+    385          	eMenuIdxCmd,			//	명령전송
+    386          #endif
+    387          };
+    388          
+    389          //========================================================================
+
+   \                                 In section .bss, align 4
+    390          int	g_bEnMenuMaint	= 	0;	//	MainMenu Maintenace Menu활성화.
+   \                     g_bEnMenuMaint:
+   \        0x0                      DS8 4
+    391          
+
+   \                                 In section .text, align 2, keep-with-next
+    392          int 	IsMenuMaint			( void )			//	MainMenu Maintenace Menu활성화.
+    393          {
+    394          	return g_bEnMenuMaint;
+   \                     IsMenuMaint: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable27
+   \        0x4   0x6800             LDR      R0,[R0, #+0]
+   \        0x6   0x4770             BX       LR
+    395          }
+    396          
+    397          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    398          void EnableMenuMaint( int bEnable )
+    399          //========================================================================
+    400          {
+   \                     EnableMenuMaint: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    401          	g_bEnMenuMaint = bEnable;
+   \        0x4   0x.... 0x....      LDR.W    R0,??DataTable27
+   \        0x8   0x6004             STR      R4,[R0, #+0]
+    402          
+    403          	if ( bEnable )
+   \        0xA   0x2C00             CMP      R4,#+0
+   \        0xC   0xD005             BEQ.N    ??EnableMenuMaint_0
+    404          	{
+    405          		//	LCD [Menu Maint.]
+    406          		LCDPrintfXY( 10, 13, "[Maint. Menu]" );
+                 		^
+Warning[Pe223]: function "LCDPrintfXY" declared implicitly
+   \        0xE   0x.... 0x....      LDR.W    R2,??DataTable27_1
+   \       0x12   0x210D             MOVS     R1,#+13
+   \       0x14   0x200A             MOVS     R0,#+10
+   \       0x16   0x.... 0x....      BL       LCDPrintfXY
+    407          	}
+    408          }
+   \                     ??EnableMenuMaint_0: (+1)
+   \       0x1A   0xBD10             POP      {R4,PC}
+    409          
+    410          //========================================================================
+    411          //	Main Menu - Base 기본메뉴
+
+   \                                 In section .data, align 4
+    412          char *_sMainMenuBase[] = {
+   \                     _sMainMenuBase:
+   \        0x0   0x....'....        DC32 ?_77, ?_78
+
+   \              0x....'....
+    413          	"1. 조명제어",
+    414          	"2. S/W 버전",
+    415          };
+    416          
+
+   \                                 In section .data, align 4
+    417          Menu_t	g_MenuMainBase = {
+   \                     g_MenuMainBase:
+   \        0x0   0x....'....        DC32 _sMainMenuBase, 2, 0, ProcMenuMain
+
+   \              0x0000'0002  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    418          	_sMainMenuBase,
+    419          	sizeof(_sMainMenuBase)/sizeof(char *),		//	Item Count
+    420          	0,					// 	curr Idx
+    421          	ProcMenuMain		//	Callback Function
+    422          };
+    423          
+    424          //========================================================================
+    425          //	Main Menu -	Maintenance Menu 활성화.
+
+   \                                 In section .data, align 4
+    426          char *_sMainMenuMaint[] = {
+   \                     _sMainMenuMaint:
+   \        0x0   0x....'....        DC32 ?_77, ?_78, ?_79, ?_80, ?_81, ?_82, ?_83, ?_84, ?_85
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....  
+
+   \              0x....'....
+    427          	"1. 조명제어",
+    428          	"2. S/W 버전",
+    429          	"3. 편성설정",
+    430          #if defined(USE_RFT_MENU_RFTID)
+    431          	"4. 송신기ID",			//	송신기 ID
+    432          #endif
+    433          #if defined(USE_RFT_MENU_SELFTEST)
+    434          	"5. 자가진단",
+    435          #endif	//	defined(USE_RFT_MENU_SELFTEST)
+    436          #if defined(USE_RFT_MENU_DIAG)
+    437          	"6. 진    단",
+    438          #endif	//	defined(USE_RFT_MENU_DIAG)
+    439          #if defined(USE_RFT_MENU_SETTING)
+    440          	"7. 설    정",
+    441          #endif	//	defined(USE_RFT_MENU_SETTING)
+    442          #if defined(USE_RFT_MENU_STAT)
+    443          	"8. 상태정보",
+    444          #endif	//	defined(USE_RFT_MENU_STAT)
+    445          #if defined(USE_RFT_MENU_CMD)
+    446          	"9. 명령전송",
+    447          #endif	//	defined(USE_RFT_MENU_CMD)
+    448          };
+    449          
+
+   \                                 In section .data, align 4
+    450          Menu_t	g_MenuMainMaint = {
+   \                     g_MenuMainMaint:
+   \        0x0   0x....'....        DC32 _sMainMenuMaint, 9, 0, ProcMenuMain
+
+   \              0x0000'0009  
+
+   \              0x0000'0000  
+
+   \              0x....'....
+    451          	_sMainMenuMaint,
+    452          	sizeof(_sMainMenuMaint)/sizeof(char *),		//	Item Count
+    453          	0,					// 	curr Idx
+    454          	ProcMenuMain		//	Callback Function
+    455          };
+    456          
+    457          //========================================================================
+    458          
+    459          //========================================================================
+
+   \                                 In section .bss, align 4
+    460          Menu_t	*g_pActiveMenu	=	NULL;
+   \                     g_pActiveMenu:
+   \        0x0                      DS8 4
+    461          //========================================================================
+    462          
+
+   \                                 In section .bss, align 4
+    463          static int _bEnDispStat = 0;
+   \                     _bEnDispStat:
+   \        0x0                      DS8 4
+    464          
+    465          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    466          void	SetActiveMenu( Menu_t *pActiveMenu )
+    467          //========================================================================
+    468          {
+    469          	g_pActiveMenu = pActiveMenu;
+   \                     SetActiveMenu: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R1,??DataTable27_2
+   \        0x4   0x6008             STR      R0,[R1, #+0]
+    470          }
+   \        0x6   0x4770             BX       LR
+    471          
+    472          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    473          Menu_t	*GetActiveMenu( void )
+    474          //========================================================================
+    475          {
+    476          	return g_pActiveMenu;
+   \                     GetActiveMenu: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable27_2
+   \        0x4   0x6800             LDR      R0,[R0, #+0]
+   \        0x6   0x4770             BX       LR
+    477          }
+    478          
+    479          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    480          void	UpdateLCDMain( void )
+    481          //========================================================================
+    482          {
+   \                     UpdateLCDMain: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+   \        0x2   0xB088             SUB      SP,SP,#+32
+    483          	char sBuf[30];
+    484          
+    485          	sprintf( sBuf, "편성 : %d", 100 + g_idxTrainSet );
+   \        0x4   0x.... 0x....      LDR.W    R0,??DataTable27_3
+   \        0x8   0x6802             LDR      R2,[R0, #+0]
+   \        0xA   0x3264             ADDS     R2,R2,#+100
+   \        0xC   0x.... 0x....      LDR.W    R1,??DataTable27_4
+   \       0x10   0x4668             MOV      R0,SP
+   \       0x12   0x.... 0x....      BL       sprintf
+    486          
+    487          //	LCDPrintf( "편성 : 100" );
+    488          	LCDPrintfXY( 20, 13, sBuf );
+                 	^
+Warning[Pe223]: function "LCDPrintfXY" declared implicitly
+   \       0x16   0x466A             MOV      R2,SP
+   \       0x18   0x210D             MOVS     R1,#+13
+   \       0x1A   0x2014             MOVS     R0,#+20
+   \       0x1C   0x.... 0x....      BL       LCDPrintfXY
+    489          }
+   \       0x20   0xB009             ADD      SP,SP,#+36
+   \       0x22   0xBD00             POP      {PC}
+    490          
+    491          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    492          void	UpdateLCDMenu( void )
+    493          //========================================================================
+    494          {
+   \                     UpdateLCDMenu: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+    495          	if ( GetActiveMenu() == NULL )
+   \        0x2   0x.... 0x....      BL       GetActiveMenu
+   \        0x6   0x2800             CMP      R0,#+0
+   \        0x8   0xD102             BNE.N    ??UpdateLCDMenu_0
+    496          	{
+    497          		UpdateLCDMain();
+   \        0xA   0x.... 0x....      BL       UpdateLCDMain
+    498          		return;
+   \        0xE   0xE016             B.N      ??UpdateLCDMenu_1
+    499          	}
+    500          
+    501          	char	**sMenu;
+    502          	int		*pIdxMenu, *pCntMenu;
+    503          
+    504          	sMenu		=	g_pActiveMenu->sItem;
+   \                     ??UpdateLCDMenu_0: (+1)
+   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable27_2
+   \       0x14   0x6801             LDR      R1,[R0, #+0]
+   \       0x16   0x680C             LDR      R4,[R1, #+0]
+    505          	pIdxMenu	=	&g_pActiveMenu->currIdx;
+   \       0x18   0x6801             LDR      R1,[R0, #+0]
+   \       0x1A   0xF111 0x0508      ADDS     R5,R1,#+8
+    506          	pCntMenu	=	&g_pActiveMenu->cntItem;
+   \       0x1E   0x6800             LDR      R0,[R0, #+0]
+   \       0x20   0x1D06             ADDS     R6,R0,#+4
+    507          
+    508          	//  Main화면 Clear
+    509          	LCDClearMain();
+                 	^
+Warning[Pe223]: function "LCDClearMain" declared implicitly
+   \       0x22   0x.... 0x....      BL       LCDClearMain
+    510          
+    511          #if defined(USE_RFT_MENU_LOOP)
+    512          
+    513          	LCDMenuUpDown( 3 ); //  3. Up/Down
+                 	^
+Warning[Pe223]: function "LCDMenuUpDown" declared implicitly
+   \       0x26   0x2003             MOVS     R0,#+3
+   \       0x28   0x.... 0x....      BL       LCDMenuUpDown
+    514          
+    515          #else
+    516          
+    517          	if ( 0 < *pIdxMenu && *pIdxMenu < *pCntMenu - 1 )	LCDMenuUpDown( 3 ); //  3. Up/Down
+    518          	else if ( *pIdxMenu == 0 )							LCDMenuUpDown( 2 ); //  2. Down
+    519          	else if ( *pIdxMenu == *pCntMenu - 1 )				LCDMenuUpDown( 1 ); //  1. Up
+    520          	else												LCDMenuUpDown( 0 ); //  0. None
+    521          
+    522          #endif
+    523          
+    524          	LCDSetCursor( 20, 13 );
+                 	^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \       0x2C   0x210D             MOVS     R1,#+13
+   \       0x2E   0x2014             MOVS     R0,#+20
+   \       0x30   0x.... 0x....      BL       LCDSetCursor
+    525          	LCDPrintf( sMenu[*pIdxMenu] );
+                 	^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+
+  	int		*pIdxMenu, *pCntMenu;
+  	   		            ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\menu.c",502  Warning[Pe550]: 
+          variable "pCntMenu" was set but never used
+   \       0x34   0x6828             LDR      R0,[R5, #+0]
+   \       0x36   0xF854 0x0020      LDR      R0,[R4, R0, LSL #+2]
+   \       0x3A   0x.... 0x....      BL       LCDPrintf
+    526          }
+   \                     ??UpdateLCDMenu_1: (+1)
+   \       0x3E   0xBD70             POP      {R4-R6,PC}
+    527          
+    528          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    529          void	UpdateLCDMonitor( int nTick )
+    530          //========================================================================
+    531          {
+   \                     UpdateLCDMonitor: (+1)
+   \        0x0   0xB530             PUSH     {R4,R5,LR}
+   \        0x2   0xB099             SUB      SP,SP,#+100
+   \        0x4   0x0004             MOVS     R4,R0
+    532          	static int oldTick = 0;
+    533          
+    534          	if ( nTick - oldTick > 1000 )
+   \        0x6   0x.... 0x....      LDR.W    R5,??DataTable27_5
+   \        0xA   0x6828             LDR      R0,[R5, #+0]
+   \        0xC   0x1A20             SUBS     R0,R4,R0
+   \        0xE   0xF240 0x31E9      MOVW     R1,#+1001
+   \       0x12   0x4288             CMP      R0,R1
+   \       0x14   0xDB17             BLT.N    ??UpdateLCDMonitor_0
+    535          	{
+    536          		if( _bEnDispStat )
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable27_6
+   \       0x1A   0x6800             LDR      R0,[R0, #+0]
+   \       0x1C   0x2800             CMP      R0,#+0
+   \       0x1E   0xD011             BEQ.N    ??UpdateLCDMonitor_1
+    537          		{
+    538          			//	상태정보 현시.
+    539          			LCDSetCursor( 5, 13 );
+                 			^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \       0x20   0x210D             MOVS     R1,#+13
+   \       0x22   0x2005             MOVS     R0,#+5
+   \       0x24   0x.... 0x....      BL       LCDSetCursor
+    540          
+    541          			char sBuf[100];
+    542          			sprintf(sBuf, "Stat:%04X / %02d", g_flagRspID, g_nRSSI );
+   \       0x28   0x.... 0x....      LDR.W    R0,??DataTable27_7
+   \       0x2C   0x6803             LDR      R3,[R0, #+0]
+   \       0x2E   0x.... 0x....      LDR.W    R0,??DataTable27_8
+   \       0x32   0x8802             LDRH     R2,[R0, #+0]
+   \       0x34   0x.... 0x....      LDR.W    R1,??DataTable27_9
+   \       0x38   0x4668             MOV      R0,SP
+   \       0x3A   0x.... 0x....      BL       sprintf
+    543          			LCDPrintf( sBuf );
+                 			^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \       0x3E   0x4668             MOV      R0,SP
+   \       0x40   0x.... 0x....      BL       LCDPrintf
+    544          		}
+    545          		oldTick = nTick;
+   \                     ??UpdateLCDMonitor_1: (+1)
+   \       0x44   0x602C             STR      R4,[R5, #+0]
+    546          	}
+    547          }
+   \                     ??UpdateLCDMonitor_0: (+1)
+   \       0x46   0xB019             ADD      SP,SP,#+100
+   \       0x48   0xBD30             POP      {R4,R5,PC}
+
+   \                                 In section .bss, align 4
+   \                     `UpdateLCDMonitor::oldTick`:
+   \        0x0                      DS8 4
+    548          
+    549          
+    550          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    551          void	ProcBtnUp( void )
+    552          //========================================================================
+    553          {
+   \                     ProcBtnUp: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    554          	if ( GetActiveMenu() == NULL ) return;
+   \        0x2   0x.... 0x....      BL       GetActiveMenu
+   \        0x6   0x2800             CMP      R0,#+0
+   \        0x8   0xD011             BEQ.N    ??ProcBtnUp_0
+    555          
+    556          	//	Menu : Up Key Press
+    557          
+    558          	g_pActiveMenu->currIdx--;
+   \                     ??ProcBtnUp_1: (+1)
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable27_2
+   \        0xE   0x6801             LDR      R1,[R0, #+0]
+   \       0x10   0x6889             LDR      R1,[R1, #+8]
+   \       0x12   0x1E49             SUBS     R1,R1,#+1
+   \       0x14   0x6802             LDR      R2,[R0, #+0]
+   \       0x16   0x6091             STR      R1,[R2, #+8]
+    559          
+    560          	if ( g_pActiveMenu->currIdx < 0 )
+   \       0x18   0x6801             LDR      R1,[R0, #+0]
+   \       0x1A   0x6889             LDR      R1,[R1, #+8]
+   \       0x1C   0x2900             CMP      R1,#+0
+   \       0x1E   0xD504             BPL.N    ??ProcBtnUp_2
+    561          	{
+    562          #if defined(USE_RFT_MENU_LOOP)
+    563          
+    564          		//	Menu Up/Down Loop
+    565          		g_pActiveMenu->currIdx = g_pActiveMenu->cntItem  - 1;
+   \       0x20   0x6801             LDR      R1,[R0, #+0]
+   \       0x22   0x6849             LDR      R1,[R1, #+4]
+   \       0x24   0x1E49             SUBS     R1,R1,#+1
+   \       0x26   0x6800             LDR      R0,[R0, #+0]
+   \       0x28   0x6081             STR      R1,[R0, #+8]
+    566          
+    567          #else
+    568          
+    569          		//	Menu Up/Down Limit
+    570          		g_pActiveMenu->currIdx = 0;
+    571          
+    572          #endif
+    573          	}
+    574          
+    575          
+    576          	UpdateLCDMenu();   //  메뉴화면 Update
+   \                     ??ProcBtnUp_2: (+1)
+   \       0x2A   0x.... 0x....      BL       UpdateLCDMenu
+    577          }
+   \                     ??ProcBtnUp_0: (+1)
+   \       0x2E   0xBD01             POP      {R0,PC}
+    578          
+    579          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    580          void	ProcBtnDown( void )
+    581          //========================================================================
+    582          {
+   \                     ProcBtnDown: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    583          	if ( GetActiveMenu() == NULL ) return;
+   \        0x2   0x.... 0x....      BL       GetActiveMenu
+   \        0x6   0x2800             CMP      R0,#+0
+   \        0x8   0xD011             BEQ.N    ??ProcBtnDown_0
+    584          
+    585          	//	Menu : Down Key Press
+    586          	g_pActiveMenu->currIdx++;
+   \                     ??ProcBtnDown_1: (+1)
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable27_2
+   \        0xE   0x6801             LDR      R1,[R0, #+0]
+   \       0x10   0x6889             LDR      R1,[R1, #+8]
+   \       0x12   0x1C49             ADDS     R1,R1,#+1
+   \       0x14   0x6802             LDR      R2,[R0, #+0]
+   \       0x16   0x6091             STR      R1,[R2, #+8]
+    587          
+    588          	if ( g_pActiveMenu->currIdx >= g_pActiveMenu->cntItem )
+   \       0x18   0x6801             LDR      R1,[R0, #+0]
+   \       0x1A   0x6889             LDR      R1,[R1, #+8]
+   \       0x1C   0x6802             LDR      R2,[R0, #+0]
+   \       0x1E   0x6852             LDR      R2,[R2, #+4]
+   \       0x20   0x4291             CMP      R1,R2
+   \       0x22   0xDB02             BLT.N    ??ProcBtnDown_2
+    589          	{
+    590          #if defined(USE_RFT_MENU_LOOP)
+    591          
+    592          		//	Menu Up/Down Loop
+    593          		g_pActiveMenu->currIdx = 0;
+   \       0x24   0x2100             MOVS     R1,#+0
+   \       0x26   0x6800             LDR      R0,[R0, #+0]
+   \       0x28   0x6081             STR      R1,[R0, #+8]
+    594          
+    595          #else
+    596          
+    597          		//	Menu Up/Down Limit
+    598          		g_pActiveMenu->currIdx = g_pActiveMenu->cntItem  - 1;
+    599          
+    600          #endif
+    601          	}
+    602          
+    603          	UpdateLCDMenu();   //  메뉴화면 Update
+   \                     ??ProcBtnDown_2: (+1)
+   \       0x2A   0x.... 0x....      BL       UpdateLCDMenu
+    604          }
+   \                     ??ProcBtnDown_0: (+1)
+   \       0x2E   0xBD01             POP      {R0,PC}
+    605          
+    606          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    607          void	ProcBtnMenu( void )
+    608          //========================================================================
+    609          {
+   \                     ProcBtnMenu: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    610          	//	Menu
+    611          
+    612          	if ( GetActiveMenu() == NULL )
+   \        0x2   0x.... 0x....      BL       GetActiveMenu
+   \        0x6   0x2800             CMP      R0,#+0
+   \        0x8   0xD112             BNE.N    ??ProcBtnMenu_0
+    613          	{
+    614          		//  메뉴모드가 아닌경우 메뉴로 진입.
+    615          
+    616          		//	Set Main Menu
+    617          
+    618          		if ( g_bEnMenuMaint )
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable27
+   \        0xE   0x6800             LDR      R0,[R0, #+0]
+   \       0x10   0x2800             CMP      R0,#+0
+   \       0x12   0xD004             BEQ.N    ??ProcBtnMenu_1
+    619          		{
+    620          			//	Maintenance 유지보수 메뉴 활성화.
+    621          			SetActiveMenu( &g_MenuMainMaint );
+   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable27_10
+   \       0x18   0x.... 0x....      BL       SetActiveMenu
+   \       0x1C   0xE003             B.N      ??ProcBtnMenu_2
+    622          		}
+    623          		else
+    624          		{
+    625          			//	Base 기본메뉴.
+    626          			SetActiveMenu( &g_MenuMainBase );
+   \                     ??ProcBtnMenu_1: (+1)
+   \       0x1E   0x.... 0x....      LDR.W    R0,??DataTable27_11
+   \       0x22   0x.... 0x....      BL       SetActiveMenu
+    627          		}
+    628          		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+   \                     ??ProcBtnMenu_2: (+1)
+   \       0x26   0x.... 0x....      BL       GetActiveMenu
+   \       0x2A   0x2100             MOVS     R1,#+0
+   \       0x2C   0x6081             STR      R1,[R0, #+8]
+   \       0x2E   0xE002             B.N      ??ProcBtnMenu_3
+    629          	}
+    630          	else
+    631          	{
+    632          		//  메뉴 진입상태 -> 메인화면으로 이동.
+    633          
+    634          		//	Set Main Menu
+    635          		SetActiveMenu( NULL );
+   \                     ??ProcBtnMenu_0: (+1)
+   \       0x30   0x2000             MOVS     R0,#+0
+   \       0x32   0x.... 0x....      BL       SetActiveMenu
+    636          	}
+    637          
+    638          	UpdateLCDMenu();	//	메뉴화면 Update
+   \                     ??ProcBtnMenu_3: (+1)
+   \       0x36   0x.... 0x....      BL       UpdateLCDMenu
+    639          }
+   \       0x3A   0xBD01             POP      {R0,PC}
+    640          
+    641          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    642          void	ProcLightOn ( void )
+    643          //========================================================================
+    644          {
+   \                     ProcLightOn: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    645          	LCDSetCursor( 20, 13 );
+                 	^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \        0x2   0x210D             MOVS     R1,#+13
+   \        0x4   0x2014             MOVS     R0,#+20
+   \        0x6   0x.... 0x....      BL       LCDSetCursor
+    646          	LCDPrintf( "[조명 점등]" );
+                 	^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable27_12
+   \        0xE   0x.... 0x....      BL       LCDPrintf
+    647          
+    648          	//========================================================================
+    649          	//	숭신기와 가까운 수신기 설정.
+    650          	SetChPA( GetChNearRFM() );
+   \       0x12   0x.... 0x....      BL       GetChNearRFM
+   \       0x16   0x.... 0x....      BL       SetChPA
+    651          	//========================================================================
+    652          
+    653          	SendLightOn();	 //  조명On 명령 전송.
+   \       0x1A   0x.... 0x....      BL       SendLightOn
+    654          	HAL_Delay( 200 );
+   \       0x1E   0x20C8             MOVS     R0,#+200
+   \       0x20   0x.... 0x....      BL       HAL_Delay
+    655          	SendLightOn();	 //  조명On 명령 전송.
+   \       0x24   0x.... 0x....      BL       SendLightOn
+    656          	HAL_Delay( 200 );
+   \       0x28   0x20C8             MOVS     R0,#+200
+   \       0x2A   0x.... 0x....      BL       HAL_Delay
+    657          	SendLightOn();	 //  조명On 명령 전송.
+   \       0x2E   0x.... 0x....      BL       SendLightOn
+    658          	HAL_Delay( 200 );
+   \       0x32   0x20C8             MOVS     R0,#+200
+   \       0x34   0x.... 0x....      BL       HAL_Delay
+    659          	SendLightOn();	 //  조명On 명령 전송.
+   \       0x38   0x.... 0x....      BL       SendLightOn
+    660          
+    661          #if defined(USE_STAT_LIGHT)
+    662          	g_nDevFlag |= DevFlagLight;
+    663          #endif
+    664          }
+   \       0x3C   0xBD01             POP      {R0,PC}
+    665          
+    666          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    667          void	ProcLightOff ( void )
+    668          //========================================================================
+    669          {
+   \                     ProcLightOff: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    670          	LCDSetCursor( 20, 13 );
+                 	^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \        0x2   0x210D             MOVS     R1,#+13
+   \        0x4   0x2014             MOVS     R0,#+20
+   \        0x6   0x.... 0x....      BL       LCDSetCursor
+    671          	LCDPrintf( "[조명 소등]" );
+                 	^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable27_13
+   \        0xE   0x.... 0x....      BL       LCDPrintf
+    672          
+    673          	//========================================================================
+    674          	//	숭신기와 가까운 수신기 설정.
+    675          	SetChPA( GetChNearRFM() );
+   \       0x12   0x.... 0x....      BL       GetChNearRFM
+   \       0x16   0x.... 0x....      BL       SetChPA
+    676          	//========================================================================
+    677          
+    678          	SendLightOff();	 //  조명Off 명령 전송.
+   \       0x1A   0x.... 0x....      BL       SendLightOff
+    679          	HAL_Delay( 200 );
+   \       0x1E   0x20C8             MOVS     R0,#+200
+   \       0x20   0x.... 0x....      BL       HAL_Delay
+    680          	SendLightOff();	 //  조명Off 명령 전송.
+   \       0x24   0x.... 0x....      BL       SendLightOff
+    681          	HAL_Delay( 200 );
+   \       0x28   0x20C8             MOVS     R0,#+200
+   \       0x2A   0x.... 0x....      BL       HAL_Delay
+    682          	SendLightOff();	 //  조명Off 명령 전송.
+   \       0x2E   0x.... 0x....      BL       SendLightOff
+    683          	HAL_Delay( 200 );
+   \       0x32   0x20C8             MOVS     R0,#+200
+   \       0x34   0x.... 0x....      BL       HAL_Delay
+    684          	SendLightOff();	 //  조명Off 명령 전송.
+   \       0x38   0x.... 0x....      BL       SendLightOff
+    685          
+    686          #if defined(USE_STAT_LIGHT)
+    687          	g_nDevFlag &= ~(DevFlagLight);
+    688          #endif
+    689          }
+   \       0x3C   0xBD01             POP      {R0,PC}
+    690          
+    691          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    692          void	ProcDispVer ( void )
+    693          //========================================================================
+    694          {
+   \                     ProcDispVer: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    695          	//  S/W 버전
+    696          	LCDSetCursor( 5, 13 );
+                 	^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \        0x2   0x210D             MOVS     R1,#+13
+   \        0x4   0x2005             MOVS     R0,#+5
+   \        0x6   0x.... 0x....      BL       LCDSetCursor
+    697          	LCDPrintf( "RFM v" APP_VER );
+                 	^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable27_14
+   \        0xE   0x.... 0x....      BL       LCDPrintf
+    698          }
+   \       0x12   0xBD01             POP      {R0,PC}
+    699          
+    700          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    701          void	ProcDispStat ( void )
+    702          //========================================================================
+    703          {
+    704          	//========================================================================
+    705          	//	Display Status Enable
+    706          	_bEnDispStat		=	1;
+   \                     ProcDispStat: (+1)
+   \        0x0   0x2001             MOVS     R0,#+1
+   \        0x2   0x.... 0x....      LDR.W    R1,??DataTable27_6
+   \        0x6   0x6008             STR      R0,[R1, #+0]
+    707          }
+   \        0x8   0x4770             BX       LR
+    708          
+    709          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    710          void	ProcMenuTrainSet( int idxItem  )
+    711          //========================================================================
+    712          {
+   \                     ProcMenuTrainSet: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    713          	LCDSetCursor( 20, 13 );
+                 	^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \        0x4   0x210D             MOVS     R1,#+13
+   \        0x6   0x2014             MOVS     R0,#+20
+   \        0x8   0x.... 0x....      BL       LCDSetCursor
+    714          	LCDPrintf( "[편성설정]" );
+                 	^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable27_15
+   \       0x10   0x.... 0x....      BL       LCDPrintf
+    715          	g_idxTrainSet = idxItem;	//	메뉴 Index값으로 설정.
+   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable27_3
+   \       0x18   0x6004             STR      R4,[R0, #+0]
+    716          	SetTrainSetIdx( g_idxTrainSet );
+   \       0x1A   0x6800             LDR      R0,[R0, #+0]
+   \       0x1C   0x.... 0x....      BL       SetTrainSetIdx
+    717          
+    718          #if defined(USE_CH_ISO_DEV)		//	장치별로 채널 구분.
+    719          	//	각 장치별로 채널 구분.
+    720          	//	편성이 변경되어도 채널 고정.
+    721          #else
+    722          	//	편성별 채널 구분.
+    723          	//  Radio Channel 설정.
+    724          	pRadioConfiguration->Radio_ChannelNumber = g_idxTrainSet;
+    725          #endif
+    726          
+    727          	//  1초후 Main화면 갱신.
+    728          	HAL_Delay( 1000 );
+   \       0x20   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x24   0x.... 0x....      BL       HAL_Delay
+    729          	UpdateLCDMain();
+   \       0x28   0x.... 0x....      BL       UpdateLCDMain
+    730          
+    731          	//  메뉴 Exit
+    732          	SetActiveMenu( NULL );
+   \       0x2C   0x2000             MOVS     R0,#+0
+   \       0x2E   0x.... 0x....      BL       SetActiveMenu
+    733          }
+   \       0x32   0xBD10             POP      {R4,PC}
+    734          
+    735          
+    736          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    737          void	ProcMenuVer( int idxItem  )
+    738          //========================================================================
+    739          {
+   \                     ProcMenuVer: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    740          	//	Upgrade Ok / Cancel
+    741          
+    742          	//  메뉴 Exit
+    743          	SetActiveMenu( NULL );
+   \        0x4   0x2000             MOVS     R0,#+0
+   \        0x6   0x.... 0x....      BL       SetActiveMenu
+    744          
+    745          	//	메인화면 갱신.
+    746          	UpdateLCDMain();
+   \        0xA   0x.... 0x....      BL       UpdateLCDMain
+    747          }
+   \        0xE   0xBD10             POP      {R4,PC}
+    748          
+    749          
+    750          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    751          void	ProcMenuCmd( int idxItem  )
+    752          //========================================================================
+    753          {
+   \                     ProcMenuCmd: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    754          	//	하위매뉴진입 : 편성 / 호차 설정.
+    755          	switch ( idxItem )
+   \        0x4   0x2C01             CMP      R4,#+1
+   \        0x6   0xD004             BEQ.N    ??ProcMenuCmd_0
+   \        0x8   0xD324             BCC.N    ??ProcMenuCmd_1
+   \        0xA   0x2C03             CMP      R4,#+3
+   \        0xC   0xD017             BEQ.N    ??ProcMenuCmd_2
+   \        0xE   0xD30B             BCC.N    ??ProcMenuCmd_3
+   \       0x10   0xE020             B.N      ??ProcMenuCmd_1
+    756          	{
+    757          	case 1:		//	Train Set
+    758          		SetActiveMenu( &g_MenuSetCmdTSList );
+   \                     ??ProcMenuCmd_0: (+1)
+   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable27_16
+   \       0x16   0x.... 0x....      BL       SetActiveMenu
+    759          		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+   \       0x1A   0x.... 0x....      BL       GetActiveMenu
+   \       0x1E   0x2100             MOVS     R1,#+0
+   \       0x20   0x6081             STR      R1,[R0, #+8]
+    760          
+    761          		UpdateLCDMenu();
+   \       0x22   0x.... 0x....      BL       UpdateLCDMenu
+    762          		return;
+   \       0x26   0xE038             B.N      ??ProcMenuCmd_4
+    763          	case 2:		//	Car Set
+    764          		SetActiveMenu( &g_MenuSetCmdCarList );
+   \                     ??ProcMenuCmd_3: (+1)
+   \       0x28   0x.... 0x....      LDR.W    R0,??DataTable27_17
+   \       0x2C   0x.... 0x....      BL       SetActiveMenu
+    765          		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+   \       0x30   0x.... 0x....      BL       GetActiveMenu
+   \       0x34   0x2100             MOVS     R1,#+0
+   \       0x36   0x6081             STR      R1,[R0, #+8]
+    766          
+    767          		UpdateLCDMenu();
+   \       0x38   0x.... 0x....      BL       UpdateLCDMenu
+    768          		return;
+   \       0x3C   0xE02D             B.N      ??ProcMenuCmd_4
+    769          	case 3:		//	RFMode Set
+    770          		SetActiveMenu( &g_MenuSetCmdRFModeList );
+   \                     ??ProcMenuCmd_2: (+1)
+   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable27_18
+   \       0x42   0x.... 0x....      BL       SetActiveMenu
+    771          		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+   \       0x46   0x.... 0x....      BL       GetActiveMenu
+   \       0x4A   0x2100             MOVS     R1,#+0
+   \       0x4C   0x6081             STR      R1,[R0, #+8]
+    772          
+    773          		UpdateLCDMenu();
+   \       0x4E   0x.... 0x....      BL       UpdateLCDMenu
+    774          		return;
+   \       0x52   0xE022             B.N      ??ProcMenuCmd_4
+    775          	}
+    776          
+    777          	LCDSetCursor( 20, 13 );
+                 	^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \                     ??ProcMenuCmd_1: (+1)
+   \       0x54   0x210D             MOVS     R1,#+13
+   \       0x56   0x2014             MOVS     R0,#+20
+   \       0x58   0x.... 0x....      BL       LCDSetCursor
+    778          	LCDPrintf( "[명령전송]" );
+                 	^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \       0x5C   0x.... 0x....      LDR.W    R0,??DataTable27_19
+   \       0x60   0x.... 0x....      BL       LCDPrintf
+    779          
+    780          	switch( idxItem )
+   \       0x64   0x0020             MOVS     R0,R4
+   \       0x66   0x2800             CMP      R0,#+0
+   \       0x68   0xD004             BEQ.N    ??ProcMenuCmd_5
+   \       0x6A   0x2804             CMP      R0,#+4
+   \       0x6C   0xD005             BEQ.N    ??ProcMenuCmd_6
+   \       0x6E   0x2805             CMP      R0,#+5
+   \       0x70   0xD007             BEQ.N    ??ProcMenuCmd_7
+   \       0x72   0xE009             B.N      ??ProcMenuCmd_8
+    781          	{
+    782          	case 0:		SendRFCmdReset();		break;		//	Reset 명령.
+   \                     ??ProcMenuCmd_5: (+1)
+   \       0x74   0x.... 0x....      BL       SendRFCmdReset
+   \       0x78   0xE006             B.N      ??ProcMenuCmd_8
+    783          //DEL	case 1:		SendRFCmdDFUMode();		break;		//	DFU Mode 명령.
+    784          	case 4:		SendRFCmdUpgrade(1);	break;		//	Upgrade(Re-Try 명령.
+   \                     ??ProcMenuCmd_6: (+1)
+   \       0x7A   0x2001             MOVS     R0,#+1
+   \       0x7C   0x.... 0x....      BL       SendRFCmdUpgrade
+   \       0x80   0xE002             B.N      ??ProcMenuCmd_8
+    785          	case 5:		SendRFCmdUpgrade(0);	break;		//	Upgrade 명령.
+   \                     ??ProcMenuCmd_7: (+1)
+   \       0x82   0x2000             MOVS     R0,#+0
+   \       0x84   0x.... 0x....      BL       SendRFCmdUpgrade
+    786          	}
+    787          
+    788          	//  1초후 Main화면 갱신.
+    789          	HAL_Delay( 1000 );
+   \                     ??ProcMenuCmd_8: (+1)
+   \       0x88   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x8C   0x.... 0x....      BL       HAL_Delay
+    790          	UpdateLCDMain();
+   \       0x90   0x.... 0x....      BL       UpdateLCDMain
+    791          
+    792          	//  메뉴 Exit
+    793          	SetActiveMenu( NULL );
+   \       0x94   0x2000             MOVS     R0,#+0
+   \       0x96   0x.... 0x....      BL       SetActiveMenu
+    794          }
+   \                     ??ProcMenuCmd_4: (+1)
+   \       0x9A   0xBD10             POP      {R4,PC}
+    795          
+    796          
+    797          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    798          void	ProcMenuSetCmdTS( int idxItem  )
+    799          //========================================================================
+    800          {
+   \                     ProcMenuSetCmdTS: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    801          	LCDSetCursor( 20, 13 );
+                 	^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \        0x4   0x210D             MOVS     R1,#+13
+   \        0x6   0x2014             MOVS     R0,#+20
+   \        0x8   0x.... 0x....      BL       LCDSetCursor
+    802          	LCDPrintf( "[명령전송]" );
+                 	^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable27_19
+   \       0x10   0x.... 0x....      BL       LCDPrintf
+    803          
+    804          	SendRFCmdTS(idxItem);		//	편성설정.
+   \       0x14   0x0020             MOVS     R0,R4
+   \       0x16   0x.... 0x....      BL       SendRFCmdTS
+    805          
+    806          	//  1초후 Main화면 갱신.
+    807          	HAL_Delay( 1000 );
+   \       0x1A   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x1E   0x.... 0x....      BL       HAL_Delay
+    808          	UpdateLCDMain();
+   \       0x22   0x.... 0x....      BL       UpdateLCDMain
+    809          
+    810          	//  메뉴 Exit
+    811          	SetActiveMenu( NULL );
+   \       0x26   0x2000             MOVS     R0,#+0
+   \       0x28   0x.... 0x....      BL       SetActiveMenu
+    812          }
+   \       0x2C   0xBD10             POP      {R4,PC}
+    813          
+    814          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    815          void	ProcMenuSetCmdCar( int idxItem  )
+    816          //========================================================================
+    817          {
+   \                     ProcMenuSetCmdCar: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    818          	LCDSetCursor( 20, 13 );
+                 	^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \        0x4   0x210D             MOVS     R1,#+13
+   \        0x6   0x2014             MOVS     R0,#+20
+   \        0x8   0x.... 0x....      BL       LCDSetCursor
+    819          	LCDPrintf( "[명령전송]" );
+                 	^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable27_19
+   \       0x10   0x.... 0x....      BL       LCDPrintf
+    820          
+    821          	SendRFCmdCar(idxItem + 1);		//	호차설정.
+   \       0x14   0x1C60             ADDS     R0,R4,#+1
+   \       0x16   0x.... 0x....      BL       SendRFCmdCar
+    822          
+    823          	//  1초후 Main화면 갱신.
+    824          	HAL_Delay( 1000 );
+   \       0x1A   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x1E   0x.... 0x....      BL       HAL_Delay
+    825          	UpdateLCDMain();
+   \       0x22   0x.... 0x....      BL       UpdateLCDMain
+    826          
+    827          	//  메뉴 Exit
+    828          	SetActiveMenu( NULL );
+   \       0x26   0x2000             MOVS     R0,#+0
+   \       0x28   0x.... 0x....      BL       SetActiveMenu
+    829          }
+   \       0x2C   0xBD10             POP      {R4,PC}
+    830          
+    831          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    832          void	ProcMenuSetCmdRFMode( int idxItem  )
+    833          //========================================================================
+    834          {
+   \                     ProcMenuSetCmdRFMode: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    835          	LCDSetCursor( 20, 13 );
+                 	^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \        0x4   0x210D             MOVS     R1,#+13
+   \        0x6   0x2014             MOVS     R0,#+20
+   \        0x8   0x.... 0x....      BL       LCDSetCursor
+    836          	LCDPrintf( "[명령전송]" );
+                 	^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable27_19
+   \       0x10   0x.... 0x....      BL       LCDPrintf
+    837          
+    838          	SendRFCmdRFMode(idxItem + 1);		//	RF Mode 설정.
+   \       0x14   0x1C60             ADDS     R0,R4,#+1
+   \       0x16   0x.... 0x....      BL       SendRFCmdRFMode
+    839          
+    840          	HAL_Delay( 100 );	//	100 msec
+   \       0x1A   0x2064             MOVS     R0,#+100
+   \       0x1C   0x.... 0x....      BL       HAL_Delay
+    841          
+    842          	//	RF Mode 설정 후 Reset 명령
+    843          	SendRFCmdReset();
+   \       0x20   0x.... 0x....      BL       SendRFCmdReset
+    844          
+    845          	//  1초후 Main화면 갱신.
+    846          	HAL_Delay( 1000 );
+   \       0x24   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x28   0x.... 0x....      BL       HAL_Delay
+    847          	UpdateLCDMain();
+   \       0x2C   0x.... 0x....      BL       UpdateLCDMain
+    848          
+    849          	//  메뉴 Exit
+    850          	SetActiveMenu( NULL );
+   \       0x30   0x2000             MOVS     R0,#+0
+   \       0x32   0x.... 0x....      BL       SetActiveMenu
+    851          }
+   \       0x36   0xBD10             POP      {R4,PC}
+    852          
+    853          
+    854          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    855          void 	ProcMenuMain( int idxItem )
+    856          //========================================================================
+    857          {
+   \                     ProcMenuMain: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    858          	switch ( idxItem )
+   \        0x4   0x2C00             CMP      R4,#+0
+   \        0x6   0xD00C             BEQ.N    ??ProcMenuMain_0
+   \        0x8   0x2C02             CMP      R4,#+2
+   \        0xA   0xD028             BEQ.N    ??ProcMenuMain_1
+   \        0xC   0xD314             BCC.N    ??ProcMenuMain_2
+   \        0xE   0x2C04             CMP      R4,#+4
+   \       0x10   0xD045             BEQ.N    ??ProcMenuMain_3
+   \       0x12   0xD331             BCC.N    ??ProcMenuMain_4
+   \       0x14   0x2C06             CMP      R4,#+6
+   \       0x16   0xD058             BEQ.N    ??ProcMenuMain_5
+   \       0x18   0xD34C             BCC.N    ??ProcMenuMain_6
+   \       0x1A   0x2C08             CMP      R4,#+8
+   \       0x1C   0xD066             BEQ.N    ??ProcMenuMain_7
+   \       0x1E   0xD35F             BCC.N    ??ProcMenuMain_8
+   \       0x20   0xE06E             B.N      ??ProcMenuMain_9
+    859          	{
+    860          	case eMenuIdxCtlLight:	//	0:		 //  조명제어
+    861          		//	Menu
+    862          
+    863          		SetActiveMenu( &g_MenuLightCtrl );
+   \                     ??ProcMenuMain_0: (+1)
+   \       0x22   0x.... 0x....      LDR.W    R0,??DataTable27_20
+   \       0x26   0x.... 0x....      BL       SetActiveMenu
+    864          		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+   \       0x2A   0x.... 0x....      BL       GetActiveMenu
+   \       0x2E   0x2100             MOVS     R1,#+0
+   \       0x30   0x6081             STR      R1,[R0, #+8]
+    865          
+    866          		UpdateLCDMenu();
+   \       0x32   0x.... 0x....      BL       UpdateLCDMenu
+    867          
+    868          		break;
+   \       0x36   0xE063             B.N      ??ProcMenuMain_9
+    869          
+    870          	case eMenuIdxSWVer:		//	1:		 //  S/W 버전
+    871          		//  메뉴 Exit
+    872          
+    873          #if defined(USE_RFT_MENU_DEV_VER)
+    874          
+    875          		if ( IsMenuMaint() )
+   \                     ??ProcMenuMain_2: (+1)
+   \       0x38   0x.... 0x....      BL       IsMenuMaint
+   \       0x3C   0x2800             CMP      R0,#+0
+   \       0x3E   0xD008             BEQ.N    ??ProcMenuMain_10
+    876          		{
+    877          			SetActiveMenu( &g_MenuVerList );	//	버전 List 현시.
+   \       0x40   0x.... 0x....      LDR.W    R0,??DataTable27_21
+   \       0x44   0x.... 0x....      BL       SetActiveMenu
+    878          			GetActiveMenu()->currIdx = 0;		//	메뉴 Index초기화.
+   \       0x48   0x.... 0x....      BL       GetActiveMenu
+   \       0x4C   0x2100             MOVS     R1,#+0
+   \       0x4E   0x6081             STR      R1,[R0, #+8]
+   \       0x50   0xE002             B.N      ??ProcMenuMain_11
+    879          		}
+    880          		else
+    881          		{
+    882          			SetActiveMenu( NULL );
+   \                     ??ProcMenuMain_10: (+1)
+   \       0x52   0x2000             MOVS     R0,#+0
+   \       0x54   0x.... 0x....      BL       SetActiveMenu
+    883          		}
+    884          
+    885          		ProcDispVer();
+   \                     ??ProcMenuMain_11: (+1)
+   \       0x58   0x.... 0x....      BL       ProcDispVer
+    886          //		UpdateLCDMenu();
+    887          #else
+    888          		SetActiveMenu( NULL );
+    889          		ProcDispVer();
+    890          #endif
+    891          
+    892          		break;
+   \       0x5C   0xE050             B.N      ??ProcMenuMain_9
+    893          
+    894          	case eMenuIdxTrainSet:	//	2:		 //  편성설정.
+    895          
+    896          		SetActiveMenu( &g_MenuTrainSet );
+   \                     ??ProcMenuMain_1: (+1)
+   \       0x5E   0x.... 0x....      LDR.W    R0,??DataTable27_22
+   \       0x62   0x.... 0x....      BL       SetActiveMenu
+    897          		GetActiveMenu()->currIdx = g_idxTrainSet;	//	메뉴 Index초기화.
+   \       0x66   0x.... 0x....      BL       GetActiveMenu
+   \       0x6A   0x.... 0x....      LDR.W    R1,??DataTable27_3
+   \       0x6E   0x6809             LDR      R1,[R1, #+0]
+   \       0x70   0x6081             STR      R1,[R0, #+8]
+    898          
+    899          		UpdateLCDMenu();
+   \       0x72   0x.... 0x....      BL       UpdateLCDMenu
+    900          		break;
+   \       0x76   0xE043             B.N      ??ProcMenuMain_9
+    901          
+    902          #if defined(USE_RFT_MENU_RFTID)
+    903          
+    904          	case eMenuIdxRFTID:		//	3:		 //  송신기 ID
+    905          
+    906          		SetActiveMenu( &g_MenuRFTIDList );
+   \                     ??ProcMenuMain_4: (+1)
+   \       0x78   0x.... 0x....      LDR.W    R0,??DataTable27_23
+   \       0x7C   0x.... 0x....      BL       SetActiveMenu
+    907          		GetActiveMenu()->currIdx = ( ( GetCarNo() + 1 ) % 2 );	//	메뉴 Index초기화.
+   \       0x80   0x.... 0x....      BL       GetActiveMenu
+   \       0x84   0x0005             MOVS     R5,R0
+   \       0x86   0x.... 0x....      BL       GetCarNo
+   \       0x8A   0x1C40             ADDS     R0,R0,#+1
+   \       0x8C   0x2102             MOVS     R1,#+2
+   \       0x8E   0xFB90 0xF2F1      SDIV     R2,R0,R1
+   \       0x92   0xFB01 0x0012      MLS      R0,R1,R2,R0
+   \       0x96   0x60A8             STR      R0,[R5, #+8]
+    908          
+    909          		UpdateLCDMenu();
+   \       0x98   0x.... 0x....      BL       UpdateLCDMenu
+    910          		break;
+   \       0x9C   0xE030             B.N      ??ProcMenuMain_9
+    911          
+    912          #endif	//	defined(USE_RFT_MENU_DIAG)
+    913          
+    914          #if defined(USE_RFT_MENU_SELFTEST)
+    915          
+    916          	case eMenuIdxSelfTest:	//	4:		 //  송신기 ID
+    917          
+    918          		SetActiveMenu( &g_MenuSelfTestList );
+   \                     ??ProcMenuMain_3: (+1)
+   \       0x9E   0x.... 0x....      LDR.W    R0,??DataTable27_24
+   \       0xA2   0x.... 0x....      BL       SetActiveMenu
+    919          		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+   \       0xA6   0x.... 0x....      BL       GetActiveMenu
+   \       0xAA   0x2100             MOVS     R1,#+0
+   \       0xAC   0x6081             STR      R1,[R0, #+8]
+    920          
+    921          		UpdateLCDMenu();
+   \       0xAE   0x.... 0x....      BL       UpdateLCDMenu
+    922          		break;
+   \       0xB2   0xE025             B.N      ??ProcMenuMain_9
+    923          
+    924          #endif	//	defined(USE_RFT_MENU_SELFTEST)
+    925          
+    926          
+    927          #if defined(USE_RFT_MENU_DIAG)
+    928          
+    929          	case eMenuIdxDiag:		//	5:		 //  진단
+    930          
+    931          		SetActiveMenu( &g_MenuDiagList );
+   \                     ??ProcMenuMain_6: (+1)
+   \       0xB4   0x.... 0x....      LDR.W    R0,??DataTable27_25
+   \       0xB8   0x.... 0x....      BL       SetActiveMenu
+    932          		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+   \       0xBC   0x.... 0x....      BL       GetActiveMenu
+   \       0xC0   0x2100             MOVS     R1,#+0
+   \       0xC2   0x6081             STR      R1,[R0, #+8]
+    933          
+    934          		UpdateLCDMenu();
+   \       0xC4   0x.... 0x....      BL       UpdateLCDMenu
+    935          		break;
+   \       0xC8   0xE01A             B.N      ??ProcMenuMain_9
+    936          
+    937          #endif	//	defined(USE_RFT_MENU_DIAG)
+    938          
+    939          #if defined(USE_RFT_MENU_SETTING)
+    940          
+    941          	case eMenuIdxSetting:	//	6:		 //  설정
+    942          
+    943          		SetActiveMenu( &g_MenuSettingList );
+   \                     ??ProcMenuMain_5: (+1)
+   \       0xCA   0x.... 0x....      LDR.W    R0,??DataTable27_26
+   \       0xCE   0x.... 0x....      BL       SetActiveMenu
+    944          		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+   \       0xD2   0x.... 0x....      BL       GetActiveMenu
+   \       0xD6   0x2100             MOVS     R1,#+0
+   \       0xD8   0x6081             STR      R1,[R0, #+8]
+    945          
+    946          		UpdateLCDMenu();
+   \       0xDA   0x.... 0x....      BL       UpdateLCDMenu
+    947          		break;
+   \       0xDE   0xE00F             B.N      ??ProcMenuMain_9
+    948          
+    949          #endif	//	defined(USE_RFT_MENU_DIAG)
+    950          
+    951          #if defined(USE_RFT_MENU_STAT)
+    952          
+    953          	case eMenuIdxStat:		//	7:		 //  상태정보.
+    954          
+    955          		SetActiveMenu( NULL );
+   \                     ??ProcMenuMain_8: (+1)
+   \       0xE0   0x2000             MOVS     R0,#+0
+   \       0xE2   0x.... 0x....      BL       SetActiveMenu
+    956          
+    957          		ProcDispStat();			//	상태정보 표출.
+   \       0xE6   0x.... 0x....      BL       ProcDispStat
+    958          		break;
+   \       0xEA   0xE009             B.N      ??ProcMenuMain_9
+    959          
+    960          #endif	//	defined(USE_RFT_MENU_STAT)
+    961          
+    962          
+    963          #if defined(USE_RFT_MENU_CMD)
+    964          
+    965          	case eMenuIdxCmd:		//	8:		 //  명령전송.
+    966          
+    967          		SetActiveMenu( &g_MenuCmdList );
+   \                     ??ProcMenuMain_7: (+1)
+   \       0xEC   0x.... 0x....      LDR.W    R0,??DataTable27_27
+   \       0xF0   0x.... 0x....      BL       SetActiveMenu
+    968          		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+   \       0xF4   0x.... 0x....      BL       GetActiveMenu
+   \       0xF8   0x2100             MOVS     R1,#+0
+   \       0xFA   0x6081             STR      R1,[R0, #+8]
+    969          
+    970          		UpdateLCDMenu();
+   \       0xFC   0x.... 0x....      BL       UpdateLCDMenu
+    971          		break;
+    972          
+    973          #endif	//	defined(USE_RFT_MENU_CMD)
+    974          
+    975          #if defined(USE_ENV_TEST)
+    976          	case 3:		 //  RF 출력
+    977          		//	RF Tx시작.
+    978          		SetLoopRFTx( 1 );
+    979          
+    980          		LCDSetCursor( 5, 13 );
+    981          		LCDPrintf( "[ RF Tx ]" );
+    982          
+    983          		//  메뉴 Exit
+    984          		SetActiveMenu( NULL );
+    985          
+    986          		break;
+    987          #endif	//	defined(USE_ENV_TEST)
+    988          	}
+    989          }
+   \                     ??ProcMenuMain_9: (+1)
+   \      0x100   0xBD31             POP      {R0,R4,R5,PC}
+    990          
+    991          
+    992          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    993          void 	ProcMenuLightCtrl( int idxItem )
+    994          //========================================================================
+    995          {
+   \                     ProcMenuLightCtrl: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    996          	LCDMenuUpDown( 0 );
+                 	^
+Warning[Pe223]: function "LCDMenuUpDown" declared implicitly
+   \        0x4   0x2000             MOVS     R0,#+0
+   \        0x6   0x.... 0x....      BL       LCDMenuUpDown
+    997          
+    998          	if ( idxItem == 0 )
+   \        0xA   0x2C00             CMP      R4,#+0
+   \        0xC   0xD102             BNE.N    ??ProcMenuLightCtrl_0
+    999          	{
+   1000          		ProcLightOff();
+   \        0xE   0x.... 0x....      BL       ProcLightOff
+   \       0x12   0xE001             B.N      ??ProcMenuLightCtrl_1
+   1001          	}
+   1002          	else
+   1003          	{
+   1004          		ProcLightOn();
+   \                     ??ProcMenuLightCtrl_0: (+1)
+   \       0x14   0x.... 0x....      BL       ProcLightOn
+   1005          	}
+   1006          
+   1007          	//  1초후 Main화면 갱신.
+   1008          	HAL_Delay( 1000 );
+   \                     ??ProcMenuLightCtrl_1: (+1)
+   \       0x18   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x1C   0x.... 0x....      BL       HAL_Delay
+   1009          	UpdateLCDMain();
+   \       0x20   0x.... 0x....      BL       UpdateLCDMain
+   1010          
+   1011          	SetActiveMenu( NULL );
+   \       0x24   0x2000             MOVS     R0,#+0
+   \       0x26   0x.... 0x....      BL       SetActiveMenu
+   1012          }
+   \       0x2A   0xBD10             POP      {R4,PC}
+   1013          
+   1014          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+   1015          void 	ProcMenuRFTID( int idxItem )
+   1016          //========================================================================
+   1017          {
+   \                     ProcMenuRFTID: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   1018          	LCDMenuUpDown( 0 );	//	UpDown Off
+                 	^
+Warning[Pe223]: function "LCDMenuUpDown" declared implicitly
+   \        0x4   0x2000             MOVS     R0,#+0
+   \        0x6   0x.... 0x....      BL       LCDMenuUpDown
+   1019          
+   1020          	switch( idxItem )
+   \        0xA   0x2C00             CMP      R4,#+0
+   \        0xC   0xD002             BEQ.N    ??ProcMenuRFTID_0
+   \        0xE   0x2C01             CMP      R4,#+1
+   \       0x10   0xD008             BEQ.N    ??ProcMenuRFTID_1
+   \       0x12   0xE00F             B.N      ??ProcMenuRFTID_2
+   1021          	{
+   1022          	case 0:	//	송신기 #1
+   1023          		SetCarNo( RFTCarNo1 );	//	CarNo ( 11 )
+   \                     ??ProcMenuRFTID_0: (+1)
+   \       0x14   0x200B             MOVS     R0,#+11
+   \       0x16   0x.... 0x....      BL       SetCarNo
+   1024          		LCDPrintf( "Set RFT#1" );
+                 		^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \       0x1A   0x.... 0x....      LDR.W    R0,??DataTable27_28
+   \       0x1E   0x.... 0x....      BL       LCDPrintf
+   1025          		break;
+   \       0x22   0xE00E             B.N      ??ProcMenuRFTID_3
+   1026          
+   1027          	case 1:	//	송신기 #2
+   1028          		SetCarNo( RFTCarNo2 );	//	CarNo ( 12 )
+   \                     ??ProcMenuRFTID_1: (+1)
+   \       0x24   0x200C             MOVS     R0,#+12
+   \       0x26   0x.... 0x....      BL       SetCarNo
+   1029          		LCDPrintf( "Set RFT#2" );
+   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable27_29
+   \       0x2E   0x.... 0x....      BL       LCDPrintf
+   1030          		break;
+   \       0x32   0xE006             B.N      ??ProcMenuRFTID_3
+   1031          
+   1032          	default:
+   1033          		printf("%s(%d) - invalid menu(%d)\n", __func__, __LINE__, idxItem);
+   \                     ??ProcMenuRFTID_2: (+1)
+   \       0x34   0x0023             MOVS     R3,R4
+   \       0x36   0xF240 0x4209      MOVW     R2,#+1033
+   \       0x3A   0x....             LDR.N    R1,??DataTable27_30
+   \       0x3C   0x....             LDR.N    R0,??DataTable27_31
+   \       0x3E   0x.... 0x....      BL       printf
+   1034          		break;
+   1035          	}
+   1036          
+   1037          	//  1초후 Main화면 갱신.
+   1038          	HAL_Delay( 1000 );
+   \                     ??ProcMenuRFTID_3: (+1)
+   \       0x42   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x46   0x.... 0x....      BL       HAL_Delay
+   1039          	UpdateLCDMain();
+   \       0x4A   0x.... 0x....      BL       UpdateLCDMain
+   1040          
+   1041          	SetActiveMenu( NULL );
+   \       0x4E   0x2000             MOVS     R0,#+0
+   \       0x50   0x.... 0x....      BL       SetActiveMenu
+   1042          }
+   \       0x54   0xBD10             POP      {R4,PC}
+   1043          
+   1044          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+   1045          void 	ProcMenuSelfTest( int idxItem )
+   1046          //========================================================================
+   1047          {
+   \                     ProcMenuSelfTest: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   1048          	LCDMenuUpDown( 0 );
+                 	^
+Warning[Pe223]: function "LCDMenuUpDown" declared implicitly
+   \        0x4   0x2000             MOVS     R0,#+0
+   \        0x6   0x.... 0x....      BL       LCDMenuUpDown
+   1049          
+   1050          	//  1초후 Main화면 갱신.
+   1051          	HAL_Delay( 1000 );
+   \        0xA   0xF44F 0x707A      MOV      R0,#+1000
+   \        0xE   0x.... 0x....      BL       HAL_Delay
+   1052          	UpdateLCDMain();
+   \       0x12   0x.... 0x....      BL       UpdateLCDMain
+   1053          
+   1054          	SetActiveMenu( NULL );
+   \       0x16   0x2000             MOVS     R0,#+0
+   \       0x18   0x.... 0x....      BL       SetActiveMenu
+   1055          }
+   \       0x1C   0xBD10             POP      {R4,PC}
+   1056          
+   1057          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+   1058          void 	ProcMenuDiag( int idxItem )
+   1059          //========================================================================
+   1060          {
+   \                     ProcMenuDiag: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   1061          	LCDMenuUpDown( 0 );
+                 	^
+Warning[Pe223]: function "LCDMenuUpDown" declared implicitly
+   \        0x4   0x2000             MOVS     R0,#+0
+   \        0x6   0x.... 0x....      BL       LCDMenuUpDown
+   1062          
+   1063          //	" AudioLoop:Off",	//  Loopback Off
+   1064          //	" AudioLoop:On",	//  Loopback On
+   1065          //	" AudioSine:On",	//  Sine Wave On
+   1066          
+   1067          	switch( idxItem )
+   \        0xA   0x2C00             CMP      R4,#+0
+   \        0xC   0xD003             BEQ.N    ??ProcMenuDiag_0
+   \        0xE   0x2C02             CMP      R4,#+2
+   \       0x10   0xD01A             BEQ.N    ??ProcMenuDiag_1
+   \       0x12   0xD308             BCC.N    ??ProcMenuDiag_2
+   \       0x14   0xE029             B.N      ??ProcMenuDiag_3
+   1068          	{
+   1069          	case 0:	//	Audio Loopback Off
+   1070          		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
+   \                     ??ProcMenuDiag_0: (+1)
+   \       0x16   0x2200             MOVS     R2,#+0
+   \       0x18   0x2120             MOVS     R1,#+32
+   \       0x1A   0x....             LDR.N    R0,??DataTable27_32
+   \       0x1C   0x.... 0x....      BL       HAL_GPIO_WritePin
+   1071          
+   1072          		//	Codec Loopback Off
+   1073          		AudioStop();
+   \       0x20   0x.... 0x....      BL       AudioStop
+   1074          
+   1075          		break;
+   \       0x24   0xE028             B.N      ??ProcMenuDiag_4
+   1076          
+   1077          	case 1:	//	Audio Loopback On
+   1078          		printf( "%s(%d) - sine\n", __func__, __LINE__ );
+   \                     ??ProcMenuDiag_2: (+1)
+   \       0x26   0xF240 0x4236      MOVW     R2,#+1078
+   \       0x2A   0x....             LDR.N    R1,??DataTable27_33
+   \       0x2C   0x....             LDR.N    R0,??DataTable27_34
+   \       0x2E   0x.... 0x....      BL       printf
+   1079          		LCDPrintf( "Audio Loop" );
+                 		^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \       0x32   0x....             LDR.N    R0,??DataTable27_35
+   \       0x34   0x.... 0x....      BL       LCDPrintf
+   1080          
+   1081          		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
+   \       0x38   0x2201             MOVS     R2,#+1
+   \       0x3A   0x2120             MOVS     R1,#+32
+   \       0x3C   0x....             LDR.N    R0,??DataTable27_32
+   \       0x3E   0x.... 0x....      BL       HAL_GPIO_WritePin
+   1082          
+   1083          		AudioDMALoopback();
+   \       0x42   0x.... 0x....      BL       AudioDMALoopback
+   1084          		break;
+   \       0x46   0xE017             B.N      ??ProcMenuDiag_4
+   1085          
+   1086          	case 2:	//	Audio Sine Wave On
+   1087          		printf( "%s(%d) - sine\n", __func__, __LINE__ );
+   \                     ??ProcMenuDiag_1: (+1)
+   \       0x48   0xF240 0x423F      MOVW     R2,#+1087
+   \       0x4C   0x....             LDR.N    R1,??DataTable27_33
+   \       0x4E   0x....             LDR.N    R0,??DataTable27_34
+   \       0x50   0x.... 0x....      BL       printf
+   1088          		LCDPrintf( "Audio Sine" );
+   \       0x54   0x....             LDR.N    R0,??DataTable27_36
+   \       0x56   0x.... 0x....      BL       LCDPrintf
+   1089          
+   1090          		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
+   \       0x5A   0x2201             MOVS     R2,#+1
+   \       0x5C   0x2120             MOVS     R1,#+32
+   \       0x5E   0x....             LDR.N    R0,??DataTable27_32
+   \       0x60   0x.... 0x....      BL       HAL_GPIO_WritePin
+   1091          
+   1092          		AudioPlayDMASine();
+   \       0x64   0x.... 0x....      BL       AudioPlayDMASine
+   1093          		break;
+   \       0x68   0xE006             B.N      ??ProcMenuDiag_4
+   1094          
+   1095          	default:
+   1096          		printf("%s(%d) - invalid menu(%d)\n", __func__, __LINE__, idxItem);
+   \                     ??ProcMenuDiag_3: (+1)
+   \       0x6A   0x0023             MOVS     R3,R4
+   \       0x6C   0xF44F 0x6289      MOV      R2,#+1096
+   \       0x70   0x....             LDR.N    R1,??DataTable27_33
+   \       0x72   0x....             LDR.N    R0,??DataTable27_31
+   \       0x74   0x.... 0x....      BL       printf
+   1097          		break;
+   1098          	}
+   1099          
+   1100          	//  1초후 Main화면 갱신.
+   1101          //	HAL_Delay( 1000 );
+   1102          //	UpdateLCDMain();
+   1103          
+   1104          //	SetActiveMenu( NULL );
+   1105          }
+   \                     ??ProcMenuDiag_4: (+1)
+   \       0x78   0xBD10             POP      {R4,PC}
+   1106          
+   1107          
+   1108          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+   1109          void 	ProcMenuSetting( int idxItem )
+   1110          //========================================================================
+   1111          {
+   \                     ProcMenuSetting: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   1112          	LCDMenuUpDown( 0 );
+                 	^
+Warning[Pe223]: function "LCDMenuUpDown" declared implicitly
+   \        0x4   0x2000             MOVS     R0,#+0
+   \        0x6   0x.... 0x....      BL       LCDMenuUpDown
+   1113          
+   1114          //	" Mic Vol",		//	Mic Volume
+   1115          //	" Spk Vol",		//	Spk Volume
+   1116          //	" RF Tx Pwr",	//	RF Tx Power
+   1117          
+   1118          	switch( idxItem )
+   \        0xA   0x2C00             CMP      R4,#+0
+   \        0xC   0xD005             BEQ.N    ??ProcMenuSetting_0
+   \        0xE   0x2C02             CMP      R4,#+2
+   \       0x10   0xD01B             BEQ.N    ??ProcMenuSetting_1
+   \       0x12   0xD30E             BCC.N    ??ProcMenuSetting_2
+   \       0x14   0x2C03             CMP      R4,#+3
+   \       0x16   0xD022             BEQ.N    ??ProcMenuSetting_3
+   \       0x18   0xE02D             B.N      ??ProcMenuSetting_4
+   1119          	{
+   1120          	case 0:		//	Mic Volume
+   1121          		SetActiveMenu( &g_MenuSetMicList );
+   \                     ??ProcMenuSetting_0: (+1)
+   \       0x1A   0x....             LDR.N    R0,??DataTable27_37
+   \       0x1C   0x.... 0x....      BL       SetActiveMenu
+   1122          		GetActiveMenu()->currIdx = GetMicVol();	//	메뉴 Index초기화.
+                 		                           ^
+Warning[Pe223]: function "GetMicVol" declared implicitly
+   \       0x20   0x.... 0x....      BL       GetActiveMenu
+   \       0x24   0x0005             MOVS     R5,R0
+   \       0x26   0x.... 0x....      BL       GetMicVol
+   \       0x2A   0x60A8             STR      R0,[R5, #+8]
+   1123          
+   1124          		UpdateLCDMenu();
+   \       0x2C   0x.... 0x....      BL       UpdateLCDMenu
+   1125          
+   1126          		break;
+   \       0x30   0xE028             B.N      ??ProcMenuSetting_5
+   1127          
+   1128          	case 1:		//	Spk Volume
+   1129          		SetActiveMenu( &g_MenuSetSpkList );
+   \                     ??ProcMenuSetting_2: (+1)
+   \       0x32   0x....             LDR.N    R0,??DataTable27_38
+   \       0x34   0x.... 0x....      BL       SetActiveMenu
+   1130          		GetActiveMenu()->currIdx = GetSpkVol();	//	메뉴 Index초기화.
+   \       0x38   0x.... 0x....      BL       GetActiveMenu
+   \       0x3C   0x0005             MOVS     R5,R0
+   \       0x3E   0x.... 0x....      BL       GetSpkVol
+   \       0x42   0x60A8             STR      R0,[R5, #+8]
+   1131          
+   1132          		UpdateLCDMenu();
+   \       0x44   0x.... 0x....      BL       UpdateLCDMenu
+   1133          		break;
+   \       0x48   0xE01C             B.N      ??ProcMenuSetting_5
+   1134          
+   1135          	case 2:		//	RF Tx Power
+   1136          		SetActiveMenu( &g_MenuSetTxPwrList );
+   \                     ??ProcMenuSetting_1: (+1)
+   \       0x4A   0x....             LDR.N    R0,??DataTable27_39
+   \       0x4C   0x.... 0x....      BL       SetActiveMenu
+   1137          		GetActiveMenu()->currIdx = 7;	//	메뉴 Index초기화.
+   \       0x50   0x.... 0x....      BL       GetActiveMenu
+   \       0x54   0x2107             MOVS     R1,#+7
+   \       0x56   0x6081             STR      R1,[R0, #+8]
+   1138          
+   1139          		UpdateLCDMenu();
+   \       0x58   0x.... 0x....      BL       UpdateLCDMenu
+   1140          		break;
+   \       0x5C   0xE012             B.N      ??ProcMenuSetting_5
+   1141          
+   1142          	case 3:		//	RF Mode
+   1143          		SetActiveMenu( &g_MenuSetRFModeList );
+   \                     ??ProcMenuSetting_3: (+1)
+   \       0x5E   0x....             LDR.N    R0,??DataTable27_40
+   \       0x60   0x.... 0x....      BL       SetActiveMenu
+   1144          		GetActiveMenu()->currIdx = g_nRFMode - 1;	//	메뉴 Index초기화.
+   \       0x64   0x.... 0x....      BL       GetActiveMenu
+   \       0x68   0x....             LDR.N    R1,??DataTable27_41
+   \       0x6A   0x6809             LDR      R1,[R1, #+0]
+   \       0x6C   0x1E49             SUBS     R1,R1,#+1
+   \       0x6E   0x6081             STR      R1,[R0, #+8]
+   1145          
+   1146          		UpdateLCDMenu();
+   \       0x70   0x.... 0x....      BL       UpdateLCDMenu
+   1147          		break;
+   \       0x74   0xE006             B.N      ??ProcMenuSetting_5
+   1148          
+   1149          	default:
+   1150          		printf("%s(%d) - invalid menu(%d)\n", __func__, __LINE__, idxItem);
+   \                     ??ProcMenuSetting_4: (+1)
+   \       0x76   0x0023             MOVS     R3,R4
+   \       0x78   0xF240 0x427E      MOVW     R2,#+1150
+   \       0x7C   0x....             LDR.N    R1,??DataTable27_42
+   \       0x7E   0x....             LDR.N    R0,??DataTable27_31
+   \       0x80   0x.... 0x....      BL       printf
+   1151          		break;
+   1152          	}
+   1153          }
+   \                     ??ProcMenuSetting_5: (+1)
+   \       0x84   0xBD31             POP      {R0,R4,R5,PC}
+   1154          
+   1155          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+   1156          void 	ProcMenuSetMic( int idxItem )
+   1157          //========================================================================
+   1158          {
+   \                     ProcMenuSetMic: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   1159          	LCDMenuUpDown( 0 );
+                 	^
+Warning[Pe223]: function "LCDMenuUpDown" declared implicitly
+   \        0x4   0x2000             MOVS     R0,#+0
+   \        0x6   0x.... 0x....      BL       LCDMenuUpDown
+   1160          
+   1161          	//	Mic : 0 ~ 9
+   1162          
+   1163          	switch( idxItem )
+   \        0xA   0x0020             MOVS     R0,R4
+   \        0xC   0x2800             CMP      R0,#+0
+   \        0xE   0x2809             CMP      R0,#+9
+   \       0x10   0xD803             BHI.N    ??ProcMenuSetMic_0
+   1164          	{
+   1165          	case 0:
+   1166          	case 1:
+   1167          	case 2:
+   1168          	case 3:
+   1169          	case 4:
+   1170          	case 5:
+   1171          	case 6:
+   1172          	case 7:
+   1173          	case 8:
+   1174          	case 9:
+   1175          		SetMicVol(idxItem);
+                 		^
+Warning[Pe223]: function "SetMicVol" declared implicitly
+   \                     ??ProcMenuSetMic_1: (+1)
+   \       0x12   0x0020             MOVS     R0,R4
+   \       0x14   0x.... 0x....      BL       SetMicVol
+   1176          		break;
+   \       0x18   0xE006             B.N      ??ProcMenuSetMic_2
+   1177          	default:
+   1178          		printf("%s(%d) - invalid menu(%d)\n", __func__, __LINE__, idxItem);
+   \                     ??ProcMenuSetMic_0: (+1)
+   \       0x1A   0x0023             MOVS     R3,R4
+   \       0x1C   0xF240 0x429A      MOVW     R2,#+1178
+   \       0x20   0x....             LDR.N    R1,??DataTable27_43
+   \       0x22   0x....             LDR.N    R0,??DataTable27_31
+   \       0x24   0x.... 0x....      BL       printf
+   1179          		break;
+   1180          	}
+   1181          	//  1초후 Main화면 갱신.
+   1182          	HAL_Delay( 1000 );
+   \                     ??ProcMenuSetMic_2: (+1)
+   \       0x28   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x2C   0x.... 0x....      BL       HAL_Delay
+   1183          	UpdateLCDMain();
+   \       0x30   0x.... 0x....      BL       UpdateLCDMain
+   1184          
+   1185          	SetActiveMenu( NULL );
+   \       0x34   0x2000             MOVS     R0,#+0
+   \       0x36   0x.... 0x....      BL       SetActiveMenu
+   1186          }
+   \       0x3A   0xBD10             POP      {R4,PC}
+   1187          
+   1188          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+   1189          void 	ProcMenuSetSpk( int idxItem )
+   1190          //========================================================================
+   1191          {
+   \                     ProcMenuSetSpk: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   1192          	LCDMenuUpDown( 0 );
+                 	^
+Warning[Pe223]: function "LCDMenuUpDown" declared implicitly
+   \        0x4   0x2000             MOVS     R0,#+0
+   \        0x6   0x.... 0x....      BL       LCDMenuUpDown
+   1193          
+   1194          	//	Spk : 0 ~ 3
+   1195          
+   1196          	switch( idxItem )
+   \        0xA   0x0020             MOVS     R0,R4
+   \        0xC   0x2800             CMP      R0,#+0
+   \        0xE   0x2803             CMP      R0,#+3
+   \       0x10   0xD803             BHI.N    ??ProcMenuSetSpk_0
+   1197          	{
+   1198          	case 0:
+   1199          	case 1:
+   1200          	case 2:
+   1201          	case 3:
+   1202          		SetSpkVol(idxItem);
+   \                     ??ProcMenuSetSpk_1: (+1)
+   \       0x12   0x0020             MOVS     R0,R4
+   \       0x14   0x.... 0x....      BL       SetSpkVol
+   1203          		break;
+   \       0x18   0xE006             B.N      ??ProcMenuSetSpk_2
+   1204          	default:
+   1205          		printf("%s(%d) - invalid menu(%d)\n", __func__, __LINE__, idxItem);
+   \                     ??ProcMenuSetSpk_0: (+1)
+   \       0x1A   0x0023             MOVS     R3,R4
+   \       0x1C   0xF240 0x42B5      MOVW     R2,#+1205
+   \       0x20   0x....             LDR.N    R1,??DataTable27_44
+   \       0x22   0x....             LDR.N    R0,??DataTable27_31
+   \       0x24   0x.... 0x....      BL       printf
+   1206          		break;
+   1207          	}
+   1208          	//  1초후 Main화면 갱신.
+   1209          	HAL_Delay( 1000 );
+   \                     ??ProcMenuSetSpk_2: (+1)
+   \       0x28   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x2C   0x.... 0x....      BL       HAL_Delay
+   1210          	UpdateLCDMain();
+   \       0x30   0x.... 0x....      BL       UpdateLCDMain
+   1211          
+   1212          	SetActiveMenu( NULL );
+   \       0x34   0x2000             MOVS     R0,#+0
+   \       0x36   0x.... 0x....      BL       SetActiveMenu
+   1213          }
+   \       0x3A   0xBD10             POP      {R4,PC}
+   1214          
+   1215          
+   1216          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+   1217          void 	ProcMenuSetTxPwr( int idxItem )
+   1218          //========================================================================
+   1219          {
+   \                     ProcMenuSetTxPwr: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   1220          	LCDMenuUpDown( 0 );
+                 	^
+Warning[Pe223]: function "LCDMenuUpDown" declared implicitly
+   \        0x4   0x2000             MOVS     R0,#+0
+   \        0x6   0x.... 0x....      BL       LCDMenuUpDown
+   1221          
+   1222          //	char *_sSetTxPwrList[] = { 	" Pwr : -38 dBm",	//	0
+   1223          //								" Pwr : -20 dBm",	//	1
+   1224          //								" Pwr : -5 dBm",	//	4
+   1225          //								" Pwr : 0 dBm",		//	7
+   1226          //								" Pwr : 5 dBm",		//	12
+   1227          //								" Pwr : 10 dBm",	//	22
+   1228          //								" Pwr : 15 dBm",	//	40
+   1229          //								" Pwr : 20 dBm",	//	127
+   1230          //							};
+   1231          
+   1232          	switch( idxItem )
+   \        0xA   0x2C00             CMP      R4,#+0
+   \        0xC   0xD009             BEQ.N    ??ProcMenuSetTxPwr_0
+   \        0xE   0x2C02             CMP      R4,#+2
+   \       0x10   0xD00F             BEQ.N    ??ProcMenuSetTxPwr_1
+   \       0x12   0xD30A             BCC.N    ??ProcMenuSetTxPwr_2
+   \       0x14   0x2C04             CMP      R4,#+4
+   \       0x16   0xD014             BEQ.N    ??ProcMenuSetTxPwr_3
+   \       0x18   0xD30F             BCC.N    ??ProcMenuSetTxPwr_4
+   \       0x1A   0x2C06             CMP      R4,#+6
+   \       0x1C   0xD019             BEQ.N    ??ProcMenuSetTxPwr_5
+   \       0x1E   0xD314             BCC.N    ??ProcMenuSetTxPwr_6
+   \       0x20   0xE01B             B.N      ??ProcMenuSetTxPwr_7
+   1233          	{
+   1234          	case 0:	vRadio_Set_TxPower(0);		break;
+   \                     ??ProcMenuSetTxPwr_0: (+1)
+   \       0x22   0x2000             MOVS     R0,#+0
+   \       0x24   0x.... 0x....      BL       vRadio_Set_TxPower
+   \       0x28   0xE01E             B.N      ??ProcMenuSetTxPwr_8
+   1235          	case 1:	vRadio_Set_TxPower(1);		break;
+   \                     ??ProcMenuSetTxPwr_2: (+1)
+   \       0x2A   0x2001             MOVS     R0,#+1
+   \       0x2C   0x.... 0x....      BL       vRadio_Set_TxPower
+   \       0x30   0xE01A             B.N      ??ProcMenuSetTxPwr_8
+   1236          	case 2:	vRadio_Set_TxPower(4);		break;
+   \                     ??ProcMenuSetTxPwr_1: (+1)
+   \       0x32   0x2004             MOVS     R0,#+4
+   \       0x34   0x.... 0x....      BL       vRadio_Set_TxPower
+   \       0x38   0xE016             B.N      ??ProcMenuSetTxPwr_8
+   1237          	case 3:	vRadio_Set_TxPower(7);		break;
+   \                     ??ProcMenuSetTxPwr_4: (+1)
+   \       0x3A   0x2007             MOVS     R0,#+7
+   \       0x3C   0x.... 0x....      BL       vRadio_Set_TxPower
+   \       0x40   0xE012             B.N      ??ProcMenuSetTxPwr_8
+   1238          	case 4:	vRadio_Set_TxPower(12);		break;
+   \                     ??ProcMenuSetTxPwr_3: (+1)
+   \       0x42   0x200C             MOVS     R0,#+12
+   \       0x44   0x.... 0x....      BL       vRadio_Set_TxPower
+   \       0x48   0xE00E             B.N      ??ProcMenuSetTxPwr_8
+   1239          	case 5:	vRadio_Set_TxPower(40);		break;
+   \                     ??ProcMenuSetTxPwr_6: (+1)
+   \       0x4A   0x2028             MOVS     R0,#+40
+   \       0x4C   0x.... 0x....      BL       vRadio_Set_TxPower
+   \       0x50   0xE00A             B.N      ??ProcMenuSetTxPwr_8
+   1240          	case 6:	vRadio_Set_TxPower(127);	break;
+   \                     ??ProcMenuSetTxPwr_5: (+1)
+   \       0x52   0x207F             MOVS     R0,#+127
+   \       0x54   0x.... 0x....      BL       vRadio_Set_TxPower
+   \       0x58   0xE006             B.N      ??ProcMenuSetTxPwr_8
+   1241          	default:
+   1242          		printf("%s(%d) - invalid menu(%d)\n", __func__, __LINE__, idxItem);
+   \                     ??ProcMenuSetTxPwr_7: (+1)
+   \       0x5A   0x0023             MOVS     R3,R4
+   \       0x5C   0xF240 0x42DA      MOVW     R2,#+1242
+   \       0x60   0x....             LDR.N    R1,??DataTable27_45
+   \       0x62   0x....             LDR.N    R0,??DataTable27_31
+   \       0x64   0x.... 0x....      BL       printf
+   1243          		break;
+   1244          	}
+   1245          	//  1초후 Main화면 갱신.
+   1246          	HAL_Delay( 1000 );
+   \                     ??ProcMenuSetTxPwr_8: (+1)
+   \       0x68   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x6C   0x.... 0x....      BL       HAL_Delay
+   1247          	UpdateLCDMain();
+   \       0x70   0x.... 0x....      BL       UpdateLCDMain
+   1248          
+   1249          	SetActiveMenu( NULL );
+   \       0x74   0x2000             MOVS     R0,#+0
+   \       0x76   0x.... 0x....      BL       SetActiveMenu
+   1250          }
+   \       0x7A   0xBD10             POP      {R4,PC}
+   1251          
+   1252          
+   1253          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+   1254          void 	ProcMenuSetRFMode( int idxItem )
+   1255          //========================================================================
+   1256          {
+   \                     ProcMenuSetRFMode: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   1257          	LCDMenuUpDown( 0 );
+                 	^
+Warning[Pe223]: function "LCDMenuUpDown" declared implicitly
+   \        0x4   0x2000             MOVS     R0,#+0
+   \        0x6   0x.... 0x....      BL       LCDMenuUpDown
+   1258          
+   1259          	switch( idxItem )
+   \        0xA   0x2C00             CMP      R4,#+0
+   \        0xC   0xD002             BEQ.N    ??ProcMenuSetRFMode_0
+   \        0xE   0x2C01             CMP      R4,#+1
+   \       0x10   0xD004             BEQ.N    ??ProcMenuSetRFMode_1
+   \       0x12   0xE007             B.N      ??ProcMenuSetRFMode_2
+   1260          	{
+   1261          	case 0:	SetRFMode(1);		break;
+   \                     ??ProcMenuSetRFMode_0: (+1)
+   \       0x14   0x2001             MOVS     R0,#+1
+   \       0x16   0x.... 0x....      BL       SetRFMode
+   \       0x1A   0xE00A             B.N      ??ProcMenuSetRFMode_3
+   1262          	case 1:	SetRFMode(2);		break;
+   \                     ??ProcMenuSetRFMode_1: (+1)
+   \       0x1C   0x2002             MOVS     R0,#+2
+   \       0x1E   0x.... 0x....      BL       SetRFMode
+   \       0x22   0xE006             B.N      ??ProcMenuSetRFMode_3
+   1263          	default:
+   1264          		printf("%s(%d) - invalid menu(%d)\n", __func__, __LINE__, idxItem);
+   \                     ??ProcMenuSetRFMode_2: (+1)
+   \       0x24   0x0023             MOVS     R3,R4
+   \       0x26   0xF44F 0x629E      MOV      R2,#+1264
+   \       0x2A   0x....             LDR.N    R1,??DataTable27_46
+   \       0x2C   0x....             LDR.N    R0,??DataTable27_31
+   \       0x2E   0x.... 0x....      BL       printf
+   1265          		break;
+   1266          	}
+   1267          	//  1초후 Main화면 갱신.
+   1268          	HAL_Delay( 1000 );
+   \                     ??ProcMenuSetRFMode_3: (+1)
+   \       0x32   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x36   0x.... 0x....      BL       HAL_Delay
+   1269          	UpdateLCDMain();
+   \       0x3A   0x.... 0x....      BL       UpdateLCDMain
+   1270          
+   1271          	SetActiveMenu( NULL );
+   \       0x3E   0x2000             MOVS     R0,#+0
+   \       0x40   0x.... 0x....      BL       SetActiveMenu
+   1272          }
+   \       0x44   0xBD10             POP      {R4,PC}
+   1273          
+   1274          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+   1275          void	ProcBtnOK( void )
+   1276          //========================================================================
+   1277          {
+   \                     ProcBtnOK: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+   1278          	if ( GetActiveMenu() == NULL )
+   \        0x2   0x.... 0x....      BL       GetActiveMenu
+   \        0x6   0x2800             CMP      R0,#+0
+   \        0x8   0xD107             BNE.N    ??ProcBtnOK_0
+   1279          	{
+   1280          		LCDClearMain();
+                 		^
+Warning[Pe223]: function "LCDClearMain" declared implicitly
+   \        0xA   0x.... 0x....      BL       LCDClearMain
+   1281          		//========================================================================
+   1282          		//  편성 : XXX
+   1283          		UpdateLCDMain();
+   \        0xE   0x.... 0x....      BL       UpdateLCDMain
+   1284          
+   1285          		//========================================================================
+   1286          		//	Display Status Disable
+   1287          		_bEnDispStat		=	0;
+   \       0x12   0x2000             MOVS     R0,#+0
+   \       0x14   0x....             LDR.N    R1,??DataTable27_6
+   \       0x16   0x6008             STR      R0,[R1, #+0]
+   1288          
+   1289          		return;
+   \       0x18   0xE009             B.N      ??ProcBtnOK_1
+   1290          	}
+   1291          	else if ( g_pActiveMenu->cbFunc != NULL )
+   \                     ??ProcBtnOK_0: (+1)
+   \       0x1A   0x....             LDR.N    R1,??DataTable27_2
+   \       0x1C   0x6808             LDR      R0,[R1, #+0]
+   \       0x1E   0x68C0             LDR      R0,[R0, #+12]
+   \       0x20   0x2800             CMP      R0,#+0
+   \       0x22   0xD004             BEQ.N    ??ProcBtnOK_2
+   1292          	{
+   1293          		//	Menu Procedure Function
+   1294          		g_pActiveMenu->cbFunc( g_pActiveMenu->currIdx );
+   \       0x24   0x6808             LDR      R0,[R1, #+0]
+   \       0x26   0x6880             LDR      R0,[R0, #+8]
+   \       0x28   0x6809             LDR      R1,[R1, #+0]
+   \       0x2A   0x68C9             LDR      R1,[R1, #+12]
+   \       0x2C   0x4788             BLX      R1
+   1295          	}
+   1296          }
+   \                     ??ProcBtnOK_2: (+1)
+   \                     ??ProcBtnOK_1: (+1)
+   \       0x2E   0xBD01             POP      {R0,PC}
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27:
+   \        0x0   0x....'....        DC32     g_bEnMenuMaint
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_1:
+   \        0x0   0x....'....        DC32     ?_86
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_2:
+   \        0x0   0x....'....        DC32     g_pActiveMenu
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_3:
+   \        0x0   0x....'....        DC32     g_idxTrainSet
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_4:
+   \        0x0   0x....'....        DC32     ?_87
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_5:
+   \        0x0   0x....'....        DC32     `UpdateLCDMonitor::oldTick`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_6:
+   \        0x0   0x....'....        DC32     _bEnDispStat
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_7:
+   \        0x0   0x....'....        DC32     g_nRSSI
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_8:
+   \        0x0   0x....'....        DC32     g_flagRspID
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_9:
+   \        0x0   0x....'....        DC32     ?_88
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_10:
+   \        0x0   0x....'....        DC32     g_MenuMainMaint
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_11:
+   \        0x0   0x....'....        DC32     g_MenuMainBase
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_12:
+   \        0x0   0x....'....        DC32     ?_89
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_13:
+   \        0x0   0x....'....        DC32     ?_90
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_14:
+   \        0x0   0x....'....        DC32     ?_91
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_15:
+   \        0x0   0x....'....        DC32     ?_92
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_16:
+   \        0x0   0x....'....        DC32     g_MenuSetCmdTSList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_17:
+   \        0x0   0x....'....        DC32     g_MenuSetCmdCarList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_18:
+   \        0x0   0x....'....        DC32     g_MenuSetCmdRFModeList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_19:
+   \        0x0   0x....'....        DC32     ?_93
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_20:
+   \        0x0   0x....'....        DC32     g_MenuLightCtrl
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_21:
+   \        0x0   0x....'....        DC32     g_MenuVerList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_22:
+   \        0x0   0x....'....        DC32     g_MenuTrainSet
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_23:
+   \        0x0   0x....'....        DC32     g_MenuRFTIDList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_24:
+   \        0x0   0x....'....        DC32     g_MenuSelfTestList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_25:
+   \        0x0   0x....'....        DC32     g_MenuDiagList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_26:
+   \        0x0   0x....'....        DC32     g_MenuSettingList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_27:
+   \        0x0   0x....'....        DC32     g_MenuCmdList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_28:
+   \        0x0   0x....'....        DC32     ?_94
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_29:
+   \        0x0   0x....'....        DC32     ?_95
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_30:
+   \        0x0   0x....'....        DC32     `ProcMenuRFTID::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_31:
+   \        0x0   0x....'....        DC32     ?_96
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_32:
+   \        0x0   0x4002'1000        DC32     0x40021000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_33:
+   \        0x0   0x....'....        DC32     `ProcMenuDiag::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_34:
+   \        0x0   0x....'....        DC32     ?_97
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_35:
+   \        0x0   0x....'....        DC32     ?_98
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_36:
+   \        0x0   0x....'....        DC32     ?_99
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_37:
+   \        0x0   0x....'....        DC32     g_MenuSetMicList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_38:
+   \        0x0   0x....'....        DC32     g_MenuSetSpkList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_39:
+   \        0x0   0x....'....        DC32     g_MenuSetTxPwrList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_40:
+   \        0x0   0x....'....        DC32     g_MenuSetRFModeList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_41:
+   \        0x0   0x....'....        DC32     g_nRFMode
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_42:
+   \        0x0   0x....'....        DC32     `ProcMenuSetting::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_43:
+   \        0x0   0x....'....        DC32     `ProcMenuSetMic::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_44:
+   \        0x0   0x....'....        DC32     `ProcMenuSetSpk::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_45:
+   \        0x0   0x....'....        DC32     `ProcMenuSetTxPwr::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable27_46:
+   \        0x0   0x....'....        DC32     `ProcMenuSetRFMode::__func__`
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \        0x0   0x31 0x2E          DC8 "1. \354\241\260\353\252\205\354\206\214\353\223\261"
+
+   \              0x20 0xEC    
+
+   \              0xA1 0xB0    
+
+   \              0xEB 0xAA    
+
+   \              0x85 0xEC    
+
+   \              0x86 0x8C    
+
+   \              0xEB 0x93    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_1:
+   \        0x0   0x32 0x2E          DC8 "2. \354\241\260\353\252\205\354\240\220\353\223\261"
+
+   \              0x20 0xEC    
+
+   \              0xA1 0xB0    
+
+   \              0xEB 0xAA    
+
+   \              0x85 0xEC    
+
+   \              0xA0 0x90    
+
+   \              0xEB 0x93    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_2:
+   \        0x0   0x20 0x31          DC8 " 100 \355\216\270\354\204\261"
+
+   \              0x30 0x30    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_3:
+   \        0x0   0x20 0x31          DC8 " 101 \355\216\270\354\204\261"
+
+   \              0x30 0x31    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_4:
+   \        0x0   0x20 0x31          DC8 " 102 \355\216\270\354\204\261"
+
+   \              0x30 0x32    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_5:
+   \        0x0   0x20 0x31          DC8 " 103 \355\216\270\354\204\261"
+
+   \              0x30 0x33    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_6:
+   \        0x0   0x20 0x31          DC8 " 104 \355\216\270\354\204\261"
+
+   \              0x30 0x34    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_7:
+   \        0x0   0x20 0x31          DC8 " 105 \355\216\270\354\204\261"
+
+   \              0x30 0x35    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_8:
+   \        0x0   0x20 0x31          DC8 " 106 \355\216\270\354\204\261"
+
+   \              0x30 0x36    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_9:
+   \        0x0   0x20 0x31          DC8 " 107 \355\216\270\354\204\261"
+
+   \              0x30 0x37    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_10:
+   \        0x0   0x20 0x31          DC8 " 108 \355\216\270\354\204\261"
+
+   \              0x30 0x38    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_11:
+   \        0x0   0x20 0x31          DC8 " 109 \355\216\270\354\204\261"
+
+   \              0x30 0x39    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_12:
+   \        0x0   0x20 0x31          DC8 " 110 \355\216\270\354\204\261"
+
+   \              0x31 0x30    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_13:
+   \        0x0   0x20 0x31          DC8 " 111 \355\216\270\354\204\261"
+
+   \              0x31 0x31    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_14:
+   \        0x0   0x20 0x31          DC8 " 112 \355\216\270\354\204\261"
+
+   \              0x31 0x32    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_15:
+   \        0x0   0x20 0x31          DC8 " 113 \355\216\270\354\204\261"
+
+   \              0x31 0x33    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_16:
+   \        0x0   0x20 0x31          DC8 " 114 \355\216\270\354\204\261"
+
+   \              0x31 0x34    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_17:
+   \        0x0   0x20 0x31          DC8 " 115 \355\216\270\354\204\261"
+
+   \              0x31 0x35    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_18:
+   \        0x0   0x20 0x31          DC8 " 116 \355\216\270\354\204\261"
+
+   \              0x31 0x36    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_19:
+   \        0x0   0x20 0x31          DC8 " 117 \355\216\270\354\204\261"
+
+   \              0x31 0x37    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_20:
+   \        0x0   0x20 0x31          DC8 " 118 \355\216\270\354\204\261"
+
+   \              0x31 0x38    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_21:
+   \        0x0   0x20 0x31          DC8 " 119 \355\216\270\354\204\261"
+
+   \              0x31 0x39    
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_22:
+   \        0x0   0x20 0xEC          DC8 " \354\206\241\354\213\240\352\270\260#1"
+
+   \              0x86 0xA1    
+
+   \              0xEC 0x8B    
+
+   \              0xA0 0xEA    
+
+   \              0xB8 0xB0    
+
+   \              0x23 0x31    
+
+   \              0x00
+   \        0xD                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_23:
+   \        0x0   0x20 0xEC          DC8 " \354\206\241\354\213\240\352\270\260#2"
+
+   \              0x86 0xA1    
+
+   \              0xEC 0x8B    
+
+   \              0xA0 0xEA    
+
+   \              0xB8 0xB0    
+
+   \              0x23 0x32    
+
+   \              0x00
+   \        0xD                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_24:
+   \        0x0   0x20 0x31          DC8 " 1 \355\230\270\354\260\250 : OK"
+
+   \              0x20 0xED    
+
+   \              0x98 0xB8    
+
+   \              0xEC 0xB0    
+
+   \              0xA8 0x20    
+
+   \              0x3A 0x20    
+
+   \              0x4F 0x4B    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_25:
+   \        0x0   0x20 0x32          DC8 " 2 \355\230\270\354\260\250 : OK"
+
+   \              0x20 0xED    
+
+   \              0x98 0xB8    
+
+   \              0xEC 0xB0    
+
+   \              0xA8 0x20    
+
+   \              0x3A 0x20    
+
+   \              0x4F 0x4B    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_26:
+   \        0x0   0x20 0x33          DC8 " 3 \355\230\270\354\260\250 : OK"
+
+   \              0x20 0xED    
+
+   \              0x98 0xB8    
+
+   \              0xEC 0xB0    
+
+   \              0xA8 0x20    
+
+   \              0x3A 0x20    
+
+   \              0x4F 0x4B    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_27:
+   \        0x0   0x20 0x34          DC8 " 4 \355\230\270\354\260\250 : N/A"
+
+   \              0x20 0xED    
+
+   \              0x98 0xB8    
+
+   \              0xEC 0xB0    
+
+   \              0xA8 0x20    
+
+   \              0x3A 0x20    
+
+   \              0x4E 0x2F    
+
+   \              0x41 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_28:
+   \        0x0   0x20 0x35          DC8 " 5 \355\230\270\354\260\250 : N/A"
+
+   \              0x20 0xED    
+
+   \              0x98 0xB8    
+
+   \              0xEC 0xB0    
+
+   \              0xA8 0x20    
+
+   \              0x3A 0x20    
+
+   \              0x4E 0x2F    
+
+   \              0x41 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_29:
+   \        0x0   0x20 0x36          DC8 " 6 \355\230\270\354\260\250 : OK"
+
+   \              0x20 0xED    
+
+   \              0x98 0xB8    
+
+   \              0xEC 0xB0    
+
+   \              0xA8 0x20    
+
+   \              0x3A 0x20    
+
+   \              0x4F 0x4B    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_30:
+   \        0x0   0x20 0x41          DC8 " AudioLoop:Off"
+
+   \              0x75 0x64    
+
+   \              0x69 0x6F    
+
+   \              0x4C 0x6F    
+
+   \              0x6F 0x70    
+
+   \              0x3A 0x4F    
+
+   \              0x66 0x66    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_31:
+   \        0x0   0x20 0x41          DC8 " AudioLoop:On"
+
+   \              0x75 0x64    
+
+   \              0x69 0x6F    
+
+   \              0x4C 0x6F    
+
+   \              0x6F 0x70    
+
+   \              0x3A 0x4F    
+
+   \              0x6E 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_32:
+   \        0x0   0x20 0x41          DC8 " AudioSine:On"
+
+   \              0x75 0x64    
+
+   \              0x69 0x6F    
+
+   \              0x53 0x69    
+
+   \              0x6E 0x65    
+
+   \              0x3A 0x4F    
+
+   \              0x6E 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_33:
+   \        0x0   0x20 0x4D          DC8 " Mic Vol"
+
+   \              0x69 0x63    
+
+   \              0x20 0x56    
+
+   \              0x6F 0x6C    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_34:
+   \        0x0   0x20 0x53          DC8 " Spk Vol"
+
+   \              0x70 0x6B    
+
+   \              0x20 0x56    
+
+   \              0x6F 0x6C    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_35:
+   \        0x0   0x20 0x52          DC8 " RF Tx Pwr"
+
+   \              0x46 0x20    
+
+   \              0x54 0x78    
+
+   \              0x20 0x50    
+
+   \              0x77 0x72    
+
+   \              0x00
+   \        0xB                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_36:
+   \        0x0   0x20 0x52          DC8 " RF Mode"
+
+   \              0x46 0x20    
+
+   \              0x4D 0x6F    
+
+   \              0x64 0x65    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_37:
+   \        0x0   0x20 0x4D          DC8 " Mic : 0"
+
+   \              0x69 0x63    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x30    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_38:
+   \        0x0   0x20 0x4D          DC8 " Mic : 1"
+
+   \              0x69 0x63    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x31    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_39:
+   \        0x0   0x20 0x4D          DC8 " Mic : 2"
+
+   \              0x69 0x63    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x32    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_40:
+   \        0x0   0x20 0x4D          DC8 " Mic : 3"
+
+   \              0x69 0x63    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x33    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_41:
+   \        0x0   0x20 0x4D          DC8 " Mic : 4"
+
+   \              0x69 0x63    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x34    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_42:
+   \        0x0   0x20 0x4D          DC8 " Mic : 5"
+
+   \              0x69 0x63    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x35    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_43:
+   \        0x0   0x20 0x4D          DC8 " Mic : 6"
+
+   \              0x69 0x63    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x36    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_44:
+   \        0x0   0x20 0x4D          DC8 " Mic : 7"
+
+   \              0x69 0x63    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x37    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_45:
+   \        0x0   0x20 0x4D          DC8 " Mic : 8"
+
+   \              0x69 0x63    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x38    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_46:
+   \        0x0   0x20 0x4D          DC8 " Mic : 9"
+
+   \              0x69 0x63    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x39    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_47:
+   \        0x0   0x20 0x53          DC8 " Spk : 0"
+
+   \              0x70 0x6B    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x30    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_48:
+   \        0x0   0x20 0x53          DC8 " Spk : 1"
+
+   \              0x70 0x6B    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x31    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_49:
+   \        0x0   0x20 0x53          DC8 " Spk : 2"
+
+   \              0x70 0x6B    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x32    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_50:
+   \        0x0   0x20 0x53          DC8 " Spk : 3"
+
+   \              0x70 0x6B    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x33    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_51:
+   \        0x0   0x20 0x50          DC8 " Pwr : -38 dBm"
+
+   \              0x77 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x2D    
+
+   \              0x33 0x38    
+
+   \              0x20 0x64    
+
+   \              0x42 0x6D    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_52:
+   \        0x0   0x20 0x50          DC8 " Pwr : -20 dBm"
+
+   \              0x77 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x2D    
+
+   \              0x32 0x30    
+
+   \              0x20 0x64    
+
+   \              0x42 0x6D    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_53:
+   \        0x0   0x20 0x50          DC8 " Pwr : -5 dBm"
+
+   \              0x77 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x2D    
+
+   \              0x35 0x20    
+
+   \              0x64 0x42    
+
+   \              0x6D 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_54:
+   \        0x0   0x20 0x50          DC8 " Pwr : 0 dBm"
+
+   \              0x77 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x30    
+
+   \              0x20 0x64    
+
+   \              0x42 0x6D    
+
+   \              0x00
+   \        0xD                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_55:
+   \        0x0   0x20 0x50          DC8 " Pwr : 5 dBm"
+
+   \              0x77 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x35    
+
+   \              0x20 0x64    
+
+   \              0x42 0x6D    
+
+   \              0x00
+   \        0xD                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_56:
+   \        0x0   0x20 0x50          DC8 " Pwr : 10 dBm"
+
+   \              0x77 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x31    
+
+   \              0x30 0x20    
+
+   \              0x64 0x42    
+
+   \              0x6D 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_57:
+   \        0x0   0x20 0x50          DC8 " Pwr : 15 dBm"
+
+   \              0x77 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x31    
+
+   \              0x35 0x20    
+
+   \              0x64 0x42    
+
+   \              0x6D 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_58:
+   \        0x0   0x20 0x50          DC8 " Pwr : 20 dBm"
+
+   \              0x77 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x32    
+
+   \              0x30 0x20    
+
+   \              0x64 0x42    
+
+   \              0x6D 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_59:
+   \        0x0   0x20 0x52          DC8 " RFMode 1"
+
+   \              0x46 0x4D    
+
+   \              0x6F 0x64    
+
+   \              0x65 0x20    
+
+   \              0x31 0x00
+   \        0xA                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_60:
+   \        0x0   0x20 0x52          DC8 " RFMode 2"
+
+   \              0x46 0x4D    
+
+   \              0x6F 0x64    
+
+   \              0x65 0x20    
+
+   \              0x32 0x00
+   \        0xA                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_61:
+   \        0x0   0x20 0x52          DC8 " Reset"
+
+   \              0x65 0x73    
+
+   \              0x65 0x74    
+
+   \              0x00
+   \        0x7                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_62:
+   \        0x0   0x20 0x54          DC8 " TS Set"
+
+   \              0x53 0x20    
+
+   \              0x53 0x65    
+
+   \              0x74 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_63:
+   \        0x0   0x20 0x43          DC8 " Car Set"
+
+   \              0x61 0x72    
+
+   \              0x20 0x53    
+
+   \              0x65 0x74    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_64:
+   \        0x0   0x20 0x52          DC8 " RFMode Set"
+
+   \              0x46 0x4D    
+
+   \              0x6F 0x64    
+
+   \              0x65 0x20    
+
+   \              0x53 0x65    
+
+   \              0x74 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_65:
+   \        0x0   0x20 0x55          DC8 " Upgrade ReTry"
+
+   \              0x70 0x67    
+
+   \              0x72 0x61    
+
+   \              0x64 0x65    
+
+   \              0x20 0x52    
+
+   \              0x65 0x54    
+
+   \              0x72 0x79    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_66:
+   \        0x0   0x20 0x55          DC8 " Upgrade"
+
+   \              0x70 0x67    
+
+   \              0x72 0x61    
+
+   \              0x64 0x65    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_67:
+   \        0x0   0x20 0x43          DC8 " Car : 1"
+
+   \              0x61 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x31    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_68:
+   \        0x0   0x20 0x43          DC8 " Car : 2"
+
+   \              0x61 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x32    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_69:
+   \        0x0   0x20 0x43          DC8 " Car : 3"
+
+   \              0x61 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x33    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_70:
+   \        0x0   0x20 0x43          DC8 " Car : 4"
+
+   \              0x61 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x34    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_71:
+   \        0x0   0x20 0x43          DC8 " Car : 5"
+
+   \              0x61 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x35    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_72:
+   \        0x0   0x20 0x43          DC8 " Car : 6"
+
+   \              0x61 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x36    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_73:
+   \        0x0   0x20 0x43          DC8 " Car : 7"
+
+   \              0x61 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x37    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_74:
+   \        0x0   0x20 0x43          DC8 " Car : 8"
+
+   \              0x61 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x38    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_75:
+   \        0x0   0x20 0x43          DC8 " Car : 9"
+
+   \              0x61 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x39    
+
+   \              0x00
+   \        0x9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_76:
+   \        0x0   0x20 0x43          DC8 " Car : 10"
+
+   \              0x61 0x72    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x31    
+
+   \              0x30 0x00
+   \        0xA                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_77:
+   \        0x0   0x31 0x2E          DC8 "1. \354\241\260\353\252\205\354\240\234\354\226\264"
+
+   \              0x20 0xEC    
+
+   \              0xA1 0xB0    
+
+   \              0xEB 0xAA    
+
+   \              0x85 0xEC    
+
+   \              0xA0 0x9C    
+
+   \              0xEC 0x96    
+
+   \              0xB4 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_78:
+   \        0x0   0x32 0x2E          DC8 "2. S/W \353\262\204\354\240\204"
+
+   \              0x20 0x53    
+
+   \              0x2F 0x57    
+
+   \              0x20 0xEB    
+
+   \              0xB2 0x84    
+
+   \              0xEC 0xA0    
+
+   \              0x84 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_79:
+   \        0x0   0x33 0x2E          DC8 "3. \355\216\270\354\204\261\354\204\244\354\240\225"
+
+   \              0x20 0xED    
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0xEC    
+
+   \              0x84 0xA4    
+
+   \              0xEC 0xA0    
+
+   \              0x95 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_80:
+   \        0x0   0x34 0x2E          DC8 "4. \354\206\241\354\213\240\352\270\260ID"
+
+   \              0x20 0xEC    
+
+   \              0x86 0xA1    
+
+   \              0xEC 0x8B    
+
+   \              0xA0 0xEA    
+
+   \              0xB8 0xB0    
+
+   \              0x49 0x44    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_81:
+   \        0x0   0x35 0x2E          DC8 "5. \354\236\220\352\260\200\354\247\204\353\213\250"
+
+   \              0x20 0xEC    
+
+   \              0x9E 0x90    
+
+   \              0xEA 0xB0    
+
+   \              0x80 0xEC    
+
+   \              0xA7 0x84    
+
+   \              0xEB 0x8B    
+
+   \              0xA8 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_82:
+   \        0x0   0x36 0x2E          DC8 "6. \354\247\204    \353\213\250"
+
+   \              0x20 0xEC    
+
+   \              0xA7 0x84    
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0xEB 0x8B    
+
+   \              0xA8 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_83:
+   \        0x0   0x37 0x2E          DC8 "7. \354\204\244    \354\240\225"
+
+   \              0x20 0xEC    
+
+   \              0x84 0xA4    
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0xEC 0xA0    
+
+   \              0x95 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_84:
+   \        0x0   0x38 0x2E          DC8 "8. \354\203\201\355\203\234\354\240\225\353\263\264"
+
+   \              0x20 0xEC    
+
+   \              0x83 0x81    
+
+   \              0xED 0x83    
+
+   \              0x9C 0xEC    
+
+   \              0xA0 0x95    
+
+   \              0xEB 0xB3    
+
+   \              0xB4 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_85:
+   \        0x0   0x39 0x2E          DC8 "9. \353\252\205\353\240\271\354\240\204\354\206\241"
+
+   \              0x20 0xEB    
+
+   \              0xAA 0x85    
+
+   \              0xEB 0xA0    
+
+   \              0xB9 0xEC    
+
+   \              0xA0 0x84    
+
+   \              0xEC 0x86    
+
+   \              0xA1 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_86:
+   \        0x0   0x5B 0x4D          DC8 "[Maint. Menu]"
+
+   \              0x61 0x69    
+
+   \              0x6E 0x74    
+
+   \              0x2E 0x20    
+
+   \              0x4D 0x65    
+
+   \              0x6E 0x75    
+
+   \              0x5D 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_87:
+   \        0x0   0xED 0x8E          DC8 "\355\216\270\354\204\261 : %d"
+
+   \              0xB8 0xEC    
+
+   \              0x84 0xB1    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x64 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_88:
+   \        0x0   0x53 0x74          DC8 "Stat:%04X / %02d"
+
+   \              0x61 0x74    
+
+   \              0x3A 0x25    
+
+   \              0x30 0x34    
+
+   \              0x58 0x20    
+
+   \              0x2F 0x20    
+
+   \              0x25 0x30    
+
+   \              0x32 0x64    
+
+   \              0x00
+   \       0x11                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_89:
+   \        0x0   0x5B 0xEC          DC8 "[\354\241\260\353\252\205 \354\240\220\353\223\261]"
+
+   \              0xA1 0xB0    
+
+   \              0xEB 0xAA    
+
+   \              0x85 0x20    
+
+   \              0xEC 0xA0    
+
+   \              0x90 0xEB    
+
+   \              0x93 0xB1    
+
+   \              0x5D 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_90:
+   \        0x0   0x5B 0xEC          DC8 "[\354\241\260\353\252\205 \354\206\214\353\223\261]"
+
+   \              0xA1 0xB0    
+
+   \              0xEB 0xAA    
+
+   \              0x85 0x20    
+
+   \              0xEC 0x86    
+
+   \              0x8C 0xEB    
+
+   \              0x93 0xB1    
+
+   \              0x5D 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_91:
+   \        0x0   0x52 0x46          DC8 "RFM v1.1.0.302"
+
+   \              0x4D 0x20    
+
+   \              0x76 0x31    
+
+   \              0x2E 0x31    
+
+   \              0x2E 0x30    
+
+   \              0x2E 0x33    
+
+   \              0x30 0x32    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_92:
+   \        0x0   0x5B 0xED          DC8 "[\355\216\270\354\204\261\354\204\244\354\240\225]"
+
+   \              0x8E 0xB8    
+
+   \              0xEC 0x84    
+
+   \              0xB1 0xEC    
+
+   \              0x84 0xA4    
+
+   \              0xEC 0xA0    
+
+   \              0x95 0x5D    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_93:
+   \        0x0   0x5B 0xEB          DC8 "[\353\252\205\353\240\271\354\240\204\354\206\241]"
+
+   \              0xAA 0x85    
+
+   \              0xEB 0xA0    
+
+   \              0xB9 0xEC    
+
+   \              0xA0 0x84    
+
+   \              0xEC 0x86    
+
+   \              0xA1 0x5D    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_94:
+   \        0x0   0x53 0x65          DC8 "Set RFT#1"
+
+   \              0x74 0x20    
+
+   \              0x52 0x46    
+
+   \              0x54 0x23    
+
+   \              0x31 0x00
+   \        0xA                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_95:
+   \        0x0   0x53 0x65          DC8 "Set RFT#2"
+
+   \              0x74 0x20    
+
+   \              0x52 0x46    
+
+   \              0x54 0x23    
+
+   \              0x32 0x00
+   \        0xA                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_96:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - invalid menu(%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x69    
+
+   \              0x6E 0x76    
+
+   \              0x61 0x6C    
+
+   \              0x69 0x64    
+
+   \              0x20 0x6D    
+
+   \              0x65 0x6E    
+
+   \              0x75 0x28    
+
+   \              0x25 0x64    
+
+   \              0x29 0x0A    
+
+   \              0x00
+   \       0x1B                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_97:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - sine\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x73    
+
+   \              0x69 0x6E    
+
+   \              0x65 0x0A    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_98:
+   \        0x0   0x41 0x75          DC8 "Audio Loop"
+
+   \              0x64 0x69    
+
+   \              0x6F 0x20    
+
+   \              0x4C 0x6F    
+
+   \              0x6F 0x70    
+
+   \              0x00
+   \        0xB                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_99:
+   \        0x0   0x41 0x75          DC8 "Audio Sine"
+
+   \              0x64 0x69    
+
+   \              0x6F 0x20    
+
+   \              0x53 0x69    
+
+   \              0x6E 0x65    
+
+   \              0x00
+   \        0xB                      DS8 1
+   1297          
+   1298          
+   1299          //========================================================================
+   1300          
+   1301          
+   1302          //#define	 USE_PTT_KEY_TOGGLE	  1	   //  PTT Toggle Key
+   1303          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   EnableMenuMaint
+         8   -> LCDPrintfXY
+       0   GetActiveMenu
+       0   IsMenuMaint
+       8   ProcBtnDown
+         8   -> GetActiveMenu
+         8   -> UpdateLCDMenu
+       8   ProcBtnMenu
+         8   -> GetActiveMenu
+         8   -> SetActiveMenu
+         8   -> UpdateLCDMenu
+       8   ProcBtnOK
+         8   -- Indirect call
+         8   -> GetActiveMenu
+         8   -> LCDClearMain
+         8   -> UpdateLCDMain
+       8   ProcBtnUp
+         8   -> GetActiveMenu
+         8   -> UpdateLCDMenu
+       0   ProcDispStat
+       8   ProcDispVer
+         8   -> LCDPrintf
+         8   -> LCDSetCursor
+       8   ProcLightOff
+         8   -> GetChNearRFM
+         8   -> HAL_Delay
+         8   -> LCDPrintf
+         8   -> LCDSetCursor
+         8   -> SendLightOff
+         8   -> SetChPA
+       8   ProcLightOn
+         8   -> GetChNearRFM
+         8   -> HAL_Delay
+         8   -> LCDPrintf
+         8   -> LCDSetCursor
+         8   -> SendLightOn
+         8   -> SetChPA
+       8   ProcMenuCmd
+         8   -> GetActiveMenu
+         8   -> HAL_Delay
+         8   -> LCDPrintf
+         8   -> LCDSetCursor
+         8   -> SendRFCmdReset
+         8   -> SendRFCmdUpgrade
+         8   -> SetActiveMenu
+         8   -> UpdateLCDMain
+         8   -> UpdateLCDMenu
+       8   ProcMenuDiag
+         8   -> AudioDMALoopback
+         8   -> AudioPlayDMASine
+         8   -> AudioStop
+         8   -> HAL_GPIO_WritePin
+         8   -> LCDMenuUpDown
+         8   -> LCDPrintf
+         8   -> printf
+       8   ProcMenuLightCtrl
+         8   -> HAL_Delay
+         8   -> LCDMenuUpDown
+         8   -> ProcLightOff
+         8   -> ProcLightOn
+         8   -> SetActiveMenu
+         8   -> UpdateLCDMain
+      16   ProcMenuMain
+        16   -> GetActiveMenu
+        16   -> GetCarNo
+        16   -> IsMenuMaint
+        16   -> ProcDispStat
+        16   -> ProcDispVer
+        16   -> SetActiveMenu
+        16   -> UpdateLCDMenu
+       8   ProcMenuRFTID
+         8   -> HAL_Delay
+         8   -> LCDMenuUpDown
+         8   -> LCDPrintf
+         8   -> SetActiveMenu
+         8   -> SetCarNo
+         8   -> UpdateLCDMain
+         8   -> printf
+       8   ProcMenuSelfTest
+         8   -> HAL_Delay
+         8   -> LCDMenuUpDown
+         8   -> SetActiveMenu
+         8   -> UpdateLCDMain
+       8   ProcMenuSetCmdCar
+         8   -> HAL_Delay
+         8   -> LCDPrintf
+         8   -> LCDSetCursor
+         8   -> SendRFCmdCar
+         8   -> SetActiveMenu
+         8   -> UpdateLCDMain
+       8   ProcMenuSetCmdRFMode
+         8   -> HAL_Delay
+         8   -> LCDPrintf
+         8   -> LCDSetCursor
+         8   -> SendRFCmdRFMode
+         8   -> SendRFCmdReset
+         8   -> SetActiveMenu
+         8   -> UpdateLCDMain
+       8   ProcMenuSetCmdTS
+         8   -> HAL_Delay
+         8   -> LCDPrintf
+         8   -> LCDSetCursor
+         8   -> SendRFCmdTS
+         8   -> SetActiveMenu
+         8   -> UpdateLCDMain
+       8   ProcMenuSetMic
+         8   -> HAL_Delay
+         8   -> LCDMenuUpDown
+         8   -> SetActiveMenu
+         8   -> SetMicVol
+         8   -> UpdateLCDMain
+         8   -> printf
+       8   ProcMenuSetRFMode
+         8   -> HAL_Delay
+         8   -> LCDMenuUpDown
+         8   -> SetActiveMenu
+         8   -> SetRFMode
+         8   -> UpdateLCDMain
+         8   -> printf
+       8   ProcMenuSetSpk
+         8   -> HAL_Delay
+         8   -> LCDMenuUpDown
+         8   -> SetActiveMenu
+         8   -> SetSpkVol
+         8   -> UpdateLCDMain
+         8   -> printf
+       8   ProcMenuSetTxPwr
+         8   -> HAL_Delay
+         8   -> LCDMenuUpDown
+         8   -> SetActiveMenu
+         8   -> UpdateLCDMain
+         8   -> printf
+         8   -> vRadio_Set_TxPower
+      16   ProcMenuSetting
+        16   -> GetActiveMenu
+        16   -> GetMicVol
+        16   -> GetSpkVol
+        16   -> LCDMenuUpDown
+        16   -> SetActiveMenu
+        16   -> UpdateLCDMenu
+        16   -> printf
+       8   ProcMenuTrainSet
+         8   -> HAL_Delay
+         8   -> LCDPrintf
+         8   -> LCDSetCursor
+         8   -> SetActiveMenu
+         8   -> SetTrainSetIdx
+         8   -> UpdateLCDMain
+       8   ProcMenuVer
+         8   -> SetActiveMenu
+         8   -> UpdateLCDMain
+       0   SetActiveMenu
+      40   UpdateLCDMain
+        40   -> LCDPrintfXY
+        40   -> sprintf
+      16   UpdateLCDMenu
+        16   -> GetActiveMenu
+        16   -> LCDClearMain
+        16   -> LCDMenuUpDown
+        16   -> LCDPrintf
+        16   -> LCDSetCursor
+        16   -> UpdateLCDMain
+     112   UpdateLCDMonitor
+       112   -> LCDPrintf
+       112   -> LCDSetCursor
+       112   -> sprintf
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable27
+       4  ??DataTable27_1
+       4  ??DataTable27_10
+       4  ??DataTable27_11
+       4  ??DataTable27_12
+       4  ??DataTable27_13
+       4  ??DataTable27_14
+       4  ??DataTable27_15
+       4  ??DataTable27_16
+       4  ??DataTable27_17
+       4  ??DataTable27_18
+       4  ??DataTable27_19
+       4  ??DataTable27_2
+       4  ??DataTable27_20
+       4  ??DataTable27_21
+       4  ??DataTable27_22
+       4  ??DataTable27_23
+       4  ??DataTable27_24
+       4  ??DataTable27_25
+       4  ??DataTable27_26
+       4  ??DataTable27_27
+       4  ??DataTable27_28
+       4  ??DataTable27_29
+       4  ??DataTable27_3
+       4  ??DataTable27_30
+       4  ??DataTable27_31
+       4  ??DataTable27_32
+       4  ??DataTable27_33
+       4  ??DataTable27_34
+       4  ??DataTable27_35
+       4  ??DataTable27_36
+       4  ??DataTable27_37
+       4  ??DataTable27_38
+       4  ??DataTable27_39
+       4  ??DataTable27_4
+       4  ??DataTable27_40
+       4  ??DataTable27_41
+       4  ??DataTable27_42
+       4  ??DataTable27_43
+       4  ??DataTable27_44
+       4  ??DataTable27_45
+       4  ??DataTable27_46
+       4  ??DataTable27_5
+       4  ??DataTable27_6
+       4  ??DataTable27_7
+       4  ??DataTable27_8
+       4  ??DataTable27_9
+      16  ?_0
+      16  ?_1
+      12  ?_10
+      12  ?_11
+      12  ?_12
+      12  ?_13
+      12  ?_14
+      12  ?_15
+      12  ?_16
+      12  ?_17
+      12  ?_18
+      12  ?_19
+      12  ?_2
+      12  ?_20
+      12  ?_21
+      16  ?_22
+      16  ?_23
+      16  ?_24
+      16  ?_25
+      16  ?_26
+      16  ?_27
+      16  ?_28
+      16  ?_29
+      12  ?_3
+      16  ?_30
+      16  ?_31
+      16  ?_32
+      12  ?_33
+      12  ?_34
+      12  ?_35
+      12  ?_36
+      12  ?_37
+      12  ?_38
+      12  ?_39
+      12  ?_4
+      12  ?_40
+      12  ?_41
+      12  ?_42
+      12  ?_43
+      12  ?_44
+      12  ?_45
+      12  ?_46
+      12  ?_47
+      12  ?_48
+      12  ?_49
+      12  ?_5
+      12  ?_50
+      16  ?_51
+      16  ?_52
+      16  ?_53
+      16  ?_54
+      16  ?_55
+      16  ?_56
+      16  ?_57
+      16  ?_58
+      12  ?_59
+      12  ?_6
+      12  ?_60
+       8  ?_61
+       8  ?_62
+      12  ?_63
+      12  ?_64
+      16  ?_65
+      12  ?_66
+      12  ?_67
+      12  ?_68
+      12  ?_69
+      12  ?_7
+      12  ?_70
+      12  ?_71
+      12  ?_72
+      12  ?_73
+      12  ?_74
+      12  ?_75
+      12  ?_76
+      16  ?_77
+      16  ?_78
+      16  ?_79
+      12  ?_8
+      16  ?_80
+      16  ?_81
+      16  ?_82
+      16  ?_83
+      16  ?_84
+      16  ?_85
+      16  ?_86
+      12  ?_87
+      20  ?_88
+      16  ?_89
+      12  ?_9
+      16  ?_90
+      16  ?_91
+      16  ?_92
+      16  ?_93
+      12  ?_94
+      12  ?_95
+      28  ?_96
+      16  ?_97
+      12  ?_98
+      12  ?_99
+      28  EnableMenuMaint
+       8  GetActiveMenu
+       8  IsMenuMaint
+      48  ProcBtnDown
+      60  ProcBtnMenu
+      48  ProcBtnOK
+      48  ProcBtnUp
+      10  ProcDispStat
+      20  ProcDispVer
+      62  ProcLightOff
+      62  ProcLightOn
+     156  ProcMenuCmd
+     122  ProcMenuDiag
+      44  ProcMenuLightCtrl
+     258  ProcMenuMain
+      86  ProcMenuRFTID
+      30  ProcMenuSelfTest
+      46  ProcMenuSetCmdCar
+      56  ProcMenuSetCmdRFMode
+      46  ProcMenuSetCmdTS
+      60  ProcMenuSetMic
+      70  ProcMenuSetRFMode
+      60  ProcMenuSetSpk
+     124  ProcMenuSetTxPwr
+     134  ProcMenuSetting
+      52  ProcMenuTrainSet
+      16  ProcMenuVer
+       8  SetActiveMenu
+      36  UpdateLCDMain
+      64  UpdateLCDMenu
+      74  UpdateLCDMonitor
+       4  _bEnDispStat
+      64  _psVerList
+      24  _sCmdList
+      12  _sDiagList
+       8  _sLightCtrl
+       8  _sMainMenuBase
+      36  _sMainMenuMaint
+       8  _sRFTIDList
+      24  _sSelfTestList
+      40  _sSetCmdCarList
+       8  _sSetCmdRFModeList
+      40  _sSetMicList
+       8  _sSetRFMode
+      16  _sSetSpkList
+      32  _sSetTxPwrList
+      16  _sSettingList
+      80  _sTrainSet
+     320  _sVerList
+      16  g_MenuCmdList
+      16  g_MenuDiagList
+      16  g_MenuLightCtrl
+      16  g_MenuMainBase
+      16  g_MenuMainMaint
+      16  g_MenuRFTIDList
+      16  g_MenuSelfTestList
+      16  g_MenuSetCmdCarList
+      16  g_MenuSetCmdRFModeList
+      16  g_MenuSetCmdTSList
+      16  g_MenuSetMicList
+      16  g_MenuSetRFModeList
+      16  g_MenuSetSpkList
+      16  g_MenuSetTxPwrList
+      16  g_MenuSettingList
+      16  g_MenuTrainSet
+      16  g_MenuVerList
+       4  g_bEnMenuMaint
+       4  g_pActiveMenu
+       4  oldTick
+     120  -- Other
+
+ 
+    16 bytes in section .bss
+ 1'016 bytes in section .data
+ 1'488 bytes in section .rodata
+ 2'132 bytes in section .text
+ 
+ 2'132 bytes of CODE  memory
+ 1'488 bytes of CONST memory
+ 1'032 bytes of DATA  memory
+
+Errors: none
+Warnings: 57

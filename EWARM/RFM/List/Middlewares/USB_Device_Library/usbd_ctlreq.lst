@@ -1,0 +1,2226 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:50:00
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c
+#    Command line                 =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Middlewares\USB_Device_Library\usbd_ctlreq.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c
+#        -D USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Middlewares\USB_Device_Library
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Middlewares\USB_Device_Library
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Middlewares\USB_Device_Library\usbd_ctlreq.o.d
+#    Locale                       =  C
+#    List file                    =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Middlewares\USB_Device_Library\usbd_ctlreq.lst
+#    Object file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Middlewares\USB_Device_Library\usbd_ctlreq.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c
+      1          /**
+      2            ******************************************************************************
+      3            * @file    usbd_req.c
+      4            * @author  MCD Application Team
+      5            * @brief   This file provides the standard USB requests following chapter 9.
+      6            ******************************************************************************
+      7            * @attention
+      8            *
+      9            * <h2><center>&copy; Copyright (c) 2015 STMicroelectronics.
+     10            * All rights reserved.</center></h2>
+     11            *
+     12            * This software component is licensed by ST under Ultimate Liberty license
+     13            * SLA0044, the "License"; You may not use this file except in compliance with
+     14            * the License. You may obtain a copy of the License at:
+     15            *                      www.st.com/SLA0044
+     16            *
+     17            ******************************************************************************
+     18            */
+     19          
+     20          /* Includes ------------------------------------------------------------------*/
+     21          #include "usbd_ctlreq.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __vfp uint16_t SWAPBYTE(uint8_t *)
+   \                     SWAPBYTE: (+1)
+   \        0x0   0xB410             PUSH     {R4}
+   \        0x2   0x0001             MOVS     R1,R0
+   \        0x4   0x0008             MOVS     R0,R1
+   \        0x6   0x7802             LDRB     R2,[R0, #+0]
+   \        0x8   0x1C44             ADDS     R4,R0,#+1
+   \        0xA   0x7823             LDRB     R3,[R4, #+0]
+   \        0xC   0xEA52 0x2003      ORRS     R0,R2,R3, LSL #+8
+   \       0x10   0xB280             UXTH     R0,R0
+   \       0x12   0xBC10             POP      {R4}
+   \       0x14   0x4770             BX       LR
+     22          #include "usbd_ioreq.h"
+     23          
+     24          
+     25          /** @addtogroup STM32_USBD_STATE_DEVICE_LIBRARY
+     26            * @{
+     27            */
+     28          
+     29          
+     30          /** @defgroup USBD_REQ
+     31            * @brief USB standard requests module
+     32            * @{
+     33            */
+     34          
+     35          /** @defgroup USBD_REQ_Private_TypesDefinitions
+     36            * @{
+     37            */
+     38          
+     39          /**
+     40            * @}
+     41            */
+     42          
+     43          
+     44          /** @defgroup USBD_REQ_Private_Defines
+     45            * @{
+     46            */
+     47          
+     48          /**
+     49            * @}
+     50            */
+     51          
+     52          
+     53          /** @defgroup USBD_REQ_Private_Macros
+     54            * @{
+     55            */
+     56          
+     57          /**
+     58            * @}
+     59            */
+     60          
+     61          
+     62          /** @defgroup USBD_REQ_Private_Variables
+     63            * @{
+     64            */
+     65          
+     66          /**
+     67            * @}
+     68            */
+     69          
+     70          
+     71          /** @defgroup USBD_REQ_Private_FunctionPrototypes
+     72            * @{
+     73            */
+     74          static void USBD_GetDescriptor(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req);
+     75          static void USBD_SetAddress(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req);
+     76          static USBD_StatusTypeDef USBD_SetConfig(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req);
+     77          static void USBD_GetConfig(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req);
+     78          static void USBD_GetStatus(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req);
+     79          static void USBD_SetFeature(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req);
+     80          static void USBD_ClrFeature(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req);
+     81          static uint8_t USBD_GetLen(uint8_t *buf);
+     82          
+     83          /**
+     84            * @}
+     85            */
+     86          
+     87          
+     88          /** @defgroup USBD_REQ_Private_Functions
+     89            * @{
+     90            */
+     91          
+     92          
+     93          /**
+     94          * @brief  USBD_StdDevReq
+     95          *         Handle standard usb device requests
+     96          * @param  pdev: device instance
+     97          * @param  req: usb request
+     98          * @retval status
+     99          */
+
+   \                                 In section .text, align 2, keep-with-next
+    100          USBD_StatusTypeDef USBD_StdDevReq(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
+    101          {
+   \                     USBD_StdDevReq: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    102            USBD_StatusTypeDef ret = USBD_OK;
+   \        0x6   0x2600             MOVS     R6,#+0
+    103          
+    104            switch (req->bmRequest & USB_REQ_TYPE_MASK)
+   \        0x8   0x7828             LDRB     R0,[R5, #+0]
+   \        0xA   0xF010 0x0060      ANDS     R0,R0,#0x60
+   \        0xE   0x2800             CMP      R0,#+0
+   \       0x10   0xD00B             BEQ.N    ??USBD_StdDevReq_0
+   \       0x12   0x2820             CMP      R0,#+32
+   \       0x14   0xD001             BEQ.N    ??USBD_StdDevReq_1
+   \       0x16   0x2840             CMP      R0,#+64
+   \       0x18   0xD140             BNE.N    ??USBD_StdDevReq_2
+    105            {
+    106            case USB_REQ_TYPE_CLASS:
+    107            case USB_REQ_TYPE_VENDOR:
+    108              ret = (USBD_StatusTypeDef)pdev->pClass->Setup(pdev, req);
+   \                     ??USBD_StdDevReq_1: (+1)
+   \       0x1A   0x0029             MOVS     R1,R5
+   \       0x1C   0x0020             MOVS     R0,R4
+   \       0x1E   0xF8D4 0x22B8      LDR      R2,[R4, #+696]
+   \       0x22   0x6892             LDR      R2,[R2, #+8]
+   \       0x24   0x4790             BLX      R2
+   \       0x26   0x0006             MOVS     R6,R0
+    109              break;
+   \       0x28   0xE03C             B.N      ??USBD_StdDevReq_3
+    110          
+    111            case USB_REQ_TYPE_STANDARD:
+    112              switch (req->bRequest)
+   \                     ??USBD_StdDevReq_0: (+1)
+   \       0x2A   0x7868             LDRB     R0,[R5, #+1]
+   \       0x2C   0x2800             CMP      R0,#+0
+   \       0x2E   0xD021             BEQ.N    ??USBD_StdDevReq_4
+   \       0x30   0x2801             CMP      R0,#+1
+   \       0x32   0xD029             BEQ.N    ??USBD_StdDevReq_5
+   \       0x34   0x2803             CMP      R0,#+3
+   \       0x36   0xD022             BEQ.N    ??USBD_StdDevReq_6
+   \       0x38   0x2805             CMP      R0,#+5
+   \       0x3A   0xD00B             BEQ.N    ??USBD_StdDevReq_7
+   \       0x3C   0x2806             CMP      R0,#+6
+   \       0x3E   0xD004             BEQ.N    ??USBD_StdDevReq_8
+   \       0x40   0x2808             CMP      R0,#+8
+   \       0x42   0xD012             BEQ.N    ??USBD_StdDevReq_9
+   \       0x44   0x2809             CMP      R0,#+9
+   \       0x46   0xD00A             BEQ.N    ??USBD_StdDevReq_10
+   \       0x48   0xE023             B.N      ??USBD_StdDevReq_11
+    113              {
+    114              case USB_REQ_GET_DESCRIPTOR:
+    115                USBD_GetDescriptor(pdev, req);
+   \                     ??USBD_StdDevReq_8: (+1)
+   \       0x4A   0x0029             MOVS     R1,R5
+   \       0x4C   0x0020             MOVS     R0,R4
+   \       0x4E   0x.... 0x....      BL       USBD_GetDescriptor
+    116                break;
+   \       0x52   0xE022             B.N      ??USBD_StdDevReq_12
+    117          
+    118              case USB_REQ_SET_ADDRESS:
+    119                USBD_SetAddress(pdev, req);
+   \                     ??USBD_StdDevReq_7: (+1)
+   \       0x54   0x0029             MOVS     R1,R5
+   \       0x56   0x0020             MOVS     R0,R4
+   \       0x58   0x.... 0x....      BL       USBD_SetAddress
+    120                break;
+   \       0x5C   0xE01D             B.N      ??USBD_StdDevReq_12
+    121          
+    122              case USB_REQ_SET_CONFIGURATION:
+    123                ret = USBD_SetConfig(pdev, req);
+   \                     ??USBD_StdDevReq_10: (+1)
+   \       0x5E   0x0029             MOVS     R1,R5
+   \       0x60   0x0020             MOVS     R0,R4
+   \       0x62   0x.... 0x....      BL       USBD_SetConfig
+   \       0x66   0x0006             MOVS     R6,R0
+    124                break;
+   \       0x68   0xE017             B.N      ??USBD_StdDevReq_12
+    125          
+    126              case USB_REQ_GET_CONFIGURATION:
+    127                USBD_GetConfig(pdev, req);
+   \                     ??USBD_StdDevReq_9: (+1)
+   \       0x6A   0x0029             MOVS     R1,R5
+   \       0x6C   0x0020             MOVS     R0,R4
+   \       0x6E   0x.... 0x....      BL       USBD_GetConfig
+    128                break;
+   \       0x72   0xE012             B.N      ??USBD_StdDevReq_12
+    129          
+    130              case USB_REQ_GET_STATUS:
+    131                USBD_GetStatus(pdev, req);
+   \                     ??USBD_StdDevReq_4: (+1)
+   \       0x74   0x0029             MOVS     R1,R5
+   \       0x76   0x0020             MOVS     R0,R4
+   \       0x78   0x.... 0x....      BL       USBD_GetStatus
+    132                break;
+   \       0x7C   0xE00D             B.N      ??USBD_StdDevReq_12
+    133          
+    134              case USB_REQ_SET_FEATURE:
+    135                USBD_SetFeature(pdev, req);
+   \                     ??USBD_StdDevReq_6: (+1)
+   \       0x7E   0x0029             MOVS     R1,R5
+   \       0x80   0x0020             MOVS     R0,R4
+   \       0x82   0x.... 0x....      BL       USBD_SetFeature
+    136                break;
+   \       0x86   0xE008             B.N      ??USBD_StdDevReq_12
+    137          
+    138              case USB_REQ_CLEAR_FEATURE:
+    139                USBD_ClrFeature(pdev, req);
+   \                     ??USBD_StdDevReq_5: (+1)
+   \       0x88   0x0029             MOVS     R1,R5
+   \       0x8A   0x0020             MOVS     R0,R4
+   \       0x8C   0x.... 0x....      BL       USBD_ClrFeature
+    140                break;
+   \       0x90   0xE003             B.N      ??USBD_StdDevReq_12
+    141          
+    142              default:
+    143                USBD_CtlError(pdev, req);
+   \                     ??USBD_StdDevReq_11: (+1)
+   \       0x92   0x0029             MOVS     R1,R5
+   \       0x94   0x0020             MOVS     R0,R4
+   \       0x96   0x.... 0x....      BL       USBD_CtlError
+    144                break;
+    145              }
+    146              break;
+   \                     ??USBD_StdDevReq_12: (+1)
+   \       0x9A   0xE003             B.N      ??USBD_StdDevReq_3
+    147          
+    148            default:
+    149              USBD_CtlError(pdev, req);
+   \                     ??USBD_StdDevReq_2: (+1)
+   \       0x9C   0x0029             MOVS     R1,R5
+   \       0x9E   0x0020             MOVS     R0,R4
+   \       0xA0   0x.... 0x....      BL       USBD_CtlError
+    150              break;
+    151            }
+    152          
+    153            return ret;
+   \                     ??USBD_StdDevReq_3: (+1)
+   \       0xA4   0x0030             MOVS     R0,R6
+   \       0xA6   0xB2C0             UXTB     R0,R0
+   \       0xA8   0xBD70             POP      {R4-R6,PC}
+    154          }
+    155          
+    156          /**
+    157          * @brief  USBD_StdItfReq
+    158          *         Handle standard usb interface requests
+    159          * @param  pdev: device instance
+    160          * @param  req: usb request
+    161          * @retval status
+    162          */
+
+   \                                 In section .text, align 2, keep-with-next
+    163          USBD_StatusTypeDef USBD_StdItfReq(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
+    164          {
+   \                     USBD_StdItfReq: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    165            USBD_StatusTypeDef ret = USBD_OK;
+   \        0x6   0x2600             MOVS     R6,#+0
+    166          
+    167            switch (req->bmRequest & USB_REQ_TYPE_MASK)
+   \        0x8   0x7828             LDRB     R0,[R5, #+0]
+   \        0xA   0xF010 0x0060      ANDS     R0,R0,#0x60
+   \        0xE   0x2800             CMP      R0,#+0
+   \       0x10   0xD003             BEQ.N    ??USBD_StdItfReq_0
+   \       0x12   0x2820             CMP      R0,#+32
+   \       0x14   0xD001             BEQ.N    ??USBD_StdItfReq_0
+   \       0x16   0x2840             CMP      R0,#+64
+   \       0x18   0xD123             BNE.N    ??USBD_StdItfReq_1
+    168            {
+    169            case USB_REQ_TYPE_CLASS:
+    170            case USB_REQ_TYPE_VENDOR:
+    171            case USB_REQ_TYPE_STANDARD:
+    172              switch (pdev->dev_state)
+   \                     ??USBD_StdItfReq_0: (+1)
+   \       0x1A   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \       0x1E   0x1E40             SUBS     R0,R0,#+1
+   \       0x20   0x2802             CMP      R0,#+2
+   \       0x22   0xD819             BHI.N    ??USBD_StdItfReq_2
+    173              {
+    174              case USBD_STATE_DEFAULT:
+    175              case USBD_STATE_ADDRESSED:
+    176              case USBD_STATE_CONFIGURED:
+    177          
+    178                if (LOBYTE(req->wIndex) <= USBD_MAX_NUM_INTERFACES)
+   \                     ??USBD_StdItfReq_3: (+1)
+   \       0x24   0x7928             LDRB     R0,[R5, #+4]
+   \       0x26   0x2802             CMP      R0,#+2
+   \       0x28   0xD211             BCS.N    ??USBD_StdItfReq_4
+    179                {
+    180                  ret = (USBD_StatusTypeDef)pdev->pClass->Setup(pdev, req);
+   \       0x2A   0x0029             MOVS     R1,R5
+   \       0x2C   0x0020             MOVS     R0,R4
+   \       0x2E   0xF8D4 0x22B8      LDR      R2,[R4, #+696]
+   \       0x32   0x6892             LDR      R2,[R2, #+8]
+   \       0x34   0x4790             BLX      R2
+   \       0x36   0x0006             MOVS     R6,R0
+    181          
+    182                  if ((req->wLength == 0U) && (ret == USBD_OK))
+   \       0x38   0x88E8             LDRH     R0,[R5, #+6]
+   \       0x3A   0x2800             CMP      R0,#+0
+   \       0x3C   0xD10B             BNE.N    ??USBD_StdItfReq_5
+   \       0x3E   0x0030             MOVS     R0,R6
+   \       0x40   0xB2C0             UXTB     R0,R0
+   \       0x42   0x2800             CMP      R0,#+0
+   \       0x44   0xD107             BNE.N    ??USBD_StdItfReq_5
+    183                  {
+    184                    (void)USBD_CtlSendStatus(pdev);
+   \       0x46   0x0020             MOVS     R0,R4
+   \       0x48   0x.... 0x....      BL       USBD_CtlSendStatus
+   \       0x4C   0xE003             B.N      ??USBD_StdItfReq_5
+    185                  }
+    186                }
+    187                else
+    188                {
+    189                  USBD_CtlError(pdev, req);
+   \                     ??USBD_StdItfReq_4: (+1)
+   \       0x4E   0x0029             MOVS     R1,R5
+   \       0x50   0x0020             MOVS     R0,R4
+   \       0x52   0x.... 0x....      BL       USBD_CtlError
+    190                }
+    191                break;
+   \                     ??USBD_StdItfReq_5: (+1)
+   \       0x56   0xE003             B.N      ??USBD_StdItfReq_6
+    192          
+    193              default:
+    194                USBD_CtlError(pdev, req);
+   \                     ??USBD_StdItfReq_2: (+1)
+   \       0x58   0x0029             MOVS     R1,R5
+   \       0x5A   0x0020             MOVS     R0,R4
+   \       0x5C   0x.... 0x....      BL       USBD_CtlError
+    195                break;
+    196              }
+    197              break;
+   \                     ??USBD_StdItfReq_6: (+1)
+   \       0x60   0xE003             B.N      ??USBD_StdItfReq_7
+    198          
+    199            default:
+    200              USBD_CtlError(pdev, req);
+   \                     ??USBD_StdItfReq_1: (+1)
+   \       0x62   0x0029             MOVS     R1,R5
+   \       0x64   0x0020             MOVS     R0,R4
+   \       0x66   0x.... 0x....      BL       USBD_CtlError
+    201              break;
+    202            }
+    203          
+    204            return ret;
+   \                     ??USBD_StdItfReq_7: (+1)
+   \       0x6A   0x0030             MOVS     R0,R6
+   \       0x6C   0xB2C0             UXTB     R0,R0
+   \       0x6E   0xBD70             POP      {R4-R6,PC}
+    205          }
+    206          
+    207          /**
+    208          * @brief  USBD_StdEPReq
+    209          *         Handle standard usb endpoint requests
+    210          * @param  pdev: device instance
+    211          * @param  req: usb request
+    212          * @retval status
+    213          */
+
+   \                                 In section .text, align 2, keep-with-next
+    214          USBD_StatusTypeDef USBD_StdEPReq(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
+    215          {
+   \                     USBD_StdEPReq: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+    216            USBD_EndpointTypeDef *pep;
+    217            uint8_t ep_addr;
+    218            USBD_StatusTypeDef ret = USBD_OK;
+   \        0x8   0x2700             MOVS     R7,#+0
+    219            ep_addr = LOBYTE(req->wIndex);
+   \        0xA   0xF8B5 0x8004      LDRH     R8,[R5, #+4]
+    220          
+    221            switch (req->bmRequest & USB_REQ_TYPE_MASK)
+   \        0xE   0x7828             LDRB     R0,[R5, #+0]
+   \       0x10   0xF010 0x0060      ANDS     R0,R0,#0x60
+   \       0x14   0x2800             CMP      R0,#+0
+   \       0x16   0xD00C             BEQ.N    ??USBD_StdEPReq_0
+   \       0x18   0x2820             CMP      R0,#+32
+   \       0x1A   0xD002             BEQ.N    ??USBD_StdEPReq_1
+   \       0x1C   0x2840             CMP      R0,#+64
+   \       0x1E   0xF040 0x8119      BNE.W    ??USBD_StdEPReq_2
+    222            {
+    223            case USB_REQ_TYPE_CLASS:
+    224            case USB_REQ_TYPE_VENDOR:
+    225              ret = (USBD_StatusTypeDef)pdev->pClass->Setup(pdev, req);
+   \                     ??USBD_StdEPReq_1: (+1)
+   \       0x22   0x0029             MOVS     R1,R5
+   \       0x24   0x0020             MOVS     R0,R4
+   \       0x26   0xF8D4 0x22B8      LDR      R2,[R4, #+696]
+   \       0x2A   0x6892             LDR      R2,[R2, #+8]
+   \       0x2C   0x4790             BLX      R2
+   \       0x2E   0x0007             MOVS     R7,R0
+    226              break;
+   \       0x30   0xE114             B.N      ??USBD_StdEPReq_3
+    227          
+    228            case USB_REQ_TYPE_STANDARD:
+    229              switch (req->bRequest)
+   \                     ??USBD_StdEPReq_0: (+1)
+   \       0x32   0x7868             LDRB     R0,[R5, #+1]
+   \       0x34   0x2800             CMP      R0,#+0
+   \       0x36   0xD076             BEQ.N    ??USBD_StdEPReq_4
+   \       0x38   0x2801             CMP      R0,#+1
+   \       0x3A   0xD03C             BEQ.N    ??USBD_StdEPReq_5
+   \       0x3C   0x2803             CMP      R0,#+3
+   \       0x3E   0xF040 0x8104      BNE.W    ??USBD_StdEPReq_6
+    230              {
+    231              case USB_REQ_SET_FEATURE:
+    232                switch (pdev->dev_state)
+   \                     ??USBD_StdEPReq_7: (+1)
+   \       0x42   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \       0x46   0x2802             CMP      R0,#+2
+   \       0x48   0xD002             BEQ.N    ??USBD_StdEPReq_8
+   \       0x4A   0x2803             CMP      R0,#+3
+   \       0x4C   0xD017             BEQ.N    ??USBD_StdEPReq_9
+   \       0x4E   0xE02D             B.N      ??USBD_StdEPReq_10
+    233                {
+    234                case USBD_STATE_ADDRESSED:
+    235                  if ((ep_addr != 0x00U) && (ep_addr != 0x80U))
+   \                     ??USBD_StdEPReq_8: (+1)
+   \       0x50   0x4640             MOV      R0,R8
+   \       0x52   0xB2C0             UXTB     R0,R0
+   \       0x54   0x2800             CMP      R0,#+0
+   \       0x56   0xD00D             BEQ.N    ??USBD_StdEPReq_11
+   \       0x58   0x4640             MOV      R0,R8
+   \       0x5A   0xB2C0             UXTB     R0,R0
+   \       0x5C   0x2880             CMP      R0,#+128
+   \       0x5E   0xD009             BEQ.N    ??USBD_StdEPReq_11
+    236                  {
+    237                    (void)USBD_LL_StallEP(pdev, ep_addr);
+   \       0x60   0x4641             MOV      R1,R8
+   \       0x62   0xB2C9             UXTB     R1,R1
+   \       0x64   0x0020             MOVS     R0,R4
+   \       0x66   0x.... 0x....      BL       USBD_LL_StallEP
+    238                    (void)USBD_LL_StallEP(pdev, 0x80U);
+   \       0x6A   0x2180             MOVS     R1,#+128
+   \       0x6C   0x0020             MOVS     R0,R4
+   \       0x6E   0x.... 0x....      BL       USBD_LL_StallEP
+   \       0x72   0xE003             B.N      ??USBD_StdEPReq_12
+    239                  }
+    240                  else
+    241                  {
+    242                    USBD_CtlError(pdev, req);
+   \                     ??USBD_StdEPReq_11: (+1)
+   \       0x74   0x0029             MOVS     R1,R5
+   \       0x76   0x0020             MOVS     R0,R4
+   \       0x78   0x.... 0x....      BL       USBD_CtlError
+    243                  }
+    244                  break;
+   \                     ??USBD_StdEPReq_12: (+1)
+   \       0x7C   0xE01A             B.N      ??USBD_StdEPReq_13
+    245          
+    246                case USBD_STATE_CONFIGURED:
+    247                  if (req->wValue == USB_FEATURE_EP_HALT)
+   \                     ??USBD_StdEPReq_9: (+1)
+   \       0x7E   0x8868             LDRH     R0,[R5, #+2]
+   \       0x80   0x2800             CMP      R0,#+0
+   \       0x82   0xD10F             BNE.N    ??USBD_StdEPReq_14
+    248                  {
+    249                    if ((ep_addr != 0x00U) && (ep_addr != 0x80U) && (req->wLength == 0x00U))
+   \       0x84   0x4640             MOV      R0,R8
+   \       0x86   0xB2C0             UXTB     R0,R0
+   \       0x88   0x2800             CMP      R0,#+0
+   \       0x8A   0xD00B             BEQ.N    ??USBD_StdEPReq_14
+   \       0x8C   0x4640             MOV      R0,R8
+   \       0x8E   0xB2C0             UXTB     R0,R0
+   \       0x90   0x2880             CMP      R0,#+128
+   \       0x92   0xD007             BEQ.N    ??USBD_StdEPReq_14
+   \       0x94   0x88E8             LDRH     R0,[R5, #+6]
+   \       0x96   0x2800             CMP      R0,#+0
+   \       0x98   0xD104             BNE.N    ??USBD_StdEPReq_14
+    250                    {
+    251                      (void)USBD_LL_StallEP(pdev, ep_addr);
+   \       0x9A   0x4641             MOV      R1,R8
+   \       0x9C   0xB2C9             UXTB     R1,R1
+   \       0x9E   0x0020             MOVS     R0,R4
+   \       0xA0   0x.... 0x....      BL       USBD_LL_StallEP
+    252                    }
+    253                  }
+    254                  (void)USBD_CtlSendStatus(pdev);
+   \                     ??USBD_StdEPReq_14: (+1)
+   \       0xA4   0x0020             MOVS     R0,R4
+   \       0xA6   0x.... 0x....      BL       USBD_CtlSendStatus
+    255          
+    256                  break;
+   \       0xAA   0xE003             B.N      ??USBD_StdEPReq_13
+    257          
+    258                default:
+    259                  USBD_CtlError(pdev, req);
+   \                     ??USBD_StdEPReq_10: (+1)
+   \       0xAC   0x0029             MOVS     R1,R5
+   \       0xAE   0x0020             MOVS     R0,R4
+   \       0xB0   0x.... 0x....      BL       USBD_CtlError
+    260                  break;
+    261                }
+    262                break;
+   \                     ??USBD_StdEPReq_13: (+1)
+   \       0xB4   0xE0CD             B.N      ??USBD_StdEPReq_15
+    263          
+    264              case USB_REQ_CLEAR_FEATURE:
+    265          
+    266                switch (pdev->dev_state)
+   \                     ??USBD_StdEPReq_5: (+1)
+   \       0xB6   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \       0xBA   0x2802             CMP      R0,#+2
+   \       0xBC   0xD002             BEQ.N    ??USBD_StdEPReq_16
+   \       0xBE   0x2803             CMP      R0,#+3
+   \       0xC0   0xD017             BEQ.N    ??USBD_StdEPReq_17
+   \       0xC2   0xE02B             B.N      ??USBD_StdEPReq_18
+    267                {
+    268                case USBD_STATE_ADDRESSED:
+    269                  if ((ep_addr != 0x00U) && (ep_addr != 0x80U))
+   \                     ??USBD_StdEPReq_16: (+1)
+   \       0xC4   0x4640             MOV      R0,R8
+   \       0xC6   0xB2C0             UXTB     R0,R0
+   \       0xC8   0x2800             CMP      R0,#+0
+   \       0xCA   0xD00D             BEQ.N    ??USBD_StdEPReq_19
+   \       0xCC   0x4640             MOV      R0,R8
+   \       0xCE   0xB2C0             UXTB     R0,R0
+   \       0xD0   0x2880             CMP      R0,#+128
+   \       0xD2   0xD009             BEQ.N    ??USBD_StdEPReq_19
+    270                  {
+    271                    (void)USBD_LL_StallEP(pdev, ep_addr);
+   \       0xD4   0x4641             MOV      R1,R8
+   \       0xD6   0xB2C9             UXTB     R1,R1
+   \       0xD8   0x0020             MOVS     R0,R4
+   \       0xDA   0x.... 0x....      BL       USBD_LL_StallEP
+    272                    (void)USBD_LL_StallEP(pdev, 0x80U);
+   \       0xDE   0x2180             MOVS     R1,#+128
+   \       0xE0   0x0020             MOVS     R0,R4
+   \       0xE2   0x.... 0x....      BL       USBD_LL_StallEP
+   \       0xE6   0xE003             B.N      ??USBD_StdEPReq_20
+    273                  }
+    274                  else
+    275                  {
+    276                    USBD_CtlError(pdev, req);
+   \                     ??USBD_StdEPReq_19: (+1)
+   \       0xE8   0x0029             MOVS     R1,R5
+   \       0xEA   0x0020             MOVS     R0,R4
+   \       0xEC   0x.... 0x....      BL       USBD_CtlError
+    277                  }
+    278                  break;
+   \                     ??USBD_StdEPReq_20: (+1)
+   \       0xF0   0xE018             B.N      ??USBD_StdEPReq_21
+    279          
+    280                case USBD_STATE_CONFIGURED:
+    281                  if (req->wValue == USB_FEATURE_EP_HALT)
+   \                     ??USBD_StdEPReq_17: (+1)
+   \       0xF2   0x8868             LDRH     R0,[R5, #+2]
+   \       0xF4   0x2800             CMP      R0,#+0
+   \       0xF6   0xD110             BNE.N    ??USBD_StdEPReq_22
+    282                  {
+    283                    if ((ep_addr & 0x7FU) != 0x00U)
+   \       0xF8   0xF018 0x0F7F      TST      R8,#0x7F
+   \       0xFC   0xD004             BEQ.N    ??USBD_StdEPReq_23
+    284                    {
+    285                      (void)USBD_LL_ClearStallEP(pdev, ep_addr);
+   \       0xFE   0x4641             MOV      R1,R8
+   \      0x100   0xB2C9             UXTB     R1,R1
+   \      0x102   0x0020             MOVS     R0,R4
+   \      0x104   0x.... 0x....      BL       USBD_LL_ClearStallEP
+    286                    }
+    287                    (void)USBD_CtlSendStatus(pdev);
+   \                     ??USBD_StdEPReq_23: (+1)
+   \      0x108   0x0020             MOVS     R0,R4
+   \      0x10A   0x.... 0x....      BL       USBD_CtlSendStatus
+    288                    (USBD_StatusTypeDef)pdev->pClass->Setup(pdev, req);
+   \      0x10E   0x0029             MOVS     R1,R5
+   \      0x110   0x0020             MOVS     R0,R4
+   \      0x112   0xF8D4 0x22B8      LDR      R2,[R4, #+696]
+   \      0x116   0x6892             LDR      R2,[R2, #+8]
+   \      0x118   0x4790             BLX      R2
+    289                  }
+    290                  break;
+   \                     ??USBD_StdEPReq_22: (+1)
+   \      0x11A   0xE003             B.N      ??USBD_StdEPReq_21
+    291          
+    292                default:
+    293                  USBD_CtlError(pdev, req);
+   \                     ??USBD_StdEPReq_18: (+1)
+   \      0x11C   0x0029             MOVS     R1,R5
+   \      0x11E   0x0020             MOVS     R0,R4
+   \      0x120   0x.... 0x....      BL       USBD_CtlError
+    294                  break;
+    295                }
+    296                break;
+   \                     ??USBD_StdEPReq_21: (+1)
+   \      0x124   0xE095             B.N      ??USBD_StdEPReq_15
+    297          
+    298              case USB_REQ_GET_STATUS:
+    299                switch (pdev->dev_state)
+   \                     ??USBD_StdEPReq_4: (+1)
+   \      0x126   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \      0x12A   0x2802             CMP      R0,#+2
+   \      0x12C   0xD002             BEQ.N    ??USBD_StdEPReq_24
+   \      0x12E   0x2803             CMP      R0,#+3
+   \      0x130   0xD02D             BEQ.N    ??USBD_StdEPReq_25
+   \      0x132   0xE085             B.N      ??USBD_StdEPReq_26
+    300                {
+    301                case USBD_STATE_ADDRESSED:
+    302                  if ((ep_addr != 0x00U) && (ep_addr != 0x80U))
+   \                     ??USBD_StdEPReq_24: (+1)
+   \      0x134   0x4640             MOV      R0,R8
+   \      0x136   0xB2C0             UXTB     R0,R0
+   \      0x138   0x2800             CMP      R0,#+0
+   \      0x13A   0xD008             BEQ.N    ??USBD_StdEPReq_27
+   \      0x13C   0x4640             MOV      R0,R8
+   \      0x13E   0xB2C0             UXTB     R0,R0
+   \      0x140   0x2880             CMP      R0,#+128
+   \      0x142   0xD004             BEQ.N    ??USBD_StdEPReq_27
+    303                  {
+    304                    USBD_CtlError(pdev, req);
+   \      0x144   0x0029             MOVS     R1,R5
+   \      0x146   0x0020             MOVS     R0,R4
+   \      0x148   0x.... 0x....      BL       USBD_CtlError
+    305                    break;
+   \      0x14C   0xE07C             B.N      ??USBD_StdEPReq_28
+    306                  }
+    307                  pep = ((ep_addr & 0x80U) == 0x80U) ? &pdev->ep_in[ep_addr & 0x7FU] : \
+    308                        &pdev->ep_out[ep_addr & 0x7FU];
+   \                     ??USBD_StdEPReq_27: (+1)
+   \      0x14E   0xEA5F 0x6008      LSLS     R0,R8,#+24
+   \      0x152   0xD50A             BPL.N    ??USBD_StdEPReq_29
+   \      0x154   0x4641             MOV      R1,R8
+   \      0x156   0xB2C9             UXTB     R1,R1
+   \      0x158   0xF011 0x017F      ANDS     R1,R1,#0x7F
+   \      0x15C   0x2014             MOVS     R0,#+20
+   \      0x15E   0x4341             MULS     R1,R0,R1
+   \      0x160   0xEB04 0x0001      ADD      R0,R4,R1
+   \      0x164   0xF110 0x0614      ADDS     R6,R0,#+20
+   \      0x168   0xE009             B.N      ??USBD_StdEPReq_30
+   \                     ??USBD_StdEPReq_29: (+1)
+   \      0x16A   0x4641             MOV      R1,R8
+   \      0x16C   0xB2C9             UXTB     R1,R1
+   \      0x16E   0xF011 0x017F      ANDS     R1,R1,#0x7F
+   \      0x172   0x2014             MOVS     R0,#+20
+   \      0x174   0x4341             MULS     R1,R0,R1
+   \      0x176   0xEB04 0x0001      ADD      R0,R4,R1
+   \      0x17A   0xF510 0x76AA      ADDS     R6,R0,#+340
+    309          
+    310                  pep->status = 0x0000U;
+   \                     ??USBD_StdEPReq_30: (+1)
+   \      0x17E   0x2000             MOVS     R0,#+0
+   \      0x180   0x6030             STR      R0,[R6, #+0]
+    311          
+    312                  (void)USBD_CtlSendData(pdev, (uint8_t *)&pep->status, 2U);
+   \      0x182   0x2202             MOVS     R2,#+2
+   \      0x184   0x0031             MOVS     R1,R6
+   \      0x186   0x0020             MOVS     R0,R4
+   \      0x188   0x.... 0x....      BL       USBD_CtlSendData
+    313                  break;
+   \      0x18C   0xE05C             B.N      ??USBD_StdEPReq_28
+    314          
+    315                case USBD_STATE_CONFIGURED:
+    316                  if ((ep_addr & 0x80U) == 0x80U)
+   \                     ??USBD_StdEPReq_25: (+1)
+   \      0x18E   0xEA5F 0x6008      LSLS     R0,R8,#+24
+   \      0x192   0xD50F             BPL.N    ??USBD_StdEPReq_31
+    317                  {
+    318                    if (pdev->ep_in[ep_addr & 0xFU].is_used == 0U)
+   \      0x194   0x4641             MOV      R1,R8
+   \      0x196   0xB2C9             UXTB     R1,R1
+   \      0x198   0xF011 0x010F      ANDS     R1,R1,#0xF
+   \      0x19C   0x2014             MOVS     R0,#+20
+   \      0x19E   0x4341             MULS     R1,R0,R1
+   \      0x1A0   0xEB04 0x0001      ADD      R0,R4,R1
+   \      0x1A4   0x8C80             LDRH     R0,[R0, #+36]
+   \      0x1A6   0x2800             CMP      R0,#+0
+   \      0x1A8   0xD115             BNE.N    ??USBD_StdEPReq_32
+    319                    {
+    320                      USBD_CtlError(pdev, req);
+   \      0x1AA   0x0029             MOVS     R1,R5
+   \      0x1AC   0x0020             MOVS     R0,R4
+   \      0x1AE   0x.... 0x....      BL       USBD_CtlError
+    321                      break;
+   \      0x1B2   0xE049             B.N      ??USBD_StdEPReq_28
+    322                    }
+    323                  }
+    324                  else
+    325                  {
+    326                    if (pdev->ep_out[ep_addr & 0xFU].is_used == 0U)
+   \                     ??USBD_StdEPReq_31: (+1)
+   \      0x1B4   0x4641             MOV      R1,R8
+   \      0x1B6   0xB2C9             UXTB     R1,R1
+   \      0x1B8   0xF011 0x010F      ANDS     R1,R1,#0xF
+   \      0x1BC   0x2014             MOVS     R0,#+20
+   \      0x1BE   0x4341             MULS     R1,R0,R1
+   \      0x1C0   0xEB04 0x0001      ADD      R0,R4,R1
+   \      0x1C4   0xF8B0 0x0164      LDRH     R0,[R0, #+356]
+   \      0x1C8   0x2800             CMP      R0,#+0
+   \      0x1CA   0xD104             BNE.N    ??USBD_StdEPReq_32
+    327                    {
+    328                      USBD_CtlError(pdev, req);
+   \      0x1CC   0x0029             MOVS     R1,R5
+   \      0x1CE   0x0020             MOVS     R0,R4
+   \      0x1D0   0x.... 0x....      BL       USBD_CtlError
+    329                      break;
+   \      0x1D4   0xE038             B.N      ??USBD_StdEPReq_28
+    330                    }
+    331                  }
+    332          
+    333                  pep = ((ep_addr & 0x80U) == 0x80U) ? &pdev->ep_in[ep_addr & 0x7FU] : \
+    334                        &pdev->ep_out[ep_addr & 0x7FU];
+   \                     ??USBD_StdEPReq_32: (+1)
+   \      0x1D6   0xEA5F 0x6008      LSLS     R0,R8,#+24
+   \      0x1DA   0xD50A             BPL.N    ??USBD_StdEPReq_33
+   \      0x1DC   0x4641             MOV      R1,R8
+   \      0x1DE   0xB2C9             UXTB     R1,R1
+   \      0x1E0   0xF011 0x017F      ANDS     R1,R1,#0x7F
+   \      0x1E4   0x2014             MOVS     R0,#+20
+   \      0x1E6   0x4341             MULS     R1,R0,R1
+   \      0x1E8   0xEB04 0x0001      ADD      R0,R4,R1
+   \      0x1EC   0xF110 0x0614      ADDS     R6,R0,#+20
+   \      0x1F0   0xE009             B.N      ??USBD_StdEPReq_34
+   \                     ??USBD_StdEPReq_33: (+1)
+   \      0x1F2   0x4641             MOV      R1,R8
+   \      0x1F4   0xB2C9             UXTB     R1,R1
+   \      0x1F6   0xF011 0x017F      ANDS     R1,R1,#0x7F
+   \      0x1FA   0x2014             MOVS     R0,#+20
+   \      0x1FC   0x4341             MULS     R1,R0,R1
+   \      0x1FE   0xEB04 0x0001      ADD      R0,R4,R1
+   \      0x202   0xF510 0x76AA      ADDS     R6,R0,#+340
+    335          
+    336                    if ((ep_addr == 0x00U) || (ep_addr == 0x80U))
+   \                     ??USBD_StdEPReq_34: (+1)
+   \      0x206   0x4640             MOV      R0,R8
+   \      0x208   0xB2C0             UXTB     R0,R0
+   \      0x20A   0x2800             CMP      R0,#+0
+   \      0x20C   0xD003             BEQ.N    ??USBD_StdEPReq_35
+   \      0x20E   0x4640             MOV      R0,R8
+   \      0x210   0xB2C0             UXTB     R0,R0
+   \      0x212   0x2880             CMP      R0,#+128
+   \      0x214   0xD102             BNE.N    ??USBD_StdEPReq_36
+    337                    {
+    338                      pep->status = 0x0000U;
+   \                     ??USBD_StdEPReq_35: (+1)
+   \      0x216   0x2000             MOVS     R0,#+0
+   \      0x218   0x6030             STR      R0,[R6, #+0]
+   \      0x21A   0xE00B             B.N      ??USBD_StdEPReq_37
+    339                    }
+    340                    else if (USBD_LL_IsStallEP(pdev, ep_addr) != 0U)
+   \                     ??USBD_StdEPReq_36: (+1)
+   \      0x21C   0x4641             MOV      R1,R8
+   \      0x21E   0xB2C9             UXTB     R1,R1
+   \      0x220   0x0020             MOVS     R0,R4
+   \      0x222   0x.... 0x....      BL       USBD_LL_IsStallEP
+   \      0x226   0x2800             CMP      R0,#+0
+   \      0x228   0xD002             BEQ.N    ??USBD_StdEPReq_38
+    341                    {
+    342                      pep->status = 0x0001U;
+   \      0x22A   0x2001             MOVS     R0,#+1
+   \      0x22C   0x6030             STR      R0,[R6, #+0]
+   \      0x22E   0xE001             B.N      ??USBD_StdEPReq_37
+    343                    }
+    344                    else
+    345                    {
+    346                      pep->status = 0x0000U;
+   \                     ??USBD_StdEPReq_38: (+1)
+   \      0x230   0x2000             MOVS     R0,#+0
+   \      0x232   0x6030             STR      R0,[R6, #+0]
+    347                    }
+    348          
+    349                    (void)USBD_CtlSendData(pdev, (uint8_t *)&pep->status, 2U);
+   \                     ??USBD_StdEPReq_37: (+1)
+   \      0x234   0x2202             MOVS     R2,#+2
+   \      0x236   0x0031             MOVS     R1,R6
+   \      0x238   0x0020             MOVS     R0,R4
+   \      0x23A   0x.... 0x....      BL       USBD_CtlSendData
+    350                    break;
+   \      0x23E   0xE003             B.N      ??USBD_StdEPReq_28
+    351          
+    352                default:
+    353                  USBD_CtlError(pdev, req);
+   \                     ??USBD_StdEPReq_26: (+1)
+   \      0x240   0x0029             MOVS     R1,R5
+   \      0x242   0x0020             MOVS     R0,R4
+   \      0x244   0x.... 0x....      BL       USBD_CtlError
+    354                  break;
+    355                }
+    356                break;
+   \                     ??USBD_StdEPReq_28: (+1)
+   \      0x248   0xE003             B.N      ??USBD_StdEPReq_15
+    357          
+    358              default:
+    359                USBD_CtlError(pdev, req);
+   \                     ??USBD_StdEPReq_6: (+1)
+   \      0x24A   0x0029             MOVS     R1,R5
+   \      0x24C   0x0020             MOVS     R0,R4
+   \      0x24E   0x.... 0x....      BL       USBD_CtlError
+    360                break;
+    361              }
+    362              break;
+   \                     ??USBD_StdEPReq_15: (+1)
+   \      0x252   0xE003             B.N      ??USBD_StdEPReq_3
+    363          
+    364            default:
+    365              USBD_CtlError(pdev, req);
+   \                     ??USBD_StdEPReq_2: (+1)
+   \      0x254   0x0029             MOVS     R1,R5
+   \      0x256   0x0020             MOVS     R0,R4
+   \      0x258   0x.... 0x....      BL       USBD_CtlError
+    366              break;
+    367            }
+    368          
+    369            return ret;
+   \                     ??USBD_StdEPReq_3: (+1)
+   \      0x25C   0x0038             MOVS     R0,R7
+   \      0x25E   0xB2C0             UXTB     R0,R0
+   \      0x260   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    370          }
+    371          
+    372          
+    373          /**
+    374          * @brief  USBD_GetDescriptor
+    375          *         Handle Get Descriptor requests
+    376          * @param  pdev: device instance
+    377          * @param  req: usb request
+    378          * @retval status
+    379          */
+
+   \                                 In section .text, align 2, keep-with-next
+    380          static void USBD_GetDescriptor(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
+    381          {
+   \                     USBD_GetDescriptor: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    382            uint16_t len = 0U;
+   \        0x6   0x2000             MOVS     R0,#+0
+   \        0x8   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+    383            uint8_t *pbuf = NULL;
+   \        0xC   0x2600             MOVS     R6,#+0
+    384            uint8_t err = 0U;
+   \        0xE   0x2700             MOVS     R7,#+0
+    385          
+    386            switch (req->wValue >> 8)
+   \       0x10   0x8868             LDRH     R0,[R5, #+2]
+   \       0x12   0xB280             UXTH     R0,R0
+   \       0x14   0x0A00             LSRS     R0,R0,#+8
+   \       0x16   0xB2C0             UXTB     R0,R0
+   \       0x18   0x2801             CMP      R0,#+1
+   \       0x1A   0xD00A             BEQ.N    ??USBD_GetDescriptor_0
+   \       0x1C   0x2802             CMP      R0,#+2
+   \       0x1E   0xD010             BEQ.N    ??USBD_GetDescriptor_1
+   \       0x20   0x2803             CMP      R0,#+3
+   \       0x22   0xD023             BEQ.N    ??USBD_GetDescriptor_2
+   \       0x24   0x2806             CMP      R0,#+6
+   \       0x26   0xF000 0x80A5      BEQ.W    ??USBD_GetDescriptor_3
+   \       0x2A   0x2807             CMP      R0,#+7
+   \       0x2C   0xF000 0x80B2      BEQ.W    ??USBD_GetDescriptor_4
+   \       0x30   0xE0C2             B.N      ??USBD_GetDescriptor_5
+    387            {
+    388          #if ((USBD_LPM_ENABLED == 1U) || (USBD_CLASS_BOS_ENABLED == 1U))
+    389            case USB_DESC_TYPE_BOS:
+    390              if (pdev->pDesc->GetBOSDescriptor != NULL)
+    391              {
+    392                pbuf = pdev->pDesc->GetBOSDescriptor(pdev->dev_speed, &len);
+    393              }
+    394              else
+    395              {
+    396                USBD_CtlError(pdev, req);
+    397                err++;
+    398              }
+    399              break;
+    400          #endif
+    401            case USB_DESC_TYPE_DEVICE:
+    402              pbuf = pdev->pDesc->GetDeviceDescriptor(pdev->dev_speed, &len);
+   \                     ??USBD_GetDescriptor_0: (+1)
+   \       0x32   0x4669             MOV      R1,SP
+   \       0x34   0x7C20             LDRB     R0,[R4, #+16]
+   \       0x36   0xF8D4 0x22B4      LDR      R2,[R4, #+692]
+   \       0x3A   0x6812             LDR      R2,[R2, #+0]
+   \       0x3C   0x4790             BLX      R2
+   \       0x3E   0x0006             MOVS     R6,R0
+    403              break;
+   \       0x40   0xE0BF             B.N      ??USBD_GetDescriptor_6
+    404          
+    405            case USB_DESC_TYPE_CONFIGURATION:
+    406              if (pdev->dev_speed == USBD_SPEED_HIGH)
+   \                     ??USBD_GetDescriptor_1: (+1)
+   \       0x42   0x7C20             LDRB     R0,[R4, #+16]
+   \       0x44   0x2800             CMP      R0,#+0
+   \       0x46   0xD108             BNE.N    ??USBD_GetDescriptor_7
+    407              {
+    408                pbuf = pdev->pClass->GetHSConfigDescriptor(&len);
+   \       0x48   0x4668             MOV      R0,SP
+   \       0x4A   0xF8D4 0x12B8      LDR      R1,[R4, #+696]
+   \       0x4E   0x6A89             LDR      R1,[R1, #+40]
+   \       0x50   0x4788             BLX      R1
+   \       0x52   0x0006             MOVS     R6,R0
+    409                pbuf[1] = USB_DESC_TYPE_CONFIGURATION;
+   \       0x54   0x2002             MOVS     R0,#+2
+   \       0x56   0x7070             STRB     R0,[R6, #+1]
+   \       0x58   0xE007             B.N      ??USBD_GetDescriptor_8
+    410              }
+    411              else
+    412              {
+    413                pbuf = pdev->pClass->GetFSConfigDescriptor(&len);
+   \                     ??USBD_GetDescriptor_7: (+1)
+   \       0x5A   0x4668             MOV      R0,SP
+   \       0x5C   0xF8D4 0x12B8      LDR      R1,[R4, #+696]
+   \       0x60   0x6AC9             LDR      R1,[R1, #+44]
+   \       0x62   0x4788             BLX      R1
+   \       0x64   0x0006             MOVS     R6,R0
+    414                pbuf[1] = USB_DESC_TYPE_CONFIGURATION;
+   \       0x66   0x2002             MOVS     R0,#+2
+   \       0x68   0x7070             STRB     R0,[R6, #+1]
+    415              }
+    416              break;
+   \                     ??USBD_GetDescriptor_8: (+1)
+   \       0x6A   0xE0AA             B.N      ??USBD_GetDescriptor_6
+    417          
+    418            case USB_DESC_TYPE_STRING:
+    419              switch ((uint8_t)(req->wValue))
+   \                     ??USBD_GetDescriptor_2: (+1)
+   \       0x6C   0x78A8             LDRB     R0,[R5, #+2]
+   \       0x6E   0x2800             CMP      R0,#+0
+   \       0x70   0xD008             BEQ.N    ??USBD_GetDescriptor_9
+   \       0x72   0x2802             CMP      R0,#+2
+   \       0x74   0xD02C             BEQ.N    ??USBD_GetDescriptor_10
+   \       0x76   0xD318             BCC.N    ??USBD_GetDescriptor_11
+   \       0x78   0x2804             CMP      R0,#+4
+   \       0x7A   0xD04F             BEQ.N    ??USBD_GetDescriptor_12
+   \       0x7C   0xD33B             BCC.N    ??USBD_GetDescriptor_13
+   \       0x7E   0x2805             CMP      R0,#+5
+   \       0x80   0xD05F             BEQ.N    ??USBD_GetDescriptor_14
+   \       0x82   0xE071             B.N      ??USBD_GetDescriptor_15
+    420              {
+    421              case USBD_IDX_LANGID_STR:
+    422                if (pdev->pDesc->GetLangIDStrDescriptor != NULL)
+   \                     ??USBD_GetDescriptor_9: (+1)
+   \       0x84   0xF8D4 0x02B4      LDR      R0,[R4, #+692]
+   \       0x88   0x6840             LDR      R0,[R0, #+4]
+   \       0x8A   0x2800             CMP      R0,#+0
+   \       0x8C   0xD007             BEQ.N    ??USBD_GetDescriptor_16
+    423                {
+    424                  pbuf = pdev->pDesc->GetLangIDStrDescriptor(pdev->dev_speed, &len);
+   \       0x8E   0x4669             MOV      R1,SP
+   \       0x90   0x7C20             LDRB     R0,[R4, #+16]
+   \       0x92   0xF8D4 0x22B4      LDR      R2,[R4, #+692]
+   \       0x96   0x6852             LDR      R2,[R2, #+4]
+   \       0x98   0x4790             BLX      R2
+   \       0x9A   0x0006             MOVS     R6,R0
+   \       0x9C   0xE004             B.N      ??USBD_GetDescriptor_17
+    425                }
+    426                else
+    427                {
+    428                  USBD_CtlError(pdev, req);
+   \                     ??USBD_GetDescriptor_16: (+1)
+   \       0x9E   0x0029             MOVS     R1,R5
+   \       0xA0   0x0020             MOVS     R0,R4
+   \       0xA2   0x.... 0x....      BL       USBD_CtlError
+    429                  err++;
+   \       0xA6   0x1C7F             ADDS     R7,R7,#+1
+    430                }
+    431                break;
+   \                     ??USBD_GetDescriptor_17: (+1)
+   \       0xA8   0xE063             B.N      ??USBD_GetDescriptor_18
+    432          
+    433              case USBD_IDX_MFC_STR:
+    434                if (pdev->pDesc->GetManufacturerStrDescriptor != NULL)
+   \                     ??USBD_GetDescriptor_11: (+1)
+   \       0xAA   0xF8D4 0x02B4      LDR      R0,[R4, #+692]
+   \       0xAE   0x6880             LDR      R0,[R0, #+8]
+   \       0xB0   0x2800             CMP      R0,#+0
+   \       0xB2   0xD007             BEQ.N    ??USBD_GetDescriptor_19
+    435                {
+    436                  pbuf = pdev->pDesc->GetManufacturerStrDescriptor(pdev->dev_speed, &len);
+   \       0xB4   0x4669             MOV      R1,SP
+   \       0xB6   0x7C20             LDRB     R0,[R4, #+16]
+   \       0xB8   0xF8D4 0x22B4      LDR      R2,[R4, #+692]
+   \       0xBC   0x6892             LDR      R2,[R2, #+8]
+   \       0xBE   0x4790             BLX      R2
+   \       0xC0   0x0006             MOVS     R6,R0
+   \       0xC2   0xE004             B.N      ??USBD_GetDescriptor_20
+    437                }
+    438                else
+    439                {
+    440                  USBD_CtlError(pdev, req);
+   \                     ??USBD_GetDescriptor_19: (+1)
+   \       0xC4   0x0029             MOVS     R1,R5
+   \       0xC6   0x0020             MOVS     R0,R4
+   \       0xC8   0x.... 0x....      BL       USBD_CtlError
+    441                  err++;
+   \       0xCC   0x1C7F             ADDS     R7,R7,#+1
+    442                }
+    443                break;
+   \                     ??USBD_GetDescriptor_20: (+1)
+   \       0xCE   0xE050             B.N      ??USBD_GetDescriptor_18
+    444          
+    445              case USBD_IDX_PRODUCT_STR:
+    446                if (pdev->pDesc->GetProductStrDescriptor != NULL)
+   \                     ??USBD_GetDescriptor_10: (+1)
+   \       0xD0   0xF8D4 0x02B4      LDR      R0,[R4, #+692]
+   \       0xD4   0x68C0             LDR      R0,[R0, #+12]
+   \       0xD6   0x2800             CMP      R0,#+0
+   \       0xD8   0xD007             BEQ.N    ??USBD_GetDescriptor_21
+    447                {
+    448                  pbuf = pdev->pDesc->GetProductStrDescriptor(pdev->dev_speed, &len);
+   \       0xDA   0x4669             MOV      R1,SP
+   \       0xDC   0x7C20             LDRB     R0,[R4, #+16]
+   \       0xDE   0xF8D4 0x22B4      LDR      R2,[R4, #+692]
+   \       0xE2   0x68D2             LDR      R2,[R2, #+12]
+   \       0xE4   0x4790             BLX      R2
+   \       0xE6   0x0006             MOVS     R6,R0
+   \       0xE8   0xE004             B.N      ??USBD_GetDescriptor_22
+    449                }
+    450                else
+    451                {
+    452                  USBD_CtlError(pdev, req);
+   \                     ??USBD_GetDescriptor_21: (+1)
+   \       0xEA   0x0029             MOVS     R1,R5
+   \       0xEC   0x0020             MOVS     R0,R4
+   \       0xEE   0x.... 0x....      BL       USBD_CtlError
+    453                  err++;
+   \       0xF2   0x1C7F             ADDS     R7,R7,#+1
+    454                }
+    455                break;
+   \                     ??USBD_GetDescriptor_22: (+1)
+   \       0xF4   0xE03D             B.N      ??USBD_GetDescriptor_18
+    456          
+    457              case USBD_IDX_SERIAL_STR:
+    458                if (pdev->pDesc->GetSerialStrDescriptor != NULL)
+   \                     ??USBD_GetDescriptor_13: (+1)
+   \       0xF6   0xF8D4 0x02B4      LDR      R0,[R4, #+692]
+   \       0xFA   0x6900             LDR      R0,[R0, #+16]
+   \       0xFC   0x2800             CMP      R0,#+0
+   \       0xFE   0xD007             BEQ.N    ??USBD_GetDescriptor_23
+    459                {
+    460                  pbuf = pdev->pDesc->GetSerialStrDescriptor(pdev->dev_speed, &len);
+   \      0x100   0x4669             MOV      R1,SP
+   \      0x102   0x7C20             LDRB     R0,[R4, #+16]
+   \      0x104   0xF8D4 0x22B4      LDR      R2,[R4, #+692]
+   \      0x108   0x6912             LDR      R2,[R2, #+16]
+   \      0x10A   0x4790             BLX      R2
+   \      0x10C   0x0006             MOVS     R6,R0
+   \      0x10E   0xE004             B.N      ??USBD_GetDescriptor_24
+    461                }
+    462                else
+    463                {
+    464                  USBD_CtlError(pdev, req);
+   \                     ??USBD_GetDescriptor_23: (+1)
+   \      0x110   0x0029             MOVS     R1,R5
+   \      0x112   0x0020             MOVS     R0,R4
+   \      0x114   0x.... 0x....      BL       USBD_CtlError
+    465                  err++;
+   \      0x118   0x1C7F             ADDS     R7,R7,#+1
+    466                }
+    467                break;
+   \                     ??USBD_GetDescriptor_24: (+1)
+   \      0x11A   0xE02A             B.N      ??USBD_GetDescriptor_18
+    468          
+    469              case USBD_IDX_CONFIG_STR:
+    470                if (pdev->pDesc->GetConfigurationStrDescriptor != NULL)
+   \                     ??USBD_GetDescriptor_12: (+1)
+   \      0x11C   0xF8D4 0x02B4      LDR      R0,[R4, #+692]
+   \      0x120   0x6940             LDR      R0,[R0, #+20]
+   \      0x122   0x2800             CMP      R0,#+0
+   \      0x124   0xD007             BEQ.N    ??USBD_GetDescriptor_25
+    471                {
+    472                  pbuf = pdev->pDesc->GetConfigurationStrDescriptor(pdev->dev_speed, &len);
+   \      0x126   0x4669             MOV      R1,SP
+   \      0x128   0x7C20             LDRB     R0,[R4, #+16]
+   \      0x12A   0xF8D4 0x22B4      LDR      R2,[R4, #+692]
+   \      0x12E   0x6952             LDR      R2,[R2, #+20]
+   \      0x130   0x4790             BLX      R2
+   \      0x132   0x0006             MOVS     R6,R0
+   \      0x134   0xE004             B.N      ??USBD_GetDescriptor_26
+    473                }
+    474                else
+    475                {
+    476                  USBD_CtlError(pdev, req);
+   \                     ??USBD_GetDescriptor_25: (+1)
+   \      0x136   0x0029             MOVS     R1,R5
+   \      0x138   0x0020             MOVS     R0,R4
+   \      0x13A   0x.... 0x....      BL       USBD_CtlError
+    477                  err++;
+   \      0x13E   0x1C7F             ADDS     R7,R7,#+1
+    478                }
+    479                break;
+   \                     ??USBD_GetDescriptor_26: (+1)
+   \      0x140   0xE017             B.N      ??USBD_GetDescriptor_18
+    480          
+    481              case USBD_IDX_INTERFACE_STR:
+    482                if (pdev->pDesc->GetInterfaceStrDescriptor != NULL)
+   \                     ??USBD_GetDescriptor_14: (+1)
+   \      0x142   0xF8D4 0x02B4      LDR      R0,[R4, #+692]
+   \      0x146   0x6980             LDR      R0,[R0, #+24]
+   \      0x148   0x2800             CMP      R0,#+0
+   \      0x14A   0xD007             BEQ.N    ??USBD_GetDescriptor_27
+    483                {
+    484                  pbuf = pdev->pDesc->GetInterfaceStrDescriptor(pdev->dev_speed, &len);
+   \      0x14C   0x4669             MOV      R1,SP
+   \      0x14E   0x7C20             LDRB     R0,[R4, #+16]
+   \      0x150   0xF8D4 0x22B4      LDR      R2,[R4, #+692]
+   \      0x154   0x6992             LDR      R2,[R2, #+24]
+   \      0x156   0x4790             BLX      R2
+   \      0x158   0x0006             MOVS     R6,R0
+   \      0x15A   0xE004             B.N      ??USBD_GetDescriptor_28
+    485                }
+    486                else
+    487                {
+    488                  USBD_CtlError(pdev, req);
+   \                     ??USBD_GetDescriptor_27: (+1)
+   \      0x15C   0x0029             MOVS     R1,R5
+   \      0x15E   0x0020             MOVS     R0,R4
+   \      0x160   0x.... 0x....      BL       USBD_CtlError
+    489                  err++;
+   \      0x164   0x1C7F             ADDS     R7,R7,#+1
+    490                }
+    491                break;
+   \                     ??USBD_GetDescriptor_28: (+1)
+   \      0x166   0xE004             B.N      ??USBD_GetDescriptor_18
+    492          
+    493              default:
+    494          #if (USBD_SUPPORT_USER_STRING_DESC == 1U)
+    495                if (pdev->pClass->GetUsrStrDescriptor != NULL)
+    496                {
+    497                  pbuf = pdev->pClass->GetUsrStrDescriptor(pdev, (req->wValue), &len);
+    498                }
+    499                else
+    500                {
+    501                  USBD_CtlError(pdev, req);
+    502                  err++;
+    503                }
+    504          #elif (USBD_CLASS_USER_STRING_DESC == 1U)
+    505                if (pdev->pDesc->GetUserStrDescriptor != NULL)
+    506                {
+    507                  pbuf = pdev->pDesc->GetUserStrDescriptor(pdev->dev_speed, (req->wValue), &len);
+    508                }
+    509                else
+    510                {
+    511                  USBD_CtlError(pdev, req);
+    512                  err++;
+    513                }
+    514          #else
+    515                USBD_CtlError(pdev, req);
+   \                     ??USBD_GetDescriptor_15: (+1)
+   \      0x168   0x0029             MOVS     R1,R5
+   \      0x16A   0x0020             MOVS     R0,R4
+   \      0x16C   0x.... 0x....      BL       USBD_CtlError
+    516                err++;
+   \      0x170   0x1C7F             ADDS     R7,R7,#+1
+    517          #endif
+    518                break;
+    519              }
+    520              break;
+   \                     ??USBD_GetDescriptor_18: (+1)
+   \      0x172   0xE026             B.N      ??USBD_GetDescriptor_6
+    521          
+    522            case USB_DESC_TYPE_DEVICE_QUALIFIER:
+    523              if (pdev->dev_speed == USBD_SPEED_HIGH)
+   \                     ??USBD_GetDescriptor_3: (+1)
+   \      0x174   0x7C20             LDRB     R0,[R4, #+16]
+   \      0x176   0x2800             CMP      R0,#+0
+   \      0x178   0xD106             BNE.N    ??USBD_GetDescriptor_29
+    524              {
+    525                pbuf = pdev->pClass->GetDeviceQualifierDescriptor(&len);
+   \      0x17A   0x4668             MOV      R0,SP
+   \      0x17C   0xF8D4 0x12B8      LDR      R1,[R4, #+696]
+   \      0x180   0x6B49             LDR      R1,[R1, #+52]
+   \      0x182   0x4788             BLX      R1
+   \      0x184   0x0006             MOVS     R6,R0
+   \      0x186   0xE004             B.N      ??USBD_GetDescriptor_30
+    526              }
+    527              else
+    528              {
+    529                USBD_CtlError(pdev, req);
+   \                     ??USBD_GetDescriptor_29: (+1)
+   \      0x188   0x0029             MOVS     R1,R5
+   \      0x18A   0x0020             MOVS     R0,R4
+   \      0x18C   0x.... 0x....      BL       USBD_CtlError
+    530                err++;
+   \      0x190   0x1C7F             ADDS     R7,R7,#+1
+    531              }
+    532              break;
+   \                     ??USBD_GetDescriptor_30: (+1)
+   \      0x192   0xE016             B.N      ??USBD_GetDescriptor_6
+    533          
+    534            case USB_DESC_TYPE_OTHER_SPEED_CONFIGURATION:
+    535              if (pdev->dev_speed == USBD_SPEED_HIGH)
+   \                     ??USBD_GetDescriptor_4: (+1)
+   \      0x194   0x7C20             LDRB     R0,[R4, #+16]
+   \      0x196   0x2800             CMP      R0,#+0
+   \      0x198   0xD108             BNE.N    ??USBD_GetDescriptor_31
+    536              {
+    537                pbuf = pdev->pClass->GetOtherSpeedConfigDescriptor(&len);
+   \      0x19A   0x4668             MOV      R0,SP
+   \      0x19C   0xF8D4 0x12B8      LDR      R1,[R4, #+696]
+   \      0x1A0   0x6B09             LDR      R1,[R1, #+48]
+   \      0x1A2   0x4788             BLX      R1
+   \      0x1A4   0x0006             MOVS     R6,R0
+    538                pbuf[1] = USB_DESC_TYPE_OTHER_SPEED_CONFIGURATION;
+   \      0x1A6   0x2007             MOVS     R0,#+7
+   \      0x1A8   0x7070             STRB     R0,[R6, #+1]
+   \      0x1AA   0xE004             B.N      ??USBD_GetDescriptor_32
+    539              }
+    540              else
+    541              {
+    542                USBD_CtlError(pdev, req);
+   \                     ??USBD_GetDescriptor_31: (+1)
+   \      0x1AC   0x0029             MOVS     R1,R5
+   \      0x1AE   0x0020             MOVS     R0,R4
+   \      0x1B0   0x.... 0x....      BL       USBD_CtlError
+    543                err++;
+   \      0x1B4   0x1C7F             ADDS     R7,R7,#+1
+    544              }
+    545              break;
+   \                     ??USBD_GetDescriptor_32: (+1)
+   \      0x1B6   0xE004             B.N      ??USBD_GetDescriptor_6
+    546          
+    547            default:
+    548              USBD_CtlError(pdev, req);
+   \                     ??USBD_GetDescriptor_5: (+1)
+   \      0x1B8   0x0029             MOVS     R1,R5
+   \      0x1BA   0x0020             MOVS     R0,R4
+   \      0x1BC   0x.... 0x....      BL       USBD_CtlError
+    549              err++;
+   \      0x1C0   0x1C7F             ADDS     R7,R7,#+1
+    550              break;
+    551            }
+    552          
+    553            if (err != 0U)
+   \                     ??USBD_GetDescriptor_6: (+1)
+   \      0x1C2   0x0038             MOVS     R0,R7
+   \      0x1C4   0xB2C0             UXTB     R0,R0
+   \      0x1C6   0x2800             CMP      R0,#+0
+   \      0x1C8   0xD11D             BNE.N    ??USBD_GetDescriptor_33
+    554            {
+    555              return;
+    556            }
+    557            else
+    558            {
+    559              if (req->wLength != 0U)
+   \                     ??USBD_GetDescriptor_34: (+1)
+   \      0x1CA   0x88E8             LDRH     R0,[R5, #+6]
+   \      0x1CC   0x2800             CMP      R0,#+0
+   \      0x1CE   0xD017             BEQ.N    ??USBD_GetDescriptor_35
+    560              {
+    561                if (len != 0U)
+   \      0x1D0   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
+   \      0x1D4   0x2800             CMP      R0,#+0
+   \      0x1D6   0xD00E             BEQ.N    ??USBD_GetDescriptor_36
+    562                {
+    563                  len = MIN(len, req->wLength);
+   \      0x1D8   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
+   \      0x1DC   0x88E9             LDRH     R1,[R5, #+6]
+   \      0x1DE   0x4288             CMP      R0,R1
+   \      0x1E0   0xD302             BCC.N    ??USBD_GetDescriptor_37
+   \                     ??USBD_GetDescriptor_38: (+1)
+   \      0x1E2   0x88E8             LDRH     R0,[R5, #+6]
+   \      0x1E4   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+    564                  (void)USBD_CtlSendData(pdev, pbuf, len);
+   \                     ??USBD_GetDescriptor_37: (+1)
+   \      0x1E8   0xF8BD 0x2000      LDRH     R2,[SP, #+0]
+   \      0x1EC   0x0031             MOVS     R1,R6
+   \      0x1EE   0x0020             MOVS     R0,R4
+   \      0x1F0   0x.... 0x....      BL       USBD_CtlSendData
+   \      0x1F4   0xE007             B.N      ??USBD_GetDescriptor_39
+    565                }
+    566                else
+    567                {
+    568                  USBD_CtlError(pdev, req);
+   \                     ??USBD_GetDescriptor_36: (+1)
+   \      0x1F6   0x0029             MOVS     R1,R5
+   \      0x1F8   0x0020             MOVS     R0,R4
+   \      0x1FA   0x.... 0x....      BL       USBD_CtlError
+   \      0x1FE   0xE002             B.N      ??USBD_GetDescriptor_39
+    569                }
+    570              }
+    571              else
+    572              {
+    573                (void)USBD_CtlSendStatus(pdev);
+   \                     ??USBD_GetDescriptor_35: (+1)
+   \      0x200   0x0020             MOVS     R0,R4
+   \      0x202   0x.... 0x....      BL       USBD_CtlSendStatus
+    574              }
+    575            }
+    576          }
+   \                     ??USBD_GetDescriptor_39: (+1)
+   \                     ??USBD_GetDescriptor_33: (+1)
+   \      0x206   0xBDF1             POP      {R0,R4-R7,PC}
+    577          
+    578          /**
+    579          * @brief  USBD_SetAddress
+    580          *         Set device address
+    581          * @param  pdev: device instance
+    582          * @param  req: usb request
+    583          * @retval status
+    584          */
+
+   \                                 In section .text, align 2, keep-with-next
+    585          static void USBD_SetAddress(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
+    586          {
+   \                     USBD_SetAddress: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    587            uint8_t  dev_addr;
+    588          
+    589            if ((req->wIndex == 0U) && (req->wLength == 0U) && (req->wValue < 128U))
+   \        0x6   0x88A8             LDRH     R0,[R5, #+4]
+   \        0x8   0x2800             CMP      R0,#+0
+   \        0xA   0xD128             BNE.N    ??USBD_SetAddress_0
+   \        0xC   0x88E8             LDRH     R0,[R5, #+6]
+   \        0xE   0x2800             CMP      R0,#+0
+   \       0x10   0xD125             BNE.N    ??USBD_SetAddress_0
+   \       0x12   0x8868             LDRH     R0,[R5, #+2]
+   \       0x14   0x2880             CMP      R0,#+128
+   \       0x16   0xD222             BCS.N    ??USBD_SetAddress_0
+    590            {
+    591              dev_addr = (uint8_t)(req->wValue) & 0x7FU;
+   \       0x18   0x78A8             LDRB     R0,[R5, #+2]
+   \       0x1A   0xF010 0x007F      ANDS     R0,R0,#0x7F
+   \       0x1E   0x0006             MOVS     R6,R0
+    592          
+    593              if (pdev->dev_state == USBD_STATE_CONFIGURED)
+   \       0x20   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \       0x24   0x2803             CMP      R0,#+3
+   \       0x26   0xD104             BNE.N    ??USBD_SetAddress_1
+    594              {
+    595                USBD_CtlError(pdev, req);
+   \       0x28   0x0029             MOVS     R1,R5
+   \       0x2A   0x0020             MOVS     R0,R4
+   \       0x2C   0x.... 0x....      BL       USBD_CtlError
+   \       0x30   0xE019             B.N      ??USBD_SetAddress_2
+    596              }
+    597              else
+    598              {
+    599                pdev->dev_address = dev_addr;
+   \                     ??USBD_SetAddress_1: (+1)
+   \       0x32   0xF884 0x629E      STRB     R6,[R4, #+670]
+    600                (void)USBD_LL_SetUSBAddress(pdev, dev_addr);
+   \       0x36   0x0031             MOVS     R1,R6
+   \       0x38   0xB2C9             UXTB     R1,R1
+   \       0x3A   0x0020             MOVS     R0,R4
+   \       0x3C   0x.... 0x....      BL       USBD_LL_SetUSBAddress
+    601                (void)USBD_CtlSendStatus(pdev);
+   \       0x40   0x0020             MOVS     R0,R4
+   \       0x42   0x.... 0x....      BL       USBD_CtlSendStatus
+    602          
+    603                if (dev_addr != 0U)
+   \       0x46   0x0030             MOVS     R0,R6
+   \       0x48   0xB2C0             UXTB     R0,R0
+   \       0x4A   0x2800             CMP      R0,#+0
+   \       0x4C   0xD003             BEQ.N    ??USBD_SetAddress_3
+    604                {
+    605                  pdev->dev_state = USBD_STATE_ADDRESSED;
+   \       0x4E   0x2002             MOVS     R0,#+2
+   \       0x50   0xF884 0x029C      STRB     R0,[R4, #+668]
+   \       0x54   0xE007             B.N      ??USBD_SetAddress_2
+    606                }
+    607                else
+    608                {
+    609                  pdev->dev_state = USBD_STATE_DEFAULT;
+   \                     ??USBD_SetAddress_3: (+1)
+   \       0x56   0x2001             MOVS     R0,#+1
+   \       0x58   0xF884 0x029C      STRB     R0,[R4, #+668]
+   \       0x5C   0xE003             B.N      ??USBD_SetAddress_2
+    610                }
+    611              }
+    612            }
+    613            else
+    614            {
+    615              USBD_CtlError(pdev, req);
+   \                     ??USBD_SetAddress_0: (+1)
+   \       0x5E   0x0029             MOVS     R1,R5
+   \       0x60   0x0020             MOVS     R0,R4
+   \       0x62   0x.... 0x....      BL       USBD_CtlError
+    616            }
+    617          }
+   \                     ??USBD_SetAddress_2: (+1)
+   \       0x66   0xBD70             POP      {R4-R6,PC}
+    618          
+    619          /**
+    620          * @brief  USBD_SetConfig
+    621          *         Handle Set device configuration request
+    622          * @param  pdev: device instance
+    623          * @param  req: usb request
+    624          * @retval status
+    625          */
+
+   \                                 In section .text, align 2, keep-with-next
+    626          static USBD_StatusTypeDef USBD_SetConfig(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
+    627          {
+   \                     USBD_SetConfig: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    628            USBD_StatusTypeDef ret = USBD_OK;
+   \        0x6   0x2600             MOVS     R6,#+0
+    629            static uint8_t cfgidx;
+    630          
+    631            cfgidx = (uint8_t)(req->wValue);
+   \        0x8   0x....             LDR.N    R7,??DataTable1
+   \        0xA   0x8868             LDRH     R0,[R5, #+2]
+   \        0xC   0x7038             STRB     R0,[R7, #+0]
+    632          
+    633            if (cfgidx > USBD_MAX_NUM_CONFIGURATION)
+   \        0xE   0x7838             LDRB     R0,[R7, #+0]
+   \       0x10   0x2802             CMP      R0,#+2
+   \       0x12   0xD305             BCC.N    ??USBD_SetConfig_0
+    634            {
+    635              USBD_CtlError(pdev, req);
+   \       0x14   0x0029             MOVS     R1,R5
+   \       0x16   0x0020             MOVS     R0,R4
+   \       0x18   0x.... 0x....      BL       USBD_CtlError
+    636              return USBD_FAIL;
+   \       0x1C   0x2003             MOVS     R0,#+3
+   \       0x1E   0xE069             B.N      ??USBD_SetConfig_1
+    637            }
+    638          
+    639            switch (pdev->dev_state)
+   \                     ??USBD_SetConfig_0: (+1)
+   \       0x20   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \       0x24   0x2802             CMP      R0,#+2
+   \       0x26   0xD002             BEQ.N    ??USBD_SetConfig_2
+   \       0x28   0x2803             CMP      R0,#+3
+   \       0x2A   0xD01E             BEQ.N    ??USBD_SetConfig_3
+   \       0x2C   0xE056             B.N      ??USBD_SetConfig_4
+    640            {
+    641            case USBD_STATE_ADDRESSED:
+    642              if (cfgidx != 0U)
+   \                     ??USBD_SetConfig_2: (+1)
+   \       0x2E   0x7838             LDRB     R0,[R7, #+0]
+   \       0x30   0x2800             CMP      R0,#+0
+   \       0x32   0xD016             BEQ.N    ??USBD_SetConfig_5
+    643              {
+    644                pdev->dev_config = cfgidx;
+   \       0x34   0x7838             LDRB     R0,[R7, #+0]
+   \       0x36   0x6060             STR      R0,[R4, #+4]
+    645          
+    646                ret = USBD_SetClassConfig(pdev, cfgidx);
+   \       0x38   0x7839             LDRB     R1,[R7, #+0]
+   \       0x3A   0x0020             MOVS     R0,R4
+   \       0x3C   0x.... 0x....      BL       USBD_SetClassConfig
+   \       0x40   0x0006             MOVS     R6,R0
+    647          
+    648                if (ret != USBD_OK)
+   \       0x42   0x0030             MOVS     R0,R6
+   \       0x44   0xB2C0             UXTB     R0,R0
+   \       0x46   0x2800             CMP      R0,#+0
+   \       0x48   0xD004             BEQ.N    ??USBD_SetConfig_6
+    649                {
+    650                  USBD_CtlError(pdev, req);
+   \       0x4A   0x0029             MOVS     R1,R5
+   \       0x4C   0x0020             MOVS     R0,R4
+   \       0x4E   0x.... 0x....      BL       USBD_CtlError
+   \       0x52   0xE009             B.N      ??USBD_SetConfig_7
+    651                }
+    652                else
+    653                {
+    654                  (void)USBD_CtlSendStatus(pdev);
+   \                     ??USBD_SetConfig_6: (+1)
+   \       0x54   0x0020             MOVS     R0,R4
+   \       0x56   0x.... 0x....      BL       USBD_CtlSendStatus
+    655                  pdev->dev_state = USBD_STATE_CONFIGURED;
+   \       0x5A   0x2003             MOVS     R0,#+3
+   \       0x5C   0xF884 0x029C      STRB     R0,[R4, #+668]
+   \       0x60   0xE002             B.N      ??USBD_SetConfig_7
+    656                }
+    657              }
+    658              else
+    659              {
+    660                (void)USBD_CtlSendStatus(pdev);
+   \                     ??USBD_SetConfig_5: (+1)
+   \       0x62   0x0020             MOVS     R0,R4
+   \       0x64   0x.... 0x....      BL       USBD_CtlSendStatus
+    661              }
+    662              break;
+   \                     ??USBD_SetConfig_7: (+1)
+   \       0x68   0xE042             B.N      ??USBD_SetConfig_8
+    663          
+    664            case USBD_STATE_CONFIGURED:
+    665              if (cfgidx == 0U)
+   \                     ??USBD_SetConfig_3: (+1)
+   \       0x6A   0x7838             LDRB     R0,[R7, #+0]
+   \       0x6C   0x2800             CMP      R0,#+0
+   \       0x6E   0xD10C             BNE.N    ??USBD_SetConfig_9
+    666              {
+    667                pdev->dev_state = USBD_STATE_ADDRESSED;
+   \       0x70   0x2002             MOVS     R0,#+2
+   \       0x72   0xF884 0x029C      STRB     R0,[R4, #+668]
+    668                pdev->dev_config = cfgidx;
+   \       0x76   0x7838             LDRB     R0,[R7, #+0]
+   \       0x78   0x6060             STR      R0,[R4, #+4]
+    669                (void)USBD_ClrClassConfig(pdev, cfgidx);
+   \       0x7A   0x7839             LDRB     R1,[R7, #+0]
+   \       0x7C   0x0020             MOVS     R0,R4
+   \       0x7E   0x.... 0x....      BL       USBD_ClrClassConfig
+    670                (void)USBD_CtlSendStatus(pdev);
+   \       0x82   0x0020             MOVS     R0,R4
+   \       0x84   0x.... 0x....      BL       USBD_CtlSendStatus
+   \       0x88   0xE027             B.N      ??USBD_SetConfig_10
+    671              }
+    672              else if (cfgidx != pdev->dev_config)
+   \                     ??USBD_SetConfig_9: (+1)
+   \       0x8A   0x7838             LDRB     R0,[R7, #+0]
+   \       0x8C   0x6861             LDR      R1,[R4, #+4]
+   \       0x8E   0x4288             CMP      R0,R1
+   \       0x90   0xD020             BEQ.N    ??USBD_SetConfig_11
+    673              {
+    674                /* Clear old configuration */
+    675                (void)USBD_ClrClassConfig(pdev, (uint8_t)pdev->dev_config);
+   \       0x92   0x6861             LDR      R1,[R4, #+4]
+   \       0x94   0xB2C9             UXTB     R1,R1
+   \       0x96   0x0020             MOVS     R0,R4
+   \       0x98   0x.... 0x....      BL       USBD_ClrClassConfig
+    676          
+    677                /* set new configuration */
+    678                pdev->dev_config = cfgidx;
+   \       0x9C   0x7838             LDRB     R0,[R7, #+0]
+   \       0x9E   0x6060             STR      R0,[R4, #+4]
+    679          
+    680                ret = USBD_SetClassConfig(pdev, cfgidx);
+   \       0xA0   0x7839             LDRB     R1,[R7, #+0]
+   \       0xA2   0x0020             MOVS     R0,R4
+   \       0xA4   0x.... 0x....      BL       USBD_SetClassConfig
+   \       0xA8   0x0006             MOVS     R6,R0
+    681          
+    682                if (ret != USBD_OK)
+   \       0xAA   0x0030             MOVS     R0,R6
+   \       0xAC   0xB2C0             UXTB     R0,R0
+   \       0xAE   0x2800             CMP      R0,#+0
+   \       0xB0   0xD00C             BEQ.N    ??USBD_SetConfig_12
+    683                {
+    684                  USBD_CtlError(pdev, req);
+   \       0xB2   0x0029             MOVS     R1,R5
+   \       0xB4   0x0020             MOVS     R0,R4
+   \       0xB6   0x.... 0x....      BL       USBD_CtlError
+    685                  (void)USBD_ClrClassConfig(pdev, (uint8_t)pdev->dev_config);
+   \       0xBA   0x6861             LDR      R1,[R4, #+4]
+   \       0xBC   0xB2C9             UXTB     R1,R1
+   \       0xBE   0x0020             MOVS     R0,R4
+   \       0xC0   0x.... 0x....      BL       USBD_ClrClassConfig
+    686                  pdev->dev_state = USBD_STATE_ADDRESSED;
+   \       0xC4   0x2002             MOVS     R0,#+2
+   \       0xC6   0xF884 0x029C      STRB     R0,[R4, #+668]
+   \       0xCA   0xE006             B.N      ??USBD_SetConfig_10
+    687                }
+    688                else
+    689                {
+    690                  (void)USBD_CtlSendStatus(pdev);
+   \                     ??USBD_SetConfig_12: (+1)
+   \       0xCC   0x0020             MOVS     R0,R4
+   \       0xCE   0x.... 0x....      BL       USBD_CtlSendStatus
+   \       0xD2   0xE002             B.N      ??USBD_SetConfig_10
+    691                }
+    692              }
+    693              else
+    694              {
+    695                (void)USBD_CtlSendStatus(pdev);
+   \                     ??USBD_SetConfig_11: (+1)
+   \       0xD4   0x0020             MOVS     R0,R4
+   \       0xD6   0x.... 0x....      BL       USBD_CtlSendStatus
+    696              }
+    697              break;
+   \                     ??USBD_SetConfig_10: (+1)
+   \       0xDA   0xE009             B.N      ??USBD_SetConfig_8
+    698          
+    699            default:
+    700              USBD_CtlError(pdev, req);
+   \                     ??USBD_SetConfig_4: (+1)
+   \       0xDC   0x0029             MOVS     R1,R5
+   \       0xDE   0x0020             MOVS     R0,R4
+   \       0xE0   0x.... 0x....      BL       USBD_CtlError
+    701              (void)USBD_ClrClassConfig(pdev, cfgidx);
+   \       0xE4   0x7839             LDRB     R1,[R7, #+0]
+   \       0xE6   0x0020             MOVS     R0,R4
+   \       0xE8   0x.... 0x....      BL       USBD_ClrClassConfig
+    702              ret = USBD_FAIL;
+   \       0xEC   0x2003             MOVS     R0,#+3
+   \       0xEE   0x0006             MOVS     R6,R0
+    703              break;
+    704            }
+    705          
+    706            return ret;
+   \                     ??USBD_SetConfig_8: (+1)
+   \       0xF0   0x0030             MOVS     R0,R6
+   \       0xF2   0xB2C0             UXTB     R0,R0
+   \                     ??USBD_SetConfig_1: (+1)
+   \       0xF4   0xBDF2             POP      {R1,R4-R7,PC}
+    707          }
+
+   \                                 In section .bss, align 1
+   \                     `USBD_SetConfig::cfgidx`:
+   \        0x0                      DS8 1
+    708          
+    709          /**
+    710          * @brief  USBD_GetConfig
+    711          *         Handle Get device configuration request
+    712          * @param  pdev: device instance
+    713          * @param  req: usb request
+    714          * @retval status
+    715          */
+
+   \                                 In section .text, align 2, keep-with-next
+    716          static void USBD_GetConfig(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
+    717          {
+   \                     USBD_GetConfig: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    718            if (req->wLength != 1U)
+   \        0x6   0x88E8             LDRH     R0,[R5, #+6]
+   \        0x8   0x2801             CMP      R0,#+1
+   \        0xA   0xD004             BEQ.N    ??USBD_GetConfig_0
+    719            {
+    720              USBD_CtlError(pdev, req);
+   \        0xC   0x0029             MOVS     R1,R5
+   \        0xE   0x0020             MOVS     R0,R4
+   \       0x10   0x.... 0x....      BL       USBD_CtlError
+   \       0x14   0xE01A             B.N      ??USBD_GetConfig_1
+    721            }
+    722            else
+    723            {
+    724              switch (pdev->dev_state)
+   \                     ??USBD_GetConfig_0: (+1)
+   \       0x16   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \       0x1A   0x1E40             SUBS     R0,R0,#+1
+   \       0x1C   0x2801             CMP      R0,#+1
+   \       0x1E   0xD902             BLS.N    ??USBD_GetConfig_2
+   \       0x20   0x1E80             SUBS     R0,R0,#+2
+   \       0x22   0xD009             BEQ.N    ??USBD_GetConfig_3
+   \       0x24   0xE00E             B.N      ??USBD_GetConfig_4
+    725              {
+    726              case USBD_STATE_DEFAULT:
+    727              case USBD_STATE_ADDRESSED:
+    728                pdev->dev_default_config = 0U;
+   \                     ??USBD_GetConfig_2: (+1)
+   \       0x26   0x2000             MOVS     R0,#+0
+   \       0x28   0x60A0             STR      R0,[R4, #+8]
+    729                (void)USBD_CtlSendData(pdev, (uint8_t *)&pdev->dev_default_config, 1U);
+   \       0x2A   0x2201             MOVS     R2,#+1
+   \       0x2C   0xF114 0x0108      ADDS     R1,R4,#+8
+   \       0x30   0x0020             MOVS     R0,R4
+   \       0x32   0x.... 0x....      BL       USBD_CtlSendData
+    730                break;
+   \       0x36   0xE009             B.N      ??USBD_GetConfig_1
+    731          
+    732              case USBD_STATE_CONFIGURED:
+    733                (void)USBD_CtlSendData(pdev, (uint8_t *)&pdev->dev_config, 1U);
+   \                     ??USBD_GetConfig_3: (+1)
+   \       0x38   0x2201             MOVS     R2,#+1
+   \       0x3A   0x1D21             ADDS     R1,R4,#+4
+   \       0x3C   0x0020             MOVS     R0,R4
+   \       0x3E   0x.... 0x....      BL       USBD_CtlSendData
+    734                break;
+   \       0x42   0xE003             B.N      ??USBD_GetConfig_1
+    735          
+    736              default:
+    737                USBD_CtlError(pdev, req);
+   \                     ??USBD_GetConfig_4: (+1)
+   \       0x44   0x0029             MOVS     R1,R5
+   \       0x46   0x0020             MOVS     R0,R4
+   \       0x48   0x.... 0x....      BL       USBD_CtlError
+    738                break;
+    739              }
+    740            }
+    741          }
+   \                     ??USBD_GetConfig_1: (+1)
+   \       0x4C   0xBD31             POP      {R0,R4,R5,PC}
+    742          
+    743          /**
+    744          * @brief  USBD_GetStatus
+    745          *         Handle Get Status request
+    746          * @param  pdev: device instance
+    747          * @param  req: usb request
+    748          * @retval status
+    749          */
+
+   \                                 In section .text, align 2, keep-with-next
+    750          static void USBD_GetStatus(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
+    751          {
+   \                     USBD_GetStatus: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    752            switch (pdev->dev_state)
+   \        0x6   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \        0xA   0x1E40             SUBS     R0,R0,#+1
+   \        0xC   0x2802             CMP      R0,#+2
+   \        0xE   0xD818             BHI.N    ??USBD_GetStatus_0
+    753            {
+    754            case USBD_STATE_DEFAULT:
+    755            case USBD_STATE_ADDRESSED:
+    756            case USBD_STATE_CONFIGURED:
+    757              if (req->wLength != 0x2U)
+   \                     ??USBD_GetStatus_1: (+1)
+   \       0x10   0x88E8             LDRH     R0,[R5, #+6]
+   \       0x12   0x2802             CMP      R0,#+2
+   \       0x14   0xD004             BEQ.N    ??USBD_GetStatus_2
+    758              {
+    759                USBD_CtlError(pdev, req);
+   \       0x16   0x0029             MOVS     R1,R5
+   \       0x18   0x0020             MOVS     R0,R4
+   \       0x1A   0x.... 0x....      BL       USBD_CtlError
+    760                break;
+   \       0x1E   0xE014             B.N      ??USBD_GetStatus_3
+    761              }
+    762          
+    763          #if (USBD_SELF_POWERED == 1U)
+    764              pdev->dev_config_status = USB_CONFIG_SELF_POWERED;
+   \                     ??USBD_GetStatus_2: (+1)
+   \       0x20   0x2001             MOVS     R0,#+1
+   \       0x22   0x60E0             STR      R0,[R4, #+12]
+    765          #else
+    766              pdev->dev_config_status = 0U;
+    767          #endif
+    768          
+    769              if (pdev->dev_remote_wakeup != 0U)
+   \       0x24   0xF8D4 0x02A4      LDR      R0,[R4, #+676]
+   \       0x28   0x2800             CMP      R0,#+0
+   \       0x2A   0xD003             BEQ.N    ??USBD_GetStatus_4
+    770              {
+    771                pdev->dev_config_status |= USB_CONFIG_REMOTE_WAKEUP;
+   \       0x2C   0x68E0             LDR      R0,[R4, #+12]
+   \       0x2E   0xF050 0x0002      ORRS     R0,R0,#0x2
+   \       0x32   0x60E0             STR      R0,[R4, #+12]
+    772              }
+    773          
+    774              (void)USBD_CtlSendData(pdev, (uint8_t *)&pdev->dev_config_status, 2U);
+   \                     ??USBD_GetStatus_4: (+1)
+   \       0x34   0x2202             MOVS     R2,#+2
+   \       0x36   0xF114 0x010C      ADDS     R1,R4,#+12
+   \       0x3A   0x0020             MOVS     R0,R4
+   \       0x3C   0x.... 0x....      BL       USBD_CtlSendData
+    775              break;
+   \       0x40   0xE003             B.N      ??USBD_GetStatus_3
+    776          
+    777            default:
+    778              USBD_CtlError(pdev, req);
+   \                     ??USBD_GetStatus_0: (+1)
+   \       0x42   0x0029             MOVS     R1,R5
+   \       0x44   0x0020             MOVS     R0,R4
+   \       0x46   0x.... 0x....      BL       USBD_CtlError
+    779              break;
+    780            }
+    781          }
+   \                     ??USBD_GetStatus_3: (+1)
+   \       0x4A   0xBD31             POP      {R0,R4,R5,PC}
+    782          
+    783          
+    784          /**
+    785          * @brief  USBD_SetFeature
+    786          *         Handle Set device feature request
+    787          * @param  pdev: device instance
+    788          * @param  req: usb request
+    789          * @retval status
+    790          */
+
+   \                                 In section .text, align 2, keep-with-next
+    791          static void USBD_SetFeature(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
+    792          {
+   \                     USBD_SetFeature: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    793            if (req->wValue == USB_FEATURE_REMOTE_WAKEUP)
+   \        0x6   0x8868             LDRH     R0,[R5, #+2]
+   \        0x8   0x2801             CMP      R0,#+1
+   \        0xA   0xD105             BNE.N    ??USBD_SetFeature_0
+    794            {
+    795              pdev->dev_remote_wakeup = 1U;
+   \        0xC   0x2001             MOVS     R0,#+1
+   \        0xE   0xF8C4 0x02A4      STR      R0,[R4, #+676]
+    796              (void)USBD_CtlSendStatus(pdev);
+   \       0x12   0x0020             MOVS     R0,R4
+   \       0x14   0x.... 0x....      BL       USBD_CtlSendStatus
+    797            }
+    798          }
+   \                     ??USBD_SetFeature_0: (+1)
+   \       0x18   0xBD31             POP      {R0,R4,R5,PC}
+    799          
+    800          
+    801          /**
+    802          * @brief  USBD_ClrFeature
+    803          *         Handle clear device feature request
+    804          * @param  pdev: device instance
+    805          * @param  req: usb request
+    806          * @retval status
+    807          */
+
+   \                                 In section .text, align 2, keep-with-next
+    808          static void USBD_ClrFeature(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
+    809          {
+   \                     USBD_ClrFeature: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    810            switch (pdev->dev_state)
+   \        0x6   0xF894 0x029C      LDRB     R0,[R4, #+668]
+   \        0xA   0x1E40             SUBS     R0,R0,#+1
+   \        0xC   0x2802             CMP      R0,#+2
+   \        0xE   0xD809             BHI.N    ??USBD_ClrFeature_0
+    811            {
+    812              case USBD_STATE_DEFAULT:
+    813              case USBD_STATE_ADDRESSED:
+    814              case USBD_STATE_CONFIGURED:
+    815                if (req->wValue == USB_FEATURE_REMOTE_WAKEUP)
+   \                     ??USBD_ClrFeature_1: (+1)
+   \       0x10   0x8868             LDRH     R0,[R5, #+2]
+   \       0x12   0x2801             CMP      R0,#+1
+   \       0x14   0xD105             BNE.N    ??USBD_ClrFeature_2
+    816                {
+    817                  pdev->dev_remote_wakeup = 0U;
+   \       0x16   0x2000             MOVS     R0,#+0
+   \       0x18   0xF8C4 0x02A4      STR      R0,[R4, #+676]
+    818                  (void)USBD_CtlSendStatus(pdev);
+   \       0x1C   0x0020             MOVS     R0,R4
+   \       0x1E   0x.... 0x....      BL       USBD_CtlSendStatus
+    819                }
+    820                break;
+   \                     ??USBD_ClrFeature_2: (+1)
+   \       0x22   0xE003             B.N      ??USBD_ClrFeature_3
+    821          
+    822              default:
+    823                USBD_CtlError(pdev, req);
+   \                     ??USBD_ClrFeature_0: (+1)
+   \       0x24   0x0029             MOVS     R1,R5
+   \       0x26   0x0020             MOVS     R0,R4
+   \       0x28   0x.... 0x....      BL       USBD_CtlError
+    824                break;
+    825            }
+    826          }
+   \                     ??USBD_ClrFeature_3: (+1)
+   \       0x2C   0xBD31             POP      {R0,R4,R5,PC}
+    827          
+    828          /**
+    829          * @brief  USBD_ParseSetupRequest
+    830          *         Copy buffer into setup structure
+    831          * @param  pdev: device instance
+    832          * @param  req: usb request
+    833          * @retval None
+    834          */
+    835          
+
+   \                                 In section .text, align 2, keep-with-next
+    836          void USBD_ParseSetupRequest(USBD_SetupReqTypedef *req, uint8_t *pdata)
+    837          {
+   \                     USBD_ParseSetupRequest: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    838            uint8_t *pbuff = pdata;
+   \        0x6   0x0028             MOVS     R0,R5
+    839          
+    840            req->bmRequest = *(uint8_t *)(pbuff);
+   \        0x8   0x7801             LDRB     R1,[R0, #+0]
+   \        0xA   0x7021             STRB     R1,[R4, #+0]
+    841          
+    842            pbuff++;
+   \        0xC   0x1C40             ADDS     R0,R0,#+1
+    843            req->bRequest = *(uint8_t *)(pbuff);
+   \        0xE   0x7801             LDRB     R1,[R0, #+0]
+   \       0x10   0x7061             STRB     R1,[R4, #+1]
+    844          
+    845            pbuff++;
+   \       0x12   0x1C46             ADDS     R6,R0,#+1
+    846            req->wValue = SWAPBYTE(pbuff);
+   \       0x14   0x0030             MOVS     R0,R6
+   \       0x16   0x.... 0x....      BL       SWAPBYTE
+   \       0x1A   0x8060             STRH     R0,[R4, #+2]
+    847          
+    848            pbuff++;
+   \       0x1C   0x1C70             ADDS     R0,R6,#+1
+    849            pbuff++;
+   \       0x1E   0x1C46             ADDS     R6,R0,#+1
+    850            req->wIndex = SWAPBYTE(pbuff);
+   \       0x20   0x0030             MOVS     R0,R6
+   \       0x22   0x.... 0x....      BL       SWAPBYTE
+   \       0x26   0x80A0             STRH     R0,[R4, #+4]
+    851          
+    852            pbuff++;
+   \       0x28   0x1C70             ADDS     R0,R6,#+1
+    853            pbuff++;
+   \       0x2A   0x1C46             ADDS     R6,R0,#+1
+    854            req->wLength = SWAPBYTE(pbuff);
+   \       0x2C   0x0030             MOVS     R0,R6
+   \       0x2E   0x.... 0x....      BL       SWAPBYTE
+   \       0x32   0x80E0             STRH     R0,[R4, #+6]
+    855          }
+   \       0x34   0xBD70             POP      {R4-R6,PC}
+    856          
+    857          /**
+    858          * @brief  USBD_CtlError
+    859          *         Handle USB low level Error
+    860          * @param  pdev: device instance
+    861          * @param  req: usb request
+    862          * @retval None
+    863          */
+    864          
+
+   \                                 In section .text, align 2, keep-with-next
+    865          void USBD_CtlError(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
+    866          {
+   \                     USBD_CtlError: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    867            UNUSED(req);
+    868          
+    869            (void)USBD_LL_StallEP(pdev, 0x80U);
+   \        0x6   0x2180             MOVS     R1,#+128
+   \        0x8   0x0020             MOVS     R0,R4
+   \        0xA   0x.... 0x....      BL       USBD_LL_StallEP
+    870            (void)USBD_LL_StallEP(pdev, 0U);
+   \        0xE   0x2100             MOVS     R1,#+0
+   \       0x10   0x0020             MOVS     R0,R4
+   \       0x12   0x.... 0x....      BL       USBD_LL_StallEP
+    871          }
+   \       0x16   0xBD31             POP      {R0,R4,R5,PC}
+    872          
+    873          
+    874          /**
+    875            * @brief  USBD_GetString
+    876            *         Convert Ascii string into unicode one
+    877            * @param  desc : descriptor buffer
+    878            * @param  unicode : Formatted string buffer (unicode)
+    879            * @param  len : descriptor length
+    880            * @retval None
+    881            */
+
+   \                                 In section .text, align 2, keep-with-next
+    882          void USBD_GetString(uint8_t *desc, uint8_t *unicode, uint16_t *len)
+    883          {
+   \                     USBD_GetString: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+   \        0x8   0x0016             MOVS     R6,R2
+    884            uint8_t idx = 0U;
+   \        0xA   0xF05F 0x0800      MOVS     R8,#+0
+    885            uint8_t *pdesc;
+    886          
+    887            if (desc == NULL)
+   \        0xE   0x2C00             CMP      R4,#+0
+   \       0x10   0xD023             BEQ.N    ??USBD_GetString_0
+    888            {
+    889              return;
+    890            }
+    891          
+    892            pdesc = desc;
+   \                     ??USBD_GetString_1: (+1)
+   \       0x12   0x0027             MOVS     R7,R4
+    893            *len = ((uint16_t)USBD_GetLen(pdesc) * 2U) + 2U;
+   \       0x14   0x0038             MOVS     R0,R7
+   \       0x16   0x.... 0x....      BL       USBD_GetLen
+   \       0x1A   0x0040             LSLS     R0,R0,#+1
+   \       0x1C   0x1C80             ADDS     R0,R0,#+2
+   \       0x1E   0x8030             STRH     R0,[R6, #+0]
+    894          
+    895            unicode[idx] = *(uint8_t *)len;
+   \       0x20   0x7830             LDRB     R0,[R6, #+0]
+   \       0x22   0x4641             MOV      R1,R8
+   \       0x24   0xB2C9             UXTB     R1,R1
+   \       0x26   0x5468             STRB     R0,[R5, R1]
+    896            idx++;
+   \       0x28   0xF118 0x0801      ADDS     R8,R8,#+1
+    897            unicode[idx] = USB_DESC_TYPE_STRING;
+   \       0x2C   0x2003             MOVS     R0,#+3
+   \       0x2E   0x4641             MOV      R1,R8
+   \       0x30   0xB2C9             UXTB     R1,R1
+   \       0x32   0x5468             STRB     R0,[R5, R1]
+    898            idx++;
+   \       0x34   0xF118 0x0801      ADDS     R8,R8,#+1
+    899          
+    900            while (*pdesc != (uint8_t)'\0')
+   \                     ??USBD_GetString_2: (+1)
+   \       0x38   0x7838             LDRB     R0,[R7, #+0]
+   \       0x3A   0x2800             CMP      R0,#+0
+   \       0x3C   0xD00D             BEQ.N    ??USBD_GetString_3
+    901            {
+    902              unicode[idx] = *pdesc;
+   \       0x3E   0x7838             LDRB     R0,[R7, #+0]
+   \       0x40   0x4641             MOV      R1,R8
+   \       0x42   0xB2C9             UXTB     R1,R1
+   \       0x44   0x5468             STRB     R0,[R5, R1]
+    903              pdesc++;
+   \       0x46   0x1C7F             ADDS     R7,R7,#+1
+    904              idx++;
+   \       0x48   0xF118 0x0801      ADDS     R8,R8,#+1
+    905          
+    906              unicode[idx] = 0U;
+   \       0x4C   0x2000             MOVS     R0,#+0
+   \       0x4E   0x4641             MOV      R1,R8
+   \       0x50   0xB2C9             UXTB     R1,R1
+   \       0x52   0x5468             STRB     R0,[R5, R1]
+    907              idx++;
+   \       0x54   0xF118 0x0801      ADDS     R8,R8,#+1
+   \       0x58   0xE7EE             B.N      ??USBD_GetString_2
+    908            }
+    909          }
+   \                     ??USBD_GetString_3: (+1)
+   \                     ??USBD_GetString_0: (+1)
+   \       0x5A   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    910          
+    911          /**
+    912            * @brief  USBD_GetLen
+    913            *         return the string length
+    914             * @param  buf : pointer to the ascii string buffer
+    915            * @retval string length
+    916            */
+
+   \                                 In section .text, align 2, keep-with-next
+    917          static uint8_t USBD_GetLen(uint8_t *buf)
+    918          {
+   \                     USBD_GetLen: (+1)
+   \        0x0   0x0002             MOVS     R2,R0
+    919            uint8_t  len = 0U;
+   \        0x2   0x2000             MOVS     R0,#+0
+    920            uint8_t *pbuff = buf;
+   \        0x4   0x0013             MOVS     R3,R2
+    921          
+    922            while (*pbuff != (uint8_t)'\0')
+   \                     ??USBD_GetLen_0: (+1)
+   \        0x6   0x7819             LDRB     R1,[R3, #+0]
+   \        0x8   0x2900             CMP      R1,#+0
+   \        0xA   0xD002             BEQ.N    ??USBD_GetLen_1
+    923            {
+    924              len++;
+   \        0xC   0x1C40             ADDS     R0,R0,#+1
+    925              pbuff++;
+   \        0xE   0x1C5B             ADDS     R3,R3,#+1
+   \       0x10   0xE7F9             B.N      ??USBD_GetLen_0
+    926            }
+    927          
+    928            return len;
+   \                     ??USBD_GetLen_1: (+1)
+   \       0x12   0xB2C0             UXTB     R0,R0
+   \       0x14   0x4770             BX       LR
+    929          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1:
+   \        0x0   0x....'....        DC32     `USBD_SetConfig::cfgidx`
+    930          /**
+    931            * @}
+    932            */
+    933          
+    934          
+    935          /**
+    936            * @}
+    937            */
+    938          
+    939          
+    940          /**
+    941            * @}
+    942            */
+    943          
+    944          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       4   SWAPBYTE
+      16   USBD_ClrFeature
+        16   -> USBD_CtlError
+        16   -> USBD_CtlSendStatus
+      16   USBD_CtlError
+        16   -> USBD_LL_StallEP
+      16   USBD_GetConfig
+        16   -> USBD_CtlError
+        16   -> USBD_CtlSendData
+      24   USBD_GetDescriptor
+        24   -- Indirect call
+        24   -> USBD_CtlError
+        24   -> USBD_CtlSendData
+        24   -> USBD_CtlSendStatus
+       0   USBD_GetLen
+      16   USBD_GetStatus
+        16   -> USBD_CtlError
+        16   -> USBD_CtlSendData
+      24   USBD_GetString
+        24   -> USBD_GetLen
+      16   USBD_ParseSetupRequest
+        16   -> SWAPBYTE
+      16   USBD_SetAddress
+        16   -> USBD_CtlError
+        16   -> USBD_CtlSendStatus
+        16   -> USBD_LL_SetUSBAddress
+      24   USBD_SetConfig
+        24   -> USBD_ClrClassConfig
+        24   -> USBD_CtlError
+        24   -> USBD_CtlSendStatus
+        24   -> USBD_SetClassConfig
+      16   USBD_SetFeature
+        16   -> USBD_CtlSendStatus
+      16   USBD_StdDevReq
+        16   -- Indirect call
+        16   -> USBD_ClrFeature
+        16   -> USBD_CtlError
+        16   -> USBD_GetConfig
+        16   -> USBD_GetDescriptor
+        16   -> USBD_GetStatus
+        16   -> USBD_SetAddress
+        16   -> USBD_SetConfig
+        16   -> USBD_SetFeature
+      24   USBD_StdEPReq
+        24   -- Indirect call
+        24   -> USBD_CtlError
+        24   -> USBD_CtlSendData
+        24   -> USBD_CtlSendStatus
+        24   -> USBD_LL_ClearStallEP
+        24   -> USBD_LL_IsStallEP
+        24   -> USBD_LL_StallEP
+      16   USBD_StdItfReq
+        16   -- Indirect call
+        16   -> USBD_CtlError
+        16   -> USBD_CtlSendStatus
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable1
+      22  SWAPBYTE
+      46  USBD_ClrFeature
+      24  USBD_CtlError
+      78  USBD_GetConfig
+     520  USBD_GetDescriptor
+      22  USBD_GetLen
+      76  USBD_GetStatus
+      94  USBD_GetString
+      54  USBD_ParseSetupRequest
+     104  USBD_SetAddress
+     246  USBD_SetConfig
+      26  USBD_SetFeature
+     170  USBD_StdDevReq
+     612  USBD_StdEPReq
+     112  USBD_StdItfReq
+       1  cfgidx
+
+ 
+     1 byte  in section .bss
+ 2'210 bytes in section .text
+ 
+ 2'210 bytes of CODE memory
+     1 byte  of DATA memory
+
+Errors: none
+Warnings: 1

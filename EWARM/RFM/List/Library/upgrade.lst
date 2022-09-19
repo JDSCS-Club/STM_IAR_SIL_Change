@@ -1,0 +1,818 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:50:00
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\upgrade.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\upgrade.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Library\upgrade.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library --no_cse
+#        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
+#        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
+#        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\upgrade.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Library\upgrade.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Library\upgrade.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Library\upgrade.c
+      1          /*------------------------------------------------------------------------------------------
+      2          	Project			: It Library
+      3          	Description		: 
+      4          
+      5          	Writer			: $Author: zlkit $
+      6          	Revision		: $Rev: 1891 $
+      7          	Date			: 2019. 10.
+      8          	Copyright		: Piranti Corp.	( sw@piranti.co.kr )
+      9          	 
+     10          	Revision History 
+     11          	1. 2019. 10.	: Created
+     12          -------------------------------------------------------------------------------------------*/
+     13          
+     14          //========================================================================
+     15          // Header
+     16          
+     17          #include "upgrade.h"
+     18          
+     19          #include "rfm.h"				//	g_idxTrainSet
+
+  typedef unsigned char       BYTE;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",73  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned short      WORD;
+                              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h",77  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",304  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",322  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",468  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",506  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",511  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",533  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",559  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\RFMProtocol.h",567  Warning[Pe040]: 
+          expected an identifier
+     20          
+     21          #include "radio.h"				//	pRadioConfiguration
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+
+  typedef unsigned char U8;
+                        ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",788  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned int U16;
+                       ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",789  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned long U32;
+                        ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",790  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed char S8;
+                      ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",792  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed int S16;
+                     ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",793  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed long S32;
+                      ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",794  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef bit BIT;
+              ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",820  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+     22          
+     23          #include "flash_if.h"			//	ADDR_FLASH_BOOT
+     24          
+     25          #include "main.h"				//	hiwdg
+     26          
+     27          //========================================================================
+     28          // Define
+     29          
+
+   \                                 In section .bss, align 4
+     30          static int s_bUpgrRetry = 0;		//	Upgrade Retry
+   \                     s_bUpgrRetry:
+   \        0x0                      DS8 4
+     31          
+     32          //========================================================================
+     33          // Function
+     34          
+     35          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     36          void SetUpgrReTry( int _bUpgrRetry )
+     37          //========================================================================
+     38          {
+     39          	s_bUpgrRetry = _bUpgrRetry;
+   \                     SetUpgrReTry: (+1)
+   \        0x0   0x....             LDR.N    R1,??DataTable4_1
+   \        0x2   0x6008             STR      R0,[R1, #+0]
+     40          }
+   \        0x4   0x4770             BX       LR
+     41          
+     42          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     43          int GetUpgrReTry( void )
+     44          //========================================================================
+     45          {
+     46          	return s_bUpgrRetry;
+   \                     GetUpgrReTry: (+1)
+   \        0x0   0x....             LDR.N    R0,??DataTable4_1
+   \        0x2   0x6800             LDR      R0,[R0, #+0]
+   \        0x4   0x4770             BX       LR
+     47          }
+     48          
+     49          
+     50          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     51          int UpgrSendImage		( uint32_t nAddrBase, uint32_t nSizeImage )
+     52          //========================================================================
+     53          {
+   \                     UpgrSendImage: (+1)
+   \        0x0   0xE92D 0x4FF0      PUSH     {R4-R11,LR}
+   \        0x4   0xB0B3             SUB      SP,SP,#+204
+   \        0x6   0x0006             MOVS     R6,R0
+   \        0x8   0x000F             MOVS     R7,R1
+     54          	//	송신기 Upgrade 명령.
+     55          	printf( "%s(%d) - baseAddr(0x%08X) / size(%d)\n", __func__, __LINE__, nAddrBase, nSizeImage );
+                 	^
+Warning[Pe223]: function "printf" declared implicitly
+   \        0xA   0x9700             STR      R7,[SP, #+0]
+   \        0xC   0x0033             MOVS     R3,R6
+   \        0xE   0x2237             MOVS     R2,#+55
+   \       0x10   0x....             LDR.N    R1,??DataTable4_2
+   \       0x12   0x....             LDR.N    R0,??DataTable4_3
+   \       0x14   0x.... 0x....      BL       printf
+     56          
+     57          	uint32_t	nAddrTarget;
+     58          
+     59          	uint8_t		sBuf[100];
+     60          	int			nSize;
+     61          
+     62          	//========================================================================
+     63          	//	0x0800 0000 ~ 0x0807 FFFF	:	Bootloader + Application
+     64          	//========================================================================
+     65          	//	0x0808 0000 ~ 0x080F FFFF	:	Upgrade Image
+     66          	//========================================================================
+     67          	nAddrTarget		=	nAddrBase + 0x80000;// + SIZE_FLASH_BOOTAPP;
+   \       0x18   0xF516 0x2800      ADDS     R8,R6,#+524288
+     68          
+     69          	int i, j;
+     70          //	int nTotPkt = ( ( nSizeImage + 49 ) / 50 );
+     71          	int nTotPkt = ( ( nSizeImage + (PktUpgrDataSize - 1) ) / PktUpgrDataSize );
+   \       0x1C   0xF117 0x002F      ADDS     R0,R7,#+47
+   \       0x20   0x2130             MOVS     R1,#+48
+   \       0x22   0xFBB0 0xF9F1      UDIV     R9,R0,R1
+     72          
+     73          	char	sLCD[100];
+     74          
+     75          	LCDEnableDebug( 0 );	//	LCD - console printf Off
+                 	^
+Warning[Pe223]: function "LCDEnableDebug" declared implicitly
+   \       0x26   0x2000             MOVS     R0,#+0
+   \       0x28   0x.... 0x....      BL       LCDEnableDebug
+     76          
+     77          	for ( i = 0; i < nTotPkt; i++ )
+   \       0x2C   0x2400             MOVS     R4,#+0
+   \                     ??UpgrSendImage_0: (+1)
+   \       0x2E   0x454C             CMP      R4,R9
+   \       0x30   0xDA5C             BGE.N    ??UpgrSendImage_1
+     78          	{
+     79          		//	Flash Data 전송.
+     80          //		memcpy( sBuf, (__IO uint8_t*)(nAddrBase + (i * 50)), 50 );
+     81          //		SendUpgrData( nAddrTarget, nTotPkt, i, sBuf, 50 );
+     82          		memcpy( sBuf, (__IO uint8_t*)(nAddrBase + (i * PktUpgrDataSize)), PktUpgrDataSize );
+                 		^
+Warning[Pe223]: function "memcpy" declared implicitly
+   \       0x32   0x2230             MOVS     R2,#+48
+   \       0x34   0x2130             MOVS     R1,#+48
+   \       0x36   0xFB01 0x6104      MLA      R1,R1,R4,R6
+   \       0x3A   0xA81A             ADD      R0,SP,#+104
+   \       0x3C   0x.... 0x....      BL       memcpy
+     83          		SendUpgrData( nAddrTarget, nTotPkt, i, sBuf, PktUpgrDataSize );
+   \       0x40   0x2030             MOVS     R0,#+48
+   \       0x42   0x9000             STR      R0,[SP, #+0]
+   \       0x44   0xAB1A             ADD      R3,SP,#+104
+   \       0x46   0x0022             MOVS     R2,R4
+   \       0x48   0x4649             MOV      R1,R9
+   \       0x4A   0x4640             MOV      R0,R8
+   \       0x4C   0x.... 0x....      BL       SendUpgrData
+     84          
+     85          		//========================================================================
+     86          		if ( i == 0 && GetUpgrReTry() == 0 )
+   \       0x50   0x2C00             CMP      R4,#+0
+   \       0x52   0xD126             BNE.N    ??UpgrSendImage_2
+   \       0x54   0x.... 0x....      BL       GetUpgrReTry
+   \       0x58   0x2800             CMP      R0,#+0
+   \       0x5A   0xD122             BNE.N    ??UpgrSendImage_2
+     87          		{
+     88          			//	첫번째 패킷 전송후  Flash Erase Delay : 3 sec
+     89          			__HAL_IWDG_RELOAD_COUNTER(&hiwdg);
+   \       0x5C   0x.... 0x....      LDR.W    R10,??DataTable4_4
+   \       0x60   0xF64A 0x2BAA      MOVW     R11,#+43690
+   \       0x64   0xF8DA 0x0000      LDR      R0,[R10, #+0]
+   \       0x68   0xF8C0 0xB000      STR      R11,[R0, #+0]
+     90          			sprintf( sLCD, "Upgr:FL Erase", i, nTotPkt );
+                 			^
+Warning[Pe223]: function "sprintf" declared implicitly
+   \       0x6C   0x464B             MOV      R3,R9
+   \       0x6E   0x0022             MOVS     R2,R4
+   \       0x70   0x....             LDR.N    R1,??DataTable4_5
+   \       0x72   0xA801             ADD      R0,SP,#+4
+   \       0x74   0x.... 0x....      BL       sprintf
+     91          			LCDSetCursor( 1, 13 );
+                 			^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \       0x78   0x210D             MOVS     R1,#+13
+   \       0x7A   0x2001             MOVS     R0,#+1
+   \       0x7C   0x.... 0x....      BL       LCDSetCursor
+     92          			LCDPrintf( sLCD );
+                 			^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \       0x80   0xA801             ADD      R0,SP,#+4
+   \       0x82   0x.... 0x....      BL       LCDPrintf
+     93          //			HAL_Delay( 3000 );		//	sleep 3 sec
+     94          			for( j = 0; j < 7; j++ )	//	sleep 7 sec
+   \       0x86   0x2000             MOVS     R0,#+0
+   \       0x88   0x0005             MOVS     R5,R0
+   \                     ??UpgrSendImage_3: (+1)
+   \       0x8A   0x2D07             CMP      R5,#+7
+   \       0x8C   0xDA09             BGE.N    ??UpgrSendImage_2
+     95          			{
+     96          				HAL_Delay( 1000 );
+   \       0x8E   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x92   0x.... 0x....      BL       HAL_Delay
+     97          				__HAL_IWDG_RELOAD_COUNTER(&hiwdg);	//	Watchdog Re-Flash
+   \       0x96   0xF8DA 0x0000      LDR      R0,[R10, #+0]
+   \       0x9A   0xF8C0 0xB000      STR      R11,[R0, #+0]
+     98          			}
+   \       0x9E   0x1C6D             ADDS     R5,R5,#+1
+   \       0xA0   0xE7F3             B.N      ??UpgrSendImage_3
+     99          		}
+    100          		//========================================================================
+    101          
+    102          		//	수신기 Message 표시.
+    103          		//	159,596 Byte = 3191 Pkt * 50 Byte
+    104          		//	Upgr:[   1 / 3191 ]
+    105          		if ( ( i % 10 ) == 0 )
+   \                     ??UpgrSendImage_2: (+1)
+   \       0xA2   0x200A             MOVS     R0,#+10
+   \       0xA4   0xFB94 0xF1F0      SDIV     R1,R4,R0
+   \       0xA8   0xFB00 0x4011      MLS      R0,R0,R1,R4
+   \       0xAC   0x2800             CMP      R0,#+0
+   \       0xAE   0xD10C             BNE.N    ??UpgrSendImage_4
+    106          		{
+    107          			sprintf( sLCD, "Upgr:[%4d/%4d]", i, nTotPkt );
+                 			^
+Warning[Pe223]: function "sprintf" declared implicitly
+   \       0xB0   0x464B             MOV      R3,R9
+   \       0xB2   0x0022             MOVS     R2,R4
+   \       0xB4   0x....             LDR.N    R1,??DataTable4_6
+   \       0xB6   0xA801             ADD      R0,SP,#+4
+   \       0xB8   0x.... 0x....      BL       sprintf
+    108          			LCDSetCursor( 1, 13 );
+                 			^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \       0xBC   0x210D             MOVS     R1,#+13
+   \       0xBE   0x2001             MOVS     R0,#+1
+   \       0xC0   0x.... 0x....      BL       LCDSetCursor
+    109          			LCDPrintf( sLCD );
+                 			^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \       0xC4   0xA801             ADD      R0,SP,#+4
+   \       0xC6   0x.... 0x....      BL       LCDPrintf
+    110          		}
+    111          
+    112          //		HAL_Delay( 4 );	//	4 msec Delay
+    113          //		HAL_Delay( 3 );	//	2 msec Delay
+    114          		HAL_Delay( 2 );	//	2 msec Delay
+   \                     ??UpgrSendImage_4: (+1)
+   \       0xCA   0x2002             MOVS     R0,#+2
+   \       0xCC   0x.... 0x....      BL       HAL_Delay
+    115          
+    116          		//========================================================================
+    117          		//	Watchdog Reload
+    118          		if ( ( i % 50 ) == 0 )
+   \       0xD0   0x2032             MOVS     R0,#+50
+   \       0xD2   0xFB94 0xF1F0      SDIV     R1,R4,R0
+   \       0xD6   0xFB00 0x4011      MLS      R0,R0,R1,R4
+   \       0xDA   0x2800             CMP      R0,#+0
+   \       0xDC   0xD104             BNE.N    ??UpgrSendImage_5
+    119          		{
+    120          			__HAL_IWDG_RELOAD_COUNTER(&hiwdg);
+   \       0xDE   0xF64A 0x20AA      MOVW     R0,#+43690
+   \       0xE2   0x....             LDR.N    R1,??DataTable4_4
+   \       0xE4   0x6809             LDR      R1,[R1, #+0]
+   \       0xE6   0x6008             STR      R0,[R1, #+0]
+    121          		}
+    122          		//========================================================================
+    123          	}
+   \                     ??UpgrSendImage_5: (+1)
+   \       0xE8   0x1C64             ADDS     R4,R4,#+1
+   \       0xEA   0xE7A0             B.N      ??UpgrSendImage_0
+    124          
+    125          	sprintf( sLCD, "Upgr:[%4d/%4d]", i, nTotPkt );
+                 	^
+Warning[Pe223]: function "sprintf" declared implicitly
+   \                     ??UpgrSendImage_1: (+1)
+   \       0xEC   0x464B             MOV      R3,R9
+   \       0xEE   0x0022             MOVS     R2,R4
+   \       0xF0   0x....             LDR.N    R1,??DataTable4_6
+   \       0xF2   0xA801             ADD      R0,SP,#+4
+   \       0xF4   0x.... 0x....      BL       sprintf
+    126          	LCDSetCursor( 1, 13 );
+                 	^
+Warning[Pe223]: function "LCDSetCursor" declared implicitly
+   \       0xF8   0x210D             MOVS     R1,#+13
+   \       0xFA   0x2001             MOVS     R0,#+1
+   \       0xFC   0x.... 0x....      BL       LCDSetCursor
+    127          	LCDPrintf( sLCD );
+                 	^
+Warning[Pe223]: function "LCDPrintf" declared implicitly
+   \      0x100   0xA801             ADD      R0,SP,#+4
+   \      0x102   0x.... 0x....      BL       LCDPrintf
+    128          }
+                 ^
+Warning[Pe940]: missing return statement at end of non-void function
+          "UpgrSendImage"
+
+  	int			nSize;
+  	   			^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Library\upgrade.c",60  Warning[Pe177]: 
+          variable "nSize" was declared but never referenced
+   \      0x106   0xB033             ADD      SP,SP,#+204
+   \      0x108   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+    129          
+    130          
+    131          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    132          int UpgrSendImageBoot	( void )
+    133          //========================================================================
+    134          {
+   \                     UpgrSendImageBoot: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    135          	//	송신기 Upgrade 명령. - Bootloader
+    136          	UpgrSendImage( ADDR_FLASH_BOOT, FLASH_If_GetBootSize() );
+   \        0x2   0x.... 0x....      BL       FLASH_If_GetBootSize
+   \        0x6   0x0001             MOVS     R1,R0
+   \        0x8   0xF05F 0x6000      MOVS     R0,#+134217728
+   \        0xC   0x.... 0x....      BL       UpgrSendImage
+    137          }
+                 ^
+Warning[Pe940]: missing return statement at end of non-void function
+          "UpgrSendImageBoot"
+   \       0x10   0xBD02             POP      {R1,PC}
+    138          
+    139          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    140          int UpgrSendImageApp	( void )
+    141          //========================================================================
+    142          {
+   \                     UpgrSendImageApp: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    143          	//	송신기 Upgrade 명령. - Application
+    144          	UpgrSendImage( ADDR_FLASH_APP, FLASH_If_GetAppSize() );
+   \        0x2   0x.... 0x....      BL       FLASH_If_GetAppSize
+   \        0x6   0x0001             MOVS     R1,R0
+   \        0x8   0x....             LDR.N    R0,??DataTable4_7
+   \        0xA   0x.... 0x....      BL       UpgrSendImage
+    145          }
+                 ^
+Warning[Pe940]: missing return statement at end of non-void function
+          "UpgrSendImageApp"
+   \        0xE   0xBD02             POP      {R1,PC}
+    146          
+    147          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    148          int cmd_upgrade	( int argc, char * argv[] )
+    149          //========================================================================
+    150          {
+   \                     cmd_upgrade: (+1)
+   \        0x0   0xB57C             PUSH     {R2-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    151          	//========================================================================
+    152          	//	Upgrade 수신측에서 동작.
+    153          	//========================================================================
+    154          	//	upgrade ch 1	//	Upgrade 채널 변경.
+    155          	//	upgrade [1/0]	//	1(Start) / 0(End)
+    156          
+    157          	int nVal = 1;
+   \        0x6   0x2001             MOVS     R0,#+1
+   \        0x8   0x9000             STR      R0,[SP, #+0]
+    158          
+    159          	printf( "%s(%d)\n", __func__, __LINE__ );
+                 	^
+Warning[Pe223]: function "printf" declared implicitly
+   \        0xA   0x229F             MOVS     R2,#+159
+   \        0xC   0x....             LDR.N    R1,??DataTable4_8
+   \        0xE   0x....             LDR.N    R0,??DataTable4_9
+   \       0x10   0x.... 0x....      BL       printf
+    160          
+    161          	//========================================================================
+    162          	switch ( argc )
+   \       0x14   0x2C02             CMP      R4,#+2
+   \       0x16   0xD104             BNE.N    ??cmd_upgrade_0
+    163          	{
+    164          	case 2:		sscanf( argv[2], "%d", &nVal );			//	cmd [address] [value]
+                 	       		^
+Warning[Pe223]: function "sscanf" declared implicitly
+   \       0x18   0x466A             MOV      R2,SP
+   \       0x1A   0x....             ADR.N    R1,??DataTable4
+   \       0x1C   0x68A8             LDR      R0,[R5, #+8]
+   \       0x1E   0x.... 0x....      BL       sscanf
+    165          //    case 2:		sscanf( argv[1], "%d", &nAddr );		//	cmd [address]
+    166          		break;
+    167          	}
+    168          
+    169          	if ( nVal == 1 )
+   \                     ??cmd_upgrade_0: (+1)
+   \       0x22   0x9800             LDR      R0,[SP, #+0]
+   \       0x24   0x2801             CMP      R0,#+1
+   \       0x26   0xD113             BNE.N    ??cmd_upgrade_1
+    170          	{
+    171          		//========================================================================
+    172          		//	Upgrade Start
+    173          
+    174          		//========================================================================
+    175          		//	채널변경. => CH #1
+    176          		g_nChRx = ChUpgrDst;		//	Upgrade Channel
+   \       0x28   0x....             LDR.N    R0,??DataTable4_10
+   \       0x2A   0x2103             MOVS     R1,#+3
+   \       0x2C   0x6001             STR      R1,[R0, #+0]
+    177          
+    178          		vRadio_StartRX (
+    179          			g_nChRx,	//g_idxTrainSet,	//	pRadioConfiguration->Radio_ChannelNumber,
+    180          			pRadioConfiguration->Radio_PacketLength );
+   \       0x2E   0x....             LDR.N    R1,??DataTable4_11
+   \       0x30   0x6809             LDR      R1,[R1, #+0]
+   \       0x32   0x7949             LDRB     R1,[R1, #+5]
+   \       0x34   0x6800             LDR      R0,[R0, #+0]
+   \       0x36   0xB2C0             UXTB     R0,R0
+   \       0x38   0x.... 0x....      BL       vRadio_StartRX
+    181          
+    182          		//========================================================================
+    183          		//	Upgrade시 수신기 조명 점등.
+    184          		HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
+   \       0x3C   0x2201             MOVS     R2,#+1
+   \       0x3E   0xF44F 0x7100      MOV      R1,#+512
+   \       0x42   0x....             LDR.N    R0,??DataTable4_12
+   \       0x44   0x.... 0x....      BL       HAL_GPIO_WritePin
+    185          
+    186          		//========================================================================
+    187          		//	Log 출력 Off
+    188          
+    189          		//========================================================================
+    190          		//	Upgrade Mode
+    191          		SetRFMMode( RFMModeUpgr );		//	Upgrade Mode 설정. ( 상태정보 전송 X )
+   \       0x48   0x2004             MOVS     R0,#+4
+   \       0x4A   0x.... 0x....      BL       SetRFMMode
+   \       0x4E   0xE010             B.N      ??cmd_upgrade_2
+    192          		//========================================================================
+    193          	}
+    194          	else if ( nVal == 0 )
+   \                     ??cmd_upgrade_1: (+1)
+   \       0x50   0x9800             LDR      R0,[SP, #+0]
+   \       0x52   0x2800             CMP      R0,#+0
+   \       0x54   0xD10D             BNE.N    ??cmd_upgrade_2
+    195          	{
+    196          		//========================================================================
+    197          		//	Normal Mode
+    198          		SetRFMMode( RFMModeNormal );	//	Normal Mode 로 변경
+   \       0x56   0x2000             MOVS     R0,#+0
+   \       0x58   0x.... 0x....      BL       SetRFMMode
+    199          		//========================================================================
+    200          
+    201          		//  RF 수신 Start
+    202          		g_nChRx = GetChRx();	//	ChTS1_1 + g_idxTrainSet * 2 + ((g_nCarNo+1) % 2);	// 현재 호차 채널
+   \       0x5C   0x....             LDR.N    R6,??DataTable4_10
+   \       0x5E   0x.... 0x....      BL       GetChRx
+   \       0x62   0x6030             STR      R0,[R6, #+0]
+    203          
+    204          		vRadio_StartRX(
+    205          			g_nChRx,	//g_idxTrainSet,	//		pRadioConfiguration->Radio_ChannelNumber,
+    206          			pRadioConfiguration->Radio_PacketLength );
+   \       0x64   0x....             LDR.N    R0,??DataTable4_11
+   \       0x66   0x6800             LDR      R0,[R0, #+0]
+   \       0x68   0x7941             LDRB     R1,[R0, #+5]
+   \       0x6A   0x6830             LDR      R0,[R6, #+0]
+   \       0x6C   0xB2C0             UXTB     R0,R0
+   \       0x6E   0x.... 0x....      BL       vRadio_StartRX
+    207          	}
+    208          }
+                 ^
+Warning[Pe940]: missing return statement at end of non-void function
+          "cmd_upgrade"
+   \                     ??cmd_upgrade_2: (+1)
+   \       0x72   0xBD76             POP      {R1,R2,R4-R6,PC}
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4:
+   \        0x0   0x25 0x64          DC8      0x25, 0x64, 0x00, 0x00
+
+   \              0x00 0x00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_1:
+   \        0x0   0x....'....        DC32     s_bUpgrRetry
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_2:
+   \        0x0   0x....'....        DC32     `UpgrSendImage::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_3:
+   \        0x0   0x....'....        DC32     ?_0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_4:
+   \        0x0   0x....'....        DC32     hiwdg
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_5:
+   \        0x0   0x....'....        DC32     ?_1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_6:
+   \        0x0   0x....'....        DC32     ?_2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_7:
+   \        0x0   0x0802'0000        DC32     0x8020000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_8:
+   \        0x0   0x....'....        DC32     `cmd_upgrade::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_9:
+   \        0x0   0x....'....        DC32     ?_3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_10:
+   \        0x0   0x....'....        DC32     g_nChRx
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_11:
+   \        0x0   0x....'....        DC32     pRadioConfiguration
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_12:
+   \        0x0   0x4002'1000        DC32     0x40021000
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - baseAddr(0x%08X) / size(%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x62    
+
+   \              0x61 0x73    
+
+   \              0x65 0x41    
+
+   \              0x64 0x64    
+
+   \              0x72 0x28    
+
+   \              0x30 0x78    
+
+   \              0x25 0x30    
+
+   \              0x38 0x58    
+
+   \              0x29 0x20    
+
+   \              0x2F 0x20    
+
+   \              0x73 0x69    
+
+   \              0x7A 0x65    
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x0A 0x00
+   \       0x26                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_1:
+   \        0x0   0x55 0x70          DC8 "Upgr:FL Erase"
+
+   \              0x67 0x72    
+
+   \              0x3A 0x46    
+
+   \              0x4C 0x20    
+
+   \              0x45 0x72    
+
+   \              0x61 0x73    
+
+   \              0x65 0x00
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_2:
+   \        0x0   0x55 0x70          DC8 "Upgr:[%4d/%4d]"
+
+   \              0x67 0x72    
+
+   \              0x3A 0x5B    
+
+   \              0x25 0x34    
+
+   \              0x64 0x2F    
+
+   \              0x25 0x34    
+
+   \              0x64 0x5D    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_3:
+   \        0x0   0x25 0x73          DC8 "%s(%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \        0x0   0x25 0x64          DC8 "%d"
+
+   \              0x00
+   \        0x3                      DS8 1
+    209          //========================================================================
+    210          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   GetUpgrReTry
+       0   SetUpgrReTry
+     240   UpgrSendImage
+       240   -> GetUpgrReTry
+       240   -> HAL_Delay
+       240   -> LCDEnableDebug
+       240   -> LCDPrintf
+       240   -> LCDSetCursor
+       240   -> SendUpgrData
+       240   -> memcpy
+       240   -> printf
+       240   -> sprintf
+       8   UpgrSendImageApp
+         8   -> FLASH_If_GetAppSize
+         8   -> UpgrSendImage
+       8   UpgrSendImageBoot
+         8   -> FLASH_If_GetBootSize
+         8   -> UpgrSendImage
+      24   cmd_upgrade
+        24   -> GetChRx
+        24   -> HAL_GPIO_WritePin
+        24   -> SetRFMMode
+        24   -> printf
+        24   -> sscanf
+        24   -> vRadio_StartRX
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable4
+       4  ??DataTable4_1
+       4  ??DataTable4_10
+       4  ??DataTable4_11
+       4  ??DataTable4_12
+       4  ??DataTable4_2
+       4  ??DataTable4_3
+       4  ??DataTable4_4
+       4  ??DataTable4_5
+       4  ??DataTable4_6
+       4  ??DataTable4_7
+       4  ??DataTable4_8
+       4  ??DataTable4_9
+      40  ?_0
+      16  ?_1
+      16  ?_2
+       8  ?_3
+       4  ?_4
+       6  GetUpgrReTry
+       6  SetUpgrReTry
+     268  UpgrSendImage
+      16  UpgrSendImageApp
+      18  UpgrSendImageBoot
+     116  cmd_upgrade
+       4  s_bUpgrRetry
+      28  -- Other
+
+ 
+   4 bytes in section .bss
+ 112 bytes in section .rodata
+ 482 bytes in section .text
+ 
+ 482 bytes of CODE  memory
+ 112 bytes of CONST memory
+   4 bytes of DATA  memory
+
+Errors: none
+Warnings: 37

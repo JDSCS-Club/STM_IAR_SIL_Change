@@ -1,0 +1,948 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:56
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\USB_DEVICE\App\usbd_desc.c
+#    Command line                 =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\USB_DEVICE\App\usbd_desc.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\USB_DEVICE\App\usbd_desc.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Application\User\USB_DEVICE\App
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\USB_DEVICE\App
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\USB_DEVICE\App\usbd_desc.o.d
+#    Locale                       =  C
+#    List file                    =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Application\User\USB_DEVICE\App\usbd_desc.lst
+#    Object file                  =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Application\User\USB_DEVICE\App\usbd_desc.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\USB_DEVICE\App\usbd_desc.c
+      1          /* USER CODE BEGIN Header */
+      2          /**
+      3            ******************************************************************************
+      4            * @file           : App/usbd_desc.c
+      5            * @version        : v1.0_Cube
+      6            * @brief          : This file implements the USB device descriptors.
+      7            ******************************************************************************
+      8            * @attention
+      9            *
+     10            * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+     11            * All rights reserved.</center></h2>
+     12            *
+     13            * This software component is licensed by ST under Ultimate Liberty license
+     14            * SLA0044, the "License"; You may not use this file except in compliance with
+     15            * the License. You may obtain a copy of the License at:
+     16            *                             www.st.com/SLA0044
+     17            *
+     18            ******************************************************************************
+     19            */
+     20          /* USER CODE END Header */
+     21          
+     22          /* Includes ------------------------------------------------------------------*/
+     23          #include "usbd_core.h"
+
+  # warning unrecognized compiler
+    ^
+"C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     24          #include "usbd_desc.h"
+     25          #include "usbd_conf.h"
+     26          
+     27          /* USER CODE BEGIN INCLUDE */
+     28          
+     29          /* USER CODE END INCLUDE */
+     30          
+     31          /* Private typedef -----------------------------------------------------------*/
+     32          /* Private define ------------------------------------------------------------*/
+     33          /* Private macro -------------------------------------------------------------*/
+     34          
+     35          /* USER CODE BEGIN PV */
+     36          /* Private variables ---------------------------------------------------------*/
+     37          
+     38          /* USER CODE END PV */
+     39          
+     40          /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
+     41            * @{
+     42            */
+     43          
+     44          /** @addtogroup USBD_DESC
+     45            * @{
+     46            */
+     47          
+     48          /** @defgroup USBD_DESC_Private_TypesDefinitions USBD_DESC_Private_TypesDefinitions
+     49            * @brief Private types.
+     50            * @{
+     51            */
+     52          
+     53          /* USER CODE BEGIN PRIVATE_TYPES */
+     54          
+     55          /* USER CODE END PRIVATE_TYPES */
+     56          
+     57          /**
+     58            * @}
+     59            */
+     60          
+     61          /** @defgroup USBD_DESC_Private_Defines USBD_DESC_Private_Defines
+     62            * @brief Private defines.
+     63            * @{
+     64            */
+     65          
+     66          #define USBD_VID     1155
+     67          #define USBD_LANGID_STRING     1033
+     68          #define USBD_MANUFACTURER_STRING     "STMicroelectronics"
+     69          #define USBD_PID_FS     22336
+     70          #define USBD_PRODUCT_STRING_FS     "STM32 Virtual ComPort"
+     71          #define USBD_CONFIGURATION_STRING_FS     "CDC Config"
+     72          #define USBD_INTERFACE_STRING_FS     "CDC Interface"
+     73          
+     74          #define USB_SIZ_BOS_DESC            0x0C
+     75          
+     76          /* USER CODE BEGIN PRIVATE_DEFINES */
+     77          
+     78          /* USER CODE END PRIVATE_DEFINES */
+     79          
+     80          /**
+     81            * @}
+     82            */
+     83          
+     84          /* USER CODE BEGIN 0 */
+     85          
+     86          /* USER CODE END 0 */
+     87          
+     88          /** @defgroup USBD_DESC_Private_Macros USBD_DESC_Private_Macros
+     89            * @brief Private macros.
+     90            * @{
+     91            */
+     92          
+     93          /* USER CODE BEGIN PRIVATE_MACRO */
+     94          
+     95          /* USER CODE END PRIVATE_MACRO */
+     96          
+     97          /**
+     98            * @}
+     99            */
+    100          
+    101          /** @defgroup USBD_DESC_Private_FunctionPrototypes USBD_DESC_Private_FunctionPrototypes
+    102            * @brief Private functions declaration.
+    103            * @{
+    104            */
+    105          
+    106          static void Get_SerialNum(void);
+    107          static void IntToUnicode(uint32_t value, uint8_t * pbuf, uint8_t len);
+    108          
+    109          /**
+    110            * @}
+    111            */
+    112          
+    113          /** @defgroup USBD_DESC_Private_FunctionPrototypes USBD_DESC_Private_FunctionPrototypes
+    114            * @brief Private functions declaration for FS.
+    115            * @{
+    116            */
+    117          
+    118          uint8_t * USBD_FS_DeviceDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+    119          uint8_t * USBD_FS_LangIDStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+    120          uint8_t * USBD_FS_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+    121          uint8_t * USBD_FS_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+    122          uint8_t * USBD_FS_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+    123          uint8_t * USBD_FS_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+    124          uint8_t * USBD_FS_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+    125          #if (USBD_LPM_ENABLED == 1)
+    126          uint8_t * USBD_FS_USR_BOSDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+    127          #endif /* (USBD_LPM_ENABLED == 1) */
+    128          
+    129          /**
+    130            * @}
+    131            */
+    132          
+    133          /** @defgroup USBD_DESC_Private_Variables USBD_DESC_Private_Variables
+    134            * @brief Private variables.
+    135            * @{
+    136            */
+    137          
+
+   \                                 In section .data, align 4
+    138          USBD_DescriptorsTypeDef FS_Desc =
+   \                     FS_Desc:
+   \        0x0   0x....'....        DC32 USBD_FS_DeviceDescriptor, USBD_FS_LangIDStrDescriptor
+
+   \              0x....'....
+   \        0x8   0x....'....        DC32 USBD_FS_ManufacturerStrDescriptor, USBD_FS_ProductStrDescriptor
+
+   \              0x....'....
+   \       0x10   0x....'....        DC32 USBD_FS_SerialStrDescriptor, USBD_FS_ConfigStrDescriptor
+
+   \              0x....'....
+   \       0x18   0x....'....        DC32 USBD_FS_InterfaceStrDescriptor
+    139          {
+    140            USBD_FS_DeviceDescriptor
+    141          , USBD_FS_LangIDStrDescriptor
+    142          , USBD_FS_ManufacturerStrDescriptor
+    143          , USBD_FS_ProductStrDescriptor
+    144          , USBD_FS_SerialStrDescriptor
+    145          , USBD_FS_ConfigStrDescriptor
+    146          , USBD_FS_InterfaceStrDescriptor
+    147          #if (USBD_LPM_ENABLED == 1)
+    148          , USBD_FS_USR_BOSDescriptor
+    149          #endif /* (USBD_LPM_ENABLED == 1) */
+    150          };
+    151          
+    152          #if defined ( __ICCARM__ ) /* IAR Compiler */
+    153            #pragma data_alignment=4
+    154          #endif /* defined ( __ICCARM__ ) */
+    155          /** USB standard device descriptor. */
+
+   \                                 In section .data, align 4
+    156          __ALIGN_BEGIN uint8_t USBD_FS_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END =
+   \                     USBD_FS_DeviceDesc:
+   \        0x0   0x12 0x01          DC8 18, 1, 0, 2, 2, 2, 0, 64, 131, 4, 64, 87, 0, 2, 1, 2, 3, 1
+
+   \              0x00 0x02    
+
+   \              0x02 0x02    
+
+   \              0x00 0x40    
+
+   \              0x83 0x04    
+
+   \              0x40 0x57    
+
+   \              0x00 0x02    
+
+   \              0x01 0x02    
+
+   \              0x03 0x01
+   \       0x12                      DS8 2
+    157          {
+    158            0x12,                       /*bLength */
+    159            USB_DESC_TYPE_DEVICE,       /*bDescriptorType*/
+    160          #if (USBD_LPM_ENABLED == 1)
+    161            0x01,                       /*bcdUSB */ /* changed to USB version 2.01
+    162                                                       in order to support LPM L1 suspend
+    163                                                       resume test of USBCV3.0*/
+    164          #else
+    165            0x00,                       /*bcdUSB */
+    166          #endif /* (USBD_LPM_ENABLED == 1) */
+    167            0x02,
+    168            0x02,                       /*bDeviceClass*/
+    169            0x02,                       /*bDeviceSubClass*/
+    170            0x00,                       /*bDeviceProtocol*/
+    171            USB_MAX_EP0_SIZE,           /*bMaxPacketSize*/
+    172            LOBYTE(USBD_VID),           /*idVendor*/
+    173            HIBYTE(USBD_VID),           /*idVendor*/
+    174            LOBYTE(USBD_PID_FS),        /*idProduct*/
+    175            HIBYTE(USBD_PID_FS),        /*idProduct*/
+    176            0x00,                       /*bcdDevice rel. 2.00*/
+    177            0x02,
+    178            USBD_IDX_MFC_STR,           /*Index of manufacturer  string*/
+    179            USBD_IDX_PRODUCT_STR,       /*Index of product string*/
+    180            USBD_IDX_SERIAL_STR,        /*Index of serial number string*/
+    181            USBD_MAX_NUM_CONFIGURATION  /*bNumConfigurations*/
+    182          };
+    183          
+    184          /* USB_DeviceDescriptor */
+    185          /** BOS descriptor. */
+    186          #if (USBD_LPM_ENABLED == 1)
+    187          #if defined ( __ICCARM__ ) /* IAR Compiler */
+    188            #pragma data_alignment=4
+    189          #endif /* defined ( __ICCARM__ ) */
+    190          __ALIGN_BEGIN uint8_t USBD_FS_BOSDesc[USB_SIZ_BOS_DESC] __ALIGN_END =
+    191          {
+    192            0x5,
+    193            USB_DESC_TYPE_BOS,
+    194            0xC,
+    195            0x0,
+    196            0x1,  /* 1 device capability*/
+    197                  /* device capability*/
+    198            0x7,
+    199            USB_DEVICE_CAPABITY_TYPE,
+    200            0x2,
+    201            0x2,  /* LPM capability bit set*/
+    202            0x0,
+    203            0x0,
+    204            0x0
+    205          };
+    206          #endif /* (USBD_LPM_ENABLED == 1) */
+    207          
+    208          /**
+    209            * @}
+    210            */
+    211          
+    212          /** @defgroup USBD_DESC_Private_Variables USBD_DESC_Private_Variables
+    213            * @brief Private variables.
+    214            * @{
+    215            */
+    216          
+    217          #if defined ( __ICCARM__ ) /* IAR Compiler */
+    218            #pragma data_alignment=4
+    219          #endif /* defined ( __ICCARM__ ) */
+    220          
+    221          /** USB lang indentifier descriptor. */
+
+   \                                 In section .data, align 4
+    222          __ALIGN_BEGIN uint8_t USBD_LangIDDesc[USB_LEN_LANGID_STR_DESC] __ALIGN_END =
+   \                     USBD_LangIDDesc:
+   \        0x0   0x04 0x03          DC8 4, 3, 9, 4
+
+   \              0x09 0x04
+    223          {
+    224               USB_LEN_LANGID_STR_DESC,
+    225               USB_DESC_TYPE_STRING,
+    226               LOBYTE(USBD_LANGID_STRING),
+    227               HIBYTE(USBD_LANGID_STRING)
+    228          };
+    229          
+    230          #if defined ( __ICCARM__ ) /* IAR Compiler */
+    231            #pragma data_alignment=4
+    232          #endif /* defined ( __ICCARM__ ) */
+    233          /* Internal string descriptor. */
+
+   \                                 In section .bss, align 4
+    234          __ALIGN_BEGIN uint8_t USBD_StrDesc[USBD_MAX_STR_DESC_SIZ] __ALIGN_END;
+   \                     USBD_StrDesc:
+   \        0x0                      DS8 512
+    235          
+    236          #if defined ( __ICCARM__ ) /*!< IAR Compiler */
+    237            #pragma data_alignment=4
+    238          #endif
+
+   \                                 In section .data, align 4
+    239          __ALIGN_BEGIN uint8_t USBD_StringSerial[USB_SIZ_STRING_SERIAL] __ALIGN_END = {
+   \                     USBD_StringSerial:
+   \        0x0   0x1A 0x03          DC8 26, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00
+   \       0x16   0x00 0x00          DC8 0, 0, 0, 0
+
+   \              0x00 0x00
+   \       0x1A                      DS8 2
+    240            USB_SIZ_STRING_SERIAL,
+    241            USB_DESC_TYPE_STRING,
+    242          };
+    243          
+    244          /**
+    245            * @}
+    246            */
+    247          
+    248          /** @defgroup USBD_DESC_Private_Functions USBD_DESC_Private_Functions
+    249            * @brief Private functions.
+    250            * @{
+    251            */
+    252          
+    253          /**
+    254            * @brief  Return the device descriptor
+    255            * @param  speed : Current device speed
+    256            * @param  length : Pointer to data length variable
+    257            * @retval Pointer to descriptor buffer
+    258            */
+
+   \                                 In section .text, align 2, keep-with-next
+    259          uint8_t * USBD_FS_DeviceDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+    260          {
+   \                     USBD_FS_DeviceDescriptor: (+1)
+   \        0x0   0x0002             MOVS     R2,R0
+    261            UNUSED(speed);
+    262            *length = sizeof(USBD_FS_DeviceDesc);
+   \        0x2   0x2012             MOVS     R0,#+18
+   \        0x4   0x8008             STRH     R0,[R1, #+0]
+    263            return USBD_FS_DeviceDesc;
+   \        0x6   0x....             LDR.N    R0,??DataTable7
+   \        0x8   0x4770             BX       LR
+    264          }
+    265          
+    266          /**
+    267            * @brief  Return the LangID string descriptor
+    268            * @param  speed : Current device speed
+    269            * @param  length : Pointer to data length variable
+    270            * @retval Pointer to descriptor buffer
+    271            */
+
+   \                                 In section .text, align 2, keep-with-next
+    272          uint8_t * USBD_FS_LangIDStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+    273          {
+   \                     USBD_FS_LangIDStrDescriptor: (+1)
+   \        0x0   0x0002             MOVS     R2,R0
+    274            UNUSED(speed);
+    275            *length = sizeof(USBD_LangIDDesc);
+   \        0x2   0x2004             MOVS     R0,#+4
+   \        0x4   0x8008             STRH     R0,[R1, #+0]
+    276            return USBD_LangIDDesc;
+   \        0x6   0x....             LDR.N    R0,??DataTable7_1
+   \        0x8   0x4770             BX       LR
+    277          }
+    278          
+    279          /**
+    280            * @brief  Return the product string descriptor
+    281            * @param  speed : Current device speed
+    282            * @param  length : Pointer to data length variable
+    283            * @retval Pointer to descriptor buffer
+    284            */
+
+   \                                 In section .text, align 2, keep-with-next
+    285          uint8_t * USBD_FS_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+    286          {
+   \                     USBD_FS_ProductStrDescriptor: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    287            if(speed == 0)
+   \        0x6   0x0020             MOVS     R0,R4
+   \        0x8   0xB2C0             UXTB     R0,R0
+   \        0xA   0x2800             CMP      R0,#+0
+   \        0xC   0xD105             BNE.N    ??USBD_FS_ProductStrDescriptor_0
+    288            {
+    289              USBD_GetString((uint8_t *)USBD_PRODUCT_STRING_FS, USBD_StrDesc, length);
+   \        0xE   0x002A             MOVS     R2,R5
+   \       0x10   0x....             LDR.N    R1,??DataTable7_2
+   \       0x12   0x....             LDR.N    R0,??DataTable7_3
+   \       0x14   0x.... 0x....      BL       USBD_GetString
+   \       0x18   0xE004             B.N      ??USBD_FS_ProductStrDescriptor_1
+    290            }
+    291            else
+    292            {
+    293              USBD_GetString((uint8_t *)USBD_PRODUCT_STRING_FS, USBD_StrDesc, length);
+   \                     ??USBD_FS_ProductStrDescriptor_0: (+1)
+   \       0x1A   0x002A             MOVS     R2,R5
+   \       0x1C   0x....             LDR.N    R1,??DataTable7_2
+   \       0x1E   0x....             LDR.N    R0,??DataTable7_3
+   \       0x20   0x.... 0x....      BL       USBD_GetString
+    294            }
+    295            return USBD_StrDesc;
+   \                     ??USBD_FS_ProductStrDescriptor_1: (+1)
+   \       0x24   0x....             LDR.N    R0,??DataTable7_2
+   \       0x26   0xBD32             POP      {R1,R4,R5,PC}
+    296          }
+    297          
+    298          /**
+    299            * @brief  Return the manufacturer string descriptor
+    300            * @param  speed : Current device speed
+    301            * @param  length : Pointer to data length variable
+    302            * @retval Pointer to descriptor buffer
+    303            */
+
+   \                                 In section .text, align 2, keep-with-next
+    304          uint8_t * USBD_FS_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+    305          {
+   \                     USBD_FS_ManufacturerStrDescriptor: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    306            UNUSED(speed);
+    307            USBD_GetString((uint8_t *)USBD_MANUFACTURER_STRING, USBD_StrDesc, length);
+   \        0x6   0x....             LDR.N    R6,??DataTable7_2
+   \        0x8   0x002A             MOVS     R2,R5
+   \        0xA   0x0031             MOVS     R1,R6
+   \        0xC   0x....             LDR.N    R0,??DataTable7_4
+   \        0xE   0x.... 0x....      BL       USBD_GetString
+    308            return USBD_StrDesc;
+   \       0x12   0x0030             MOVS     R0,R6
+   \       0x14   0xBD70             POP      {R4-R6,PC}
+    309          }
+    310          
+    311          /**
+    312            * @brief  Return the serial number string descriptor
+    313            * @param  speed : Current device speed
+    314            * @param  length : Pointer to data length variable
+    315            * @retval Pointer to descriptor buffer
+    316            */
+
+   \                                 In section .text, align 2, keep-with-next
+    317          uint8_t * USBD_FS_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+    318          {
+   \                     USBD_FS_SerialStrDescriptor: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    319            UNUSED(speed);
+    320            *length = USB_SIZ_STRING_SERIAL;
+   \        0x6   0x201A             MOVS     R0,#+26
+   \        0x8   0x8028             STRH     R0,[R5, #+0]
+    321          
+    322            /* Update the serial number string descriptor with the data from the unique
+    323             * ID */
+    324            Get_SerialNum();
+   \        0xA   0x.... 0x....      BL       Get_SerialNum
+    325            /* USER CODE BEGIN USBD_FS_SerialStrDescriptor */
+    326          
+    327            /* USER CODE END USBD_FS_SerialStrDescriptor */
+    328            return (uint8_t *) USBD_StringSerial;
+   \        0xE   0x....             LDR.N    R0,??DataTable7_5
+   \       0x10   0xBD32             POP      {R1,R4,R5,PC}
+    329          }
+    330          
+    331          /**
+    332            * @brief  Return the configuration string descriptor
+    333            * @param  speed : Current device speed
+    334            * @param  length : Pointer to data length variable
+    335            * @retval Pointer to descriptor buffer
+    336            */
+
+   \                                 In section .text, align 2, keep-with-next
+    337          uint8_t * USBD_FS_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+    338          {
+   \                     USBD_FS_ConfigStrDescriptor: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    339            if(speed == USBD_SPEED_HIGH)
+   \        0x6   0x0020             MOVS     R0,R4
+   \        0x8   0xB2C0             UXTB     R0,R0
+   \        0xA   0x2800             CMP      R0,#+0
+   \        0xC   0xD105             BNE.N    ??USBD_FS_ConfigStrDescriptor_0
+    340            {
+    341              USBD_GetString((uint8_t *)USBD_CONFIGURATION_STRING_FS, USBD_StrDesc, length);
+   \        0xE   0x002A             MOVS     R2,R5
+   \       0x10   0x....             LDR.N    R1,??DataTable7_2
+   \       0x12   0x....             LDR.N    R0,??DataTable7_6
+   \       0x14   0x.... 0x....      BL       USBD_GetString
+   \       0x18   0xE004             B.N      ??USBD_FS_ConfigStrDescriptor_1
+    342            }
+    343            else
+    344            {
+    345              USBD_GetString((uint8_t *)USBD_CONFIGURATION_STRING_FS, USBD_StrDesc, length);
+   \                     ??USBD_FS_ConfigStrDescriptor_0: (+1)
+   \       0x1A   0x002A             MOVS     R2,R5
+   \       0x1C   0x....             LDR.N    R1,??DataTable7_2
+   \       0x1E   0x....             LDR.N    R0,??DataTable7_6
+   \       0x20   0x.... 0x....      BL       USBD_GetString
+    346            }
+    347            return USBD_StrDesc;
+   \                     ??USBD_FS_ConfigStrDescriptor_1: (+1)
+   \       0x24   0x....             LDR.N    R0,??DataTable7_2
+   \       0x26   0xBD32             POP      {R1,R4,R5,PC}
+    348          }
+    349          
+    350          /**
+    351            * @brief  Return the interface string descriptor
+    352            * @param  speed : Current device speed
+    353            * @param  length : Pointer to data length variable
+    354            * @retval Pointer to descriptor buffer
+    355            */
+
+   \                                 In section .text, align 2, keep-with-next
+    356          uint8_t * USBD_FS_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+    357          {
+   \                     USBD_FS_InterfaceStrDescriptor: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    358            if(speed == 0)
+   \        0x6   0x0020             MOVS     R0,R4
+   \        0x8   0xB2C0             UXTB     R0,R0
+   \        0xA   0x2800             CMP      R0,#+0
+   \        0xC   0xD105             BNE.N    ??USBD_FS_InterfaceStrDescriptor_0
+    359            {
+    360              USBD_GetString((uint8_t *)USBD_INTERFACE_STRING_FS, USBD_StrDesc, length);
+   \        0xE   0x002A             MOVS     R2,R5
+   \       0x10   0x....             LDR.N    R1,??DataTable7_2
+   \       0x12   0x....             LDR.N    R0,??DataTable7_7
+   \       0x14   0x.... 0x....      BL       USBD_GetString
+   \       0x18   0xE004             B.N      ??USBD_FS_InterfaceStrDescriptor_1
+    361            }
+    362            else
+    363            {
+    364              USBD_GetString((uint8_t *)USBD_INTERFACE_STRING_FS, USBD_StrDesc, length);
+   \                     ??USBD_FS_InterfaceStrDescriptor_0: (+1)
+   \       0x1A   0x002A             MOVS     R2,R5
+   \       0x1C   0x....             LDR.N    R1,??DataTable7_2
+   \       0x1E   0x....             LDR.N    R0,??DataTable7_7
+   \       0x20   0x.... 0x....      BL       USBD_GetString
+    365            }
+    366            return USBD_StrDesc;
+   \                     ??USBD_FS_InterfaceStrDescriptor_1: (+1)
+   \       0x24   0x....             LDR.N    R0,??DataTable7_2
+   \       0x26   0xBD32             POP      {R1,R4,R5,PC}
+    367          }
+    368          
+    369          #if (USBD_LPM_ENABLED == 1)
+    370          /**
+    371            * @brief  Return the BOS descriptor
+    372            * @param  speed : Current device speed
+    373            * @param  length : Pointer to data length variable
+    374            * @retval Pointer to descriptor buffer
+    375            */
+    376          uint8_t * USBD_FS_USR_BOSDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+    377          {
+    378            UNUSED(speed);
+    379            *length = sizeof(USBD_FS_BOSDesc);
+    380            return (uint8_t*)USBD_FS_BOSDesc;
+    381          }
+    382          #endif /* (USBD_LPM_ENABLED == 1) */
+    383          
+    384          /**
+    385            * @brief  Create the serial number string descriptor
+    386            * @param  None
+    387            * @retval None
+    388            */
+
+   \                                 In section .text, align 2, keep-with-next
+    389          static void Get_SerialNum(void)
+    390          {
+   \                     Get_SerialNum: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+    391            uint32_t deviceserial0, deviceserial1, deviceserial2;
+    392          
+    393            deviceserial0 = *(uint32_t *) DEVICE_ID1;
+   \        0x2   0x....             LDR.N    R0,??DataTable7_8
+   \        0x4   0x6804             LDR      R4,[R0, #+0]
+    394            deviceserial1 = *(uint32_t *) DEVICE_ID2;
+   \        0x6   0x....             LDR.N    R0,??DataTable7_9
+   \        0x8   0x6805             LDR      R5,[R0, #+0]
+    395            deviceserial2 = *(uint32_t *) DEVICE_ID3;
+   \        0xA   0x....             LDR.N    R0,??DataTable7_10
+   \        0xC   0x6806             LDR      R6,[R0, #+0]
+    396          
+    397            deviceserial0 += deviceserial2;
+   \        0xE   0x1934             ADDS     R4,R6,R4
+    398          
+    399            if (deviceserial0 != 0)
+   \       0x10   0x2C00             CMP      R4,#+0
+   \       0x12   0xD00B             BEQ.N    ??Get_SerialNum_0
+    400            {
+    401              IntToUnicode(deviceserial0, &USBD_StringSerial[2], 8);
+   \       0x14   0x....             LDR.N    R7,??DataTable7_5
+   \       0x16   0x2208             MOVS     R2,#+8
+   \       0x18   0x1CB9             ADDS     R1,R7,#+2
+   \       0x1A   0x0020             MOVS     R0,R4
+   \       0x1C   0x.... 0x....      BL       IntToUnicode
+    402              IntToUnicode(deviceserial1, &USBD_StringSerial[18], 4);
+   \       0x20   0x2204             MOVS     R2,#+4
+   \       0x22   0xF117 0x0112      ADDS     R1,R7,#+18
+   \       0x26   0x0028             MOVS     R0,R5
+   \       0x28   0x.... 0x....      BL       IntToUnicode
+    403            }
+    404          }
+   \                     ??Get_SerialNum_0: (+1)
+   \       0x2C   0xBDF1             POP      {R0,R4-R7,PC}
+    405          
+    406          /**
+    407            * @brief  Convert Hex 32Bits value into char
+    408            * @param  value: value to convert
+    409            * @param  pbuf: pointer to the buffer
+    410            * @param  len: buffer length
+    411            * @retval None
+    412            */
+
+   \                                 In section .text, align 2, keep-with-next
+    413          static void IntToUnicode(uint32_t value, uint8_t * pbuf, uint8_t len)
+    414          {
+   \                     IntToUnicode: (+1)
+   \        0x0   0xB430             PUSH     {R4,R5}
+    415            uint8_t idx = 0;
+   \        0x2   0x2400             MOVS     R4,#+0
+    416          
+    417            for (idx = 0; idx < len; idx++)
+   \        0x4   0x2300             MOVS     R3,#+0
+   \                     ??IntToUnicode_0: (+1)
+   \        0x6   0x001C             MOVS     R4,R3
+   \        0x8   0x0015             MOVS     R5,R2
+   \        0xA   0xB2E4             UXTB     R4,R4
+   \        0xC   0xB2ED             UXTB     R5,R5
+   \        0xE   0x42AC             CMP      R4,R5
+   \       0x10   0xD21B             BCS.N    ??IntToUnicode_1
+    418            {
+    419              if (((value >> 28)) < 0xA)
+   \       0x12   0x0004             MOVS     R4,R0
+   \       0x14   0x0F24             LSRS     R4,R4,#+28
+   \       0x16   0x2C0A             CMP      R4,#+10
+   \       0x18   0xD207             BCS.N    ??IntToUnicode_2
+    420              {
+    421                pbuf[2 * idx] = (value >> 28) + '0';
+   \       0x1A   0x0004             MOVS     R4,R0
+   \       0x1C   0x0F24             LSRS     R4,R4,#+28
+   \       0x1E   0x3430             ADDS     R4,R4,#+48
+   \       0x20   0x001D             MOVS     R5,R3
+   \       0x22   0xB2ED             UXTB     R5,R5
+   \       0x24   0xF801 0x4015      STRB     R4,[R1, R5, LSL #+1]
+   \       0x28   0xE006             B.N      ??IntToUnicode_3
+    422              }
+    423              else
+    424              {
+    425                pbuf[2 * idx] = (value >> 28) + 'A' - 10;
+   \                     ??IntToUnicode_2: (+1)
+   \       0x2A   0x0004             MOVS     R4,R0
+   \       0x2C   0x0F24             LSRS     R4,R4,#+28
+   \       0x2E   0x3437             ADDS     R4,R4,#+55
+   \       0x30   0x001D             MOVS     R5,R3
+   \       0x32   0xB2ED             UXTB     R5,R5
+   \       0x34   0xF801 0x4015      STRB     R4,[R1, R5, LSL #+1]
+    426              }
+    427          
+    428              value = value << 4;
+   \                     ??IntToUnicode_3: (+1)
+   \       0x38   0x0100             LSLS     R0,R0,#+4
+    429          
+    430              pbuf[2 * idx + 1] = 0;
+   \       0x3A   0x2400             MOVS     R4,#+0
+   \       0x3C   0x001D             MOVS     R5,R3
+   \       0x3E   0xB2ED             UXTB     R5,R5
+   \       0x40   0xEB01 0x0545      ADD      R5,R1,R5, LSL #+1
+   \       0x44   0x706C             STRB     R4,[R5, #+1]
+    431            }
+   \       0x46   0x1C5B             ADDS     R3,R3,#+1
+   \       0x48   0xE7DD             B.N      ??IntToUnicode_0
+    432          }
+   \                     ??IntToUnicode_1: (+1)
+   \       0x4A   0xBC30             POP      {R4,R5}
+   \       0x4C   0x4770             BX       LR
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable7:
+   \        0x0   0x....'....        DC32     USBD_FS_DeviceDesc
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable7_1:
+   \        0x0   0x....'....        DC32     USBD_LangIDDesc
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable7_2:
+   \        0x0   0x....'....        DC32     USBD_StrDesc
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable7_3:
+   \        0x0   0x....'....        DC32     ?_0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable7_4:
+   \        0x0   0x....'....        DC32     ?_1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable7_5:
+   \        0x0   0x....'....        DC32     USBD_StringSerial
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable7_6:
+   \        0x0   0x....'....        DC32     ?_2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable7_7:
+   \        0x0   0x....'....        DC32     ?_3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable7_8:
+   \        0x0   0x1FFF'7A10        DC32     0x1fff7a10
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable7_9:
+   \        0x0   0x1FFF'7A14        DC32     0x1fff7a14
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable7_10:
+   \        0x0   0x1FFF'7A18        DC32     0x1fff7a18
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \        0x0   0x53 0x54          DC8 "STM32 Virtual ComPort"
+
+   \              0x4D 0x33    
+
+   \              0x32 0x20    
+
+   \              0x56 0x69    
+
+   \              0x72 0x74    
+
+   \              0x75 0x61    
+
+   \              0x6C 0x20    
+
+   \              0x43 0x6F    
+
+   \              0x6D 0x50    
+
+   \              0x6F 0x72    
+
+   \              0x74 0x00
+   \       0x16                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_1:
+   \        0x0   0x53 0x54          DC8 "STMicroelectronics"
+
+   \              0x4D 0x69    
+
+   \              0x63 0x72    
+
+   \              0x6F 0x65    
+
+   \              0x6C 0x65    
+
+   \              0x63 0x74    
+
+   \              0x72 0x6F    
+
+   \              0x6E 0x69    
+
+   \              0x63 0x73    
+
+   \              0x00
+   \       0x13                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_2:
+   \        0x0   0x43 0x44          DC8 "CDC Config"
+
+   \              0x43 0x20    
+
+   \              0x43 0x6F    
+
+   \              0x6E 0x66    
+
+   \              0x69 0x67    
+
+   \              0x00
+   \        0xB                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_3:
+   \        0x0   0x43 0x44          DC8 "CDC Interface"
+
+   \              0x43 0x20    
+
+   \              0x49 0x6E    
+
+   \              0x74 0x65    
+
+   \              0x72 0x66    
+
+   \              0x61 0x63    
+
+   \              0x65 0x00
+   \        0xE                      DS8 2
+    433          /**
+    434            * @}
+    435            */
+    436          
+    437          /**
+    438            * @}
+    439            */
+    440          
+    441          /**
+    442            * @}
+    443            */
+    444          
+    445          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      24   Get_SerialNum
+        24   -> IntToUnicode
+       8   IntToUnicode
+      16   USBD_FS_ConfigStrDescriptor
+        16   -> USBD_GetString
+       0   USBD_FS_DeviceDescriptor
+      16   USBD_FS_InterfaceStrDescriptor
+        16   -> USBD_GetString
+       0   USBD_FS_LangIDStrDescriptor
+      16   USBD_FS_ManufacturerStrDescriptor
+        16   -> USBD_GetString
+      16   USBD_FS_ProductStrDescriptor
+        16   -> USBD_GetString
+      16   USBD_FS_SerialStrDescriptor
+        16   -> Get_SerialNum
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable7
+       4  ??DataTable7_1
+       4  ??DataTable7_10
+       4  ??DataTable7_2
+       4  ??DataTable7_3
+       4  ??DataTable7_4
+       4  ??DataTable7_5
+       4  ??DataTable7_6
+       4  ??DataTable7_7
+       4  ??DataTable7_8
+       4  ??DataTable7_9
+      24  ?_0
+      20  ?_1
+      12  ?_2
+      16  ?_3
+      28  FS_Desc
+      46  Get_SerialNum
+      78  IntToUnicode
+      40  USBD_FS_ConfigStrDescriptor
+      20  USBD_FS_DeviceDesc
+      10  USBD_FS_DeviceDescriptor
+      40  USBD_FS_InterfaceStrDescriptor
+      10  USBD_FS_LangIDStrDescriptor
+      22  USBD_FS_ManufacturerStrDescriptor
+      40  USBD_FS_ProductStrDescriptor
+      18  USBD_FS_SerialStrDescriptor
+       4  USBD_LangIDDesc
+     512  USBD_StrDesc
+      28  USBD_StringSerial
+
+ 
+ 512 bytes in section .bss
+  80 bytes in section .data
+  72 bytes in section .rodata
+ 348 bytes in section .text
+ 
+ 348 bytes of CODE  memory
+  72 bytes of CONST memory
+ 592 bytes of DATA  memory
+
+Errors: none
+Warnings: 1

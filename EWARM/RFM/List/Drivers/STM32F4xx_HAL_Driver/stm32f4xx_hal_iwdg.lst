@@ -1,0 +1,375 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         15/Sep/2022  19:49:57
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_iwdg.c
+#    Command line      =
+#        -f
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_iwdg.o.rsp
+#        (C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_iwdg.c
+#        -D USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\STM32F4xx_HAL_Driver
+#        -o
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Core/Inc\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/CMSIS/Include\
+#        -I C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Drivers/display\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM/../Library\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_iwdg.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\List\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_iwdg.lst
+#    Object file       =
+#        C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_iwdg.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\JDS_DATA\RFM_IAR_source_220915\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_iwdg.c
+      1          /**
+      2            ******************************************************************************
+      3            * @file    stm32f4xx_hal_iwdg.c
+      4            * @author  MCD Application Team
+      5            * @brief   IWDG HAL module driver.
+      6            *          This file provides firmware functions to manage the following
+      7            *          functionalities of the Independent Watchdog (IWDG) peripheral:
+      8            *           + Initialization and Start functions
+      9            *           + IO operation functions
+     10            *
+     11            @verbatim
+     12            ==============================================================================
+     13                              ##### IWDG Generic features #####
+     14            ==============================================================================
+     15            [..]
+     16              (+) The IWDG can be started by either software or hardware (configurable
+     17                  through option byte).
+     18          
+     19              (+) The IWDG is clocked by Low-Speed clock (LSI) and thus stays active even
+     20                  if the main clock fails.
+     21          
+     22              (+) Once the IWDG is started, the LSI is forced ON and both can not be
+     23                  disabled. The counter starts counting down from the reset value (0xFFF).
+     24                  When it reaches the end of count value (0x000) a reset signal is
+     25                  generated (IWDG reset).
+     26          
+     27              (+) Whenever the key value 0x0000 AAAA is written in the IWDG_KR register,
+     28                  the IWDG_RLR value is reloaded in the counter and the watchdog reset is
+     29                  prevented.
+     30          
+     31              (+) The IWDG is implemented in the VDD voltage domain that is still functional
+     32                  in STOP and STANDBY mode (IWDG reset can wake-up from STANDBY).
+     33                  IWDGRST flag in RCC_CSR register can be used to inform when an IWDG
+     34                  reset occurs.
+     35          
+     36              (+) Debug mode : When the microcontroller enters debug mode (core halted),
+     37                  the IWDG counter either continues to work normally or stops, depending
+     38                  on DBG_IWDG_STOP configuration bit in DBG module, accessible through
+     39                  __HAL_DBGMCU_FREEZE_IWDG() and __HAL_DBGMCU_UNFREEZE_IWDG() macros.
+     40          
+     41              [..] Min-max timeout value @32KHz (LSI): ~125us / ~32.7s
+     42                   The IWDG timeout may vary due to LSI frequency dispersion. STM32F4xx
+     43                   devices provide the capability to measure the LSI frequency (LSI clock
+     44                   connected internally to TIM5 CH4 input capture). The measured value
+     45                   can be used to have an IWDG timeout with an acceptable accuracy.
+     46          
+     47                               ##### How to use this driver #####
+     48            ==============================================================================
+     49            [..]
+     50              (#) Use IWDG using HAL_IWDG_Init() function to :
+     51                (++) Enable instance by writing Start keyword in IWDG_KEY register. LSI
+     52                     clock is forced ON and IWDG counter starts counting down.
+     53                (++) Enable write access to configuration registers:
+     54                    IWDG_PR and IWDG_RLR.
+     55                (++) Configure the IWDG prescaler and counter reload value. This reload
+     56                     value will be loaded in the IWDG counter each time the watchdog is
+     57                     reloaded, then the IWDG will start counting down from this value.
+     58                (++) Wait for status flags to be reset.
+     59          
+     60              (#) Then the application program must refresh the IWDG counter at regular
+     61                  intervals during normal operation to prevent an MCU reset, using
+     62                  HAL_IWDG_Refresh() function.
+     63          
+     64               *** IWDG HAL driver macros list ***
+     65               ====================================
+     66               [..]
+     67                 Below the list of most used macros in IWDG HAL driver:
+     68                (+) __HAL_IWDG_START: Enable the IWDG peripheral
+     69                (+) __HAL_IWDG_RELOAD_COUNTER: Reloads IWDG counter with value defined in
+     70                    the reload register
+     71          
+     72            @endverbatim
+     73            ******************************************************************************
+     74            * @attention
+     75            *
+     76            * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+     77            * All rights reserved.</center></h2>
+     78            *
+     79            * This software component is licensed by ST under BSD 3-Clause license,
+     80            * the "License"; You may not use this file except in compliance with the
+     81            * License. You may obtain a copy of the License at:
+     82            *                        opensource.org/licenses/BSD-3-Clause
+     83            *
+     84            ******************************************************************************
+     85            */
+     86          
+     87          /* Includes ------------------------------------------------------------------*/
+     88          #include "stm32f4xx_hal.h"
+     89          
+     90          /** @addtogroup STM32F4xx_HAL_Driver
+     91            * @{
+     92            */
+     93          
+     94          #ifdef HAL_IWDG_MODULE_ENABLED
+     95          /** @addtogroup IWDG
+     96            * @brief IWDG HAL module driver.
+     97            * @{
+     98            */
+     99          
+    100          /* Private typedef -----------------------------------------------------------*/
+    101          /* Private define ------------------------------------------------------------*/
+    102          /** @defgroup IWDG_Private_Defines IWDG Private Defines
+    103            * @{
+    104            */
+    105          /* Status register need 5 RC LSI divided by prescaler clock to be updated. With
+    106             higher prescaler (256), and according to LSI variation, we need to wait at
+    107             least 6 cycles so 48 ms. */
+    108          #define HAL_IWDG_DEFAULT_TIMEOUT            48u
+    109          /**
+    110            * @}
+    111            */
+    112          
+    113          /* Private macro -------------------------------------------------------------*/
+    114          /* Private variables ---------------------------------------------------------*/
+    115          /* Private function prototypes -----------------------------------------------*/
+    116          /* Exported functions --------------------------------------------------------*/
+    117          
+    118          /** @addtogroup IWDG_Exported_Functions
+    119            * @{
+    120            */
+    121          
+    122          /** @addtogroup IWDG_Exported_Functions_Group1
+    123            *  @brief    Initialization and Start functions.
+    124            *
+    125          @verbatim
+    126           ===============================================================================
+    127                    ##### Initialization and Start functions #####
+    128           ===============================================================================
+    129           [..]  This section provides functions allowing to:
+    130                (+) Initialize the IWDG according to the specified parameters in the
+    131                    IWDG_InitTypeDef of associated handle.
+    132                (+) Once initialization is performed in HAL_IWDG_Init function, Watchdog
+    133                    is reloaded in order to exit function with correct time base.
+    134          
+    135          @endverbatim
+    136            * @{
+    137            */
+    138          
+    139          /**
+    140            * @brief  Initialize the IWDG according to the specified parameters in the
+    141            *         IWDG_InitTypeDef and start watchdog. Before exiting function,
+    142            *         watchdog is refreshed in order to have correct time base.
+    143            * @param  hiwdg  pointer to a IWDG_HandleTypeDef structure that contains
+    144            *                the configuration information for the specified IWDG module.
+    145            * @retval HAL status
+    146            */
+
+   \                                 In section .text, align 2, keep-with-next
+    147          HAL_StatusTypeDef HAL_IWDG_Init(IWDG_HandleTypeDef *hiwdg)
+    148          {
+   \                     HAL_IWDG_Init: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    149            uint32_t tickstart;
+    150          
+    151            /* Check the IWDG handle allocation */
+    152            if (hiwdg == NULL)
+   \        0x4   0x2C00             CMP      R4,#+0
+   \        0x6   0xD101             BNE.N    ??HAL_IWDG_Init_0
+    153            {
+    154              return HAL_ERROR;
+   \        0x8   0x2001             MOVS     R0,#+1
+   \        0xA   0xE020             B.N      ??HAL_IWDG_Init_1
+    155            }
+    156          
+    157            /* Check the parameters */
+    158            assert_param(IS_IWDG_ALL_INSTANCE(hiwdg->Instance));
+    159            assert_param(IS_IWDG_PRESCALER(hiwdg->Init.Prescaler));
+    160            assert_param(IS_IWDG_RELOAD(hiwdg->Init.Reload));
+    161          
+    162            /* Enable IWDG. LSI is turned on automatically */
+    163            __HAL_IWDG_START(hiwdg);
+   \                     ??HAL_IWDG_Init_0: (+1)
+   \        0xC   0xF64C 0x40CC      MOVW     R0,#+52428
+   \       0x10   0x6821             LDR      R1,[R4, #+0]
+   \       0x12   0x6008             STR      R0,[R1, #+0]
+    164          
+    165            /* Enable write access to IWDG_PR and IWDG_RLR registers by writing
+    166            0x5555 in KR */
+    167            IWDG_ENABLE_WRITE_ACCESS(hiwdg);
+   \       0x14   0xF245 0x5055      MOVW     R0,#+21845
+   \       0x18   0x6821             LDR      R1,[R4, #+0]
+   \       0x1A   0x6008             STR      R0,[R1, #+0]
+    168          
+    169            /* Write to IWDG registers the Prescaler & Reload values to work with */
+    170            hiwdg->Instance->PR = hiwdg->Init.Prescaler;
+   \       0x1C   0x6860             LDR      R0,[R4, #+4]
+   \       0x1E   0x6821             LDR      R1,[R4, #+0]
+   \       0x20   0x6048             STR      R0,[R1, #+4]
+    171            hiwdg->Instance->RLR = hiwdg->Init.Reload;
+   \       0x22   0x68A0             LDR      R0,[R4, #+8]
+   \       0x24   0x6821             LDR      R1,[R4, #+0]
+   \       0x26   0x6088             STR      R0,[R1, #+8]
+    172          
+    173            /* Check pending flag, if previous update not done, return timeout */
+    174            tickstart = HAL_GetTick();
+   \       0x28   0x.... 0x....      BL       HAL_GetTick
+   \       0x2C   0x0005             MOVS     R5,R0
+    175          
+    176            /* Wait for register to be updated */
+    177            while (hiwdg->Instance->SR != 0x00u)
+   \                     ??HAL_IWDG_Init_2: (+1)
+   \       0x2E   0x6820             LDR      R0,[R4, #+0]
+   \       0x30   0x68C0             LDR      R0,[R0, #+12]
+   \       0x32   0x2800             CMP      R0,#+0
+   \       0x34   0xD006             BEQ.N    ??HAL_IWDG_Init_3
+    178            {
+    179              if ((HAL_GetTick() - tickstart) > HAL_IWDG_DEFAULT_TIMEOUT)
+   \       0x36   0x.... 0x....      BL       HAL_GetTick
+   \       0x3A   0x1B40             SUBS     R0,R0,R5
+   \       0x3C   0x2831             CMP      R0,#+49
+   \       0x3E   0xD3F6             BCC.N    ??HAL_IWDG_Init_2
+    180              {
+    181                return HAL_TIMEOUT;
+   \       0x40   0x2003             MOVS     R0,#+3
+   \       0x42   0xE004             B.N      ??HAL_IWDG_Init_1
+    182              }
+    183            }
+    184          
+    185            /* Reload IWDG counter with value defined in the reload register */
+    186            __HAL_IWDG_RELOAD_COUNTER(hiwdg);
+   \                     ??HAL_IWDG_Init_3: (+1)
+   \       0x44   0xF64A 0x20AA      MOVW     R0,#+43690
+   \       0x48   0x6821             LDR      R1,[R4, #+0]
+   \       0x4A   0x6008             STR      R0,[R1, #+0]
+    187          
+    188            /* Return function status */
+    189            return HAL_OK;
+   \       0x4C   0x2000             MOVS     R0,#+0
+   \                     ??HAL_IWDG_Init_1: (+1)
+   \       0x4E   0xBD32             POP      {R1,R4,R5,PC}
+    190          }
+    191          
+    192          /**
+    193            * @}
+    194            */
+    195          
+    196          
+    197          /** @addtogroup IWDG_Exported_Functions_Group2
+    198            *  @brief   IO operation functions
+    199            *
+    200          @verbatim
+    201           ===============================================================================
+    202                                ##### IO operation functions #####
+    203           ===============================================================================
+    204           [..]  This section provides functions allowing to:
+    205                (+) Refresh the IWDG.
+    206          
+    207          @endverbatim
+    208            * @{
+    209            */
+    210          
+    211          
+    212          /**
+    213            * @brief  Refresh the IWDG.
+    214            * @param  hiwdg  pointer to a IWDG_HandleTypeDef structure that contains
+    215            *                the configuration information for the specified IWDG module.
+    216            * @retval HAL status
+    217            */
+
+   \                                 In section .text, align 2, keep-with-next
+    218          HAL_StatusTypeDef HAL_IWDG_Refresh(IWDG_HandleTypeDef *hiwdg)
+    219          {
+   \                     HAL_IWDG_Refresh: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+    220            /* Reload IWDG counter with value defined in the reload register */
+    221            __HAL_IWDG_RELOAD_COUNTER(hiwdg);
+   \        0x2   0xF64A 0x20AA      MOVW     R0,#+43690
+   \        0x6   0x680A             LDR      R2,[R1, #+0]
+   \        0x8   0x6010             STR      R0,[R2, #+0]
+    222          
+    223            /* Return function status */
+    224            return HAL_OK;
+   \        0xA   0x2000             MOVS     R0,#+0
+   \        0xC   0x4770             BX       LR
+    225          }
+    226          
+    227          /**
+    228            * @}
+    229            */
+    230          
+    231          /**
+    232            * @}
+    233            */
+    234          
+    235          #endif /* HAL_IWDG_MODULE_ENABLED */
+    236          /**
+    237            * @}
+    238            */
+    239          
+    240          /**
+    241            * @}
+    242            */
+    243          
+    244          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      16   HAL_IWDG_Init
+        16   -> HAL_GetTick
+       0   HAL_IWDG_Refresh
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      80  HAL_IWDG_Init
+      14  HAL_IWDG_Refresh
+
+ 
+ 94 bytes in section .text
+ 
+ 94 bytes of CODE memory
+
+Errors: none
+Warnings: none
