@@ -1,8 +1,8 @@
-C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\BrowseInfo\Library\version.pbi: \
-  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\version.c \
-  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\version.h \
-  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\VerInfo.h \
-  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h \
+C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\BrowseInfo\Library\version.pbi: \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\version.c \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\version.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\VerInfo.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\stdint.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\ycheck.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\yvals.h \

@@ -23,9 +23,9 @@
 
 if ($debugfile -eq "")
 {
-& "C:\Program Files\IAR Systems\Embedded Workbench 9.1\common\bin\cspybat" -f "C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\settings\RFM.RFM.general.xcl" --backend -f "C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\settings\RFM.RFM.driver.xcl" 
+& "C:\Program Files\IAR Systems\Embedded Workbench 9.1\common\bin\cspybat" -f "C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\settings\RFM.RFM.general.xcl" --backend -f "C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\settings\RFM.RFM.driver.xcl" 
 }
 else
 {
-& "C:\Program Files\IAR Systems\Embedded Workbench 9.1\common\bin\cspybat" -f "C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\settings\RFM.RFM.general.xcl" --debug_file=$debugfile --backend -f "C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\settings\RFM.RFM.driver.xcl" 
+& "C:\Program Files\IAR Systems\Embedded Workbench 9.1\common\bin\cspybat" -f "C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\settings\RFM.RFM.general.xcl" --debug_file=$debugfile --backend -f "C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\settings\RFM.RFM.driver.xcl" 
 }

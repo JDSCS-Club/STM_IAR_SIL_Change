@@ -16,8 +16,8 @@
         <MemConfigValue>C:\Program Files\IAR Systems\Embedded Workbench 9.1\arm\CONFIG\debugger\ST\STM32F407VG.ddf</MemConfigValue>
     </PlDriver>
     <ArmDriver>
-        <EnforceMemoryConfiguration>1</EnforceMemoryConfiguration>
         <EnableCache>0</EnableCache>
+        <EnforceMemoryConfiguration>1</EnforceMemoryConfiguration>
     </ArmDriver>
     <StLinkDriver>
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
@@ -26,7 +26,7 @@
         <stlinkResetStrategy>2</stlinkResetStrategy>
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>3509934299</Checksum>
+        <Checksum>1083495994</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -44,13 +44,13 @@
         <ShowArgs>0</ShowArgs>
     </CallStack>
     <JLinkDriver>
-        <LeaveTargetRunning>_ 0</LeaveTargetRunning>
-        <CStepIntDis>_ 0</CStepIntDis>
         <jlinkResetStyle>12</jlinkResetStyle>
         <jlinkResetStrategy>0</jlinkResetStrategy>
         <TraceBufferSize>0x10000</TraceBufferSize>
         <TraceStallIfFIFOFull>0x0</TraceStallIfFIFOFull>
         <TracePortSize>0x4</TracePortSize>
+        <LeaveTargetRunning>_ 0</LeaveTargetRunning>
+        <CStepIntDis>_ 0</CStepIntDis>
     </JLinkDriver>
     <SWOTraceHWSettings>
         <OverrideDefaultClocks>0</OverrideDefaultClocks>
@@ -154,10 +154,9 @@
         <mode>0</mode>
     </DisassembleMode>
     <Breakpoints2>
-        <Bp0>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Library\serial.c}.99.2" 0 0 1 "" 0 "" 0</Bp0>
-        <Bp1>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Core\Src\stm32f4xx_hal_timebase_tim.c}.50.3" 0 0 1 "" 0 "" 0</Bp1>
-        <Bp2>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Core\Src\stm32f4xx_hal_timebase_tim.c}.78.3" 0 0 1 "" 0 "" 0</Bp2>
-        <Count>3</Count>
+        <Bp0>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Core\Src\stm32f4xx_hal_timebase_tim.c}.50.3" 0 0 1 "" 0 "" 0</Bp0>
+        <Bp1>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Core\Src\stm32f4xx_hal_timebase_tim.c}.78.3" 0 0 1 "" 0 "" 0</Bp1>
+        <Count>2</Count>
     </Breakpoints2>
     <Aliases>
         <Count>0</Count>

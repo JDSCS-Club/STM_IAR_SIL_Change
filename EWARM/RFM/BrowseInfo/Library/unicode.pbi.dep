@@ -1,5 +1,5 @@
-C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\BrowseInfo\Library\unicode.pbi: \
-  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\unicode.c \
+C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\BrowseInfo\Library\unicode.pbi: \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\unicode.c \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\stdio.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\ycheck.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\yvals.h \
@@ -11,7 +11,7 @@ C:\D\JDS_DATA\RFM_IAR_source_220915\EWARM\RFM\BrowseInfo\Library\unicode.pbi: \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\DLib_Product_stdlib.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\string.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\DLib_Product_string.h \
-  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\typedef.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\stdint.h \
-  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\unicode.h \
-  C:\D\JDS_DATA\RFM_IAR_source_220915\Library\ksc5601.h
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\unicode.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\ksc5601.h
