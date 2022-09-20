@@ -39,6 +39,10 @@
 
 #include "adpcm.h"					//	ADPCM Codec
 
+#include "adc.h"
+
+#include "cli.h"
+
 //========================================================================
 // Define
 
@@ -408,7 +412,7 @@ int		LoadTrainSetIdx	( void )
 //    M24_HAL_ReadBytes( &hi2c1, 0xA0, 0x10, (uint8_t *)&idxTrainSet, 1 );
     M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPTrainSet, (uint8_t *)&idxTrainSet, 1 );
 
-    if ( GetDbg() > 0 )
+    if ( GetDbg() == 1 )
     	printf( "%s(%d) - %d\n", __func__, __LINE__, idxTrainSet );
 
     //========================================================================
@@ -458,7 +462,7 @@ void	SetTrainSetIdx	( int idxTrainSet )
         return ;
     }
 
-    if ( GetDbg() > 0 )
+    if ( GetDbg() == 1 )
     	printf( "%s(%d) - %d\n", __func__, __LINE__, idxTrainSet );
 //    M24_HAL_WriteBytes( &hi2c1, 0xA0, 0x10, (uint8_t *)&idxTrainSet, 1 );
     M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPTrainSet, (uint8_t *)&idxTrainSet, 1 );
@@ -483,7 +487,7 @@ int		GetRFMode	( void )
 
     if ( nRFMode > RFModeMax || nRFMode < 1 ) nRFMode = RFModeDefault;	//	Default Hop Man
 
-    if ( GetDbg() > 0 )
+    if ( GetDbg() == 1 )
     	printf( "%s(%d) - %d\n", __func__, __LINE__, nRFMode );
 
     return nRFMode;
@@ -500,7 +504,7 @@ void	SetRFMode	( int nRFMode )
         return ;
     }
 
-    if ( GetDbg() > 0 )
+    if ( GetDbg() == 1 )
     	printf( "%s(%d) - %d\n", __func__, __LINE__, nRFMode );
 
     M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPRFMode, (uint8_t *)&nRFMode, 1 );
@@ -529,7 +533,7 @@ int		GetManHop	( void )
 //    if ( nManHop > 2 || nManHop < 0 ) nManHop = 0;
     if ( nManHop > 2 || nManHop < 0 ) nManHop = DEFAULT_HOP_MAN_VAL;	//	Default Hop Man
 
-    if ( GetDbg() > 0 )
+    if ( GetDbg() == 1 )
     	printf( "%s(%d) - %d\n", __func__, __LINE__, nManHop );
 
     return nManHop;
@@ -546,7 +550,7 @@ void	SetManHop	( int nManHop )
         return ;
     }
 
-    if ( GetDbg() > 0 )
+    if ( GetDbg() == 1 )
     	printf( "%s(%d) - %d\n", __func__, __LINE__, nManHop );
 
 //    M24_HAL_WriteBytes( &hi2c1, 0xA0, 0x0D, (uint8_t *)&nManHop, 1 );
@@ -571,7 +575,7 @@ int		LoadCarNo		( void )
 //    M24_HAL_ReadBytes( &hi2c1, 0xA0, 0x0E, (uint8_t *)&nCarNo, 1 );
     M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPCarNo, (uint8_t *)&nCarNo, 1 );
 
-    if ( GetDbg() > 0 )
+    if ( GetDbg() == 1 )
     	printf( "%s(%d) - %d\n", __func__, __LINE__, nCarNo );
 
     g_nCarNo = nCarNo;
@@ -606,7 +610,7 @@ void	SetCarNo		( int nCarNo )
         return ;
     }
 
-	if ( GetDbg() > 0 )
+	if ( GetDbg() == 1 )
     	printf( "%s(%d) - %d\n", __func__, __LINE__, nCarNo );
 
 	g_nCarNo = nCarNo;
@@ -719,7 +723,7 @@ void RF_RSSI( void )
     si446x_get_modem_status_fast_clear_read();
 //	si446x_get_modem_status(0xff);
 
-    if ( GetDbg() > 0 )
+    if ( GetDbg() == 1 )
     {
         printf( "%s(%d) - ant1:%d / ant2:%d / curr:%d / latch:%d\n", __func__, __LINE__,
                 Si446xCmd.GET_MODEM_STATUS.ANT1_RSSI,
@@ -745,7 +749,7 @@ void RF_RSSI( void )
 void	RFM_Spk			( int bOnOff )		//	1(On) / 0(Off)
 //========================================================================
 {
-	if( GetDbg() > 1 )
+	if( GetDbg() == 1 )
 		printf("%s(%d) - %d\n", __func__, __LINE__, bOnOff);
 
     if ( bOnOff )
@@ -801,12 +805,19 @@ void PrintVerInfo( void )
 int cmd_ts      ( int argc, char * argv[] )
 //========================================================================
 {
+
+	int i = 0;
+	int sListBuf[20]={1,2,3,4,5,
+		   			  6,7,8,9,10,
+					  11,12,13,14,15,
+					   0, 0, 0, 0, 0};
+
     //	ts [train set] ( 0 ~ 9 )
     int 		nTrainSet = 0;
 
     if( argc <= 1 )
     {
-        printf( "Train Set : %d\n", 100 + GetTrainSetIdx() );
+        printf( "Train Set : %d\n", 400 + GetTrainSetIdx() );
 
     	return 0;
     }
@@ -817,9 +828,24 @@ int cmd_ts      ( int argc, char * argv[] )
         break;
     }
 
-    if ( nTrainSet < 0 || MaxTrainSet <= nTrainSet )  nTrainSet = 0;
 
-   	printf( "%s(%d) - Train Set : %d\n", __func__, __LINE__, nTrainSet + 100 );
+	for(i = 0;i <= 15;i++)
+	{
+		if(nTrainSet  == sListBuf[i])
+		{
+			nTrainSet  = sListBuf[i];
+			break;
+		}
+		else if( i  >= 15) 
+		{
+			nTrainSet = 0;
+		}
+	}
+
+
+   // if ( nTrainSet < 0 || MaxTrainSet <= nTrainSet )  nTrainSet = 0;
+
+   	printf( "%s(%d) - Train Set : %d\n", __func__, __LINE__, (nTrainSet + 400) );
 
     SetTrainSetIdx( nTrainSet );
 
@@ -849,7 +875,7 @@ int cmd_ch      ( int argc, char * argv[] )
 
     if ( nCh < 0 || MaxTrainSet <= nCh )  nCh = 0;
 
-    if ( GetDbg() > 0 )
+    if ( GetDbg() == 1 )
     	printf( "%s(%d) - Channel : %d\n", __func__, __LINE__, nCh );
 
     SetTrainSetIdx( nCh );
@@ -954,7 +980,7 @@ int cmd_info    ( int argc, char * argv[] )
     uint16_t	nData;
 
     printf( "[Setting]\n" );
-    printf( " - Train Set : %d\n", 100 + GetTrainSetIdx() );
+    printf( " - Train Set : %d\n", 400 + GetTrainSetIdx() );
     printf( " - Car No : %d\n", GetCarNo() );
     printf( " - RF Channel: %d\n", GetChRx() );
     printf( " - Mode : %s(%d)\n", StrRFMMode( GetRFMMode() ), GetRFMMode()  );	//	Normal / Tx / Rx / Upgrade
@@ -1114,8 +1140,6 @@ int cmd_OccPa     ( int argc, char * argv[] )
     {
     	printf("%s(%d) - Start\n", __func__, __LINE__ );
 
-    	//	OCC Mode
-    	SetRFMMode( RFMModeOcc );
 
 #if USE_RFM_OCC_PA
 
@@ -1132,6 +1156,21 @@ int cmd_OccPa     ( int argc, char * argv[] )
 
 		//  수신기 Spk Relay On
 		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_SET );
+
+
+		//
+		//SetRFMMode( RFMModeTx );
+
+
+		//SetChPA(ChTS1_1 );		//	가장 가까운 수신기 설정.
+
+		//	방송 - 시작
+		SendOCCPA( 1 );
+
+		//	OCC Mode
+		SetRFMMode( RFMModeOcc );
+
+
     }
     else
     {
@@ -1152,6 +1191,10 @@ int cmd_OccPa     ( int argc, char * argv[] )
 
 		//  수신기 Spk Relay Off
 		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_RESET );
+
+
+		//	방송 - 종료
+		SendOCCPA( 0 );
     }
 }
 
@@ -1197,6 +1240,7 @@ void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 	static int 	idx = 0;
 	int16_t		*pAudioTx;
 	int16_t		*pAudioRx;
+
 
 	{
 #if defined( USE_AUDIO_INTERPOL_COMPRESS )	|| defined( USE_AUDIO_ADPCM ) //	보간압축사용 or ADPCM 사용.
@@ -1304,7 +1348,9 @@ void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 				bRxBuffering = 0;
 
 				printf ( "F" );	 //  버퍼링종료 ( Buffering End - Buffer Full )
+
 			}
+
 		}
 
 		if ( bRxBuffering == 0 )
@@ -1369,12 +1415,14 @@ void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 			}
 			else
 			{
-				printf ( "B" );	 //  버퍼링시작 ( Buffering )
+				//printf ( "B" );	 //  버퍼링시작 ( Buffering )
 				//  Data
 				bRxBuffering = 1;
 
+
 #if defined( USE_AUDIO_ADPCM )	//	ADPCM 사용. - 1/4 압축
 				ADPCM_ClearDecodeBuf();
+				//qBufClear( &g_qBufAudioRx );	//	Tx Buffer Clear
 #endif
 
 			}
@@ -1594,14 +1642,31 @@ int InitRFM( void )
 
 #endif
 
+	int i = 0;
+	int s_idxTrainSet = 0;
+	int sListBuf[20]={1,2,3,4,5,
+		   			  6,7,8,9,10,
+					  11,12,13,14,15,
+					   0, 0, 0, 0, 0};
+
+		for(i = 0;i < 15;i++)
+		{
+			if(g_idxTrainSet  == sListBuf[i])
+			{
+				s_idxTrainSet = i;
+				break;
+			}
+		
+		}
+
 	//========================================================================
 	//	Radio 초기화 이후 채널 설정해줌.
 	{
 		//========================================================================
 		//  Radio Channel 설정.
-		pRadioConfiguration->Radio_ChannelNumber = g_idxTrainSet;
-		printf("%s(%d) - Radio Ch(%d) / g_idxTrainSet(%d)\n", __func__, __LINE__,
-				pRadioConfiguration->Radio_ChannelNumber, g_idxTrainSet );
+		pRadioConfiguration->Radio_ChannelNumber = s_idxTrainSet;
+		printf("%s(%d) - Radio Ch(%d) / s_idxTrainSet(%d)\n", __func__, __LINE__,
+				pRadioConfiguration->Radio_ChannelNumber, s_idxTrainSet );
 	}
 
 	//========================================================================
@@ -1683,6 +1748,10 @@ int RFM_main( void )
 void LoopProcRFM ( int nTick )
 //========================================================================
 {
+	static int nTxOccPkt = 0;
+	static int nRxOccPkt = 0;
+
+
 	RFMPkt	bufRFTx;
 
 	//========================================================================
@@ -1806,6 +1875,13 @@ void LoopProcRFM ( int nTick )
 				{
 					LCDPrintf( "수신중..." );
 				}
+
+				//========================================================================
+				//	송신기 음성 수신시에 Codec 재설정 : 음성 수신 짧게 반복시 Codec이 죽는현상 디버깅.
+				//InitCodecMAX9860();
+				//========================================================================
+
+
 				break;
 
 			case RFMModeNormal:
@@ -1858,18 +1934,30 @@ void LoopProcRFM ( int nTick )
 				//	Header #2
 				_MakePktHdr2( &bufRFTx, PktPA );
 
+
+				/*
 				if( GetChRx() == ChTS1_1 )	//	1호차 수신기
 				{
 					//	1 -> 2 ... -> 10
-					SendPktCh( GetChPA() + 1, (uint8_t *)&bufRFTx,
+					SendPktCh( GetChRFMUp(), (uint8_t *)&bufRFTx,
 						pRadioConfiguration->Radio_PacketLength );
 				}
 				else
 				{
 					// 10 -> 9 ... -> 1
-					SendPktCh( GetChPA() - 1, (uint8_t *)&bufRFTx,
+					SendPktCh( GetChPA() - ChGap, (uint8_t *)&bufRFTx,
 						pRadioConfiguration->Radio_PacketLength );
 				}
+				*/
+
+				SendPktCh( GetChRFMUp(), (uint8_t *)&bufRFTx,
+						pRadioConfiguration->Radio_PacketLength );
+
+
+				nTxOccPkt++;
+
+				if((nTxOccPkt) % 100 == 0) printf ( "OccSend (%d) \n",GetChPA() );
+
 
 				// 조명 On
 				HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
@@ -1970,15 +2058,17 @@ void LoopProcRFM ( int nTick )
 
 #endif
 
+
+//===================================================송신기 장치 상태정보 요청..=================================================================================
 #if defined(USE_STAT_REQ)	//	송신기 : 상태 정보 요청 100 msec간격.
-	//========================================================================
+
 	//	송신기 장치 상태정보 요청.
 	static int oldTickStatReq = 0;
 	static int s_idxCh = 0;
 
 	if	( 	GetDevID() == DevRF900T						//	송신기
 			&&	GetRFMMode() == RFMModeNormal			//	Normal모드 : 상태정보 요청.
-			)
+			&& GetAdcPow() == 0) // 충전 OPEN 중이면.
 	{
 #if defined(USE_ROUTE_REQ_RFM)//	수신기에서 요청의 경우 송신기가 요청하지 않음.
 #else
@@ -2027,21 +2117,33 @@ void LoopProcRFM ( int nTick )
 			oldTickStatReq = nTick;
 		}
 	}
-#endif
+	else if(GetDevID() == DevRF900T && GetRFMMode() != RFMModeNormal)
+	{
+		m_lightTxSentCnt = 0;
+	}
 
+#endif
+//===================================================수신기 Route 요청.=================================================================================
 
 #if defined(USE_ROUTE_REQ_RFM)	//	수신기 Route 요청.
 	static int oldTickRouteReq = 0;
 
 	static int s_ChkRsp = 0;
+	static int s_JumpRouteRsq = 0;
+	static int s_TimerVal = 0;
 
 	if	( 	GetDevID() == DevRF900M						//	수신기
 			&&	GetRFMMode() == RFMModeNormal			//	Normal모드 : 상태정보 요청.
-			)
+			&& m_RouteRunFlag != 0 )//&& 	g_nRFMode == RFMode1)
 	{
 
-		if( (nTick - oldTickRouteReq ) > (TIME_ROUTE_REQ * 1000) )
+		if(g_nCarNo == 1) s_TimerVal = 1000;
+		else s_TimerVal = 1500;
+
+		if((((nTick - oldTickRouteReq ) > (TIME_ROUTE_REQ * s_TimerVal)) || m_RouteReq_OK == 1) && s_ChkRsp == 0)
 		{
+			m_RouteReq_OK = 0;
+
 			//	수신기 -> 수신기 : Route 정보 요청.
 			//	1 -> 2
 			//		 2 -> 3
@@ -2051,21 +2153,29 @@ void LoopProcRFM ( int nTick )
 				//	다음번 수신기에 정보 요청
 				SendRouteReq( GetChRx() + ChGap );		//
 
+				if ( GetDbg() == 5 ) printf( "Tr:%d\n",GetChRx() + ChGap );
+
 				//	Timeout 발생시 그 다음 수신기로 정보 요청.
 			}
 
 			oldTickRouteReq = nTick;			//	1초 이후 부터 시작.
-			s_ChkRsp = 1;
+
+			m_RouteRunFlag--;
+
+			if( g_nCarNo != 9 && g_nCarNo != 10) s_ChkRsp = 1;
+
 		}
 
 		if( s_ChkRsp == 1
-				&& (nTick - oldTickRouteReq ) > 100		//	송신후 응답시간 ( 100 msec )
+				&& (nTick - oldTickRouteReq ) > 500		//	송신후 응답시간 ( 100 msec ) 이상 시간이 지났다면
 				&& ( g_nCarNo != 9 && g_nCarNo != 10 )	//	다음호차 검색은 9/10호차 Skip
 				)
 		{
+
+			
 			//	다음 호차검색
 
-			if ( ( nTick - g_nStampRouteRsp ) > TIMEOUT_RECV_ROUTE * 1000 )
+			if ( ( nTick - g_nStampRouteRsp ) > (TIMEOUT_RECV_ROUTE * 1000) ) // Rsp  수신 데이티가 5초이상 없다면, 다음 다다음 호차 호출.
 			{
 				//	Timeout 발생시.
 				//	다음호차부터  ~ 10까지 상태정보 전송 검색.
@@ -2074,13 +2184,34 @@ void LoopProcRFM ( int nTick )
 				//	[1] [2-X] ->[3] ->[4] ... -> [10]
 				SendRouteReq( GetChRx() + (2 + g_nIdxRouteFindNext) * ChGap );
 
+				if ( GetDbg() == 5 ) printf( "Tr~:%d\n",GetChRx() + (2 + g_nIdxRouteFindNext) * ChGap  );
+
 				if ( ( g_nCarNo + 2 + g_nIdxRouteFindNext ) > 10 )
+				{
 					g_nIdxRouteFindNext = 0;
+					s_JumpRouteRsq = 0;
+				}
 				else
-					g_nIdxRouteFindNext++;
+				{
+					s_JumpRouteRsq++;
+
+					if(s_JumpRouteRsq>=5)
+					{
+						//g_nIdxRouteFindNext +=  (s_JumpRouteRsq/5); //
+						g_nIdxRouteFindNext += 1;
+						s_JumpRouteRsq = 0;
+					}
+
+
+					//g_nIdxRouteFindNext++;
+				}
 			}
 			s_ChkRsp = 0;
 		}
+	}
+	else if(GetDevID() == DevRF900M	&& (GetRFMMode() == RFMModeTx || GetRFMMode() == RFMModeRx))
+	{
+		m_lightReSendCnt = 0;
 	}
 
 #endif
@@ -2115,6 +2246,9 @@ void UpdateStat( RFMPktStat *pStat )
 				pStat->nRFMode,
 				g_devStat[idx].nRSSI
 				);
+
+		sprintf(_sSelfTestList[(idx-1)],"%02d 호차 : OK",idx);
+
 #elif defined( USE_HOP_MANUAL )
 		sprintf(_sVerList[idx], "%02d:v%d/hop(%d)", idx,
 				pStat->ver_build,
@@ -2146,10 +2280,12 @@ void SetStat( int nRspID )
 	g_devStat[nRspID].stampRx = HAL_GetTick();
 }
 
+
 //========================================================================
 void ReflashStat( int nTick )
 //========================================================================
 {
+	static int m_ReFlahStat_Cnt = 0;
 	//	상태정보 갱신.
 	//	Timeout 초과 상태정보 Disable
 	if( g_bSetRspIDManual )
@@ -2158,6 +2294,36 @@ void ReflashStat( int nTick )
 		return ;
 	}
 
+
+	 if ( ( nTick - g_devStat[m_ReFlahStat_Cnt].stampRx ) > (TIMEOUT_RECV_STATUS * 1000) )
+	{
+		g_flagRspID &= ~( 0x1 << m_ReFlahStat_Cnt );
+
+
+		sprintf(_sSelfTestList[m_ReFlahStat_Cnt-1],"%02d 호차 : NG",(m_ReFlahStat_Cnt));
+
+		//========================================================================
+		//	Timeout 발생시 RSSI값 초기화.
+		g_devStat[m_ReFlahStat_Cnt].nRSSI 	= 	0;
+		g_devStat[m_ReFlahStat_Cnt].nNearCh 	= 	0;	//	nNearCh 초기화.
+		//========================================================================
+	}
+
+	 if(m_ReFlahStat_Cnt >= 10)
+	{
+		m_ReFlahStat_Cnt = 1;
+	}
+	 else
+	 {
+		 m_ReFlahStat_Cnt++;
+	 }
+
+
+
+
+
+
+	/*
 	int idx;
 
 	for( idx = 0; idx < MaxCarNo; idx++ )
@@ -2168,9 +2334,11 @@ void ReflashStat( int nTick )
 			continue;
 		}
 
-		if ( ( nTick - g_devStat[idx].stampRx ) > TIMEOUT_RECV_STATUS * 1000 )
+		if ( ( nTick - g_devStat[idx].stampRx ) > (TIMEOUT_RECV_STATUS * 5000) )
 		{
 			g_flagRspID &= ~( 0x1 << idx );
+
+
 
 			//========================================================================
 			//	Timeout 발생시 RSSI값 초기화.
@@ -2179,6 +2347,7 @@ void ReflashStat( int nTick )
 			//========================================================================
 		}
 	}
+	*/
 }
 
 

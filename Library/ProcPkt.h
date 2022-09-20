@@ -23,7 +23,7 @@ extern int nTxPkt;		//	Tx Packet Count
 extern int nRxPkt;		//	Rx Packet Count
 extern int nHopPkt;		//	Hopping Packet Count
 extern int nDropPkt;	//	Drop Packet Count
-
+extern int nDropPkt_2;
 //========================================================================
 extern int nRxErr;
 extern int nCrcErr;
@@ -37,6 +37,7 @@ extern int nRxStamp;	//	Rx Tick Stamp
 extern int			g_bSetRspIDManual;	//  RspID Flag 수동설정. ( 디버깅용 )
 extern uint16_t	 	g_flagRspID;		//  범위 안의 Device ID Flag ( 0 ~ 15 bit )
 extern uint8_t	 	g_nPktSeq;			//  Packet Sequence
+extern uint8_t	 	g_nPktSeq_2;			//  Packet Sequence
 
 //========================================================================
 //	Dump Function

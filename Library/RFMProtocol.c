@@ -38,6 +38,7 @@
 
 #include "eeprom.h"				//	AddrEEPUpgrMGN1
 
+#include "cli.h"
 
 //==========================================================================
 //	Define
@@ -48,6 +49,15 @@ extern int ChTx_2 	= 	_ChTx_2;	//	* CH9 : 송신기#2 - (Car No : 12)
 extern int ChTS1_1 	= 	_ChTS1_1;	//	1호차 수신기 채널
 //==========================================================================
 
+
+
+int m_lightReSendCnt = 0; // 수신기에서 사용하는 변수.
+int m_lightTxSentCnt = 0; //송신기에서 전송하는 방법.
+int m_light_Val = 0xFF;
+
+int m_RouteReq_OK = 0; //Route 기능에서 내가 요청에 응답이 수신되었는지 확인.
+
+int m_RouteRunFlag = 0; // 전파 방해금지를 위해 동작 조건을 설정.
 
 //==========================================================================
 //	Function
@@ -81,6 +91,10 @@ void _MakePktHdr	( RFMPkt *pPkt, int addrSrc, int addrDest, int nLen, int nPktCm
 		pPkt->hdr.bHdrID		=	HdrID1;		//	Header ID #1
 		pPkt->hdr.nSeq			=	0x00;		//	Sequence
 		pPkt->hdr.nIDFlag		=	0x00;		//	ID Flag
+
+		pPkt->dat.cmd.nSpare[0] = GetTrainSetIdx(); // 편성 정보를 전달한다. //_JDS
+
+
 	}
 	else
 	{
@@ -126,21 +140,51 @@ void _MakePktHdr2	( RFMPkt *pPkt, int nPktCmd )
 	pPkt->hdr2.nTS			=	GetTrainSetIdx();	//	ID Flag
 	pPkt->hdr2.nPktCmd		=	nPktCmd;			//	Status
 
+	if((GetDevID() == DevRF900T && GetRFMMode() == RFMModeTx)|| (GetRFMMode() == RFMModeOcc) )
+	{
+		// 전송 페키지 카운터.
+		g_nPktSeq_2++;
+		if ( g_nPktSeq_2 == 0 )	g_nPktSeq_2++;
+		pPkt->hdr2.nSeq			=	g_nPktSeq_2;
+	}
+
+
 //	CLEAR_BIT(pPkt->hdr2.nTS, (0x1<<7));
 //	SET_BIT(pPkt->hdr2.nTS, (0x1<<6));
 
 #if defined( USE_RFT_REG_TO_RFM )
-	//	자신의 송신기 ID Flag 설정.	-	재수신 받지 않음.
-	if( GetRFTID() == 1 )
+
+	if ( GetDevID() == DevRF900T )
 	{
-		pPkt->hdr2.bRFT1	=	1;	//	SET_BIT( pPkt->hdr2.nSrcCh, (0x1<<6) );	//
-		if( GetChPARFT() != 0 )	pPkt->hdr2.bRFT2	=	1;	//	송신기에 직접 전송하는경우.
+		//	자신의 송신기 ID Flag 설정.	-	재수신 받지 않음.
+		if( GetRFTID() == 1 )
+		{
+			pPkt->hdr2.bRFT1	=	1;	//	SET_BIT( pPkt->hdr2.nSrcCh, (0x1<<6) );	//
+			if( GetChPARFT() != 0 )	pPkt->hdr2.bRFT2	=	1;	//	송신기에 직접 전송하는경우.
+		}
+		else if( GetRFTID() == 2 )
+		{
+			pPkt->hdr2.bRFT2	=	1;	//	SET_BIT( pPkt->hdr2.nSrcCh, (0x1<<7) );//
+			if( GetChPARFT() != 0 )	pPkt->hdr2.bRFT1	=	1;	//	송신기에 직접 전송하는경우.
+		}
 	}
-	else if( GetRFTID() == 2 )
+	else
 	{
-		pPkt->hdr2.bRFT2	=	1;	//	SET_BIT( pPkt->hdr2.nSrcCh, (0x1<<7) );//
-		if( GetChPARFT() != 0 )	pPkt->hdr2.bRFT1	=	1;	//	송신기에 직접 전송하는경우.
+
+		if( GetChRx() == ChTS1_1 )	//	1호차 수신기
+		{
+			pPkt->hdr2.bRFT1	=	1;	//	SET_BIT( pPkt->hdr2.nSrcCh, (0x1<<6) );	//
+			//if( GetChPARFT() != 0 )	pPkt->hdr2.bRFT2	=	1;	//	송신기에 직접 전송하는경우.
+
+		}
+		else
+		{
+			pPkt->hdr2.bRFT2	=	1;	//	SET_BIT( pPkt->hdr2.nSrcCh, (0x1<<7) );//
+			//if( GetChPARFT() != 0 )	pPkt->hdr2.bRFT1	=	1;	//	송신기에 직접 전송하는경우.
+
+		}
 	}
+
 
 #endif
 }
@@ -164,15 +208,17 @@ void _MakeRFCmd( RFMPkt	*pPkt, char *sCmd, int nRSSI )
 	pPkt->dat.cmd.nRSSIOver = nRSSI;		//	명령 동작 RSSI 범위.
 	strcpy( pPkt->dat.cmd.sCmd, sCmd );		//	명령 전송.
 
+	pPkt->dat.cmd.nSpare[0] = GetTrainSetIdx(); // 편성 정보를 전달한다. //_JDS
+
 	//========================================================================
 }
 
 
 //========================================================================
-void SendStatReq( int nDestCh )
+void  SendStatReq( int nDestCh )
 //========================================================================
 {
-	if ( GetDbg() )	printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3)	printf( "%s(%d)\n", __func__, __LINE__ );
 
 	RFMPkt			stPkt;
 	RFMPktStatReq	*pStatReq;
@@ -197,6 +243,15 @@ void SendStatReq( int nDestCh )
 
 #endif	//	 defined(USE_ROUTE_NEAREST_RFM)
 
+	if (m_lightTxSentCnt) //조명등 OFF 동작을 라우터 프로토콜에 15초 동안 추가해서 기능 확인. _JDS
+	{
+		m_lightTxSentCnt--;
+
+		pStatReq->nSpare1[0] = m_light_Val;
+
+		if ( GetDbg() == 6 ) printf("SeStReq:CC \n");
+	}
+
 	//========================================================================
 	//	Send RF
 	SendPktCh( nDestCh, (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + sizeof( RFMPktStatReq ) );
@@ -209,7 +264,7 @@ void SendStat( int nDestCh )
 	//	RF Mode가 RFMModeNormal인 경우.
 	//		상태정보 전송.
 
-	if ( GetDbg() )	printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )	printf( "%s(%d)\n", __func__, __LINE__ );
 
 	RFMPkt		stPkt;
 	RFMPktStat	*pStat;
@@ -273,10 +328,10 @@ void SendStat( int nDestCh )
 
 
 //========================================================================
-void SendRouteReq( int nDestCh )
+void SendRouteReq( int nDestCh ) // 요청하는 부분.
 //========================================================================
 {
-	if ( GetDbg() )	printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )	printf( "%s(%d)\n", __func__, __LINE__ );
 
 	RFMPkt			stPkt;
 	RFMPktRoute		*pRouteReq;
@@ -296,16 +351,27 @@ void SendRouteReq( int nDestCh )
 	pRouteReq->nCarNo	=	GetCarNo();			//	호차번호.
 	pRouteReq->nTrainNo	=	GetTrainSetIdx();	//	편성번호.
 
+
+	if (m_lightReSendCnt) //조명등 OFF 동작을 라우터 프로토콜에 15초 동안 추가해서 기능 확인.
+	{
+		m_lightReSendCnt--;
+
+		pRouteReq->nSpare1[0] = m_light_Val;
+
+		if ( GetDbg() == 6 ) printf("SeReq:AA \n");
+	}
+
+
 	//========================================================================
 	//	Send RF
 	SendPktCh( nDestCh, (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + sizeof( RFMPktRoute ) );
 }
 
 //========================================================================
-void SendRouteRsp( int nDestCh )
+void SendRouteRsp( int nDestCh ) //응답하는 부분.
 //========================================================================
 {
-	if ( GetDbg() )	printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )	printf( "%s(%d)\n", __func__, __LINE__ );
 
 	RFMPkt			stPkt;
 	RFMPktRoute	*pRouteRsp;
@@ -324,6 +390,21 @@ void SendRouteRsp( int nDestCh )
 
 	pRouteRsp->nCarNo	=	GetCarNo();			//	호차번호.
 	pRouteRsp->nTrainNo	=	GetTrainSetIdx();	//	편성번호.
+
+	if(GetRFMMode() == RFMModeNormal) //_JDS
+	{
+		if (m_lightReSendCnt) {
+			m_lightReSendCnt--;
+			pRouteRsp->nSpare1[1] = m_light_Val;
+
+			if ( GetDbg() == 6 ) printf("SeRep:BB \n");
+
+		}
+	}
+	else
+	{
+		m_lightReSendCnt = 0;
+	}
 
 	//========================================================================
 	//	Send RF
@@ -459,7 +540,7 @@ void SendOCCPA( int nStartStop )
 	//	Status Data
 	pPACall->nStartStop		=	nStartStop;
 
-	pPACall->nTypePACall	=	CtrlOccPa;
+	pPACall->nTypePACall	=	CtrlPA;
 
 	//========================================================================
 	//	Send RF
@@ -469,13 +550,15 @@ void SendOCCPA( int nStartStop )
 	if ( GetChPARFT() != 0 )
 	{
 		//	송신기에 전송.
-		SendPktCh( GetChPARFT(), (uint8_t *)&stPkt,
-			(U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
+		//SendPktCh( GetChPARFT(), (uint8_t *)&stPkt,
+		//	(U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
 	}
 
 	//	수신기에 전송
-	SendPktCh( GetChPA(), (uint8_t *)&stPkt,
+	SendPktCh( GetChRFMUp(), (uint8_t *)&stPkt,
 		(U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
+
+	printf( "%s(%d)\n", __func__, GetChPA() + ChGap );
 
 #else
 	SendPacket( (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
@@ -534,6 +617,12 @@ void SendLightOn( void )
 //==========================================================================
 {
 	SendLight( 1 );		//	Light On
+
+
+	m_lightTxSentCnt = 20;
+	m_light_Val = 0xDD;
+
+
 }
 
 //==========================================================================
@@ -541,6 +630,10 @@ void SendLightOff( void )
 //==========================================================================
 {
 	SendLight( 0 );		//	Light Off
+
+	m_lightTxSentCnt = 20;
+	m_light_Val = 0xCC;
+
 }
 
 //==========================================================================
@@ -566,6 +659,7 @@ void SendRFCmd( char *sCmd, int nRSSI )
 	//========================================================================
 	RFMPkt			stPkt;
 	_MakeRFCmd( &stPkt, sCmd, nRSSI );
+
 
 	//========================================================================
 	//	Send RF
@@ -707,6 +801,13 @@ void	SendUpgrData		( uint32_t nAddrTarget, int nPktTot, int nPktIdx, uint8_t *sB
 	pUpgr->idxPkt		=	nPktIdx;
 	pUpgr->nSize		=	nSize;
 
+	if (stPkt.hdr.nPktCmd == PktUpgr) //같은 편성만 업데이트가 가능 하도록 기능 추가.
+	{
+		pUpgr->nSpare2[0] = GetTrainSetIdx(); //
+	}
+
+
+
 	if( GetUpgrReTry() ) pUpgr->bFlag	|=	PktUpgrFlagRetry;	//	Retry Flag
 
 	memcpy( pUpgr->data, sBuf, nSize );
@@ -774,14 +875,20 @@ void	SendUpgrStat		( int nUpgrResult )	//	Send Upgrade Data
 int	ProcPktStatReq		( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
 
 	const RFMPktStatReq *pStatReq = &pRFPkt->dat.statReq;
+
+	// 같은 편성 번호 차량 명령에만 반응한다. )
+	if ((pStatReq->nTrainNo != GetTrainSetIdx())) return 0;
+
+	m_RouteRunFlag = ((10 - GetCarNo())*5);
 
 	//	수신기의 경우 송신기 상태정보 갱신.
 	//		-> 상태정보 요청한 송신기의 상태정보를 갱신한다.
 	if ( GetDevID() == DevRF900M )
 	{
+
 		int idx = pStatReq->nCarNo;
 
 		//========================================================================
@@ -796,6 +903,26 @@ int	ProcPktStatReq		( const RFMPkt *pRFPkt )
 #if defined(USE_ROUTE_NEAREST_RFM)	//	수신기 -> 송신기 중계 연결. ( 가장가까운 수신기에서 송신기로 중계 )
 		g_devStat[idx].nNearCh 		= pStatReq->nNearCh;	//	송신기 입장에서 가까운 수신기(RFM)채널.
 #endif	//	defined(USE_ROUTE_NEAREST_RFM)
+
+		if(pStatReq->nSpare1[0] == 0xCC)
+		{
+			// 조명 Off 명령 수신시.
+			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET );
+			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET );
+
+			if ( GetDbg() == 6 ) printf("StReq: Led_OFF \n");
+
+		}
+		else if(pStatReq->nSpare1[0] == 0xDD)
+		{
+			// 조명 ON 명령 수신시.
+			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
+			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
+
+			if ( GetDbg() == 6 ) printf("Req: Led_ON \n");
+
+		}
+
 	}
 
 	//	Source Channel로 상태정보 송신.
@@ -807,12 +934,15 @@ int	ProcPktStatReq		( const RFMPkt *pRFPkt )
 int	ProcPktStat			( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
 
 	int nRspID = pRFPkt->dat.stat.nCarNo;
 	const RFMPktStat *pStat = &pRFPkt->dat.stat;
 	//	상태정보 수신.
 //		printf ( "[Stat] Car:%d\n", pRFPkt->dat.stat.nCarNo );
+
+	if(pStat->nTrainNo !=	GetTrainSetIdx()) return 0;	//	편성번호 확인.
+
 
 	if( nRspID < MaxCarNo	//	MaxCarNo(13)
 		&& ( pStat->nDevID == DevRF900M || pStat->nDevID == DevRF900T )
@@ -851,13 +981,21 @@ int	ProcPktStat			( const RFMPkt *pRFPkt )
 
 
 //========================================================================
-int	ProcPktRouteReq		( const RFMPkt *pRFPkt )
+int	ProcPktRouteReq		( const RFMPkt *pRFPkt ) //요청.
 //========================================================================
 {
 	//	Source Channel로 Route 응답.
 	const RFMPktRoute *pRouteReq = &pRFPkt->dat.routeReq;
 
-	if ( GetDbg() )		printf( "%s(%d) - %d\n", __func__, __LINE__, pRouteReq->nSrcCh );
+	// 같은 편성 번호 차량 명령에만 반응한다. )
+	if ((pRouteReq->nTrainNo  != GetTrainSetIdx())) return 0;
+
+	if ( GetDbg() == 3 )		printf( "%s(%d) - %d\n", __func__, __LINE__, pRouteReq->nSrcCh );
+
+	if ( GetDbg() == 5 ) printf( "Req : %d\n",pRouteReq->nSrcCh);
+
+
+
 
 	if ( GetDevID() == DevRF900M )
 	{
@@ -912,13 +1050,38 @@ int	ProcPktRouteReq		( const RFMPkt *pRFPkt )
 		}
 #endif
 
+
 		//========================================================================
 		//	Route 정보 갱신
+		if (pRouteReq->nSpare1[0] == 0xAA) // 조명등 OFF 데이타를 받으면, 강제로 종료 한다. ( 내가 받은 데이타)  _JDS
+		{
+			// 조명 Off 명령 수신시.
+			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET );
+			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET );
+
+			if ( GetDbg() == 6 ) printf("Req: Led_OFF \n");
+
+		}
+		else if (pRouteReq->nSpare1[0] == 0xBB) // 조명등 ON 데이타를 받으면, 강제로 종료 한다. ( 내가 받은 데이타)  _JDS
+		{
+			// 조명 ON 명령 수신시.
+			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
+			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
+
+			if ( GetDbg() == 6 ) printf("Req: Led_ON \n");
+
+		}
+
 	}
 
 	//	Resp Delay
 //	HAL_Delay( 3 );	//	Route 응답 Delay
 	SendRouteRsp( pRouteReq->nSrcCh );
+
+	m_RouteReq_OK = 1;
+
+	m_RouteRunFlag = ((10 - GetCarNo())*5);
+
 }
 
 
@@ -928,10 +1091,20 @@ int	ProcPktRouteRsp		( const RFMPkt *pRFPkt )
 {
 	const RFMPktRoute *pRouteRsp = &pRFPkt->dat.routeRsp;
 
+	// 같은 편성 번호 차량 명령에만 반응한다. )
+	if ((pRouteRsp->nTrainNo != GetTrainSetIdx())) return 0;
+
+
 	g_nStampRouteRsp = HAL_GetTick();		//	응답 시간 저장.
 	g_nIdxRouteFindNext = 0;				//	Find Index 초기화.
 
-	if ( GetDbg() )		printf( "%s(%d) - %d\n", __func__, __LINE__, pRouteRsp->nSrcCh );
+	if ( GetDbg() == 3 )		printf( "%s(%d) - %d\n", __func__, __LINE__, pRouteRsp->nSrcCh );
+
+	if ( GetDbg() == 5 ) printf( "Rsp : %d\n",pRouteRsp->nSrcCh);
+
+
+
+
 
 	if ( GetDevID() == DevRF900M )
 	{
@@ -970,6 +1143,27 @@ int	ProcPktRouteRsp		( const RFMPkt *pRFPkt )
 
 		//========================================================================
 		//	Route 정보 갱신
+
+		if (pRouteRsp->nSpare1[1] == 0xAA) // 조명등 OFF 데이타를 받으면, 강제로 종료 한다. ( 내가 받은 데이타)  _JDS
+		{
+			// 조명 Off 명령 수신시.
+			HAL_GPIO_WritePin(LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET);
+
+			if ( GetDbg() == 6 ) printf("Rep: Led_OFF \n");
+
+		}
+		else if (pRouteRsp->nSpare1[1] == 0xBB)
+		{
+			// 조명 ON 명령 수신시.
+			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
+			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
+
+			if ( GetDbg() == 6 ) printf("Req: Led_ON \n");
+
+
+		}
+
 	}
 }
 
@@ -978,7 +1172,7 @@ int	ProcPktRouteRsp		( const RFMPkt *pRFPkt )
 int	ProcPktCtrlPaCall	( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
 
 	//	방송/통화 시작 종료 명령.
 	const RFMPktCtrlPACall	*pCtrl = &pRFPkt->dat.pacall;
@@ -994,6 +1188,9 @@ int	ProcPktCtrlPaCall	( const RFMPkt *pRFPkt )
 		SetRFMMode( RFMModeNormal );
 		//  송신기 & 수신기 Spk Relay Off
 		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_RESET );
+
+		qBufClear( &g_qBufAudioRx );	//	Tx Buffer Clear
+
 		break;
 	default:			printf("%s:Invalid\n", __func__);	return 0;
 	}
@@ -1023,7 +1220,18 @@ int	ProcPktCtrlPaCall	( const RFMPkt *pRFPkt )
 int	ProcPktPA			( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() )		printf( "%s(%d)\n", __func__, __LINE__ );
+	//RFMPktStat *pStat = &pRFPkt->dat.stat;
+
+	const RFMPktHdr2 *pHdr = &pRFPkt->hdr2;
+
+	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
+
+
+	if ( pHdr->nTS != GetTrainSetIdx() )
+	{
+		//	열차번호가 다른경우 : Skip
+		return 0;	//	Skip
+	}
 
 	//========================================================================
 	//  방송 ( PTT )
@@ -1052,6 +1260,8 @@ int	ProcPktPA			( const RFMPkt *pRFPkt )
 
 #if defined(USE_RFT_ONLY_RX_SPK_ON)
 		//  송신기 : 수신중인 경우 SPK ON
+
+		WriteI2CCodec( 0x0c, 0x2A );	// 갑자기 소리 커지는 문제 해결하기 위해 추가.
 //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
 		RFM_Spk(1);
 #endif
@@ -1073,7 +1283,7 @@ int	ProcPktPA			( const RFMPkt *pRFPkt )
 int	ProcPktCall			( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
 
 	if( GetDevID() == DevRF900T )
 	{
@@ -1114,7 +1324,7 @@ int	ProcPktDevConn			( const RFMPkt *pRFPkt )
 //========================================================================
 {
 	//	Device Node Connection
-	if ( GetDbg() )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
 
 	const RFMPktDevConn	*pConn = &pRFPkt->dat.devConn;
 
@@ -1136,7 +1346,8 @@ int	ProcPktDevConn			( const RFMPkt *pRFPkt )
 int	ProcPktLight		( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
+
 
 	if ( GetDevID() == DevRF900M && pRFPkt->hdr.nPktCmd == PktLight )
 	{
@@ -1145,11 +1356,17 @@ int	ProcPktLight		( const RFMPkt *pRFPkt )
 		{
 			// 조명 Off 명령 수신시.
 			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET );
+
+			m_lightReSendCnt = 10;
+			m_light_Val = 0xAA;
 		}
 		else if ( pRFPkt->dat.light.nOnOff == 1 )
 		{
 			// 조명 On 명령 수신시.
 			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
+
+			m_lightReSendCnt = 10;
+			m_light_Val = 0xBB;
 		}
 	}
 }
@@ -1159,12 +1376,15 @@ int	ProcPktLight		( const RFMPkt *pRFPkt )
 int	ProcPktCmd			( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
 
 	//	RSSI Check
 	printf( "%s(%d) - %s\n", __func__, __LINE__, pRFPkt->dat.cmd.sCmd );
 
-	if ( g_nRSSI >= pRFPkt->dat.cmd.nRSSIOver )
+	// 같은 편성 번호 차량 명령에만 반응한다. )
+	if ((pRFPkt->dat.cmd.nSpare[0] != GetTrainSetIdx())) return 0;
+
+	if ( g_nRSSI >= pRFPkt->dat.cmd.nRSSIOver&& (pRFPkt->dat.cmd.nSpare[0] == GetTrainSetIdx())) // 같은 편성 번호 차량 명령에만 반응한다. )
 	{
 		if ( pRFPkt->dat.cmd.nRsp == 1 )
 		{
@@ -1174,8 +1394,9 @@ int	ProcPktCmd			( const RFMPkt *pRFPkt )
 		}
 
 		//	RSSI값 확인 후 해당 범위 내에 있는 경우 명령 동작.
-		ProcessCommand( pRFPkt->dat.cmd.sCmd );
+		ProcessCommand((char *)pRFPkt->dat.cmd.sCmd );
 	}
+
 }
 
 
@@ -1183,7 +1404,7 @@ int	ProcPktCmd			( const RFMPkt *pRFPkt )
 int	ProcPktCmdRsp		( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
 
 	//	Command 처리결과 응답.
 
@@ -1202,7 +1423,7 @@ int	ProcPktUpgr			( const RFMPkt *pRFPkt )
 	//	Upgrade Flash Image
 	//========================================================================
 
-	if ( GetDbg() )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
 
 	//========================================================================
 	//	Data Flash영역에 Write
@@ -1224,6 +1445,11 @@ int	ProcPktUpgr			( const RFMPkt *pRFPkt )
 //	memcpy( pUpgr->data, sBuf, nSize );
 
 	//========================================================================
+
+	// 같은 편성 번호 차량 명령에만 반응한다. )
+	if (pUpgr->nSpare2[0] != GetTrainSetIdx()) { return 0; }
+
+
 	static int	s_rxPkt;
 
 	if ( pUpgr->idxPkt == 0 )
@@ -1372,7 +1598,7 @@ int	ProcPktUpgrStat			( const RFMPkt *pRFPkt )
 	//========================================================================
 
 	//	Upgrade 결과 수신후 수신기 LCD창에 표시.
-	if ( GetDbg() )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
 
 	char sBuf[50];
 

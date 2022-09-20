@@ -10,6 +10,8 @@
 
 #include "QBuf.h"
 
+#include "Adafruit_SSD1306.h"		//  LCD Display
+
 #include "RFMProtocol.h"			//  SendStat()
 
 #include "audio.h"					//  g_bufAudioRFRx
@@ -28,43 +30,7 @@
 
 #include "ProcPkt.h"				//	g_flagRspID
 
-
-#define RFM_IAR_BUILD   0              //      IAR Compiler Build
-
-#if defined(RFM_IAR_BUILD)
-
-//void    LCDPrintfXY             ( int x, int y, char *str ){}
-//void    LCDClearMain            ( void ){}
-//void    LCDPrintf               ( char * str ){}
-//void    LCDSetCursor            ( int x, int y ){}
-//void    LCDEnableDebug		( int bEnable ){}  		//  print LCD Display
-//void    LCDSpeaker              ( int nLevel ){}
-//void    LCDLight                ( int bOnOff ){}
-//void    LCDClear                ( void ){}
-//void    LCDBattery              ( int nLevel ){}
-//int     LCDInit                 ( void ){ return 1; }
-//void    LCDDrawRect             ( int x, int y, int w, int h, int color ) {} //  Clear LCD Display
-//void    LCDMenu                 ( void ){}
-//void    LCDMenuUpDown           ( int nUpDown ){} //  0( Off ) / 1( ▲Up ) / 2( ▼Down ) / 3( ▲Up/▼Down ) 
-
-//#define         LCDCleanMain    ()
-//#/define         LCDPrintf       ()
-//#define         LCDSetCursor    ()
-//#define         LCDEnableDebug  ()
-//#define         LCDSpeaker      ()
-//#define         LCDLight        ()
-//#define         LCDClear        ()
-//#define         LCDBattery      ()
-//#define         LCDInit         ()
-//#define         LCDDrawRect     ()
-//#define         LCDMenu         ()
-
-#else
-
-#include "Adafruit_SSD1306.h"		//  LCD Display
-
-#endif
-
+#include "cli.h"
 
 //========================================================================
 //	Menu LightCtrl
@@ -128,26 +94,26 @@ Menu_t	g_MenuVerList = {
 //	Menu TrainSet	-	편성설정메뉴 ( 100 ~ 119 )
 
 char *_sTrainSet[] = {
-	" 100 편성",
-	" 101 편성",
-	" 102 편성",
-	" 103 편성",
-	" 104 편성",
-	" 105 편성",
-	" 106 편성",
-	" 107 편성",
-	" 108 편성",
-	" 109 편성",
-	" 110 편성",
-	" 111 편성",
-	" 112 편성",
-	" 113 편성",
-	" 114 편성",
-	" 115 편성",
-	" 116 편성",
-	" 117 편성",
-	" 118 편성",
-	" 119 편성",
+	" 401 편성",
+	" 402 편성",
+	" 403 편성",
+	" 404 편성",
+	" 405 편성",
+	" 406 편성",
+	" 407 편성",
+	" 408 편성",
+	" 409 편성",
+	" 410 편성",
+	" 411 편성",
+	" 412 편성",
+	" 413 편성",
+	" 414 편성",
+	" 415 편성",
+	//" 300 편성",
+	//" 300 편성",
+	//" 300 편성",
+	//" 300 편성",
+	//" 300 편성",
 };
 
 Menu_t	g_MenuTrainSet = {
@@ -178,21 +144,43 @@ Menu_t	g_MenuRFTIDList = {
 //	Menu SelfTest - 자가진단
 
 #if defined(USE_RFT_MENU_SELFTEST)
-char *_sSelfTestList[] = {
-	" 1 호차 : OK",	//
-	" 2 호차 : OK",	//
-	" 3 호차 : OK",	//
-	" 4 호차 : N/A",	//
-	" 5 호차 : N/A",	//
-	" 6 호차 : OK",	//
+
+char _sSelfTestList[15][20] = {
+		"01 호차 : --",	//
+		"02 호차 : --",	//
+		"03 호차 : --",	//
+		"04 호차 : --",	//
+		"05 호차 : --",	//
+		"06 호차 : --",	//
+		"07 호차 : --",
+		"08 호차 : --",
+		"09 호차 : --",
+		"10 호차 : --",
 };
 
-Menu_t	g_MenuSelfTestList = {
-	_sSelfTestList,
-	sizeof(_sSelfTestList)/sizeof(char *),		//	Item Count
+char *_sSelfTestList_OK[] = {
+	_sSelfTestList[0],
+	_sSelfTestList[1],
+	_sSelfTestList[2],
+	_sSelfTestList[3],
+	_sSelfTestList[4],
+	_sSelfTestList[5],
+	_sSelfTestList[6],
+	_sSelfTestList[7],
+	_sSelfTestList[8],
+	_sSelfTestList[9],
+
+};
+
+
+Menu_t	g_MenuSelfTestList_OK = {
+	_sSelfTestList_OK,
+	sizeof(_sSelfTestList_OK)/sizeof(char *),		//	Item Count
 	0,						// 	curr Idx
 	ProcMenuSelfTest		//	Callback Function
 };
+
+
 #endif	//	defined(USE_RFT_MENU_SELFTEST)
 
 //========================================================================
@@ -480,9 +468,11 @@ Menu_t	*GetActiveMenu( void )
 void	UpdateLCDMain( void )
 //========================================================================
 {
+
+
 	char sBuf[30];
 
-	sprintf( sBuf, "편성 : %d", 100 + g_idxTrainSet );
+	sprintf( sBuf, "편성 : %d", 400 + g_idxTrainSet);
 
 //	LCDPrintf( "편성 : 100" );
 	LCDPrintfXY( 20, 13, sBuf );
@@ -504,6 +494,8 @@ void	UpdateLCDMenu( void )
 	sMenu		=	g_pActiveMenu->sItem;
 	pIdxMenu	=	&g_pActiveMenu->currIdx;
 	pCntMenu	=	&g_pActiveMenu->cntItem;
+
+
 
 	//  Main화면 Clear
 	LCDClearMain();
@@ -710,9 +702,15 @@ void	ProcDispStat ( void )
 void	ProcMenuTrainSet( int idxItem  )
 //========================================================================
 {
+	int sListBuf[20]={1,2,3,4,5,
+		   			  6,7,8,9,10,
+					  11,12,13,14,15,
+					   0, 0, 0, 0, 0};
+					   
 	LCDSetCursor( 20, 13 );
 	LCDPrintf( "[편성설정]" );
-	g_idxTrainSet = idxItem;	//	메뉴 Index값으로 설정.
+	g_idxTrainSet =sListBuf[idxItem];	//	메뉴 Index값으로 설정.
+
 	SetTrainSetIdx( g_idxTrainSet );
 
 #if defined(USE_CH_ISO_DEV)		//	장치별로 채널 구분.
@@ -798,10 +796,17 @@ void	ProcMenuCmd( int idxItem  )
 void	ProcMenuSetCmdTS( int idxItem  )
 //========================================================================
 {
+
+	int sListBuf[20]={1,2,3,4,5,
+		   			  6,7,8,9,10,
+					  11,12,13,14,15,
+					   0, 0, 0, 0, 0};
+
+
 	LCDSetCursor( 20, 13 );
 	LCDPrintf( "[명령전송]" );
 
-	SendRFCmdTS(idxItem);		//	편성설정.
+	SendRFCmdTS(sListBuf[idxItem]);		//	편성설정.
 
 	//  1초후 Main화면 갱신.
 	HAL_Delay( 1000 );
@@ -855,6 +860,15 @@ void	ProcMenuSetCmdRFMode( int idxItem  )
 void 	ProcMenuMain( int idxItem )
 //========================================================================
 {
+
+
+	int i = 0;
+	int sListBuf[20]={1,2,3,4,5,
+		   			  6,7,8,9,10,
+					  11,12,13,14,15,
+					   0, 0, 0, 0, 0};;
+
+
 	switch ( idxItem )
 	{
 	case eMenuIdxCtlLight:	//	0:		 //  조명제어
@@ -893,8 +907,14 @@ void 	ProcMenuMain( int idxItem )
 
 	case eMenuIdxTrainSet:	//	2:		 //  편성설정.
 
+
+		for(i = 0;i < 15;i++)
+		{
+			if(g_idxTrainSet  == sListBuf[i]) break;
+		}
+
 		SetActiveMenu( &g_MenuTrainSet );
-		GetActiveMenu()->currIdx = g_idxTrainSet;	//	메뉴 Index초기화.
+		GetActiveMenu()->currIdx = i;	//	메뉴 Index초기화.
 
 		UpdateLCDMenu();
 		break;
@@ -915,10 +935,12 @@ void 	ProcMenuMain( int idxItem )
 
 	case eMenuIdxSelfTest:	//	4:		 //  송신기 ID
 
-		SetActiveMenu( &g_MenuSelfTestList );
+
+		SetActiveMenu( &g_MenuSelfTestList_OK );
 		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
 
 		UpdateLCDMenu();
+
 		break;
 
 #endif	//	defined(USE_RFT_MENU_SELFTEST)
@@ -1049,9 +1071,12 @@ void 	ProcMenuSelfTest( int idxItem )
 
 	//  1초후 Main화면 갱신.
 	HAL_Delay( 1000 );
-	UpdateLCDMain();
+
 
 	SetActiveMenu( NULL );
+
+	UpdateLCDMain();
+
 }
 
 //========================================================================

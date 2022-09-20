@@ -56,28 +56,28 @@ void Adc_Power( void )
     //  충전중인지 검사.
     bIsCharge = ( HAL_GPIO_ReadPin( BAT_CHRG_GPIO_Port, BAT_CHRG_Pin ) ) ? 0 : 1;
 
-    if( GetDbg() > 0 )
+    if( GetDbg() == 4 )
     {
         printf( "%s(%d) - adc_pwr : %d / old_adc_pwr : %d / BAT_CHRG : %d\n",
             __func__, __LINE__,
             adc_pwr, old_adc_pwr,
-            bIsCharge
+            GetAdcPow()
         );
     }
 
-    if ( bOldIsCharge != bIsCharge )
+    if ( bOldIsCharge != GetAdcPow() )
     {
-        if ( bIsCharge == 0 )
+        if ( GetAdcPow() == 0 )
         {
             //  충전 단자 제거시 -  LED Off
             HAL_GPIO_WritePin( LED_ON_A_GPIO_Port, LED_ON_A_Pin, GPIO_PIN_RESET );  //  Green
             HAL_GPIO_WritePin( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_RESET );  //  Red
         }
 
-        bOldIsCharge = bIsCharge;
+        bOldIsCharge = GetAdcPow();
     }
 
-    if( bIsCharge )
+    if( GetAdcPow() )
     {
         //  충전중. - Charging Start.
 
@@ -111,6 +111,21 @@ void Adc_Power( void )
     }
 
     old_adc_pwr = adc_pwr;
+}
+
+//========================================================================
+// Get_Adc_Pow // 충전 중인지 확인 하는 함수
+// 1 : 충전중 
+// 0 : Open
+//======================================================================
+int		GetAdcPow		( void )
+//========================================================================
+{
+	static int s_bOnce = 0;
+
+    s_bOnce = ( HAL_GPIO_ReadPin( BAT_CHRG_GPIO_Port, BAT_CHRG_Pin ) ) ? 0 : 1;
+
+	return s_bOnce;
 }
 
 //========================================================================

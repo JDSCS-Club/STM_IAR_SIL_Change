@@ -68,5 +68,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\BrowseInfo\Library\rfm.pbi: \
   C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\radio\Si446x\si446x_api_lib.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\ProcPkt.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\adpcm.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\adc.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\cli.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\menu.h

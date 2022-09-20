@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  11:09:53
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  23:37:23
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                 =  thumb
@@ -644,7 +644,7 @@ Warning[Pe550]: variable "index" was set but never used
     212          	{
     213          		//	Default Loopback
     214          		//	pAudioTable = sine_table;
-    215          		memcpy( (void *)&bufAudio[0], (void *)&bufAudio[I2S_DMA_LOOP_SIZE], I2S_DMA_LOOP_SIZE * 2 );
+    215          		memcpy( (uint8_t *) &bufAudio[0], (uint8_t *)&bufAudio[I2S_DMA_LOOP_SIZE], I2S_DMA_LOOP_SIZE * 2 );
    \                     ??HAL_I2SEx_TxRxCpltCallback_0: (+1)
    \       0x18   0x253C             MOVS     R5,#+60
    \       0x1A   0x.... 0x....      LDR.W    R6,??DataTable18_9
@@ -939,7 +939,7 @@ Warning[Pe061]: integer operation result is out of range
     360          
     361          	//========================================================================
     362          	//	Loopback
-    363          	memcpy( (void *)&bufAudio[0], (void *)&bufAudio[I2S_DMA_LOOP_SIZE], I2S_DMA_LOOP_SIZE * 2 );
+    363          	memcpy( (uint8_t *)&bufAudio[0], (uint8_t *)&bufAudio[I2S_DMA_LOOP_SIZE], I2S_DMA_LOOP_SIZE * 2 );
    \        0x6   0x253C             MOVS     R5,#+60
    \        0x8   0x.... 0x....      LDR.W    R6,??DataTable18_9
    \        0xC   0xF116 0x073C      ADDS     R7,R6,#+60

@@ -52,7 +52,7 @@ enum eRFMConfig
 	MaxMicVol		=	9,			//	Mic 볼륨 최대값.
 
 //DEL	MaxTrainSet		=	10,			//	100 ~ 109 편성 ( 10개 편성 )
-	MaxTrainSet		=	20,			//	100 ~ 119 편성 ( 20개 편성 )
+	MaxTrainSet		=	50,			//	100 ~ 119 편성 ( 20개 편성 )
 //	MaxCarNo		=	12,			//	1 ~ 10호차 / 11(수신기#1) / 12(수신기#2)
 //	MaxCarNo		=	15,			//	1 ~ 10호차 / 11(수신기#1) / 12(수신기#2) / 13~15(Test)
 
@@ -160,7 +160,6 @@ void	RF_RSSI			( void );
 //========================================================================
 
 void	PrintVerInfo	( void );
-
 
 void ReflashStat( int nTick );
 void ReloadStampStat( void );

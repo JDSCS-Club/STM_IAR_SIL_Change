@@ -68,4 +68,5 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\BrowseInfo\Library\RFMProtocol.pbi: \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\audio.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\QBuf.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\flash_if.h \
-  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.h
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\cli.h

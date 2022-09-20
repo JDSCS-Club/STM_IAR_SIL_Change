@@ -50,8 +50,6 @@ uint8_t		dataTx1[8];		//	UART1 - RS485
 UART_HandleTypeDef *phuart1 = NULL;
 UART_HandleTypeDef *phuart2 = NULL;			//	Debug
 
-
-
 //=============================================================================
 #if defined(_WIN32)
 //=============================================================================
@@ -78,7 +76,7 @@ UART_HandleTypeDef *phuart2 = NULL;			//	Debug
   * @retval None
   */
 //===========================================================================
-int __io_putchar(int ch)
+PUTCHAR_PROTOTYPE
 //===========================================================================
 {
 	/* Place your implementation of fputc here */

@@ -63,6 +63,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\BrowseInfo\Library\menu.pbi: \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\stdarg.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\stdbool.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\QBuf.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\Adafruit_SSD1306.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm_config.h \

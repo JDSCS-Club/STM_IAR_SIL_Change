@@ -325,7 +325,7 @@ typedef struct _RFMPktHdr2
 	uint8_t		nSrcCh:6;		//	Source Channel ( 0 ~ 63 )
 	uint8_t		bRFT1:1;		//	송신기#1 전송 Flag
 	uint8_t		bRFT2:1;		//	송신기#2 전송 Flag
-	uint8_t		nSpare3;		//	Spare
+	uint8_t		nSeq;		//	Spare
 	uint8_t		nPktCmd;		//	Command에 따라 Data Length 구분.
 } RFMPktHdr2;
 
@@ -705,6 +705,14 @@ int		ProcPktCmd			( const RFMPkt *pRFPkt );
 int		ProcPktCmdRsp		( const RFMPkt *pRFPkt );
 int		ProcPktUpgr			( const RFMPkt *pRFPkt );
 int		ProcPktUpgrStat		( const RFMPkt *pRFPkt );
+
+
+extern int m_lightReSendCnt;
+extern int m_lightTxSentCnt;
+extern int m_RouteReq_OK;
+extern int m_light_Val;
+
+extern int m_RouteRunFlag;
 
 //==========================================================================
 #ifdef __cplusplus

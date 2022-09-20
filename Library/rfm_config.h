@@ -109,7 +109,7 @@ enum eRFMode
 #if defined(USE_ROUTE_REQ)
 #define		TIME_ROUTE_REQ					1//10		//	Route 상태정보 요청 주기 10초.
 
-#define		TIMEOUT_RECV_ROUTE				10		//	상태정보 수신 Timeout. ( seconds )
+#define		TIMEOUT_RECV_ROUTE				5		//	상태정보 수신 Timeout. ( seconds )
 #endif
 
 //	Route 수신기 -> 송신기

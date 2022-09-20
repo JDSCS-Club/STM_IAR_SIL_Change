@@ -42,6 +42,7 @@ extern Menu_t	g_MenuTrainSet;					//	TrainSet
 
 extern char 	_sVerList[16][20];				//	Version Info
 
+extern char 	_sSelfTestList[15][20]; 		//자기진단 결과 업데이트
 //========================================================================
 //	Menu Procedure
 

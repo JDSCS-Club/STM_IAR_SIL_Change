@@ -23,7 +23,7 @@
 #define	APP_MAIN_VER	1
 #define	APP_SUB_VER		1
 #define	APP_DETAIL_VER	0
-#define	APP_BUILD_VER	302
+#define	APP_BUILD_VER	370
 
 // 전처리 과정에서 문자열로 변환.	ex) 1.0.0.0 -> "1.0.0.0"
 #define str(x)		#x				

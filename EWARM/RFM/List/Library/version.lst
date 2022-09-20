@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  11:09:54
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  23:37:24
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -93,11 +93,11 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\version.c
    \                                 In section .data, align 4
      25          VER_INFO			g_Version = {
    \                     g_Version:
-   \        0x0   0x0001 0x0001      DC16 1, 1, 0, 302, 0
+   \        0x0   0x0001 0x0001      DC16 1, 1, 0, 370, 0
 
-   \               0x0000 0x012
+   \               0x0000 0x017
 
-   \              E 0x0000
+   \              2 0x0000
    \        0xA   0x00 0x00          DC8 0, 0, 0, 0, 0, 0
 
    \              0x00 0x00    

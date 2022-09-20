@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  11:09:54
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  23:37:24
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                     =  thumb
@@ -1198,223 +1198,229 @@ Warning[Pe223]: function "AudioTxStop" declared implicitly
 
    \                                 In section .text, align 2, keep-with-next
     580          int GetDbg( void )
-    581          //========================================================================
-    582          {
-    583          	return debug_level;
+    581          // 레벨을 정리.
+    582          // 1. x > 0  --> x == 1
+    583          // 2. x == 2  는 Dump 기능.
+    584          // 3. x == 3  는 RFMProtocol 함수 디버깅.
+    585          // 4. adc / radio 함수 디버깅.
+    586          // 5. JDS 디버깅
+    587          //========================================================================
+    588          {
+    589          	return debug_level;
    \                     GetDbg: (+1)
    \        0x0   0x.... 0x....      LDR.W    R0,??DataTable26_64
    \        0x4   0x6800             LDR      R0,[R0, #+0]
    \        0x6   0x4770             BX       LR
-    584          }
-    585          
-    586          //========================================================================
+    590          }
+    591          
+    592          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    587          void memory_modify(void *mem_addr, int unit)
-    588          //========================================================================
-    589          {
+    593          void memory_modify(void *mem_addr, int unit)
+    594          //========================================================================
+    595          {
    \                     memory_modify: (+1)
    \        0x0   0xE92D 0x4FF0      PUSH     {R4-R11,LR}
    \        0x4   0xB0A1             SUB      SP,SP,#+132
    \        0x6   0x0005             MOVS     R5,R0
    \        0x8   0x000E             MOVS     R6,R1
-    590          	unsigned char	v1;
-    591          	unsigned short	v2;
-    592          	unsigned int	v4;
-    593          	unsigned char	*addrp1 = (unsigned char *)mem_addr;
+    596          	unsigned char	v1;
+    597          	unsigned short	v2;
+    598          	unsigned int	v4;
+    599          	unsigned char	*addrp1 = (unsigned char *)mem_addr;
    \        0xA   0x46A8             MOV      R8,R5
-    594          	unsigned short	*addrp2 = (unsigned short *)mem_addr;
+    600          	unsigned short	*addrp2 = (unsigned short *)mem_addr;
    \        0xC   0x46A9             MOV      R9,R5
-    595          	unsigned int	*addrp4 = (unsigned int *)mem_addr;
+    601          	unsigned int	*addrp4 = (unsigned int *)mem_addr;
    \        0xE   0x46AA             MOV      R10,R5
-    596          	char			inbuf[0x80];
-    597          
-    598          	if (unit == 1)
+    602          	char			inbuf[0x80];
+    603          
+    604          	if (unit == 1)
    \       0x10   0x2E01             CMP      R6,#+1
    \       0x12   0xD121             BNE.N    ??memory_modify_0
-    599          	{
-    600          		while (1)
-    601          		{
-    602          			v1 = *addrp1;
+    605          	{
+    606          		while (1)
+    607          		{
+    608          			v1 = *addrp1;
    \                     ??memory_modify_1: (+1)
    \       0x14   0xF898 0xB000      LDRB     R11,[R8, #+0]
-    603          			printf("%08p - %02x ", addrp1, v1);
+    609          			printf("%08p - %02x ", addrp1, v1);
    \       0x18   0x465A             MOV      R2,R11
    \       0x1A   0xB2D2             UXTB     R2,R2
    \       0x1C   0x4641             MOV      R1,R8
    \       0x1E   0x.... 0x....      LDR.W    R0,??DataTable26_65
    \       0x22   0x.... 0x....      BL       printf
-    604          			v1 = readline(inbuf);
+    610          			v1 = readline(inbuf);
    \       0x26   0xA801             ADD      R0,SP,#+4
    \       0x28   0x.... 0x....      BL       readline
    \       0x2C   0xF88D 0x0000      STRB     R0,[SP, #+0]
-    605          			if (0 < v1)
+    611          			if (0 < v1)
    \       0x30   0xF89D 0x0000      LDRB     R0,[SP, #+0]
    \       0x34   0x2800             CMP      R0,#+0
    \       0x36   0xD00C             BEQ.N    ??memory_modify_2
-    606          			{
-    607          				if (inbuf[0] == '.')
+    612          			{
+    613          				if (inbuf[0] == '.')
    \       0x38   0xF89D 0x0004      LDRB     R0,[SP, #+4]
    \       0x3C   0x282E             CMP      R0,#+46
    \       0x3E   0xD048             BEQ.N    ??memory_modify_3
-    608          				{
-    609          					break;
-    610          				}
-    611          				v1 = a2hex(inbuf);
+    614          				{
+    615          					break;
+    616          				}
+    617          				v1 = a2hex(inbuf);
    \                     ??memory_modify_4: (+1)
    \       0x40   0xA801             ADD      R0,SP,#+4
    \       0x42   0x.... 0x....      BL       a2hex
    \       0x46   0xF88D 0x0000      STRB     R0,[SP, #+0]
-    612          				*addrp1 = v1;
+    618          				*addrp1 = v1;
    \       0x4A   0xF89D 0x0000      LDRB     R0,[SP, #+0]
    \       0x4E   0xF888 0x0000      STRB     R0,[R8, #+0]
-    613          			}
-    614          			addrp1++;
+    619          			}
+    620          			addrp1++;
    \                     ??memory_modify_2: (+1)
    \       0x52   0xF118 0x0801      ADDS     R8,R8,#+1
    \       0x56   0xE7DD             B.N      ??memory_modify_1
-    615          		}
-    616          	}
-    617          	else if (unit == 2)
+    621          		}
+    622          	}
+    623          	else if (unit == 2)
    \                     ??memory_modify_0: (+1)
    \       0x58   0x2E02             CMP      R6,#+2
    \       0x5A   0xD11D             BNE.N    ??memory_modify_5
-    618          	{
-    619          		while (1)
-    620          		{
-    621          			v2 = *addrp2;
+    624          	{
+    625          		while (1)
+    626          		{
+    627          			v2 = *addrp2;
    \                     ??memory_modify_6: (+1)
    \       0x5C   0xF8B9 0xB000      LDRH     R11,[R9, #+0]
-    622          			printf("%08p - %04x ", addrp2, v2);
+    628          			printf("%08p - %04x ", addrp2, v2);
    \       0x60   0x465A             MOV      R2,R11
    \       0x62   0xB292             UXTH     R2,R2
    \       0x64   0x4649             MOV      R1,R9
    \       0x66   0x.... 0x....      LDR.W    R0,??DataTable26_66
    \       0x6A   0x.... 0x....      BL       printf
-    623          			v2 = readline(inbuf);
+    629          			v2 = readline(inbuf);
    \       0x6E   0xA801             ADD      R0,SP,#+4
    \       0x70   0x.... 0x....      BL       readline
    \       0x74   0x0007             MOVS     R7,R0
-    624          			if (0 < v2)
+    630          			if (0 < v2)
    \       0x76   0x0038             MOVS     R0,R7
    \       0x78   0xB280             UXTH     R0,R0
    \       0x7A   0x2800             CMP      R0,#+0
    \       0x7C   0xD009             BEQ.N    ??memory_modify_7
-    625          			{
-    626          				if (inbuf[0] == '.')
+    631          			{
+    632          				if (inbuf[0] == '.')
    \       0x7E   0xF89D 0x0004      LDRB     R0,[SP, #+4]
    \       0x82   0x282E             CMP      R0,#+46
    \       0x84   0xD025             BEQ.N    ??memory_modify_3
-    627          				{
-    628          					break;
-    629          				}
-    630          				v2 = a2hex(inbuf);
+    633          				{
+    634          					break;
+    635          				}
+    636          				v2 = a2hex(inbuf);
    \                     ??memory_modify_8: (+1)
    \       0x86   0xA801             ADD      R0,SP,#+4
    \       0x88   0x.... 0x....      BL       a2hex
    \       0x8C   0x0007             MOVS     R7,R0
-    631          				*addrp2 = v2;
+    637          				*addrp2 = v2;
    \       0x8E   0xF8A9 0x7000      STRH     R7,[R9, #+0]
-    632          			}
-    633          			addrp2++;
+    638          			}
+    639          			addrp2++;
    \                     ??memory_modify_7: (+1)
    \       0x92   0xF119 0x0902      ADDS     R9,R9,#+2
    \       0x96   0xE7E1             B.N      ??memory_modify_6
-    634          		}
-    635          	}
-    636          	else if (unit == 4)
+    640          		}
+    641          	}
+    642          	else if (unit == 4)
    \                     ??memory_modify_5: (+1)
    \       0x98   0x2E04             CMP      R6,#+4
    \       0x9A   0xD11A             BNE.N    ??memory_modify_3
-    637          	{
-    638          		while (1)
-    639          		{
-    640          			v4 = *addrp4;
+    643          	{
+    644          		while (1)
+    645          		{
+    646          			v4 = *addrp4;
    \                     ??memory_modify_9: (+1)
    \       0x9C   0xF8DA 0xB000      LDR      R11,[R10, #+0]
-    641          			printf("%08p - %08x ", addrp4, v4);
+    647          			printf("%08p - %08x ", addrp4, v4);
    \       0xA0   0x465A             MOV      R2,R11
    \       0xA2   0x4651             MOV      R1,R10
    \       0xA4   0x.... 0x....      LDR.W    R0,??DataTable26_67
    \       0xA8   0x.... 0x....      BL       printf
-    642          			v4 = readline(inbuf);
+    648          			v4 = readline(inbuf);
    \       0xAC   0xA801             ADD      R0,SP,#+4
    \       0xAE   0x.... 0x....      BL       readline
    \       0xB2   0x0004             MOVS     R4,R0
-    643          			if (0 < v4)
+    649          			if (0 < v4)
    \       0xB4   0x2C00             CMP      R4,#+0
    \       0xB6   0xD009             BEQ.N    ??memory_modify_10
-    644          			{
-    645          				if (inbuf[0] == '.')
+    650          			{
+    651          				if (inbuf[0] == '.')
    \       0xB8   0xF89D 0x0004      LDRB     R0,[SP, #+4]
    \       0xBC   0x282E             CMP      R0,#+46
    \       0xBE   0xD008             BEQ.N    ??memory_modify_3
-    646          				{
-    647          					break;
-    648          				}
-    649          				v4 = a2hex(inbuf);
+    652          				{
+    653          					break;
+    654          				}
+    655          				v4 = a2hex(inbuf);
    \                     ??memory_modify_11: (+1)
    \       0xC0   0xA801             ADD      R0,SP,#+4
    \       0xC2   0x.... 0x....      BL       a2hex
    \       0xC6   0x0004             MOVS     R4,R0
-    650          				*addrp4 = v4;
+    656          				*addrp4 = v4;
    \       0xC8   0xF8CA 0x4000      STR      R4,[R10, #+0]
-    651          			}
-    652          			addrp4++;
+    657          			}
+    658          			addrp4++;
    \                     ??memory_modify_10: (+1)
    \       0xCC   0xF11A 0x0A04      ADDS     R10,R10,#+4
    \       0xD0   0xE7E4             B.N      ??memory_modify_9
-    653          		}
-    654          	} 
-    655          }
+    659          		}
+    660          	} 
+    661          }
    \                     ??memory_modify_3: (+1)
    \       0xD2   0xB021             ADD      SP,SP,#+132
    \       0xD4   0xE8BD 0x8FF0      POP      {R4-R11,PC}
-    656          
-    657          //========================================================================
+    662          
+    663          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    658          int cmd_md( int argc, char *argv[] )
-    659          //========================================================================
-    660          {
+    664          int cmd_md( int argc, char *argv[] )
+    665          //========================================================================
+    666          {
    \                     cmd_md: (+1)
    \        0x0   0xB5F8             PUSH     {R3-R7,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    661          	if ( 1 < argc )
+    667          	if ( 1 < argc )
    \        0x6   0x2C02             CMP      R4,#+2
    \        0x8   0xDB04             BLT.N    ??cmd_md_0
-    662          	{
-    663          		mem_addr = (unsigned char *)a2hex( argv[1] );
+    668          	{
+    669          		mem_addr = (unsigned char *)a2hex( argv[1] );
    \        0xA   0x6868             LDR      R0,[R5, #+4]
    \        0xC   0x.... 0x....      BL       a2hex
    \       0x10   0x....             LDR.N    R1,??DataTable26_68
    \       0x12   0x6008             STR      R0,[R1, #+0]
-    664          	}
-    665          	if ( 2 < argc )
+    670          	}
+    671          	if ( 2 < argc )
    \                     ??cmd_md_0: (+1)
    \       0x14   0x2C03             CMP      R4,#+3
    \       0x16   0xDB04             BLT.N    ??cmd_md_1
-    666          	{
-    667          		dumpsize = a2hex( argv[2] );
+    672          	{
+    673          		dumpsize = a2hex( argv[2] );
    \       0x18   0x68A8             LDR      R0,[R5, #+8]
    \       0x1A   0x.... 0x....      BL       a2hex
    \       0x1E   0x....             LDR.N    R1,??DataTable26_69
    \       0x20   0x6008             STR      R0,[R1, #+0]
-    668          	}
-    669          	if ( mem_addr == 0 )
+    674          	}
+    675          	if ( mem_addr == 0 )
    \                     ??cmd_md_1: (+1)
    \       0x22   0x....             LDR.N    R6,??DataTable26_68
    \       0x24   0x6830             LDR      R0,[R6, #+0]
    \       0x26   0x2800             CMP      R0,#+0
    \       0x28   0xD102             BNE.N    ??cmd_md_2
-    670          	{
-    671          		return -1;
+    676          	{
+    677          		return -1;
    \       0x2A   0xF05F 0x30FF      MOVS     R0,#+4294967295
    \       0x2E   0xE00B             B.N      ??cmd_md_3
-    672          	}
-    673          
-    674          	dump( (unsigned char *)mem_addr, dumpsize, data_option );
+    678          	}
+    679          
+    680          	dump( (unsigned char *)mem_addr, dumpsize, data_option );
    \                     ??cmd_md_2: (+1)
    \       0x30   0x....             LDR.N    R7,??DataTable26_69
    \       0x32   0x....             LDR.N    R0,??DataTable26_70
@@ -1422,124 +1428,124 @@ Warning[Pe223]: function "AudioTxStop" declared implicitly
    \       0x36   0x6839             LDR      R1,[R7, #+0]
    \       0x38   0x6830             LDR      R0,[R6, #+0]
    \       0x3A   0x.... 0x....      BL       dump
-    675          	mem_addr += dumpsize;
+    681          	mem_addr += dumpsize;
    \       0x3E   0x6830             LDR      R0,[R6, #+0]
    \       0x40   0x6839             LDR      R1,[R7, #+0]
    \       0x42   0x4408             ADD      R0,R0,R1
    \       0x44   0x6030             STR      R0,[R6, #+0]
-    676          
-    677          	return 0;
+    682          
+    683          	return 0;
    \       0x46   0x2000             MOVS     R0,#+0
    \                     ??cmd_md_3: (+1)
    \       0x48   0xBDF2             POP      {R1,R4-R7,PC}
-    678          }
-    679          
-    680          //========================================================================
+    684          }
+    685          
+    686          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    681          int cmd_mm( int argc, char *argv[] )
-    682          //========================================================================
-    683          {
+    687          int cmd_mm( int argc, char *argv[] )
+    688          //========================================================================
+    689          {
    \                     cmd_mm: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    684          	if ( 1 < argc )
+    690          	if ( 1 < argc )
    \        0x6   0x2C02             CMP      R4,#+2
    \        0x8   0xDB04             BLT.N    ??cmd_mm_0
-    685          	{
-    686          		mem_addr = (unsigned char *)a2hex( argv[1] );
+    691          	{
+    692          		mem_addr = (unsigned char *)a2hex( argv[1] );
    \        0xA   0x6868             LDR      R0,[R5, #+4]
    \        0xC   0x.... 0x....      BL       a2hex
    \       0x10   0x....             LDR.N    R1,??DataTable26_68
    \       0x12   0x6008             STR      R0,[R1, #+0]
-    687          	}
-    688          	if ( mem_addr == 0 )
+    693          	}
+    694          	if ( mem_addr == 0 )
    \                     ??cmd_mm_0: (+1)
    \       0x14   0x....             LDR.N    R2,??DataTable26_68
    \       0x16   0x6810             LDR      R0,[R2, #+0]
    \       0x18   0x2800             CMP      R0,#+0
    \       0x1A   0xD102             BNE.N    ??cmd_mm_1
-    689          	{
-    690          		return -1;
+    695          	{
+    696          		return -1;
    \       0x1C   0xF05F 0x30FF      MOVS     R0,#+4294967295
    \       0x20   0xE005             B.N      ??cmd_mm_2
-    691          	}
-    692          
-    693          	memory_modify( (void *)mem_addr, data_option );
+    697          	}
+    698          
+    699          	memory_modify( (void *)mem_addr, data_option );
    \                     ??cmd_mm_1: (+1)
    \       0x22   0x....             LDR.N    R0,??DataTable26_70
    \       0x24   0x6801             LDR      R1,[R0, #+0]
    \       0x26   0x6810             LDR      R0,[R2, #+0]
    \       0x28   0x.... 0x....      BL       memory_modify
-    694          
-    695          	return 0;
+    700          
+    701          	return 0;
    \       0x2C   0x2000             MOVS     R0,#+0
    \                     ??cmd_mm_2: (+1)
    \       0x2E   0xBD32             POP      {R1,R4,R5,PC}
-    696          }
-    697          
-    698          //========================================================================
+    702          }
+    703          
+    704          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    699          int cmd_debug(int argc, char *argv[])
-    700          //========================================================================
-    701          {
+    705          int cmd_debug(int argc, char *argv[])
+    706          //========================================================================
+    707          {
    \                     cmd_debug: (+1)
    \        0x0   0xB570             PUSH     {R4-R6,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    702          	if (argc == 1)
+    708          	if (argc == 1)
    \        0x6   0x2C01             CMP      R4,#+1
    \        0x8   0xD105             BNE.N    ??cmd_debug_0
-    703          	{
-    704          		printf("current debug level = 0x%x\n", debug_level);
+    709          	{
+    710          		printf("current debug level = 0x%x\n", debug_level);
    \        0xA   0x....             LDR.N    R0,??DataTable26_64
    \        0xC   0x6801             LDR      R1,[R0, #+0]
    \        0xE   0x....             LDR.N    R0,??DataTable26_71
    \       0x10   0x.... 0x....      BL       printf
    \       0x14   0xE008             B.N      ??cmd_debug_1
-    705          	}
-    706          	else
-    707          	{
-    708          		debug_level = a2hex(argv[1]);
+    711          	}
+    712          	else
+    713          	{
+    714          		debug_level = a2hex(argv[1]);
    \                     ??cmd_debug_0: (+1)
    \       0x16   0x....             LDR.N    R6,??DataTable26_64
    \       0x18   0x6868             LDR      R0,[R5, #+4]
    \       0x1A   0x.... 0x....      BL       a2hex
    \       0x1E   0x6030             STR      R0,[R6, #+0]
-    709          		printf("debug level = 0x%x\n", debug_level);
+    715          		printf("debug level = 0x%x\n", debug_level);
    \       0x20   0x6831             LDR      R1,[R6, #+0]
    \       0x22   0x....             LDR.N    R0,??DataTable26_72
    \       0x24   0x.... 0x....      BL       printf
-    710          	}
-    711          
-    712          	return 0;
+    716          	}
+    717          
+    718          	return 0;
    \                     ??cmd_debug_1: (+1)
    \       0x28   0x2000             MOVS     R0,#+0
    \       0x2A   0xBD70             POP      {R4-R6,PC}
-    713          }
-    714          
-    715          //========================================================================
+    719          }
+    720          
+    721          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    716          int cmd_wr( int argc, char *argv[] )
-    717          //========================================================================
-    718          {
+    722          int cmd_wr( int argc, char *argv[] )
+    723          //========================================================================
+    724          {
    \                     cmd_wr: (+1)
    \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
    \        0x4   0x0004             MOVS     R4,R0
    \        0x6   0x000D             MOVS     R5,R1
-    719          	unsigned int	addr = 0;
+    725          	unsigned int	addr = 0;
    \        0x8   0x2600             MOVS     R6,#+0
-    720          	unsigned int	v;
-    721          
-    722          	int	index = 1;
+    726          	unsigned int	v;
+    727          
+    728          	int	index = 1;
    \        0xA   0xF05F 0x0801      MOVS     R8,#+1
-    723          	int	option_loop = 0;
+    729          	int	option_loop = 0;
    \        0xE   0x2700             MOVS     R7,#+0
-    724          
-    725          	if ( (index <= argc) && (strcmp( argv[index], "-l" ) == 0) )
+    730          
+    731          	if ( (index <= argc) && (strcmp( argv[index], "-l" ) == 0) )
    \       0x10   0x4544             CMP      R4,R8
    \       0x12   0xDB0A             BLT.N    ??cmd_wr_0
    \       0x14   0x....             ADR.N    R1,??DataTable26
@@ -1547,122 +1553,122 @@ Warning[Pe223]: function "AudioTxStop" declared implicitly
    \       0x1A   0x.... 0x....      BL       strcmp
    \       0x1E   0x2800             CMP      R0,#+0
    \       0x20   0xD103             BNE.N    ??cmd_wr_0
-    726          	{
-    727          		option_loop = 1;
+    732          	{
+    733          		option_loop = 1;
    \       0x22   0x2001             MOVS     R0,#+1
    \       0x24   0x0007             MOVS     R7,R0
-    728          		index++;
+    734          		index++;
    \       0x26   0xEA5F 0x0848      LSLS     R8,R8,#+1
-    729          	}
-    730          	if ( index < argc )
+    735          	}
+    736          	if ( index < argc )
    \                     ??cmd_wr_0: (+1)
    \       0x2A   0x45A0             CMP      R8,R4
    \       0x2C   0xDA06             BGE.N    ??cmd_wr_1
-    731          	{
-    732          		addr = a2hex( argv[index] );
+    737          	{
+    738          		addr = a2hex( argv[index] );
    \       0x2E   0xF855 0x0028      LDR      R0,[R5, R8, LSL #+2]
    \       0x32   0x.... 0x....      BL       a2hex
    \       0x36   0x0006             MOVS     R6,R0
-    733          		index++;
+    739          		index++;
    \       0x38   0xF118 0x0801      ADDS     R8,R8,#+1
-    734          	}
-    735          	if ( index < argc )
+    740          	}
+    741          	if ( index < argc )
    \                     ??cmd_wr_1: (+1)
    \       0x3C   0x45A0             CMP      R8,R4
    \       0x3E   0xDA05             BGE.N    ??cmd_wr_2
-    736          	{
-    737          		v = a2hex( argv[index] );
+    742          	{
+    743          		v = a2hex( argv[index] );
    \       0x40   0xF855 0x0028      LDR      R0,[R5, R8, LSL #+2]
    \       0x44   0x.... 0x....      BL       a2hex
    \       0x48   0x4681             MOV      R9,R0
    \       0x4A   0xE002             B.N      ??cmd_wr_3
-    738          	}
-    739          	else
-    740          	{
-    741          		return -1;
+    744          	}
+    745          	else
+    746          	{
+    747          		return -1;
    \                     ??cmd_wr_2: (+1)
    \       0x4C   0xF05F 0x30FF      MOVS     R0,#+4294967295
    \       0x50   0xE01E             B.N      ??cmd_wr_4
-    742          	}
-    743          	do
-    744          	{
-    745          		if ( data_option == 1 )
+    748          	}
+    749          	do
+    750          	{
+    751          		if ( data_option == 1 )
    \                     ??cmd_wr_3: (+1)
    \       0x52   0x....             LDR.N    R0,??DataTable26_70
    \       0x54   0x6801             LDR      R1,[R0, #+0]
    \       0x56   0x2901             CMP      R1,#+1
    \       0x58   0xD102             BNE.N    ??cmd_wr_5
-    746          		{
-    747          			*(unsigned char *)addr	=	(unsigned char)v;
+    752          		{
+    753          			*(unsigned char *)addr	=	(unsigned char)v;
    \       0x5A   0xF886 0x9000      STRB     R9,[R6, #+0]
    \       0x5E   0xE00A             B.N      ??cmd_wr_6
-    748          		}
-    749          		else if ( data_option == 2 )
+    754          		}
+    755          		else if ( data_option == 2 )
    \                     ??cmd_wr_5: (+1)
    \       0x60   0x6801             LDR      R1,[R0, #+0]
    \       0x62   0x2902             CMP      R1,#+2
    \       0x64   0xD102             BNE.N    ??cmd_wr_7
-    750          		{
-    751          			*(unsigned short *)addr	=	(unsigned short)v;
+    756          		{
+    757          			*(unsigned short *)addr	=	(unsigned short)v;
    \       0x66   0xF8A6 0x9000      STRH     R9,[R6, #+0]
    \       0x6A   0xE004             B.N      ??cmd_wr_6
-    752          		}
-    753          		else if ( data_option == 4 )
+    758          		}
+    759          		else if ( data_option == 4 )
    \                     ??cmd_wr_7: (+1)
    \       0x6C   0x6800             LDR      R0,[R0, #+0]
    \       0x6E   0x2804             CMP      R0,#+4
    \       0x70   0xD101             BNE.N    ??cmd_wr_6
-    754          		{
-    755          			*(unsigned int *)addr	=	(unsigned int)v;
+    760          		{
+    761          			*(unsigned int *)addr	=	(unsigned int)v;
    \       0x72   0xF8C6 0x9000      STR      R9,[R6, #+0]
-    756          		}
-    757          
-    758          #if defined(USE_FREERTOS)
-    759          		vTaskDelay( 100 / portTICK_RATE_MS );
-    760          #else
-    761          		HAL_Delay( 0 );
+    762          		}
+    763          
+    764          #if defined(USE_FREERTOS)
+    765          		vTaskDelay( 100 / portTICK_RATE_MS );
+    766          #else
+    767          		HAL_Delay( 0 );
    \                     ??cmd_wr_6: (+1)
    \       0x76   0x2000             MOVS     R0,#+0
    \       0x78   0x.... 0x....      BL       HAL_Delay
-    762          #endif
-    763          
-    764          	} while ( option_loop == 1 && input_check() == 0 );
+    768          #endif
+    769          
+    770          	} while ( option_loop == 1 && input_check() == 0 );
    \       0x7C   0x2F01             CMP      R7,#+1
    \       0x7E   0xD103             BNE.N    ??cmd_wr_8
    \       0x80   0x.... 0x....      BL       input_check
    \       0x84   0x2800             CMP      R0,#+0
    \       0x86   0xD0E4             BEQ.N    ??cmd_wr_3
-    765          
-    766          	printf( "\n" );
+    771          
+    772          	printf( "\n" );
    \                     ??cmd_wr_8: (+1)
    \       0x88   0x....             ADR.N    R0,??DataTable26_1
    \       0x8A   0x.... 0x....      BL       printf
-    767          
-    768          	return 0;
+    773          
+    774          	return 0;
    \       0x8E   0x2000             MOVS     R0,#+0
    \                     ??cmd_wr_4: (+1)
    \       0x90   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}
-    769          }
-    770          
-    771          //========================================================================
+    775          }
+    776          
+    777          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    772          int cmd_rd( int argc, char *argv[] )
-    773          //========================================================================
-    774          {
+    778          int cmd_rd( int argc, char *argv[] )
+    779          //========================================================================
+    780          {
    \                     cmd_rd: (+1)
    \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
    \        0x4   0x0004             MOVS     R4,R0
    \        0x6   0x000D             MOVS     R5,R1
-    775          	unsigned int	addr;
-    776          	unsigned int	v;
-    777          
-    778          	int		index = 1;
+    781          	unsigned int	addr;
+    782          	unsigned int	v;
+    783          
+    784          	int		index = 1;
    \        0x8   0xF05F 0x0801      MOVS     R8,#+1
-    779          	int		option_loop = 0;
+    785          	int		option_loop = 0;
    \        0xC   0x2700             MOVS     R7,#+0
-    780          
-    781          	if ( (index <= argc) && (strcmp( argv[index], "-l" ) == 0) )
+    786          
+    787          	if ( (index <= argc) && (strcmp( argv[index], "-l" ) == 0) )
    \        0xE   0x4544             CMP      R4,R8
    \       0x10   0xDB0A             BLT.N    ??cmd_rd_0
    \       0x12   0x....             ADR.N    R1,??DataTable26
@@ -1670,159 +1676,159 @@ Warning[Pe223]: function "AudioTxStop" declared implicitly
    \       0x18   0x.... 0x....      BL       strcmp
    \       0x1C   0x2800             CMP      R0,#+0
    \       0x1E   0xD103             BNE.N    ??cmd_rd_0
-    782          	{
-    783          		option_loop = 1;
+    788          	{
+    789          		option_loop = 1;
    \       0x20   0x2001             MOVS     R0,#+1
    \       0x22   0x0007             MOVS     R7,R0
-    784          		index++;
+    790          		index++;
    \       0x24   0xEA5F 0x0848      LSLS     R8,R8,#+1
-    785          	}
-    786          	if ( index < argc )
+    791          	}
+    792          	if ( index < argc )
    \                     ??cmd_rd_0: (+1)
    \       0x28   0x45A0             CMP      R8,R4
    \       0x2A   0xDA05             BGE.N    ??cmd_rd_1
-    787          	{
-    788          		addr = a2hex( argv[index] );
+    793          	{
+    794          		addr = a2hex( argv[index] );
    \       0x2C   0xF855 0x0028      LDR      R0,[R5, R8, LSL #+2]
    \       0x30   0x.... 0x....      BL       a2hex
    \       0x34   0x4681             MOV      R9,R0
    \       0x36   0xE002             B.N      ??cmd_rd_2
-    789          	}
-    790          	else
-    791          	{
-    792          		return -1;
+    795          	}
+    796          	else
+    797          	{
+    798          		return -1;
    \                     ??cmd_rd_1: (+1)
    \       0x38   0xF05F 0x30FF      MOVS     R0,#+4294967295
    \       0x3C   0xE030             B.N      ??cmd_rd_3
-    793          	}
-    794          
-    795          	do
-    796          	{
-    797          		if ( data_option == 1 )
+    799          	}
+    800          
+    801          	do
+    802          	{
+    803          		if ( data_option == 1 )
    \                     ??cmd_rd_2: (+1)
    \       0x3E   0x....             LDR.N    R0,??DataTable26_70
    \       0x40   0x6801             LDR      R1,[R0, #+0]
    \       0x42   0x2901             CMP      R1,#+1
    \       0x44   0xD108             BNE.N    ??cmd_rd_4
-    798          		{
-    799          			v = *(unsigned char *)addr;
+    804          		{
+    805          			v = *(unsigned char *)addr;
    \       0x46   0xF899 0x0000      LDRB     R0,[R9, #+0]
    \       0x4A   0x0006             MOVS     R6,R0
-    800          			printf( "addr 0x%08x, value 0x%02x\r", addr, v );
+    806          			printf( "addr 0x%08x, value 0x%02x\r", addr, v );
    \       0x4C   0x0032             MOVS     R2,R6
    \       0x4E   0x4649             MOV      R1,R9
    \       0x50   0x....             LDR.N    R0,??DataTable26_73
    \       0x52   0x.... 0x....      BL       printf
    \       0x56   0xE016             B.N      ??cmd_rd_5
-    801          		}
-    802          		else if ( data_option == 2 )
+    807          		}
+    808          		else if ( data_option == 2 )
    \                     ??cmd_rd_4: (+1)
    \       0x58   0x6801             LDR      R1,[R0, #+0]
    \       0x5A   0x2902             CMP      R1,#+2
    \       0x5C   0xD108             BNE.N    ??cmd_rd_6
-    803          		{
-    804          			v = *(unsigned short *)addr;
+    809          		{
+    810          			v = *(unsigned short *)addr;
    \       0x5E   0xF8B9 0x0000      LDRH     R0,[R9, #+0]
    \       0x62   0x0006             MOVS     R6,R0
-    805          			printf( "addr 0x%08x, value 0x%04x\r", addr, v );
+    811          			printf( "addr 0x%08x, value 0x%04x\r", addr, v );
    \       0x64   0x0032             MOVS     R2,R6
    \       0x66   0x4649             MOV      R1,R9
    \       0x68   0x....             LDR.N    R0,??DataTable26_74
    \       0x6A   0x.... 0x....      BL       printf
    \       0x6E   0xE00A             B.N      ??cmd_rd_5
-    806          		}
-    807          		else if ( data_option == 4 )
+    812          		}
+    813          		else if ( data_option == 4 )
    \                     ??cmd_rd_6: (+1)
    \       0x70   0x6800             LDR      R0,[R0, #+0]
    \       0x72   0x2804             CMP      R0,#+4
    \       0x74   0xD107             BNE.N    ??cmd_rd_5
-    808          		{
-    809          			v = *(unsigned int *)addr;
+    814          		{
+    815          			v = *(unsigned int *)addr;
    \       0x76   0xF8D9 0x0000      LDR      R0,[R9, #+0]
    \       0x7A   0x0006             MOVS     R6,R0
-    810          			printf( "addr 0x%08x, value 0x%08x\r", addr, v );
+    816          			printf( "addr 0x%08x, value 0x%08x\r", addr, v );
    \       0x7C   0x0032             MOVS     R2,R6
    \       0x7E   0x4649             MOV      R1,R9
    \       0x80   0x....             LDR.N    R0,??DataTable26_75
    \       0x82   0x.... 0x....      BL       printf
-    811          		}
-    812          
-    813          #if defined(USE_FREERTOS)
-    814          		vTaskDelay( 10 / portTICK_RATE_MS );
-    815          #else
-    816          		HAL_Delay( 0 );
+    817          		}
+    818          
+    819          #if defined(USE_FREERTOS)
+    820          		vTaskDelay( 10 / portTICK_RATE_MS );
+    821          #else
+    822          		HAL_Delay( 0 );
    \                     ??cmd_rd_5: (+1)
    \       0x86   0x2000             MOVS     R0,#+0
    \       0x88   0x.... 0x....      BL       HAL_Delay
-    817          #endif
-    818          
-    819          	} while ( option_loop == 1 && input_check() == 0 );
+    823          #endif
+    824          
+    825          	} while ( option_loop == 1 && input_check() == 0 );
    \       0x8C   0x2F01             CMP      R7,#+1
    \       0x8E   0xD103             BNE.N    ??cmd_rd_7
    \       0x90   0x.... 0x....      BL       input_check
    \       0x94   0x2800             CMP      R0,#+0
    \       0x96   0xD0D2             BEQ.N    ??cmd_rd_2
-    820          
-    821          	printf( "\n" );
+    826          
+    827          	printf( "\n" );
    \                     ??cmd_rd_7: (+1)
    \       0x98   0x....             ADR.N    R0,??DataTable26_1
    \       0x9A   0x.... 0x....      BL       printf
-    822          
-    823          	return 0;
+    828          
+    829          	return 0;
    \       0x9E   0x2000             MOVS     R0,#+0
    \                     ??cmd_rd_3: (+1)
    \       0xA0   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}
-    824          }
-    825          
-    826          //========================================================================
+    830          }
+    831          
+    832          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    827          int cmd_do(int argc, char *argv[])
-    828          //========================================================================
-    829          {
+    833          int cmd_do(int argc, char *argv[])
+    834          //========================================================================
+    835          {
    \                     cmd_do: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    830          	int	val = 0;
+    836          	int	val = 0;
    \        0x6   0x2000             MOVS     R0,#+0
    \        0x8   0x9000             STR      R0,[SP, #+0]
-    831          	extern	void	gpio_write(int val);
-    832          
-    833          	if (2 <= argc)
+    837          	extern	void	gpio_write(int val);
+    838          
+    839          	if (2 <= argc)
    \        0xA   0x2C02             CMP      R4,#+2
    \        0xC   0xDB04             BLT.N    ??cmd_do_0
-    834          	{
-    835          		sscanf(argv[1], "%x", &val);
+    840          	{
+    841          		sscanf(argv[1], "%x", &val);
    \        0xE   0x466A             MOV      R2,SP
    \       0x10   0x....             ADR.N    R1,??DataTable26_2
    \       0x12   0x6868             LDR      R0,[R5, #+4]
    \       0x14   0x.... 0x....      BL       sscanf
-    836          	}
-    837          	//gpio_write(val);
-    838          
-    839          	return 0;
+    842          	}
+    843          	//gpio_write(val);
+    844          
+    845          	return 0;
    \                     ??cmd_do_0: (+1)
    \       0x18   0x2000             MOVS     R0,#+0
    \       0x1A   0xBD32             POP      {R1,R4,R5,PC}
-    840          }
-    841          
-    842          //========================================================================
+    846          }
+    847          
+    848          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    843          int cmd_test( int argc, char * argv[] )
-    844          //========================================================================
-    845          {
+    849          int cmd_test( int argc, char * argv[] )
+    850          //========================================================================
+    851          {
    \                     cmd_test: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    846          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF240 0x324E      MOVW     R2,#+846
+    852          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF44F 0x7255      MOV      R2,#+852
    \        0xA   0x....             LDR.N    R1,??DataTable26_76
    \        0xC   0x....             LDR.N    R0,??DataTable26_47
    \        0xE   0x.... 0x....      BL       printf
-    847          }
+    853          }
                  ^
 Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
    \       0x12   0xBD32             POP      {R1,R4,R5,PC}
