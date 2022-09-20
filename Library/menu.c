@@ -29,7 +29,7 @@
 #include "ProcPkt.h"				//	g_flagRspID
 
 
-#define RFM_IAR_BUILD   1               //      IAR Compiler Build
+#define RFM_IAR_BUILD   0              //      IAR Compiler Build
 
 #if defined(RFM_IAR_BUILD)
 
