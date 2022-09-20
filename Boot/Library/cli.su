@@ -1,0 +1,15 @@
+core_cm4.h:1939:34:__NVIC_SystemReset	4	static,ignoring_inline_asm
+cli.c:321:6:dump	80	static
+cli.c:378:6:a2hex	24	static
+cli.c:434:5:getarg	32	static
+cli.c:456:5:ProcessCommand	200	static
+cli.c:568:5:readline	32	static
+cli.c:663:6:CLIPrompt	8	static
+cli.c:673:6:SetCLIPrompt	16	static
+cli.c:680:6:SetCLIProc	16	static
+cli.c:688:6:LoopProcCLI	16	static
+cli.c:714:6:vCLITask	16	static
+cli.c:742:5:cmd_help	24	static
+cli.c:784:5:cmd_uptime	48	static
+cli.c:831:5:cmd_ver	16	static
+cli.c:841:5:cmd_reset	16	static

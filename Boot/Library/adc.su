@@ -1,0 +1,3 @@
+adc.c:36:6:Adc_Power	16	static
+adc.c:121:6:GetAdcPow	8	static
+adc.c:132:6:LoopProcAdc	16	static
