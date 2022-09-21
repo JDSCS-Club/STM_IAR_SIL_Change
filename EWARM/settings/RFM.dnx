@@ -26,7 +26,7 @@
         <stlinkResetStrategy>2</stlinkResetStrategy>
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>1083495994</Checksum>
+        <Checksum>613261154</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -156,7 +156,9 @@
     <Breakpoints2>
         <Bp0>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Core\Src\stm32f4xx_hal_timebase_tim.c}.50.3" 0 0 1 "" 0 "" 0</Bp0>
         <Bp1>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Core\Src\stm32f4xx_hal_timebase_tim.c}.78.3" 0 0 1 "" 0 "" 0</Bp1>
-        <Count>2</Count>
+        <Bp2>_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Library\rfm.c}.1171.3" 0 0 1 "" 0 "" 0</Bp2>
+        <Bp3>_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Library\RFMProtocol.c}.424.2" 0 0 1 "" 0 "" 0</Bp3>
+        <Count>4</Count>
     </Breakpoints2>
     <Aliases>
         <Count>0</Count>
