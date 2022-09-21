@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:22
+#                                                         22/Sep/2022  08:40:08
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -18,7 +19,8 @@
 #        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
 #        --no_clustering --no_scheduling --debug --endian=little
 #        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
-#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Systems\Embedded Workbench 9.0 EWARM FS
+#        9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -39,7 +41,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal.o.d
 #    Locale            =  C
 #    List file         =
@@ -533,14 +536,14 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c
    \        0x0   0xB5F8             PUSH     {R3-R7,LR}
    \        0x2   0x0005             MOVS     R5,R0
     343            HAL_StatusTypeDef status  = HAL_OK;
-   \        0x4   0x2700             MOVS     R7,#+0
+   \        0x4   0x2600             MOVS     R6,#+0
     344            HAL_TickFreqTypeDef prevTickFreq;
     345          
     346            assert_param(IS_TICKFREQ(Freq));
     347          
     348            if (uwTickFreq != Freq)
-   \        0x6   0x....             LDR.N    R6,??DataTable18_7
-   \        0x8   0x7830             LDRB     R0,[R6, #+0]
+   \        0x6   0x....             LDR.N    R7,??DataTable18_7
+   \        0x8   0x7838             LDRB     R0,[R7, #+0]
    \        0xA   0x0029             MOVS     R1,R5
    \        0xC   0xB2C9             UXTB     R1,R1
    \        0xE   0x4288             CMP      R0,R1
@@ -548,35 +551,35 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c
     349            {
     350              /* Back up uwTickFreq frequency */
     351              prevTickFreq = uwTickFreq;
-   \       0x12   0x7830             LDRB     R0,[R6, #+0]
+   \       0x12   0x7838             LDRB     R0,[R7, #+0]
    \       0x14   0x0004             MOVS     R4,R0
     352          
     353              /* Update uwTickFreq global variable used by HAL_InitTick() */
     354              uwTickFreq = Freq;
-   \       0x16   0x7035             STRB     R5,[R6, #+0]
+   \       0x16   0x703D             STRB     R5,[R7, #+0]
     355          
     356              /* Apply the new tick Freq  */
     357              status = HAL_InitTick(uwTickPrio);
    \       0x18   0x....             LDR.N    R0,??DataTable18_6
    \       0x1A   0x6800             LDR      R0,[R0, #+0]
    \       0x1C   0x.... 0x....      BL       HAL_InitTick
-   \       0x20   0x0007             MOVS     R7,R0
+   \       0x20   0x0006             MOVS     R6,R0
     358          
     359              if (status != HAL_OK)
-   \       0x22   0x0038             MOVS     R0,R7
+   \       0x22   0x0030             MOVS     R0,R6
    \       0x24   0xB2C0             UXTB     R0,R0
    \       0x26   0x2800             CMP      R0,#+0
    \       0x28   0xD000             BEQ.N    ??HAL_SetTickFreq_0
     360              {
     361                /* Restore previous tick frequency */
     362                uwTickFreq = prevTickFreq;
-   \       0x2A   0x7034             STRB     R4,[R6, #+0]
+   \       0x2A   0x703C             STRB     R4,[R7, #+0]
     363              }
     364            }
     365          
     366            return status;
    \                     ??HAL_SetTickFreq_0: (+1)
-   \       0x2C   0x0038             MOVS     R0,R7
+   \       0x2C   0x0030             MOVS     R0,R6
    \       0x2E   0xB2C0             UXTB     R0,R0
    \       0x30   0xBDF2             POP      {R1,R4-R7,PC}
     367          }

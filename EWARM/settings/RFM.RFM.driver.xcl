@@ -6,13 +6,13 @@
 
 "-p" 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 9.1\arm\CONFIG\debugger\ST\STM32F407VG.ddf" 
+"C:\Program Files\IAR Systems\Embedded Workbench 9.0 EWARM FS 9.20.3\arm\CONFIG\debugger\ST\STM32F407VE.ddf" 
 
 "--drv_verify_download" 
 
 "--semihosting" 
 
-"--device=STM32F407VG" 
+"--device=STM32F407VE" 
 
 "--drv_communication=USB0" 
 

@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:21
+#                                                         22/Sep/2022  08:40:06
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                     =  thumb
@@ -17,7 +18,7 @@
 #        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
 #        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
 #        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Workbench 9.0 EWARM FS 9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -38,8 +39,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --c++ --no_exceptions --no_rtti -I "C:\Program Files\IAR
-#        Systems\Embedded Workbench 9.1\arm\CMSIS\Core\Include\\")
-#        --dependencies=n
+#        Systems\Embedded Workbench 9.0 EWARM FS
+#        9.20.3\arm\CMSIS\Core\Include\\") --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\display\Adafruit_GFX.o.d
 #    Locale                       =  C
 #    List file                    =
@@ -166,187 +167,187 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
    \       0x14   0xF05F 0x0901      MOVS     R9,#+1
      61            int16_t ddF_y = -2 * r;
    \       0x18   0xF8BD 0x0008      LDRH     R0,[SP, #+8]
-   \       0x1C   0x0040             LSLS     R0,R0,#+1
-   \       0x1E   0x4240             RSBS     R0,R0,#+0
-   \       0x20   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+   \       0x1C   0xF07F 0x0101      MVNS     R1,#+1
+   \       0x20   0xFB10 0xF001      SMULBB   R0,R0,R1
+   \       0x24   0xF8AD 0x0000      STRH     R0,[SP, #+0]
      62            int16_t x = 0;
-   \       0x24   0xF05F 0x0A00      MOVS     R10,#+0
+   \       0x28   0xF05F 0x0A00      MOVS     R10,#+0
      63            int16_t y = r;
-   \       0x28   0xF9BD 0xB008      LDRSH    R11,[SP, #+8]
+   \       0x2C   0xF9BD 0xB008      LDRSH    R11,[SP, #+8]
      64          
      65            drawPixel(x0  , y0+r, color);
-   \       0x2C   0x0023             MOVS     R3,R4
-   \       0x2E   0xB29B             UXTH     R3,R3
-   \       0x30   0xF8BD 0x2008      LDRH     R2,[SP, #+8]
-   \       0x34   0x19D2             ADDS     R2,R2,R7
-   \       0x36   0xB212             SXTH     R2,R2
-   \       0x38   0x0031             MOVS     R1,R6
-   \       0x3A   0xB209             SXTH     R1,R1
-   \       0x3C   0x0028             MOVS     R0,R5
-   \       0x3E   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0x42   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0x46   0x47E0             BLX      R12
+   \       0x30   0x0023             MOVS     R3,R4
+   \       0x32   0xB29B             UXTH     R3,R3
+   \       0x34   0xF8BD 0x2008      LDRH     R2,[SP, #+8]
+   \       0x38   0x19D2             ADDS     R2,R2,R7
+   \       0x3A   0xB212             SXTH     R2,R2
+   \       0x3C   0x0031             MOVS     R1,R6
+   \       0x3E   0xB209             SXTH     R1,R1
+   \       0x40   0x0028             MOVS     R0,R5
+   \       0x42   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0x46   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0x4A   0x47E0             BLX      R12
      66            drawPixel(x0  , y0-r, color);
-   \       0x48   0x0023             MOVS     R3,R4
-   \       0x4A   0xB29B             UXTH     R3,R3
-   \       0x4C   0xF8BD 0x2008      LDRH     R2,[SP, #+8]
-   \       0x50   0x1ABA             SUBS     R2,R7,R2
-   \       0x52   0xB212             SXTH     R2,R2
-   \       0x54   0x0031             MOVS     R1,R6
-   \       0x56   0xB209             SXTH     R1,R1
-   \       0x58   0x0028             MOVS     R0,R5
-   \       0x5A   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0x5E   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0x62   0x47E0             BLX      R12
+   \       0x4C   0x0023             MOVS     R3,R4
+   \       0x4E   0xB29B             UXTH     R3,R3
+   \       0x50   0xF8BD 0x2008      LDRH     R2,[SP, #+8]
+   \       0x54   0x1ABA             SUBS     R2,R7,R2
+   \       0x56   0xB212             SXTH     R2,R2
+   \       0x58   0x0031             MOVS     R1,R6
+   \       0x5A   0xB209             SXTH     R1,R1
+   \       0x5C   0x0028             MOVS     R0,R5
+   \       0x5E   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0x62   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0x66   0x47E0             BLX      R12
      67            drawPixel(x0+r, y0  , color);
-   \       0x64   0x0023             MOVS     R3,R4
-   \       0x66   0xB29B             UXTH     R3,R3
-   \       0x68   0x003A             MOVS     R2,R7
-   \       0x6A   0xB212             SXTH     R2,R2
-   \       0x6C   0xF8BD 0x1008      LDRH     R1,[SP, #+8]
-   \       0x70   0x1989             ADDS     R1,R1,R6
-   \       0x72   0xB209             SXTH     R1,R1
-   \       0x74   0x0028             MOVS     R0,R5
-   \       0x76   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0x7A   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0x7E   0x47E0             BLX      R12
+   \       0x68   0x0023             MOVS     R3,R4
+   \       0x6A   0xB29B             UXTH     R3,R3
+   \       0x6C   0x003A             MOVS     R2,R7
+   \       0x6E   0xB212             SXTH     R2,R2
+   \       0x70   0xF8BD 0x1008      LDRH     R1,[SP, #+8]
+   \       0x74   0x1989             ADDS     R1,R1,R6
+   \       0x76   0xB209             SXTH     R1,R1
+   \       0x78   0x0028             MOVS     R0,R5
+   \       0x7A   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0x7E   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0x82   0x47E0             BLX      R12
      68            drawPixel(x0-r, y0  , color);
-   \       0x80   0x0023             MOVS     R3,R4
-   \       0x82   0xB29B             UXTH     R3,R3
-   \       0x84   0x003A             MOVS     R2,R7
-   \       0x86   0xB212             SXTH     R2,R2
-   \       0x88   0xF8BD 0x1008      LDRH     R1,[SP, #+8]
-   \       0x8C   0x1A71             SUBS     R1,R6,R1
-   \       0x8E   0xB209             SXTH     R1,R1
-   \       0x90   0x0028             MOVS     R0,R5
-   \       0x92   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0x96   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0x9A   0x47E0             BLX      R12
+   \       0x84   0x0023             MOVS     R3,R4
+   \       0x86   0xB29B             UXTH     R3,R3
+   \       0x88   0x003A             MOVS     R2,R7
+   \       0x8A   0xB212             SXTH     R2,R2
+   \       0x8C   0xF8BD 0x1008      LDRH     R1,[SP, #+8]
+   \       0x90   0x1A71             SUBS     R1,R6,R1
+   \       0x92   0xB209             SXTH     R1,R1
+   \       0x94   0x0028             MOVS     R0,R5
+   \       0x96   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0x9A   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0x9E   0x47E0             BLX      R12
      69          
      70            while (x<y) {
    \                     ??drawCircle_0: (+1)
-   \       0x9C   0x4650             MOV      R0,R10
-   \       0x9E   0x4659             MOV      R1,R11
-   \       0xA0   0xB200             SXTH     R0,R0
-   \       0xA2   0xB209             SXTH     R1,R1
-   \       0xA4   0x4288             CMP      R0,R1
-   \       0xA6   0xF280 0x8086      BGE.W    ??drawCircle_1
+   \       0xA0   0x4650             MOV      R0,R10
+   \       0xA2   0x4659             MOV      R1,R11
+   \       0xA4   0xB200             SXTH     R0,R0
+   \       0xA6   0xB209             SXTH     R1,R1
+   \       0xA8   0x4288             CMP      R0,R1
+   \       0xAA   0xF280 0x8086      BGE.W    ??drawCircle_1
      71              if (f >= 0) {
-   \       0xAA   0x4640             MOV      R0,R8
-   \       0xAC   0xB200             SXTH     R0,R0
-   \       0xAE   0x2800             CMP      R0,#+0
-   \       0xB0   0xD40A             BMI.N    ??drawCircle_2
+   \       0xAE   0x4640             MOV      R0,R8
+   \       0xB0   0xB200             SXTH     R0,R0
+   \       0xB2   0x2800             CMP      R0,#+0
+   \       0xB4   0xD40A             BMI.N    ??drawCircle_2
      72                y--;
-   \       0xB2   0xF1BB 0x0B01      SUBS     R11,R11,#+1
+   \       0xB6   0xF1BB 0x0B01      SUBS     R11,R11,#+1
      73                ddF_y += 2;
-   \       0xB6   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
-   \       0xBA   0x1C80             ADDS     R0,R0,#+2
-   \       0xBC   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+   \       0xBA   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
+   \       0xBE   0x1C80             ADDS     R0,R0,#+2
+   \       0xC0   0xF8AD 0x0000      STRH     R0,[SP, #+0]
      74                f += ddF_y;
-   \       0xC0   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
-   \       0xC4   0xEB10 0x0808      ADDS     R8,R0,R8
+   \       0xC4   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
+   \       0xC8   0xEB10 0x0808      ADDS     R8,R0,R8
      75              }
      76              x++;
    \                     ??drawCircle_2: (+1)
-   \       0xC8   0xF11A 0x0A01      ADDS     R10,R10,#+1
+   \       0xCC   0xF11A 0x0A01      ADDS     R10,R10,#+1
      77              ddF_x += 2;
-   \       0xCC   0xF119 0x0902      ADDS     R9,R9,#+2
+   \       0xD0   0xF119 0x0902      ADDS     R9,R9,#+2
      78              f += ddF_x;
-   \       0xD0   0xEB19 0x0808      ADDS     R8,R9,R8
+   \       0xD4   0xEB19 0x0808      ADDS     R8,R9,R8
      79            
      80              drawPixel(x0 + x, y0 + y, color);
-   \       0xD4   0x0023             MOVS     R3,R4
-   \       0xD6   0xB29B             UXTH     R3,R3
-   \       0xD8   0xEB1B 0x0207      ADDS     R2,R11,R7
-   \       0xDC   0xB212             SXTH     R2,R2
-   \       0xDE   0xEB1A 0x0106      ADDS     R1,R10,R6
-   \       0xE2   0xB209             SXTH     R1,R1
-   \       0xE4   0x0028             MOVS     R0,R5
-   \       0xE6   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0xEA   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0xEE   0x47E0             BLX      R12
+   \       0xD8   0x0023             MOVS     R3,R4
+   \       0xDA   0xB29B             UXTH     R3,R3
+   \       0xDC   0xEB1B 0x0207      ADDS     R2,R11,R7
+   \       0xE0   0xB212             SXTH     R2,R2
+   \       0xE2   0xEB1A 0x0106      ADDS     R1,R10,R6
+   \       0xE6   0xB209             SXTH     R1,R1
+   \       0xE8   0x0028             MOVS     R0,R5
+   \       0xEA   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0xEE   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0xF2   0x47E0             BLX      R12
      81              drawPixel(x0 - x, y0 + y, color);
-   \       0xF0   0x0023             MOVS     R3,R4
-   \       0xF2   0xB29B             UXTH     R3,R3
-   \       0xF4   0xEB1B 0x0207      ADDS     R2,R11,R7
-   \       0xF8   0xB212             SXTH     R2,R2
-   \       0xFA   0xEBB6 0x010A      SUBS     R1,R6,R10
-   \       0xFE   0xB209             SXTH     R1,R1
-   \      0x100   0x0028             MOVS     R0,R5
-   \      0x102   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \      0x106   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x10A   0x47E0             BLX      R12
+   \       0xF4   0x0023             MOVS     R3,R4
+   \       0xF6   0xB29B             UXTH     R3,R3
+   \       0xF8   0xEB1B 0x0207      ADDS     R2,R11,R7
+   \       0xFC   0xB212             SXTH     R2,R2
+   \       0xFE   0xEBB6 0x010A      SUBS     R1,R6,R10
+   \      0x102   0xB209             SXTH     R1,R1
+   \      0x104   0x0028             MOVS     R0,R5
+   \      0x106   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \      0x10A   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x10E   0x47E0             BLX      R12
      82              drawPixel(x0 + x, y0 - y, color);
-   \      0x10C   0x0023             MOVS     R3,R4
-   \      0x10E   0xB29B             UXTH     R3,R3
-   \      0x110   0xEBB7 0x020B      SUBS     R2,R7,R11
-   \      0x114   0xB212             SXTH     R2,R2
-   \      0x116   0xEB1A 0x0106      ADDS     R1,R10,R6
-   \      0x11A   0xB209             SXTH     R1,R1
-   \      0x11C   0x0028             MOVS     R0,R5
-   \      0x11E   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \      0x122   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x126   0x47E0             BLX      R12
+   \      0x110   0x0023             MOVS     R3,R4
+   \      0x112   0xB29B             UXTH     R3,R3
+   \      0x114   0xEBB7 0x020B      SUBS     R2,R7,R11
+   \      0x118   0xB212             SXTH     R2,R2
+   \      0x11A   0xEB1A 0x0106      ADDS     R1,R10,R6
+   \      0x11E   0xB209             SXTH     R1,R1
+   \      0x120   0x0028             MOVS     R0,R5
+   \      0x122   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \      0x126   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x12A   0x47E0             BLX      R12
      83              drawPixel(x0 - x, y0 - y, color);
-   \      0x128   0x0023             MOVS     R3,R4
-   \      0x12A   0xB29B             UXTH     R3,R3
-   \      0x12C   0xEBB7 0x020B      SUBS     R2,R7,R11
-   \      0x130   0xB212             SXTH     R2,R2
-   \      0x132   0xEBB6 0x010A      SUBS     R1,R6,R10
-   \      0x136   0xB209             SXTH     R1,R1
-   \      0x138   0x0028             MOVS     R0,R5
-   \      0x13A   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \      0x13E   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x142   0x47E0             BLX      R12
+   \      0x12C   0x0023             MOVS     R3,R4
+   \      0x12E   0xB29B             UXTH     R3,R3
+   \      0x130   0xEBB7 0x020B      SUBS     R2,R7,R11
+   \      0x134   0xB212             SXTH     R2,R2
+   \      0x136   0xEBB6 0x010A      SUBS     R1,R6,R10
+   \      0x13A   0xB209             SXTH     R1,R1
+   \      0x13C   0x0028             MOVS     R0,R5
+   \      0x13E   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \      0x142   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x146   0x47E0             BLX      R12
      84              drawPixel(x0 + y, y0 + x, color);
-   \      0x144   0x0023             MOVS     R3,R4
-   \      0x146   0xB29B             UXTH     R3,R3
-   \      0x148   0xEB1A 0x0207      ADDS     R2,R10,R7
-   \      0x14C   0xB212             SXTH     R2,R2
-   \      0x14E   0xEB1B 0x0106      ADDS     R1,R11,R6
-   \      0x152   0xB209             SXTH     R1,R1
-   \      0x154   0x0028             MOVS     R0,R5
-   \      0x156   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \      0x15A   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x15E   0x47E0             BLX      R12
+   \      0x148   0x0023             MOVS     R3,R4
+   \      0x14A   0xB29B             UXTH     R3,R3
+   \      0x14C   0xEB1A 0x0207      ADDS     R2,R10,R7
+   \      0x150   0xB212             SXTH     R2,R2
+   \      0x152   0xEB1B 0x0106      ADDS     R1,R11,R6
+   \      0x156   0xB209             SXTH     R1,R1
+   \      0x158   0x0028             MOVS     R0,R5
+   \      0x15A   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \      0x15E   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x162   0x47E0             BLX      R12
      85              drawPixel(x0 - y, y0 + x, color);
-   \      0x160   0x0023             MOVS     R3,R4
-   \      0x162   0xB29B             UXTH     R3,R3
-   \      0x164   0xEB1A 0x0207      ADDS     R2,R10,R7
-   \      0x168   0xB212             SXTH     R2,R2
-   \      0x16A   0xEBB6 0x010B      SUBS     R1,R6,R11
-   \      0x16E   0xB209             SXTH     R1,R1
-   \      0x170   0x0028             MOVS     R0,R5
-   \      0x172   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \      0x176   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x17A   0x47E0             BLX      R12
+   \      0x164   0x0023             MOVS     R3,R4
+   \      0x166   0xB29B             UXTH     R3,R3
+   \      0x168   0xEB1A 0x0207      ADDS     R2,R10,R7
+   \      0x16C   0xB212             SXTH     R2,R2
+   \      0x16E   0xEBB6 0x010B      SUBS     R1,R6,R11
+   \      0x172   0xB209             SXTH     R1,R1
+   \      0x174   0x0028             MOVS     R0,R5
+   \      0x176   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \      0x17A   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x17E   0x47E0             BLX      R12
      86              drawPixel(x0 + y, y0 - x, color);
-   \      0x17C   0x0023             MOVS     R3,R4
-   \      0x17E   0xB29B             UXTH     R3,R3
-   \      0x180   0xEBB7 0x020A      SUBS     R2,R7,R10
-   \      0x184   0xB212             SXTH     R2,R2
-   \      0x186   0xEB1B 0x0106      ADDS     R1,R11,R6
-   \      0x18A   0xB209             SXTH     R1,R1
-   \      0x18C   0x0028             MOVS     R0,R5
-   \      0x18E   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \      0x192   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x196   0x47E0             BLX      R12
+   \      0x180   0x0023             MOVS     R3,R4
+   \      0x182   0xB29B             UXTH     R3,R3
+   \      0x184   0xEBB7 0x020A      SUBS     R2,R7,R10
+   \      0x188   0xB212             SXTH     R2,R2
+   \      0x18A   0xEB1B 0x0106      ADDS     R1,R11,R6
+   \      0x18E   0xB209             SXTH     R1,R1
+   \      0x190   0x0028             MOVS     R0,R5
+   \      0x192   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \      0x196   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x19A   0x47E0             BLX      R12
      87              drawPixel(x0 - y, y0 - x, color);
-   \      0x198   0x0023             MOVS     R3,R4
-   \      0x19A   0xB29B             UXTH     R3,R3
-   \      0x19C   0xEBB7 0x020A      SUBS     R2,R7,R10
-   \      0x1A0   0xB212             SXTH     R2,R2
-   \      0x1A2   0xEBB6 0x010B      SUBS     R1,R6,R11
-   \      0x1A6   0xB209             SXTH     R1,R1
-   \      0x1A8   0x0028             MOVS     R0,R5
-   \      0x1AA   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \      0x1AE   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x1B2   0x47E0             BLX      R12
-   \      0x1B4   0xE772             B.N      ??drawCircle_0
+   \      0x19C   0x0023             MOVS     R3,R4
+   \      0x19E   0xB29B             UXTH     R3,R3
+   \      0x1A0   0xEBB7 0x020A      SUBS     R2,R7,R10
+   \      0x1A4   0xB212             SXTH     R2,R2
+   \      0x1A6   0xEBB6 0x010B      SUBS     R1,R6,R11
+   \      0x1AA   0xB209             SXTH     R1,R1
+   \      0x1AC   0x0028             MOVS     R0,R5
+   \      0x1AE   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \      0x1B2   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x1B6   0x47E0             BLX      R12
+   \      0x1B8   0xE772             B.N      ??drawCircle_0
      88            }
      89          }
    \                     ??drawCircle_1: (+1)
-   \      0x1B6   0xE8BD 0x8FF7      POP      {R0-R2,R4-R11,PC}
+   \      0x1BA   0xE8BD 0x8FF7      POP      {R0-R2,R4-R11,PC}
      90          
 
    \                                 In section .text, align 2, keep-with-next
@@ -365,160 +366,160 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
    \       0x14   0xF05F 0x0901      MOVS     R9,#+1
      95            int16_t ddF_y = -2 * r;
    \       0x18   0xF8BD 0x0008      LDRH     R0,[SP, #+8]
-   \       0x1C   0x0040             LSLS     R0,R0,#+1
-   \       0x1E   0x4240             RSBS     R0,R0,#+0
-   \       0x20   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+   \       0x1C   0xF07F 0x0101      MVNS     R1,#+1
+   \       0x20   0xFB10 0xF001      SMULBB   R0,R0,R1
+   \       0x24   0xF8AD 0x0000      STRH     R0,[SP, #+0]
      96            int16_t x     = 0;
-   \       0x24   0xF05F 0x0A00      MOVS     R10,#+0
+   \       0x28   0xF05F 0x0A00      MOVS     R10,#+0
      97            int16_t y     = r;
-   \       0x28   0xF9BD 0xB008      LDRSH    R11,[SP, #+8]
+   \       0x2C   0xF9BD 0xB008      LDRSH    R11,[SP, #+8]
      98          
      99            while (x<y) {
    \                     ??drawCircleHelper_0: (+1)
-   \       0x2C   0x4650             MOV      R0,R10
-   \       0x2E   0x4659             MOV      R1,R11
-   \       0x30   0xB200             SXTH     R0,R0
-   \       0x32   0xB209             SXTH     R1,R1
-   \       0x34   0x4288             CMP      R0,R1
-   \       0x36   0xF280 0x8097      BGE.W    ??drawCircleHelper_1
+   \       0x30   0x4650             MOV      R0,R10
+   \       0x32   0x4659             MOV      R1,R11
+   \       0x34   0xB200             SXTH     R0,R0
+   \       0x36   0xB209             SXTH     R1,R1
+   \       0x38   0x4288             CMP      R0,R1
+   \       0x3A   0xF280 0x8097      BGE.W    ??drawCircleHelper_1
     100              if (f >= 0) {
-   \       0x3A   0x4640             MOV      R0,R8
-   \       0x3C   0xB200             SXTH     R0,R0
-   \       0x3E   0x2800             CMP      R0,#+0
-   \       0x40   0xD40A             BMI.N    ??drawCircleHelper_2
+   \       0x3E   0x4640             MOV      R0,R8
+   \       0x40   0xB200             SXTH     R0,R0
+   \       0x42   0x2800             CMP      R0,#+0
+   \       0x44   0xD40A             BMI.N    ??drawCircleHelper_2
     101                y--;
-   \       0x42   0xF1BB 0x0B01      SUBS     R11,R11,#+1
+   \       0x46   0xF1BB 0x0B01      SUBS     R11,R11,#+1
     102                ddF_y += 2;
-   \       0x46   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
-   \       0x4A   0x1C80             ADDS     R0,R0,#+2
-   \       0x4C   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+   \       0x4A   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
+   \       0x4E   0x1C80             ADDS     R0,R0,#+2
+   \       0x50   0xF8AD 0x0000      STRH     R0,[SP, #+0]
     103                f     += ddF_y;
-   \       0x50   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
-   \       0x54   0xEB10 0x0808      ADDS     R8,R0,R8
+   \       0x54   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
+   \       0x58   0xEB10 0x0808      ADDS     R8,R0,R8
     104              }
     105              x++;
    \                     ??drawCircleHelper_2: (+1)
-   \       0x58   0xF11A 0x0A01      ADDS     R10,R10,#+1
+   \       0x5C   0xF11A 0x0A01      ADDS     R10,R10,#+1
     106              ddF_x += 2;
-   \       0x5C   0xF119 0x0902      ADDS     R9,R9,#+2
+   \       0x60   0xF119 0x0902      ADDS     R9,R9,#+2
     107              f     += ddF_x;
-   \       0x60   0xEB19 0x0808      ADDS     R8,R9,R8
+   \       0x64   0xEB19 0x0808      ADDS     R8,R9,R8
     108              if (cornername & 0x4) {
-   \       0x64   0xF89D 0x0030      LDRB     R0,[SP, #+48]
-   \       0x68   0x0740             LSLS     R0,R0,#+29
-   \       0x6A   0xD51B             BPL.N    ??drawCircleHelper_3
+   \       0x68   0xF89D 0x0030      LDRB     R0,[SP, #+48]
+   \       0x6C   0x0740             LSLS     R0,R0,#+29
+   \       0x6E   0xD51B             BPL.N    ??drawCircleHelper_3
     109                drawPixel(x0 + x, y0 + y, color);
-   \       0x6C   0x0023             MOVS     R3,R4
-   \       0x6E   0xB29B             UXTH     R3,R3
-   \       0x70   0xEB1B 0x0207      ADDS     R2,R11,R7
-   \       0x74   0xB212             SXTH     R2,R2
-   \       0x76   0xEB1A 0x0106      ADDS     R1,R10,R6
-   \       0x7A   0xB209             SXTH     R1,R1
-   \       0x7C   0x0028             MOVS     R0,R5
-   \       0x7E   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0x82   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0x86   0x47E0             BLX      R12
+   \       0x70   0x0023             MOVS     R3,R4
+   \       0x72   0xB29B             UXTH     R3,R3
+   \       0x74   0xEB1B 0x0207      ADDS     R2,R11,R7
+   \       0x78   0xB212             SXTH     R2,R2
+   \       0x7A   0xEB1A 0x0106      ADDS     R1,R10,R6
+   \       0x7E   0xB209             SXTH     R1,R1
+   \       0x80   0x0028             MOVS     R0,R5
+   \       0x82   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0x86   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0x8A   0x47E0             BLX      R12
     110                drawPixel(x0 + y, y0 + x, color);
-   \       0x88   0x0023             MOVS     R3,R4
-   \       0x8A   0xB29B             UXTH     R3,R3
-   \       0x8C   0xEB1A 0x0207      ADDS     R2,R10,R7
-   \       0x90   0xB212             SXTH     R2,R2
-   \       0x92   0xEB1B 0x0106      ADDS     R1,R11,R6
-   \       0x96   0xB209             SXTH     R1,R1
-   \       0x98   0x0028             MOVS     R0,R5
-   \       0x9A   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0x9E   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0xA2   0x47E0             BLX      R12
+   \       0x8C   0x0023             MOVS     R3,R4
+   \       0x8E   0xB29B             UXTH     R3,R3
+   \       0x90   0xEB1A 0x0207      ADDS     R2,R10,R7
+   \       0x94   0xB212             SXTH     R2,R2
+   \       0x96   0xEB1B 0x0106      ADDS     R1,R11,R6
+   \       0x9A   0xB209             SXTH     R1,R1
+   \       0x9C   0x0028             MOVS     R0,R5
+   \       0x9E   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0xA2   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0xA6   0x47E0             BLX      R12
     111              } 
     112              if (cornername & 0x2) {
    \                     ??drawCircleHelper_3: (+1)
-   \       0xA4   0xF89D 0x0030      LDRB     R0,[SP, #+48]
-   \       0xA8   0x0780             LSLS     R0,R0,#+30
-   \       0xAA   0xD51B             BPL.N    ??drawCircleHelper_4
+   \       0xA8   0xF89D 0x0030      LDRB     R0,[SP, #+48]
+   \       0xAC   0x0780             LSLS     R0,R0,#+30
+   \       0xAE   0xD51B             BPL.N    ??drawCircleHelper_4
     113                drawPixel(x0 + x, y0 - y, color);
-   \       0xAC   0x0023             MOVS     R3,R4
-   \       0xAE   0xB29B             UXTH     R3,R3
-   \       0xB0   0xEBB7 0x020B      SUBS     R2,R7,R11
-   \       0xB4   0xB212             SXTH     R2,R2
-   \       0xB6   0xEB1A 0x0106      ADDS     R1,R10,R6
-   \       0xBA   0xB209             SXTH     R1,R1
-   \       0xBC   0x0028             MOVS     R0,R5
-   \       0xBE   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0xC2   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0xC6   0x47E0             BLX      R12
+   \       0xB0   0x0023             MOVS     R3,R4
+   \       0xB2   0xB29B             UXTH     R3,R3
+   \       0xB4   0xEBB7 0x020B      SUBS     R2,R7,R11
+   \       0xB8   0xB212             SXTH     R2,R2
+   \       0xBA   0xEB1A 0x0106      ADDS     R1,R10,R6
+   \       0xBE   0xB209             SXTH     R1,R1
+   \       0xC0   0x0028             MOVS     R0,R5
+   \       0xC2   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0xC6   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0xCA   0x47E0             BLX      R12
     114                drawPixel(x0 + y, y0 - x, color);
-   \       0xC8   0x0023             MOVS     R3,R4
-   \       0xCA   0xB29B             UXTH     R3,R3
-   \       0xCC   0xEBB7 0x020A      SUBS     R2,R7,R10
-   \       0xD0   0xB212             SXTH     R2,R2
-   \       0xD2   0xEB1B 0x0106      ADDS     R1,R11,R6
-   \       0xD6   0xB209             SXTH     R1,R1
-   \       0xD8   0x0028             MOVS     R0,R5
-   \       0xDA   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0xDE   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0xE2   0x47E0             BLX      R12
+   \       0xCC   0x0023             MOVS     R3,R4
+   \       0xCE   0xB29B             UXTH     R3,R3
+   \       0xD0   0xEBB7 0x020A      SUBS     R2,R7,R10
+   \       0xD4   0xB212             SXTH     R2,R2
+   \       0xD6   0xEB1B 0x0106      ADDS     R1,R11,R6
+   \       0xDA   0xB209             SXTH     R1,R1
+   \       0xDC   0x0028             MOVS     R0,R5
+   \       0xDE   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0xE2   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0xE6   0x47E0             BLX      R12
     115              }
     116              if (cornername & 0x8) {
    \                     ??drawCircleHelper_4: (+1)
-   \       0xE4   0xF89D 0x0030      LDRB     R0,[SP, #+48]
-   \       0xE8   0x0700             LSLS     R0,R0,#+28
-   \       0xEA   0xD51B             BPL.N    ??drawCircleHelper_5
+   \       0xE8   0xF89D 0x0030      LDRB     R0,[SP, #+48]
+   \       0xEC   0x0700             LSLS     R0,R0,#+28
+   \       0xEE   0xD51B             BPL.N    ??drawCircleHelper_5
     117                drawPixel(x0 - y, y0 + x, color);
-   \       0xEC   0x0023             MOVS     R3,R4
-   \       0xEE   0xB29B             UXTH     R3,R3
-   \       0xF0   0xEB1A 0x0207      ADDS     R2,R10,R7
-   \       0xF4   0xB212             SXTH     R2,R2
-   \       0xF6   0xEBB6 0x010B      SUBS     R1,R6,R11
-   \       0xFA   0xB209             SXTH     R1,R1
-   \       0xFC   0x0028             MOVS     R0,R5
-   \       0xFE   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \      0x102   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x106   0x47E0             BLX      R12
+   \       0xF0   0x0023             MOVS     R3,R4
+   \       0xF2   0xB29B             UXTH     R3,R3
+   \       0xF4   0xEB1A 0x0207      ADDS     R2,R10,R7
+   \       0xF8   0xB212             SXTH     R2,R2
+   \       0xFA   0xEBB6 0x010B      SUBS     R1,R6,R11
+   \       0xFE   0xB209             SXTH     R1,R1
+   \      0x100   0x0028             MOVS     R0,R5
+   \      0x102   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \      0x106   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x10A   0x47E0             BLX      R12
     118                drawPixel(x0 - x, y0 + y, color);
-   \      0x108   0x0023             MOVS     R3,R4
-   \      0x10A   0xB29B             UXTH     R3,R3
-   \      0x10C   0xEB1B 0x0207      ADDS     R2,R11,R7
-   \      0x110   0xB212             SXTH     R2,R2
-   \      0x112   0xEBB6 0x010A      SUBS     R1,R6,R10
-   \      0x116   0xB209             SXTH     R1,R1
-   \      0x118   0x0028             MOVS     R0,R5
-   \      0x11A   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \      0x11E   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x122   0x47E0             BLX      R12
+   \      0x10C   0x0023             MOVS     R3,R4
+   \      0x10E   0xB29B             UXTH     R3,R3
+   \      0x110   0xEB1B 0x0207      ADDS     R2,R11,R7
+   \      0x114   0xB212             SXTH     R2,R2
+   \      0x116   0xEBB6 0x010A      SUBS     R1,R6,R10
+   \      0x11A   0xB209             SXTH     R1,R1
+   \      0x11C   0x0028             MOVS     R0,R5
+   \      0x11E   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \      0x122   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x126   0x47E0             BLX      R12
     119              }
     120              if (cornername & 0x1) {
    \                     ??drawCircleHelper_5: (+1)
-   \      0x124   0xF89D 0x0030      LDRB     R0,[SP, #+48]
-   \      0x128   0x07C0             LSLS     R0,R0,#+31
-   \      0x12A   0xF57F 0xAF7F      BPL.W    ??drawCircleHelper_0
+   \      0x128   0xF89D 0x0030      LDRB     R0,[SP, #+48]
+   \      0x12C   0x07C0             LSLS     R0,R0,#+31
+   \      0x12E   0xF57F 0xAF7F      BPL.W    ??drawCircleHelper_0
     121                drawPixel(x0 - y, y0 - x, color);
-   \      0x12E   0x0023             MOVS     R3,R4
-   \      0x130   0xB29B             UXTH     R3,R3
-   \      0x132   0xEBB7 0x020A      SUBS     R2,R7,R10
-   \      0x136   0xB212             SXTH     R2,R2
-   \      0x138   0xEBB6 0x010B      SUBS     R1,R6,R11
-   \      0x13C   0xB209             SXTH     R1,R1
-   \      0x13E   0x0028             MOVS     R0,R5
-   \      0x140   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \      0x144   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x148   0x47E0             BLX      R12
+   \      0x132   0x0023             MOVS     R3,R4
+   \      0x134   0xB29B             UXTH     R3,R3
+   \      0x136   0xEBB7 0x020A      SUBS     R2,R7,R10
+   \      0x13A   0xB212             SXTH     R2,R2
+   \      0x13C   0xEBB6 0x010B      SUBS     R1,R6,R11
+   \      0x140   0xB209             SXTH     R1,R1
+   \      0x142   0x0028             MOVS     R0,R5
+   \      0x144   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \      0x148   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x14C   0x47E0             BLX      R12
     122                drawPixel(x0 - x, y0 - y, color);
-   \      0x14A   0x0023             MOVS     R3,R4
-   \      0x14C   0xB29B             UXTH     R3,R3
-   \      0x14E   0xEBB7 0x020B      SUBS     R2,R7,R11
-   \      0x152   0xB212             SXTH     R2,R2
-   \      0x154   0xEBB6 0x010A      SUBS     R1,R6,R10
-   \      0x158   0xB209             SXTH     R1,R1
-   \      0x15A   0x0028             MOVS     R0,R5
-   \      0x15C   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \      0x160   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x164   0x47E0             BLX      R12
-   \      0x166   0xE761             B.N      ??drawCircleHelper_0
+   \      0x14E   0x0023             MOVS     R3,R4
+   \      0x150   0xB29B             UXTH     R3,R3
+   \      0x152   0xEBB7 0x020B      SUBS     R2,R7,R11
+   \      0x156   0xB212             SXTH     R2,R2
+   \      0x158   0xEBB6 0x010A      SUBS     R1,R6,R10
+   \      0x15C   0xB209             SXTH     R1,R1
+   \      0x15E   0x0028             MOVS     R0,R5
+   \      0x160   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \      0x164   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x168   0x47E0             BLX      R12
+   \      0x16A   0xE761             B.N      ??drawCircleHelper_0
     123              }
     124            }
     125          }
    \                     ??drawCircleHelper_1: (+1)
-   \      0x168   0xE8BD 0x8FF7      POP      {R0-R2,R4-R11,PC}
+   \      0x16C   0xE8BD 0x8FF7      POP      {R0-R2,R4-R11,PC}
     126          
 
    \                                 In section .text, align 2, keep-with-next
@@ -535,9 +536,8 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
    \        0xE   0x0020             MOVS     R0,R4
    \       0x10   0xB280             UXTH     R0,R0
    \       0x12   0x9000             STR      R0,[SP, #+0]
-   \       0x14   0x4643             MOV      R3,R8
-   \       0x16   0xB21B             SXTH     R3,R3
-   \       0x18   0x005B             LSLS     R3,R3,#+1
+   \       0x14   0x2002             MOVS     R0,#+2
+   \       0x16   0xFB18 0xF300      SMULBB   R3,R8,R0
    \       0x1A   0x1C5B             ADDS     R3,R3,#+1
    \       0x1C   0xB21B             SXTH     R3,R3
    \       0x1E   0xEBB7 0x0208      SUBS     R2,R7,R8
@@ -585,9 +585,9 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
     138            int16_t ddF_x = 1;
    \       0x16   0xF05F 0x0801      MOVS     R8,#+1
     139            int16_t ddF_y = -2 * r;
-   \       0x1A   0xF8BD 0x9010      LDRH     R9,[SP, #+16]
-   \       0x1E   0xEA5F 0x0949      LSLS     R9,R9,#+1
-   \       0x22   0xF1D9 0x0900      RSBS     R9,R9,#+0
+   \       0x1A   0xF8BD 0x0010      LDRH     R0,[SP, #+16]
+   \       0x1E   0xF07F 0x0101      MVNS     R1,#+1
+   \       0x22   0xFB10 0xF901      SMULBB   R9,R0,R1
     140            int16_t x     = 0;
    \       0x26   0xF05F 0x0B00      MOVS     R11,#+0
     141            int16_t y     = r;
@@ -600,7 +600,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
    \       0x32   0xB200             SXTH     R0,R0
    \       0x34   0xB209             SXTH     R1,R1
    \       0x36   0x4288             CMP      R0,R1
-   \       0x38   0xDA74             BGE.N    ??fillCircleHelper_1
+   \       0x38   0xDA7C             BGE.N    ??fillCircleHelper_1
     144              if (f >= 0) {
    \       0x3A   0x0038             MOVS     R0,R7
    \       0x3C   0xB200             SXTH     R0,R0
@@ -624,88 +624,92 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
     153              if (cornername & 0x1) {
    \       0x5A   0xF89D 0x0038      LDRB     R0,[SP, #+56]
    \       0x5E   0x07C0             LSLS     R0,R0,#+31
-   \       0x60   0xD52D             BPL.N    ??fillCircleHelper_3
+   \       0x60   0xD531             BPL.N    ??fillCircleHelper_3
     154                drawFastVLine(x0+x, y0-y, 2*y+1+delta, color);
    \       0x62   0x0020             MOVS     R0,R4
    \       0x64   0xB280             UXTH     R0,R0
    \       0x66   0x9000             STR      R0,[SP, #+0]
-   \       0x68   0xEB16 0x034A      ADDS     R3,R6,R10, LSL #+1
-   \       0x6C   0x1C5B             ADDS     R3,R3,#+1
-   \       0x6E   0xB21B             SXTH     R3,R3
-   \       0x70   0xF8BD 0x200C      LDRH     R2,[SP, #+12]
-   \       0x74   0xEBB2 0x020A      SUBS     R2,R2,R10
-   \       0x78   0xB212             SXTH     R2,R2
-   \       0x7A   0xF8BD 0x1008      LDRH     R1,[SP, #+8]
-   \       0x7E   0xEB1B 0x0101      ADDS     R1,R11,R1
-   \       0x82   0xB209             SXTH     R1,R1
-   \       0x84   0x0028             MOVS     R0,R5
-   \       0x86   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0x8A   0xF8DC 0xC008      LDR      R12,[R12, #+8]
-   \       0x8E   0x47E0             BLX      R12
+   \       0x68   0xFA0F 0xFA8A      SXTH     R10,R10
+   \       0x6C   0xEB16 0x034A      ADDS     R3,R6,R10, LSL #+1
+   \       0x70   0x1C5B             ADDS     R3,R3,#+1
+   \       0x72   0xB21B             SXTH     R3,R3
+   \       0x74   0xF8BD 0x200C      LDRH     R2,[SP, #+12]
+   \       0x78   0xEBB2 0x020A      SUBS     R2,R2,R10
+   \       0x7C   0xB212             SXTH     R2,R2
+   \       0x7E   0xF8BD 0x1008      LDRH     R1,[SP, #+8]
+   \       0x82   0xEB1B 0x0101      ADDS     R1,R11,R1
+   \       0x86   0xB209             SXTH     R1,R1
+   \       0x88   0x0028             MOVS     R0,R5
+   \       0x8A   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0x8E   0xF8DC 0xC008      LDR      R12,[R12, #+8]
+   \       0x92   0x47E0             BLX      R12
     155                drawFastVLine(x0+y, y0-x, 2*x+1+delta, color);
-   \       0x90   0x0020             MOVS     R0,R4
-   \       0x92   0xB280             UXTH     R0,R0
-   \       0x94   0x9000             STR      R0,[SP, #+0]
-   \       0x96   0xEB16 0x034B      ADDS     R3,R6,R11, LSL #+1
-   \       0x9A   0x1C5B             ADDS     R3,R3,#+1
-   \       0x9C   0xB21B             SXTH     R3,R3
-   \       0x9E   0xF8BD 0x200C      LDRH     R2,[SP, #+12]
-   \       0xA2   0xEBB2 0x020B      SUBS     R2,R2,R11
-   \       0xA6   0xB212             SXTH     R2,R2
-   \       0xA8   0xF8BD 0x1008      LDRH     R1,[SP, #+8]
-   \       0xAC   0xEB1A 0x0101      ADDS     R1,R10,R1
-   \       0xB0   0xB209             SXTH     R1,R1
-   \       0xB2   0x0028             MOVS     R0,R5
-   \       0xB4   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0xB8   0xF8DC 0xC008      LDR      R12,[R12, #+8]
-   \       0xBC   0x47E0             BLX      R12
+   \       0x94   0x0020             MOVS     R0,R4
+   \       0x96   0xB280             UXTH     R0,R0
+   \       0x98   0x9000             STR      R0,[SP, #+0]
+   \       0x9A   0xFA0F 0xFB8B      SXTH     R11,R11
+   \       0x9E   0xEB16 0x034B      ADDS     R3,R6,R11, LSL #+1
+   \       0xA2   0x1C5B             ADDS     R3,R3,#+1
+   \       0xA4   0xB21B             SXTH     R3,R3
+   \       0xA6   0xF8BD 0x200C      LDRH     R2,[SP, #+12]
+   \       0xAA   0xEBB2 0x020B      SUBS     R2,R2,R11
+   \       0xAE   0xB212             SXTH     R2,R2
+   \       0xB0   0xF8BD 0x1008      LDRH     R1,[SP, #+8]
+   \       0xB4   0xEB1A 0x0101      ADDS     R1,R10,R1
+   \       0xB8   0xB209             SXTH     R1,R1
+   \       0xBA   0x0028             MOVS     R0,R5
+   \       0xBC   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0xC0   0xF8DC 0xC008      LDR      R12,[R12, #+8]
+   \       0xC4   0x47E0             BLX      R12
     156              }
     157              if (cornername & 0x2) {
    \                     ??fillCircleHelper_3: (+1)
-   \       0xBE   0xF89D 0x0038      LDRB     R0,[SP, #+56]
-   \       0xC2   0x0780             LSLS     R0,R0,#+30
-   \       0xC4   0xD5B3             BPL.N    ??fillCircleHelper_0
+   \       0xC6   0xF89D 0x0038      LDRB     R0,[SP, #+56]
+   \       0xCA   0x0780             LSLS     R0,R0,#+30
+   \       0xCC   0xD5AF             BPL.N    ??fillCircleHelper_0
     158                drawFastVLine(x0-x, y0-y, 2*y+1+delta, color);
-   \       0xC6   0x0020             MOVS     R0,R4
-   \       0xC8   0xB280             UXTH     R0,R0
-   \       0xCA   0x9000             STR      R0,[SP, #+0]
-   \       0xCC   0xEB16 0x034A      ADDS     R3,R6,R10, LSL #+1
-   \       0xD0   0x1C5B             ADDS     R3,R3,#+1
-   \       0xD2   0xB21B             SXTH     R3,R3
-   \       0xD4   0xF8BD 0x200C      LDRH     R2,[SP, #+12]
-   \       0xD8   0xEBB2 0x020A      SUBS     R2,R2,R10
-   \       0xDC   0xB212             SXTH     R2,R2
-   \       0xDE   0xF8BD 0x1008      LDRH     R1,[SP, #+8]
-   \       0xE2   0xEBB1 0x010B      SUBS     R1,R1,R11
-   \       0xE6   0xB209             SXTH     R1,R1
-   \       0xE8   0x0028             MOVS     R0,R5
-   \       0xEA   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0xEE   0xF8DC 0xC008      LDR      R12,[R12, #+8]
-   \       0xF2   0x47E0             BLX      R12
+   \       0xCE   0x0020             MOVS     R0,R4
+   \       0xD0   0xB280             UXTH     R0,R0
+   \       0xD2   0x9000             STR      R0,[SP, #+0]
+   \       0xD4   0xFA0F 0xFA8A      SXTH     R10,R10
+   \       0xD8   0xEB16 0x034A      ADDS     R3,R6,R10, LSL #+1
+   \       0xDC   0x1C5B             ADDS     R3,R3,#+1
+   \       0xDE   0xB21B             SXTH     R3,R3
+   \       0xE0   0xF8BD 0x200C      LDRH     R2,[SP, #+12]
+   \       0xE4   0xEBB2 0x020A      SUBS     R2,R2,R10
+   \       0xE8   0xB212             SXTH     R2,R2
+   \       0xEA   0xF8BD 0x1008      LDRH     R1,[SP, #+8]
+   \       0xEE   0xEBB1 0x010B      SUBS     R1,R1,R11
+   \       0xF2   0xB209             SXTH     R1,R1
+   \       0xF4   0x0028             MOVS     R0,R5
+   \       0xF6   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0xFA   0xF8DC 0xC008      LDR      R12,[R12, #+8]
+   \       0xFE   0x47E0             BLX      R12
     159                drawFastVLine(x0-y, y0-x, 2*x+1+delta, color);
-   \       0xF4   0x0020             MOVS     R0,R4
-   \       0xF6   0xB280             UXTH     R0,R0
-   \       0xF8   0x9000             STR      R0,[SP, #+0]
-   \       0xFA   0xEB16 0x034B      ADDS     R3,R6,R11, LSL #+1
-   \       0xFE   0x1C5B             ADDS     R3,R3,#+1
-   \      0x100   0xB21B             SXTH     R3,R3
-   \      0x102   0xF8BD 0x200C      LDRH     R2,[SP, #+12]
-   \      0x106   0xEBB2 0x020B      SUBS     R2,R2,R11
-   \      0x10A   0xB212             SXTH     R2,R2
-   \      0x10C   0xF8BD 0x1008      LDRH     R1,[SP, #+8]
-   \      0x110   0xEBB1 0x010A      SUBS     R1,R1,R10
-   \      0x114   0xB209             SXTH     R1,R1
-   \      0x116   0x0028             MOVS     R0,R5
-   \      0x118   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \      0x11C   0xF8DC 0xC008      LDR      R12,[R12, #+8]
-   \      0x120   0x47E0             BLX      R12
-   \      0x122   0xE784             B.N      ??fillCircleHelper_0
+   \      0x100   0x0020             MOVS     R0,R4
+   \      0x102   0xB280             UXTH     R0,R0
+   \      0x104   0x9000             STR      R0,[SP, #+0]
+   \      0x106   0xFA0F 0xFB8B      SXTH     R11,R11
+   \      0x10A   0xEB16 0x034B      ADDS     R3,R6,R11, LSL #+1
+   \      0x10E   0x1C5B             ADDS     R3,R3,#+1
+   \      0x110   0xB21B             SXTH     R3,R3
+   \      0x112   0xF8BD 0x200C      LDRH     R2,[SP, #+12]
+   \      0x116   0xEBB2 0x020B      SUBS     R2,R2,R11
+   \      0x11A   0xB212             SXTH     R2,R2
+   \      0x11C   0xF8BD 0x1008      LDRH     R1,[SP, #+8]
+   \      0x120   0xEBB1 0x010A      SUBS     R1,R1,R10
+   \      0x124   0xB209             SXTH     R1,R1
+   \      0x126   0x0028             MOVS     R0,R5
+   \      0x128   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \      0x12C   0xF8DC 0xC008      LDR      R12,[R12, #+8]
+   \      0x130   0x47E0             BLX      R12
+   \      0x132   0xE77C             B.N      ??fillCircleHelper_0
     160              }
     161            }
     162          }
    \                     ??fillCircleHelper_1: (+1)
-   \      0x124   0xB005             ADD      SP,SP,#+20
-   \      0x126   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+   \      0x134   0xB005             ADD      SP,SP,#+20
+   \      0x136   0xE8BD 0x8FF0      POP      {R4-R11,PC}
     163          
     164          // Bresenham's algorithm - thx wikpedia
 
@@ -1085,24 +1089,22 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
     245          void Adafruit_GFX::drawRoundRect(int16_t x, int16_t y, int16_t w,
     246            int16_t h, int16_t r, uint16_t color) {
    \                     _ZN12Adafruit_GFX13drawRoundRectEssssst: (+1)
-   \        0x0   0xE92D 0x47FC      PUSH     {R2-R10,LR}
+   \        0x0   0xE92D 0x4FFE      PUSH     {R1-R11,LR}
    \        0x4   0x0005             MOVS     R5,R0
    \        0x6   0x000E             MOVS     R6,R1
    \        0x8   0x0017             MOVS     R7,R2
    \        0xA   0x4698             MOV      R8,R3
-   \        0xC   0xF9BD 0x9028      LDRSH    R9,[SP, #+40]
-   \       0x10   0xF9BD 0xA02C      LDRSH    R10,[SP, #+44]
-   \       0x14   0x9C0C             LDR      R4,[SP, #+48]
+   \        0xC   0xF9BD 0x9030      LDRSH    R9,[SP, #+48]
+   \       0x10   0xF9BD 0xA034      LDRSH    R10,[SP, #+52]
+   \       0x14   0x9C0E             LDR      R4,[SP, #+56]
     247            // smarter version
     248            drawFastHLine(x+r  , y    , w-2*r, color); // Top
-   \       0x16   0x0020             MOVS     R0,R4
-   \       0x18   0xB280             UXTH     R0,R0
-   \       0x1A   0x9000             STR      R0,[SP, #+0]
-   \       0x1C   0x4643             MOV      R3,R8
-   \       0x1E   0xB21B             SXTH     R3,R3
-   \       0x20   0x4650             MOV      R0,R10
-   \       0x22   0xB200             SXTH     R0,R0
-   \       0x24   0xEBB3 0x0340      SUBS     R3,R3,R0, LSL #+1
+   \       0x16   0xF07F 0x0B01      MVNS     R11,#+1
+   \       0x1A   0x0020             MOVS     R0,R4
+   \       0x1C   0xB280             UXTH     R0,R0
+   \       0x1E   0x9000             STR      R0,[SP, #+0]
+   \       0x20   0xFB1A 0xF00B      SMULBB   R0,R10,R11
+   \       0x24   0xFA00 0xF388      SXTAH    R3,R0,R8
    \       0x28   0xB21B             SXTH     R3,R3
    \       0x2A   0x003A             MOVS     R2,R7
    \       0x2C   0xB212             SXTH     R2,R2
@@ -1116,125 +1118,116 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
    \       0x40   0x0020             MOVS     R0,R4
    \       0x42   0xB280             UXTH     R0,R0
    \       0x44   0x9000             STR      R0,[SP, #+0]
-   \       0x46   0x4643             MOV      R3,R8
-   \       0x48   0xB21B             SXTH     R3,R3
-   \       0x4A   0x4650             MOV      R0,R10
-   \       0x4C   0xB200             SXTH     R0,R0
-   \       0x4E   0xEBB3 0x0340      SUBS     R3,R3,R0, LSL #+1
-   \       0x52   0xB21B             SXTH     R3,R3
-   \       0x54   0xEB19 0x0007      ADDS     R0,R9,R7
-   \       0x58   0x1E42             SUBS     R2,R0,#+1
-   \       0x5A   0xB212             SXTH     R2,R2
-   \       0x5C   0xEB1A 0x0106      ADDS     R1,R10,R6
-   \       0x60   0xB209             SXTH     R1,R1
-   \       0x62   0x0028             MOVS     R0,R5
-   \       0x64   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0x68   0xF8DC 0xC00C      LDR      R12,[R12, #+12]
-   \       0x6C   0x47E0             BLX      R12
+   \       0x46   0xFB1A 0xF00B      SMULBB   R0,R10,R11
+   \       0x4A   0xFA00 0xF388      SXTAH    R3,R0,R8
+   \       0x4E   0xB21B             SXTH     R3,R3
+   \       0x50   0xEB19 0x0007      ADDS     R0,R9,R7
+   \       0x54   0x1E42             SUBS     R2,R0,#+1
+   \       0x56   0xB212             SXTH     R2,R2
+   \       0x58   0xEB1A 0x0106      ADDS     R1,R10,R6
+   \       0x5C   0xB209             SXTH     R1,R1
+   \       0x5E   0x0028             MOVS     R0,R5
+   \       0x60   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0x64   0xF8DC 0xC00C      LDR      R12,[R12, #+12]
+   \       0x68   0x47E0             BLX      R12
     250            drawFastVLine(x    , y+r  , h-2*r, color); // Left
-   \       0x6E   0x0020             MOVS     R0,R4
-   \       0x70   0xB280             UXTH     R0,R0
-   \       0x72   0x9000             STR      R0,[SP, #+0]
-   \       0x74   0x464B             MOV      R3,R9
-   \       0x76   0xB21B             SXTH     R3,R3
-   \       0x78   0x4650             MOV      R0,R10
-   \       0x7A   0xB200             SXTH     R0,R0
-   \       0x7C   0xEBB3 0x0340      SUBS     R3,R3,R0, LSL #+1
-   \       0x80   0xB21B             SXTH     R3,R3
-   \       0x82   0xEB1A 0x0207      ADDS     R2,R10,R7
-   \       0x86   0xB212             SXTH     R2,R2
-   \       0x88   0x0031             MOVS     R1,R6
-   \       0x8A   0xB209             SXTH     R1,R1
-   \       0x8C   0x0028             MOVS     R0,R5
-   \       0x8E   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0x92   0xF8DC 0xC008      LDR      R12,[R12, #+8]
-   \       0x96   0x47E0             BLX      R12
+   \       0x6A   0x0020             MOVS     R0,R4
+   \       0x6C   0xB280             UXTH     R0,R0
+   \       0x6E   0x9000             STR      R0,[SP, #+0]
+   \       0x70   0xFB1A 0xF00B      SMULBB   R0,R10,R11
+   \       0x74   0xFA00 0xF389      SXTAH    R3,R0,R9
+   \       0x78   0xB21B             SXTH     R3,R3
+   \       0x7A   0xEB1A 0x0207      ADDS     R2,R10,R7
+   \       0x7E   0xB212             SXTH     R2,R2
+   \       0x80   0x0031             MOVS     R1,R6
+   \       0x82   0xB209             SXTH     R1,R1
+   \       0x84   0x0028             MOVS     R0,R5
+   \       0x86   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0x8A   0xF8DC 0xC008      LDR      R12,[R12, #+8]
+   \       0x8E   0x47E0             BLX      R12
     251            drawFastVLine(x+w-1, y+r  , h-2*r, color); // Right
-   \       0x98   0x0020             MOVS     R0,R4
-   \       0x9A   0xB280             UXTH     R0,R0
-   \       0x9C   0x9000             STR      R0,[SP, #+0]
-   \       0x9E   0x464B             MOV      R3,R9
-   \       0xA0   0xB21B             SXTH     R3,R3
-   \       0xA2   0x4650             MOV      R0,R10
-   \       0xA4   0xB200             SXTH     R0,R0
-   \       0xA6   0xEBB3 0x0340      SUBS     R3,R3,R0, LSL #+1
-   \       0xAA   0xB21B             SXTH     R3,R3
-   \       0xAC   0xEB1A 0x0207      ADDS     R2,R10,R7
-   \       0xB0   0xB212             SXTH     R2,R2
-   \       0xB2   0xEB18 0x0006      ADDS     R0,R8,R6
-   \       0xB6   0x1E41             SUBS     R1,R0,#+1
-   \       0xB8   0xB209             SXTH     R1,R1
-   \       0xBA   0x0028             MOVS     R0,R5
-   \       0xBC   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0xC0   0xF8DC 0xC008      LDR      R12,[R12, #+8]
-   \       0xC4   0x47E0             BLX      R12
+   \       0x90   0x0020             MOVS     R0,R4
+   \       0x92   0xB280             UXTH     R0,R0
+   \       0x94   0x9000             STR      R0,[SP, #+0]
+   \       0x96   0xFB1A 0xF00B      SMULBB   R0,R10,R11
+   \       0x9A   0xFA00 0xF389      SXTAH    R3,R0,R9
+   \       0x9E   0xB21B             SXTH     R3,R3
+   \       0xA0   0xEB1A 0x0207      ADDS     R2,R10,R7
+   \       0xA4   0xB212             SXTH     R2,R2
+   \       0xA6   0xEB18 0x0006      ADDS     R0,R8,R6
+   \       0xAA   0x1E41             SUBS     R1,R0,#+1
+   \       0xAC   0xB209             SXTH     R1,R1
+   \       0xAE   0x0028             MOVS     R0,R5
+   \       0xB0   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0xB4   0xF8DC 0xC008      LDR      R12,[R12, #+8]
+   \       0xB8   0x47E0             BLX      R12
     252            // draw four corners
     253            drawCircleHelper(x+r    , y+r    , r, 1, color);
-   \       0xC6   0x0020             MOVS     R0,R4
-   \       0xC8   0xB280             UXTH     R0,R0
-   \       0xCA   0x9001             STR      R0,[SP, #+4]
-   \       0xCC   0x2001             MOVS     R0,#+1
-   \       0xCE   0x9000             STR      R0,[SP, #+0]
-   \       0xD0   0x4653             MOV      R3,R10
-   \       0xD2   0xB21B             SXTH     R3,R3
-   \       0xD4   0xEB1A 0x0207      ADDS     R2,R10,R7
-   \       0xD8   0xB212             SXTH     R2,R2
-   \       0xDA   0xEB1A 0x0106      ADDS     R1,R10,R6
-   \       0xDE   0xB209             SXTH     R1,R1
-   \       0xE0   0x0028             MOVS     R0,R5
-   \       0xE2   0x.... 0x....      BL       _ZN12Adafruit_GFX16drawCircleHelperEsssht
+   \       0xBA   0x0020             MOVS     R0,R4
+   \       0xBC   0xB280             UXTH     R0,R0
+   \       0xBE   0x9001             STR      R0,[SP, #+4]
+   \       0xC0   0x2001             MOVS     R0,#+1
+   \       0xC2   0x9000             STR      R0,[SP, #+0]
+   \       0xC4   0x4653             MOV      R3,R10
+   \       0xC6   0xB21B             SXTH     R3,R3
+   \       0xC8   0xEB1A 0x0207      ADDS     R2,R10,R7
+   \       0xCC   0xB212             SXTH     R2,R2
+   \       0xCE   0xEB1A 0x0106      ADDS     R1,R10,R6
+   \       0xD2   0xB209             SXTH     R1,R1
+   \       0xD4   0x0028             MOVS     R0,R5
+   \       0xD6   0x.... 0x....      BL       _ZN12Adafruit_GFX16drawCircleHelperEsssht
     254            drawCircleHelper(x+w-r-1, y+r    , r, 2, color);
-   \       0xE6   0x0020             MOVS     R0,R4
-   \       0xE8   0xB280             UXTH     R0,R0
-   \       0xEA   0x9001             STR      R0,[SP, #+4]
-   \       0xEC   0x2002             MOVS     R0,#+2
-   \       0xEE   0x9000             STR      R0,[SP, #+0]
-   \       0xF0   0x4653             MOV      R3,R10
-   \       0xF2   0xB21B             SXTH     R3,R3
-   \       0xF4   0xEB1A 0x0207      ADDS     R2,R10,R7
-   \       0xF8   0xB212             SXTH     R2,R2
-   \       0xFA   0xEB18 0x0006      ADDS     R0,R8,R6
-   \       0xFE   0xEBB0 0x000A      SUBS     R0,R0,R10
-   \      0x102   0x1E41             SUBS     R1,R0,#+1
-   \      0x104   0xB209             SXTH     R1,R1
-   \      0x106   0x0028             MOVS     R0,R5
-   \      0x108   0x.... 0x....      BL       _ZN12Adafruit_GFX16drawCircleHelperEsssht
+   \       0xDA   0x0020             MOVS     R0,R4
+   \       0xDC   0xB280             UXTH     R0,R0
+   \       0xDE   0x9001             STR      R0,[SP, #+4]
+   \       0xE0   0x2002             MOVS     R0,#+2
+   \       0xE2   0x9000             STR      R0,[SP, #+0]
+   \       0xE4   0x4653             MOV      R3,R10
+   \       0xE6   0xB21B             SXTH     R3,R3
+   \       0xE8   0xEB1A 0x0207      ADDS     R2,R10,R7
+   \       0xEC   0xB212             SXTH     R2,R2
+   \       0xEE   0xEB18 0x0006      ADDS     R0,R8,R6
+   \       0xF2   0xEBB0 0x000A      SUBS     R0,R0,R10
+   \       0xF6   0x1E41             SUBS     R1,R0,#+1
+   \       0xF8   0xB209             SXTH     R1,R1
+   \       0xFA   0x0028             MOVS     R0,R5
+   \       0xFC   0x.... 0x....      BL       _ZN12Adafruit_GFX16drawCircleHelperEsssht
     255            drawCircleHelper(x+w-r-1, y+h-r-1, r, 4, color);
-   \      0x10C   0x0020             MOVS     R0,R4
-   \      0x10E   0xB280             UXTH     R0,R0
-   \      0x110   0x9001             STR      R0,[SP, #+4]
-   \      0x112   0x2004             MOVS     R0,#+4
-   \      0x114   0x9000             STR      R0,[SP, #+0]
-   \      0x116   0x4653             MOV      R3,R10
-   \      0x118   0xB21B             SXTH     R3,R3
-   \      0x11A   0xEB19 0x0007      ADDS     R0,R9,R7
+   \      0x100   0x0020             MOVS     R0,R4
+   \      0x102   0xB280             UXTH     R0,R0
+   \      0x104   0x9001             STR      R0,[SP, #+4]
+   \      0x106   0x2004             MOVS     R0,#+4
+   \      0x108   0x9000             STR      R0,[SP, #+0]
+   \      0x10A   0x4653             MOV      R3,R10
+   \      0x10C   0xB21B             SXTH     R3,R3
+   \      0x10E   0xEB19 0x0007      ADDS     R0,R9,R7
+   \      0x112   0xEBB0 0x000A      SUBS     R0,R0,R10
+   \      0x116   0x1E42             SUBS     R2,R0,#+1
+   \      0x118   0xB212             SXTH     R2,R2
+   \      0x11A   0xEB18 0x0006      ADDS     R0,R8,R6
    \      0x11E   0xEBB0 0x000A      SUBS     R0,R0,R10
-   \      0x122   0x1E42             SUBS     R2,R0,#+1
-   \      0x124   0xB212             SXTH     R2,R2
-   \      0x126   0xEB18 0x0006      ADDS     R0,R8,R6
-   \      0x12A   0xEBB0 0x000A      SUBS     R0,R0,R10
-   \      0x12E   0x1E41             SUBS     R1,R0,#+1
-   \      0x130   0xB209             SXTH     R1,R1
-   \      0x132   0x0028             MOVS     R0,R5
-   \      0x134   0x.... 0x....      BL       _ZN12Adafruit_GFX16drawCircleHelperEsssht
+   \      0x122   0x1E41             SUBS     R1,R0,#+1
+   \      0x124   0xB209             SXTH     R1,R1
+   \      0x126   0x0028             MOVS     R0,R5
+   \      0x128   0x.... 0x....      BL       _ZN12Adafruit_GFX16drawCircleHelperEsssht
     256            drawCircleHelper(x+r    , y+h-r-1, r, 8, color);
-   \      0x138   0x0020             MOVS     R0,R4
-   \      0x13A   0xB280             UXTH     R0,R0
-   \      0x13C   0x9001             STR      R0,[SP, #+4]
-   \      0x13E   0x2008             MOVS     R0,#+8
-   \      0x140   0x9000             STR      R0,[SP, #+0]
-   \      0x142   0x4653             MOV      R3,R10
-   \      0x144   0xB21B             SXTH     R3,R3
-   \      0x146   0xEB19 0x0007      ADDS     R0,R9,R7
-   \      0x14A   0xEBB0 0x000A      SUBS     R0,R0,R10
-   \      0x14E   0x1E42             SUBS     R2,R0,#+1
-   \      0x150   0xB212             SXTH     R2,R2
-   \      0x152   0xEB1A 0x0106      ADDS     R1,R10,R6
-   \      0x156   0xB209             SXTH     R1,R1
-   \      0x158   0x0028             MOVS     R0,R5
-   \      0x15A   0x.... 0x....      BL       _ZN12Adafruit_GFX16drawCircleHelperEsssht
+   \      0x12C   0x0020             MOVS     R0,R4
+   \      0x12E   0xB280             UXTH     R0,R0
+   \      0x130   0x9001             STR      R0,[SP, #+4]
+   \      0x132   0x2008             MOVS     R0,#+8
+   \      0x134   0x9000             STR      R0,[SP, #+0]
+   \      0x136   0x4653             MOV      R3,R10
+   \      0x138   0xB21B             SXTH     R3,R3
+   \      0x13A   0xEB19 0x0007      ADDS     R0,R9,R7
+   \      0x13E   0xEBB0 0x000A      SUBS     R0,R0,R10
+   \      0x142   0x1E42             SUBS     R2,R0,#+1
+   \      0x144   0xB212             SXTH     R2,R2
+   \      0x146   0xEB1A 0x0106      ADDS     R1,R10,R6
+   \      0x14A   0xB209             SXTH     R1,R1
+   \      0x14C   0x0028             MOVS     R0,R5
+   \      0x14E   0x.... 0x....      BL       _ZN12Adafruit_GFX16drawCircleHelperEsssht
     257          }
-   \      0x15E   0xE8BD 0x87F3      POP      {R0,R1,R4-R10,PC}
+   \      0x152   0xE8BD 0x8FF7      POP      {R0-R2,R4-R11,PC}
     258          
     259          // Fill a rounded rectangle
 
@@ -1242,31 +1235,29 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
     260          void Adafruit_GFX::fillRoundRect(int16_t x, int16_t y, int16_t w,
     261          				 int16_t h, int16_t r, uint16_t color) {
    \                     _ZN12Adafruit_GFX13fillRoundRectEssssst: (+1)
-   \        0x0   0xE92D 0x47FF      PUSH     {R0-R10,LR}
+   \        0x0   0xE92D 0x4FFE      PUSH     {R1-R11,LR}
    \        0x4   0x0005             MOVS     R5,R0
    \        0x6   0x000E             MOVS     R6,R1
    \        0x8   0x0017             MOVS     R7,R2
    \        0xA   0x4698             MOV      R8,R3
-   \        0xC   0xF9BD 0xA030      LDRSH    R10,[SP, #+48]
-   \       0x10   0xF9BD 0x9034      LDRSH    R9,[SP, #+52]
+   \        0xC   0xF9BD 0x9030      LDRSH    R9,[SP, #+48]
+   \       0x10   0xF9BD 0xA034      LDRSH    R10,[SP, #+52]
    \       0x14   0x9C0E             LDR      R4,[SP, #+56]
     262            // smarter version
     263            fillRect(x+r, y, w-2*r, h, color);
    \       0x16   0x0020             MOVS     R0,R4
    \       0x18   0xB280             UXTH     R0,R0
    \       0x1A   0x9001             STR      R0,[SP, #+4]
-   \       0x1C   0x4650             MOV      R0,R10
+   \       0x1C   0x4648             MOV      R0,R9
    \       0x1E   0xB200             SXTH     R0,R0
    \       0x20   0x9000             STR      R0,[SP, #+0]
-   \       0x22   0x4643             MOV      R3,R8
-   \       0x24   0xB21B             SXTH     R3,R3
-   \       0x26   0x4648             MOV      R0,R9
-   \       0x28   0xB200             SXTH     R0,R0
-   \       0x2A   0xEBB3 0x0340      SUBS     R3,R3,R0, LSL #+1
+   \       0x22   0xF07F 0x0001      MVNS     R0,#+1
+   \       0x26   0xFB1A 0xF000      SMULBB   R0,R10,R0
+   \       0x2A   0xFA00 0xF388      SXTAH    R3,R0,R8
    \       0x2E   0xB21B             SXTH     R3,R3
    \       0x30   0x003A             MOVS     R2,R7
    \       0x32   0xB212             SXTH     R2,R2
-   \       0x34   0xEB19 0x0106      ADDS     R1,R9,R6
+   \       0x34   0xEB1A 0x0106      ADDS     R1,R10,R6
    \       0x38   0xB209             SXTH     R1,R1
    \       0x3A   0x0028             MOVS     R0,R5
    \       0x3C   0xF8D5 0xC000      LDR      R12,[R5, #+0]
@@ -1275,45 +1266,46 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
     264          
     265            // draw four corners
     266            fillCircleHelper(x+w-r-1, y+r, r, 1, h-2*r-1, color);
-   \       0x46   0x0020             MOVS     R0,R4
-   \       0x48   0xB280             UXTH     R0,R0
-   \       0x4A   0x9002             STR      R0,[SP, #+8]
-   \       0x4C   0xEBBA 0x0049      SUBS     R0,R10,R9, LSL #+1
-   \       0x50   0x1E40             SUBS     R0,R0,#+1
-   \       0x52   0xB200             SXTH     R0,R0
-   \       0x54   0x9001             STR      R0,[SP, #+4]
-   \       0x56   0x2001             MOVS     R0,#+1
-   \       0x58   0x9000             STR      R0,[SP, #+0]
-   \       0x5A   0x464B             MOV      R3,R9
-   \       0x5C   0xB21B             SXTH     R3,R3
-   \       0x5E   0xEB19 0x0207      ADDS     R2,R9,R7
-   \       0x62   0xB212             SXTH     R2,R2
-   \       0x64   0xEB18 0x0006      ADDS     R0,R8,R6
-   \       0x68   0xEBB0 0x0009      SUBS     R0,R0,R9
-   \       0x6C   0x1E41             SUBS     R1,R0,#+1
-   \       0x6E   0xB209             SXTH     R1,R1
-   \       0x70   0x0028             MOVS     R0,R5
-   \       0x72   0x.... 0x....      BL       _ZN12Adafruit_GFX16fillCircleHelperEssshst
+   \       0x46   0xF07F 0x0B01      MVNS     R11,#+1
+   \       0x4A   0x0020             MOVS     R0,R4
+   \       0x4C   0xB280             UXTH     R0,R0
+   \       0x4E   0x9002             STR      R0,[SP, #+8]
+   \       0x50   0xFB1A 0x900B      SMLABB   R0,R10,R11,R9
+   \       0x54   0x1E40             SUBS     R0,R0,#+1
+   \       0x56   0xB200             SXTH     R0,R0
+   \       0x58   0x9001             STR      R0,[SP, #+4]
+   \       0x5A   0x2001             MOVS     R0,#+1
+   \       0x5C   0x9000             STR      R0,[SP, #+0]
+   \       0x5E   0x4653             MOV      R3,R10
+   \       0x60   0xB21B             SXTH     R3,R3
+   \       0x62   0xEB1A 0x0207      ADDS     R2,R10,R7
+   \       0x66   0xB212             SXTH     R2,R2
+   \       0x68   0xEB18 0x0006      ADDS     R0,R8,R6
+   \       0x6C   0xEBB0 0x000A      SUBS     R0,R0,R10
+   \       0x70   0x1E41             SUBS     R1,R0,#+1
+   \       0x72   0xB209             SXTH     R1,R1
+   \       0x74   0x0028             MOVS     R0,R5
+   \       0x76   0x.... 0x....      BL       _ZN12Adafruit_GFX16fillCircleHelperEssshst
     267            fillCircleHelper(x+r    , y+r, r, 2, h-2*r-1, color);
-   \       0x76   0x0020             MOVS     R0,R4
-   \       0x78   0xB280             UXTH     R0,R0
-   \       0x7A   0x9002             STR      R0,[SP, #+8]
-   \       0x7C   0xEBBA 0x0049      SUBS     R0,R10,R9, LSL #+1
-   \       0x80   0x1E40             SUBS     R0,R0,#+1
-   \       0x82   0xB200             SXTH     R0,R0
-   \       0x84   0x9001             STR      R0,[SP, #+4]
-   \       0x86   0x2002             MOVS     R0,#+2
-   \       0x88   0x9000             STR      R0,[SP, #+0]
-   \       0x8A   0x464B             MOV      R3,R9
-   \       0x8C   0xB21B             SXTH     R3,R3
-   \       0x8E   0xEB19 0x0207      ADDS     R2,R9,R7
-   \       0x92   0xB212             SXTH     R2,R2
-   \       0x94   0xEB19 0x0106      ADDS     R1,R9,R6
-   \       0x98   0xB209             SXTH     R1,R1
-   \       0x9A   0x0028             MOVS     R0,R5
-   \       0x9C   0x.... 0x....      BL       _ZN12Adafruit_GFX16fillCircleHelperEssshst
+   \       0x7A   0x0020             MOVS     R0,R4
+   \       0x7C   0xB280             UXTH     R0,R0
+   \       0x7E   0x9002             STR      R0,[SP, #+8]
+   \       0x80   0xFB1A 0x900B      SMLABB   R0,R10,R11,R9
+   \       0x84   0x1E40             SUBS     R0,R0,#+1
+   \       0x86   0xB200             SXTH     R0,R0
+   \       0x88   0x9001             STR      R0,[SP, #+4]
+   \       0x8A   0x2002             MOVS     R0,#+2
+   \       0x8C   0x9000             STR      R0,[SP, #+0]
+   \       0x8E   0x4653             MOV      R3,R10
+   \       0x90   0xB21B             SXTH     R3,R3
+   \       0x92   0xEB1A 0x0207      ADDS     R2,R10,R7
+   \       0x96   0xB212             SXTH     R2,R2
+   \       0x98   0xEB1A 0x0106      ADDS     R1,R10,R6
+   \       0x9C   0xB209             SXTH     R1,R1
+   \       0x9E   0x0028             MOVS     R0,R5
+   \       0xA0   0x.... 0x....      BL       _ZN12Adafruit_GFX16fillCircleHelperEssshst
     268          }
-   \       0xA0   0xE8BD 0x87FF      POP      {R0-R10,PC}
+   \       0xA4   0xE8BD 0x8FF7      POP      {R0-R2,R4-R11,PC}
     269          
     270          // Draw a triangle
 
@@ -1734,7 +1726,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
    \       0x22   0xF9BD 0x102C      LDRSH    R1,[SP, #+44]
    \       0x26   0xB200             SXTH     R0,R0
    \       0x28   0x4288             CMP      R0,R1
-   \       0x2A   0xDA2D             BGE.N    ??drawBitmap_1
+   \       0x2A   0xDA2C             BGE.N    ??drawBitmap_1
     365              for(i=0; i<w; i++ ) {
    \       0x2C   0x2000             MOVS     R0,#+0
    \       0x2E   0x4680             MOV      R8,R0
@@ -1744,7 +1736,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
    \       0x34   0xB200             SXTH     R0,R0
    \       0x36   0xB209             SXTH     R1,R1
    \       0x38   0x4288             CMP      R0,R1
-   \       0x3A   0xDA22             BGE.N    ??drawBitmap_3
+   \       0x3A   0xDA21             BGE.N    ??drawBitmap_3
     366                if(pgm_read_byte(bitmap + j * byteWidth + i / 8) & (128 >> (i & 7))) {
    \       0x3C   0x4640             MOV      R0,R8
    \       0x3E   0xB200             SXTH     R0,R0
@@ -1755,34 +1747,33 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
    \       0x4C   0x5C08             LDRB     R0,[R1, R0]
    \       0x4E   0x2180             MOVS     R1,#+128
    \       0x50   0xF018 0x0207      ANDS     R2,R8,#0x7
-   \       0x54   0xB2C9             UXTB     R1,R1
-   \       0x56   0x40D1             LSRS     R1,R1,R2
-   \       0x58   0x4208             TST      R0,R1
-   \       0x5A   0xD00F             BEQ.N    ??drawBitmap_4
+   \       0x54   0x4111             ASRS     R1,R1,R2
+   \       0x56   0x4208             TST      R0,R1
+   \       0x58   0xD00F             BEQ.N    ??drawBitmap_4
     367                  drawPixel(x+i, y+j, color);
-   \       0x5C   0x0023             MOVS     R3,R4
-   \       0x5E   0xB29B             UXTH     R3,R3
-   \       0x60   0xEB1A 0x020B      ADDS     R2,R10,R11
-   \       0x64   0xB212             SXTH     R2,R2
-   \       0x66   0xF8BD 0x1000      LDRH     R1,[SP, #+0]
-   \       0x6A   0xEB18 0x0101      ADDS     R1,R8,R1
-   \       0x6E   0xB209             SXTH     R1,R1
-   \       0x70   0x0028             MOVS     R0,R5
-   \       0x72   0xF8D5 0xC000      LDR      R12,[R5, #+0]
-   \       0x76   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0x7A   0x47E0             BLX      R12
+   \       0x5A   0x0023             MOVS     R3,R4
+   \       0x5C   0xB29B             UXTH     R3,R3
+   \       0x5E   0xEB1A 0x020B      ADDS     R2,R10,R11
+   \       0x62   0xB212             SXTH     R2,R2
+   \       0x64   0xF8BD 0x1000      LDRH     R1,[SP, #+0]
+   \       0x68   0xEB18 0x0101      ADDS     R1,R8,R1
+   \       0x6C   0xB209             SXTH     R1,R1
+   \       0x6E   0x0028             MOVS     R0,R5
+   \       0x70   0xF8D5 0xC000      LDR      R12,[R5, #+0]
+   \       0x74   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0x78   0x47E0             BLX      R12
     368                }
     369              }
    \                     ??drawBitmap_4: (+1)
-   \       0x7C   0xF118 0x0801      ADDS     R8,R8,#+1
-   \       0x80   0xE7D6             B.N      ??drawBitmap_2
+   \       0x7A   0xF118 0x0801      ADDS     R8,R8,#+1
+   \       0x7E   0xE7D7             B.N      ??drawBitmap_2
     370            }
    \                     ??drawBitmap_3: (+1)
-   \       0x82   0xF11A 0x0A01      ADDS     R10,R10,#+1
-   \       0x86   0xE7CB             B.N      ??drawBitmap_0
+   \       0x80   0xF11A 0x0A01      ADDS     R10,R10,#+1
+   \       0x84   0xE7CC             B.N      ??drawBitmap_0
     371          }
    \                     ??drawBitmap_1: (+1)
-   \       0x88   0xE8BD 0x8FF1      POP      {R0,R4-R11,PC}
+   \       0x86   0xE8BD 0x8FF1      POP      {R0,R4-R11,PC}
     372          
     373          // Draw a 1-bit color bitmap at the specified x, y position from the
     374          // provided bitmap buffer (must be PROGMEM memory) using color as the
@@ -1814,7 +1805,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
    \       0x24   0xF9BD 0x102C      LDRSH    R1,[SP, #+44]
    \       0x28   0xB200             SXTH     R0,R0
    \       0x2A   0x4288             CMP      R0,R1
-   \       0x2C   0xDA3B             BGE.N    ??drawBitmap_6
+   \       0x2C   0xDA3A             BGE.N    ??drawBitmap_6
     383              for(i=0; i<w; i++ ) {
    \       0x2E   0x2000             MOVS     R0,#+0
    \       0x30   0x4680             MOV      R8,R0
@@ -1824,7 +1815,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
    \       0x36   0xB200             SXTH     R0,R0
    \       0x38   0xB209             SXTH     R1,R1
    \       0x3A   0x4288             CMP      R0,R1
-   \       0x3C   0xDA30             BGE.N    ??drawBitmap_8
+   \       0x3C   0xDA2F             BGE.N    ??drawBitmap_8
     384                if(pgm_read_byte(bitmap + j * byteWidth + i / 8) & (128 >> (i & 7))) {
    \       0x3E   0x4640             MOV      R0,R8
    \       0x40   0xB200             SXTH     R0,R0
@@ -1836,47 +1827,46 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_GFX.cpp
    \       0x50   0x5C08             LDRB     R0,[R1, R0]
    \       0x52   0x2180             MOVS     R1,#+128
    \       0x54   0xF018 0x0207      ANDS     R2,R8,#0x7
-   \       0x58   0xB2C9             UXTB     R1,R1
-   \       0x5A   0x40D1             LSRS     R1,R1,R2
-   \       0x5C   0x4208             TST      R0,R1
-   \       0x5E   0xD00E             BEQ.N    ??drawBitmap_9
+   \       0x58   0x4111             ASRS     R1,R1,R2
+   \       0x5A   0x4208             TST      R0,R1
+   \       0x5C   0xD00E             BEQ.N    ??drawBitmap_9
     385                  drawPixel(x+i, y+j, color);
-   \       0x60   0xF8BD 0x3030      LDRH     R3,[SP, #+48]
-   \       0x64   0xEB1A 0x0206      ADDS     R2,R10,R6
-   \       0x68   0xB212             SXTH     R2,R2
-   \       0x6A   0xEB18 0x0105      ADDS     R1,R8,R5
-   \       0x6E   0xB209             SXTH     R1,R1
-   \       0x70   0x0020             MOVS     R0,R4
-   \       0x72   0xF8D4 0xC000      LDR      R12,[R4, #+0]
-   \       0x76   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0x7A   0x47E0             BLX      R12
-   \       0x7C   0xE00D             B.N      ??drawBitmap_10
+   \       0x5E   0xF8BD 0x3030      LDRH     R3,[SP, #+48]
+   \       0x62   0xEB1A 0x0206      ADDS     R2,R10,R6
+   \       0x66   0xB212             SXTH     R2,R2
+   \       0x68   0xEB18 0x0105      ADDS     R1,R8,R5
+   \       0x6C   0xB209             SXTH     R1,R1
+   \       0x6E   0x0020             MOVS     R0,R4
+   \       0x70   0xF8D4 0xC000      LDR      R12,[R4, #+0]
+   \       0x74   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0x78   0x47E0             BLX      R12
+   \       0x7A   0xE00D             B.N      ??drawBitmap_10
     386                }
     387                else {
     388                	drawPixel(x+i, y+j, bg);
    \                     ??drawBitmap_9: (+1)
-   \       0x7E   0x465B             MOV      R3,R11
-   \       0x80   0xB29B             UXTH     R3,R3
-   \       0x82   0xEB1A 0x0206      ADDS     R2,R10,R6
-   \       0x86   0xB212             SXTH     R2,R2
-   \       0x88   0xEB18 0x0105      ADDS     R1,R8,R5
-   \       0x8C   0xB209             SXTH     R1,R1
-   \       0x8E   0x0020             MOVS     R0,R4
-   \       0x90   0xF8D4 0xC000      LDR      R12,[R4, #+0]
-   \       0x94   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0x98   0x47E0             BLX      R12
+   \       0x7C   0x465B             MOV      R3,R11
+   \       0x7E   0xB29B             UXTH     R3,R3
+   \       0x80   0xEB1A 0x0206      ADDS     R2,R10,R6
+   \       0x84   0xB212             SXTH     R2,R2
+   \       0x86   0xEB18 0x0105      ADDS     R1,R8,R5
+   \       0x8A   0xB209             SXTH     R1,R1
+   \       0x8C   0x0020             MOVS     R0,R4
+   \       0x8E   0xF8D4 0xC000      LDR      R12,[R4, #+0]
+   \       0x92   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0x96   0x47E0             BLX      R12
     389                }
     390              }
    \                     ??drawBitmap_10: (+1)
-   \       0x9A   0xF118 0x0801      ADDS     R8,R8,#+1
-   \       0x9E   0xE7C8             B.N      ??drawBitmap_7
+   \       0x98   0xF118 0x0801      ADDS     R8,R8,#+1
+   \       0x9C   0xE7C9             B.N      ??drawBitmap_7
     391            }
    \                     ??drawBitmap_8: (+1)
-   \       0xA0   0xF11A 0x0A01      ADDS     R10,R10,#+1
-   \       0xA4   0xE7BD             B.N      ??drawBitmap_5
+   \       0x9E   0xF11A 0x0A01      ADDS     R10,R10,#+1
+   \       0xA2   0xE7BE             B.N      ??drawBitmap_5
     392          }
    \                     ??drawBitmap_6: (+1)
-   \       0xA6   0xE8BD 0x8FF1      POP      {R0,R4-R11,PC}
+   \       0xA4   0xE8BD 0x8FF1      POP      {R0,R4-R11,PC}
     393          
     394          
     395          // Draw a 1-bit color Buffer
@@ -2317,9 +2307,9 @@ Warning[Pe177]: variable "byteWidth" was declared but never referenced
         48   -> abs
       32   Adafruit_GFX::drawRect(int16_t, int16_t, int16_t, int16_t, uint16_t)
         32   -- Indirect call
-      40   Adafruit_GFX::drawRoundRect(int16_t, int16_t, int16_t, int16_t, int16_t, uint16_t)
-        40   -- Indirect call
-        40   -> Adafruit_GFX::drawCircleHelper(int16_t, int16_t, int16_t, uint8_t, uint16_t)
+      48   Adafruit_GFX::drawRoundRect(int16_t, int16_t, int16_t, int16_t, int16_t, uint16_t)
+        48   -- Indirect call
+        48   -> Adafruit_GFX::drawCircleHelper(int16_t, int16_t, int16_t, uint8_t, uint16_t)
       48   Adafruit_GFX::drawTriangle(int16_t, int16_t, int16_t, int16_t, int16_t, int16_t, uint16_t)
         48   -- Indirect call
       40   Adafruit_GFX::drawXBitmap(int16_t, int16_t, uint8_t const *, int16_t, int16_t, uint16_t)
@@ -2358,21 +2348,21 @@ Warning[Pe177]: variable "byteWidth" was declared but never referenced
    -----  --------------
       44  Adafruit_GFX::Adafruit_GFX(int16_t, int16_t)
      188  Adafruit_GFX::drawBitBuf(int16_t, int16_t, uint8_t const *, int16_t, int16_t, uint16_t, uint16_t)
-     140  Adafruit_GFX::drawBitmap(int16_t, int16_t, uint8_t const *, int16_t, int16_t, uint16_t)
-     170  Adafruit_GFX::drawBitmap(int16_t, int16_t, uint8_t const *, int16_t, int16_t, uint16_t, uint16_t)
-     442  Adafruit_GFX::drawCircle(int16_t, int16_t, int16_t, uint16_t)
-     364  Adafruit_GFX::drawCircleHelper(int16_t, int16_t, int16_t, uint8_t, uint16_t)
+     138  Adafruit_GFX::drawBitmap(int16_t, int16_t, uint8_t const *, int16_t, int16_t, uint16_t)
+     168  Adafruit_GFX::drawBitmap(int16_t, int16_t, uint8_t const *, int16_t, int16_t, uint16_t, uint16_t)
+     446  Adafruit_GFX::drawCircle(int16_t, int16_t, int16_t, uint16_t)
+     368  Adafruit_GFX::drawCircleHelper(int16_t, int16_t, int16_t, uint8_t, uint16_t)
       50  Adafruit_GFX::drawFastHLine(int16_t, int16_t, int16_t, uint16_t)
       50  Adafruit_GFX::drawFastVLine(int16_t, int16_t, int16_t, uint16_t)
      272  Adafruit_GFX::drawLine(int16_t, int16_t, int16_t, int16_t, uint16_t)
      150  Adafruit_GFX::drawRect(int16_t, int16_t, int16_t, int16_t, uint16_t)
-     354  Adafruit_GFX::drawRoundRect(int16_t, int16_t, int16_t, int16_t, int16_t, uint16_t)
+     342  Adafruit_GFX::drawRoundRect(int16_t, int16_t, int16_t, int16_t, int16_t, uint16_t)
      138  Adafruit_GFX::drawTriangle(int16_t, int16_t, int16_t, int16_t, int16_t, int16_t, uint16_t)
      150  Adafruit_GFX::drawXBitmap(int16_t, int16_t, uint8_t const *, int16_t, int16_t, uint16_t)
       88  Adafruit_GFX::fillCircle(int16_t, int16_t, int16_t, uint16_t)
-     298  Adafruit_GFX::fillCircleHelper(int16_t, int16_t, int16_t, uint8_t, int16_t, uint16_t)
+     314  Adafruit_GFX::fillCircleHelper(int16_t, int16_t, int16_t, uint8_t, int16_t, uint16_t)
       74  Adafruit_GFX::fillRect(int16_t, int16_t, int16_t, int16_t, uint16_t)
-     164  Adafruit_GFX::fillRoundRect(int16_t, int16_t, int16_t, int16_t, int16_t, uint16_t)
+     168  Adafruit_GFX::fillRoundRect(int16_t, int16_t, int16_t, int16_t, int16_t, uint16_t)
       36  Adafruit_GFX::fillScreen(uint16_t)
      630  Adafruit_GFX::fillTriangle(int16_t, int16_t, int16_t, int16_t, int16_t, int16_t, uint16_t)
       18  Adafruit_GFX::getCursor(int16_t *, int16_t *)
@@ -2390,9 +2380,9 @@ Warning[Pe177]: variable "byteWidth" was declared but never referenced
 
  
     60 bytes in section .rodata
- 3'938 bytes in section .text
+ 3'950 bytes in section .text
  
- 3'938 bytes of CODE  memory
+ 3'950 bytes of CODE  memory
      0 bytes of CONST memory (+ 60 bytes shared)
 
 Errors: none

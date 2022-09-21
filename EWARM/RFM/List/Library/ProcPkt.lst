@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:25
+#                                                         22/Sep/2022  08:40:13
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                 =  thumb
@@ -16,7 +17,7 @@
 #        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
 #        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
 #        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Workbench 9.0 EWARM FS 9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -37,7 +38,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Library\ProcPkt.o.d
 #    Locale                   =  C
 #    List file                =
@@ -1438,92 +1440,96 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
 Warning[Pa134]: left and right operands are identical
    \        0xE   0x7828             LDRB     R0,[R5, #+0]
    \       0x10   0x0700             LSLS     R0,R0,#+28
-   \       0x12   0xD503             BPL.N    ??LoopProcPkt_0
+   \       0x12   0xD402             BMI.N    ??LoopProcPkt_0
+   \       0x14   0x7828             LDRB     R0,[R5, #+0]
+   \       0x16   0x0700             LSLS     R0,R0,#+28
+   \       0x18   0xD503             BPL.N    ??LoopProcPkt_1
     727          	{
     728          		//	Rx Packet Error or CRC Error
     729          		printf ( "E" );
-   \       0x14   0x....             ADR.N    R0,??DataTable9_1
-   \       0x16   0x.... 0x....      BL       printf
-   \       0x1A   0xE01E             B.N      ??LoopProcPkt_1
+   \                     ??LoopProcPkt_0: (+1)
+   \       0x1A   0x....             ADR.N    R0,??DataTable9_1
+   \       0x1C   0x.... 0x....      BL       printf
+   \       0x20   0xE01E             B.N      ??LoopProcPkt_2
     730          	}
     731          	else if( (bMain_IT_Status & SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_RX_PEND_BIT) != 0 )
-   \                     ??LoopProcPkt_0: (+1)
-   \       0x1C   0x7828             LDRB     R0,[R5, #+0]
-   \       0x1E   0x06C0             LSLS     R0,R0,#+27
-   \       0x20   0xD51B             BPL.N    ??LoopProcPkt_1
+   \                     ??LoopProcPkt_1: (+1)
+   \       0x22   0x7828             LDRB     R0,[R5, #+0]
+   \       0x24   0x06C0             LSLS     R0,R0,#+27
+   \       0x26   0xD51B             BPL.N    ??LoopProcPkt_2
     732          	{
     733          		//	Rx Packet Receive Complete
     734          		HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
-   \       0x22   0xF44F 0x4100      MOV      R1,#+32768
-   \       0x26   0x....             LDR.N    R0,??DataTable9_15
-   \       0x28   0x.... 0x....      BL       HAL_GPIO_TogglePin
+   \       0x28   0xF44F 0x4100      MOV      R1,#+32768
+   \       0x2C   0x....             LDR.N    R0,??DataTable9_15
+   \       0x2E   0x.... 0x....      BL       HAL_GPIO_TogglePin
     735          
     736          		nRxPkt++;
-   \       0x2C   0x....             LDR.N    R6,??DataTable9_16
-   \       0x2E   0x7830             LDRB     R0,[R6, #+0]
-   \       0x30   0x1C40             ADDS     R0,R0,#+1
-   \       0x32   0x7030             STRB     R0,[R6, #+0]
+   \       0x32   0x....             LDR.N    R6,??DataTable9_16
+   \       0x34   0x7830             LDRB     R0,[R6, #+0]
+   \       0x36   0x1C40             ADDS     R0,R0,#+1
+   \       0x38   0x7030             STRB     R0,[R6, #+0]
     737          		nRxStamp = HAL_GetTick();
-   \       0x34   0x.... 0x....      BL       HAL_GetTick
-   \       0x38   0x....             LDR.N    R1,??DataTable9_17
-   \       0x3A   0x6008             STR      R0,[R1, #+0]
+   \       0x3A   0x.... 0x....      BL       HAL_GetTick
+   \       0x3E   0x....             LDR.N    R1,??DataTable9_17
+   \       0x40   0x6008             STR      R0,[R1, #+0]
     738          
     739          		//Dump((S8 *)"Rx", (S8)g_pRadioRxPkt, (uint8_t)(0x40));
     740          
     741          		if ( (nRxPkt % 250) == 0 )
-   \       0x3C   0x7830             LDRB     R0,[R6, #+0]
-   \       0x3E   0x21FA             MOVS     R1,#+250
-   \       0x40   0xFB90 0xF2F1      SDIV     R2,R0,R1
-   \       0x44   0xFB01 0x0012      MLS      R0,R1,R2,R0
-   \       0x48   0x2800             CMP      R0,#+0
-   \       0x4A   0xD102             BNE.N    ??LoopProcPkt_2
+   \       0x42   0x7830             LDRB     R0,[R6, #+0]
+   \       0x44   0x21FA             MOVS     R1,#+250
+   \       0x46   0xFB90 0xF2F1      SDIV     R2,R0,R1
+   \       0x4A   0xFB01 0x0012      MLS      R0,R1,R2,R0
+   \       0x4E   0x2800             CMP      R0,#+0
+   \       0x50   0xD102             BNE.N    ??LoopProcPkt_3
     742          		{
     743          			printf ( "R" );
-   \       0x4C   0x....             ADR.N    R0,??DataTable9_2
-   \       0x4E   0x.... 0x....      BL       printf
+   \       0x52   0x....             ADR.N    R0,??DataTable9_2
+   \       0x54   0x.... 0x....      BL       printf
     744          		}
     745          
     746          		CallbackRecvPacket((S8 *) &g_pRadioRxPkt,(uint8_t) 0x40 );
-   \                     ??LoopProcPkt_2: (+1)
-   \       0x52   0x2140             MOVS     R1,#+64
-   \       0x54   0x....             LDR.N    R0,??DataTable9_18
-   \       0x56   0x.... 0x....      BL       CallbackRecvPacket
+   \                     ??LoopProcPkt_3: (+1)
+   \       0x58   0x2140             MOVS     R1,#+64
+   \       0x5A   0x....             LDR.N    R0,??DataTable9_18
+   \       0x5C   0x.... 0x....      BL       CallbackRecvPacket
     747          		//memset( g_pRadioRxPkt, 0, 0x40 );			//	Buffer Clear
     748          	}
     749          
     750          	if( (bMain_IT_Status & SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_SENT_PEND_BIT) != 0 )
-   \                     ??LoopProcPkt_1: (+1)
-   \       0x5A   0x7828             LDRB     R0,[R5, #+0]
-   \       0x5C   0x0680             LSLS     R0,R0,#+26
-   \       0x5E   0xD517             BPL.N    ??LoopProcPkt_3
+   \                     ??LoopProcPkt_2: (+1)
+   \       0x60   0x7828             LDRB     R0,[R5, #+0]
+   \       0x62   0x0680             LSLS     R0,R0,#+26
+   \       0x64   0xD517             BPL.N    ??LoopProcPkt_4
     751          	{
     752          		HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
-   \       0x60   0xF44F 0x4100      MOV      R1,#+32768
-   \       0x64   0x....             LDR.N    R0,??DataTable9_15
-   \       0x66   0x.... 0x....      BL       HAL_GPIO_TogglePin
+   \       0x66   0xF44F 0x4100      MOV      R1,#+32768
+   \       0x6A   0x....             LDR.N    R0,??DataTable9_15
+   \       0x6C   0x.... 0x....      BL       HAL_GPIO_TogglePin
     753          
     754          		nTxPkt++;
-   \       0x6A   0x....             LDR.N    R5,??DataTable9_19
-   \       0x6C   0x7828             LDRB     R0,[R5, #+0]
-   \       0x6E   0x1C40             ADDS     R0,R0,#+1
-   \       0x70   0x7028             STRB     R0,[R5, #+0]
+   \       0x70   0x....             LDR.N    R5,??DataTable9_19
+   \       0x72   0x7828             LDRB     R0,[R5, #+0]
+   \       0x74   0x1C40             ADDS     R0,R0,#+1
+   \       0x76   0x7028             STRB     R0,[R5, #+0]
     755          		nTxStampComp = HAL_GetTick();	//	송신완료 Stamp
-   \       0x72   0x.... 0x....      BL       HAL_GetTick
-   \       0x76   0x....             LDR.N    R1,??DataTable9_20
-   \       0x78   0x6008             STR      R0,[R1, #+0]
+   \       0x78   0x.... 0x....      BL       HAL_GetTick
+   \       0x7C   0x....             LDR.N    R1,??DataTable9_20
+   \       0x7E   0x6008             STR      R0,[R1, #+0]
     756          
     757          		// Custom message sent successfully
     758          		if (( nTxPkt % 250) == 0 )
-   \       0x7A   0x7828             LDRB     R0,[R5, #+0]
-   \       0x7C   0x21FA             MOVS     R1,#+250
-   \       0x7E   0xFB90 0xF2F1      SDIV     R2,R0,R1
-   \       0x82   0xFB01 0x0012      MLS      R0,R1,R2,R0
-   \       0x86   0x2800             CMP      R0,#+0
-   \       0x88   0xD102             BNE.N    ??LoopProcPkt_3
+   \       0x80   0x7828             LDRB     R0,[R5, #+0]
+   \       0x82   0x21FA             MOVS     R1,#+250
+   \       0x84   0xFB90 0xF2F1      SDIV     R2,R0,R1
+   \       0x88   0xFB01 0x0012      MLS      R0,R1,R2,R0
+   \       0x8C   0x2800             CMP      R0,#+0
+   \       0x8E   0xD102             BNE.N    ??LoopProcPkt_4
     759          		{
     760          			printf ( "T" );
-   \       0x8A   0x....             ADR.N    R0,??DataTable9_3
-   \       0x8C   0x.... 0x....      BL       printf
+   \       0x90   0x....             ADR.N    R0,??DataTable9_3
+   \       0x92   0x.... 0x....      BL       printf
     761          		}
     762          	}
     763          
@@ -1538,55 +1544,55 @@ Warning[Pa134]: left and right operands are identical
     772          
     773          	if ( (s_bShowPkt != 0) &&
     774          		(( nTick - s_oldTick ) >= 1000) )
-   \                     ??LoopProcPkt_3: (+1)
-   \       0x90   0x....             LDR.N    R0,??DataTable9_21
-   \       0x92   0x7800             LDRB     R0,[R0, #+0]
-   \       0x94   0x2800             CMP      R0,#+0
-   \       0x96   0xD020             BEQ.N    ??LoopProcPkt_4
-   \       0x98   0x....             LDR.N    R5,??DataTable9_22
-   \       0x9A   0x0021             MOVS     R1,R4
-   \       0x9C   0xB289             UXTH     R1,R1
-   \       0x9E   0x8828             LDRH     R0,[R5, #+0]
-   \       0xA0   0x1A09             SUBS     R1,R1,R0
-   \       0xA2   0xF5B1 0x7F7A      CMP      R1,#+1000
-   \       0xA6   0xDB18             BLT.N    ??LoopProcPkt_4
+   \                     ??LoopProcPkt_4: (+1)
+   \       0x96   0x....             LDR.N    R0,??DataTable9_21
+   \       0x98   0x7800             LDRB     R0,[R0, #+0]
+   \       0x9A   0x2800             CMP      R0,#+0
+   \       0x9C   0xD020             BEQ.N    ??LoopProcPkt_5
+   \       0x9E   0x....             LDR.N    R5,??DataTable9_22
+   \       0xA0   0x0021             MOVS     R1,R4
+   \       0xA2   0xB289             UXTH     R1,R1
+   \       0xA4   0x8828             LDRH     R0,[R5, #+0]
+   \       0xA6   0x1A09             SUBS     R1,R1,R0
+   \       0xA8   0xF5B1 0x7F7A      CMP      R1,#+1000
+   \       0xAC   0xDB18             BLT.N    ??LoopProcPkt_5
     775          	{
     776          		//	1 sec
     777          
     778          		printf("PKT : Tx(%d) / Rx(%d) / Hop(%d) / Drop(%d) / RspID( 0x%04X ) / RxErr(%d) / Crc(%d) / RSSI(%d)\n", //__func__,
     779          				nTxPkt, nRxPkt, nHopPkt, nDropPkt, g_flagRspID, nRxErr, nCrcErr, g_nRSSI );
-   \       0xA8   0x....             LDR.N    R0,??DataTable9_23
-   \       0xAA   0x7800             LDRB     R0,[R0, #+0]
-   \       0xAC   0x9004             STR      R0,[SP, #+16]
-   \       0xAE   0x....             LDR.N    R0,??DataTable9_24
+   \       0xAE   0x....             LDR.N    R0,??DataTable9_23
    \       0xB0   0x7800             LDRB     R0,[R0, #+0]
-   \       0xB2   0x9003             STR      R0,[SP, #+12]
-   \       0xB4   0x....             LDR.N    R0,??DataTable9_25
+   \       0xB2   0x9004             STR      R0,[SP, #+16]
+   \       0xB4   0x....             LDR.N    R0,??DataTable9_24
    \       0xB6   0x7800             LDRB     R0,[R0, #+0]
-   \       0xB8   0x9002             STR      R0,[SP, #+8]
-   \       0xBA   0x....             LDR.N    R0,??DataTable9_26
-   \       0xBC   0x8800             LDRH     R0,[R0, #+0]
-   \       0xBE   0x9001             STR      R0,[SP, #+4]
-   \       0xC0   0x....             LDR.N    R0,??DataTable9_11
-   \       0xC2   0x7800             LDRB     R0,[R0, #+0]
-   \       0xC4   0x9000             STR      R0,[SP, #+0]
-   \       0xC6   0x....             LDR.N    R0,??DataTable9_12
-   \       0xC8   0x7803             LDRB     R3,[R0, #+0]
-   \       0xCA   0x....             LDR.N    R0,??DataTable9_16
-   \       0xCC   0x7802             LDRB     R2,[R0, #+0]
-   \       0xCE   0x....             LDR.N    R0,??DataTable9_19
-   \       0xD0   0x7801             LDRB     R1,[R0, #+0]
-   \       0xD2   0x....             LDR.N    R0,??DataTable9_27
-   \       0xD4   0x.... 0x....      BL       printf
+   \       0xB8   0x9003             STR      R0,[SP, #+12]
+   \       0xBA   0x....             LDR.N    R0,??DataTable9_25
+   \       0xBC   0x7800             LDRB     R0,[R0, #+0]
+   \       0xBE   0x9002             STR      R0,[SP, #+8]
+   \       0xC0   0x....             LDR.N    R0,??DataTable9_26
+   \       0xC2   0x8800             LDRH     R0,[R0, #+0]
+   \       0xC4   0x9001             STR      R0,[SP, #+4]
+   \       0xC6   0x....             LDR.N    R0,??DataTable9_11
+   \       0xC8   0x7800             LDRB     R0,[R0, #+0]
+   \       0xCA   0x9000             STR      R0,[SP, #+0]
+   \       0xCC   0x....             LDR.N    R0,??DataTable9_12
+   \       0xCE   0x7803             LDRB     R3,[R0, #+0]
+   \       0xD0   0x....             LDR.N    R0,??DataTable9_16
+   \       0xD2   0x7802             LDRB     R2,[R0, #+0]
+   \       0xD4   0x....             LDR.N    R0,??DataTable9_19
+   \       0xD6   0x7801             LDRB     R1,[R0, #+0]
+   \       0xD8   0x....             LDR.N    R0,??DataTable9_27
+   \       0xDA   0x.... 0x....      BL       printf
     780          
     781          		s_oldTick = nTick;
-   \       0xD8   0x802C             STRH     R4,[R5, #+0]
+   \       0xDE   0x802C             STRH     R4,[R5, #+0]
     782          	}
     783          #endif
     784          }
-   \                     ??LoopProcPkt_4: (+1)
-   \       0xDA   0xB006             ADD      SP,SP,#+24
-   \       0xDC   0xBD70             POP      {R4-R6,PC}
+   \                     ??LoopProcPkt_5: (+1)
+   \       0xE0   0xB006             ADD      SP,SP,#+24
+   \       0xE2   0xBD70             POP      {R4-R6,PC}
 
    \                                 In section .bss, align 2
    \                     `LoopProcPkt::s_oldTick`:
@@ -1630,22 +1636,24 @@ Warning[Pa134]: left and right operands are identical
     803          
     804          	// Lenght in PHR includes FCS length (2 or 4 bytes). Adjust returned value accordingly
     805          	if ((bPhrLsbUpperByte & 0x10) == 0x10)
-   \       0x24   0x06E9             LSLS     R1,R5,#+27
-   \       0x26   0xD501             BPL.N    ??wPayloadLenghtFromPhr_0
+   \       0x24   0x0029             MOVS     R1,R5
+   \       0x26   0xB2C9             UXTB     R1,R1
+   \       0x28   0x06C9             LSLS     R1,R1,#+27
+   \       0x2A   0xD501             BPL.N    ??wPayloadLenghtFromPhr_0
     806          	{
     807          		// 2-byte FCS
     808          		return (U16)(wLength-2);
-   \       0x28   0x1E80             SUBS     R0,R0,#+2
-   \       0x2A   0xE000             B.N      ??wPayloadLenghtFromPhr_1
+   \       0x2C   0x1E80             SUBS     R0,R0,#+2
+   \       0x2E   0xE000             B.N      ??wPayloadLenghtFromPhr_1
     809          	}
     810          	else
     811          	{
     812          		// 4-byte FCS
     813          		return (U16)(wLength-4);
    \                     ??wPayloadLenghtFromPhr_0: (+1)
-   \       0x2C   0x1F00             SUBS     R0,R0,#+4
+   \       0x30   0x1F00             SUBS     R0,R0,#+4
    \                     ??wPayloadLenghtFromPhr_1: (+1)
-   \       0x2E   0xBD32             POP      {R1,R4,R5,PC}
+   \       0x32   0xBD32             POP      {R1,R4,R5,PC}
     814          	}
     815          }
     816          
@@ -2272,7 +2280,7 @@ Warning[Pe181]: argument is incompatible with corresponding format string
      188  CallbackRecvPacket
       66  Dump
       30  InitProcPkt
-     222  LoopProcPkt
+     228  LoopProcPkt
       68  ProcPktHdr1
      554  ProcPktHdr2
       72  SendPacket
@@ -2301,15 +2309,15 @@ Warning[Pe181]: argument is incompatible with corresponding format string
        1  s_bShowPkt
        4  s_nTick
        2  s_oldTick
-      48  wPayloadLenghtFromPhr
+      52  wPayloadLenghtFromPhr
       12  -- Other
 
  
     34 bytes in section .bss
    162 bytes in section .rodata
- 1'672 bytes in section .text
+ 1'682 bytes in section .text
  
- 1'672 bytes of CODE  memory
+ 1'682 bytes of CODE  memory
    162 bytes of CONST memory
     34 bytes of DATA  memory
 

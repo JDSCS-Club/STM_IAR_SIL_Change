@@ -1,6 +1,7 @@
 ﻿###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:22
+#                                                         22/Sep/2022  08:40:07
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                     =  thumb
@@ -18,7 +19,7 @@
 #        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
 #        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
 #        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Workbench 9.0 EWARM FS 9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -39,8 +40,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --c++ --no_exceptions --no_rtti -I "C:\Program Files\IAR
-#        Systems\Embedded Workbench 9.1\arm\CMSIS\Core\Include\\")
-#        --dependencies=n
+#        Systems\Embedded Workbench 9.0 EWARM FS
+#        9.20.3\arm\CMSIS\Core\Include\\") --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\display\Adafruit_SSD1306.o.d
 #    Locale                       =  C
 #    List file                    =
@@ -1399,7 +1400,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_SSD1306.cpp
    \       0x34   0xDB00             BLT.N    ??drawPixel_1
     151                  return;
    \                     ??drawPixel_0: (+1)
-   \       0x36   0xE07B             B.N      ??drawPixel_2
+   \       0x36   0xE081             B.N      ??drawPixel_2
     152          
     153              // check rotation, move pixel around if necessary
     154              switch ( getRotation() )
@@ -1458,10 +1459,10 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_SSD1306.cpp
    \       0x76   0x0028             MOVS     R0,R5
    \       0x78   0xB280             UXTH     R0,R0
    \       0x7A   0x2800             CMP      R0,#+0
-   \       0x7C   0xD01F             BEQ.N    ??drawPixel_7
+   \       0x7C   0xD021             BEQ.N    ??drawPixel_7
    \       0x7E   0x2802             CMP      R0,#+2
-   \       0x80   0xD03A             BEQ.N    ??drawPixel_8
-   \       0x82   0xD255             BCS.N    ??drawPixel_9
+   \       0x80   0xD03E             BEQ.N    ??drawPixel_8
+   \       0x82   0xD25B             BCS.N    ??drawPixel_9
     172              {
     173              case WHITE:   buffer[x + ( y / 8 ) * SSD1306_LCDWIDTH] |= ( 1 << ( y & 7 ) ); break;
    \                     ??drawPixel_10: (+1)
@@ -1469,70 +1470,76 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_SSD1306.cpp
    \       0x88   0x0038             MOVS     R0,R7
    \       0x8A   0xB200             SXTH     R0,R0
    \       0x8C   0x2208             MOVS     R2,#+8
-   \       0x8E   0xFB90 0xF0F2      SDIV     R0,R0,R2
-   \       0x92   0x01C0             LSLS     R0,R0,#+7
-   \       0x94   0xFA00 0xF286      SXTAH    R2,R0,R6
-   \       0x98   0x0038             MOVS     R0,R7
-   \       0x9A   0xB200             SXTH     R0,R0
-   \       0x9C   0x2308             MOVS     R3,#+8
-   \       0x9E   0xFB90 0xF0F3      SDIV     R0,R0,R3
-   \       0xA2   0x01C0             LSLS     R0,R0,#+7
-   \       0xA4   0xFA00 0xF086      SXTAH    R0,R0,R6
-   \       0xA8   0x5C0B             LDRB     R3,[R1, R0]
-   \       0xAA   0xF05F 0x0C01      MOVS     R12,#+1
-   \       0xAE   0xF017 0x0007      ANDS     R0,R7,#0x7
-   \       0xB2   0xFA1C 0xFC00      LSLS     R12,R12,R0
-   \       0xB6   0xEA5C 0x0303      ORRS     R3,R12,R3
-   \       0xBA   0x548B             STRB     R3,[R1, R2]
-   \       0xBC   0xE038             B.N      ??drawPixel_9
+   \       0x8E   0xFB90 0xF2F2      SDIV     R2,R0,R2
+   \       0x92   0x2080             MOVS     R0,#+128
+   \       0x94   0x4342             MULS     R2,R0,R2
+   \       0x96   0xFA02 0xF286      SXTAH    R2,R2,R6
+   \       0x9A   0x0038             MOVS     R0,R7
+   \       0x9C   0xB200             SXTH     R0,R0
+   \       0x9E   0x2308             MOVS     R3,#+8
+   \       0xA0   0xFB90 0xF3F3      SDIV     R3,R0,R3
+   \       0xA4   0x2080             MOVS     R0,#+128
+   \       0xA6   0x4343             MULS     R3,R0,R3
+   \       0xA8   0xFA03 0xF086      SXTAH    R0,R3,R6
+   \       0xAC   0x5C0B             LDRB     R3,[R1, R0]
+   \       0xAE   0xF05F 0x0C01      MOVS     R12,#+1
+   \       0xB2   0xF017 0x0007      ANDS     R0,R7,#0x7
+   \       0xB6   0xFA1C 0xFC00      LSLS     R12,R12,R0
+   \       0xBA   0xEA5C 0x0303      ORRS     R3,R12,R3
+   \       0xBE   0x548B             STRB     R3,[R1, R2]
+   \       0xC0   0xE03C             B.N      ??drawPixel_9
     174              case BLACK:   buffer[x + ( y / 8 ) * SSD1306_LCDWIDTH] &= ~( 1 << ( y & 7 ) ); break;
    \                     ??drawPixel_7: (+1)
-   \       0xBE   0x.... 0x....      LDR.W    R1,??DataTable11
-   \       0xC2   0x0038             MOVS     R0,R7
-   \       0xC4   0xB200             SXTH     R0,R0
-   \       0xC6   0x2208             MOVS     R2,#+8
-   \       0xC8   0xFB90 0xF0F2      SDIV     R0,R0,R2
-   \       0xCC   0x01C0             LSLS     R0,R0,#+7
-   \       0xCE   0xFA00 0xF286      SXTAH    R2,R0,R6
-   \       0xD2   0x0038             MOVS     R0,R7
-   \       0xD4   0xB200             SXTH     R0,R0
-   \       0xD6   0x2308             MOVS     R3,#+8
-   \       0xD8   0xFB90 0xF0F3      SDIV     R0,R0,R3
-   \       0xDC   0x01C0             LSLS     R0,R0,#+7
-   \       0xDE   0xFA00 0xF086      SXTAH    R0,R0,R6
-   \       0xE2   0x5C0B             LDRB     R3,[R1, R0]
-   \       0xE4   0xF05F 0x0C01      MOVS     R12,#+1
-   \       0xE8   0xF017 0x0007      ANDS     R0,R7,#0x7
-   \       0xEC   0xFA1C 0xFC00      LSLS     R12,R12,R0
-   \       0xF0   0xEA33 0x030C      BICS     R3,R3,R12
-   \       0xF4   0x548B             STRB     R3,[R1, R2]
-   \       0xF6   0xE01B             B.N      ??drawPixel_9
+   \       0xC2   0x.... 0x....      LDR.W    R1,??DataTable11
+   \       0xC6   0x0038             MOVS     R0,R7
+   \       0xC8   0xB200             SXTH     R0,R0
+   \       0xCA   0x2208             MOVS     R2,#+8
+   \       0xCC   0xFB90 0xF2F2      SDIV     R2,R0,R2
+   \       0xD0   0x2080             MOVS     R0,#+128
+   \       0xD2   0x4342             MULS     R2,R0,R2
+   \       0xD4   0xFA02 0xF286      SXTAH    R2,R2,R6
+   \       0xD8   0x0038             MOVS     R0,R7
+   \       0xDA   0xB200             SXTH     R0,R0
+   \       0xDC   0x2308             MOVS     R3,#+8
+   \       0xDE   0xFB90 0xF3F3      SDIV     R3,R0,R3
+   \       0xE2   0x2080             MOVS     R0,#+128
+   \       0xE4   0x4343             MULS     R3,R0,R3
+   \       0xE6   0xFA03 0xF086      SXTAH    R0,R3,R6
+   \       0xEA   0x5C0B             LDRB     R3,[R1, R0]
+   \       0xEC   0xF05F 0x0C01      MOVS     R12,#+1
+   \       0xF0   0xF017 0x0007      ANDS     R0,R7,#0x7
+   \       0xF4   0xFA1C 0xFC00      LSLS     R12,R12,R0
+   \       0xF8   0xEA33 0x030C      BICS     R3,R3,R12
+   \       0xFC   0x548B             STRB     R3,[R1, R2]
+   \       0xFE   0xE01D             B.N      ??drawPixel_9
     175              case INVERSE: buffer[x + ( y / 8 ) * SSD1306_LCDWIDTH] ^= ( 1 << ( y & 7 ) ); break;
    \                     ??drawPixel_8: (+1)
-   \       0xF8   0x.... 0x....      LDR.W    R1,??DataTable11
-   \       0xFC   0x0038             MOVS     R0,R7
-   \       0xFE   0xB200             SXTH     R0,R0
-   \      0x100   0x2208             MOVS     R2,#+8
-   \      0x102   0xFB90 0xF0F2      SDIV     R0,R0,R2
-   \      0x106   0x01C0             LSLS     R0,R0,#+7
-   \      0x108   0xFA00 0xF286      SXTAH    R2,R0,R6
-   \      0x10C   0x0038             MOVS     R0,R7
-   \      0x10E   0xB200             SXTH     R0,R0
-   \      0x110   0x2308             MOVS     R3,#+8
-   \      0x112   0xFB90 0xF0F3      SDIV     R0,R0,R3
-   \      0x116   0x01C0             LSLS     R0,R0,#+7
-   \      0x118   0xFA00 0xF086      SXTAH    R0,R0,R6
-   \      0x11C   0x5C0B             LDRB     R3,[R1, R0]
-   \      0x11E   0xF05F 0x0C01      MOVS     R12,#+1
-   \      0x122   0xF017 0x0007      ANDS     R0,R7,#0x7
-   \      0x126   0xFA1C 0xFC00      LSLS     R12,R12,R0
-   \      0x12A   0xEA9C 0x0303      EORS     R3,R12,R3
-   \      0x12E   0x548B             STRB     R3,[R1, R2]
+   \      0x100   0x.... 0x....      LDR.W    R1,??DataTable11
+   \      0x104   0x0038             MOVS     R0,R7
+   \      0x106   0xB200             SXTH     R0,R0
+   \      0x108   0x2208             MOVS     R2,#+8
+   \      0x10A   0xFB90 0xF2F2      SDIV     R2,R0,R2
+   \      0x10E   0x2080             MOVS     R0,#+128
+   \      0x110   0x4342             MULS     R2,R0,R2
+   \      0x112   0xFA02 0xF286      SXTAH    R2,R2,R6
+   \      0x116   0x0038             MOVS     R0,R7
+   \      0x118   0xB200             SXTH     R0,R0
+   \      0x11A   0x2308             MOVS     R3,#+8
+   \      0x11C   0xFB90 0xF3F3      SDIV     R3,R0,R3
+   \      0x120   0x2080             MOVS     R0,#+128
+   \      0x122   0x4343             MULS     R3,R0,R3
+   \      0x124   0xFA03 0xF086      SXTAH    R0,R3,R6
+   \      0x128   0x5C0B             LDRB     R3,[R1, R0]
+   \      0x12A   0xF05F 0x0C01      MOVS     R12,#+1
+   \      0x12E   0xF017 0x0007      ANDS     R0,R7,#0x7
+   \      0x132   0xFA1C 0xFC00      LSLS     R12,R12,R0
+   \      0x136   0xEA9C 0x0303      EORS     R3,R12,R3
+   \      0x13A   0x548B             STRB     R3,[R1, R2]
     176              }
     177          }
    \                     ??drawPixel_9: (+1)
    \                     ??drawPixel_2: (+1)
-   \      0x130   0xBDF1             POP      {R0,R4-R7,PC}
+   \      0x13C   0xBDF1             POP      {R0,R4-R7,PC}
     178          
     179          
     180          // initializer for I2C - we only indicate the reset pin!
@@ -1795,7 +1802,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_SSD1306.cpp
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
     272            Buffer_CMD[1] = c;
-   \        0x6   0x.... 0x....      LDR.W    R6,??DataTable15
+   \        0x6   0x.... 0x....      LDR.W    R6,??DataTable16
    \        0xA   0x7075             STRB     R5,[R6, #+1]
     273          #if defined(_WIN32)
     274          #else   //  STM32
@@ -1808,7 +1815,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_SSD1306.cpp
    \       0x14   0xF994 0x0017      LDRSB    R0,[R4, #+23]
    \       0x18   0x0001             MOVS     R1,R0
    \       0x1A   0xB289             UXTH     R1,R1
-   \       0x1C   0x.... 0x....      LDR.W    R0,??DataTable17
+   \       0x1C   0x.... 0x....      LDR.W    R0,??DataTable18
    \       0x20   0x.... 0x....      BL       HAL_I2C_Master_Transmit
    \       0x24   0x2800             CMP      R0,#+0
    \       0x26   0xD1F1             BNE.N    ??ssd1306_command_0
@@ -1843,7 +1850,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_SSD1306.cpp
    \       0x16   0xB2C9             UXTB     R1,R1
    \       0x18   0xFA11 0xF185      UXTAH    R1,R1,R5
    \       0x1C   0x5C40             LDRB     R0,[R0, R1]
-   \       0x1E   0x.... 0x....      LDR.W    R1,??DataTable16
+   \       0x1E   0x.... 0x....      LDR.W    R1,??DataTable16_1
    \       0x22   0x0032             MOVS     R2,R6
    \       0x24   0xB2D2             UXTB     R2,R2
    \       0x26   0x4411             ADD      R1,R1,R2
@@ -1859,11 +1866,11 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_SSD1306.cpp
    \       0x2E   0x2010             MOVS     R0,#+16
    \       0x30   0x9000             STR      R0,[SP, #+0]
    \       0x32   0x2381             MOVS     R3,#+129
-   \       0x34   0x.... 0x....      LDR.W    R2,??DataTable16
+   \       0x34   0x.... 0x....      LDR.W    R2,??DataTable16_1
    \       0x38   0xF994 0x0017      LDRSB    R0,[R4, #+23]
    \       0x3C   0x0001             MOVS     R1,R0
    \       0x3E   0xB289             UXTH     R1,R1
-   \       0x40   0x.... 0x....      LDR.W    R0,??DataTable17
+   \       0x40   0x.... 0x....      LDR.W    R0,??DataTable18
    \       0x44   0x.... 0x....      BL       HAL_I2C_Master_Transmit
    \       0x48   0x2800             CMP      R0,#+0
    \       0x4A   0xD1F0             BNE.N    ??ssd1306_data_1
@@ -2249,7 +2256,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_SSD1306.cpp
     444            memset(buffer, 0, (SSD1306_LCDWIDTH*SSD1306_LCDHEIGHT/8));
    \        0x4   0xF44F 0x7300      MOV      R3,#+512
    \        0x8   0x2200             MOVS     R2,#+0
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable16_1
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable16_2
    \        0xE   0x0020             MOVS     R0,R4
    \       0x10   0x.... 0x....      BL       _ZN16Adafruit_SSD13066memsetEPhtt
     445          }
@@ -2262,370 +2269,374 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_SSD1306.cpp
     449          {
    \                     _ZN16Adafruit_SSD130613drawFastHLineEssst: (+1)
    \        0x0   0xE92D 0x4FFE      PUSH     {R1-R11,LR}
-   \        0x4   0x9C0C             LDR      R4,[SP, #+48]
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x9D0C             LDR      R5,[SP, #+48]
     450            bool bSwap = false;
-   \        0x6   0x2600             MOVS     R6,#+0
+   \        0x8   0x2600             MOVS     R6,#+0
     451            switch(rotation)
-   \        0x8   0x7D45             LDRB     R5,[R0, #+21]
-   \        0xA   0x2D00             CMP      R5,#+0
-   \        0xC   0xD005             BEQ.N    ??drawFastHLine_0
-   \        0xE   0x2D02             CMP      R5,#+2
-   \       0x10   0xD00E             BEQ.N    ??drawFastHLine_1
-   \       0x12   0xD303             BCC.N    ??drawFastHLine_2
-   \       0x14   0x2D03             CMP      R5,#+3
-   \       0x16   0xD014             BEQ.N    ??drawFastHLine_3
-   \       0x18   0xE01D             B.N      ??drawFastHLine_4
+   \        0xA   0x7D60             LDRB     R0,[R4, #+21]
+   \        0xC   0x2800             CMP      R0,#+0
+   \        0xE   0xD005             BEQ.N    ??drawFastHLine_0
+   \       0x10   0x2802             CMP      R0,#+2
+   \       0x12   0xD00E             BEQ.N    ??drawFastHLine_1
+   \       0x14   0xD303             BCC.N    ??drawFastHLine_2
+   \       0x16   0x2803             CMP      R0,#+3
+   \       0x18   0xD014             BEQ.N    ??drawFastHLine_3
+   \       0x1A   0xE01D             B.N      ??drawFastHLine_4
     452            {
     453              case 0:
     454                // 0 degree rotation, do nothing
     455                break;
    \                     ??drawFastHLine_0: (+1)
-   \       0x1A   0xE01C             B.N      ??drawFastHLine_4
+   \       0x1C   0xE01C             B.N      ??drawFastHLine_4
     456              case 1:
     457                // 90 degree rotation, swap x & y for rotation, then invert x
     458                bSwap = true;
    \                     ??drawFastHLine_2: (+1)
-   \       0x1C   0x2501             MOVS     R5,#+1
-   \       0x1E   0x002E             MOVS     R6,R5
+   \       0x1E   0x2001             MOVS     R0,#+1
+   \       0x20   0x0006             MOVS     R6,R0
     459                ssd1306_swap(x, y);
-   \       0x20   0x000F             MOVS     R7,R1
-   \       0x22   0x0015             MOVS     R5,R2
-   \       0x24   0x003A             MOVS     R2,R7
+   \       0x22   0x000F             MOVS     R7,R1
+   \       0x24   0x0010             MOVS     R0,R2
+   \       0x26   0x003A             MOVS     R2,R7
     460                x = WIDTH - x - 1;
-   \       0x26   0x8887             LDRH     R7,[R0, #+4]
-   \       0x28   0x1B7D             SUBS     R5,R7,R5
-   \       0x2A   0x1E6D             SUBS     R5,R5,#+1
-   \       0x2C   0x0029             MOVS     R1,R5
+   \       0x28   0x88A7             LDRH     R7,[R4, #+4]
+   \       0x2A   0x1A38             SUBS     R0,R7,R0
+   \       0x2C   0x1E40             SUBS     R0,R0,#+1
+   \       0x2E   0x0001             MOVS     R1,R0
     461                break;
-   \       0x2E   0xE012             B.N      ??drawFastHLine_4
+   \       0x30   0xE012             B.N      ??drawFastHLine_4
     462              case 2:
     463                // 180 degree rotation, invert x and y - then shift y around for height.
     464                x = WIDTH - x - 1;
    \                     ??drawFastHLine_1: (+1)
-   \       0x30   0x8885             LDRH     R5,[R0, #+4]
-   \       0x32   0x1A69             SUBS     R1,R5,R1
-   \       0x34   0x1E49             SUBS     R1,R1,#+1
+   \       0x32   0x88A0             LDRH     R0,[R4, #+4]
+   \       0x34   0x1A41             SUBS     R1,R0,R1
+   \       0x36   0x1E49             SUBS     R1,R1,#+1
     465                y = HEIGHT - y - 1;
-   \       0x36   0x88C5             LDRH     R5,[R0, #+6]
-   \       0x38   0x1AAA             SUBS     R2,R5,R2
-   \       0x3A   0x1E52             SUBS     R2,R2,#+1
+   \       0x38   0x88E0             LDRH     R0,[R4, #+6]
+   \       0x3A   0x1A82             SUBS     R2,R0,R2
+   \       0x3C   0x1E52             SUBS     R2,R2,#+1
     466                x -= (w-1);
-   \       0x3C   0x1AC9             SUBS     R1,R1,R3
-   \       0x3E   0x1C49             ADDS     R1,R1,#+1
+   \       0x3E   0x1AC9             SUBS     R1,R1,R3
+   \       0x40   0x1C49             ADDS     R1,R1,#+1
     467                break;
-   \       0x40   0xE009             B.N      ??drawFastHLine_4
+   \       0x42   0xE009             B.N      ??drawFastHLine_4
     468              case 3:
     469                // 270 degree rotation, swap x & y for rotation, then invert y  and adjust y for w (not to become h)
     470                bSwap = true;
    \                     ??drawFastHLine_3: (+1)
-   \       0x42   0x2501             MOVS     R5,#+1
-   \       0x44   0x002E             MOVS     R6,R5
+   \       0x44   0x2001             MOVS     R0,#+1
+   \       0x46   0x0006             MOVS     R6,R0
     471                ssd1306_swap(x, y);
-   \       0x46   0x000D             MOVS     R5,R1
-   \       0x48   0x0011             MOVS     R1,R2
+   \       0x48   0x0008             MOVS     R0,R1
+   \       0x4A   0x0011             MOVS     R1,R2
     472                y = HEIGHT - y - 1;
-   \       0x4A   0x88C7             LDRH     R7,[R0, #+6]
-   \       0x4C   0x1B7D             SUBS     R5,R7,R5
-   \       0x4E   0x1E6D             SUBS     R5,R5,#+1
+   \       0x4C   0x88E7             LDRH     R7,[R4, #+6]
+   \       0x4E   0x1A38             SUBS     R0,R7,R0
+   \       0x50   0x1E40             SUBS     R0,R0,#+1
     473                y -= (w-1);
-   \       0x50   0x1AED             SUBS     R5,R5,R3
-   \       0x52   0x1C6D             ADDS     R5,R5,#+1
-   \       0x54   0x002A             MOVS     R2,R5
+   \       0x52   0x1AC0             SUBS     R0,R0,R3
+   \       0x54   0x1C40             ADDS     R0,R0,#+1
+   \       0x56   0x0002             MOVS     R2,R0
     474                break;
     475            }
     476          
     477            if(bSwap)
    \                     ??drawFastHLine_4: (+1)
-   \       0x56   0x0035             MOVS     R5,R6
-   \       0x58   0xB2ED             UXTB     R5,R5
-   \       0x5A   0x2D00             CMP      R5,#+0
-   \       0x5C   0xF000 0x80F3      BEQ.W    ??drawFastHLine_5
+   \       0x58   0x0030             MOVS     R0,R6
+   \       0x5A   0xB2C0             UXTB     R0,R0
+   \       0x5C   0x2800             CMP      R0,#+0
+   \       0x5E   0xF000 0x80F3      BEQ.W    ??drawFastHLine_5
     478            {
     479              drawFastVLineInternal(x, y, w, color);
-   \       0x60   0xF8AD 0x4002      STRH     R4,[SP, #+2]
-   \       0x64   0x001F             MOVS     R7,R3
-   \       0x66   0xF8AD 0x2000      STRH     R2,[SP, #+0]
-   \       0x6A   0xF8AD 0x1004      STRH     R1,[SP, #+4]
-   \       0x6E   0x9002             STR      R0,[SP, #+8]
-   \       0x70   0xF9BD 0x5004      LDRSH    R5,[SP, #+4]
-   \       0x74   0x2D00             CMP      R5,#+0
-   \       0x76   0xF100 0x80E5      BMI.W    ??drawFastHLine_6
-   \       0x7A   0xF9BD 0x5004      LDRSH    R5,[SP, #+4]
-   \       0x7E   0xF8DD 0xC008      LDR      R12,[SP, #+8]
-   \       0x82   0xF9BC 0xC004      LDRSH    R12,[R12, #+4]
-   \       0x86   0x4565             CMP      R5,R12
-   \       0x88   0xF280 0x80DC      BGE.W    ??drawFastHLine_6
-   \       0x8C   0xF9BD 0x5000      LDRSH    R5,[SP, #+0]
-   \       0x90   0x2D00             CMP      R5,#+0
-   \       0x92   0xD505             BPL.N    ??drawFastHLine_7
-   \       0x94   0xF8BD 0x5000      LDRH     R5,[SP, #+0]
-   \       0x98   0x19EF             ADDS     R7,R5,R7
-   \       0x9A   0x2500             MOVS     R5,#+0
-   \       0x9C   0xF8AD 0x5000      STRH     R5,[SP, #+0]
+   \       0x62   0xF8AD 0x5002      STRH     R5,[SP, #+2]
+   \       0x66   0x001F             MOVS     R7,R3
+   \       0x68   0xF8AD 0x2000      STRH     R2,[SP, #+0]
+   \       0x6C   0xF8AD 0x1004      STRH     R1,[SP, #+4]
+   \       0x70   0x9402             STR      R4,[SP, #+8]
+   \       0x72   0xF9BD 0x0004      LDRSH    R0,[SP, #+4]
+   \       0x76   0x2800             CMP      R0,#+0
+   \       0x78   0xF100 0x80E5      BMI.W    ??drawFastHLine_6
+   \       0x7C   0xF9BD 0x0004      LDRSH    R0,[SP, #+4]
+   \       0x80   0xF8DD 0xC008      LDR      R12,[SP, #+8]
+   \       0x84   0xF9BC 0xC004      LDRSH    R12,[R12, #+4]
+   \       0x88   0x4560             CMP      R0,R12
+   \       0x8A   0xF280 0x80DC      BGE.W    ??drawFastHLine_6
+   \       0x8E   0xF9BD 0x0000      LDRSH    R0,[SP, #+0]
+   \       0x92   0x2800             CMP      R0,#+0
+   \       0x94   0xD505             BPL.N    ??drawFastHLine_7
+   \       0x96   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
+   \       0x9A   0x19C7             ADDS     R7,R0,R7
+   \       0x9C   0x2000             MOVS     R0,#+0
+   \       0x9E   0xF8AD 0x0000      STRH     R0,[SP, #+0]
    \                     ??drawFastHLine_7: (+1)
-   \       0xA0   0x9D02             LDR      R5,[SP, #+8]
-   \       0xA2   0xF9B5 0x5006      LDRSH    R5,[R5, #+6]
-   \       0xA6   0xF9BD 0xC000      LDRSH    R12,[SP, #+0]
-   \       0xAA   0xFA0C 0xFC87      SXTAH    R12,R12,R7
-   \       0xAE   0x4565             CMP      R5,R12
-   \       0xB0   0xDA07             BGE.N    ??drawFastHLine_8
-   \       0xB2   0x9D02             LDR      R5,[SP, #+8]
-   \       0xB4   0xF8B5 0xC006      LDRH     R12,[R5, #+6]
-   \       0xB8   0xF8BD 0x5000      LDRH     R5,[SP, #+0]
-   \       0xBC   0xEBBC 0x0C05      SUBS     R12,R12,R5
-   \       0xC0   0x4667             MOV      R7,R12
+   \       0xA2   0x9802             LDR      R0,[SP, #+8]
+   \       0xA4   0xF9B0 0x0006      LDRSH    R0,[R0, #+6]
+   \       0xA8   0xF9BD 0xC000      LDRSH    R12,[SP, #+0]
+   \       0xAC   0xFA0C 0xFC87      SXTAH    R12,R12,R7
+   \       0xB0   0x4560             CMP      R0,R12
+   \       0xB2   0xDA07             BGE.N    ??drawFastHLine_8
+   \       0xB4   0x9802             LDR      R0,[SP, #+8]
+   \       0xB6   0xF8B0 0xC006      LDRH     R12,[R0, #+6]
+   \       0xBA   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
+   \       0xBE   0xEBBC 0x0C00      SUBS     R12,R12,R0
+   \       0xC2   0x4667             MOV      R7,R12
    \                     ??drawFastHLine_8: (+1)
-   \       0xC2   0x003D             MOVS     R5,R7
-   \       0xC4   0xB22D             SXTH     R5,R5
-   \       0xC6   0x2D01             CMP      R5,#+1
-   \       0xC8   0xF2C0 0x80BC      BLT.W    ??drawFastHLine_9
+   \       0xC4   0x0038             MOVS     R0,R7
+   \       0xC6   0xB200             SXTH     R0,R0
+   \       0xC8   0x2801             CMP      R0,#+1
+   \       0xCA   0xF2C0 0x80BC      BLT.W    ??drawFastHLine_9
    \                     ??drawFastHLine_10: (+1)
-   \       0xCC   0xF8BD 0x5000      LDRH     R5,[SP, #+0]
-   \       0xD0   0x46BC             MOV      R12,R7
-   \       0xD2   0x.... 0x....      LDR.W    LR,??DataTable16_1
-   \       0xD6   0x46A8             MOV      R8,R5
-   \       0xD8   0xFA5F 0xF888      UXTB     R8,R8
-   \       0xDC   0xEA5F 0x08E8      ASRS     R8,R8,#+3
-   \       0xE0   0xEA5F 0x18C8      LSLS     R8,R8,#+7
-   \       0xE4   0x44C6             ADD      LR,LR,R8
-   \       0xE6   0xF9BD 0x8004      LDRSH    R8,[SP, #+4]
-   \       0xEA   0x44C6             ADD      LR,LR,R8
-   \       0xEC   0xF015 0x0807      ANDS     R8,R5,#0x7
-   \       0xF0   0x46C1             MOV      R9,R8
-   \       0xF2   0xFA5F 0xF989      UXTB     R9,R9
-   \       0xF6   0xF1B9 0x0F00      CMP      R9,#+0
-   \       0xFA   0xD042             BEQ.N    ??drawFastHLine_11
-   \       0xFC   0xF1D8 0x0808      RSBS     R8,R8,#+8
-   \      0x100   0x.... 0x....      LDR.W    R9,??DataTable25
-   \      0x104   0x46C2             MOV      R10,R8
-   \      0x106   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x10A   0xF819 0x900A      LDRB     R9,[R9, R10]
-   \      0x10E   0x46E2             MOV      R10,R12
-   \      0x110   0x46C3             MOV      R11,R8
-   \      0x112   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x116   0xFA5F 0xFB8B      UXTB     R11,R11
-   \      0x11A   0x45DA             CMP      R10,R11
-   \      0x11C   0xD207             BCS.N    ??drawFastHLine_12
-   \      0x11E   0xF04F 0x0AFF      MOV      R10,#+255
-   \      0x122   0xEBB8 0x0B0C      SUBS     R11,R8,R12
-   \      0x126   0xFA5A 0xFA0B      ASRS     R10,R10,R11
-   \      0x12A   0xEA1A 0x0909      ANDS     R9,R10,R9
+   \       0xCE   0xF8BD 0xC000      LDRH     R12,[SP, #+0]
+   \       0xD2   0x46BE             MOV      LR,R7
+   \       0xD4   0x.... 0x....      LDR.W    R8,??DataTable16_2
+   \       0xD8   0x4660             MOV      R0,R12
+   \       0xDA   0xB2C0             UXTB     R0,R0
+   \       0xDC   0xF05F 0x0908      MOVS     R9,#+8
+   \       0xE0   0xFB90 0xF9F9      SDIV     R9,R0,R9
+   \       0xE4   0x2080             MOVS     R0,#+128
+   \       0xE6   0xFB00 0xF909      MUL      R9,R0,R9
+   \       0xEA   0xEB08 0x0009      ADD      R0,R8,R9
+   \       0xEE   0xF9BD 0x8004      LDRSH    R8,[SP, #+4]
+   \       0xF2   0x4440             ADD      R0,R0,R8
+   \       0xF4   0xF01C 0x0807      ANDS     R8,R12,#0x7
+   \       0xF8   0x46C1             MOV      R9,R8
+   \       0xFA   0xFA5F 0xF989      UXTB     R9,R9
+   \       0xFE   0xF1B9 0x0F00      CMP      R9,#+0
+   \      0x102   0xD041             BEQ.N    ??drawFastHLine_11
+   \      0x104   0xF1D8 0x0808      RSBS     R8,R8,#+8
+   \      0x108   0x.... 0x....      LDR.W    R9,??DataTable25
+   \      0x10C   0x46C2             MOV      R10,R8
+   \      0x10E   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x112   0xF819 0x900A      LDRB     R9,[R9, R10]
+   \      0x116   0x46F2             MOV      R10,LR
+   \      0x118   0x46C3             MOV      R11,R8
+   \      0x11A   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x11E   0xFA5F 0xFB8B      UXTB     R11,R11
+   \      0x122   0x45DA             CMP      R10,R11
+   \      0x124   0xD207             BCS.N    ??drawFastHLine_12
+   \      0x126   0xF04F 0x0AFF      MOV      R10,#+255
+   \      0x12A   0xEBB8 0x0B0E      SUBS     R11,R8,LR
+   \      0x12E   0xFA5A 0xFA0B      ASRS     R10,R10,R11
+   \      0x132   0xEA1A 0x0909      ANDS     R9,R10,R9
    \                     ??drawFastHLine_12: (+1)
-   \      0x12E   0xF8BD 0xA002      LDRH     R10,[SP, #+2]
-   \      0x132   0xF1BA 0x0F00      CMP      R10,#+0
-   \      0x136   0xD00B             BEQ.N    ??drawFastHLine_13
-   \      0x138   0xF1BA 0x0F02      CMP      R10,#+2
-   \      0x13C   0xD001             BEQ.N    ??drawFastHLine_14
-   \      0x13E   0xD30E             BCC.N    ??drawFastHLine_15
-   \      0x140   0xE013             B.N      ??drawFastHLine_16
+   \      0x136   0xF8BD 0xA002      LDRH     R10,[SP, #+2]
+   \      0x13A   0xF1BA 0x0F00      CMP      R10,#+0
+   \      0x13E   0xD00B             BEQ.N    ??drawFastHLine_13
+   \      0x140   0xF1BA 0x0F02      CMP      R10,#+2
+   \      0x144   0xD001             BEQ.N    ??drawFastHLine_14
+   \      0x146   0xD30E             BCC.N    ??drawFastHLine_15
+   \      0x148   0xE013             B.N      ??drawFastHLine_16
    \                     ??drawFastHLine_14: (+1)
-   \      0x142   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x146   0xEA99 0x0A0A      EORS     R10,R9,R10
-   \      0x14A   0xF88E 0xA000      STRB     R10,[LR, #+0]
-   \      0x14E   0xE00C             B.N      ??drawFastHLine_16
+   \      0x14A   0xF890 0xA000      LDRB     R10,[R0, #+0]
+   \      0x14E   0xEA99 0x0A0A      EORS     R10,R9,R10
+   \      0x152   0xF880 0xA000      STRB     R10,[R0, #+0]
+   \      0x156   0xE00C             B.N      ??drawFastHLine_16
    \                     ??drawFastHLine_13: (+1)
-   \      0x150   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x154   0xEA3A 0x0A09      BICS     R10,R10,R9
-   \      0x158   0xF88E 0xA000      STRB     R10,[LR, #+0]
-   \      0x15C   0xE005             B.N      ??drawFastHLine_16
+   \      0x158   0xF890 0xA000      LDRB     R10,[R0, #+0]
+   \      0x15C   0xEA3A 0x0A09      BICS     R10,R10,R9
+   \      0x160   0xF880 0xA000      STRB     R10,[R0, #+0]
+   \      0x164   0xE005             B.N      ??drawFastHLine_16
    \                     ??drawFastHLine_15: (+1)
-   \      0x15E   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x162   0xEA59 0x0A0A      ORRS     R10,R9,R10
-   \      0x166   0xF88E 0xA000      STRB     R10,[LR, #+0]
+   \      0x166   0xF890 0xA000      LDRB     R10,[R0, #+0]
+   \      0x16A   0xEA59 0x0A0A      ORRS     R10,R9,R10
+   \      0x16E   0xF880 0xA000      STRB     R10,[R0, #+0]
    \                     ??drawFastHLine_16: (+1)
-   \      0x16A   0x46E2             MOV      R10,R12
-   \      0x16C   0x46C3             MOV      R11,R8
-   \      0x16E   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x172   0xFA5F 0xFB8B      UXTB     R11,R11
-   \      0x176   0x45DA             CMP      R10,R11
-   \      0x178   0xD364             BCC.N    ??drawFastHLine_9
+   \      0x172   0x46F2             MOV      R10,LR
+   \      0x174   0x46C3             MOV      R11,R8
+   \      0x176   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x17A   0xFA5F 0xFB8B      UXTB     R11,R11
+   \      0x17E   0x45DA             CMP      R10,R11
+   \      0x180   0xD361             BCC.N    ??drawFastHLine_9
    \                     ??drawFastHLine_17: (+1)
-   \      0x17A   0xEBBC 0x0C08      SUBS     R12,R12,R8
-   \      0x17E   0xF11E 0x0E80      ADDS     LR,LR,#+128
+   \      0x182   0xEBBE 0x0E08      SUBS     LR,LR,R8
+   \      0x186   0x3080             ADDS     R0,R0,#+128
    \                     ??drawFastHLine_11: (+1)
-   \      0x182   0x46E1             MOV      R9,R12
-   \      0x184   0xFA5F 0xF989      UXTB     R9,R9
-   \      0x188   0xF1B9 0x0F08      CMP      R9,#+8
-   \      0x18C   0xDB2B             BLT.N    ??drawFastHLine_18
-   \      0x18E   0xF8BD 0x9002      LDRH     R9,[SP, #+2]
-   \      0x192   0xF1B9 0x0F02      CMP      R9,#+2
-   \      0x196   0xD110             BNE.N    ??drawFastHLine_19
+   \      0x188   0x46F1             MOV      R9,LR
+   \      0x18A   0xFA5F 0xF989      UXTB     R9,R9
+   \      0x18E   0xF1B9 0x0F08      CMP      R9,#+8
+   \      0x192   0xDB29             BLT.N    ??drawFastHLine_18
+   \      0x194   0xF8BD 0x9002      LDRH     R9,[SP, #+2]
+   \      0x198   0xF1B9 0x0F02      CMP      R9,#+2
+   \      0x19C   0xD10F             BNE.N    ??drawFastHLine_19
    \                     ??drawFastHLine_20: (+1)
-   \      0x198   0xF89E 0x9000      LDRB     R9,[LR, #+0]
-   \      0x19C   0xEA7F 0x0909      MVNS     R9,R9
-   \      0x1A0   0xF88E 0x9000      STRB     R9,[LR, #+0]
-   \      0x1A4   0xF11E 0x0E80      ADDS     LR,LR,#+128
-   \      0x1A8   0xF1BC 0x0C08      SUBS     R12,R12,#+8
-   \      0x1AC   0x46E1             MOV      R9,R12
-   \      0x1AE   0xFA5F 0xF989      UXTB     R9,R9
-   \      0x1B2   0xF1B9 0x0F08      CMP      R9,#+8
-   \      0x1B6   0xDAEF             BGE.N    ??drawFastHLine_20
-   \      0x1B8   0xE015             B.N      ??drawFastHLine_18
+   \      0x19E   0xF890 0x9000      LDRB     R9,[R0, #+0]
+   \      0x1A2   0xEA7F 0x0909      MVNS     R9,R9
+   \      0x1A6   0xF880 0x9000      STRB     R9,[R0, #+0]
+   \      0x1AA   0x3080             ADDS     R0,R0,#+128
+   \      0x1AC   0xF1BE 0x0E08      SUBS     LR,LR,#+8
+   \      0x1B0   0x46F1             MOV      R9,LR
+   \      0x1B2   0xFA5F 0xF989      UXTB     R9,R9
+   \      0x1B6   0xF1B9 0x0F08      CMP      R9,#+8
+   \      0x1BA   0xDAF0             BGE.N    ??drawFastHLine_20
+   \      0x1BC   0xE014             B.N      ??drawFastHLine_18
    \                     ??drawFastHLine_19: (+1)
-   \      0x1BA   0xF8BD 0x9002      LDRH     R9,[SP, #+2]
-   \      0x1BE   0xF1B9 0x0F01      CMP      R9,#+1
-   \      0x1C2   0xD102             BNE.N    ??drawFastHLine_21
-   \      0x1C4   0xF04F 0x09FF      MOV      R9,#+255
-   \      0x1C8   0xE001             B.N      ??drawFastHLine_22
+   \      0x1BE   0xF8BD 0x9002      LDRH     R9,[SP, #+2]
+   \      0x1C2   0xF1B9 0x0F01      CMP      R9,#+1
+   \      0x1C6   0xD102             BNE.N    ??drawFastHLine_21
+   \      0x1C8   0xF04F 0x09FF      MOV      R9,#+255
+   \      0x1CC   0xE001             B.N      ??drawFastHLine_22
    \                     ??drawFastHLine_21: (+1)
-   \      0x1CA   0xF05F 0x0900      MOVS     R9,#+0
+   \      0x1CE   0xF05F 0x0900      MOVS     R9,#+0
    \                     ??drawFastHLine_22: (+1)
-   \      0x1CE   0xF88E 0x9000      STRB     R9,[LR, #+0]
-   \      0x1D2   0xF11E 0x0E80      ADDS     LR,LR,#+128
-   \      0x1D6   0xF1BC 0x0C08      SUBS     R12,R12,#+8
-   \      0x1DA   0x46E2             MOV      R10,R12
-   \      0x1DC   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x1E0   0xF1BA 0x0F08      CMP      R10,#+8
-   \      0x1E4   0xDAF3             BGE.N    ??drawFastHLine_22
+   \      0x1D2   0xF880 0x9000      STRB     R9,[R0, #+0]
+   \      0x1D6   0x3080             ADDS     R0,R0,#+128
+   \      0x1D8   0xF1BE 0x0E08      SUBS     LR,LR,#+8
+   \      0x1DC   0x46F2             MOV      R10,LR
+   \      0x1DE   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x1E2   0xF1BA 0x0F08      CMP      R10,#+8
+   \      0x1E6   0xDAF4             BGE.N    ??drawFastHLine_22
    \                     ??drawFastHLine_18: (+1)
-   \      0x1E6   0x46E1             MOV      R9,R12
-   \      0x1E8   0xFA5F 0xF989      UXTB     R9,R9
-   \      0x1EC   0xF1B9 0x0F00      CMP      R9,#+0
-   \      0x1F0   0xD027             BEQ.N    ??drawFastHLine_23
-   \      0x1F2   0xF01C 0x0907      ANDS     R9,R12,#0x7
-   \      0x1F6   0x46C8             MOV      R8,R9
-   \      0x1F8   0x.... 0x....      LDR.W    R9,??DataTable26
-   \      0x1FC   0x46C2             MOV      R10,R8
-   \      0x1FE   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x202   0xF819 0x900A      LDRB     R9,[R9, R10]
-   \      0x206   0xF8BD 0xA002      LDRH     R10,[SP, #+2]
-   \      0x20A   0xF1BA 0x0F00      CMP      R10,#+0
-   \      0x20E   0xD00B             BEQ.N    ??drawFastHLine_24
-   \      0x210   0xF1BA 0x0F02      CMP      R10,#+2
-   \      0x214   0xD001             BEQ.N    ??drawFastHLine_25
-   \      0x216   0xD30E             BCC.N    ??drawFastHLine_26
-   \      0x218   0xE013             B.N      ??drawFastHLine_23
+   \      0x1E8   0x46F1             MOV      R9,LR
+   \      0x1EA   0xFA5F 0xF989      UXTB     R9,R9
+   \      0x1EE   0xF1B9 0x0F00      CMP      R9,#+0
+   \      0x1F2   0xD027             BEQ.N    ??drawFastHLine_23
+   \      0x1F4   0xF01E 0x0907      ANDS     R9,LR,#0x7
+   \      0x1F8   0x46C8             MOV      R8,R9
+   \      0x1FA   0x.... 0x....      LDR.W    R9,??DataTable27
+   \      0x1FE   0x46C2             MOV      R10,R8
+   \      0x200   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x204   0xF819 0x900A      LDRB     R9,[R9, R10]
+   \      0x208   0xF8BD 0xA002      LDRH     R10,[SP, #+2]
+   \      0x20C   0xF1BA 0x0F00      CMP      R10,#+0
+   \      0x210   0xD00B             BEQ.N    ??drawFastHLine_24
+   \      0x212   0xF1BA 0x0F02      CMP      R10,#+2
+   \      0x216   0xD001             BEQ.N    ??drawFastHLine_25
+   \      0x218   0xD30E             BCC.N    ??drawFastHLine_26
+   \      0x21A   0xE013             B.N      ??drawFastHLine_23
    \                     ??drawFastHLine_25: (+1)
-   \      0x21A   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x21E   0xEA99 0x0A0A      EORS     R10,R9,R10
-   \      0x222   0xF88E 0xA000      STRB     R10,[LR, #+0]
-   \      0x226   0xE00C             B.N      ??drawFastHLine_23
+   \      0x21C   0xF890 0xA000      LDRB     R10,[R0, #+0]
+   \      0x220   0xEA99 0x0A0A      EORS     R10,R9,R10
+   \      0x224   0xF880 0xA000      STRB     R10,[R0, #+0]
+   \      0x228   0xE00C             B.N      ??drawFastHLine_23
    \                     ??drawFastHLine_24: (+1)
-   \      0x228   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x22C   0xEA3A 0x0A09      BICS     R10,R10,R9
-   \      0x230   0xF88E 0xA000      STRB     R10,[LR, #+0]
-   \      0x234   0xE005             B.N      ??drawFastHLine_23
+   \      0x22A   0xF890 0xA000      LDRB     R10,[R0, #+0]
+   \      0x22E   0xEA3A 0x0A09      BICS     R10,R10,R9
+   \      0x232   0xF880 0xA000      STRB     R10,[R0, #+0]
+   \      0x236   0xE005             B.N      ??drawFastHLine_23
    \                     ??drawFastHLine_26: (+1)
-   \      0x236   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x23A   0xEA59 0x0A0A      ORRS     R10,R9,R10
-   \      0x23E   0xF88E 0xA000      STRB     R10,[LR, #+0]
+   \      0x238   0xF890 0xA000      LDRB     R10,[R0, #+0]
+   \      0x23C   0xEA59 0x0A0A      ORRS     R10,R9,R10
+   \      0x240   0xF880 0xA000      STRB     R10,[R0, #+0]
    \                     ??drawFastHLine_23: (+1)
-   \      0x242   0xE7FF             B.N      ??drawFastHLine_9
+   \      0x244   0xE7FF             B.N      ??drawFastHLine_9
     480            }
    \                     ??drawFastHLine_6: (+1)
    \                     ??drawFastHLine_9: (+1)
-   \      0x244   0xE08C             B.N      ??drawFastHLine_27
+   \      0x246   0xE081             B.N      ??drawFastHLine_27
     481            else
     482            {
     483              drawFastHLineInternal(x, y, w, color);
    \                     ??drawFastHLine_5: (+1)
-   \      0x246   0x0025             MOVS     R5,R4
-   \      0x248   0x4698             MOV      R8,R3
-   \      0x24A   0x0017             MOVS     R7,R2
-   \      0x24C   0x468C             MOV      R12,R1
-   \      0x24E   0x4686             MOV      LR,R0
-   \      0x250   0x46B9             MOV      R9,R7
-   \      0x252   0xFA0F 0xF989      SXTH     R9,R9
-   \      0x256   0xF1B9 0x0F00      CMP      R9,#+0
-   \      0x25A   0xF100 0x8081      BMI.W    ??drawFastHLine_28
-   \      0x25E   0x46B9             MOV      R9,R7
-   \      0x260   0xF9BE 0xA006      LDRSH    R10,[LR, #+6]
-   \      0x264   0xFA0F 0xF989      SXTH     R9,R9
-   \      0x268   0x45D1             CMP      R9,R10
-   \      0x26A   0xDA79             BGE.N    ??drawFastHLine_28
-   \      0x26C   0x46E1             MOV      R9,R12
-   \      0x26E   0xFA0F 0xF989      SXTH     R9,R9
-   \      0x272   0xF1B9 0x0F00      CMP      R9,#+0
-   \      0x276   0xD504             BPL.N    ??drawFastHLine_29
-   \      0x278   0xEB1C 0x0808      ADDS     R8,R12,R8
-   \      0x27C   0xF05F 0x0900      MOVS     R9,#+0
-   \      0x280   0x46CC             MOV      R12,R9
+   \      0x248   0x002F             MOVS     R7,R5
+   \      0x24A   0x4699             MOV      R9,R3
+   \      0x24C   0x4694             MOV      R12,R2
+   \      0x24E   0x468E             MOV      LR,R1
+   \      0x250   0x46A0             MOV      R8,R4
+   \      0x252   0x4660             MOV      R0,R12
+   \      0x254   0xB200             SXTH     R0,R0
+   \      0x256   0x2800             CMP      R0,#+0
+   \      0x258   0xD478             BMI.N    ??drawFastHLine_28
+   \      0x25A   0x4660             MOV      R0,R12
+   \      0x25C   0xF9B8 0xA006      LDRSH    R10,[R8, #+6]
+   \      0x260   0xB200             SXTH     R0,R0
+   \      0x262   0x4550             CMP      R0,R10
+   \      0x264   0xDA72             BGE.N    ??drawFastHLine_28
+   \      0x266   0x4670             MOV      R0,LR
+   \      0x268   0xB200             SXTH     R0,R0
+   \      0x26A   0x2800             CMP      R0,#+0
+   \      0x26C   0xD503             BPL.N    ??drawFastHLine_29
+   \      0x26E   0xEB1E 0x0909      ADDS     R9,LR,R9
+   \      0x272   0x2000             MOVS     R0,#+0
+   \      0x274   0x4686             MOV      LR,R0
    \                     ??drawFastHLine_29: (+1)
-   \      0x282   0xF9BE 0x9004      LDRSH    R9,[LR, #+4]
-   \      0x286   0x46C2             MOV      R10,R8
-   \      0x288   0xFA0F 0xFA8A      SXTH     R10,R10
-   \      0x28C   0xFA0A 0xFA8C      SXTAH    R10,R10,R12
-   \      0x290   0x45D1             CMP      R9,R10
-   \      0x292   0xDA04             BGE.N    ??drawFastHLine_30
-   \      0x294   0xF8BE 0x9004      LDRH     R9,[LR, #+4]
-   \      0x298   0xEBB9 0x090C      SUBS     R9,R9,R12
-   \      0x29C   0x46C8             MOV      R8,R9
+   \      0x276   0xF9B8 0x0004      LDRSH    R0,[R8, #+4]
+   \      0x27A   0x46CA             MOV      R10,R9
+   \      0x27C   0xFA0F 0xFA8A      SXTH     R10,R10
+   \      0x280   0xFA0A 0xFA8E      SXTAH    R10,R10,LR
+   \      0x284   0x4550             CMP      R0,R10
+   \      0x286   0xDA04             BGE.N    ??drawFastHLine_30
+   \      0x288   0xF8B8 0x0004      LDRH     R0,[R8, #+4]
+   \      0x28C   0xEBB0 0x000E      SUBS     R0,R0,LR
+   \      0x290   0x4681             MOV      R9,R0
    \                     ??drawFastHLine_30: (+1)
-   \      0x29E   0x46C1             MOV      R9,R8
-   \      0x2A0   0xFA0F 0xF989      SXTH     R9,R9
-   \      0x2A4   0xF1B9 0x0F01      CMP      R9,#+1
-   \      0x2A8   0xDB5A             BLT.N    ??drawFastHLine_31
+   \      0x292   0x4648             MOV      R0,R9
+   \      0x294   0xB200             SXTH     R0,R0
+   \      0x296   0x2801             CMP      R0,#+1
+   \      0x298   0xDB58             BLT.N    ??drawFastHLine_31
    \                     ??drawFastHLine_32: (+1)
-   \      0x2AA   0x.... 0x....      LDR.W    R9,??DataTable16_1
-   \      0x2AE   0x46BA             MOV      R10,R7
-   \      0x2B0   0xFA0F 0xFA8A      SXTH     R10,R10
-   \      0x2B4   0xF05F 0x0B08      MOVS     R11,#+8
-   \      0x2B8   0xFB9A 0xFAFB      SDIV     R10,R10,R11
-   \      0x2BC   0xEA5F 0x1ACA      LSLS     R10,R10,#+7
-   \      0x2C0   0x44D1             ADD      R9,R9,R10
-   \      0x2C2   0x46E2             MOV      R10,R12
-   \      0x2C4   0xFA0F 0xFA8A      SXTH     R10,R10
-   \      0x2C8   0x44D1             ADD      R9,R9,R10
-   \      0x2CA   0xF05F 0x0B01      MOVS     R11,#+1
-   \      0x2CE   0xF017 0x0A07      ANDS     R10,R7,#0x7
-   \      0x2D2   0xFA1B 0xFA0A      LSLS     R10,R11,R10
-   \      0x2D6   0x46AB             MOV      R11,R5
-   \      0x2D8   0xFA1F 0xFB8B      UXTH     R11,R11
-   \      0x2DC   0xF1BB 0x0F00      CMP      R11,#+0
-   \      0x2E0   0xD016             BEQ.N    ??drawFastHLine_33
-   \      0x2E2   0xF1BB 0x0F02      CMP      R11,#+2
-   \      0x2E6   0xD001             BEQ.N    ??drawFastHLine_34
-   \      0x2E8   0xD328             BCC.N    ??drawFastHLine_35
-   \      0x2EA   0xE038             B.N      ??drawFastHLine_36
+   \      0x29A   0x.... 0x....      LDR.W    R10,??DataTable16_2
+   \      0x29E   0x4660             MOV      R0,R12
+   \      0x2A0   0xB200             SXTH     R0,R0
+   \      0x2A2   0xF05F 0x0B08      MOVS     R11,#+8
+   \      0x2A6   0xFB90 0xFBFB      SDIV     R11,R0,R11
+   \      0x2AA   0x2080             MOVS     R0,#+128
+   \      0x2AC   0xFB00 0xFB0B      MUL      R11,R0,R11
+   \      0x2B0   0xEB0A 0x000B      ADD      R0,R10,R11
+   \      0x2B4   0x46F2             MOV      R10,LR
+   \      0x2B6   0xFA0F 0xFA8A      SXTH     R10,R10
+   \      0x2BA   0x4450             ADD      R0,R0,R10
+   \      0x2BC   0xF05F 0x0B01      MOVS     R11,#+1
+   \      0x2C0   0xF01C 0x0A07      ANDS     R10,R12,#0x7
+   \      0x2C4   0xFA1B 0xFA0A      LSLS     R10,R11,R10
+   \      0x2C8   0x46BB             MOV      R11,R7
+   \      0x2CA   0xFA1F 0xFB8B      UXTH     R11,R11
+   \      0x2CE   0xF1BB 0x0F00      CMP      R11,#+0
+   \      0x2D2   0xD015             BEQ.N    ??drawFastHLine_33
+   \      0x2D4   0xF1BB 0x0F02      CMP      R11,#+2
+   \      0x2D8   0xD001             BEQ.N    ??drawFastHLine_34
+   \      0x2DA   0xD326             BCC.N    ??drawFastHLine_35
+   \      0x2DC   0xE035             B.N      ??drawFastHLine_36
    \                     ??drawFastHLine_34: (+1)
-   \      0x2EC   0x46C3             MOV      R11,R8
-   \      0x2EE   0xF1BB 0x0801      SUBS     R8,R11,#+1
-   \      0x2F2   0xFA0F 0xFB8B      SXTH     R11,R11
-   \      0x2F6   0xF1BB 0x0F00      CMP      R11,#+0
-   \      0x2FA   0xD008             BEQ.N    ??drawFastHLine_37
-   \      0x2FC   0xF899 0xB000      LDRB     R11,[R9, #+0]
-   \      0x300   0xEA9A 0x0B0B      EORS     R11,R10,R11
-   \      0x304   0xF889 0xB000      STRB     R11,[R9, #+0]
-   \      0x308   0xF119 0x0901      ADDS     R9,R9,#+1
-   \      0x30C   0xE7EE             B.N      ??drawFastHLine_34
+   \      0x2DE   0x46CB             MOV      R11,R9
+   \      0x2E0   0xF1BB 0x0901      SUBS     R9,R11,#+1
+   \      0x2E4   0xFA0F 0xFB8B      SXTH     R11,R11
+   \      0x2E8   0xF1BB 0x0F00      CMP      R11,#+0
+   \      0x2EC   0xD007             BEQ.N    ??drawFastHLine_37
+   \      0x2EE   0xF890 0xB000      LDRB     R11,[R0, #+0]
+   \      0x2F2   0xEA9A 0x0B0B      EORS     R11,R10,R11
+   \      0x2F6   0xF880 0xB000      STRB     R11,[R0, #+0]
+   \      0x2FA   0x1C40             ADDS     R0,R0,#+1
+   \      0x2FC   0xE7EF             B.N      ??drawFastHLine_34
    \                     ??drawFastHLine_37: (+1)
-   \      0x30E   0xE026             B.N      ??drawFastHLine_36
+   \      0x2FE   0xE024             B.N      ??drawFastHLine_36
    \                     ??drawFastHLine_33: (+1)
-   \      0x310   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x314   0xEA7F 0x0A0A      MVNS     R10,R10
+   \      0x300   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x304   0xEA7F 0x0A0A      MVNS     R10,R10
    \                     ??drawFastHLine_38: (+1)
-   \      0x318   0x46C3             MOV      R11,R8
-   \      0x31A   0xF1BB 0x0801      SUBS     R8,R11,#+1
-   \      0x31E   0xFA0F 0xFB8B      SXTH     R11,R11
-   \      0x322   0xF1BB 0x0F00      CMP      R11,#+0
-   \      0x326   0xD008             BEQ.N    ??drawFastHLine_39
-   \      0x328   0xF899 0xB000      LDRB     R11,[R9, #+0]
-   \      0x32C   0xEA1A 0x0B0B      ANDS     R11,R10,R11
-   \      0x330   0xF889 0xB000      STRB     R11,[R9, #+0]
-   \      0x334   0xF119 0x0901      ADDS     R9,R9,#+1
-   \      0x338   0xE7EE             B.N      ??drawFastHLine_38
+   \      0x308   0x46CB             MOV      R11,R9
+   \      0x30A   0xF1BB 0x0901      SUBS     R9,R11,#+1
+   \      0x30E   0xFA0F 0xFB8B      SXTH     R11,R11
+   \      0x312   0xF1BB 0x0F00      CMP      R11,#+0
+   \      0x316   0xD007             BEQ.N    ??drawFastHLine_39
+   \      0x318   0xF890 0xB000      LDRB     R11,[R0, #+0]
+   \      0x31C   0xEA1A 0x0B0B      ANDS     R11,R10,R11
+   \      0x320   0xF880 0xB000      STRB     R11,[R0, #+0]
+   \      0x324   0x1C40             ADDS     R0,R0,#+1
+   \      0x326   0xE7EF             B.N      ??drawFastHLine_38
    \                     ??drawFastHLine_39: (+1)
-   \      0x33A   0xE010             B.N      ??drawFastHLine_36
+   \      0x328   0xE00F             B.N      ??drawFastHLine_36
    \                     ??drawFastHLine_35: (+1)
-   \      0x33C   0x46C3             MOV      R11,R8
-   \      0x33E   0xF1BB 0x0801      SUBS     R8,R11,#+1
-   \      0x342   0xFA0F 0xFB8B      SXTH     R11,R11
-   \      0x346   0xF1BB 0x0F00      CMP      R11,#+0
-   \      0x34A   0xD008             BEQ.N    ??drawFastHLine_40
-   \      0x34C   0xF899 0xB000      LDRB     R11,[R9, #+0]
-   \      0x350   0xEA5A 0x0B0B      ORRS     R11,R10,R11
-   \      0x354   0xF889 0xB000      STRB     R11,[R9, #+0]
-   \      0x358   0xF119 0x0901      ADDS     R9,R9,#+1
-   \      0x35C   0xE7EE             B.N      ??drawFastHLine_35
+   \      0x32A   0x46CB             MOV      R11,R9
+   \      0x32C   0xF1BB 0x0901      SUBS     R9,R11,#+1
+   \      0x330   0xFA0F 0xFB8B      SXTH     R11,R11
+   \      0x334   0xF1BB 0x0F00      CMP      R11,#+0
+   \      0x338   0xD007             BEQ.N    ??drawFastHLine_40
+   \      0x33A   0xF890 0xB000      LDRB     R11,[R0, #+0]
+   \      0x33E   0xEA5A 0x0B0B      ORRS     R11,R10,R11
+   \      0x342   0xF880 0xB000      STRB     R11,[R0, #+0]
+   \      0x346   0x1C40             ADDS     R0,R0,#+1
+   \      0x348   0xE7EF             B.N      ??drawFastHLine_35
    \                     ??drawFastHLine_40: (+1)
    \                     ??drawFastHLine_36: (+1)
-   \      0x35E   0xE7FF             B.N      ??drawFastHLine_31
+   \      0x34A   0xE7FF             B.N      ??drawFastHLine_31
     484            }
     485          }
    \                     ??drawFastHLine_28: (+1)
    \                     ??drawFastHLine_31: (+1)
    \                     ??drawFastHLine_27: (+1)
-   \      0x360   0xE8BD 0x8FF7      POP      {R0-R2,R4-R11,PC}
+   \      0x34C   0xE8BD 0x8FF7      POP      {R0-R2,R4-R11,PC}
     486          
     487          void Adafruit_SSD1306::drawFastHLineInternal(int16_t x, int16_t y, int16_t w, uint16_t color)
     488          {
@@ -2671,369 +2682,373 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\Adafruit_SSD1306.cpp
     526          {
    \                     _ZN16Adafruit_SSD130613drawFastVLineEssst: (+1)
    \        0x0   0xE92D 0x4FFE      PUSH     {R1-R11,LR}
-   \        0x4   0x9C0C             LDR      R4,[SP, #+48]
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x9D0C             LDR      R5,[SP, #+48]
     527            bool bSwap = false;
-   \        0x6   0x2600             MOVS     R6,#+0
+   \        0x8   0x2600             MOVS     R6,#+0
     528            switch(rotation)
-   \        0x8   0x7D45             LDRB     R5,[R0, #+21]
-   \        0xA   0x2D00             CMP      R5,#+0
-   \        0xC   0xD005             BEQ.N    ??drawFastVLine_0
-   \        0xE   0x2D02             CMP      R5,#+2
-   \       0x10   0xD010             BEQ.N    ??drawFastVLine_1
-   \       0x12   0xD303             BCC.N    ??drawFastVLine_2
-   \       0x14   0x2D03             CMP      R5,#+3
-   \       0x16   0xD016             BEQ.N    ??drawFastVLine_3
-   \       0x18   0xE01D             B.N      ??drawFastVLine_4
+   \        0xA   0x7D60             LDRB     R0,[R4, #+21]
+   \        0xC   0x2800             CMP      R0,#+0
+   \        0xE   0xD005             BEQ.N    ??drawFastVLine_0
+   \       0x10   0x2802             CMP      R0,#+2
+   \       0x12   0xD010             BEQ.N    ??drawFastVLine_1
+   \       0x14   0xD303             BCC.N    ??drawFastVLine_2
+   \       0x16   0x2803             CMP      R0,#+3
+   \       0x18   0xD016             BEQ.N    ??drawFastVLine_3
+   \       0x1A   0xE01D             B.N      ??drawFastVLine_4
     529            {
     530              case 0:
     531                break;
    \                     ??drawFastVLine_0: (+1)
-   \       0x1A   0xE01C             B.N      ??drawFastVLine_4
+   \       0x1C   0xE01C             B.N      ??drawFastVLine_4
     532              case 1:
     533                // 90 degree rotation, swap x & y for rotation, then invert x and adjust x for h (now to become w)
     534                bSwap = true;
    \                     ??drawFastVLine_2: (+1)
-   \       0x1C   0x2501             MOVS     R5,#+1
-   \       0x1E   0x002E             MOVS     R6,R5
+   \       0x1E   0x2001             MOVS     R0,#+1
+   \       0x20   0x0006             MOVS     R6,R0
     535                ssd1306_swap(x, y);
-   \       0x20   0x000F             MOVS     R7,R1
-   \       0x22   0x0015             MOVS     R5,R2
-   \       0x24   0x003A             MOVS     R2,R7
+   \       0x22   0x000F             MOVS     R7,R1
+   \       0x24   0x0010             MOVS     R0,R2
+   \       0x26   0x003A             MOVS     R2,R7
     536                x = WIDTH - x - 1;
-   \       0x26   0x8887             LDRH     R7,[R0, #+4]
-   \       0x28   0x1B7D             SUBS     R5,R7,R5
-   \       0x2A   0x1E6D             SUBS     R5,R5,#+1
+   \       0x28   0x88A7             LDRH     R7,[R4, #+4]
+   \       0x2A   0x1A38             SUBS     R0,R7,R0
+   \       0x2C   0x1E40             SUBS     R0,R0,#+1
     537                x -= (h-1);
-   \       0x2C   0x1AED             SUBS     R5,R5,R3
-   \       0x2E   0x1C6D             ADDS     R5,R5,#+1
-   \       0x30   0x0029             MOVS     R1,R5
+   \       0x2E   0x1AC0             SUBS     R0,R0,R3
+   \       0x30   0x1C40             ADDS     R0,R0,#+1
+   \       0x32   0x0001             MOVS     R1,R0
     538                break;
-   \       0x32   0xE010             B.N      ??drawFastVLine_4
+   \       0x34   0xE010             B.N      ??drawFastVLine_4
     539              case 2:
     540                // 180 degree rotation, invert x and y - then shift y around for height.
     541                x = WIDTH - x - 1;
    \                     ??drawFastVLine_1: (+1)
-   \       0x34   0x8885             LDRH     R5,[R0, #+4]
-   \       0x36   0x1A69             SUBS     R1,R5,R1
-   \       0x38   0x1E49             SUBS     R1,R1,#+1
+   \       0x36   0x88A0             LDRH     R0,[R4, #+4]
+   \       0x38   0x1A41             SUBS     R1,R0,R1
+   \       0x3A   0x1E49             SUBS     R1,R1,#+1
     542                y = HEIGHT - y - 1;
-   \       0x3A   0x88C5             LDRH     R5,[R0, #+6]
-   \       0x3C   0x1AAA             SUBS     R2,R5,R2
-   \       0x3E   0x1E52             SUBS     R2,R2,#+1
+   \       0x3C   0x88E0             LDRH     R0,[R4, #+6]
+   \       0x3E   0x1A82             SUBS     R2,R0,R2
+   \       0x40   0x1E52             SUBS     R2,R2,#+1
     543                y -= (h-1);
-   \       0x40   0x1AD2             SUBS     R2,R2,R3
-   \       0x42   0x1C52             ADDS     R2,R2,#+1
+   \       0x42   0x1AD2             SUBS     R2,R2,R3
+   \       0x44   0x1C52             ADDS     R2,R2,#+1
     544                break;
-   \       0x44   0xE007             B.N      ??drawFastVLine_4
+   \       0x46   0xE007             B.N      ??drawFastVLine_4
     545              case 3:
     546                // 270 degree rotation, swap x & y for rotation, then invert y
     547                bSwap = true;
    \                     ??drawFastVLine_3: (+1)
-   \       0x46   0x2501             MOVS     R5,#+1
-   \       0x48   0x002E             MOVS     R6,R5
+   \       0x48   0x2001             MOVS     R0,#+1
+   \       0x4A   0x0006             MOVS     R6,R0
     548                ssd1306_swap(x, y);
-   \       0x4A   0x000D             MOVS     R5,R1
-   \       0x4C   0x0011             MOVS     R1,R2
+   \       0x4C   0x0008             MOVS     R0,R1
+   \       0x4E   0x0011             MOVS     R1,R2
     549                y = HEIGHT - y - 1;
-   \       0x4E   0x88C7             LDRH     R7,[R0, #+6]
-   \       0x50   0x1B7D             SUBS     R5,R7,R5
-   \       0x52   0x1E6D             SUBS     R5,R5,#+1
-   \       0x54   0x002A             MOVS     R2,R5
+   \       0x50   0x88E7             LDRH     R7,[R4, #+6]
+   \       0x52   0x1A38             SUBS     R0,R7,R0
+   \       0x54   0x1E40             SUBS     R0,R0,#+1
+   \       0x56   0x0002             MOVS     R2,R0
     550                break;
     551            }
     552          
     553            if(bSwap)
    \                     ??drawFastVLine_4: (+1)
-   \       0x56   0x0035             MOVS     R5,R6
-   \       0x58   0xB2ED             UXTB     R5,R5
-   \       0x5A   0x2D00             CMP      R5,#+0
-   \       0x5C   0xF000 0x808E      BEQ.W    ??drawFastVLine_5
+   \       0x58   0x0030             MOVS     R0,R6
+   \       0x5A   0xB2C0             UXTB     R0,R0
+   \       0x5C   0x2800             CMP      R0,#+0
+   \       0x5E   0xF000 0x8083      BEQ.W    ??drawFastVLine_5
     554            {
     555              drawFastHLineInternal(x, y, h, color);
-   \       0x60   0x0025             MOVS     R5,R4
-   \       0x62   0x4698             MOV      R8,R3
-   \       0x64   0x0017             MOVS     R7,R2
-   \       0x66   0x468C             MOV      R12,R1
-   \       0x68   0x4686             MOV      LR,R0
-   \       0x6A   0x46B9             MOV      R9,R7
-   \       0x6C   0xFA0F 0xF989      SXTH     R9,R9
-   \       0x70   0xF1B9 0x0F00      CMP      R9,#+0
-   \       0x74   0xF100 0x8081      BMI.W    ??drawFastVLine_6
-   \       0x78   0x46B9             MOV      R9,R7
-   \       0x7A   0xF9BE 0xA006      LDRSH    R10,[LR, #+6]
-   \       0x7E   0xFA0F 0xF989      SXTH     R9,R9
-   \       0x82   0x45D1             CMP      R9,R10
-   \       0x84   0xDA79             BGE.N    ??drawFastVLine_6
-   \       0x86   0x46E1             MOV      R9,R12
-   \       0x88   0xFA0F 0xF989      SXTH     R9,R9
-   \       0x8C   0xF1B9 0x0F00      CMP      R9,#+0
-   \       0x90   0xD504             BPL.N    ??drawFastVLine_7
-   \       0x92   0xEB1C 0x0808      ADDS     R8,R12,R8
-   \       0x96   0xF05F 0x0900      MOVS     R9,#+0
-   \       0x9A   0x46CC             MOV      R12,R9
+   \       0x62   0x002F             MOVS     R7,R5
+   \       0x64   0x4699             MOV      R9,R3
+   \       0x66   0x4694             MOV      R12,R2
+   \       0x68   0x468E             MOV      LR,R1
+   \       0x6A   0x46A0             MOV      R8,R4
+   \       0x6C   0x4660             MOV      R0,R12
+   \       0x6E   0xB200             SXTH     R0,R0
+   \       0x70   0x2800             CMP      R0,#+0
+   \       0x72   0xD478             BMI.N    ??drawFastVLine_6
+   \       0x74   0x4660             MOV      R0,R12
+   \       0x76   0xF9B8 0xA006      LDRSH    R10,[R8, #+6]
+   \       0x7A   0xB200             SXTH     R0,R0
+   \       0x7C   0x4550             CMP      R0,R10
+   \       0x7E   0xDA72             BGE.N    ??drawFastVLine_6
+   \       0x80   0x4670             MOV      R0,LR
+   \       0x82   0xB200             SXTH     R0,R0
+   \       0x84   0x2800             CMP      R0,#+0
+   \       0x86   0xD503             BPL.N    ??drawFastVLine_7
+   \       0x88   0xEB1E 0x0909      ADDS     R9,LR,R9
+   \       0x8C   0x2000             MOVS     R0,#+0
+   \       0x8E   0x4686             MOV      LR,R0
    \                     ??drawFastVLine_7: (+1)
-   \       0x9C   0xF9BE 0x9004      LDRSH    R9,[LR, #+4]
-   \       0xA0   0x46C2             MOV      R10,R8
-   \       0xA2   0xFA0F 0xFA8A      SXTH     R10,R10
-   \       0xA6   0xFA0A 0xFA8C      SXTAH    R10,R10,R12
-   \       0xAA   0x45D1             CMP      R9,R10
-   \       0xAC   0xDA04             BGE.N    ??drawFastVLine_8
-   \       0xAE   0xF8BE 0x9004      LDRH     R9,[LR, #+4]
-   \       0xB2   0xEBB9 0x090C      SUBS     R9,R9,R12
-   \       0xB6   0x46C8             MOV      R8,R9
+   \       0x90   0xF9B8 0x0004      LDRSH    R0,[R8, #+4]
+   \       0x94   0x46CA             MOV      R10,R9
+   \       0x96   0xFA0F 0xFA8A      SXTH     R10,R10
+   \       0x9A   0xFA0A 0xFA8E      SXTAH    R10,R10,LR
+   \       0x9E   0x4550             CMP      R0,R10
+   \       0xA0   0xDA04             BGE.N    ??drawFastVLine_8
+   \       0xA2   0xF8B8 0x0004      LDRH     R0,[R8, #+4]
+   \       0xA6   0xEBB0 0x000E      SUBS     R0,R0,LR
+   \       0xAA   0x4681             MOV      R9,R0
    \                     ??drawFastVLine_8: (+1)
-   \       0xB8   0x46C1             MOV      R9,R8
-   \       0xBA   0xFA0F 0xF989      SXTH     R9,R9
-   \       0xBE   0xF1B9 0x0F01      CMP      R9,#+1
-   \       0xC2   0xDB5A             BLT.N    ??drawFastVLine_9
+   \       0xAC   0x4648             MOV      R0,R9
+   \       0xAE   0xB200             SXTH     R0,R0
+   \       0xB0   0x2801             CMP      R0,#+1
+   \       0xB2   0xDB58             BLT.N    ??drawFastVLine_9
    \                     ??drawFastVLine_10: (+1)
-   \       0xC4   0x.... 0x....      LDR.W    R9,??DataTable11
-   \       0xC8   0x46BA             MOV      R10,R7
-   \       0xCA   0xFA0F 0xFA8A      SXTH     R10,R10
-   \       0xCE   0xF05F 0x0B08      MOVS     R11,#+8
-   \       0xD2   0xFB9A 0xFAFB      SDIV     R10,R10,R11
-   \       0xD6   0xEA5F 0x1ACA      LSLS     R10,R10,#+7
-   \       0xDA   0x44D1             ADD      R9,R9,R10
-   \       0xDC   0x46E2             MOV      R10,R12
-   \       0xDE   0xFA0F 0xFA8A      SXTH     R10,R10
-   \       0xE2   0x44D1             ADD      R9,R9,R10
-   \       0xE4   0xF05F 0x0B01      MOVS     R11,#+1
-   \       0xE8   0xF017 0x0A07      ANDS     R10,R7,#0x7
-   \       0xEC   0xFA1B 0xFA0A      LSLS     R10,R11,R10
-   \       0xF0   0x46AB             MOV      R11,R5
-   \       0xF2   0xFA1F 0xFB8B      UXTH     R11,R11
-   \       0xF6   0xF1BB 0x0F00      CMP      R11,#+0
-   \       0xFA   0xD016             BEQ.N    ??drawFastVLine_11
-   \       0xFC   0xF1BB 0x0F02      CMP      R11,#+2
-   \      0x100   0xD001             BEQ.N    ??drawFastVLine_12
-   \      0x102   0xD328             BCC.N    ??drawFastVLine_13
-   \      0x104   0xE038             B.N      ??drawFastVLine_14
+   \       0xB4   0x.... 0x....      LDR.W    R10,??DataTable11
+   \       0xB8   0x4660             MOV      R0,R12
+   \       0xBA   0xB200             SXTH     R0,R0
+   \       0xBC   0xF05F 0x0B08      MOVS     R11,#+8
+   \       0xC0   0xFB90 0xFBFB      SDIV     R11,R0,R11
+   \       0xC4   0x2080             MOVS     R0,#+128
+   \       0xC6   0xFB00 0xFB0B      MUL      R11,R0,R11
+   \       0xCA   0xEB0A 0x000B      ADD      R0,R10,R11
+   \       0xCE   0x46F2             MOV      R10,LR
+   \       0xD0   0xFA0F 0xFA8A      SXTH     R10,R10
+   \       0xD4   0x4450             ADD      R0,R0,R10
+   \       0xD6   0xF05F 0x0B01      MOVS     R11,#+1
+   \       0xDA   0xF01C 0x0A07      ANDS     R10,R12,#0x7
+   \       0xDE   0xFA1B 0xFA0A      LSLS     R10,R11,R10
+   \       0xE2   0x46BB             MOV      R11,R7
+   \       0xE4   0xFA1F 0xFB8B      UXTH     R11,R11
+   \       0xE8   0xF1BB 0x0F00      CMP      R11,#+0
+   \       0xEC   0xD015             BEQ.N    ??drawFastVLine_11
+   \       0xEE   0xF1BB 0x0F02      CMP      R11,#+2
+   \       0xF2   0xD001             BEQ.N    ??drawFastVLine_12
+   \       0xF4   0xD326             BCC.N    ??drawFastVLine_13
+   \       0xF6   0xE035             B.N      ??drawFastVLine_14
    \                     ??drawFastVLine_12: (+1)
-   \      0x106   0x46C3             MOV      R11,R8
-   \      0x108   0xF1BB 0x0801      SUBS     R8,R11,#+1
-   \      0x10C   0xFA0F 0xFB8B      SXTH     R11,R11
-   \      0x110   0xF1BB 0x0F00      CMP      R11,#+0
-   \      0x114   0xD008             BEQ.N    ??drawFastVLine_15
-   \      0x116   0xF899 0xB000      LDRB     R11,[R9, #+0]
-   \      0x11A   0xEA9A 0x0B0B      EORS     R11,R10,R11
-   \      0x11E   0xF889 0xB000      STRB     R11,[R9, #+0]
-   \      0x122   0xF119 0x0901      ADDS     R9,R9,#+1
-   \      0x126   0xE7EE             B.N      ??drawFastVLine_12
+   \       0xF8   0x46CB             MOV      R11,R9
+   \       0xFA   0xF1BB 0x0901      SUBS     R9,R11,#+1
+   \       0xFE   0xFA0F 0xFB8B      SXTH     R11,R11
+   \      0x102   0xF1BB 0x0F00      CMP      R11,#+0
+   \      0x106   0xD007             BEQ.N    ??drawFastVLine_15
+   \      0x108   0xF890 0xB000      LDRB     R11,[R0, #+0]
+   \      0x10C   0xEA9A 0x0B0B      EORS     R11,R10,R11
+   \      0x110   0xF880 0xB000      STRB     R11,[R0, #+0]
+   \      0x114   0x1C40             ADDS     R0,R0,#+1
+   \      0x116   0xE7EF             B.N      ??drawFastVLine_12
    \                     ??drawFastVLine_15: (+1)
-   \      0x128   0xE026             B.N      ??drawFastVLine_14
+   \      0x118   0xE024             B.N      ??drawFastVLine_14
    \                     ??drawFastVLine_11: (+1)
-   \      0x12A   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x12E   0xEA7F 0x0A0A      MVNS     R10,R10
+   \      0x11A   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x11E   0xEA7F 0x0A0A      MVNS     R10,R10
    \                     ??drawFastVLine_16: (+1)
-   \      0x132   0x46C3             MOV      R11,R8
-   \      0x134   0xF1BB 0x0801      SUBS     R8,R11,#+1
-   \      0x138   0xFA0F 0xFB8B      SXTH     R11,R11
-   \      0x13C   0xF1BB 0x0F00      CMP      R11,#+0
-   \      0x140   0xD008             BEQ.N    ??drawFastVLine_17
-   \      0x142   0xF899 0xB000      LDRB     R11,[R9, #+0]
-   \      0x146   0xEA1A 0x0B0B      ANDS     R11,R10,R11
-   \      0x14A   0xF889 0xB000      STRB     R11,[R9, #+0]
-   \      0x14E   0xF119 0x0901      ADDS     R9,R9,#+1
-   \      0x152   0xE7EE             B.N      ??drawFastVLine_16
+   \      0x122   0x46CB             MOV      R11,R9
+   \      0x124   0xF1BB 0x0901      SUBS     R9,R11,#+1
+   \      0x128   0xFA0F 0xFB8B      SXTH     R11,R11
+   \      0x12C   0xF1BB 0x0F00      CMP      R11,#+0
+   \      0x130   0xD007             BEQ.N    ??drawFastVLine_17
+   \      0x132   0xF890 0xB000      LDRB     R11,[R0, #+0]
+   \      0x136   0xEA1A 0x0B0B      ANDS     R11,R10,R11
+   \      0x13A   0xF880 0xB000      STRB     R11,[R0, #+0]
+   \      0x13E   0x1C40             ADDS     R0,R0,#+1
+   \      0x140   0xE7EF             B.N      ??drawFastVLine_16
    \                     ??drawFastVLine_17: (+1)
-   \      0x154   0xE010             B.N      ??drawFastVLine_14
+   \      0x142   0xE00F             B.N      ??drawFastVLine_14
    \                     ??drawFastVLine_13: (+1)
-   \      0x156   0x46C3             MOV      R11,R8
-   \      0x158   0xF1BB 0x0801      SUBS     R8,R11,#+1
-   \      0x15C   0xFA0F 0xFB8B      SXTH     R11,R11
-   \      0x160   0xF1BB 0x0F00      CMP      R11,#+0
-   \      0x164   0xD008             BEQ.N    ??drawFastVLine_18
-   \      0x166   0xF899 0xB000      LDRB     R11,[R9, #+0]
-   \      0x16A   0xEA5A 0x0B0B      ORRS     R11,R10,R11
-   \      0x16E   0xF889 0xB000      STRB     R11,[R9, #+0]
-   \      0x172   0xF119 0x0901      ADDS     R9,R9,#+1
-   \      0x176   0xE7EE             B.N      ??drawFastVLine_13
+   \      0x144   0x46CB             MOV      R11,R9
+   \      0x146   0xF1BB 0x0901      SUBS     R9,R11,#+1
+   \      0x14A   0xFA0F 0xFB8B      SXTH     R11,R11
+   \      0x14E   0xF1BB 0x0F00      CMP      R11,#+0
+   \      0x152   0xD007             BEQ.N    ??drawFastVLine_18
+   \      0x154   0xF890 0xB000      LDRB     R11,[R0, #+0]
+   \      0x158   0xEA5A 0x0B0B      ORRS     R11,R10,R11
+   \      0x15C   0xF880 0xB000      STRB     R11,[R0, #+0]
+   \      0x160   0x1C40             ADDS     R0,R0,#+1
+   \      0x162   0xE7EF             B.N      ??drawFastVLine_13
    \                     ??drawFastVLine_18: (+1)
    \                     ??drawFastVLine_14: (+1)
-   \      0x178   0xE7FF             B.N      ??drawFastVLine_9
+   \      0x164   0xE7FF             B.N      ??drawFastVLine_9
     556            }
    \                     ??drawFastVLine_6: (+1)
    \                     ??drawFastVLine_9: (+1)
-   \      0x17A   0xE0F1             B.N      ??drawFastVLine_19
+   \      0x166   0xE0F1             B.N      ??drawFastVLine_19
     557            else
     558            {
     559              drawFastVLineInternal(x, y, h, color);
    \                     ??drawFastVLine_5: (+1)
-   \      0x17C   0xF8AD 0x4002      STRH     R4,[SP, #+2]
-   \      0x180   0x001F             MOVS     R7,R3
-   \      0x182   0xF8AD 0x2000      STRH     R2,[SP, #+0]
-   \      0x186   0xF8AD 0x1004      STRH     R1,[SP, #+4]
-   \      0x18A   0x9002             STR      R0,[SP, #+8]
-   \      0x18C   0xF9BD 0x5004      LDRSH    R5,[SP, #+4]
-   \      0x190   0x2D00             CMP      R5,#+0
-   \      0x192   0xF100 0x80E5      BMI.W    ??drawFastVLine_20
-   \      0x196   0xF9BD 0x5004      LDRSH    R5,[SP, #+4]
-   \      0x19A   0xF8DD 0xC008      LDR      R12,[SP, #+8]
-   \      0x19E   0xF9BC 0xC004      LDRSH    R12,[R12, #+4]
-   \      0x1A2   0x4565             CMP      R5,R12
-   \      0x1A4   0xF280 0x80DC      BGE.W    ??drawFastVLine_20
-   \      0x1A8   0xF9BD 0x5000      LDRSH    R5,[SP, #+0]
-   \      0x1AC   0x2D00             CMP      R5,#+0
-   \      0x1AE   0xD505             BPL.N    ??drawFastVLine_21
-   \      0x1B0   0xF8BD 0x5000      LDRH     R5,[SP, #+0]
-   \      0x1B4   0x19EF             ADDS     R7,R5,R7
-   \      0x1B6   0x2500             MOVS     R5,#+0
-   \      0x1B8   0xF8AD 0x5000      STRH     R5,[SP, #+0]
+   \      0x168   0xF8AD 0x5002      STRH     R5,[SP, #+2]
+   \      0x16C   0x001F             MOVS     R7,R3
+   \      0x16E   0xF8AD 0x2000      STRH     R2,[SP, #+0]
+   \      0x172   0xF8AD 0x1004      STRH     R1,[SP, #+4]
+   \      0x176   0x9402             STR      R4,[SP, #+8]
+   \      0x178   0xF9BD 0x0004      LDRSH    R0,[SP, #+4]
+   \      0x17C   0x2800             CMP      R0,#+0
+   \      0x17E   0xF100 0x80E5      BMI.W    ??drawFastVLine_20
+   \      0x182   0xF9BD 0x0004      LDRSH    R0,[SP, #+4]
+   \      0x186   0xF8DD 0xC008      LDR      R12,[SP, #+8]
+   \      0x18A   0xF9BC 0xC004      LDRSH    R12,[R12, #+4]
+   \      0x18E   0x4560             CMP      R0,R12
+   \      0x190   0xF280 0x80DC      BGE.W    ??drawFastVLine_20
+   \      0x194   0xF9BD 0x0000      LDRSH    R0,[SP, #+0]
+   \      0x198   0x2800             CMP      R0,#+0
+   \      0x19A   0xD505             BPL.N    ??drawFastVLine_21
+   \      0x19C   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
+   \      0x1A0   0x19C7             ADDS     R7,R0,R7
+   \      0x1A2   0x2000             MOVS     R0,#+0
+   \      0x1A4   0xF8AD 0x0000      STRH     R0,[SP, #+0]
    \                     ??drawFastVLine_21: (+1)
-   \      0x1BC   0x9D02             LDR      R5,[SP, #+8]
-   \      0x1BE   0xF9B5 0x5006      LDRSH    R5,[R5, #+6]
-   \      0x1C2   0xF9BD 0xC000      LDRSH    R12,[SP, #+0]
-   \      0x1C6   0xFA0C 0xFC87      SXTAH    R12,R12,R7
-   \      0x1CA   0x4565             CMP      R5,R12
-   \      0x1CC   0xDA07             BGE.N    ??drawFastVLine_22
-   \      0x1CE   0x9D02             LDR      R5,[SP, #+8]
-   \      0x1D0   0xF8B5 0xC006      LDRH     R12,[R5, #+6]
-   \      0x1D4   0xF8BD 0x5000      LDRH     R5,[SP, #+0]
-   \      0x1D8   0xEBBC 0x0C05      SUBS     R12,R12,R5
-   \      0x1DC   0x4667             MOV      R7,R12
+   \      0x1A8   0x9802             LDR      R0,[SP, #+8]
+   \      0x1AA   0xF9B0 0x0006      LDRSH    R0,[R0, #+6]
+   \      0x1AE   0xF9BD 0xC000      LDRSH    R12,[SP, #+0]
+   \      0x1B2   0xFA0C 0xFC87      SXTAH    R12,R12,R7
+   \      0x1B6   0x4560             CMP      R0,R12
+   \      0x1B8   0xDA07             BGE.N    ??drawFastVLine_22
+   \      0x1BA   0x9802             LDR      R0,[SP, #+8]
+   \      0x1BC   0xF8B0 0xC006      LDRH     R12,[R0, #+6]
+   \      0x1C0   0xF8BD 0x0000      LDRH     R0,[SP, #+0]
+   \      0x1C4   0xEBBC 0x0C00      SUBS     R12,R12,R0
+   \      0x1C8   0x4667             MOV      R7,R12
    \                     ??drawFastVLine_22: (+1)
-   \      0x1DE   0x003D             MOVS     R5,R7
-   \      0x1E0   0xB22D             SXTH     R5,R5
-   \      0x1E2   0x2D01             CMP      R5,#+1
-   \      0x1E4   0xF2C0 0x80BC      BLT.W    ??drawFastVLine_23
+   \      0x1CA   0x0038             MOVS     R0,R7
+   \      0x1CC   0xB200             SXTH     R0,R0
+   \      0x1CE   0x2801             CMP      R0,#+1
+   \      0x1D0   0xF2C0 0x80BC      BLT.W    ??drawFastVLine_23
    \                     ??drawFastVLine_24: (+1)
-   \      0x1E8   0xF8BD 0x5000      LDRH     R5,[SP, #+0]
-   \      0x1EC   0x46BC             MOV      R12,R7
-   \      0x1EE   0x.... 0x....      LDR.W    LR,??DataTable11
-   \      0x1F2   0x46A8             MOV      R8,R5
-   \      0x1F4   0xFA5F 0xF888      UXTB     R8,R8
-   \      0x1F8   0xEA5F 0x08E8      ASRS     R8,R8,#+3
-   \      0x1FC   0xEA5F 0x18C8      LSLS     R8,R8,#+7
-   \      0x200   0x44C6             ADD      LR,LR,R8
-   \      0x202   0xF9BD 0x8004      LDRSH    R8,[SP, #+4]
-   \      0x206   0x44C6             ADD      LR,LR,R8
-   \      0x208   0xF015 0x0807      ANDS     R8,R5,#0x7
-   \      0x20C   0x46C1             MOV      R9,R8
-   \      0x20E   0xFA5F 0xF989      UXTB     R9,R9
-   \      0x212   0xF1B9 0x0F00      CMP      R9,#+0
-   \      0x216   0xD042             BEQ.N    ??drawFastVLine_25
-   \      0x218   0xF1D8 0x0808      RSBS     R8,R8,#+8
-   \      0x21C   0x.... 0x....      LDR.W    R9,??DataTable25
-   \      0x220   0x46C2             MOV      R10,R8
-   \      0x222   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x226   0xF819 0x900A      LDRB     R9,[R9, R10]
-   \      0x22A   0x46E2             MOV      R10,R12
-   \      0x22C   0x46C3             MOV      R11,R8
-   \      0x22E   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x232   0xFA5F 0xFB8B      UXTB     R11,R11
-   \      0x236   0x45DA             CMP      R10,R11
-   \      0x238   0xD207             BCS.N    ??drawFastVLine_26
-   \      0x23A   0xF04F 0x0AFF      MOV      R10,#+255
-   \      0x23E   0xEBB8 0x0B0C      SUBS     R11,R8,R12
-   \      0x242   0xFA5A 0xFA0B      ASRS     R10,R10,R11
-   \      0x246   0xEA1A 0x0909      ANDS     R9,R10,R9
+   \      0x1D4   0xF8BD 0xC000      LDRH     R12,[SP, #+0]
+   \      0x1D8   0x46BE             MOV      LR,R7
+   \      0x1DA   0x.... 0x....      LDR.W    R8,??DataTable11
+   \      0x1DE   0x4660             MOV      R0,R12
+   \      0x1E0   0xB2C0             UXTB     R0,R0
+   \      0x1E2   0xF05F 0x0908      MOVS     R9,#+8
+   \      0x1E6   0xFB90 0xF9F9      SDIV     R9,R0,R9
+   \      0x1EA   0x2080             MOVS     R0,#+128
+   \      0x1EC   0xFB00 0xF909      MUL      R9,R0,R9
+   \      0x1F0   0xEB08 0x0009      ADD      R0,R8,R9
+   \      0x1F4   0xF9BD 0x8004      LDRSH    R8,[SP, #+4]
+   \      0x1F8   0x4440             ADD      R0,R0,R8
+   \      0x1FA   0xF01C 0x0807      ANDS     R8,R12,#0x7
+   \      0x1FE   0x46C1             MOV      R9,R8
+   \      0x200   0xFA5F 0xF989      UXTB     R9,R9
+   \      0x204   0xF1B9 0x0F00      CMP      R9,#+0
+   \      0x208   0xD041             BEQ.N    ??drawFastVLine_25
+   \      0x20A   0xF1D8 0x0808      RSBS     R8,R8,#+8
+   \      0x20E   0x.... 0x....      LDR.W    R9,??DataTable25
+   \      0x212   0x46C2             MOV      R10,R8
+   \      0x214   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x218   0xF819 0x900A      LDRB     R9,[R9, R10]
+   \      0x21C   0x46F2             MOV      R10,LR
+   \      0x21E   0x46C3             MOV      R11,R8
+   \      0x220   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x224   0xFA5F 0xFB8B      UXTB     R11,R11
+   \      0x228   0x45DA             CMP      R10,R11
+   \      0x22A   0xD207             BCS.N    ??drawFastVLine_26
+   \      0x22C   0xF04F 0x0AFF      MOV      R10,#+255
+   \      0x230   0xEBB8 0x0B0E      SUBS     R11,R8,LR
+   \      0x234   0xFA5A 0xFA0B      ASRS     R10,R10,R11
+   \      0x238   0xEA1A 0x0909      ANDS     R9,R10,R9
    \                     ??drawFastVLine_26: (+1)
-   \      0x24A   0xF8BD 0xA002      LDRH     R10,[SP, #+2]
-   \      0x24E   0xF1BA 0x0F00      CMP      R10,#+0
-   \      0x252   0xD00B             BEQ.N    ??drawFastVLine_27
-   \      0x254   0xF1BA 0x0F02      CMP      R10,#+2
-   \      0x258   0xD001             BEQ.N    ??drawFastVLine_28
-   \      0x25A   0xD30E             BCC.N    ??drawFastVLine_29
-   \      0x25C   0xE013             B.N      ??drawFastVLine_30
+   \      0x23C   0xF8BD 0xA002      LDRH     R10,[SP, #+2]
+   \      0x240   0xF1BA 0x0F00      CMP      R10,#+0
+   \      0x244   0xD00B             BEQ.N    ??drawFastVLine_27
+   \      0x246   0xF1BA 0x0F02      CMP      R10,#+2
+   \      0x24A   0xD001             BEQ.N    ??drawFastVLine_28
+   \      0x24C   0xD30E             BCC.N    ??drawFastVLine_29
+   \      0x24E   0xE013             B.N      ??drawFastVLine_30
    \                     ??drawFastVLine_28: (+1)
-   \      0x25E   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x262   0xEA99 0x0A0A      EORS     R10,R9,R10
-   \      0x266   0xF88E 0xA000      STRB     R10,[LR, #+0]
-   \      0x26A   0xE00C             B.N      ??drawFastVLine_30
+   \      0x250   0xF890 0xA000      LDRB     R10,[R0, #+0]
+   \      0x254   0xEA99 0x0A0A      EORS     R10,R9,R10
+   \      0x258   0xF880 0xA000      STRB     R10,[R0, #+0]
+   \      0x25C   0xE00C             B.N      ??drawFastVLine_30
    \                     ??drawFastVLine_27: (+1)
-   \      0x26C   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x270   0xEA3A 0x0A09      BICS     R10,R10,R9
-   \      0x274   0xF88E 0xA000      STRB     R10,[LR, #+0]
-   \      0x278   0xE005             B.N      ??drawFastVLine_30
+   \      0x25E   0xF890 0xA000      LDRB     R10,[R0, #+0]
+   \      0x262   0xEA3A 0x0A09      BICS     R10,R10,R9
+   \      0x266   0xF880 0xA000      STRB     R10,[R0, #+0]
+   \      0x26A   0xE005             B.N      ??drawFastVLine_30
    \                     ??drawFastVLine_29: (+1)
-   \      0x27A   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x27E   0xEA59 0x0A0A      ORRS     R10,R9,R10
-   \      0x282   0xF88E 0xA000      STRB     R10,[LR, #+0]
+   \      0x26C   0xF890 0xA000      LDRB     R10,[R0, #+0]
+   \      0x270   0xEA59 0x0A0A      ORRS     R10,R9,R10
+   \      0x274   0xF880 0xA000      STRB     R10,[R0, #+0]
    \                     ??drawFastVLine_30: (+1)
-   \      0x286   0x46E2             MOV      R10,R12
-   \      0x288   0x46C3             MOV      R11,R8
-   \      0x28A   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x28E   0xFA5F 0xFB8B      UXTB     R11,R11
-   \      0x292   0x45DA             CMP      R10,R11
-   \      0x294   0xD364             BCC.N    ??drawFastVLine_23
+   \      0x278   0x46F2             MOV      R10,LR
+   \      0x27A   0x46C3             MOV      R11,R8
+   \      0x27C   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x280   0xFA5F 0xFB8B      UXTB     R11,R11
+   \      0x284   0x45DA             CMP      R10,R11
+   \      0x286   0xD361             BCC.N    ??drawFastVLine_23
    \                     ??drawFastVLine_31: (+1)
-   \      0x296   0xEBBC 0x0C08      SUBS     R12,R12,R8
-   \      0x29A   0xF11E 0x0E80      ADDS     LR,LR,#+128
+   \      0x288   0xEBBE 0x0E08      SUBS     LR,LR,R8
+   \      0x28C   0x3080             ADDS     R0,R0,#+128
    \                     ??drawFastVLine_25: (+1)
-   \      0x29E   0x46E1             MOV      R9,R12
-   \      0x2A0   0xFA5F 0xF989      UXTB     R9,R9
-   \      0x2A4   0xF1B9 0x0F08      CMP      R9,#+8
-   \      0x2A8   0xDB2B             BLT.N    ??drawFastVLine_32
-   \      0x2AA   0xF8BD 0x9002      LDRH     R9,[SP, #+2]
-   \      0x2AE   0xF1B9 0x0F02      CMP      R9,#+2
-   \      0x2B2   0xD110             BNE.N    ??drawFastVLine_33
+   \      0x28E   0x46F1             MOV      R9,LR
+   \      0x290   0xFA5F 0xF989      UXTB     R9,R9
+   \      0x294   0xF1B9 0x0F08      CMP      R9,#+8
+   \      0x298   0xDB29             BLT.N    ??drawFastVLine_32
+   \      0x29A   0xF8BD 0x9002      LDRH     R9,[SP, #+2]
+   \      0x29E   0xF1B9 0x0F02      CMP      R9,#+2
+   \      0x2A2   0xD10F             BNE.N    ??drawFastVLine_33
    \                     ??drawFastVLine_34: (+1)
-   \      0x2B4   0xF89E 0x9000      LDRB     R9,[LR, #+0]
-   \      0x2B8   0xEA7F 0x0909      MVNS     R9,R9
-   \      0x2BC   0xF88E 0x9000      STRB     R9,[LR, #+0]
-   \      0x2C0   0xF11E 0x0E80      ADDS     LR,LR,#+128
-   \      0x2C4   0xF1BC 0x0C08      SUBS     R12,R12,#+8
-   \      0x2C8   0x46E1             MOV      R9,R12
-   \      0x2CA   0xFA5F 0xF989      UXTB     R9,R9
-   \      0x2CE   0xF1B9 0x0F08      CMP      R9,#+8
-   \      0x2D2   0xDAEF             BGE.N    ??drawFastVLine_34
-   \      0x2D4   0xE015             B.N      ??drawFastVLine_32
+   \      0x2A4   0xF890 0x9000      LDRB     R9,[R0, #+0]
+   \      0x2A8   0xEA7F 0x0909      MVNS     R9,R9
+   \      0x2AC   0xF880 0x9000      STRB     R9,[R0, #+0]
+   \      0x2B0   0x3080             ADDS     R0,R0,#+128
+   \      0x2B2   0xF1BE 0x0E08      SUBS     LR,LR,#+8
+   \      0x2B6   0x46F1             MOV      R9,LR
+   \      0x2B8   0xFA5F 0xF989      UXTB     R9,R9
+   \      0x2BC   0xF1B9 0x0F08      CMP      R9,#+8
+   \      0x2C0   0xDAF0             BGE.N    ??drawFastVLine_34
+   \      0x2C2   0xE014             B.N      ??drawFastVLine_32
    \                     ??drawFastVLine_33: (+1)
-   \      0x2D6   0xF8BD 0x9002      LDRH     R9,[SP, #+2]
-   \      0x2DA   0xF1B9 0x0F01      CMP      R9,#+1
-   \      0x2DE   0xD102             BNE.N    ??drawFastVLine_35
-   \      0x2E0   0xF04F 0x09FF      MOV      R9,#+255
-   \      0x2E4   0xE001             B.N      ??drawFastVLine_36
+   \      0x2C4   0xF8BD 0x9002      LDRH     R9,[SP, #+2]
+   \      0x2C8   0xF1B9 0x0F01      CMP      R9,#+1
+   \      0x2CC   0xD102             BNE.N    ??drawFastVLine_35
+   \      0x2CE   0xF04F 0x09FF      MOV      R9,#+255
+   \      0x2D2   0xE001             B.N      ??drawFastVLine_36
    \                     ??drawFastVLine_35: (+1)
-   \      0x2E6   0xF05F 0x0900      MOVS     R9,#+0
+   \      0x2D4   0xF05F 0x0900      MOVS     R9,#+0
    \                     ??drawFastVLine_36: (+1)
-   \      0x2EA   0xF88E 0x9000      STRB     R9,[LR, #+0]
-   \      0x2EE   0xF11E 0x0E80      ADDS     LR,LR,#+128
-   \      0x2F2   0xF1BC 0x0C08      SUBS     R12,R12,#+8
-   \      0x2F6   0x46E2             MOV      R10,R12
-   \      0x2F8   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x2FC   0xF1BA 0x0F08      CMP      R10,#+8
-   \      0x300   0xDAF3             BGE.N    ??drawFastVLine_36
+   \      0x2D8   0xF880 0x9000      STRB     R9,[R0, #+0]
+   \      0x2DC   0x3080             ADDS     R0,R0,#+128
+   \      0x2DE   0xF1BE 0x0E08      SUBS     LR,LR,#+8
+   \      0x2E2   0x46F2             MOV      R10,LR
+   \      0x2E4   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x2E8   0xF1BA 0x0F08      CMP      R10,#+8
+   \      0x2EC   0xDAF4             BGE.N    ??drawFastVLine_36
    \                     ??drawFastVLine_32: (+1)
-   \      0x302   0x46E1             MOV      R9,R12
-   \      0x304   0xFA5F 0xF989      UXTB     R9,R9
-   \      0x308   0xF1B9 0x0F00      CMP      R9,#+0
-   \      0x30C   0xD027             BEQ.N    ??drawFastVLine_37
-   \      0x30E   0xF01C 0x0907      ANDS     R9,R12,#0x7
-   \      0x312   0x46C8             MOV      R8,R9
-   \      0x314   0x.... 0x....      LDR.W    R9,??DataTable26
-   \      0x318   0x46C2             MOV      R10,R8
-   \      0x31A   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x31E   0xF819 0x900A      LDRB     R9,[R9, R10]
-   \      0x322   0xF8BD 0xA002      LDRH     R10,[SP, #+2]
-   \      0x326   0xF1BA 0x0F00      CMP      R10,#+0
-   \      0x32A   0xD00B             BEQ.N    ??drawFastVLine_38
-   \      0x32C   0xF1BA 0x0F02      CMP      R10,#+2
-   \      0x330   0xD001             BEQ.N    ??drawFastVLine_39
-   \      0x332   0xD30E             BCC.N    ??drawFastVLine_40
-   \      0x334   0xE013             B.N      ??drawFastVLine_37
+   \      0x2EE   0x46F1             MOV      R9,LR
+   \      0x2F0   0xFA5F 0xF989      UXTB     R9,R9
+   \      0x2F4   0xF1B9 0x0F00      CMP      R9,#+0
+   \      0x2F8   0xD027             BEQ.N    ??drawFastVLine_37
+   \      0x2FA   0xF01E 0x0907      ANDS     R9,LR,#0x7
+   \      0x2FE   0x46C8             MOV      R8,R9
+   \      0x300   0x.... 0x....      LDR.W    R9,??DataTable27
+   \      0x304   0x46C2             MOV      R10,R8
+   \      0x306   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x30A   0xF819 0x900A      LDRB     R9,[R9, R10]
+   \      0x30E   0xF8BD 0xA002      LDRH     R10,[SP, #+2]
+   \      0x312   0xF1BA 0x0F00      CMP      R10,#+0
+   \      0x316   0xD00B             BEQ.N    ??drawFastVLine_38
+   \      0x318   0xF1BA 0x0F02      CMP      R10,#+2
+   \      0x31C   0xD001             BEQ.N    ??drawFastVLine_39
+   \      0x31E   0xD30E             BCC.N    ??drawFastVLine_40
+   \      0x320   0xE013             B.N      ??drawFastVLine_37
    \                     ??drawFastVLine_39: (+1)
-   \      0x336   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x33A   0xEA99 0x0A0A      EORS     R10,R9,R10
-   \      0x33E   0xF88E 0xA000      STRB     R10,[LR, #+0]
-   \      0x342   0xE00C             B.N      ??drawFastVLine_37
+   \      0x322   0xF890 0xA000      LDRB     R10,[R0, #+0]
+   \      0x326   0xEA99 0x0A0A      EORS     R10,R9,R10
+   \      0x32A   0xF880 0xA000      STRB     R10,[R0, #+0]
+   \      0x32E   0xE00C             B.N      ??drawFastVLine_37
    \                     ??drawFastVLine_38: (+1)
-   \      0x344   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x348   0xEA3A 0x0A09      BICS     R10,R10,R9
-   \      0x34C   0xF88E 0xA000      STRB     R10,[LR, #+0]
-   \      0x350   0xE005             B.N      ??drawFastVLine_37
+   \      0x330   0xF890 0xA000      LDRB     R10,[R0, #+0]
+   \      0x334   0xEA3A 0x0A09      BICS     R10,R10,R9
+   \      0x338   0xF880 0xA000      STRB     R10,[R0, #+0]
+   \      0x33C   0xE005             B.N      ??drawFastVLine_37
    \                     ??drawFastVLine_40: (+1)
-   \      0x352   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x356   0xEA59 0x0A0A      ORRS     R10,R9,R10
-   \      0x35A   0xF88E 0xA000      STRB     R10,[LR, #+0]
+   \      0x33E   0xF890 0xA000      LDRB     R10,[R0, #+0]
+   \      0x342   0xEA59 0x0A0A      ORRS     R10,R9,R10
+   \      0x346   0xF880 0xA000      STRB     R10,[R0, #+0]
    \                     ??drawFastVLine_37: (+1)
-   \      0x35E   0xE7FF             B.N      ??drawFastVLine_23
+   \      0x34A   0xE7FF             B.N      ??drawFastVLine_23
     560            }
     561          }
    \                     ??drawFastVLine_20: (+1)
    \                     ??drawFastVLine_23: (+1)
    \                     ??drawFastVLine_19: (+1)
-   \      0x360   0xE8BD 0x8FF7      POP      {R0-R2,R4-R11,PC}
+   \      0x34C   0xE8BD 0x8FF7      POP      {R0-R2,R4-R11,PC}
     562          
     563          
     564          void Adafruit_SSD1306::drawFastVLineInternal(int16_t x, int16_t __y, int16_t __h, uint16_t color)
@@ -3325,7 +3340,7 @@ Warning[Pe550]: variable "page" was set but never used
    \       0x2E   0xB280             UXTH     R0,R0
    \       0x30   0x5C08             LDRB     R0,[R1, R0]
    \       0x32   0x2800             CMP      R0,#+0
-   \       0x34   0xF000 0x80B2      BEQ.W    ??printf_1
+   \       0x34   0xF000 0x80B6      BEQ.W    ??printf_1
     752              {
     753                  //  한글체크
     754                  if ( (uint8_t)format[i] > 0x80 )		//	문자.
@@ -3333,7 +3348,7 @@ Warning[Pe550]: variable "page" was set but never used
    \       0x3A   0xB280             UXTH     R0,R0
    \       0x3C   0x5C08             LDRB     R0,[R1, R0]
    \       0x3E   0x2881             CMP      R0,#+129
-   \       0x40   0xDB54             BLT.N    ??printf_2
+   \       0x40   0xDB56             BLT.N    ??printf_2
     755                  {
     756                      bIsCharHan = 1;
    \       0x42   0x2001             MOVS     R0,#+1
@@ -3355,7 +3370,7 @@ Warning[Pe550]: variable "page" was set but never used
    \       0x58   0x4640             MOV      R0,R8
    \       0x5A   0xB280             UXTH     R0,R0
    \       0x5C   0x2810             CMP      R0,#+16
-   \       0x5E   0xF280 0x8097      BGE.W    ??printf_4
+   \       0x5E   0xF280 0x809B      BGE.W    ??printf_4
     762                      {
     763                          uint16_t	dotByte;
     764                          int bIdx;
@@ -3380,7 +3395,7 @@ Warning[Pe550]: variable "page" was set but never used
    \       0x80   0xF05F 0x0A00      MOVS     R10,#+0
    \                     ??printf_5: (+1)
    \       0x84   0xF1BA 0x0F10      CMP      R10,#+16
-   \       0x88   0xDA2D             BGE.N    ??printf_6
+   \       0x88   0xDA2F             BGE.N    ??printf_6
     772                          {
     773                              if ( dotByte & bitval_r[bIdx] )
    \       0x8A   0x.... 0x....      LDR.W    R0,??DataTable34
@@ -3388,7 +3403,7 @@ Warning[Pe550]: variable "page" was set but never used
    \       0x92   0x4648             MOV      R0,R9
    \       0x94   0xB280             UXTH     R0,R0
    \       0x96   0x4208             TST      R0,R1
-   \       0x98   0xD011             BEQ.N    ??printf_7
+   \       0x98   0xD012             BEQ.N    ??printf_7
     774                              {
     775                                  drawPixel( cursor_x + i * 8 + bIdx, cursor_y + j, 1 );
    \       0x9A   0x2301             MOVS     R3,#+1
@@ -3396,139 +3411,143 @@ Warning[Pe550]: variable "page" was set but never used
    \       0x9E   0xEB18 0x0202      ADDS     R2,R8,R2
    \       0xA2   0xB212             SXTH     R2,R2
    \       0xA4   0x89A1             LDRH     R1,[R4, #+12]
-   \       0xA6   0xEB11 0x01C7      ADDS     R1,R1,R7, LSL #+3
-   \       0xAA   0xEB1A 0x0101      ADDS     R1,R10,R1
-   \       0xAE   0xB209             SXTH     R1,R1
-   \       0xB0   0x0020             MOVS     R0,R4
-   \       0xB2   0xF8D4 0xC000      LDR      R12,[R4, #+0]
-   \       0xB6   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0xBA   0x47E0             BLX      R12
-   \       0xBC   0xE010             B.N      ??printf_8
+   \       0xA6   0xB23F             SXTH     R7,R7
+   \       0xA8   0xEB11 0x01C7      ADDS     R1,R1,R7, LSL #+3
+   \       0xAC   0xEB1A 0x0101      ADDS     R1,R10,R1
+   \       0xB0   0xB209             SXTH     R1,R1
+   \       0xB2   0x0020             MOVS     R0,R4
+   \       0xB4   0xF8D4 0xC000      LDR      R12,[R4, #+0]
+   \       0xB8   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0xBC   0x47E0             BLX      R12
+   \       0xBE   0xE011             B.N      ??printf_8
     776                              }
     777                              else
     778                              {
     779                                  drawPixel( cursor_x + i * 8 + bIdx, cursor_y + j, 0 );
    \                     ??printf_7: (+1)
-   \       0xBE   0x2300             MOVS     R3,#+0
-   \       0xC0   0x89E2             LDRH     R2,[R4, #+14]
-   \       0xC2   0xEB18 0x0202      ADDS     R2,R8,R2
-   \       0xC6   0xB212             SXTH     R2,R2
-   \       0xC8   0x89A1             LDRH     R1,[R4, #+12]
-   \       0xCA   0xEB11 0x01C7      ADDS     R1,R1,R7, LSL #+3
-   \       0xCE   0xEB1A 0x0101      ADDS     R1,R10,R1
-   \       0xD2   0xB209             SXTH     R1,R1
-   \       0xD4   0x0020             MOVS     R0,R4
-   \       0xD6   0xF8D4 0xC000      LDR      R12,[R4, #+0]
-   \       0xDA   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \       0xDE   0x47E0             BLX      R12
+   \       0xC0   0x2300             MOVS     R3,#+0
+   \       0xC2   0x89E2             LDRH     R2,[R4, #+14]
+   \       0xC4   0xEB18 0x0202      ADDS     R2,R8,R2
+   \       0xC8   0xB212             SXTH     R2,R2
+   \       0xCA   0x89A1             LDRH     R1,[R4, #+12]
+   \       0xCC   0xB23F             SXTH     R7,R7
+   \       0xCE   0xEB11 0x01C7      ADDS     R1,R1,R7, LSL #+3
+   \       0xD2   0xEB1A 0x0101      ADDS     R1,R10,R1
+   \       0xD6   0xB209             SXTH     R1,R1
+   \       0xD8   0x0020             MOVS     R0,R4
+   \       0xDA   0xF8D4 0xC000      LDR      R12,[R4, #+0]
+   \       0xDE   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \       0xE2   0x47E0             BLX      R12
     780                              }
     781                          }
    \                     ??printf_8: (+1)
-   \       0xE0   0xF11A 0x0A01      ADDS     R10,R10,#+1
-   \       0xE4   0xE7CE             B.N      ??printf_5
+   \       0xE4   0xF11A 0x0A01      ADDS     R10,R10,#+1
+   \       0xE8   0xE7CC             B.N      ??printf_5
     782                      }
    \                     ??printf_6: (+1)
-   \       0xE6   0xF118 0x0801      ADDS     R8,R8,#+1
-   \       0xEA   0xE7B5             B.N      ??printf_3
+   \       0xEA   0xF118 0x0801      ADDS     R8,R8,#+1
+   \       0xEE   0xE7B3             B.N      ??printf_3
     783                  }
     784                  else
     785                  {
     786                      bIsCharHan = 0;
    \                     ??printf_2: (+1)
-   \       0xEC   0x2000             MOVS     R0,#+0
-   \       0xEE   0x4683             MOV      R11,R0
+   \       0xF0   0x2000             MOVS     R0,#+0
+   \       0xF2   0x4683             MOV      R11,R0
     787          
     788                      //	영문폰트
     789                      //*
     790                      PHan_EngFontLoad( (const uint8_t*)&format[i], &FontPtr );
-   \       0xF0   0x4669             MOV      R1,SP
-   \       0xF2   0xA809             ADD      R0,SP,#+36
-   \       0xF4   0x003A             MOVS     R2,R7
-   \       0xF6   0xB292             UXTH     R2,R2
-   \       0xF8   0x4410             ADD      R0,R0,R2
-   \       0xFA   0x.... 0x....      BL       PHan_EngFontLoad
+   \       0xF4   0x4669             MOV      R1,SP
+   \       0xF6   0xA809             ADD      R0,SP,#+36
+   \       0xF8   0x003A             MOVS     R2,R7
+   \       0xFA   0xB292             UXTH     R2,R2
+   \       0xFC   0x4410             ADD      R0,R0,R2
+   \       0xFE   0x.... 0x....      BL       PHan_EngFontLoad
     791          
     792                      for ( j = 0; j < 16; j++ )
-   \       0xFE   0x2000             MOVS     R0,#+0
-   \      0x100   0x4680             MOV      R8,R0
+   \      0x102   0x2000             MOVS     R0,#+0
+   \      0x104   0x4680             MOV      R8,R0
    \                     ??printf_9: (+1)
-   \      0x102   0x4640             MOV      R0,R8
-   \      0x104   0xB280             UXTH     R0,R0
-   \      0x106   0x2810             CMP      R0,#+16
-   \      0x108   0xDA42             BGE.N    ??printf_4
+   \      0x106   0x4640             MOV      R0,R8
+   \      0x108   0xB280             UXTH     R0,R0
+   \      0x10A   0x2810             CMP      R0,#+16
+   \      0x10C   0xDA44             BGE.N    ??printf_4
     793                      {
     794                          uint16_t	dotByte;
     795                          int bIdx;
     796          
     797                          dotByte = FontPtr.FontBuffer[j];
-   \      0x10A   0x4668             MOV      R0,SP
-   \      0x10C   0x4641             MOV      R1,R8
-   \      0x10E   0xB289             UXTH     R1,R1
-   \      0x110   0x4408             ADD      R0,R0,R1
-   \      0x112   0xF890 0x9004      LDRB     R9,[R0, #+4]
+   \      0x10E   0x4668             MOV      R0,SP
+   \      0x110   0x4641             MOV      R1,R8
+   \      0x112   0xB289             UXTH     R1,R1
+   \      0x114   0x4408             ADD      R0,R0,R1
+   \      0x116   0xF890 0x9004      LDRB     R9,[R0, #+4]
     798                          dotByte |= ( FontPtr.FontBuffer[j + 1] ) << 8;
-   \      0x116   0x4668             MOV      R0,SP
-   \      0x118   0x4641             MOV      R1,R8
-   \      0x11A   0xB289             UXTH     R1,R1
-   \      0x11C   0x4408             ADD      R0,R0,R1
-   \      0x11E   0x7940             LDRB     R0,[R0, #+5]
-   \      0x120   0xEA59 0x2900      ORRS     R9,R9,R0, LSL #+8
+   \      0x11A   0x4668             MOV      R0,SP
+   \      0x11C   0x4641             MOV      R1,R8
+   \      0x11E   0xB289             UXTH     R1,R1
+   \      0x120   0x4408             ADD      R0,R0,R1
+   \      0x122   0x7940             LDRB     R0,[R0, #+5]
+   \      0x124   0xEA59 0x2900      ORRS     R9,R9,R0, LSL #+8
     799          
     800                          //  8 X 16 Font ( 영문 )
     801                          for ( bIdx = 0; bIdx < 8; bIdx++ )
-   \      0x124   0xF05F 0x0A00      MOVS     R10,#+0
+   \      0x128   0xF05F 0x0A00      MOVS     R10,#+0
    \                     ??printf_10: (+1)
-   \      0x128   0xF1BA 0x0F08      CMP      R10,#+8
-   \      0x12C   0xDA2D             BGE.N    ??printf_11
+   \      0x12C   0xF1BA 0x0F08      CMP      R10,#+8
+   \      0x130   0xDA2F             BGE.N    ??printf_11
     802                          {
     803                              if ( dotByte & bitval_r[bIdx] )
-   \      0x12E   0x.... 0x....      LDR.W    R0,??DataTable34
-   \      0x132   0xF850 0x102A      LDR      R1,[R0, R10, LSL #+2]
-   \      0x136   0x4648             MOV      R0,R9
-   \      0x138   0xB280             UXTH     R0,R0
-   \      0x13A   0x4208             TST      R0,R1
-   \      0x13C   0xD011             BEQ.N    ??printf_12
+   \      0x132   0x.... 0x....      LDR.W    R0,??DataTable34
+   \      0x136   0xF850 0x102A      LDR      R1,[R0, R10, LSL #+2]
+   \      0x13A   0x4648             MOV      R0,R9
+   \      0x13C   0xB280             UXTH     R0,R0
+   \      0x13E   0x4208             TST      R0,R1
+   \      0x140   0xD012             BEQ.N    ??printf_12
     804                              {
     805                                  drawPixel( cursor_x + i * 8 + bIdx, cursor_y + j, 1 );
-   \      0x13E   0x2301             MOVS     R3,#+1
-   \      0x140   0x89E2             LDRH     R2,[R4, #+14]
-   \      0x142   0xEB18 0x0202      ADDS     R2,R8,R2
-   \      0x146   0xB212             SXTH     R2,R2
-   \      0x148   0x89A1             LDRH     R1,[R4, #+12]
-   \      0x14A   0xEB11 0x01C7      ADDS     R1,R1,R7, LSL #+3
-   \      0x14E   0xEB1A 0x0101      ADDS     R1,R10,R1
-   \      0x152   0xB209             SXTH     R1,R1
-   \      0x154   0x0020             MOVS     R0,R4
-   \      0x156   0xF8D4 0xC000      LDR      R12,[R4, #+0]
-   \      0x15A   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x15E   0x47E0             BLX      R12
-   \      0x160   0xE010             B.N      ??printf_13
+   \      0x142   0x2301             MOVS     R3,#+1
+   \      0x144   0x89E2             LDRH     R2,[R4, #+14]
+   \      0x146   0xEB18 0x0202      ADDS     R2,R8,R2
+   \      0x14A   0xB212             SXTH     R2,R2
+   \      0x14C   0x89A1             LDRH     R1,[R4, #+12]
+   \      0x14E   0xB23F             SXTH     R7,R7
+   \      0x150   0xEB11 0x01C7      ADDS     R1,R1,R7, LSL #+3
+   \      0x154   0xEB1A 0x0101      ADDS     R1,R10,R1
+   \      0x158   0xB209             SXTH     R1,R1
+   \      0x15A   0x0020             MOVS     R0,R4
+   \      0x15C   0xF8D4 0xC000      LDR      R12,[R4, #+0]
+   \      0x160   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x164   0x47E0             BLX      R12
+   \      0x166   0xE011             B.N      ??printf_13
     806                              }
     807                              else
     808                              {
     809                                  drawPixel( cursor_x + i * 8 + bIdx, cursor_y + j, 0 );
    \                     ??printf_12: (+1)
-   \      0x162   0x2300             MOVS     R3,#+0
-   \      0x164   0x89E2             LDRH     R2,[R4, #+14]
-   \      0x166   0xEB18 0x0202      ADDS     R2,R8,R2
-   \      0x16A   0xB212             SXTH     R2,R2
-   \      0x16C   0x89A1             LDRH     R1,[R4, #+12]
-   \      0x16E   0xEB11 0x01C7      ADDS     R1,R1,R7, LSL #+3
-   \      0x172   0xEB1A 0x0101      ADDS     R1,R10,R1
-   \      0x176   0xB209             SXTH     R1,R1
-   \      0x178   0x0020             MOVS     R0,R4
-   \      0x17A   0xF8D4 0xC000      LDR      R12,[R4, #+0]
-   \      0x17E   0xF8DC 0xC000      LDR      R12,[R12, #+0]
-   \      0x182   0x47E0             BLX      R12
+   \      0x168   0x2300             MOVS     R3,#+0
+   \      0x16A   0x89E2             LDRH     R2,[R4, #+14]
+   \      0x16C   0xEB18 0x0202      ADDS     R2,R8,R2
+   \      0x170   0xB212             SXTH     R2,R2
+   \      0x172   0x89A1             LDRH     R1,[R4, #+12]
+   \      0x174   0xB23F             SXTH     R7,R7
+   \      0x176   0xEB11 0x01C7      ADDS     R1,R1,R7, LSL #+3
+   \      0x17A   0xEB1A 0x0101      ADDS     R1,R10,R1
+   \      0x17E   0xB209             SXTH     R1,R1
+   \      0x180   0x0020             MOVS     R0,R4
+   \      0x182   0xF8D4 0xC000      LDR      R12,[R4, #+0]
+   \      0x186   0xF8DC 0xC000      LDR      R12,[R12, #+0]
+   \      0x18A   0x47E0             BLX      R12
     810                              }
     811                          }
    \                     ??printf_13: (+1)
-   \      0x184   0xF11A 0x0A01      ADDS     R10,R10,#+1
-   \      0x188   0xE7CE             B.N      ??printf_10
+   \      0x18C   0xF11A 0x0A01      ADDS     R10,R10,#+1
+   \      0x190   0xE7CC             B.N      ??printf_10
     812                      }
    \                     ??printf_11: (+1)
-   \      0x18A   0xF118 0x0801      ADDS     R8,R8,#+1
-   \      0x18E   0xE7B8             B.N      ??printf_9
+   \      0x192   0xF118 0x0801      ADDS     R8,R8,#+1
+   \      0x196   0xE7B6             B.N      ??printf_9
     813          
     814                      /*/
     815                      
@@ -3544,22 +3563,22 @@ Warning[Pe550]: variable "page" was set but never used
     825          
     826                  if ( bIsCharHan )
    \                     ??printf_4: (+1)
-   \      0x190   0xF1BB 0x0F00      CMP      R11,#+0
-   \      0x194   0xD000             BEQ.N    ??printf_14
+   \      0x198   0xF1BB 0x0F00      CMP      R11,#+0
+   \      0x19C   0xD000             BEQ.N    ??printf_14
     827                  {
     828                      //  한글인경우 2 Byte
     829                      i++;
-   \      0x196   0x1C7F             ADDS     R7,R7,#+1
+   \      0x19E   0x1C7F             ADDS     R7,R7,#+1
     830                  }
     831          
     832              }
    \                     ??printf_14: (+1)
-   \      0x198   0x1C7F             ADDS     R7,R7,#+1
-   \      0x19A   0xE746             B.N      ??printf_0
+   \      0x1A0   0x1C7F             ADDS     R7,R7,#+1
+   \      0x1A2   0xE742             B.N      ??printf_0
     833          }
    \                     ??printf_1: (+1)
-   \      0x19C   0xB029             ADD      SP,SP,#+164
-   \      0x19E   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+   \      0x1A4   0xB029             ADD      SP,SP,#+164
+   \      0x1A6   0xE8BD 0x8FF0      POP      {R4-R11,PC}
     834          
     835          
     836          //========================================================================
@@ -3640,7 +3659,7 @@ Warning[Pe550]: variable "page" was set but never used
     863              //  LCD Frame Buffer
     864              return buffer;
    \                     GetLCDFrameBuffer: (+1)
-   \        0x0   0x....             LDR.N    R0,??DataTable16_1
+   \        0x0   0x....             LDR.N    R0,??DataTable16_2
    \        0x2   0x4770             BX       LR
     865          }
     866          
@@ -3995,7 +4014,7 @@ Warning[Pe550]: variable "page" was set but never used
    \                     ??LCDMenu_1: (+1)
    \        0xC   0xF44F 0x7400      MOV      R4,#+512
    \       0x10   0x.... 0x....      LDR.W    R5,??DataTable35_7
-   \       0x14   0x....             LDR.N    R6,??DataTable16_1
+   \       0x14   0x....             LDR.N    R6,??DataTable16_2
    \       0x16   0x0022             MOVS     R2,R4
    \       0x18   0x0029             MOVS     R1,R5
    \       0x1A   0x0030             MOVS     R0,R6
@@ -4651,55 +4670,51 @@ Warning[Pe550]: variable "page" was set but never used
    \                     testdrawrect: (+1)
    \        0x0   0xB57C             PUSH     {R2-R6,LR}
    1194              for ( int16_t i = 0; i < display.height() / 2; i += 2 ) {
-   \        0x2   0x2500             MOVS     R5,#+0
+   \        0x2   0x2400             MOVS     R4,#+0
    \                     ??testdrawrect_0: (+1)
-   \        0x4   0x.... 0x....      LDR.W    R4,??DataTable35
-   \        0x8   0x0020             MOVS     R0,R4
+   \        0x4   0x.... 0x....      LDR.W    R5,??DataTable35
+   \        0x8   0x0028             MOVS     R0,R5
    \        0xA   0x.... 0x....      BL       _ZNK12Adafruit_GFX6heightEv
    \        0xE   0x2102             MOVS     R1,#+2
    \       0x10   0xFB90 0xF0F1      SDIV     R0,R0,R1
-   \       0x14   0x0029             MOVS     R1,R5
+   \       0x14   0x0021             MOVS     R1,R4
    \       0x16   0xB209             SXTH     R1,R1
    \       0x18   0x4281             CMP      R1,R0
-   \       0x1A   0xDA25             BGE.N    ??testdrawrect_1
+   \       0x1A   0xDA24             BGE.N    ??testdrawrect_1
    1195                  display.drawRect( i, i, display.width() - 2 * i, display.height() - 2 * i, WHITE );
-   \       0x1C   0x0020             MOVS     R0,R4
+   \       0x1C   0x0028             MOVS     R0,R5
    \       0x1E   0x.... 0x....      BL       _ZNK12Adafruit_GFX6heightEv
    \       0x22   0x0006             MOVS     R6,R0
-   \       0x24   0x0020             MOVS     R0,R4
+   \       0x24   0x0028             MOVS     R0,R5
    \       0x26   0x.... 0x....      BL       _ZNK12Adafruit_GFX5widthEv
-   \       0x2A   0x2101             MOVS     R1,#+1
-   \       0x2C   0x9101             STR      R1,[SP, #+4]
-   \       0x2E   0xB236             SXTH     R6,R6
-   \       0x30   0x0029             MOVS     R1,R5
-   \       0x32   0xB209             SXTH     R1,R1
-   \       0x34   0xEBB6 0x0641      SUBS     R6,R6,R1, LSL #+1
-   \       0x38   0xB236             SXTH     R6,R6
-   \       0x3A   0x9600             STR      R6,[SP, #+0]
-   \       0x3C   0xB200             SXTH     R0,R0
-   \       0x3E   0x0029             MOVS     R1,R5
-   \       0x40   0xB209             SXTH     R1,R1
-   \       0x42   0xEBB0 0x0041      SUBS     R0,R0,R1, LSL #+1
-   \       0x46   0x0003             MOVS     R3,R0
-   \       0x48   0xB21B             SXTH     R3,R3
-   \       0x4A   0x002A             MOVS     R2,R5
-   \       0x4C   0xB212             SXTH     R2,R2
-   \       0x4E   0x0029             MOVS     R1,R5
-   \       0x50   0xB209             SXTH     R1,R1
-   \       0x52   0x0020             MOVS     R0,R4
-   \       0x54   0x.... 0x....      BL       _ZN12Adafruit_GFX8drawRectEsssst
+   \       0x2A   0xF07F 0x0101      MVNS     R1,#+1
+   \       0x2E   0x2201             MOVS     R2,#+1
+   \       0x30   0x9201             STR      R2,[SP, #+4]
+   \       0x32   0xFB14 0xF201      SMULBB   R2,R4,R1
+   \       0x36   0xFA02 0xF286      SXTAH    R2,R2,R6
+   \       0x3A   0xB212             SXTH     R2,R2
+   \       0x3C   0x9200             STR      R2,[SP, #+0]
+   \       0x3E   0xFB14 0xF101      SMULBB   R1,R4,R1
+   \       0x42   0xFA01 0xF380      SXTAH    R3,R1,R0
+   \       0x46   0xB21B             SXTH     R3,R3
+   \       0x48   0x0022             MOVS     R2,R4
+   \       0x4A   0xB212             SXTH     R2,R2
+   \       0x4C   0x0021             MOVS     R1,R4
+   \       0x4E   0xB209             SXTH     R1,R1
+   \       0x50   0x0028             MOVS     R0,R5
+   \       0x52   0x.... 0x....      BL       _ZN12Adafruit_GFX8drawRectEsssst
    1196                  display.display();
-   \       0x58   0x0020             MOVS     R0,R4
-   \       0x5A   0x.... 0x....      BL       _ZN16Adafruit_SSD13067displayEv
+   \       0x56   0x0028             MOVS     R0,R5
+   \       0x58   0x.... 0x....      BL       _ZN16Adafruit_SSD13067displayEv
    1197                  HAL_Delay( 1 );
-   \       0x5E   0x2001             MOVS     R0,#+1
-   \       0x60   0x.... 0x....      BL       HAL_Delay
+   \       0x5C   0x2001             MOVS     R0,#+1
+   \       0x5E   0x.... 0x....      BL       HAL_Delay
    1198              }
-   \       0x64   0x1CAD             ADDS     R5,R5,#+2
-   \       0x66   0xE7CD             B.N      ??testdrawrect_0
+   \       0x62   0x1CA4             ADDS     R4,R4,#+2
+   \       0x64   0xE7CE             B.N      ??testdrawrect_0
    1199          }
    \                     ??testdrawrect_1: (+1)
-   \       0x68   0xBD73             POP      {R0,R1,R4-R6,PC}
+   \       0x66   0xBD73             POP      {R0,R1,R4-R6,PC}
    1200          
    1201          //========================================================================
 
@@ -4712,63 +4727,59 @@ Warning[Pe550]: variable "page" was set but never used
    1205              uint8_t color = 1;
    \        0x4   0x2401             MOVS     R4,#+1
    1206              for ( int16_t i = 0; i < display.height() / 2; i += 3 ) {
-   \        0x6   0x2600             MOVS     R6,#+0
+   \        0x6   0x2500             MOVS     R5,#+0
    \                     ??testfillrect_0: (+1)
-   \        0x8   0x.... 0x....      LDR.W    R5,??DataTable35
-   \        0xC   0x0028             MOVS     R0,R5
+   \        0x8   0x.... 0x....      LDR.W    R6,??DataTable35
+   \        0xC   0x0030             MOVS     R0,R6
    \        0xE   0x.... 0x....      BL       _ZNK12Adafruit_GFX6heightEv
    \       0x12   0x2102             MOVS     R1,#+2
    \       0x14   0xFB90 0xF0F1      SDIV     R0,R0,R1
-   \       0x18   0x0031             MOVS     R1,R6
+   \       0x18   0x0029             MOVS     R1,R5
    \       0x1A   0xB209             SXTH     R1,R1
    \       0x1C   0x4281             CMP      R1,R0
-   \       0x1E   0xDA31             BGE.N    ??testfillrect_1
+   \       0x1E   0xDA30             BGE.N    ??testfillrect_1
    1207                  // alternate colors
    1208                  display.fillRect( i, i, display.width() - i * 2, display.height() - i * 2, color % 2 );
-   \       0x20   0x0027             MOVS     R7,R4
-   \       0x22   0xB2FF             UXTB     R7,R7
-   \       0x24   0xF05F 0x0802      MOVS     R8,#+2
-   \       0x28   0x0028             MOVS     R0,R5
-   \       0x2A   0x.... 0x....      BL       _ZNK12Adafruit_GFX6heightEv
-   \       0x2E   0x4681             MOV      R9,R0
-   \       0x30   0x0028             MOVS     R0,R5
-   \       0x32   0x.... 0x....      BL       _ZNK12Adafruit_GFX5widthEv
-   \       0x36   0xFB97 0xF1F8      SDIV     R1,R7,R8
-   \       0x3A   0xFB08 0x7711      MLS      R7,R8,R1,R7
-   \       0x3E   0xB2BF             UXTH     R7,R7
-   \       0x40   0x9701             STR      R7,[SP, #+4]
-   \       0x42   0xFA0F 0xF989      SXTH     R9,R9
-   \       0x46   0x0031             MOVS     R1,R6
-   \       0x48   0xB209             SXTH     R1,R1
-   \       0x4A   0xEBB9 0x0941      SUBS     R9,R9,R1, LSL #+1
-   \       0x4E   0xFA0F 0xF989      SXTH     R9,R9
-   \       0x52   0xF8CD 0x9000      STR      R9,[SP, #+0]
-   \       0x56   0xB200             SXTH     R0,R0
-   \       0x58   0x0031             MOVS     R1,R6
-   \       0x5A   0xB209             SXTH     R1,R1
-   \       0x5C   0xEBB0 0x0041      SUBS     R0,R0,R1, LSL #+1
-   \       0x60   0x0003             MOVS     R3,R0
-   \       0x62   0xB21B             SXTH     R3,R3
-   \       0x64   0x0032             MOVS     R2,R6
-   \       0x66   0xB212             SXTH     R2,R2
-   \       0x68   0x0031             MOVS     R1,R6
-   \       0x6A   0xB209             SXTH     R1,R1
-   \       0x6C   0x0028             MOVS     R0,R5
-   \       0x6E   0x.... 0x....      BL       _ZN12Adafruit_GFX8fillRectEsssst
+   \       0x20   0x46A0             MOV      R8,R4
+   \       0x22   0xFA5F 0xF888      UXTB     R8,R8
+   \       0x26   0xF05F 0x0902      MOVS     R9,#+2
+   \       0x2A   0x0030             MOVS     R0,R6
+   \       0x2C   0x.... 0x....      BL       _ZNK12Adafruit_GFX6heightEv
+   \       0x30   0x0007             MOVS     R7,R0
+   \       0x32   0x0030             MOVS     R0,R6
+   \       0x34   0x.... 0x....      BL       _ZNK12Adafruit_GFX5widthEv
+   \       0x38   0xF07F 0x0101      MVNS     R1,#+1
+   \       0x3C   0xFB98 0xF2F9      SDIV     R2,R8,R9
+   \       0x40   0xFB09 0x8812      MLS      R8,R9,R2,R8
+   \       0x44   0xFA1F 0xF888      UXTH     R8,R8
+   \       0x48   0xF8CD 0x8004      STR      R8,[SP, #+4]
+   \       0x4C   0xFB15 0xF201      SMULBB   R2,R5,R1
+   \       0x50   0xFA02 0xF287      SXTAH    R2,R2,R7
+   \       0x54   0xB212             SXTH     R2,R2
+   \       0x56   0x9200             STR      R2,[SP, #+0]
+   \       0x58   0xFB15 0xF101      SMULBB   R1,R5,R1
+   \       0x5C   0xFA01 0xF380      SXTAH    R3,R1,R0
+   \       0x60   0xB21B             SXTH     R3,R3
+   \       0x62   0x002A             MOVS     R2,R5
+   \       0x64   0xB212             SXTH     R2,R2
+   \       0x66   0x0029             MOVS     R1,R5
+   \       0x68   0xB209             SXTH     R1,R1
+   \       0x6A   0x0030             MOVS     R0,R6
+   \       0x6C   0x.... 0x....      BL       _ZN12Adafruit_GFX8fillRectEsssst
    1209                  display.display();
-   \       0x72   0x0028             MOVS     R0,R5
-   \       0x74   0x.... 0x....      BL       _ZN16Adafruit_SSD13067displayEv
+   \       0x70   0x0030             MOVS     R0,R6
+   \       0x72   0x.... 0x....      BL       _ZN16Adafruit_SSD13067displayEv
    1210                  HAL_Delay( 1 );
-   \       0x78   0x2001             MOVS     R0,#+1
-   \       0x7A   0x.... 0x....      BL       HAL_Delay
+   \       0x76   0x2001             MOVS     R0,#+1
+   \       0x78   0x.... 0x....      BL       HAL_Delay
    1211                  color++;
-   \       0x7E   0x1C64             ADDS     R4,R4,#+1
+   \       0x7C   0x1C64             ADDS     R4,R4,#+1
    1212              }
-   \       0x80   0x1CF6             ADDS     R6,R6,#+3
-   \       0x82   0xE7C1             B.N      ??testfillrect_0
+   \       0x7E   0x1CED             ADDS     R5,R5,#+3
+   \       0x80   0xE7C2             B.N      ??testfillrect_0
    1213          }
    \                     ??testfillrect_1: (+1)
-   \       0x84   0xE8BD 0x83F7      POP      {R0-R2,R4-R9,PC}
+   \       0x82   0xE8BD 0x83F7      POP      {R0-R2,R4-R9,PC}
    1214          
    1215          //========================================================================
 
@@ -4841,53 +4852,49 @@ Warning[Pe550]: variable "page" was set but never used
    \       0x16   0x0021             MOVS     R1,R4
    \       0x18   0xB209             SXTH     R1,R1
    \       0x1A   0x4281             CMP      R1,R0
-   \       0x1C   0xDA2F             BGE.N    ??testdrawroundrect_1
+   \       0x1C   0xDA2E             BGE.N    ??testdrawroundrect_1
    1231                  display.drawRoundRect( i, i, display.width() - 2 * i, display.height() - 2 * i, display.height() / 4, WHITE );
    \       0x1E   0x0028             MOVS     R0,R5
    \       0x20   0x.... 0x....      BL       _ZNK12Adafruit_GFX6heightEv
-   \       0x24   0x0006             MOVS     R6,R0
+   \       0x24   0x0007             MOVS     R7,R0
    \       0x26   0x0028             MOVS     R0,R5
    \       0x28   0x.... 0x....      BL       _ZNK12Adafruit_GFX6heightEv
-   \       0x2C   0x0007             MOVS     R7,R0
+   \       0x2C   0x0006             MOVS     R6,R0
    \       0x2E   0x0028             MOVS     R0,R5
    \       0x30   0x.... 0x....      BL       _ZNK12Adafruit_GFX5widthEv
-   \       0x34   0x2101             MOVS     R1,#+1
-   \       0x36   0x9102             STR      R1,[SP, #+8]
-   \       0x38   0xB236             SXTH     R6,R6
-   \       0x3A   0x2104             MOVS     R1,#+4
-   \       0x3C   0xFB96 0xF1F1      SDIV     R1,R6,R1
-   \       0x40   0xB209             SXTH     R1,R1
-   \       0x42   0x9101             STR      R1,[SP, #+4]
-   \       0x44   0xB23F             SXTH     R7,R7
-   \       0x46   0x0021             MOVS     R1,R4
-   \       0x48   0xB209             SXTH     R1,R1
-   \       0x4A   0xEBB7 0x0741      SUBS     R7,R7,R1, LSL #+1
-   \       0x4E   0xB23F             SXTH     R7,R7
-   \       0x50   0x9700             STR      R7,[SP, #+0]
-   \       0x52   0xB200             SXTH     R0,R0
-   \       0x54   0x0021             MOVS     R1,R4
-   \       0x56   0xB209             SXTH     R1,R1
-   \       0x58   0xEBB0 0x0041      SUBS     R0,R0,R1, LSL #+1
-   \       0x5C   0x0003             MOVS     R3,R0
-   \       0x5E   0xB21B             SXTH     R3,R3
-   \       0x60   0x0022             MOVS     R2,R4
-   \       0x62   0xB212             SXTH     R2,R2
-   \       0x64   0x0021             MOVS     R1,R4
-   \       0x66   0xB209             SXTH     R1,R1
-   \       0x68   0x0028             MOVS     R0,R5
-   \       0x6A   0x.... 0x....      BL       _ZN12Adafruit_GFX13drawRoundRectEssssst
+   \       0x34   0xF07F 0x0101      MVNS     R1,#+1
+   \       0x38   0x2201             MOVS     R2,#+1
+   \       0x3A   0x9202             STR      R2,[SP, #+8]
+   \       0x3C   0xB23F             SXTH     R7,R7
+   \       0x3E   0x2204             MOVS     R2,#+4
+   \       0x40   0xFB97 0xF2F2      SDIV     R2,R7,R2
+   \       0x44   0xB212             SXTH     R2,R2
+   \       0x46   0x9201             STR      R2,[SP, #+4]
+   \       0x48   0xFB14 0xF201      SMULBB   R2,R4,R1
+   \       0x4C   0xFA02 0xF286      SXTAH    R2,R2,R6
+   \       0x50   0xB212             SXTH     R2,R2
+   \       0x52   0x9200             STR      R2,[SP, #+0]
+   \       0x54   0xFB14 0xF101      SMULBB   R1,R4,R1
+   \       0x58   0xFA01 0xF380      SXTAH    R3,R1,R0
+   \       0x5C   0xB21B             SXTH     R3,R3
+   \       0x5E   0x0022             MOVS     R2,R4
+   \       0x60   0xB212             SXTH     R2,R2
+   \       0x62   0x0021             MOVS     R1,R4
+   \       0x64   0xB209             SXTH     R1,R1
+   \       0x66   0x0028             MOVS     R0,R5
+   \       0x68   0x.... 0x....      BL       _ZN12Adafruit_GFX13drawRoundRectEssssst
    1232                  display.display();
-   \       0x6E   0x0028             MOVS     R0,R5
-   \       0x70   0x.... 0x....      BL       _ZN16Adafruit_SSD13067displayEv
+   \       0x6C   0x0028             MOVS     R0,R5
+   \       0x6E   0x.... 0x....      BL       _ZN16Adafruit_SSD13067displayEv
    1233                  HAL_Delay( 1 );
-   \       0x74   0x2001             MOVS     R0,#+1
-   \       0x76   0x.... 0x....      BL       HAL_Delay
+   \       0x72   0x2001             MOVS     R0,#+1
+   \       0x74   0x.... 0x....      BL       HAL_Delay
    1234              }
-   \       0x7A   0x1CA4             ADDS     R4,R4,#+2
-   \       0x7C   0xE7C2             B.N      ??testdrawroundrect_0
+   \       0x78   0x1CA4             ADDS     R4,R4,#+2
+   \       0x7A   0xE7C3             B.N      ??testdrawroundrect_0
    1235          }
    \                     ??testdrawroundrect_1: (+1)
-   \       0x7E   0xBDF7             POP      {R0-R2,R4-R7,PC}
+   \       0x7C   0xBDF7             POP      {R0-R2,R4-R7,PC}
    1236          
    1237          //========================================================================
 
@@ -4898,9 +4905,9 @@ Warning[Pe550]: variable "page" was set but never used
    \                     testfillroundrect: (+1)
    \        0x0   0xE92D 0x41FF      PUSH     {R0-R8,LR}
    1241              uint8_t color = WHITE;
-   \        0x4   0x2601             MOVS     R6,#+1
+   \        0x4   0x2401             MOVS     R4,#+1
    1242              for ( int16_t i = 0; i < display.height() / 2 - 2; i += 2 ) {
-   \        0x6   0x2400             MOVS     R4,#+0
+   \        0x6   0x2600             MOVS     R6,#+0
    \                     ??testfillroundrect_0: (+1)
    \        0x8   0x.... 0x....      LDR.W    R5,??DataTable35
    \        0xC   0x0028             MOVS     R0,R5
@@ -4908,10 +4915,10 @@ Warning[Pe550]: variable "page" was set but never used
    \       0x12   0x2102             MOVS     R1,#+2
    \       0x14   0xFB90 0xF0F1      SDIV     R0,R0,R1
    \       0x18   0x1E80             SUBS     R0,R0,#+2
-   \       0x1A   0x0021             MOVS     R1,R4
+   \       0x1A   0x0031             MOVS     R1,R6
    \       0x1C   0xB209             SXTH     R1,R1
    \       0x1E   0x4281             CMP      R1,R0
-   \       0x20   0xDA3B             BGE.N    ??testfillroundrect_1
+   \       0x20   0xDA3A             BGE.N    ??testfillroundrect_1
    1243                  display.fillRoundRect( i, i, display.width() - 2 * i, display.height() - 2 * i, display.height() / 4, color );
    \       0x22   0x0028             MOVS     R0,R5
    \       0x24   0x.... 0x....      BL       _ZNK12Adafruit_GFX6heightEv
@@ -4921,58 +4928,54 @@ Warning[Pe550]: variable "page" was set but never used
    \       0x30   0x0007             MOVS     R7,R0
    \       0x32   0x0028             MOVS     R0,R5
    \       0x34   0x.... 0x....      BL       _ZNK12Adafruit_GFX5widthEv
-   \       0x38   0x0031             MOVS     R1,R6
-   \       0x3A   0xB2C9             UXTB     R1,R1
-   \       0x3C   0xB289             UXTH     R1,R1
-   \       0x3E   0x9102             STR      R1,[SP, #+8]
-   \       0x40   0xFA0F 0xF888      SXTH     R8,R8
-   \       0x44   0x2104             MOVS     R1,#+4
-   \       0x46   0xFB98 0xF1F1      SDIV     R1,R8,R1
-   \       0x4A   0xB209             SXTH     R1,R1
-   \       0x4C   0x9101             STR      R1,[SP, #+4]
-   \       0x4E   0xB23F             SXTH     R7,R7
-   \       0x50   0x0021             MOVS     R1,R4
-   \       0x52   0xB209             SXTH     R1,R1
-   \       0x54   0xEBB7 0x0741      SUBS     R7,R7,R1, LSL #+1
-   \       0x58   0xB23F             SXTH     R7,R7
-   \       0x5A   0x9700             STR      R7,[SP, #+0]
-   \       0x5C   0xB200             SXTH     R0,R0
-   \       0x5E   0x0021             MOVS     R1,R4
-   \       0x60   0xB209             SXTH     R1,R1
-   \       0x62   0xEBB0 0x0041      SUBS     R0,R0,R1, LSL #+1
-   \       0x66   0x0003             MOVS     R3,R0
-   \       0x68   0xB21B             SXTH     R3,R3
-   \       0x6A   0x0022             MOVS     R2,R4
-   \       0x6C   0xB212             SXTH     R2,R2
-   \       0x6E   0x0021             MOVS     R1,R4
-   \       0x70   0xB209             SXTH     R1,R1
-   \       0x72   0x0028             MOVS     R0,R5
-   \       0x74   0x.... 0x....      BL       _ZN12Adafruit_GFX13fillRoundRectEssssst
+   \       0x38   0xF07F 0x0101      MVNS     R1,#+1
+   \       0x3C   0x0022             MOVS     R2,R4
+   \       0x3E   0xB2D2             UXTB     R2,R2
+   \       0x40   0xB292             UXTH     R2,R2
+   \       0x42   0x9202             STR      R2,[SP, #+8]
+   \       0x44   0xFA0F 0xF888      SXTH     R8,R8
+   \       0x48   0x2204             MOVS     R2,#+4
+   \       0x4A   0xFB98 0xF2F2      SDIV     R2,R8,R2
+   \       0x4E   0xB212             SXTH     R2,R2
+   \       0x50   0x9201             STR      R2,[SP, #+4]
+   \       0x52   0xFB16 0xF201      SMULBB   R2,R6,R1
+   \       0x56   0xFA02 0xF287      SXTAH    R2,R2,R7
+   \       0x5A   0xB212             SXTH     R2,R2
+   \       0x5C   0x9200             STR      R2,[SP, #+0]
+   \       0x5E   0xFB16 0xF101      SMULBB   R1,R6,R1
+   \       0x62   0xFA01 0xF380      SXTAH    R3,R1,R0
+   \       0x66   0xB21B             SXTH     R3,R3
+   \       0x68   0x0032             MOVS     R2,R6
+   \       0x6A   0xB212             SXTH     R2,R2
+   \       0x6C   0x0031             MOVS     R1,R6
+   \       0x6E   0xB209             SXTH     R1,R1
+   \       0x70   0x0028             MOVS     R0,R5
+   \       0x72   0x.... 0x....      BL       _ZN12Adafruit_GFX13fillRoundRectEssssst
    1244                  if ( color == WHITE ) color = BLACK;
-   \       0x78   0x0030             MOVS     R0,R6
-   \       0x7A   0xB2C0             UXTB     R0,R0
-   \       0x7C   0x2801             CMP      R0,#+1
-   \       0x7E   0xD102             BNE.N    ??testfillroundrect_2
-   \       0x80   0x2000             MOVS     R0,#+0
-   \       0x82   0x0006             MOVS     R6,R0
-   \       0x84   0xE001             B.N      ??testfillroundrect_3
+   \       0x76   0x0020             MOVS     R0,R4
+   \       0x78   0xB2C0             UXTB     R0,R0
+   \       0x7A   0x2801             CMP      R0,#+1
+   \       0x7C   0xD102             BNE.N    ??testfillroundrect_2
+   \       0x7E   0x2000             MOVS     R0,#+0
+   \       0x80   0x0004             MOVS     R4,R0
+   \       0x82   0xE001             B.N      ??testfillroundrect_3
    1245                  else color = WHITE;
    \                     ??testfillroundrect_2: (+1)
-   \       0x86   0x2001             MOVS     R0,#+1
-   \       0x88   0x0006             MOVS     R6,R0
+   \       0x84   0x2001             MOVS     R0,#+1
+   \       0x86   0x0004             MOVS     R4,R0
    1246                  display.display();
    \                     ??testfillroundrect_3: (+1)
-   \       0x8A   0x0028             MOVS     R0,R5
-   \       0x8C   0x.... 0x....      BL       _ZN16Adafruit_SSD13067displayEv
+   \       0x88   0x0028             MOVS     R0,R5
+   \       0x8A   0x.... 0x....      BL       _ZN16Adafruit_SSD13067displayEv
    1247                  HAL_Delay( 1 );
-   \       0x90   0x2001             MOVS     R0,#+1
-   \       0x92   0x.... 0x....      BL       HAL_Delay
+   \       0x8E   0x2001             MOVS     R0,#+1
+   \       0x90   0x.... 0x....      BL       HAL_Delay
    1248              }
-   \       0x96   0x1CA4             ADDS     R4,R4,#+2
-   \       0x98   0xE7B6             B.N      ??testfillroundrect_0
+   \       0x94   0x1CB6             ADDS     R6,R6,#+2
+   \       0x96   0xE7B7             B.N      ??testfillroundrect_0
    1249          }
    \                     ??testfillroundrect_1: (+1)
-   \       0x9A   0xE8BD 0x81FF      POP      {R0-R8,PC}
+   \       0x98   0xE8BD 0x81FF      POP      {R0-R8,PC}
    1250          
    1251          //========================================================================
 
@@ -5701,19 +5704,19 @@ Warning[Pe2464]: conversion from a string literal to "char *" is deprecated
    \        0x0   0x....'....        DC32     _ZTV16Adafruit_SSD1306+0x8
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable15:
+   \                     ??DataTable16:
    \        0x0   0x....'....        DC32     Buffer_CMD
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable16:
+   \                     ??DataTable16_1:
    \        0x0   0x....'....        DC32     Buffer_DATA
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable16_1:
+   \                     ??DataTable16_2:
    \        0x0   0x....'....        DC32     buffer
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable17:
+   \                     ??DataTable18:
    \        0x0   0x....'....        DC32     hi2c3
 
    \                                 In section .text, align 4, keep-with-next
@@ -5721,7 +5724,7 @@ Warning[Pe2464]: conversion from a string literal to "char *" is deprecated
    \        0x0   0x....'....        DC32     _ZZN16Adafruit_SSD130621drawFastVLineInternalEssstE7premask
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26:
+   \                     ??DataTable27:
    \        0x0   0x....'....        DC32     _ZZN16Adafruit_SSD130621drawFastVLineInternalEssstE8postmask
 
    \                                 In section .text, align 4, keep-with-next
@@ -6466,12 +6469,12 @@ Warning[Pe2464]: conversion from a string literal to "char *" is deprecated
    -----  --------------
        4  ??DataTable11
        4  ??DataTable13
-       4  ??DataTable15
        4  ??DataTable16
        4  ??DataTable16_1
-       4  ??DataTable17
+       4  ??DataTable16_2
+       4  ??DataTable18
        4  ??DataTable25
-       4  ??DataTable26
+       4  ??DataTable27
        4  ??DataTable34
        4  ??DataTable35
        4  ??DataTable35_1
@@ -6511,12 +6514,12 @@ Warning[Pe2464]: conversion from a string literal to "char *" is deprecated
        4  Adafruit_SSD1306::debug(int)
       52  Adafruit_SSD1306::dim(bool)
       80  Adafruit_SSD1306::display()
-     868  Adafruit_SSD1306::drawFastHLine(int16_t, int16_t, int16_t, uint16_t)
-     868  Adafruit_SSD1306::drawFastVLine(int16_t, int16_t, int16_t, uint16_t)
-     306  Adafruit_SSD1306::drawPixel(int16_t, int16_t, uint16_t)
+     848  Adafruit_SSD1306::drawFastHLine(int16_t, int16_t, int16_t, uint16_t)
+     848  Adafruit_SSD1306::drawFastVLine(int16_t, int16_t, int16_t, uint16_t)
+     318  Adafruit_SSD1306::drawPixel(int16_t, int16_t, uint16_t)
       34  Adafruit_SSD1306::invertDisplay(uint8_t)
       32  Adafruit_SSD1306::memset(uint8_t *, uint16_t, uint16_t)
-     418  Adafruit_SSD1306::printf(char const *)
+     426  Adafruit_SSD1306::printf(char const *)
       42  Adafruit_SSD1306::ssd1306_command(uint8_t)
       78  Adafruit_SSD1306::ssd1306_data(uint16_t)
       94  Adafruit_SSD1306::startscrolldiagleft(uint8_t, uint8_t)
@@ -6557,11 +6560,11 @@ Warning[Pe2464]: conversion from a string literal to "char *" is deprecated
      398  testdrawbitmap
       88  testdrawcircle
      538  testdrawline
-     106  testdrawrect
-     128  testdrawroundrect
+     104  testdrawrect
+     126  testdrawroundrect
      218  testdrawtriangle
-     136  testfillrect
-     158  testfillroundrect
+     134  testfillrect
+     156  testfillroundrect
      242  testfilltriangle
       84  -- Other
 
@@ -6570,9 +6573,9 @@ Warning[Pe2464]: conversion from a string literal to "char *" is deprecated
  1'172 bytes in section .data
      4 bytes in section .init_array
    654 bytes in section .rodata
- 6'782 bytes in section .text
+ 6'754 bytes in section .text
  
- 6'782 bytes of CODE  memory (+  4 bytes shared)
+ 6'754 bytes of CODE  memory (+  4 bytes shared)
    586 bytes of CONST memory (+ 68 bytes shared)
  1'194 bytes of DATA  memory (+ 16 bytes shared)
 

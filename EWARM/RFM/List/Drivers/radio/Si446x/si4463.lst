@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:22
+#                                                         22/Sep/2022  08:40:14
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -17,7 +18,8 @@
 #        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
 #        --no_clustering --no_scheduling --debug --endian=little
 #        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
-#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Systems\Embedded Workbench 9.0 EWARM FS
+#        9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -38,7 +40,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\radio\Si446x\si4463.o.d
 #    Locale            =  C
 #    List file         =
@@ -2041,7 +2044,7 @@ Warning[Pe009]: nested comment is not allowed
    \       0x28   0xF88D 0x8002      STRB     R8,[SP, #+2]
    \       0x2C   0x0028             MOVS     R0,R5
    \       0x2E   0xB280             UXTH     R0,R0
-   \       0x30   0x0A00             LSRS     R0,R0,#+8
+   \       0x30   0x1200             ASRS     R0,R0,#+8
    \       0x32   0xF010 0x001F      ANDS     R0,R0,#0x1F
    \       0x36   0xF88D 0x0003      STRB     R0,[SP, #+3]
    \       0x3A   0x0028             MOVS     R0,R5

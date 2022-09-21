@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:24
+#                                                         22/Sep/2022  08:40:11
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -18,7 +19,8 @@
 #        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
 #        --no_clustering --no_scheduling --debug --endian=little
 #        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
-#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Systems\Embedded Workbench 9.0 EWARM FS
+#        9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -39,7 +41,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_i2c.o.d
 #    Locale            =  C
 #    List file         =
@@ -788,10 +791,10 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    \      0x19C   0x68C3             LDR      R3,[R0, #+12]
    \      0x19E   0x0A1B             LSRS     R3,R3,#+8
    \      0x1A0   0x021B             LSLS     R3,R3,#+8
-   \      0x1A2   0x69A0             LDR      R0,[R4, #+24]
-   \      0x1A4   0x4303             ORRS     R3,R0,R3
-   \      0x1A6   0x6960             LDR      R0,[R4, #+20]
-   \      0x1A8   0x4303             ORRS     R3,R0,R3
+   \      0x1A2   0x69A5             LDR      R5,[R4, #+24]
+   \      0x1A4   0x6960             LDR      R0,[R4, #+20]
+   \      0x1A6   0x4305             ORRS     R5,R0,R5
+   \      0x1A8   0x432B             ORRS     R3,R5,R3
    \      0x1AA   0x6820             LDR      R0,[R4, #+0]
    \      0x1AC   0x60C3             STR      R3,[R0, #+12]
     532          
@@ -9678,7 +9681,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    \       0x1E   0x4640             MOV      R0,R8
    \       0x20   0xB2C0             UXTB     R0,R0
    \       0x22   0x2840             CMP      R0,#+64
-   \       0x24   0xD170             BNE.N    ??HAL_I2C_EV_IRQHandler_1
+   \       0x24   0xD172             BNE.N    ??HAL_I2C_EV_IRQHandler_1
    4622            {
    4623              sr2itflags   = READ_REG(hi2c->Instance->SR2);
    \                     ??HAL_I2C_EV_IRQHandler_0: (+1)
@@ -9705,7 +9708,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    \                     ??HAL_I2C_EV_IRQHandler_5: (+1)
    \       0x4A   0xB2C0             UXTB     R0,R0
    \       0x4C   0x2800             CMP      R0,#+0
-   \       0x4E   0xF040 0x80B2      BNE.W    ??HAL_I2C_EV_IRQHandler_6
+   \       0x4E   0xF040 0x80B4      BNE.W    ??HAL_I2C_EV_IRQHandler_6
    4628              {
    4629                return;
    4630              }
@@ -9713,101 +9716,102 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    4632              /* SB Set ----------------------------------------------------------------*/
    4633              if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_SB) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_EVT) != RESET))
    \                     ??HAL_I2C_EV_IRQHandler_2: (+1)
-   \       0x52   0x4650             MOV      R0,R10
-   \       0x54   0x07C0             LSLS     R0,R0,#+31
-   \       0x56   0xD508             BPL.N    ??HAL_I2C_EV_IRQHandler_7
-   \       0x58   0x05B0             LSLS     R0,R6,#+22
-   \       0x5A   0xD506             BPL.N    ??HAL_I2C_EV_IRQHandler_7
+   \       0x52   0xF01A 0x0001      ANDS     R0,R10,#0x1
+   \       0x56   0xB2C0             UXTB     R0,R0
+   \       0x58   0x2800             CMP      R0,#+0
+   \       0x5A   0xD008             BEQ.N    ??HAL_I2C_EV_IRQHandler_7
+   \       0x5C   0x05B0             LSLS     R0,R6,#+22
+   \       0x5E   0xD506             BPL.N    ??HAL_I2C_EV_IRQHandler_7
    4634              {
    4635                /* Convert OTHER_xxx XferOptions if any */
    4636                I2C_ConvertOtherXferOptions(hi2c);
-   \       0x5C   0x0020             MOVS     R0,R4
-   \       0x5E   0x.... 0x....      BL       I2C_ConvertOtherXferOptions
+   \       0x60   0x0020             MOVS     R0,R4
+   \       0x62   0x.... 0x....      BL       I2C_ConvertOtherXferOptions
    4637          
    4638                I2C_Master_SB(hi2c);
-   \       0x62   0x0020             MOVS     R0,R4
-   \       0x64   0x.... 0x....      BL       I2C_Master_SB
-   \       0x68   0xE0A5             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \       0x66   0x0020             MOVS     R0,R4
+   \       0x68   0x.... 0x....      BL       I2C_Master_SB
+   \       0x6C   0xE0A5             B.N      ??HAL_I2C_EV_IRQHandler_8
    4639              }
    4640              /* ADD10 Set -------------------------------------------------------------*/
    4641              else if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_ADD10) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_EVT) != RESET))
    \                     ??HAL_I2C_EV_IRQHandler_7: (+1)
-   \       0x6A   0xEA5F 0x700A      LSLS     R0,R10,#+28
-   \       0x6E   0xD505             BPL.N    ??HAL_I2C_EV_IRQHandler_9
-   \       0x70   0x05B0             LSLS     R0,R6,#+22
-   \       0x72   0xD503             BPL.N    ??HAL_I2C_EV_IRQHandler_9
+   \       0x6E   0xEA5F 0x700A      LSLS     R0,R10,#+28
+   \       0x72   0xD505             BPL.N    ??HAL_I2C_EV_IRQHandler_9
+   \       0x74   0x05B0             LSLS     R0,R6,#+22
+   \       0x76   0xD503             BPL.N    ??HAL_I2C_EV_IRQHandler_9
    4642              {
    4643                I2C_Master_ADD10(hi2c);
-   \       0x74   0x0020             MOVS     R0,R4
-   \       0x76   0x.... 0x....      BL       I2C_Master_ADD10
-   \       0x7A   0xE09C             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \       0x78   0x0020             MOVS     R0,R4
+   \       0x7A   0x.... 0x....      BL       I2C_Master_ADD10
+   \       0x7E   0xE09C             B.N      ??HAL_I2C_EV_IRQHandler_8
    4644              }
    4645              /* ADDR Set --------------------------------------------------------------*/
    4646              else if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_ADDR) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_EVT) != RESET))
    \                     ??HAL_I2C_EV_IRQHandler_9: (+1)
-   \       0x7C   0xEA5F 0x708A      LSLS     R0,R10,#+30
-   \       0x80   0xD505             BPL.N    ??HAL_I2C_EV_IRQHandler_10
-   \       0x82   0x05B0             LSLS     R0,R6,#+22
-   \       0x84   0xD503             BPL.N    ??HAL_I2C_EV_IRQHandler_10
+   \       0x80   0xEA5F 0x708A      LSLS     R0,R10,#+30
+   \       0x84   0xD505             BPL.N    ??HAL_I2C_EV_IRQHandler_10
+   \       0x86   0x05B0             LSLS     R0,R6,#+22
+   \       0x88   0xD503             BPL.N    ??HAL_I2C_EV_IRQHandler_10
    4647              {
    4648                I2C_Master_ADDR(hi2c);
-   \       0x86   0x0020             MOVS     R0,R4
-   \       0x88   0x.... 0x....      BL       I2C_Master_ADDR
-   \       0x8C   0xE093             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \       0x8A   0x0020             MOVS     R0,R4
+   \       0x8C   0x.... 0x....      BL       I2C_Master_ADDR
+   \       0x90   0xE093             B.N      ??HAL_I2C_EV_IRQHandler_8
    4649              }
    4650              /* I2C in mode Transmitter -----------------------------------------------*/
    4651              else if (I2C_CHECK_FLAG(sr2itflags, I2C_FLAG_TRA) != RESET)
    \                     ??HAL_I2C_EV_IRQHandler_10: (+1)
-   \       0x8E   0x0768             LSLS     R0,R5,#+29
-   \       0x90   0xD521             BPL.N    ??HAL_I2C_EV_IRQHandler_11
+   \       0x92   0x0768             LSLS     R0,R5,#+29
+   \       0x94   0xD521             BPL.N    ??HAL_I2C_EV_IRQHandler_11
    4652              {
    4653                /* Do not check buffer and BTF flag if a Xfer DMA is on going */
    4654                if (READ_BIT(hi2c->Instance->CR2, I2C_CR2_DMAEN) != I2C_CR2_DMAEN)
-   \       0x92   0x6820             LDR      R0,[R4, #+0]
-   \       0x94   0x6840             LDR      R0,[R0, #+4]
-   \       0x96   0x0500             LSLS     R0,R0,#+20
-   \       0x98   0xF100 0x808D      BMI.W    ??HAL_I2C_EV_IRQHandler_8
+   \       0x96   0x6820             LDR      R0,[R4, #+0]
+   \       0x98   0x6840             LDR      R0,[R0, #+4]
+   \       0x9A   0x0500             LSLS     R0,R0,#+20
+   \       0x9C   0xF100 0x808D      BMI.W    ??HAL_I2C_EV_IRQHandler_8
    4655                {
    4656                  /* TXE set and BTF reset -----------------------------------------------*/
    4657                  if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_TXE) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_BUF) != RESET) && (I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_BTF) == RESET))
-   \       0x9C   0xEA5F 0x600A      LSLS     R0,R10,#+24
-   \       0xA0   0xD508             BPL.N    ??HAL_I2C_EV_IRQHandler_12
-   \       0xA2   0x0570             LSLS     R0,R6,#+21
-   \       0xA4   0xD506             BPL.N    ??HAL_I2C_EV_IRQHandler_12
-   \       0xA6   0xEA5F 0x704A      LSLS     R0,R10,#+29
-   \       0xAA   0xD403             BMI.N    ??HAL_I2C_EV_IRQHandler_12
+   \       0xA0   0xEA5F 0x600A      LSLS     R0,R10,#+24
+   \       0xA4   0xD508             BPL.N    ??HAL_I2C_EV_IRQHandler_12
+   \       0xA6   0x0570             LSLS     R0,R6,#+21
+   \       0xA8   0xD506             BPL.N    ??HAL_I2C_EV_IRQHandler_12
+   \       0xAA   0xEA5F 0x704A      LSLS     R0,R10,#+29
+   \       0xAE   0xD403             BMI.N    ??HAL_I2C_EV_IRQHandler_12
    4658                  {
    4659                    I2C_MasterTransmit_TXE(hi2c);
-   \       0xAC   0x0020             MOVS     R0,R4
-   \       0xAE   0x.... 0x....      BL       I2C_MasterTransmit_TXE
-   \       0xB2   0xE080             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \       0xB0   0x0020             MOVS     R0,R4
+   \       0xB2   0x.... 0x....      BL       I2C_MasterTransmit_TXE
+   \       0xB6   0xE080             B.N      ??HAL_I2C_EV_IRQHandler_8
    4660                  }
    4661                  /* BTF set -------------------------------------------------------------*/
    4662                  else if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_BTF) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_EVT) != RESET))
    \                     ??HAL_I2C_EV_IRQHandler_12: (+1)
-   \       0xB4   0xEA5F 0x704A      LSLS     R0,R10,#+29
-   \       0xB8   0xD57D             BPL.N    ??HAL_I2C_EV_IRQHandler_8
-   \       0xBA   0x05B0             LSLS     R0,R6,#+22
-   \       0xBC   0xD57B             BPL.N    ??HAL_I2C_EV_IRQHandler_8
+   \       0xB8   0xEA5F 0x704A      LSLS     R0,R10,#+29
+   \       0xBC   0xD57D             BPL.N    ??HAL_I2C_EV_IRQHandler_8
+   \       0xBE   0x05B0             LSLS     R0,R6,#+22
+   \       0xC0   0xD57B             BPL.N    ??HAL_I2C_EV_IRQHandler_8
    4663                  {
    4664                    if (CurrentMode == HAL_I2C_MODE_MASTER)
-   \       0xBE   0x4640             MOV      R0,R8
-   \       0xC0   0xB2C0             UXTB     R0,R0
-   \       0xC2   0x2810             CMP      R0,#+16
-   \       0xC4   0xD103             BNE.N    ??HAL_I2C_EV_IRQHandler_13
+   \       0xC2   0x4640             MOV      R0,R8
+   \       0xC4   0xB2C0             UXTB     R0,R0
+   \       0xC6   0x2810             CMP      R0,#+16
+   \       0xC8   0xD103             BNE.N    ??HAL_I2C_EV_IRQHandler_13
    4665                    {
    4666                      I2C_MasterTransmit_BTF(hi2c);
-   \       0xC6   0x0020             MOVS     R0,R4
-   \       0xC8   0x.... 0x....      BL       I2C_MasterTransmit_BTF
-   \       0xCC   0xE073             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \       0xCA   0x0020             MOVS     R0,R4
+   \       0xCC   0x.... 0x....      BL       I2C_MasterTransmit_BTF
+   \       0xD0   0xE073             B.N      ??HAL_I2C_EV_IRQHandler_8
    4667                    }
    4668                    else /* HAL_I2C_MODE_MEM */
    4669                    {
    4670                      I2C_MemoryTransmit_TXE_BTF(hi2c);
    \                     ??HAL_I2C_EV_IRQHandler_13: (+1)
-   \       0xCE   0x0020             MOVS     R0,R4
-   \       0xD0   0x.... 0x....      BL       I2C_MemoryTransmit_TXE_BTF
-   \       0xD4   0xE06F             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \       0xD2   0x0020             MOVS     R0,R4
+   \       0xD4   0x.... 0x....      BL       I2C_MemoryTransmit_TXE_BTF
+   \       0xD8   0xE06F             B.N      ??HAL_I2C_EV_IRQHandler_8
    4671                    }
    4672                  }
    4673                  else
@@ -9822,37 +9826,37 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    4682                /* Do not check buffer and BTF flag if a Xfer DMA is on going */
    4683                if (READ_BIT(hi2c->Instance->CR2, I2C_CR2_DMAEN) != I2C_CR2_DMAEN)
    \                     ??HAL_I2C_EV_IRQHandler_11: (+1)
-   \       0xD6   0x6820             LDR      R0,[R4, #+0]
-   \       0xD8   0x6840             LDR      R0,[R0, #+4]
-   \       0xDA   0x0500             LSLS     R0,R0,#+20
-   \       0xDC   0xD46B             BMI.N    ??HAL_I2C_EV_IRQHandler_8
+   \       0xDA   0x6820             LDR      R0,[R4, #+0]
+   \       0xDC   0x6840             LDR      R0,[R0, #+4]
+   \       0xDE   0x0500             LSLS     R0,R0,#+20
+   \       0xE0   0xD46B             BMI.N    ??HAL_I2C_EV_IRQHandler_8
    4684                {
    4685                  /* RXNE set and BTF reset -----------------------------------------------*/
    4686                  if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_RXNE) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_BUF) != RESET) && (I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_BTF) == RESET))
-   \       0xDE   0xEA5F 0x604A      LSLS     R0,R10,#+25
-   \       0xE2   0xD508             BPL.N    ??HAL_I2C_EV_IRQHandler_14
-   \       0xE4   0x0570             LSLS     R0,R6,#+21
-   \       0xE6   0xD506             BPL.N    ??HAL_I2C_EV_IRQHandler_14
-   \       0xE8   0xEA5F 0x704A      LSLS     R0,R10,#+29
-   \       0xEC   0xD403             BMI.N    ??HAL_I2C_EV_IRQHandler_14
+   \       0xE2   0xEA5F 0x604A      LSLS     R0,R10,#+25
+   \       0xE6   0xD508             BPL.N    ??HAL_I2C_EV_IRQHandler_14
+   \       0xE8   0x0570             LSLS     R0,R6,#+21
+   \       0xEA   0xD506             BPL.N    ??HAL_I2C_EV_IRQHandler_14
+   \       0xEC   0xEA5F 0x704A      LSLS     R0,R10,#+29
+   \       0xF0   0xD403             BMI.N    ??HAL_I2C_EV_IRQHandler_14
    4687                  {
    4688                    I2C_MasterReceive_RXNE(hi2c);
-   \       0xEE   0x0020             MOVS     R0,R4
-   \       0xF0   0x.... 0x....      BL       I2C_MasterReceive_RXNE
-   \       0xF4   0xE05F             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \       0xF2   0x0020             MOVS     R0,R4
+   \       0xF4   0x.... 0x....      BL       I2C_MasterReceive_RXNE
+   \       0xF8   0xE05F             B.N      ??HAL_I2C_EV_IRQHandler_8
    4689                  }
    4690                  /* BTF set -------------------------------------------------------------*/
    4691                  else if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_BTF) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_EVT) != RESET))
    \                     ??HAL_I2C_EV_IRQHandler_14: (+1)
-   \       0xF6   0xEA5F 0x704A      LSLS     R0,R10,#+29
-   \       0xFA   0xD55C             BPL.N    ??HAL_I2C_EV_IRQHandler_8
-   \       0xFC   0x05B0             LSLS     R0,R6,#+22
-   \       0xFE   0xD55A             BPL.N    ??HAL_I2C_EV_IRQHandler_8
+   \       0xFA   0xEA5F 0x704A      LSLS     R0,R10,#+29
+   \       0xFE   0xD55C             BPL.N    ??HAL_I2C_EV_IRQHandler_8
+   \      0x100   0x05B0             LSLS     R0,R6,#+22
+   \      0x102   0xD55A             BPL.N    ??HAL_I2C_EV_IRQHandler_8
    4692                  {
    4693                    I2C_MasterReceive_BTF(hi2c);
-   \      0x100   0x0020             MOVS     R0,R4
-   \      0x102   0x.... 0x....      BL       I2C_MasterReceive_BTF
-   \      0x106   0xE056             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \      0x104   0x0020             MOVS     R0,R4
+   \      0x106   0x.... 0x....      BL       I2C_MasterReceive_BTF
+   \      0x10A   0xE056             B.N      ??HAL_I2C_EV_IRQHandler_8
    4694                  }
    4695                  else
    4696                  {
@@ -9868,105 +9872,105 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    4706              /* a clear of ADDR flags by reading SR2 after reading SR1 in Error treatment */
    4707              if (hi2c->ErrorCode != HAL_I2C_ERROR_NONE)
    \                     ??HAL_I2C_EV_IRQHandler_1: (+1)
-   \      0x108   0x6C20             LDR      R0,[R4, #+64]
-   \      0x10A   0x2800             CMP      R0,#+0
-   \      0x10C   0xD003             BEQ.N    ??HAL_I2C_EV_IRQHandler_15
+   \      0x10C   0x6C20             LDR      R0,[R4, #+64]
+   \      0x10E   0x2800             CMP      R0,#+0
+   \      0x110   0xD003             BEQ.N    ??HAL_I2C_EV_IRQHandler_15
    4708              {
    4709                sr1itflags   = READ_REG(hi2c->Instance->SR1);
-   \      0x10E   0x6820             LDR      R0,[R4, #+0]
-   \      0x110   0xF8D0 0xA014      LDR      R10,[R0, #+20]
-   \      0x114   0xE005             B.N      ??HAL_I2C_EV_IRQHandler_16
+   \      0x112   0x6820             LDR      R0,[R4, #+0]
+   \      0x114   0xF8D0 0xA014      LDR      R10,[R0, #+20]
+   \      0x118   0xE005             B.N      ??HAL_I2C_EV_IRQHandler_16
    4710              }
    4711              else
    4712              {
    4713                sr2itflags   = READ_REG(hi2c->Instance->SR2);
    \                     ??HAL_I2C_EV_IRQHandler_15: (+1)
-   \      0x116   0x6820             LDR      R0,[R4, #+0]
-   \      0x118   0x6980             LDR      R0,[R0, #+24]
-   \      0x11A   0x0005             MOVS     R5,R0
+   \      0x11A   0x6820             LDR      R0,[R4, #+0]
+   \      0x11C   0x6980             LDR      R0,[R0, #+24]
+   \      0x11E   0x0005             MOVS     R5,R0
    4714                sr1itflags   = READ_REG(hi2c->Instance->SR1);
-   \      0x11C   0x6820             LDR      R0,[R4, #+0]
-   \      0x11E   0xF8D0 0xA014      LDR      R10,[R0, #+20]
+   \      0x120   0x6820             LDR      R0,[R4, #+0]
+   \      0x122   0xF8D0 0xA014      LDR      R10,[R0, #+20]
    4715              }
    4716          
    4717              /* ADDR set --------------------------------------------------------------*/
    4718              if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_ADDR) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_EVT) != RESET))
    \                     ??HAL_I2C_EV_IRQHandler_16: (+1)
-   \      0x122   0xEA5F 0x708A      LSLS     R0,R10,#+30
-   \      0x126   0xD50C             BPL.N    ??HAL_I2C_EV_IRQHandler_17
-   \      0x128   0x05B0             LSLS     R0,R6,#+22
-   \      0x12A   0xD50A             BPL.N    ??HAL_I2C_EV_IRQHandler_17
+   \      0x126   0xEA5F 0x708A      LSLS     R0,R10,#+30
+   \      0x12A   0xD50C             BPL.N    ??HAL_I2C_EV_IRQHandler_17
+   \      0x12C   0x05B0             LSLS     R0,R6,#+22
+   \      0x12E   0xD50A             BPL.N    ??HAL_I2C_EV_IRQHandler_17
    4719              {
    4720                /* Now time to read SR2, this will clear ADDR flag automatically */
    4721                if (hi2c->ErrorCode != HAL_I2C_ERROR_NONE)
-   \      0x12C   0x6C20             LDR      R0,[R4, #+64]
-   \      0x12E   0x2800             CMP      R0,#+0
-   \      0x130   0xD002             BEQ.N    ??HAL_I2C_EV_IRQHandler_18
+   \      0x130   0x6C20             LDR      R0,[R4, #+64]
+   \      0x132   0x2800             CMP      R0,#+0
+   \      0x134   0xD002             BEQ.N    ??HAL_I2C_EV_IRQHandler_18
    4722                {
    4723                  sr2itflags   = READ_REG(hi2c->Instance->SR2);
-   \      0x132   0x6820             LDR      R0,[R4, #+0]
-   \      0x134   0x6980             LDR      R0,[R0, #+24]
-   \      0x136   0x0005             MOVS     R5,R0
+   \      0x136   0x6820             LDR      R0,[R4, #+0]
+   \      0x138   0x6980             LDR      R0,[R0, #+24]
+   \      0x13A   0x0005             MOVS     R5,R0
    4724                }
    4725                I2C_Slave_ADDR(hi2c, sr2itflags);
    \                     ??HAL_I2C_EV_IRQHandler_18: (+1)
-   \      0x138   0x0029             MOVS     R1,R5
-   \      0x13A   0x0020             MOVS     R0,R4
-   \      0x13C   0x.... 0x....      BL       I2C_Slave_ADDR
-   \      0x140   0xE039             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \      0x13C   0x0029             MOVS     R1,R5
+   \      0x13E   0x0020             MOVS     R0,R4
+   \      0x140   0x.... 0x....      BL       I2C_Slave_ADDR
+   \      0x144   0xE039             B.N      ??HAL_I2C_EV_IRQHandler_8
    4726              }
    4727              /* STOPF set --------------------------------------------------------------*/
    4728              else if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_STOPF) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_EVT) != RESET))
    \                     ??HAL_I2C_EV_IRQHandler_17: (+1)
-   \      0x142   0xEA5F 0x60CA      LSLS     R0,R10,#+27
-   \      0x146   0xD505             BPL.N    ??HAL_I2C_EV_IRQHandler_19
-   \      0x148   0x05B0             LSLS     R0,R6,#+22
-   \      0x14A   0xD503             BPL.N    ??HAL_I2C_EV_IRQHandler_19
+   \      0x146   0xEA5F 0x60CA      LSLS     R0,R10,#+27
+   \      0x14A   0xD505             BPL.N    ??HAL_I2C_EV_IRQHandler_19
+   \      0x14C   0x05B0             LSLS     R0,R6,#+22
+   \      0x14E   0xD503             BPL.N    ??HAL_I2C_EV_IRQHandler_19
    4729              {
    4730                I2C_Slave_STOPF(hi2c);
-   \      0x14C   0x0020             MOVS     R0,R4
-   \      0x14E   0x.... 0x....      BL       I2C_Slave_STOPF
-   \      0x152   0xE030             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \      0x150   0x0020             MOVS     R0,R4
+   \      0x152   0x.... 0x....      BL       I2C_Slave_STOPF
+   \      0x156   0xE030             B.N      ??HAL_I2C_EV_IRQHandler_8
    4731              }
    4732              /* I2C in mode Transmitter -----------------------------------------------*/
    4733              else if ((CurrentState == HAL_I2C_STATE_BUSY_TX) || (CurrentState == HAL_I2C_STATE_BUSY_TX_LISTEN))
    \                     ??HAL_I2C_EV_IRQHandler_19: (+1)
-   \      0x154   0x4648             MOV      R0,R9
-   \      0x156   0xB2C0             UXTB     R0,R0
-   \      0x158   0x2821             CMP      R0,#+33
-   \      0x15A   0xD003             BEQ.N    ??HAL_I2C_EV_IRQHandler_20
-   \      0x15C   0x4648             MOV      R0,R9
-   \      0x15E   0xB2C0             UXTB     R0,R0
-   \      0x160   0x2829             CMP      R0,#+41
-   \      0x162   0xD114             BNE.N    ??HAL_I2C_EV_IRQHandler_21
+   \      0x158   0x4648             MOV      R0,R9
+   \      0x15A   0xB2C0             UXTB     R0,R0
+   \      0x15C   0x2821             CMP      R0,#+33
+   \      0x15E   0xD003             BEQ.N    ??HAL_I2C_EV_IRQHandler_20
+   \      0x160   0x4648             MOV      R0,R9
+   \      0x162   0xB2C0             UXTB     R0,R0
+   \      0x164   0x2829             CMP      R0,#+41
+   \      0x166   0xD114             BNE.N    ??HAL_I2C_EV_IRQHandler_21
    4734              {
    4735                /* TXE set and BTF reset -----------------------------------------------*/
    4736                if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_TXE) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_BUF) != RESET) && (I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_BTF) == RESET))
    \                     ??HAL_I2C_EV_IRQHandler_20: (+1)
-   \      0x164   0xEA5F 0x600A      LSLS     R0,R10,#+24
-   \      0x168   0xD508             BPL.N    ??HAL_I2C_EV_IRQHandler_22
-   \      0x16A   0x0570             LSLS     R0,R6,#+21
-   \      0x16C   0xD506             BPL.N    ??HAL_I2C_EV_IRQHandler_22
-   \      0x16E   0xEA5F 0x704A      LSLS     R0,R10,#+29
-   \      0x172   0xD403             BMI.N    ??HAL_I2C_EV_IRQHandler_22
+   \      0x168   0xEA5F 0x600A      LSLS     R0,R10,#+24
+   \      0x16C   0xD508             BPL.N    ??HAL_I2C_EV_IRQHandler_22
+   \      0x16E   0x0570             LSLS     R0,R6,#+21
+   \      0x170   0xD506             BPL.N    ??HAL_I2C_EV_IRQHandler_22
+   \      0x172   0xEA5F 0x704A      LSLS     R0,R10,#+29
+   \      0x176   0xD403             BMI.N    ??HAL_I2C_EV_IRQHandler_22
    4737                {
    4738                  I2C_SlaveTransmit_TXE(hi2c);
-   \      0x174   0x0020             MOVS     R0,R4
-   \      0x176   0x.... 0x....      BL       I2C_SlaveTransmit_TXE
-   \      0x17A   0xE01C             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \      0x178   0x0020             MOVS     R0,R4
+   \      0x17A   0x.... 0x....      BL       I2C_SlaveTransmit_TXE
+   \      0x17E   0xE01C             B.N      ??HAL_I2C_EV_IRQHandler_8
    4739                }
    4740                /* BTF set -------------------------------------------------------------*/
    4741                else if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_BTF) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_EVT) != RESET))
    \                     ??HAL_I2C_EV_IRQHandler_22: (+1)
-   \      0x17C   0xEA5F 0x704A      LSLS     R0,R10,#+29
-   \      0x180   0xD519             BPL.N    ??HAL_I2C_EV_IRQHandler_8
-   \      0x182   0x05B0             LSLS     R0,R6,#+22
-   \      0x184   0xD517             BPL.N    ??HAL_I2C_EV_IRQHandler_8
+   \      0x180   0xEA5F 0x704A      LSLS     R0,R10,#+29
+   \      0x184   0xD519             BPL.N    ??HAL_I2C_EV_IRQHandler_8
+   \      0x186   0x05B0             LSLS     R0,R6,#+22
+   \      0x188   0xD517             BPL.N    ??HAL_I2C_EV_IRQHandler_8
    4742                {
    4743                  I2C_SlaveTransmit_BTF(hi2c);
-   \      0x186   0x0020             MOVS     R0,R4
-   \      0x188   0x.... 0x....      BL       I2C_SlaveTransmit_BTF
-   \      0x18C   0xE013             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \      0x18A   0x0020             MOVS     R0,R4
+   \      0x18C   0x.... 0x....      BL       I2C_SlaveTransmit_BTF
+   \      0x190   0xE013             B.N      ??HAL_I2C_EV_IRQHandler_8
    4744                }
    4745                else
    4746                {
@@ -9979,29 +9983,29 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    4753                /* RXNE set and BTF reset ----------------------------------------------*/
    4754                if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_RXNE) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_BUF) != RESET) && (I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_BTF) == RESET))
    \                     ??HAL_I2C_EV_IRQHandler_21: (+1)
-   \      0x18E   0xEA5F 0x604A      LSLS     R0,R10,#+25
-   \      0x192   0xD508             BPL.N    ??HAL_I2C_EV_IRQHandler_23
-   \      0x194   0x0570             LSLS     R0,R6,#+21
-   \      0x196   0xD506             BPL.N    ??HAL_I2C_EV_IRQHandler_23
-   \      0x198   0xEA5F 0x704A      LSLS     R0,R10,#+29
-   \      0x19C   0xD403             BMI.N    ??HAL_I2C_EV_IRQHandler_23
+   \      0x192   0xEA5F 0x604A      LSLS     R0,R10,#+25
+   \      0x196   0xD508             BPL.N    ??HAL_I2C_EV_IRQHandler_23
+   \      0x198   0x0570             LSLS     R0,R6,#+21
+   \      0x19A   0xD506             BPL.N    ??HAL_I2C_EV_IRQHandler_23
+   \      0x19C   0xEA5F 0x704A      LSLS     R0,R10,#+29
+   \      0x1A0   0xD403             BMI.N    ??HAL_I2C_EV_IRQHandler_23
    4755                {
    4756                  I2C_SlaveReceive_RXNE(hi2c);
-   \      0x19E   0x0020             MOVS     R0,R4
-   \      0x1A0   0x.... 0x....      BL       I2C_SlaveReceive_RXNE
-   \      0x1A4   0xE007             B.N      ??HAL_I2C_EV_IRQHandler_8
+   \      0x1A2   0x0020             MOVS     R0,R4
+   \      0x1A4   0x.... 0x....      BL       I2C_SlaveReceive_RXNE
+   \      0x1A8   0xE007             B.N      ??HAL_I2C_EV_IRQHandler_8
    4757                }
    4758                /* BTF set -------------------------------------------------------------*/
    4759                else if ((I2C_CHECK_FLAG(sr1itflags, I2C_FLAG_BTF) != RESET) && (I2C_CHECK_IT_SOURCE(itsources, I2C_IT_EVT) != RESET))
    \                     ??HAL_I2C_EV_IRQHandler_23: (+1)
-   \      0x1A6   0xEA5F 0x704A      LSLS     R0,R10,#+29
-   \      0x1AA   0xD504             BPL.N    ??HAL_I2C_EV_IRQHandler_8
-   \      0x1AC   0x05B0             LSLS     R0,R6,#+22
-   \      0x1AE   0xD502             BPL.N    ??HAL_I2C_EV_IRQHandler_8
+   \      0x1AA   0xEA5F 0x704A      LSLS     R0,R10,#+29
+   \      0x1AE   0xD504             BPL.N    ??HAL_I2C_EV_IRQHandler_8
+   \      0x1B0   0x05B0             LSLS     R0,R6,#+22
+   \      0x1B2   0xD502             BPL.N    ??HAL_I2C_EV_IRQHandler_8
    4760                {
    4761                  I2C_SlaveReceive_BTF(hi2c);
-   \      0x1B0   0x0020             MOVS     R0,R4
-   \      0x1B2   0x.... 0x....      BL       I2C_SlaveReceive_BTF
+   \      0x1B4   0x0020             MOVS     R0,R4
+   \      0x1B6   0x.... 0x....      BL       I2C_SlaveReceive_BTF
    4762                }
    4763                else
    4764                {
@@ -10012,7 +10016,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    4769          }
    \                     ??HAL_I2C_EV_IRQHandler_8: (+1)
    \                     ??HAL_I2C_EV_IRQHandler_6: (+1)
-   \      0x1B6   0xE8BD 0x87F0      POP      {R4-R10,PC}
+   \      0x1BA   0xE8BD 0x87F0      POP      {R4-R10,PC}
    4770          
    4771          /**
    4772            * @brief  This function handles I2C error interrupt request.
@@ -11605,9 +11609,9 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    5603                  /* Send header of slave address */
    5604                  hi2c->Instance->DR = I2C_10BIT_HEADER_WRITE(hi2c->Devaddress);
    \       0x80   0x6C41             LDR      R1,[R0, #+68]
-   \       0x82   0xB289             UXTH     R1,R1
-   \       0x84   0x09C9             LSRS     R1,R1,#+7
-   \       0x86   0xF011 0x0106      ANDS     R1,R1,#0x6
+   \       0x82   0xF411 0x7140      ANDS     R1,R1,#0x300
+   \       0x86   0xB289             UXTH     R1,R1
+   \       0x88   0x09C9             LSRS     R1,R1,#+7
    \       0x8A   0xF051 0x01F0      ORRS     R1,R1,#0xF0
    \       0x8E   0xB2C9             UXTB     R1,R1
    \       0x90   0x6802             LDR      R2,[R0, #+0]
@@ -11623,9 +11627,9 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    5608                  /* Send header of slave address */
    5609                  hi2c->Instance->DR = I2C_10BIT_HEADER_READ(hi2c->Devaddress);
    \       0x9C   0x6C41             LDR      R1,[R0, #+68]
-   \       0x9E   0xB289             UXTH     R1,R1
-   \       0xA0   0x09C9             LSRS     R1,R1,#+7
-   \       0xA2   0xF011 0x0106      ANDS     R1,R1,#0x6
+   \       0x9E   0xF411 0x7140      ANDS     R1,R1,#0x300
+   \       0xA2   0xB289             UXTH     R1,R1
+   \       0xA4   0x09C9             LSRS     R1,R1,#+7
    \       0xA6   0xF051 0x01F1      ORRS     R1,R1,#0xF1
    \       0xAA   0xB2C9             UXTB     R1,R1
    \       0xAC   0x6802             LDR      R2,[R0, #+0]
@@ -13415,7 +13419,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    6396              return HAL_TIMEOUT;
    \                     ??I2C_MasterRequestWrite_4: (+1)
    \       0x66   0x2003             MOVS     R0,#+3
-   \       0x68   0xE02D             B.N      ??I2C_MasterRequestWrite_5
+   \       0x68   0xE02C             B.N      ??I2C_MasterRequestWrite_5
    6397            }
    6398          
    6399            if (hi2c->Init.AddressingMode == I2C_ADDRESSINGMODE_7BIT)
@@ -13429,67 +13433,66 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    \       0x72   0xF015 0x00FE      ANDS     R0,R5,#0xFE
    \       0x76   0x6821             LDR      R1,[R4, #+0]
    \       0x78   0x6108             STR      R0,[R1, #+16]
-   \       0x7A   0xE018             B.N      ??I2C_MasterRequestWrite_7
+   \       0x7A   0xE017             B.N      ??I2C_MasterRequestWrite_7
    6403            }
    6404            else
    6405            {
    6406              /* Send header of slave address */
    6407              hi2c->Instance->DR = I2C_10BIT_HEADER_WRITE(DevAddress);
    \                     ??I2C_MasterRequestWrite_6: (+1)
-   \       0x7C   0x0028             MOVS     R0,R5
-   \       0x7E   0xB280             UXTH     R0,R0
-   \       0x80   0x09C0             LSRS     R0,R0,#+7
-   \       0x82   0xF010 0x0006      ANDS     R0,R0,#0x6
-   \       0x86   0xF050 0x00F0      ORRS     R0,R0,#0xF0
-   \       0x8A   0xB2C0             UXTB     R0,R0
-   \       0x8C   0x6821             LDR      R1,[R4, #+0]
-   \       0x8E   0x6108             STR      R0,[R1, #+16]
+   \       0x7C   0xF415 0x7040      ANDS     R0,R5,#0x300
+   \       0x80   0xB280             UXTH     R0,R0
+   \       0x82   0x09C0             LSRS     R0,R0,#+7
+   \       0x84   0xF050 0x00F0      ORRS     R0,R0,#0xF0
+   \       0x88   0xB2C0             UXTB     R0,R0
+   \       0x8A   0x6821             LDR      R1,[R4, #+0]
+   \       0x8C   0x6108             STR      R0,[R1, #+16]
    6408          
    6409              /* Wait until ADD10 flag is set */
    6410              if (I2C_WaitOnMasterAddressFlagUntilTimeout(hi2c, I2C_FLAG_ADD10, Timeout, Tickstart) != HAL_OK)
-   \       0x90   0x003B             MOVS     R3,R7
-   \       0x92   0x0032             MOVS     R2,R6
-   \       0x94   0x.... 0x....      LDR.W    R1,??DataTable38_1
-   \       0x98   0x0020             MOVS     R0,R4
-   \       0x9A   0x.... 0x....      BL       I2C_WaitOnMasterAddressFlagUntilTimeout
-   \       0x9E   0x2800             CMP      R0,#+0
-   \       0xA0   0xD001             BEQ.N    ??I2C_MasterRequestWrite_8
+   \       0x8E   0x003B             MOVS     R3,R7
+   \       0x90   0x0032             MOVS     R2,R6
+   \       0x92   0x.... 0x....      LDR.W    R1,??DataTable38_1
+   \       0x96   0x0020             MOVS     R0,R4
+   \       0x98   0x.... 0x....      BL       I2C_WaitOnMasterAddressFlagUntilTimeout
+   \       0x9C   0x2800             CMP      R0,#+0
+   \       0x9E   0xD001             BEQ.N    ??I2C_MasterRequestWrite_8
    6411              {
    6412                return HAL_ERROR;
-   \       0xA2   0x2001             MOVS     R0,#+1
-   \       0xA4   0xE00F             B.N      ??I2C_MasterRequestWrite_5
+   \       0xA0   0x2001             MOVS     R0,#+1
+   \       0xA2   0xE00F             B.N      ??I2C_MasterRequestWrite_5
    6413              }
    6414          
    6415              /* Send slave address */
    6416              hi2c->Instance->DR = I2C_10BIT_ADDRESS(DevAddress);
    \                     ??I2C_MasterRequestWrite_8: (+1)
-   \       0xA6   0x0028             MOVS     R0,R5
-   \       0xA8   0xB2C0             UXTB     R0,R0
-   \       0xAA   0x6821             LDR      R1,[R4, #+0]
-   \       0xAC   0x6108             STR      R0,[R1, #+16]
+   \       0xA4   0x0028             MOVS     R0,R5
+   \       0xA6   0xB2C0             UXTB     R0,R0
+   \       0xA8   0x6821             LDR      R1,[R4, #+0]
+   \       0xAA   0x6108             STR      R0,[R1, #+16]
    6417            }
    6418          
    6419            /* Wait until ADDR flag is set */
    6420            if (I2C_WaitOnMasterAddressFlagUntilTimeout(hi2c, I2C_FLAG_ADDR, Timeout, Tickstart) != HAL_OK)
    \                     ??I2C_MasterRequestWrite_7: (+1)
-   \       0xAE   0x003B             MOVS     R3,R7
-   \       0xB0   0x0032             MOVS     R2,R6
-   \       0xB2   0x.... 0x....      LDR.W    R1,??DataTable38_2
-   \       0xB6   0x0020             MOVS     R0,R4
-   \       0xB8   0x.... 0x....      BL       I2C_WaitOnMasterAddressFlagUntilTimeout
-   \       0xBC   0x2800             CMP      R0,#+0
-   \       0xBE   0xD001             BEQ.N    ??I2C_MasterRequestWrite_9
+   \       0xAC   0x003B             MOVS     R3,R7
+   \       0xAE   0x0032             MOVS     R2,R6
+   \       0xB0   0x.... 0x....      LDR.W    R1,??DataTable38_2
+   \       0xB4   0x0020             MOVS     R0,R4
+   \       0xB6   0x.... 0x....      BL       I2C_WaitOnMasterAddressFlagUntilTimeout
+   \       0xBA   0x2800             CMP      R0,#+0
+   \       0xBC   0xD001             BEQ.N    ??I2C_MasterRequestWrite_9
    6421            {
    6422              return HAL_ERROR;
-   \       0xC0   0x2001             MOVS     R0,#+1
-   \       0xC2   0xE000             B.N      ??I2C_MasterRequestWrite_5
+   \       0xBE   0x2001             MOVS     R0,#+1
+   \       0xC0   0xE000             B.N      ??I2C_MasterRequestWrite_5
    6423            }
    6424          
    6425            return HAL_OK;
    \                     ??I2C_MasterRequestWrite_9: (+1)
-   \       0xC4   0x2000             MOVS     R0,#+0
+   \       0xC2   0x2000             MOVS     R0,#+0
    \                     ??I2C_MasterRequestWrite_5: (+1)
-   \       0xC6   0xE8BD 0x81F6      POP      {R1,R2,R4-R8,PC}
+   \       0xC4   0xE8BD 0x81F6      POP      {R1,R2,R4-R8,PC}
    6426          }
    6427          
    6428          /**
@@ -13588,7 +13591,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    6469              return HAL_TIMEOUT;
    \                     ??I2C_MasterRequestRead_4: (+1)
    \       0x72   0x2003             MOVS     R0,#+3
-   \       0x74   0xE065             B.N      ??I2C_MasterRequestRead_5
+   \       0x74   0xE063             B.N      ??I2C_MasterRequestRead_5
    6470            }
    6471          
    6472            if (hi2c->Init.AddressingMode == I2C_ADDRESSINGMODE_7BIT)
@@ -13603,142 +13606,140 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    \       0x82   0xB2C0             UXTB     R0,R0
    \       0x84   0x6821             LDR      R1,[R4, #+0]
    \       0x86   0x6108             STR      R0,[R1, #+16]
-   \       0x88   0xE04F             B.N      ??I2C_MasterRequestRead_7
+   \       0x88   0xE04D             B.N      ??I2C_MasterRequestRead_7
    6476            }
    6477            else
    6478            {
    6479              /* Send header of slave address */
    6480              hi2c->Instance->DR = I2C_10BIT_HEADER_WRITE(DevAddress);
    \                     ??I2C_MasterRequestRead_6: (+1)
-   \       0x8A   0x0028             MOVS     R0,R5
-   \       0x8C   0xB280             UXTH     R0,R0
-   \       0x8E   0x09C0             LSRS     R0,R0,#+7
-   \       0x90   0xF010 0x0006      ANDS     R0,R0,#0x6
-   \       0x94   0xF050 0x00F0      ORRS     R0,R0,#0xF0
-   \       0x98   0xB2C0             UXTB     R0,R0
-   \       0x9A   0x6821             LDR      R1,[R4, #+0]
-   \       0x9C   0x6108             STR      R0,[R1, #+16]
+   \       0x8A   0xF415 0x7040      ANDS     R0,R5,#0x300
+   \       0x8E   0xB280             UXTH     R0,R0
+   \       0x90   0x09C0             LSRS     R0,R0,#+7
+   \       0x92   0xF050 0x00F0      ORRS     R0,R0,#0xF0
+   \       0x96   0xB2C0             UXTB     R0,R0
+   \       0x98   0x6821             LDR      R1,[R4, #+0]
+   \       0x9A   0x6108             STR      R0,[R1, #+16]
    6481          
    6482              /* Wait until ADD10 flag is set */
    6483              if (I2C_WaitOnMasterAddressFlagUntilTimeout(hi2c, I2C_FLAG_ADD10, Timeout, Tickstart) != HAL_OK)
-   \       0x9E   0x003B             MOVS     R3,R7
-   \       0xA0   0x0032             MOVS     R2,R6
-   \       0xA2   0x.... 0x....      LDR.W    R1,??DataTable38_1
-   \       0xA6   0x0020             MOVS     R0,R4
-   \       0xA8   0x.... 0x....      BL       I2C_WaitOnMasterAddressFlagUntilTimeout
-   \       0xAC   0x2800             CMP      R0,#+0
-   \       0xAE   0xD001             BEQ.N    ??I2C_MasterRequestRead_8
+   \       0x9C   0x003B             MOVS     R3,R7
+   \       0x9E   0x0032             MOVS     R2,R6
+   \       0xA0   0x.... 0x....      LDR.W    R1,??DataTable38_1
+   \       0xA4   0x0020             MOVS     R0,R4
+   \       0xA6   0x.... 0x....      BL       I2C_WaitOnMasterAddressFlagUntilTimeout
+   \       0xAA   0x2800             CMP      R0,#+0
+   \       0xAC   0xD001             BEQ.N    ??I2C_MasterRequestRead_8
    6484              {
    6485                return HAL_ERROR;
-   \       0xB0   0x2001             MOVS     R0,#+1
-   \       0xB2   0xE046             B.N      ??I2C_MasterRequestRead_5
+   \       0xAE   0x2001             MOVS     R0,#+1
+   \       0xB0   0xE045             B.N      ??I2C_MasterRequestRead_5
    6486              }
    6487          
    6488              /* Send slave address */
    6489              hi2c->Instance->DR = I2C_10BIT_ADDRESS(DevAddress);
    \                     ??I2C_MasterRequestRead_8: (+1)
-   \       0xB4   0x0028             MOVS     R0,R5
-   \       0xB6   0xB2C0             UXTB     R0,R0
-   \       0xB8   0x6821             LDR      R1,[R4, #+0]
-   \       0xBA   0x6108             STR      R0,[R1, #+16]
+   \       0xB2   0x0028             MOVS     R0,R5
+   \       0xB4   0xB2C0             UXTB     R0,R0
+   \       0xB6   0x6821             LDR      R1,[R4, #+0]
+   \       0xB8   0x6108             STR      R0,[R1, #+16]
    6490          
    6491              /* Wait until ADDR flag is set */
    6492              if (I2C_WaitOnMasterAddressFlagUntilTimeout(hi2c, I2C_FLAG_ADDR, Timeout, Tickstart) != HAL_OK)
-   \       0xBC   0x003B             MOVS     R3,R7
-   \       0xBE   0x0032             MOVS     R2,R6
-   \       0xC0   0x.... 0x....      LDR.W    R1,??DataTable38_2
-   \       0xC4   0x0020             MOVS     R0,R4
-   \       0xC6   0x.... 0x....      BL       I2C_WaitOnMasterAddressFlagUntilTimeout
-   \       0xCA   0x2800             CMP      R0,#+0
-   \       0xCC   0xD001             BEQ.N    ??I2C_MasterRequestRead_9
+   \       0xBA   0x003B             MOVS     R3,R7
+   \       0xBC   0x0032             MOVS     R2,R6
+   \       0xBE   0x.... 0x....      LDR.W    R1,??DataTable38_2
+   \       0xC2   0x0020             MOVS     R0,R4
+   \       0xC4   0x.... 0x....      BL       I2C_WaitOnMasterAddressFlagUntilTimeout
+   \       0xC8   0x2800             CMP      R0,#+0
+   \       0xCA   0xD001             BEQ.N    ??I2C_MasterRequestRead_9
    6493              {
    6494                return HAL_ERROR;
-   \       0xCE   0x2001             MOVS     R0,#+1
-   \       0xD0   0xE037             B.N      ??I2C_MasterRequestRead_5
+   \       0xCC   0x2001             MOVS     R0,#+1
+   \       0xCE   0xE036             B.N      ??I2C_MasterRequestRead_5
    6495              }
    6496          
    6497              /* Clear ADDR flag */
    6498              __HAL_I2C_CLEAR_ADDRFLAG(hi2c);
    \                     ??I2C_MasterRequestRead_9: (+1)
-   \       0xD2   0x2000             MOVS     R0,#+0
-   \       0xD4   0x9000             STR      R0,[SP, #+0]
-   \       0xD6   0x6820             LDR      R0,[R4, #+0]
-   \       0xD8   0x6940             LDR      R0,[R0, #+20]
-   \       0xDA   0x9000             STR      R0,[SP, #+0]
-   \       0xDC   0x6820             LDR      R0,[R4, #+0]
-   \       0xDE   0x6980             LDR      R0,[R0, #+24]
-   \       0xE0   0x9000             STR      R0,[SP, #+0]
-   \       0xE2   0x9800             LDR      R0,[SP, #+0]
+   \       0xD0   0x2000             MOVS     R0,#+0
+   \       0xD2   0x9000             STR      R0,[SP, #+0]
+   \       0xD4   0x6820             LDR      R0,[R4, #+0]
+   \       0xD6   0x6940             LDR      R0,[R0, #+20]
+   \       0xD8   0x9000             STR      R0,[SP, #+0]
+   \       0xDA   0x6820             LDR      R0,[R4, #+0]
+   \       0xDC   0x6980             LDR      R0,[R0, #+24]
+   \       0xDE   0x9000             STR      R0,[SP, #+0]
+   \       0xE0   0x9800             LDR      R0,[SP, #+0]
    6499          
    6500              /* Generate Restart */
    6501              SET_BIT(hi2c->Instance->CR1, I2C_CR1_START);
-   \       0xE4   0x6820             LDR      R0,[R4, #+0]
-   \       0xE6   0x6800             LDR      R0,[R0, #+0]
-   \       0xE8   0xF450 0x7080      ORRS     R0,R0,#0x100
-   \       0xEC   0x6821             LDR      R1,[R4, #+0]
-   \       0xEE   0x6008             STR      R0,[R1, #+0]
+   \       0xE2   0x6820             LDR      R0,[R4, #+0]
+   \       0xE4   0x6800             LDR      R0,[R0, #+0]
+   \       0xE6   0xF450 0x7080      ORRS     R0,R0,#0x100
+   \       0xEA   0x6821             LDR      R1,[R4, #+0]
+   \       0xEC   0x6008             STR      R0,[R1, #+0]
    6502          
    6503              /* Wait until SB flag is set */
    6504              if (I2C_WaitOnFlagUntilTimeout(hi2c, I2C_FLAG_SB, RESET, Timeout, Tickstart) != HAL_OK)
-   \       0xF0   0x9700             STR      R7,[SP, #+0]
-   \       0xF2   0x0033             MOVS     R3,R6
-   \       0xF4   0x2200             MOVS     R2,#+0
-   \       0xF6   0xF05F 0x1101      MOVS     R1,#+65537
-   \       0xFA   0x0020             MOVS     R0,R4
-   \       0xFC   0x.... 0x....      BL       I2C_WaitOnFlagUntilTimeout
-   \      0x100   0x2800             CMP      R0,#+0
-   \      0x102   0xD008             BEQ.N    ??I2C_MasterRequestRead_10
+   \       0xEE   0x9700             STR      R7,[SP, #+0]
+   \       0xF0   0x0033             MOVS     R3,R6
+   \       0xF2   0x2200             MOVS     R2,#+0
+   \       0xF4   0xF05F 0x1101      MOVS     R1,#+65537
+   \       0xF8   0x0020             MOVS     R0,R4
+   \       0xFA   0x.... 0x....      BL       I2C_WaitOnFlagUntilTimeout
+   \       0xFE   0x2800             CMP      R0,#+0
+   \      0x100   0xD008             BEQ.N    ??I2C_MasterRequestRead_10
    6505              {
    6506                if (READ_BIT(hi2c->Instance->CR1, I2C_CR1_START) == I2C_CR1_START)
-   \      0x104   0x6820             LDR      R0,[R4, #+0]
-   \      0x106   0x6800             LDR      R0,[R0, #+0]
-   \      0x108   0x05C0             LSLS     R0,R0,#+23
-   \      0x10A   0xD502             BPL.N    ??I2C_MasterRequestRead_11
+   \      0x102   0x6820             LDR      R0,[R4, #+0]
+   \      0x104   0x6800             LDR      R0,[R0, #+0]
+   \      0x106   0x05C0             LSLS     R0,R0,#+23
+   \      0x108   0xD502             BPL.N    ??I2C_MasterRequestRead_11
    6507                {
    6508                  hi2c->ErrorCode = HAL_I2C_WRONG_START;
-   \      0x10C   0xF44F 0x7000      MOV      R0,#+512
-   \      0x110   0x6420             STR      R0,[R4, #+64]
+   \      0x10A   0xF44F 0x7000      MOV      R0,#+512
+   \      0x10E   0x6420             STR      R0,[R4, #+64]
    6509                }
    6510                return HAL_TIMEOUT;
    \                     ??I2C_MasterRequestRead_11: (+1)
-   \      0x112   0x2003             MOVS     R0,#+3
-   \      0x114   0xE015             B.N      ??I2C_MasterRequestRead_5
+   \      0x110   0x2003             MOVS     R0,#+3
+   \      0x112   0xE014             B.N      ??I2C_MasterRequestRead_5
    6511              }
    6512          
    6513              /* Send header of slave address */
    6514              hi2c->Instance->DR = I2C_10BIT_HEADER_READ(DevAddress);
    \                     ??I2C_MasterRequestRead_10: (+1)
-   \      0x116   0x0028             MOVS     R0,R5
+   \      0x114   0xF415 0x7040      ANDS     R0,R5,#0x300
    \      0x118   0xB280             UXTH     R0,R0
    \      0x11A   0x09C0             LSRS     R0,R0,#+7
-   \      0x11C   0xF010 0x0006      ANDS     R0,R0,#0x6
-   \      0x120   0xF050 0x00F1      ORRS     R0,R0,#0xF1
-   \      0x124   0xB2C0             UXTB     R0,R0
-   \      0x126   0x6821             LDR      R1,[R4, #+0]
-   \      0x128   0x6108             STR      R0,[R1, #+16]
+   \      0x11C   0xF050 0x00F1      ORRS     R0,R0,#0xF1
+   \      0x120   0xB2C0             UXTB     R0,R0
+   \      0x122   0x6821             LDR      R1,[R4, #+0]
+   \      0x124   0x6108             STR      R0,[R1, #+16]
    6515            }
    6516          
    6517            /* Wait until ADDR flag is set */
    6518            if (I2C_WaitOnMasterAddressFlagUntilTimeout(hi2c, I2C_FLAG_ADDR, Timeout, Tickstart) != HAL_OK)
    \                     ??I2C_MasterRequestRead_7: (+1)
-   \      0x12A   0x003B             MOVS     R3,R7
-   \      0x12C   0x0032             MOVS     R2,R6
-   \      0x12E   0x.... 0x....      LDR.W    R1,??DataTable38_2
-   \      0x132   0x0020             MOVS     R0,R4
-   \      0x134   0x.... 0x....      BL       I2C_WaitOnMasterAddressFlagUntilTimeout
-   \      0x138   0x2800             CMP      R0,#+0
-   \      0x13A   0xD001             BEQ.N    ??I2C_MasterRequestRead_12
+   \      0x126   0x003B             MOVS     R3,R7
+   \      0x128   0x0032             MOVS     R2,R6
+   \      0x12A   0x.... 0x....      LDR.W    R1,??DataTable38_2
+   \      0x12E   0x0020             MOVS     R0,R4
+   \      0x130   0x.... 0x....      BL       I2C_WaitOnMasterAddressFlagUntilTimeout
+   \      0x134   0x2800             CMP      R0,#+0
+   \      0x136   0xD001             BEQ.N    ??I2C_MasterRequestRead_12
    6519            {
    6520              return HAL_ERROR;
-   \      0x13C   0x2001             MOVS     R0,#+1
-   \      0x13E   0xE000             B.N      ??I2C_MasterRequestRead_5
+   \      0x138   0x2001             MOVS     R0,#+1
+   \      0x13A   0xE000             B.N      ??I2C_MasterRequestRead_5
    6521            }
    6522          
    6523            return HAL_OK;
    \                     ??I2C_MasterRequestRead_12: (+1)
-   \      0x140   0x2000             MOVS     R0,#+0
+   \      0x13C   0x2000             MOVS     R0,#+0
    \                     ??I2C_MasterRequestRead_5: (+1)
-   \      0x142   0xE8BD 0x81F6      POP      {R1,R2,R4-R8,PC}
+   \      0x13E   0xE8BD 0x81F6      POP      {R1,R2,R4-R8,PC}
    6524          }
    6525          
    6526          /**
@@ -15958,7 +15959,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
       66  HAL_I2C_DeInit
       70  HAL_I2C_DisableListen_IT
      236  HAL_I2C_ER_IRQHandler
-     442  HAL_I2C_EV_IRQHandler
+     446  HAL_I2C_EV_IRQHandler
       68  HAL_I2C_EnableListen_IT
        2  HAL_I2C_ErrorCallback
        4  HAL_I2C_GetError
@@ -16010,8 +16011,8 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
       56  I2C_IsAcknowledgeFailed
      296  I2C_MasterReceive_BTF
      228  I2C_MasterReceive_RXNE
-     326  I2C_MasterRequestRead
-     202  I2C_MasterRequestWrite
+     322  I2C_MasterRequestRead
+     200  I2C_MasterRequestWrite
      142  I2C_MasterTransmit_BTF
      232  I2C_MasterTransmit_TXE
       50  I2C_Master_ADD10
@@ -16036,9 +16037,9 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
       88  I2C_WaitOnTXEFlagUntilTimeout
 
  
- 17'474 bytes in section .text
+ 17'472 bytes in section .text
  
- 17'450 bytes of CODE memory (+ 24 bytes shared)
+ 17'448 bytes of CODE memory (+ 24 bytes shared)
 
 Errors: none
 Warnings: none

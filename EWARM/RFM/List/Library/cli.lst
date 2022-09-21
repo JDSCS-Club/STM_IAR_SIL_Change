@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:24
+#                                                         22/Sep/2022  08:40:12
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                     =  thumb
@@ -15,7 +16,7 @@
 #        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
 #        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
 #        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Workbench 9.0 EWARM FS 9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -36,7 +37,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Library\cli.o.d
 #    Locale                       =  C
 #    List file                    =
@@ -1199,7 +1201,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \       0x7A   0x4640             MOV      R0,R8
    \       0x7C   0xB280             UXTH     R0,R0
    \       0x7E   0x2800             CMP      R0,#+0
-   \       0x80   0xF000 0x8084      BEQ.W    ??ProcessCommand_4
+   \       0x80   0xF000 0x8085      BEQ.W    ??ProcessCommand_4
     528          	{
     529          
     530          		// md/mm 등에 따르는 "[.b|.w|.l]에 대한 처리
@@ -1382,7 +1384,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    \      0x178   0x9915             LDR      R1,[SP, #+84]
    \      0x17A   0x.... 0x....      LDR.W    R0,??DataTable11_16
    \      0x17E   0x.... 0x....      BL       printf
-   \      0x182   0xE003             B.N      ??ProcessCommand_4
+   \      0x182   0xE004             B.N      ??ProcessCommand_4
     589          		}
     590          		else
     591          		{
@@ -1390,16 +1392,16 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     593          			strcpy( old_cmd, temp );
    \                     ??ProcessCommand_16: (+1)
    \      0x184   0xA901             ADD      R1,SP,#+4
-   \      0x186   0x....             LDR.N    R0,??DataTable11_12
-   \      0x188   0x.... 0x....      BL       strcpy
+   \      0x186   0x.... 0x....      LDR.W    R0,??DataTable11_12
+   \      0x18A   0x.... 0x....      BL       strcpy
     594          		}
     595          	}
     596          
     597          	return (uint8_t) 1;
    \                     ??ProcessCommand_4: (+1)
-   \      0x18C   0x2001             MOVS     R0,#+1
-   \      0x18E   0xB02A             ADD      SP,SP,#+168
-   \      0x190   0xE8BD 0x87F0      POP      {R4-R10,PC}
+   \      0x18E   0x2001             MOVS     R0,#+1
+   \      0x190   0xB02A             ADD      SP,SP,#+168
+   \      0x192   0xE8BD 0x87F0      POP      {R4-R10,PC}
     598          }
     599          
     600          
@@ -1954,7 +1956,7 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
     824          //========================================================================
     825          {
    \                     cmd_uptime: (+1)
-   \        0x0   0xE92D 0x47F0      PUSH     {R4-R10,LR}
+   \        0x0   0xE92D 0x47FC      PUSH     {R2-R10,LR}
    \        0x4   0x0005             MOVS     R5,R0
    \        0x6   0x000E             MOVS     R6,R1
     826          
@@ -2009,20 +2011,37 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \       0x4C   0xFB00 0x1A1A      MLS      R10,R0,R10,R1
     852          
     853          	if (0 < day)
+   \       0x50   0x0038             MOVS     R0,R7
+   \       0x52   0xB2C0             UXTB     R0,R0
+   \       0x54   0x2800             CMP      R0,#+0
+   \       0x56   0xD00C             BEQ.N    ??cmd_uptime_0
     854          	{
     855          		printf("%d day(s) %d:%02d:%02d up.\n", day, hour, min, sec);
+   \       0x58   0x4650             MOV      R0,R10
+   \       0x5A   0xB2C0             UXTB     R0,R0
+   \       0x5C   0x9000             STR      R0,[SP, #+0]
+   \       0x5E   0x464B             MOV      R3,R9
+   \       0x60   0xB2DB             UXTB     R3,R3
+   \       0x62   0x4642             MOV      R2,R8
+   \       0x64   0xB2D2             UXTB     R2,R2
+   \       0x66   0x0039             MOVS     R1,R7
+   \       0x68   0xB2C9             UXTB     R1,R1
+   \       0x6A   0x....             LDR.N    R0,??DataTable11_24
+   \       0x6C   0x.... 0x....      BL       printf
+   \       0x70   0xE008             B.N      ??cmd_uptime_1
     856          	}
     857          	else
     858          	{
     859          		printf("%d:%02d:%02d up.\n", hour, min, sec);
-   \       0x50   0x4653             MOV      R3,R10
-   \       0x52   0xB2DB             UXTB     R3,R3
-   \       0x54   0x464A             MOV      R2,R9
-   \       0x56   0xB2D2             UXTB     R2,R2
-   \       0x58   0x4641             MOV      R1,R8
-   \       0x5A   0xB2C9             UXTB     R1,R1
-   \       0x5C   0x....             LDR.N    R0,??DataTable11_24
-   \       0x5E   0x.... 0x....      BL       printf
+   \                     ??cmd_uptime_0: (+1)
+   \       0x72   0x4653             MOV      R3,R10
+   \       0x74   0xB2DB             UXTB     R3,R3
+   \       0x76   0x464A             MOV      R2,R9
+   \       0x78   0xB2D2             UXTB     R2,R2
+   \       0x7A   0x4641             MOV      R1,R8
+   \       0x7C   0xB2C9             UXTB     R1,R1
+   \       0x7E   0x....             LDR.N    R0,??DataTable11_25
+   \       0x80   0x.... 0x....      BL       printf
     860          	}
     861          
     862          //=============================================================================
@@ -2030,8 +2049,9 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
     864          //=============================================================================
     865          
     866          	return (uint8_t)0;
-   \       0x62   0x2000             MOVS     R0,#+0
-   \       0x64   0xE8BD 0x87F0      POP      {R4-R10,PC}
+   \                     ??cmd_uptime_1: (+1)
+   \       0x84   0x2000             MOVS     R0,#+0
+   \       0x86   0xE8BD 0x87F6      POP      {R1,R2,R4-R10,PC}
     867          }
     868          
     869          //========================================================================
@@ -2045,9 +2065,9 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
     873          	printf("Version = %s(%s)\n", APP_VER, APP_BUILD_DATE );
-   \        0x6   0x....             LDR.N    R2,??DataTable11_25
-   \        0x8   0x....             LDR.N    R1,??DataTable11_26
-   \        0xA   0x....             LDR.N    R0,??DataTable11_27
+   \        0x6   0x....             LDR.N    R2,??DataTable11_26
+   \        0x8   0x....             LDR.N    R1,??DataTable11_27
+   \        0xA   0x....             LDR.N    R0,??DataTable11_28
    \        0xC   0x.... 0x....      BL       printf
     874          
     875          	return (uint8_t)0;
@@ -2229,18 +2249,22 @@ Warning[Pe111]: statement is unreachable
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable11_24:
-   \        0x0   0x....'....        DC32     ?_85
+   \        0x0   0x....'....        DC32     ?_84
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable11_25:
-   \        0x0   0x....'....        DC32     ?_88
+   \        0x0   0x....'....        DC32     ?_85
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable11_26:
-   \        0x0   0x....'....        DC32     ?_87
+   \        0x0   0x....'....        DC32     ?_88
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable11_27:
+   \        0x0   0x....'....        DC32     ?_87
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable11_28:
    \        0x0   0x....'....        DC32     ?_86
 
    \                                 In section .rodata, align 4
@@ -3747,6 +3771,7 @@ Warning[Pe111]: statement is unreachable
    \              0x0A 0x00
 
    \                                 In section .rodata, align 4
+   \                     ?_84:
    \        0x0   0x25 0x64          DC8 "%d day(s) %d:%02d:%02d up.\012"
 
    \              0x20 0x64    
@@ -3832,11 +3857,11 @@ Warning[Pe111]: statement is unreachable
 
    \                                 In section .rodata, align 4
    \                     ?_88:
-   \        0x0   0x53 0x65          DC8 "Sep 21 2022, 13:06:24"
+   \        0x0   0x53 0x65          DC8 "Sep 22 2022, 08:40:11"
 
    \              0x70 0x20    
 
-   \              0x32 0x31    
+   \              0x32 0x32    
 
    \              0x20 0x32    
 
@@ -3844,15 +3869,15 @@ Warning[Pe111]: statement is unreachable
 
    \              0x32 0x2C    
 
-   \              0x20 0x31    
+   \              0x20 0x30    
 
-   \              0x33 0x3A    
+   \              0x38 0x3A    
 
-   \              0x30 0x36    
+   \              0x34 0x30    
 
-   \              0x3A 0x32    
+   \              0x3A 0x31    
 
-   \              0x34 0x00
+   \              0x31 0x00
    \       0x16                      DS8 2
     886          
     887          /*
@@ -3901,9 +3926,9 @@ Warning[Pe111]: statement is unreachable
         24   -> strcmp
       16   cmd_reset
         16   -> __NVIC_SystemReset
-      32   cmd_uptime
-        32   -> HAL_GetTick
-        32   -> printf
+      40   cmd_uptime
+        40   -> HAL_GetTick
+        40   -> printf
       16   cmd_ver
         16   -> printf
       64   dump_Cli
@@ -3944,6 +3969,7 @@ Warning[Pe111]: statement is unreachable
        4  ??DataTable11_25
        4  ??DataTable11_26
        4  ??DataTable11_27
+       4  ??DataTable11_28
        4  ??DataTable11_3
        4  ??DataTable11_4
        4  ??DataTable11_5
@@ -4051,14 +4077,14 @@ Warning[Pe111]: statement is unreachable
       16  ?_9
       12  CLIPrompt
       44  LoopProcCLI
-     404  ProcessCommand
+     406  ProcessCommand
        6  SetCLIProc
        6  SetCLIPrompt
       30  __NVIC_SystemReset
       20  a2hex
      180  cmd_help
       14  cmd_reset
-     104  cmd_uptime
+     138  cmd_uptime
       20  cmd_ver
       64  command_buf
        1  command_index
@@ -4077,9 +4103,9 @@ Warning[Pe111]: statement is unreachable
    145 bytes in section .bss
    396 bytes in section .data
  1'489 bytes in section .rodata
- 1'810 bytes in section .text
+ 1'850 bytes in section .text
  
- 1'810 bytes of CODE  memory
+ 1'850 bytes of CODE  memory
  1'489 bytes of CONST memory
    541 bytes of DATA  memory
 

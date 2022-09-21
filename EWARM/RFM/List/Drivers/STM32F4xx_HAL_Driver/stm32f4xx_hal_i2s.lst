@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:23
+#                                                         22/Sep/2022  08:40:10
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -18,7 +19,8 @@
 #        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
 #        --no_clustering --no_scheduling --debug --endian=little
 #        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
-#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Systems\Embedded Workbench 9.0 EWARM FS
+#        9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -39,7 +41,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_i2s.o.d
 #    Locale            =  C
 #    List file         =
@@ -341,7 +344,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     278            {
     279              return HAL_ERROR;
    \        0xA   0x2001             MOVS     R0,#+1
-   \        0xC   0xE0D0             B.N      ??HAL_I2S_Init_1
+   \        0xC   0xE0D5             B.N      ??HAL_I2S_Init_1
     280            }
     281          
     282            /* Check the I2S parameters */
@@ -436,7 +439,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     343                /* Packet length is 16 bits */
     344                packetlength = 16U;
    \       0x50   0x2010             MOVS     R0,#+16
-   \       0x52   0x0006             MOVS     R6,R0
+   \       0x52   0x0005             MOVS     R5,R0
    \       0x54   0xE001             B.N      ??HAL_I2S_Init_5
     345              }
     346              else
@@ -445,7 +448,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     349                packetlength = 32U;
    \                     ??HAL_I2S_Init_4: (+1)
    \       0x56   0x2020             MOVS     R0,#+32
-   \       0x58   0x0006             MOVS     R6,R0
+   \       0x58   0x0005             MOVS     R5,R0
     350              }
     351          
     352              /* I2S standard */
@@ -457,7 +460,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     354              {
     355                /* In I2S standard packet lenght is multiplied by 2 */
     356                packetlength = packetlength * 2U;
-   \       0x60   0x0076             LSLS     R6,R6,#+1
+   \       0x60   0x006D             LSLS     R5,R5,#+1
     357              }
     358          
     359              /* Get the source clock value **********************************************/
@@ -475,7 +478,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    \                     ??HAL_I2S_Init_6: (+1)
    \       0x62   0x2001             MOVS     R0,#+1
    \       0x64   0x.... 0x....      BL       HAL_RCCEx_GetPeriphCLKFreq
-   \       0x68   0x0005             MOVS     R5,R0
+   \       0x68   0x0007             MOVS     R7,R0
     371          #endif
     372          
     373              /* Compute the Real divider depending on the MCLK output state, with a floating point */
@@ -491,8 +494,8 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    \       0x76   0xD009             BEQ.N    ??HAL_I2S_Init_8
     378                {
     379                  tmp = (uint32_t)(((((i2sclk / (packetlength * 4U)) * 10U) / hi2s->Init.AudioFreq)) + 5U);
-   \       0x78   0x00B0             LSLS     R0,R6,#+2
-   \       0x7A   0xFBB5 0xF1F0      UDIV     R1,R5,R0
+   \       0x78   0x00A8             LSLS     R0,R5,#+2
+   \       0x7A   0xFBB7 0xF1F0      UDIV     R1,R7,R0
    \       0x7E   0x200A             MOVS     R0,#+10
    \       0x80   0x4341             MULS     R1,R0,R1
    \       0x82   0x6960             LDR      R0,[R4, #+20]
@@ -504,8 +507,8 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     382                {
     383                  tmp = (uint32_t)(((((i2sclk / (packetlength * 8U)) * 10U) / hi2s->Init.AudioFreq)) + 5U);
    \                     ??HAL_I2S_Init_8: (+1)
-   \       0x8C   0x00F0             LSLS     R0,R6,#+3
-   \       0x8E   0xFBB5 0xF1F0      UDIV     R1,R5,R0
+   \       0x8C   0x00E8             LSLS     R0,R5,#+3
+   \       0x8E   0xFBB7 0xF1F0      UDIV     R1,R7,R0
    \       0x92   0x200A             MOVS     R0,#+10
    \       0x94   0x4341             MULS     R1,R0,R1
    \       0x96   0x6960             LDR      R0,[R4, #+20]
@@ -519,7 +522,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     388                /* MCLK output is disabled */
     389                tmp = (uint32_t)(((((i2sclk / packetlength) * 10U) / hi2s->Init.AudioFreq)) + 5U);
    \                     ??HAL_I2S_Init_7: (+1)
-   \       0xA0   0xFBB5 0xF1F6      UDIV     R1,R5,R6
+   \       0xA0   0xFBB7 0xF1F5      UDIV     R1,R7,R5
    \       0xA4   0x200A             MOVS     R0,#+10
    \       0xA6   0x4341             MULS     R1,R0,R1
    \       0xA8   0x6960             LDR      R0,[R4, #+20]
@@ -531,20 +534,20 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     393              tmp = tmp / 10U;
    \                     ??HAL_I2S_Init_9: (+1)
    \       0xB0   0x210A             MOVS     R1,#+10
-   \       0xB2   0xFBB0 0xF7F1      UDIV     R7,R0,R1
+   \       0xB2   0xFBB0 0xF6F1      UDIV     R6,R0,R1
     394          
     395              /* Check the parity of the divider */
     396              i2sodd = (uint32_t)(tmp & (uint32_t)1U);
-   \       0xB6   0xF017 0x0301      ANDS     R3,R7,#0x1
+   \       0xB6   0xF016 0x0201      ANDS     R2,R6,#0x1
     397          
     398              /* Compute the i2sdiv prescaler */
     399              i2sdiv = (uint32_t)((tmp - i2sodd) / 2U);
-   \       0xBA   0x1AFA             SUBS     R2,R7,R3
-   \       0xBC   0x0852             LSRS     R2,R2,#+1
+   \       0xBA   0x1AB1             SUBS     R1,R6,R2
+   \       0xBC   0x0849             LSRS     R1,R1,#+1
     400          
     401              /* Get the Mask for the Odd bit (SPI_I2SPR[8]) register */
     402              i2sodd = (uint32_t)(i2sodd << 8U);
-   \       0xBE   0x021B             LSLS     R3,R3,#+8
+   \       0xBE   0x0212             LSLS     R2,R2,#+8
    \       0xC0   0xE001             B.N      ??HAL_I2S_Init_10
     403            }
     404            else
@@ -552,17 +555,17 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     406              /* Set the default values */
     407              i2sdiv = 2U;
    \                     ??HAL_I2S_Init_3: (+1)
-   \       0xC2   0x2202             MOVS     R2,#+2
+   \       0xC2   0x2102             MOVS     R1,#+2
     408              i2sodd = 0U;
-   \       0xC4   0x2300             MOVS     R3,#+0
+   \       0xC4   0x2200             MOVS     R2,#+0
     409            }
     410          
     411            /* Test if the divider is 1 or 0 or greater than 0xFF */
     412            if ((i2sdiv < 2U) || (i2sdiv > 0xFFU))
    \                     ??HAL_I2S_Init_10: (+1)
-   \       0xC6   0x2A02             CMP      R2,#+2
+   \       0xC6   0x2902             CMP      R1,#+2
    \       0xC8   0xD302             BCC.N    ??HAL_I2S_Init_11
-   \       0xCA   0xF5B2 0x7F80      CMP      R2,#+256
+   \       0xCA   0xF5B1 0x7F80      CMP      R1,#+256
    \       0xCE   0xD305             BCC.N    ??HAL_I2S_Init_12
     413            {
     414              /* Set the error code and execute error callback*/
@@ -573,7 +576,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
    \       0xD6   0x6460             STR      R0,[R4, #+68]
     416              return  HAL_ERROR;
    \       0xD8   0x2001             MOVS     R0,#+1
-   \       0xDA   0xE069             B.N      ??HAL_I2S_Init_1
+   \       0xDA   0xE06E             B.N      ??HAL_I2S_Init_1
     417            }
     418          
     419            /*----------------------- SPIx I2SCFGR & I2SPR Configuration ----------------*/
@@ -581,11 +584,11 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     421            /* Write to SPIx I2SPR register the computed value */
     422            hi2s->Instance->I2SPR = (uint32_t)((uint32_t)i2sdiv | (uint32_t)(i2sodd | (uint32_t)hi2s->Init.MCLKOutput));
    \                     ??HAL_I2S_Init_12: (+1)
-   \       0xDC   0xEA53 0x0102      ORRS     R1,R3,R2
+   \       0xDC   0xEA52 0x0301      ORRS     R3,R2,R1
    \       0xE0   0x6920             LDR      R0,[R4, #+16]
-   \       0xE2   0x4301             ORRS     R1,R0,R1
+   \       0xE2   0x4303             ORRS     R3,R0,R3
    \       0xE4   0x6820             LDR      R0,[R4, #+0]
-   \       0xE6   0x6201             STR      R1,[R0, #+32]
+   \       0xE6   0x6203             STR      R3,[R0, #+32]
     423          
     424            /* Clear I2SMOD, I2SE, I2SCFG, PCMSYNC, I2SSTD, CKPOL, DATLEN and CHLEN bits */
     425            /* And configure the I2S with the I2S_InitStruct values                      */
@@ -597,19 +600,19 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     431                        hi2s->Init.Standard | hi2s->Init.DataFormat | \
     432                        hi2s->Init.CPOL));
    \       0xE8   0x6820             LDR      R0,[R4, #+0]
-   \       0xEA   0x69C1             LDR      R1,[R0, #+28]
-   \       0xEC   0xEA19 0x0101      ANDS     R1,R9,R1
+   \       0xEA   0x69C3             LDR      R3,[R0, #+28]
+   \       0xEC   0xEA19 0x0303      ANDS     R3,R9,R3
    \       0xF0   0x6860             LDR      R0,[R4, #+4]
-   \       0xF2   0x4301             ORRS     R1,R0,R1
+   \       0xF2   0x4303             ORRS     R3,R0,R3
    \       0xF4   0x68A0             LDR      R0,[R4, #+8]
-   \       0xF6   0x4301             ORRS     R1,R0,R1
+   \       0xF6   0x4303             ORRS     R3,R0,R3
    \       0xF8   0x68E0             LDR      R0,[R4, #+12]
-   \       0xFA   0x4301             ORRS     R1,R0,R1
+   \       0xFA   0x4303             ORRS     R3,R0,R3
    \       0xFC   0x69A0             LDR      R0,[R4, #+24]
-   \       0xFE   0x4301             ORRS     R1,R0,R1
-   \      0x100   0xF451 0x6100      ORRS     R1,R1,#0x800
+   \       0xFE   0x4303             ORRS     R3,R0,R3
+   \      0x100   0xF453 0x6300      ORRS     R3,R3,#0x800
    \      0x104   0x6820             LDR      R0,[R4, #+0]
-   \      0x106   0x61C1             STR      R1,[R0, #+28]
+   \      0x106   0x61C3             STR      R3,[R0, #+28]
     433          
     434          #if defined(SPI_I2SCFGR_ASTRTEN)
     435            if ((hi2s->Init.Standard == I2S_STANDARD_PCM_SHORT) || ((hi2s->Init.Standard == I2S_STANDARD_PCM_LONG)))
@@ -627,7 +630,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     447            if (hi2s->Init.FullDuplexMode == I2S_FULLDUPLEXMODE_ENABLE)
    \      0x108   0x6A20             LDR      R0,[R4, #+32]
    \      0x10A   0x2801             CMP      R0,#+1
-   \      0x10C   0xD14A             BNE.N    ??HAL_I2S_Init_13
+   \      0x10C   0xD14F             BNE.N    ??HAL_I2S_Init_13
     448            {
     449              /* Set FullDuplex I2S IrqHandler ISR if FULLDUPLEXMODE is enabled */
     450              hi2s->IrqHandlerISR = HAL_I2SEx_FullDuplex_IRQHandler;
@@ -638,63 +641,63 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     453              CLEAR_BIT(I2SxEXT(hi2s->Instance)->I2SCFGR, (SPI_I2SCFGR_CHLEN | SPI_I2SCFGR_DATLEN | SPI_I2SCFGR_CKPOL | \
     454                                                           SPI_I2SCFGR_I2SSTD | SPI_I2SCFGR_PCMSYNC | SPI_I2SCFGR_I2SCFG | \
     455                                                           SPI_I2SCFGR_I2SE | SPI_I2SCFGR_I2SMOD));
-   \      0x114   0x.... 0x....      LDR.W    R12,??DataTable3_2
+   \      0x114   0x.... 0x....      LDR.W    R3,??DataTable3_2
    \      0x118   0x6820             LDR      R0,[R4, #+0]
-   \      0x11A   0x4560             CMP      R0,R12
+   \      0x11A   0x4298             CMP      R0,R3
    \      0x11C   0xD102             BNE.N    ??HAL_I2S_Init_14
    \      0x11E   0x.... 0x....      LDR.W    R0,??DataTable3_3
    \      0x122   0xE001             B.N      ??HAL_I2S_Init_15
    \                     ??HAL_I2S_Init_14: (+1)
    \      0x124   0xF05F 0x2040      MOVS     R0,#+1073758208
    \                     ??HAL_I2S_Init_15: (+1)
-   \      0x128   0x69C1             LDR      R1,[R0, #+28]
-   \      0x12A   0xEA19 0x0901      ANDS     R9,R9,R1
-   \      0x12E   0xF8C0 0x901C      STR      R9,[R0, #+28]
+   \      0x128   0xF8D0 0xC01C      LDR      R12,[R0, #+28]
+   \      0x12C   0xEA19 0x090C      ANDS     R9,R9,R12
+   \      0x130   0xF8C0 0x901C      STR      R9,[R0, #+28]
     456              I2SxEXT(hi2s->Instance)->I2SPR = 2U;
-   \      0x132   0x6820             LDR      R0,[R4, #+0]
-   \      0x134   0x4560             CMP      R0,R12
-   \      0x136   0xD102             BNE.N    ??HAL_I2S_Init_16
-   \      0x138   0x.... 0x....      LDR.W    R0,??DataTable3_3
-   \      0x13C   0xE001             B.N      ??HAL_I2S_Init_17
+   \      0x134   0x6820             LDR      R0,[R4, #+0]
+   \      0x136   0x4298             CMP      R0,R3
+   \      0x138   0xD102             BNE.N    ??HAL_I2S_Init_16
+   \      0x13A   0x.... 0x....      LDR.W    R0,??DataTable3_3
+   \      0x13E   0xE001             B.N      ??HAL_I2S_Init_17
    \                     ??HAL_I2S_Init_16: (+1)
-   \      0x13E   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \      0x140   0xF05F 0x2040      MOVS     R0,#+1073758208
    \                     ??HAL_I2S_Init_17: (+1)
-   \      0x142   0x2102             MOVS     R1,#+2
-   \      0x144   0x6201             STR      R1,[R0, #+32]
+   \      0x144   0xF05F 0x0C02      MOVS     R12,#+2
+   \      0x148   0xF8C0 0xC020      STR      R12,[R0, #+32]
     457          
     458              /* Get the I2SCFGR register value */
     459              tmpreg = I2SxEXT(hi2s->Instance)->I2SCFGR;
-   \      0x146   0x6820             LDR      R0,[R4, #+0]
-   \      0x148   0x4560             CMP      R0,R12
-   \      0x14A   0xD102             BNE.N    ??HAL_I2S_Init_18
-   \      0x14C   0x.... 0x....      LDR.W    R0,??DataTable3_3
-   \      0x150   0xE001             B.N      ??HAL_I2S_Init_19
+   \      0x14C   0x6820             LDR      R0,[R4, #+0]
+   \      0x14E   0x4298             CMP      R0,R3
+   \      0x150   0xD102             BNE.N    ??HAL_I2S_Init_18
+   \      0x152   0x.... 0x....      LDR.W    R0,??DataTable3_3
+   \      0x156   0xE001             B.N      ??HAL_I2S_Init_19
    \                     ??HAL_I2S_Init_18: (+1)
-   \      0x152   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \      0x158   0xF05F 0x2040      MOVS     R0,#+1073758208
    \                     ??HAL_I2S_Init_19: (+1)
-   \      0x156   0x69C1             LDR      R1,[R0, #+28]
+   \      0x15C   0xF8D0 0x801C      LDR      R8,[R0, #+28]
     460          
     461              /* Get the mode to be configured for the extended I2S */
     462              if ((hi2s->Init.Mode == I2S_MODE_MASTER_TX) || (hi2s->Init.Mode == I2S_MODE_SLAVE_TX))
-   \      0x158   0x6860             LDR      R0,[R4, #+4]
-   \      0x15A   0xF5B0 0x7F00      CMP      R0,#+512
-   \      0x15E   0xD002             BEQ.N    ??HAL_I2S_Init_20
    \      0x160   0x6860             LDR      R0,[R4, #+4]
-   \      0x162   0x2800             CMP      R0,#+0
-   \      0x164   0xD103             BNE.N    ??HAL_I2S_Init_21
+   \      0x162   0xF5B0 0x7F00      CMP      R0,#+512
+   \      0x166   0xD002             BEQ.N    ??HAL_I2S_Init_20
+   \      0x168   0x6860             LDR      R0,[R4, #+4]
+   \      0x16A   0x2800             CMP      R0,#+0
+   \      0x16C   0xD103             BNE.N    ??HAL_I2S_Init_21
     463              {
     464                tmp = I2S_MODE_SLAVE_RX;
    \                     ??HAL_I2S_Init_20: (+1)
-   \      0x166   0xF44F 0x7080      MOV      R0,#+256
-   \      0x16A   0x0007             MOVS     R7,R0
-   \      0x16C   0xE001             B.N      ??HAL_I2S_Init_22
+   \      0x16E   0xF44F 0x7080      MOV      R0,#+256
+   \      0x172   0x0006             MOVS     R6,R0
+   \      0x174   0xE001             B.N      ??HAL_I2S_Init_22
     465              }
     466              else /* I2S_MODE_MASTER_RX ||  I2S_MODE_SLAVE_RX */
     467              {
     468                tmp = I2S_MODE_SLAVE_TX;
    \                     ??HAL_I2S_Init_21: (+1)
-   \      0x16E   0x2000             MOVS     R0,#+0
-   \      0x170   0x0007             MOVS     R7,R0
+   \      0x176   0x2000             MOVS     R0,#+0
+   \      0x178   0x0006             MOVS     R6,R0
     469              }
     470          
     471              /* Configure the I2S Slave with the I2S Master parameter values */
@@ -702,44 +705,43 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
     473                                   (uint16_t)(hi2s->Init.Standard | (uint16_t)(hi2s->Init.DataFormat | \
     474                                              (uint16_t)hi2s->Init.CPOL))));
    \                     ??HAL_I2S_Init_22: (+1)
-   \      0x172   0x4688             MOV      R8,R1
-   \      0x174   0xEA57 0x0808      ORRS     R8,R7,R8
-   \      0x178   0x68A0             LDR      R0,[R4, #+8]
-   \      0x17A   0xEA50 0x0808      ORRS     R8,R0,R8
-   \      0x17E   0x68E0             LDR      R0,[R4, #+12]
-   \      0x180   0xEA50 0x0808      ORRS     R8,R0,R8
-   \      0x184   0x69A0             LDR      R0,[R4, #+24]
-   \      0x186   0xEA50 0x0808      ORRS     R8,R0,R8
-   \      0x18A   0xF458 0x6800      ORRS     R8,R8,#0x800
+   \      0x17A   0xF8D4 0xC008      LDR      R12,[R4, #+8]
+   \      0x17E   0xF8D4 0xE00C      LDR      LR,[R4, #+12]
+   \      0x182   0x69A0             LDR      R0,[R4, #+24]
+   \      0x184   0xEA50 0x0E0E      ORRS     LR,R0,LR
+   \      0x188   0xEA5E 0x0C0C      ORRS     R12,LR,R12
+   \      0x18C   0xEA5C 0x0C06      ORRS     R12,R12,R6
+   \      0x190   0xF45C 0x6C00      ORRS     R12,R12,#0x800
+   \      0x194   0xEA5C 0x0808      ORRS     R8,R12,R8
     475          
     476              /* Write to SPIx I2SCFGR */
     477              WRITE_REG(I2SxEXT(hi2s->Instance)->I2SCFGR, tmpreg);
-   \      0x18E   0x6820             LDR      R0,[R4, #+0]
-   \      0x190   0x4560             CMP      R0,R12
-   \      0x192   0xD102             BNE.N    ??HAL_I2S_Init_23
-   \      0x194   0x.... 0x....      LDR.W    R0,??DataTable3_3
-   \      0x198   0xE001             B.N      ??HAL_I2S_Init_24
+   \      0x198   0x6820             LDR      R0,[R4, #+0]
+   \      0x19A   0x4298             CMP      R0,R3
+   \      0x19C   0xD102             BNE.N    ??HAL_I2S_Init_23
+   \      0x19E   0x.... 0x....      LDR.W    R0,??DataTable3_3
+   \      0x1A2   0xE001             B.N      ??HAL_I2S_Init_24
    \                     ??HAL_I2S_Init_23: (+1)
-   \      0x19A   0xF05F 0x2040      MOVS     R0,#+1073758208
+   \      0x1A4   0xF05F 0x2040      MOVS     R0,#+1073758208
    \                     ??HAL_I2S_Init_24: (+1)
-   \      0x19E   0x4641             MOV      R1,R8
-   \      0x1A0   0xB289             UXTH     R1,R1
-   \      0x1A2   0x61C1             STR      R1,[R0, #+28]
+   \      0x1A8   0x4643             MOV      R3,R8
+   \      0x1AA   0xB29B             UXTH     R3,R3
+   \      0x1AC   0x61C3             STR      R3,[R0, #+28]
     478            }
     479          #endif /* SPI_I2S_FULLDUPLEX_SUPPORT */
     480          
     481            hi2s->ErrorCode = HAL_I2S_ERROR_NONE;
    \                     ??HAL_I2S_Init_13: (+1)
-   \      0x1A4   0x2000             MOVS     R0,#+0
-   \      0x1A6   0x6460             STR      R0,[R4, #+68]
+   \      0x1AE   0x2000             MOVS     R0,#+0
+   \      0x1B0   0x6460             STR      R0,[R4, #+68]
     482            hi2s->State     = HAL_I2S_STATE_READY;
-   \      0x1A8   0x2001             MOVS     R0,#+1
-   \      0x1AA   0xF884 0x0041      STRB     R0,[R4, #+65]
+   \      0x1B2   0x2001             MOVS     R0,#+1
+   \      0x1B4   0xF884 0x0041      STRB     R0,[R4, #+65]
     483          
     484            return HAL_OK;
-   \      0x1AE   0x2000             MOVS     R0,#+0
+   \      0x1B8   0x2000             MOVS     R0,#+0
    \                     ??HAL_I2S_Init_1: (+1)
-   \      0x1B0   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}
+   \      0x1BA   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}
     485          }
     486          
     487          /**
@@ -3940,7 +3942,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
        4  HAL_I2S_GetError
        6  HAL_I2S_GetState
       12  HAL_I2S_IRQHandler
-     436  HAL_I2S_Init
+     446  HAL_I2S_Init
        2  HAL_I2S_MspDeInit
        2  HAL_I2S_MspInit
      284  HAL_I2S_Receive
@@ -3964,9 +3966,9 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i
       84  I2S_WaitFlagStateUntilTimeout
 
  
- 3'442 bytes in section .text
+ 3'452 bytes in section .text
  
- 3'428 bytes of CODE memory (+ 14 bytes shared)
+ 3'438 bytes of CODE memory (+ 14 bytes shared)
 
 Errors: none
 Warnings: none

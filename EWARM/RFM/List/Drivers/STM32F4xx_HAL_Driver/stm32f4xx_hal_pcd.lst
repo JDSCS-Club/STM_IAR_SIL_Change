@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:24
+#                                                         22/Sep/2022  08:40:10
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -18,7 +19,8 @@
 #        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
 #        --no_clustering --no_scheduling --debug --endian=little
 #        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
-#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Systems\Embedded Workbench 9.0 EWARM FS
+#        9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -39,7 +41,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_pcd.o.d
 #    Locale            =  C
 #    List file         =
@@ -2723,95 +2726,97 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_p
    1728            PCD_EPTypeDef *ep;
    1729          
    1730            if ((ep_addr & 0x80U) == 0x80U)
-   \       0x10   0x0628             LSLS     R0,R5,#+24
-   \       0x12   0xD50D             BPL.N    ??HAL_PCD_EP_Open_0
+   \       0x10   0x0028             MOVS     R0,R5
+   \       0x12   0xB2C0             UXTB     R0,R0
+   \       0x14   0x0600             LSLS     R0,R0,#+24
+   \       0x16   0xD50D             BPL.N    ??HAL_PCD_EP_Open_0
    1731            {
    1732              ep = &hpcd->IN_ep[ep_addr & EP_ADDR_MSK];
-   \       0x14   0x0029             MOVS     R1,R5
-   \       0x16   0xB2C9             UXTB     R1,R1
-   \       0x18   0xF011 0x010F      ANDS     R1,R1,#0xF
-   \       0x1C   0x201C             MOVS     R0,#+28
-   \       0x1E   0x4341             MULS     R1,R0,R1
-   \       0x20   0xEB04 0x0001      ADD      R0,R4,R1
-   \       0x24   0xF110 0x093C      ADDS     R9,R0,#+60
+   \       0x18   0x0029             MOVS     R1,R5
+   \       0x1A   0xB2C9             UXTB     R1,R1
+   \       0x1C   0xF011 0x010F      ANDS     R1,R1,#0xF
+   \       0x20   0x201C             MOVS     R0,#+28
+   \       0x22   0x4341             MULS     R1,R0,R1
+   \       0x24   0xEB04 0x0001      ADD      R0,R4,R1
+   \       0x28   0xF110 0x093C      ADDS     R9,R0,#+60
    1733              ep->is_in = 1U;
-   \       0x28   0x2001             MOVS     R0,#+1
-   \       0x2A   0xF889 0x0001      STRB     R0,[R9, #+1]
-   \       0x2E   0xE00C             B.N      ??HAL_PCD_EP_Open_1
+   \       0x2C   0x2001             MOVS     R0,#+1
+   \       0x2E   0xF889 0x0001      STRB     R0,[R9, #+1]
+   \       0x32   0xE00C             B.N      ??HAL_PCD_EP_Open_1
    1734            }
    1735            else
    1736            {
    1737              ep = &hpcd->OUT_ep[ep_addr & EP_ADDR_MSK];
    \                     ??HAL_PCD_EP_Open_0: (+1)
-   \       0x30   0x0029             MOVS     R1,R5
-   \       0x32   0xB2C9             UXTB     R1,R1
-   \       0x34   0xF011 0x010F      ANDS     R1,R1,#0xF
-   \       0x38   0x201C             MOVS     R0,#+28
-   \       0x3A   0x4341             MULS     R1,R0,R1
-   \       0x3C   0xEB04 0x0001      ADD      R0,R4,R1
-   \       0x40   0xF510 0x79FE      ADDS     R9,R0,#+508
+   \       0x34   0x0029             MOVS     R1,R5
+   \       0x36   0xB2C9             UXTB     R1,R1
+   \       0x38   0xF011 0x010F      ANDS     R1,R1,#0xF
+   \       0x3C   0x201C             MOVS     R0,#+28
+   \       0x3E   0x4341             MULS     R1,R0,R1
+   \       0x40   0xEB04 0x0001      ADD      R0,R4,R1
+   \       0x44   0xF510 0x79FE      ADDS     R9,R0,#+508
    1738              ep->is_in = 0U;
-   \       0x44   0x2000             MOVS     R0,#+0
-   \       0x46   0xF889 0x0001      STRB     R0,[R9, #+1]
+   \       0x48   0x2000             MOVS     R0,#+0
+   \       0x4A   0xF889 0x0001      STRB     R0,[R9, #+1]
    1739            }
    1740          
    1741            ep->num = ep_addr & EP_ADDR_MSK;
    \                     ??HAL_PCD_EP_Open_1: (+1)
-   \       0x4A   0xF015 0x000F      ANDS     R0,R5,#0xF
-   \       0x4E   0xF889 0x0000      STRB     R0,[R9, #+0]
+   \       0x4E   0xF015 0x000F      ANDS     R0,R5,#0xF
+   \       0x52   0xF889 0x0000      STRB     R0,[R9, #+0]
    1742            ep->maxpacket = ep_mps;
-   \       0x52   0x0030             MOVS     R0,R6
-   \       0x54   0xB280             UXTH     R0,R0
-   \       0x56   0xF8C9 0x0008      STR      R0,[R9, #+8]
+   \       0x56   0x0030             MOVS     R0,R6
+   \       0x58   0xB280             UXTH     R0,R0
+   \       0x5A   0xF8C9 0x0008      STR      R0,[R9, #+8]
    1743            ep->type = ep_type;
-   \       0x5A   0xF889 0x7003      STRB     R7,[R9, #+3]
+   \       0x5E   0xF889 0x7003      STRB     R7,[R9, #+3]
    1744          
    1745            if (ep->is_in != 0U)
-   \       0x5E   0xF899 0x0001      LDRB     R0,[R9, #+1]
-   \       0x62   0x2800             CMP      R0,#+0
-   \       0x64   0xD003             BEQ.N    ??HAL_PCD_EP_Open_2
+   \       0x62   0xF899 0x0001      LDRB     R0,[R9, #+1]
+   \       0x66   0x2800             CMP      R0,#+0
+   \       0x68   0xD003             BEQ.N    ??HAL_PCD_EP_Open_2
    1746            {
    1747              /* Assign a Tx FIFO */
    1748              ep->tx_fifo_num = ep->num;
-   \       0x66   0xF899 0x0000      LDRB     R0,[R9, #+0]
-   \       0x6A   0xF8A9 0x0006      STRH     R0,[R9, #+6]
+   \       0x6A   0xF899 0x0000      LDRB     R0,[R9, #+0]
+   \       0x6E   0xF8A9 0x0006      STRH     R0,[R9, #+6]
    1749            }
    1750            /* Set initial data PID. */
    1751            if (ep_type == EP_TYPE_BULK)
    \                     ??HAL_PCD_EP_Open_2: (+1)
-   \       0x6E   0x0038             MOVS     R0,R7
-   \       0x70   0xB2C0             UXTB     R0,R0
-   \       0x72   0x2802             CMP      R0,#+2
-   \       0x74   0xD102             BNE.N    ??HAL_PCD_EP_Open_3
+   \       0x72   0x0038             MOVS     R0,R7
+   \       0x74   0xB2C0             UXTB     R0,R0
+   \       0x76   0x2802             CMP      R0,#+2
+   \       0x78   0xD102             BNE.N    ??HAL_PCD_EP_Open_3
    1752            {
    1753              ep->data_pid_start = 0U;
-   \       0x76   0x2000             MOVS     R0,#+0
-   \       0x78   0xF889 0x0004      STRB     R0,[R9, #+4]
+   \       0x7A   0x2000             MOVS     R0,#+0
+   \       0x7C   0xF889 0x0004      STRB     R0,[R9, #+4]
    1754            }
    1755          
    1756            __HAL_LOCK(hpcd);
    \                     ??HAL_PCD_EP_Open_3: (+1)
-   \       0x7C   0xF894 0x03BC      LDRB     R0,[R4, #+956]
-   \       0x80   0x2801             CMP      R0,#+1
-   \       0x82   0xD101             BNE.N    ??HAL_PCD_EP_Open_4
-   \       0x84   0x2002             MOVS     R0,#+2
-   \       0x86   0xE00B             B.N      ??HAL_PCD_EP_Open_5
+   \       0x80   0xF894 0x03BC      LDRB     R0,[R4, #+956]
+   \       0x84   0x2801             CMP      R0,#+1
+   \       0x86   0xD101             BNE.N    ??HAL_PCD_EP_Open_4
+   \       0x88   0x2002             MOVS     R0,#+2
+   \       0x8A   0xE00B             B.N      ??HAL_PCD_EP_Open_5
    \                     ??HAL_PCD_EP_Open_4: (+1)
-   \       0x88   0x2001             MOVS     R0,#+1
-   \       0x8A   0xF884 0x03BC      STRB     R0,[R4, #+956]
+   \       0x8C   0x2001             MOVS     R0,#+1
+   \       0x8E   0xF884 0x03BC      STRB     R0,[R4, #+956]
    1757            (void)USB_ActivateEndpoint(hpcd->Instance, ep);
-   \       0x8E   0x4649             MOV      R1,R9
-   \       0x90   0x6820             LDR      R0,[R4, #+0]
-   \       0x92   0x.... 0x....      BL       USB_ActivateEndpoint
+   \       0x92   0x4649             MOV      R1,R9
+   \       0x94   0x6820             LDR      R0,[R4, #+0]
+   \       0x96   0x.... 0x....      BL       USB_ActivateEndpoint
    1758            __HAL_UNLOCK(hpcd);
-   \       0x96   0x2000             MOVS     R0,#+0
-   \       0x98   0xF884 0x03BC      STRB     R0,[R4, #+956]
+   \       0x9A   0x2000             MOVS     R0,#+0
+   \       0x9C   0xF884 0x03BC      STRB     R0,[R4, #+956]
    1759          
    1760            return ret;
-   \       0x9C   0x4640             MOV      R0,R8
-   \       0x9E   0xB2C0             UXTB     R0,R0
+   \       0xA0   0x4640             MOV      R0,R8
+   \       0xA2   0xB2C0             UXTB     R0,R0
    \                     ??HAL_PCD_EP_Open_5: (+1)
-   \       0xA0   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}
+   \       0xA4   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}
    1761          }
    1762          
    1763          /**
@@ -2831,62 +2836,64 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_p
    1771            PCD_EPTypeDef *ep;
    1772          
    1773            if ((ep_addr & 0x80U) == 0x80U)
-   \        0x6   0x0628             LSLS     R0,R5,#+24
-   \        0x8   0xD50C             BPL.N    ??HAL_PCD_EP_Close_0
+   \        0x6   0x0028             MOVS     R0,R5
+   \        0x8   0xB2C0             UXTB     R0,R0
+   \        0xA   0x0600             LSLS     R0,R0,#+24
+   \        0xC   0xD50C             BPL.N    ??HAL_PCD_EP_Close_0
    1774            {
    1775              ep = &hpcd->IN_ep[ep_addr & EP_ADDR_MSK];
-   \        0xA   0x0029             MOVS     R1,R5
-   \        0xC   0xB2C9             UXTB     R1,R1
-   \        0xE   0xF011 0x010F      ANDS     R1,R1,#0xF
-   \       0x12   0x201C             MOVS     R0,#+28
-   \       0x14   0x4341             MULS     R1,R0,R1
-   \       0x16   0xEB04 0x0001      ADD      R0,R4,R1
-   \       0x1A   0xF110 0x063C      ADDS     R6,R0,#+60
+   \        0xE   0x0029             MOVS     R1,R5
+   \       0x10   0xB2C9             UXTB     R1,R1
+   \       0x12   0xF011 0x010F      ANDS     R1,R1,#0xF
+   \       0x16   0x201C             MOVS     R0,#+28
+   \       0x18   0x4341             MULS     R1,R0,R1
+   \       0x1A   0xEB04 0x0001      ADD      R0,R4,R1
+   \       0x1E   0xF110 0x063C      ADDS     R6,R0,#+60
    1776              ep->is_in = 1U;
-   \       0x1E   0x2001             MOVS     R0,#+1
-   \       0x20   0x7070             STRB     R0,[R6, #+1]
-   \       0x22   0xE00B             B.N      ??HAL_PCD_EP_Close_1
+   \       0x22   0x2001             MOVS     R0,#+1
+   \       0x24   0x7070             STRB     R0,[R6, #+1]
+   \       0x26   0xE00B             B.N      ??HAL_PCD_EP_Close_1
    1777            }
    1778            else
    1779            {
    1780              ep = &hpcd->OUT_ep[ep_addr & EP_ADDR_MSK];
    \                     ??HAL_PCD_EP_Close_0: (+1)
-   \       0x24   0x0029             MOVS     R1,R5
-   \       0x26   0xB2C9             UXTB     R1,R1
-   \       0x28   0xF011 0x010F      ANDS     R1,R1,#0xF
-   \       0x2C   0x201C             MOVS     R0,#+28
-   \       0x2E   0x4341             MULS     R1,R0,R1
-   \       0x30   0xEB04 0x0001      ADD      R0,R4,R1
-   \       0x34   0xF510 0x76FE      ADDS     R6,R0,#+508
+   \       0x28   0x0029             MOVS     R1,R5
+   \       0x2A   0xB2C9             UXTB     R1,R1
+   \       0x2C   0xF011 0x010F      ANDS     R1,R1,#0xF
+   \       0x30   0x201C             MOVS     R0,#+28
+   \       0x32   0x4341             MULS     R1,R0,R1
+   \       0x34   0xEB04 0x0001      ADD      R0,R4,R1
+   \       0x38   0xF510 0x76FE      ADDS     R6,R0,#+508
    1781              ep->is_in = 0U;
-   \       0x38   0x2000             MOVS     R0,#+0
-   \       0x3A   0x7070             STRB     R0,[R6, #+1]
+   \       0x3C   0x2000             MOVS     R0,#+0
+   \       0x3E   0x7070             STRB     R0,[R6, #+1]
    1782            }
    1783            ep->num   = ep_addr & EP_ADDR_MSK;
    \                     ??HAL_PCD_EP_Close_1: (+1)
-   \       0x3C   0xF015 0x000F      ANDS     R0,R5,#0xF
-   \       0x40   0x7030             STRB     R0,[R6, #+0]
+   \       0x40   0xF015 0x000F      ANDS     R0,R5,#0xF
+   \       0x44   0x7030             STRB     R0,[R6, #+0]
    1784          
    1785            __HAL_LOCK(hpcd);
-   \       0x42   0xF894 0x03BC      LDRB     R0,[R4, #+956]
-   \       0x46   0x2801             CMP      R0,#+1
-   \       0x48   0xD101             BNE.N    ??HAL_PCD_EP_Close_2
-   \       0x4A   0x2002             MOVS     R0,#+2
-   \       0x4C   0xE00A             B.N      ??HAL_PCD_EP_Close_3
+   \       0x46   0xF894 0x03BC      LDRB     R0,[R4, #+956]
+   \       0x4A   0x2801             CMP      R0,#+1
+   \       0x4C   0xD101             BNE.N    ??HAL_PCD_EP_Close_2
+   \       0x4E   0x2002             MOVS     R0,#+2
+   \       0x50   0xE00A             B.N      ??HAL_PCD_EP_Close_3
    \                     ??HAL_PCD_EP_Close_2: (+1)
-   \       0x4E   0x2001             MOVS     R0,#+1
-   \       0x50   0xF884 0x03BC      STRB     R0,[R4, #+956]
+   \       0x52   0x2001             MOVS     R0,#+1
+   \       0x54   0xF884 0x03BC      STRB     R0,[R4, #+956]
    1786            (void)USB_DeactivateEndpoint(hpcd->Instance, ep);
-   \       0x54   0x0031             MOVS     R1,R6
-   \       0x56   0x6820             LDR      R0,[R4, #+0]
-   \       0x58   0x.... 0x....      BL       USB_DeactivateEndpoint
+   \       0x58   0x0031             MOVS     R1,R6
+   \       0x5A   0x6820             LDR      R0,[R4, #+0]
+   \       0x5C   0x.... 0x....      BL       USB_DeactivateEndpoint
    1787            __HAL_UNLOCK(hpcd);
-   \       0x5C   0x2000             MOVS     R0,#+0
-   \       0x5E   0xF884 0x03BC      STRB     R0,[R4, #+956]
+   \       0x60   0x2000             MOVS     R0,#+0
+   \       0x62   0xF884 0x03BC      STRB     R0,[R4, #+956]
    1788            return HAL_OK;
-   \       0x62   0x2000             MOVS     R0,#+0
+   \       0x66   0x2000             MOVS     R0,#+0
    \                     ??HAL_PCD_EP_Close_3: (+1)
-   \       0x64   0xBD70             POP      {R4-R6,PC}
+   \       0x68   0xBD70             POP      {R4-R6,PC}
    1789          }
    1790          
    1791          
@@ -3102,86 +3109,88 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_p
    1889            {
    1890              return HAL_ERROR;
    \       0x14   0x2001             MOVS     R0,#+1
-   \       0x16   0xE038             B.N      ??HAL_PCD_EP_SetStall_1
+   \       0x16   0xE03A             B.N      ??HAL_PCD_EP_SetStall_1
    1891            }
    1892          
    1893            if ((0x80U & ep_addr) == 0x80U)
    \                     ??HAL_PCD_EP_SetStall_0: (+1)
-   \       0x18   0x0628             LSLS     R0,R5,#+24
-   \       0x1A   0xD50C             BPL.N    ??HAL_PCD_EP_SetStall_2
+   \       0x18   0x0028             MOVS     R0,R5
+   \       0x1A   0xB2C0             UXTB     R0,R0
+   \       0x1C   0x0600             LSLS     R0,R0,#+24
+   \       0x1E   0xD50C             BPL.N    ??HAL_PCD_EP_SetStall_2
    1894            {
    1895              ep = &hpcd->IN_ep[ep_addr & EP_ADDR_MSK];
-   \       0x1C   0x0029             MOVS     R1,R5
-   \       0x1E   0xB2C9             UXTB     R1,R1
-   \       0x20   0xF011 0x010F      ANDS     R1,R1,#0xF
-   \       0x24   0x201C             MOVS     R0,#+28
-   \       0x26   0x4341             MULS     R1,R0,R1
-   \       0x28   0xEB04 0x0001      ADD      R0,R4,R1
-   \       0x2C   0xF110 0x063C      ADDS     R6,R0,#+60
+   \       0x20   0x0029             MOVS     R1,R5
+   \       0x22   0xB2C9             UXTB     R1,R1
+   \       0x24   0xF011 0x010F      ANDS     R1,R1,#0xF
+   \       0x28   0x201C             MOVS     R0,#+28
+   \       0x2A   0x4341             MULS     R1,R0,R1
+   \       0x2C   0xEB04 0x0001      ADD      R0,R4,R1
+   \       0x30   0xF110 0x063C      ADDS     R6,R0,#+60
    1896              ep->is_in = 1U;
-   \       0x30   0x2001             MOVS     R0,#+1
-   \       0x32   0x7070             STRB     R0,[R6, #+1]
-   \       0x34   0xE009             B.N      ??HAL_PCD_EP_SetStall_3
+   \       0x34   0x2001             MOVS     R0,#+1
+   \       0x36   0x7070             STRB     R0,[R6, #+1]
+   \       0x38   0xE009             B.N      ??HAL_PCD_EP_SetStall_3
    1897            }
    1898            else
    1899            {
    1900              ep = &hpcd->OUT_ep[ep_addr];
    \                     ??HAL_PCD_EP_SetStall_2: (+1)
-   \       0x36   0x0029             MOVS     R1,R5
-   \       0x38   0xB2C9             UXTB     R1,R1
-   \       0x3A   0x201C             MOVS     R0,#+28
-   \       0x3C   0x4341             MULS     R1,R0,R1
-   \       0x3E   0xEB04 0x0001      ADD      R0,R4,R1
-   \       0x42   0xF510 0x76FE      ADDS     R6,R0,#+508
+   \       0x3A   0x0029             MOVS     R1,R5
+   \       0x3C   0xB2C9             UXTB     R1,R1
+   \       0x3E   0x201C             MOVS     R0,#+28
+   \       0x40   0x4341             MULS     R1,R0,R1
+   \       0x42   0xEB04 0x0001      ADD      R0,R4,R1
+   \       0x46   0xF510 0x76FE      ADDS     R6,R0,#+508
    1901              ep->is_in = 0U;
-   \       0x46   0x2000             MOVS     R0,#+0
-   \       0x48   0x7070             STRB     R0,[R6, #+1]
+   \       0x4A   0x2000             MOVS     R0,#+0
+   \       0x4C   0x7070             STRB     R0,[R6, #+1]
    1902            }
    1903          
    1904            ep->is_stall = 1U;
    \                     ??HAL_PCD_EP_SetStall_3: (+1)
-   \       0x4A   0x2001             MOVS     R0,#+1
-   \       0x4C   0x70B0             STRB     R0,[R6, #+2]
+   \       0x4E   0x2001             MOVS     R0,#+1
+   \       0x50   0x70B0             STRB     R0,[R6, #+2]
    1905            ep->num = ep_addr & EP_ADDR_MSK;
-   \       0x4E   0xF015 0x000F      ANDS     R0,R5,#0xF
-   \       0x52   0x7030             STRB     R0,[R6, #+0]
+   \       0x52   0xF015 0x000F      ANDS     R0,R5,#0xF
+   \       0x56   0x7030             STRB     R0,[R6, #+0]
    1906          
    1907            __HAL_LOCK(hpcd);
-   \       0x54   0xF894 0x03BC      LDRB     R0,[R4, #+956]
-   \       0x58   0x2801             CMP      R0,#+1
-   \       0x5A   0xD101             BNE.N    ??HAL_PCD_EP_SetStall_4
-   \       0x5C   0x2002             MOVS     R0,#+2
-   \       0x5E   0xE014             B.N      ??HAL_PCD_EP_SetStall_1
+   \       0x58   0xF894 0x03BC      LDRB     R0,[R4, #+956]
+   \       0x5C   0x2801             CMP      R0,#+1
+   \       0x5E   0xD101             BNE.N    ??HAL_PCD_EP_SetStall_4
+   \       0x60   0x2002             MOVS     R0,#+2
+   \       0x62   0xE014             B.N      ??HAL_PCD_EP_SetStall_1
    \                     ??HAL_PCD_EP_SetStall_4: (+1)
-   \       0x60   0x2001             MOVS     R0,#+1
-   \       0x62   0xF884 0x03BC      STRB     R0,[R4, #+956]
+   \       0x64   0x2001             MOVS     R0,#+1
+   \       0x66   0xF884 0x03BC      STRB     R0,[R4, #+956]
    1908          
    1909            (void)USB_EPSetStall(hpcd->Instance, ep);
-   \       0x66   0x0031             MOVS     R1,R6
-   \       0x68   0x6820             LDR      R0,[R4, #+0]
-   \       0x6A   0x.... 0x....      BL       USB_EPSetStall
+   \       0x6A   0x0031             MOVS     R1,R6
+   \       0x6C   0x6820             LDR      R0,[R4, #+0]
+   \       0x6E   0x.... 0x....      BL       USB_EPSetStall
    1910          
    1911            if ((ep_addr & EP_ADDR_MSK) == 0U)
-   \       0x6E   0xF015 0x0F0F      TST      R5,#0xF
-   \       0x72   0xD106             BNE.N    ??HAL_PCD_EP_SetStall_5
+   \       0x72   0xF015 0x0F0F      TST      R5,#0xF
+   \       0x76   0xD106             BNE.N    ??HAL_PCD_EP_SetStall_5
    1912            {
    1913              (void)USB_EP0_OutStart(hpcd->Instance, (uint8_t)hpcd->Init.dma_enable, (uint8_t *)hpcd->Setup);
-   \       0x74   0xF514 0x7271      ADDS     R2,R4,#+964
-   \       0x78   0x6921             LDR      R1,[R4, #+16]
-   \       0x7A   0xB2C9             UXTB     R1,R1
-   \       0x7C   0x6820             LDR      R0,[R4, #+0]
-   \       0x7E   0x.... 0x....      BL       USB_EP0_OutStart
+   \       0x78   0xF514 0x7271      ADDS     R2,R4,#+964
+   \       0x7C   0x6921             LDR      R1,[R4, #+16]
+   \       0x7E   0xB2C9             UXTB     R1,R1
+   \       0x80   0x6820             LDR      R0,[R4, #+0]
+   \       0x82   0x.... 0x....      BL       USB_EP0_OutStart
    1914            }
    1915          
    1916            __HAL_UNLOCK(hpcd);
    \                     ??HAL_PCD_EP_SetStall_5: (+1)
-   \       0x82   0x2000             MOVS     R0,#+0
-   \       0x84   0xF884 0x03BC      STRB     R0,[R4, #+956]
+   \       0x86   0x2000             MOVS     R0,#+0
+   \       0x88   0xF884 0x03BC      STRB     R0,[R4, #+956]
    1917          
    1918            return HAL_OK;
-   \       0x88   0x2000             MOVS     R0,#+0
+   \       0x8C   0x2000             MOVS     R0,#+0
    \                     ??HAL_PCD_EP_SetStall_1: (+1)
-   \       0x8A   0xBD70             POP      {R4-R6,PC}
+   \       0x8E   0xBD70             POP      {R4-R6,PC}
    1919          }
    1920          
    1921          /**
@@ -3210,72 +3219,74 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_p
    1932            {
    1933              return HAL_ERROR;
    \       0x14   0x2001             MOVS     R0,#+1
-   \       0x16   0xE030             B.N      ??HAL_PCD_EP_ClrStall_1
+   \       0x16   0xE032             B.N      ??HAL_PCD_EP_ClrStall_1
    1934            }
    1935          
    1936            if ((0x80U & ep_addr) == 0x80U)
    \                     ??HAL_PCD_EP_ClrStall_0: (+1)
-   \       0x18   0x0628             LSLS     R0,R5,#+24
-   \       0x1A   0xD50C             BPL.N    ??HAL_PCD_EP_ClrStall_2
+   \       0x18   0x0028             MOVS     R0,R5
+   \       0x1A   0xB2C0             UXTB     R0,R0
+   \       0x1C   0x0600             LSLS     R0,R0,#+24
+   \       0x1E   0xD50C             BPL.N    ??HAL_PCD_EP_ClrStall_2
    1937            {
    1938              ep = &hpcd->IN_ep[ep_addr & EP_ADDR_MSK];
-   \       0x1C   0x0029             MOVS     R1,R5
-   \       0x1E   0xB2C9             UXTB     R1,R1
-   \       0x20   0xF011 0x010F      ANDS     R1,R1,#0xF
-   \       0x24   0x201C             MOVS     R0,#+28
-   \       0x26   0x4341             MULS     R1,R0,R1
-   \       0x28   0xEB04 0x0001      ADD      R0,R4,R1
-   \       0x2C   0xF110 0x063C      ADDS     R6,R0,#+60
+   \       0x20   0x0029             MOVS     R1,R5
+   \       0x22   0xB2C9             UXTB     R1,R1
+   \       0x24   0xF011 0x010F      ANDS     R1,R1,#0xF
+   \       0x28   0x201C             MOVS     R0,#+28
+   \       0x2A   0x4341             MULS     R1,R0,R1
+   \       0x2C   0xEB04 0x0001      ADD      R0,R4,R1
+   \       0x30   0xF110 0x063C      ADDS     R6,R0,#+60
    1939              ep->is_in = 1U;
-   \       0x30   0x2001             MOVS     R0,#+1
-   \       0x32   0x7070             STRB     R0,[R6, #+1]
-   \       0x34   0xE00B             B.N      ??HAL_PCD_EP_ClrStall_3
+   \       0x34   0x2001             MOVS     R0,#+1
+   \       0x36   0x7070             STRB     R0,[R6, #+1]
+   \       0x38   0xE00B             B.N      ??HAL_PCD_EP_ClrStall_3
    1940            }
    1941            else
    1942            {
    1943              ep = &hpcd->OUT_ep[ep_addr & EP_ADDR_MSK];
    \                     ??HAL_PCD_EP_ClrStall_2: (+1)
-   \       0x36   0x0029             MOVS     R1,R5
-   \       0x38   0xB2C9             UXTB     R1,R1
-   \       0x3A   0xF011 0x010F      ANDS     R1,R1,#0xF
-   \       0x3E   0x201C             MOVS     R0,#+28
-   \       0x40   0x4341             MULS     R1,R0,R1
-   \       0x42   0xEB04 0x0001      ADD      R0,R4,R1
-   \       0x46   0xF510 0x76FE      ADDS     R6,R0,#+508
+   \       0x3A   0x0029             MOVS     R1,R5
+   \       0x3C   0xB2C9             UXTB     R1,R1
+   \       0x3E   0xF011 0x010F      ANDS     R1,R1,#0xF
+   \       0x42   0x201C             MOVS     R0,#+28
+   \       0x44   0x4341             MULS     R1,R0,R1
+   \       0x46   0xEB04 0x0001      ADD      R0,R4,R1
+   \       0x4A   0xF510 0x76FE      ADDS     R6,R0,#+508
    1944              ep->is_in = 0U;
-   \       0x4A   0x2000             MOVS     R0,#+0
-   \       0x4C   0x7070             STRB     R0,[R6, #+1]
+   \       0x4E   0x2000             MOVS     R0,#+0
+   \       0x50   0x7070             STRB     R0,[R6, #+1]
    1945            }
    1946          
    1947            ep->is_stall = 0U;
    \                     ??HAL_PCD_EP_ClrStall_3: (+1)
-   \       0x4E   0x2000             MOVS     R0,#+0
-   \       0x50   0x70B0             STRB     R0,[R6, #+2]
+   \       0x52   0x2000             MOVS     R0,#+0
+   \       0x54   0x70B0             STRB     R0,[R6, #+2]
    1948            ep->num = ep_addr & EP_ADDR_MSK;
-   \       0x52   0xF015 0x000F      ANDS     R0,R5,#0xF
-   \       0x56   0x7030             STRB     R0,[R6, #+0]
+   \       0x56   0xF015 0x000F      ANDS     R0,R5,#0xF
+   \       0x5A   0x7030             STRB     R0,[R6, #+0]
    1949          
    1950            __HAL_LOCK(hpcd);
-   \       0x58   0xF894 0x03BC      LDRB     R0,[R4, #+956]
-   \       0x5C   0x2801             CMP      R0,#+1
-   \       0x5E   0xD101             BNE.N    ??HAL_PCD_EP_ClrStall_4
-   \       0x60   0x2002             MOVS     R0,#+2
-   \       0x62   0xE00A             B.N      ??HAL_PCD_EP_ClrStall_1
+   \       0x5C   0xF894 0x03BC      LDRB     R0,[R4, #+956]
+   \       0x60   0x2801             CMP      R0,#+1
+   \       0x62   0xD101             BNE.N    ??HAL_PCD_EP_ClrStall_4
+   \       0x64   0x2002             MOVS     R0,#+2
+   \       0x66   0xE00A             B.N      ??HAL_PCD_EP_ClrStall_1
    \                     ??HAL_PCD_EP_ClrStall_4: (+1)
-   \       0x64   0x2001             MOVS     R0,#+1
-   \       0x66   0xF884 0x03BC      STRB     R0,[R4, #+956]
+   \       0x68   0x2001             MOVS     R0,#+1
+   \       0x6A   0xF884 0x03BC      STRB     R0,[R4, #+956]
    1951            (void)USB_EPClearStall(hpcd->Instance, ep);
-   \       0x6A   0x0031             MOVS     R1,R6
-   \       0x6C   0x6820             LDR      R0,[R4, #+0]
-   \       0x6E   0x.... 0x....      BL       USB_EPClearStall
+   \       0x6E   0x0031             MOVS     R1,R6
+   \       0x70   0x6820             LDR      R0,[R4, #+0]
+   \       0x72   0x.... 0x....      BL       USB_EPClearStall
    1952            __HAL_UNLOCK(hpcd);
-   \       0x72   0x2000             MOVS     R0,#+0
-   \       0x74   0xF884 0x03BC      STRB     R0,[R4, #+956]
+   \       0x76   0x2000             MOVS     R0,#+0
+   \       0x78   0xF884 0x03BC      STRB     R0,[R4, #+956]
    1953          
    1954            return HAL_OK;
-   \       0x78   0x2000             MOVS     R0,#+0
+   \       0x7C   0x2000             MOVS     R0,#+0
    \                     ??HAL_PCD_EP_ClrStall_1: (+1)
-   \       0x7A   0xBD70             POP      {R4-R6,PC}
+   \       0x7E   0xBD70             POP      {R4-R6,PC}
    1955          }
    1956          
    1957          /**
@@ -3297,40 +3308,42 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_p
    \        0xA   0x2801             CMP      R0,#+1
    \        0xC   0xD101             BNE.N    ??HAL_PCD_EP_Flush_0
    \        0xE   0x2002             MOVS     R0,#+2
-   \       0x10   0xE013             B.N      ??HAL_PCD_EP_Flush_1
+   \       0x10   0xE015             B.N      ??HAL_PCD_EP_Flush_1
    \                     ??HAL_PCD_EP_Flush_0: (+1)
    \       0x12   0x2001             MOVS     R0,#+1
    \       0x14   0xF884 0x03BC      STRB     R0,[R4, #+956]
    1966          
    1967            if ((ep_addr & 0x80U) == 0x80U)
-   \       0x18   0x0628             LSLS     R0,R5,#+24
-   \       0x1A   0xD507             BPL.N    ??HAL_PCD_EP_Flush_2
+   \       0x18   0x0028             MOVS     R0,R5
+   \       0x1A   0xB2C0             UXTB     R0,R0
+   \       0x1C   0x0600             LSLS     R0,R0,#+24
+   \       0x1E   0xD507             BPL.N    ??HAL_PCD_EP_Flush_2
    1968            {
    1969              (void)USB_FlushTxFifo(hpcd->Instance, (uint32_t)ep_addr & EP_ADDR_MSK);
-   \       0x1C   0x0029             MOVS     R1,R5
-   \       0x1E   0xB2C9             UXTB     R1,R1
-   \       0x20   0xF011 0x010F      ANDS     R1,R1,#0xF
-   \       0x24   0x6820             LDR      R0,[R4, #+0]
-   \       0x26   0x.... 0x....      BL       USB_FlushTxFifo
-   \       0x2A   0xE002             B.N      ??HAL_PCD_EP_Flush_3
+   \       0x20   0x0029             MOVS     R1,R5
+   \       0x22   0xB2C9             UXTB     R1,R1
+   \       0x24   0xF011 0x010F      ANDS     R1,R1,#0xF
+   \       0x28   0x6820             LDR      R0,[R4, #+0]
+   \       0x2A   0x.... 0x....      BL       USB_FlushTxFifo
+   \       0x2E   0xE002             B.N      ??HAL_PCD_EP_Flush_3
    1970            }
    1971            else
    1972            {
    1973              (void)USB_FlushRxFifo(hpcd->Instance);
    \                     ??HAL_PCD_EP_Flush_2: (+1)
-   \       0x2C   0x6820             LDR      R0,[R4, #+0]
-   \       0x2E   0x.... 0x....      BL       USB_FlushRxFifo
+   \       0x30   0x6820             LDR      R0,[R4, #+0]
+   \       0x32   0x.... 0x....      BL       USB_FlushRxFifo
    1974            }
    1975          
    1976            __HAL_UNLOCK(hpcd);
    \                     ??HAL_PCD_EP_Flush_3: (+1)
-   \       0x32   0x2000             MOVS     R0,#+0
-   \       0x34   0xF884 0x03BC      STRB     R0,[R4, #+956]
+   \       0x36   0x2000             MOVS     R0,#+0
+   \       0x38   0xF884 0x03BC      STRB     R0,[R4, #+956]
    1977          
    1978            return HAL_OK;
-   \       0x38   0x2000             MOVS     R0,#+0
+   \       0x3C   0x2000             MOVS     R0,#+0
    \                     ??HAL_PCD_EP_Flush_1: (+1)
-   \       0x3A   0xBD32             POP      {R1,R4,R5,PC}
+   \       0x3E   0xBD32             POP      {R1,R4,R5,PC}
    1979          }
    1980          
    1981          /**
@@ -4026,13 +4039,13 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_p
       60  HAL_PCD_DevConnect
       60  HAL_PCD_DevDisconnect
        2  HAL_PCD_DisconnectCallback
-     102  HAL_PCD_EP_Close
-     124  HAL_PCD_EP_ClrStall
-      60  HAL_PCD_EP_Flush
+     106  HAL_PCD_EP_Close
+     128  HAL_PCD_EP_ClrStall
+      64  HAL_PCD_EP_Flush
       18  HAL_PCD_EP_GetRxCount
-     164  HAL_PCD_EP_Open
+     168  HAL_PCD_EP_Open
      108  HAL_PCD_EP_Receive
-     140  HAL_PCD_EP_SetStall
+     144  HAL_PCD_EP_SetStall
      108  HAL_PCD_EP_Transmit
        6  HAL_PCD_GetState
    1'356  HAL_PCD_IRQHandler
@@ -4055,9 +4068,9 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_p
      236  PCD_WriteEmptyTxFifo
 
  
- 3'678 bytes in section .text
+ 3'698 bytes in section .text
  
- 3'652 bytes of CODE memory (+ 26 bytes shared)
+ 3'672 bytes of CODE memory (+ 26 bytes shared)
 
 Errors: none
 Warnings: none

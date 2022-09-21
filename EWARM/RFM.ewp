@@ -11,24 +11,24 @@
             <name>General</name>
             <archiveVersion>3</archiveVersion>
             <data>
-                <version>35</version>
+                <version>34</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
-                    <name>BrowseInfoPath</name>
-                    <state>RFM\BrowseInfo</state>
-                </option>
-                <option>
                     <name>ExePath</name>
-                    <state>RFM/Exe</state>
+                    <state>RFM\Exe</state>
                 </option>
                 <option>
                     <name>ObjPath</name>
-                    <state>RFM/Obj</state>
+                    <state>RFM\Obj</state>
                 </option>
                 <option>
                     <name>ListPath</name>
-                    <state>RFM/List</state>
+                    <state>RFM\List</state>
+                </option>
+                <option>
+                    <name>BrowseInfoPath</name>
+                    <state>RFM\BrowseInfo</state>
                 </option>
                 <option>
                     <name>GEndianMode</name>
@@ -62,19 +62,19 @@
                 </option>
                 <option>
                     <name>RTDescription</name>
-                    <state>A complete configuration of the C/C++14 runtime library. Full locale interface, C locale, file descriptor support, multibytes in printf and scanf, and hex floats in strtod.</state>
+                    <state>Use the full configuration of the C/C++ runtime library. Full locale interface, C locale, file descriptor support, multibytes in printf and scanf, and hex floats in strtod.</state>
                 </option>
                 <option>
                     <name>OGProductVersion</name>
-                    <state>5.10.0.159</state>
+                    <state>9.20.3.45574</state>
                 </option>
                 <option>
                     <name>OGLastSavedByProductVersion</name>
-                    <state>9.30.1.50052</state>
+                    <state>9.20.3.45574</state>
                 </option>
                 <option>
                     <name>OGChipSelectEditMenu</name>
-                    <state>STM32F407VG	ST STM32F407VG</state>
+                    <state>STM32F407VE	ST STM32F407VE</state>
                 </option>
                 <option>
                     <name>GenLowLevelInterface</name>
@@ -98,7 +98,7 @@
                 </option>
                 <option>
                     <name>GBECoreSlave</name>
-                    <version>32</version>
+                    <version>31</version>
                     <state>39</state>
                 </option>
                 <option>
@@ -115,12 +115,12 @@
                 </option>
                 <option>
                     <name>CoreVariant</name>
-                    <version>32</version>
+                    <version>31</version>
                     <state>39</state>
                 </option>
                 <option>
                     <name>GFPUDeviceSlave</name>
-                    <state>STM32F407VG	ST STM32F407VG</state>
+                    <state>STM32F407VE	ST STM32F407VE</state>
                 </option>
                 <option>
                     <name>FPU2</name>
@@ -138,7 +138,7 @@
                 </option>
                 <option>
                     <name>GFPUCoreSlave2</name>
-                    <version>32</version>
+                    <version>31</version>
                     <state>39</state>
                 </option>
                 <option>
@@ -189,7 +189,7 @@
                 <option>
                     <name>TrustZoneModes</name>
                     <version>0</version>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>OGAarch64Abi</name>
@@ -201,15 +201,7 @@
                 </option>
                 <option>
                     <name>BuildFilesPath</name>
-                    <state>RFM</state>
-                </option>
-                <option>
-                    <name>PointerAuthentication</name>
-                    <state>0</state>
-                </option>
-                <option>
-                    <name>FPU64</name>
-                    <state>1</state>
+                    <state>RFM\</state>
                 </option>
             </data>
         </settings>
@@ -694,13 +686,9 @@
             <name>ILINK</name>
             <archiveVersion>0</archiveVersion>
             <data>
-                <version>27</version>
+                <version>26</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
-                <option>
-                    <name>IlinkOutputFile</name>
-                    <state>RFM.out</state>
-                </option>
                 <option>
                     <name>IlinkLibIOConfig</name>
                     <state>1</state>
@@ -708,6 +696,10 @@
                 <option>
                     <name>IlinkInputFileSlave</name>
                     <state>0</state>
+                </option>
+                <option>
+                    <name>IlinkOutputFile</name>
+                    <state>RFM.out</state>
                 </option>
                 <option>
                     <name>IlinkDebugInfoEnable</name>
@@ -747,31 +739,31 @@
                 </option>
                 <option>
                     <name>IlinkLogFile</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkLogInitialization</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkLogModule</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkLogSection</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkLogVeneer</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkIcfOverride</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkIcfFile</name>
-                    <state>$PROJ_DIR$/stm32f407xx_flash.icf</state>
+                    <state>$TOOLKIT_DIR$\config\linker\ST\stm32f407xE.icf</state>
                 </option>
                 <option>
                     <name>IlinkIcfFileSlave</name>
@@ -902,15 +894,15 @@
                 </option>
                 <option>
                     <name>IlinkLogAutoLibSelect</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkLogRedirSymbols</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkLogUnusedFragments</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkCrcReverseByteOrder</name>
@@ -976,7 +968,7 @@
                 </option>
                 <option>
                     <name>IlinkLogCallGraph</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkIcfFile_AltDefault</name>
@@ -1028,23 +1020,23 @@
                 </option>
                 <option>
                     <name>IlinkLogCrtRoutineSelection</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkLogFragmentInfo</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkLogInlining</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkLogMerging</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkDemangle</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkWrapperFileEnable</name>
@@ -1053,14 +1045,6 @@
                 <option>
                     <name>IlinkWrapperFile</name>
                     <state></state>
-                </option>
-                <option>
-                    <name>IlinkProcessor</name>
-                    <state>1</state>
-                </option>
-                <option>
-                    <name>IlinkFpuProcessor</name>
-                    <state>1</state>
                 </option>
             </data>
         </settings>

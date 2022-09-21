@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:22
+#                                                         22/Sep/2022  08:40:07
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                     =  thumb
@@ -17,7 +18,8 @@
 #        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
 #        --no_clustering --no_scheduling --debug --endian=little
 #        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
-#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Systems\Embedded Workbench 9.0 EWARM FS
+#        9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -38,7 +40,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\radio\Si446x\radio_si4463.o.d
 #    Locale                       =  C
 #    List file                    =
@@ -758,10 +761,10 @@ Warning[Pe177]: variable "i" was declared but never referenced
     330          		/* Send test packet */
     331          		currTime = HAL_GetTick();	// xTaskGetTickCount();
    \       0x22   0x.... 0x....      BL       HAL_GetTick
-   \       0x26   0x0004             MOVS     R4,R0
+   \       0x26   0x0005             MOVS     R5,R0
     332          
     333          		if( currTime - oldTime < 1000 )
-   \       0x28   0x1BA0             SUBS     R0,R4,R6
+   \       0x28   0x1BA8             SUBS     R0,R5,R6
    \       0x2A   0xF5B0 0x7F7A      CMP      R0,#+1000
    \       0x2E   0xDBF6             BLT.N    ??SI4463_Test_0
     334          		{
@@ -771,14 +774,14 @@ Warning[Pe177]: variable "i" was declared but never referenced
     338          		{
     339          			oldTime = currTime;
    \                     ??SI4463_Test_1: (+1)
-   \       0x30   0x0026             MOVS     R6,R4
+   \       0x30   0x002E             MOVS     R6,R5
     340          		}
     341          
     342          		printf( "\n" );
    \       0x32   0x....             ADR.N    R0,??SI4463_Interrupt_0
    \       0x34   0x.... 0x....      BL       printf
     343          		printf( "[%d][%03d] ", nCnt++, currTime );
-   \       0x38   0x0022             MOVS     R2,R4
+   \       0x38   0x002A             MOVS     R2,R5
    \       0x3A   0x0039             MOVS     R1,R7
    \       0x3C   0x.... 0x....      LDR.W    R0,??DataTable19_27
    \       0x40   0x.... 0x....      BL       printf
@@ -790,18 +793,24 @@ Warning[Pe177]: variable "i" was declared but never referenced
    \       0x46   0x.... 0x....      LDR.W    R0,??DataTable19_24
    \       0x4A   0x6800             LDR      R0,[R0, #+0]
    \       0x4C   0x2800             CMP      R0,#+0
-   \       0x4E   0xD02E             BEQ.N    ??SI4463_Test_2
+   \       0x4E   0xD038             BEQ.N    ??SI4463_Test_2
     348          		{
     349          			dtTime = currTime - oldTime;
-   \       0x50   0x2000             MOVS     R0,#+0
-   \       0x52   0x0005             MOVS     R5,R0
+   \       0x50   0x1BA8             SUBS     R0,R5,R6
+   \       0x52   0x0004             MOVS     R4,R0
     350          
     351          			oldTime = currTime;
-   \       0x54   0x0026             MOVS     R6,R4
+   \       0x54   0x002E             MOVS     R6,R5
     352          
     353          			if ( dtTime != 0 )
+   \       0x56   0x2C00             CMP      R4,#+0
+   \       0x58   0xD007             BEQ.N    ??SI4463_Test_3
     354          			{
     355          				printf( "Speed : %d bps\n", 6400000 / dtTime );
+   \       0x5A   0x.... 0x....      LDR.W    R0,??DataTable19_28
+   \       0x5E   0xFB90 0xF1F4      SDIV     R1,R0,R4
+   \       0x62   0x.... 0x....      LDR.W    R0,??DataTable19_29
+   \       0x66   0x.... 0x....      BL       printf
     356          			}
     357          
     358          			/*
@@ -818,7 +827,8 @@ Warning[Pe009]: nested comment is not allowed
     367          
     368          //			idxArr = ( idxArr + 1 ) % 2;
     369          			idxArr++;
-   \       0x56   0xF118 0x0801      ADDS     R8,R8,#+1
+   \                     ??SI4463_Test_3: (+1)
+   \       0x6A   0xF118 0x0801      ADDS     R8,R8,#+1
     370          			/*
     371          			memset( outgoingBuffer, 0x00, APP_PACKET_LEN );
     372          			/*/
@@ -840,18 +850,18 @@ Warning[Pe009]: nested comment is not allowed
 "C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\Si446x\radio_si4463.c",322  Warning[Pe177]: 
           variable "dataBps" was declared but never referenced
     373          			for ( idx = 0; idx < APP_PACKET_LEN; idx++ )
-   \       0x5A   0xF05F 0x0A00      MOVS     R10,#+0
-   \                     ??SI4463_Test_3: (+1)
-   \       0x5E   0xF1BA 0x0F3E      CMP      R10,#+62
-   \       0x62   0xDA08             BGE.N    ??SI4463_Test_4
+   \       0x6E   0xF05F 0x0A00      MOVS     R10,#+0
+   \                     ??SI4463_Test_4: (+1)
+   \       0x72   0xF1BA 0x0F3E      CMP      R10,#+62
+   \       0x76   0xDA08             BGE.N    ??SI4463_Test_5
     374          			{
     375          				outgoingBuffer[idx] = idxArr + idx;
-   \       0x64   0xEB1A 0x0008      ADDS     R0,R10,R8
-   \       0x68   0x.... 0x....      LDR.W    R1,??DataTable19_28
-   \       0x6C   0xF801 0x000A      STRB     R0,[R1, R10]
+   \       0x78   0xEB1A 0x0008      ADDS     R0,R10,R8
+   \       0x7C   0x.... 0x....      LDR.W    R1,??DataTable19_30
+   \       0x80   0xF801 0x000A      STRB     R0,[R1, R10]
     376          			}
-   \       0x70   0xF11A 0x0A01      ADDS     R10,R10,#+1
-   \       0x74   0xE7F3             B.N      ??SI4463_Test_3
+   \       0x84   0xF11A 0x0A01      ADDS     R10,R10,#+1
+   \       0x88   0xE7F3             B.N      ??SI4463_Test_4
     377          			//	*/
     378          
     379          //			outgoingBuffer[0] = 0xE0;
@@ -875,35 +885,35 @@ Warning[Pe009]: nested comment is not allowed
     397          			{
     398          //				HAL_Delay( 10 );
     399          				SI4463_Transmit( &si4463, outgoingBuffer, APP_PACKET_LEN );
-   \                     ??SI4463_Test_4: (+1)
-   \       0x76   0x.... 0x....      LDR.W    R11,??DataTable19_28
-   \       0x7A   0x223E             MOVS     R2,#+62
-   \       0x7C   0x4659             MOV      R1,R11
-   \       0x7E   0x....             LDR.N    R0,??DataTable19_3
-   \       0x80   0x.... 0x....      BL       SI4463_Transmit
+   \                     ??SI4463_Test_5: (+1)
+   \       0x8A   0x.... 0x....      LDR.W    R11,??DataTable19_30
+   \       0x8E   0x223E             MOVS     R2,#+62
+   \       0x90   0x4659             MOV      R1,R11
+   \       0x92   0x....             LDR.N    R0,??DataTable19_3
+   \       0x94   0x.... 0x....      BL       SI4463_Transmit
     400          
     401          				for ( idx = 0; idx < APP_PACKET_LEN; idx++ )
-   \       0x84   0xF05F 0x0900      MOVS     R9,#+0
-   \                     ??SI4463_Test_5: (+1)
-   \       0x88   0xF1B9 0x0F3E      CMP      R9,#+62
-   \       0x8C   0xDA07             BGE.N    ??SI4463_Test_6
+   \       0x98   0xF05F 0x0900      MOVS     R9,#+0
+   \                     ??SI4463_Test_6: (+1)
+   \       0x9C   0xF1B9 0x0F3E      CMP      R9,#+62
+   \       0xA0   0xDA07             BGE.N    ??SI4463_Test_7
     402          				{
     403          					outgoingBuffer[idx]++;
-   \       0x8E   0xF81B 0x0009      LDRB     R0,[R11, R9]
-   \       0x92   0x1C40             ADDS     R0,R0,#+1
-   \       0x94   0xF80B 0x0009      STRB     R0,[R11, R9]
+   \       0xA2   0xF81B 0x0009      LDRB     R0,[R11, R9]
+   \       0xA6   0x1C40             ADDS     R0,R0,#+1
+   \       0xA8   0xF80B 0x0009      STRB     R0,[R11, R9]
     404          				}
-   \       0x98   0xF119 0x0901      ADDS     R9,R9,#+1
-   \       0x9C   0xE7F4             B.N      ??SI4463_Test_5
+   \       0xAC   0xF119 0x0901      ADDS     R9,R9,#+1
+   \       0xB0   0xE7F4             B.N      ??SI4463_Test_6
     405          			}
     406          
     407          			printf( "Tx Cnt: %d\n", s_cntRFTx );
-   \                     ??SI4463_Test_6: (+1)
-   \       0x9E   0x.... 0x....      LDR.W    R0,??DataTable19_29
-   \       0xA2   0x6801             LDR      R1,[R0, #+0]
-   \       0xA4   0x.... 0x....      LDR.W    R0,??DataTable19_30
-   \       0xA8   0x.... 0x....      BL       printf
-   \       0xAC   0xE7B7             B.N      ??SI4463_Test_0
+   \                     ??SI4463_Test_7: (+1)
+   \       0xB2   0x.... 0x....      LDR.W    R0,??DataTable19_31
+   \       0xB6   0x6801             LDR      R1,[R0, #+0]
+   \       0xB8   0x.... 0x....      LDR.W    R0,??DataTable19_32
+   \       0xBC   0x.... 0x....      BL       printf
+   \       0xC0   0xE7AD             B.N      ??SI4463_Test_0
     408          
     409          			/*
     410          			printf( "Tx:" );
@@ -941,8 +951,8 @@ Warning[Pe009]: nested comment is not allowed
     442          
     443          			HAL_Delay( 1000 );
    \                     ??SI4463_Test_2: (+1)
-   \       0xAE   0xF44F 0x707A      MOV      R0,#+1000
-   \       0xB2   0x.... 0x....      BL       HAL_Delay
+   \       0xC2   0xF44F 0x707A      MOV      R0,#+1000
+   \       0xC6   0x.... 0x....      BL       HAL_Delay
     444          
     445          //			SI4463_GetChipStatus( &si4463 );
     446          //			SI4463_GetInterrupts( &si4463 );
@@ -953,11 +963,11 @@ Warning[Pe009]: nested comment is not allowed
     451          //			}
     452          
     453          			printf( "Rx Cnt: %d\n", s_cntRFRx );
-   \       0xB6   0x.... 0x....      LDR.W    R0,??DataTable19_31
-   \       0xBA   0x6801             LDR      R1,[R0, #+0]
-   \       0xBC   0x.... 0x....      LDR.W    R0,??DataTable19_32
-   \       0xC0   0x.... 0x....      BL       printf
-   \       0xC4   0xE7AB             B.N      ??SI4463_Test_0
+   \       0xCA   0x.... 0x....      LDR.W    R0,??DataTable19_33
+   \       0xCE   0x6801             LDR      R1,[R0, #+0]
+   \       0xD0   0x.... 0x....      LDR.W    R0,??DataTable19_34
+   \       0xD4   0x.... 0x....      BL       printf
+   \       0xD8   0xE7A1             B.N      ??SI4463_Test_0
     454          		}
     455          
     456          
@@ -997,7 +1007,7 @@ Warning[Pe009]: nested comment is not allowed
     486          
     487          	if ( HAL_GPIO_ReadPin( CTS_GPIO_Port, CTS_Pin ) == GPIO_PIN_SET )
    \        0x2   0x2140             MOVS     R1,#+64
-   \        0x4   0x.... 0x....      LDR.W    R0,??DataTable19_33
+   \        0x4   0x.... 0x....      LDR.W    R0,??DataTable19_35
    \        0x8   0x.... 0x....      BL       HAL_GPIO_ReadPin
    \        0xC   0x2801             CMP      R0,#+1
    \        0xE   0xD101             BNE.N    ??SI4463_IsCTS_0
@@ -1137,7 +1147,7 @@ Warning[Pe009]: nested comment is not allowed
    \        0xE   0xB29B             UXTH     R3,R3
    \       0x10   0x002A             MOVS     R2,R5
    \       0x12   0x0021             MOVS     R1,R4
-   \       0x14   0x....             LDR.N    R0,??DataTable19_34
+   \       0x14   0x....             LDR.N    R0,??DataTable19_36
    \       0x16   0x.... 0x....      BL       HAL_SPI_TransmitReceive
     589          
     590          #endif
@@ -1171,14 +1181,14 @@ Warning[Pe009]: nested comment is not allowed
     613          	printf( "[%d] Pin_SDN(1)\n", HAL_GetTick() );	// xTaskGetTickCount() );
    \        0x2   0x.... 0x....      BL       HAL_GetTick
    \        0x6   0x0001             MOVS     R1,R0
-   \        0x8   0x....             LDR.N    R0,??DataTable19_35
+   \        0x8   0x....             LDR.N    R0,??DataTable19_37
    \        0xA   0x.... 0x....      BL       printf
     614          
     615          	//	Power On
     616          	HAL_GPIO_WritePin( PWR_RF_GPIO_Port, PWR_RF_Pin, GPIO_PIN_SET );
    \        0xE   0x2201             MOVS     R2,#+1
    \       0x10   0x2104             MOVS     R1,#+4
-   \       0x12   0x....             LDR.N    R0,??DataTable19_33
+   \       0x12   0x....             LDR.N    R0,??DataTable19_35
    \       0x14   0x.... 0x....      BL       HAL_GPIO_WritePin
     617          
     618            HAL_Delay(10);
@@ -1188,7 +1198,7 @@ Warning[Pe009]: nested comment is not allowed
     620          	HAL_GPIO_WritePin( SHUTDOWN_GPIO_Port, SHUTDOWN_Pin, GPIO_PIN_SET );
    \       0x1E   0x2201             MOVS     R2,#+1
    \       0x20   0x2120             MOVS     R1,#+32
-   \       0x22   0x....             LDR.N    R0,??DataTable19_36
+   \       0x22   0x....             LDR.N    R0,??DataTable19_38
    \       0x24   0x.... 0x....      BL       HAL_GPIO_WritePin
     621          
     622          //	printf( "%s(%d)\n", __func__, __LINE__ );
@@ -1206,13 +1216,13 @@ Warning[Pe009]: nested comment is not allowed
     629          	printf( "[%d] Pin_SDN(0)\n", HAL_GetTick() );	// xTaskGetTickCount() );
    \        0x2   0x.... 0x....      BL       HAL_GetTick
    \        0x6   0x0001             MOVS     R1,R0
-   \        0x8   0x....             LDR.N    R0,??DataTable19_37
+   \        0x8   0x....             LDR.N    R0,??DataTable19_39
    \        0xA   0x.... 0x....      BL       printf
     630          
     631          	HAL_GPIO_WritePin( SHUTDOWN_GPIO_Port, SHUTDOWN_Pin, GPIO_PIN_RESET );
    \        0xE   0x2200             MOVS     R2,#+0
    \       0x10   0x2120             MOVS     R1,#+32
-   \       0x12   0x....             LDR.N    R0,??DataTable19_36
+   \       0x12   0x....             LDR.N    R0,??DataTable19_38
    \       0x14   0x.... 0x....      BL       HAL_GPIO_WritePin
     632          
     633          
@@ -1231,7 +1241,7 @@ Warning[Pe009]: nested comment is not allowed
     641          	HAL_GPIO_WritePin( nSEL_GPIO_Port, nSEL_Pin, GPIO_PIN_RESET );
    \        0x2   0x2200             MOVS     R2,#+0
    \        0x4   0x2110             MOVS     R1,#+16
-   \        0x6   0x....             LDR.N    R0,??DataTable19_38
+   \        0x6   0x....             LDR.N    R0,??DataTable19_40
    \        0x8   0x.... 0x....      BL       HAL_GPIO_WritePin
     642          
     643          //	printf( "%s(%d)\n", __func__, __LINE__ );
@@ -1256,7 +1266,7 @@ Warning[Pe009]: nested comment is not allowed
     657          	HAL_GPIO_WritePin( nSEL_GPIO_Port, nSEL_Pin, GPIO_PIN_SET );
    \        0x2   0x2201             MOVS     R2,#+1
    \        0x4   0x2110             MOVS     R1,#+16
-   \        0x6   0x....             LDR.N    R0,??DataTable19_38
+   \        0x6   0x....             LDR.N    R0,??DataTable19_40
    \        0x8   0x.... 0x....      BL       HAL_GPIO_WritePin
     658          
     659          #endif
@@ -1281,7 +1291,7 @@ Warning[Pe009]: nested comment is not allowed
     671          {
     672          	return s_bIntFlag;
    \                     SI4463_GetIntFlag: (+1)
-   \        0x0   0x....             LDR.N    R0,??DataTable19_39
+   \        0x0   0x....             LDR.N    R0,??DataTable19_41
    \        0x2   0x6800             LDR      R0,[R0, #+0]
    \        0x4   0x4770             BX       LR
     673          }
@@ -1294,7 +1304,7 @@ Warning[Pe009]: nested comment is not allowed
     678          {
     679          	s_bIntFlag = bIntFlag;
    \                     SI4463_SetIntFlag: (+1)
-   \        0x0   0x....             LDR.N    R1,??DataTable19_39
+   \        0x0   0x....             LDR.N    R1,??DataTable19_41
    \        0x2   0x6008             STR      R0,[R1, #+0]
     680          }
    \        0x4   0x4770             BX       LR
@@ -1399,7 +1409,7 @@ Warning[Pe009]: nested comment is not allowed
    \       0x32   0xD010             BEQ.N    ??SI4463_Interrupt_4
     752          		{
     753          			printf( "[Sent]Tx: " );
-   \       0x34   0x....             LDR.N    R0,??DataTable19_40
+   \       0x34   0x....             LDR.N    R0,??DataTable19_42
    \       0x36   0x.... 0x....      BL       printf
     754          			for ( idx = 0; idx < APP_PACKET_LEN; idx++ )
    \       0x3A   0x2000             MOVS     R0,#+0
@@ -1409,9 +1419,9 @@ Warning[Pe009]: nested comment is not allowed
    \       0x40   0xDA06             BGE.N    ??SI4463_Interrupt_6
     755          			{
     756          				printf( "%02X ", outgoingBuffer[idx] );
-   \       0x42   0x....             LDR.N    R0,??DataTable19_28
+   \       0x42   0x....             LDR.N    R0,??DataTable19_30
    \       0x44   0x5D41             LDRB     R1,[R0, R5]
-   \       0x46   0x....             LDR.N    R0,??DataTable19_41
+   \       0x46   0x....             LDR.N    R0,??DataTable19_43
    \       0x48   0x.... 0x....      BL       printf
     757          			}
    \       0x4C   0x1C6D             ADDS     R5,R5,#+1
@@ -1441,7 +1451,7 @@ Warning[Pe009]: nested comment is not allowed
    \       0x68   0x77A0             STRB     R0,[R4, #+30]
     768          
     769          		s_cntRFTx++;			//	RF Tx Count
-   \       0x6A   0x....             LDR.N    R0,??DataTable19_29
+   \       0x6A   0x....             LDR.N    R0,??DataTable19_31
    \       0x6C   0x6801             LDR      R1,[R0, #+0]
    \       0x6E   0x1C49             ADDS     R1,R1,#+1
    \       0x70   0x6001             STR      R1,[R0, #+0]
@@ -1462,7 +1472,7 @@ Warning[Pe009]: nested comment is not allowed
     780          		memset( incomingBuffer, 0x00, APP_PACKET_LEN );
    \       0x78   0x273E             MOVS     R7,#+62
    \       0x7A   0xF05F 0x0800      MOVS     R8,#+0
-   \       0x7E   0x....             LDR.N    R6,??DataTable19_42
+   \       0x7E   0x....             LDR.N    R6,??DataTable19_44
    \       0x80   0x46B1             MOV      R9,R6
    \       0x82   0x4642             MOV      R2,R8
    \       0x84   0x0039             MOVS     R1,R7
@@ -1490,7 +1500,7 @@ Warning[Pe009]: nested comment is not allowed
     789          			printf( "[%d]Rx: ", HAL_GetTick() );	//	xTaskGetTickCount() );
    \       0xA6   0x.... 0x....      BL       HAL_GetTick
    \       0xAA   0x0001             MOVS     R1,R0
-   \       0xAC   0x....             LDR.N    R0,??DataTable19_43
+   \       0xAC   0x....             LDR.N    R0,??DataTable19_45
    \       0xAE   0x.... 0x....      BL       printf
     790          			for ( idx = 0; idx < APP_PACKET_LEN; idx++ )
    \       0xB2   0x2000             MOVS     R0,#+0
@@ -1501,7 +1511,7 @@ Warning[Pe009]: nested comment is not allowed
     791          			{
     792          				printf( "%02X ", incomingBuffer[idx] );
    \       0xBA   0x5D71             LDRB     R1,[R6, R5]
-   \       0xBC   0x....             LDR.N    R0,??DataTable19_41
+   \       0xBC   0x....             LDR.N    R0,??DataTable19_43
    \       0xBE   0x.... 0x....      BL       printf
     793          			}
    \       0xC2   0x1C6D             ADDS     R5,R5,#+1
@@ -1547,7 +1557,7 @@ Warning[Pe009]: nested comment is not allowed
    \       0xEC   0x77E0             STRB     R0,[R4, #+31]
     811          
     812          		s_cntRFRx++;			//	RF Rx Count
-   \       0xEE   0x....             LDR.N    R0,??DataTable19_31
+   \       0xEE   0x....             LDR.N    R0,??DataTable19_33
    \       0xF0   0x6801             LDR      R1,[R0, #+0]
    \       0xF2   0x1C49             ADDS     R1,R1,#+1
    \       0xF4   0x6001             STR      R1,[R0, #+0]
@@ -1936,66 +1946,74 @@ Warning[Pe009]: nested comment is not allowed
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_28:
-   \        0x0   0x....'....        DC32     outgoingBuffer
+   \        0x0   0x0061'A800        DC32     0x61a800
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_29:
-   \        0x0   0x....'....        DC32     s_cntRFTx
+   \        0x0   0x....'....        DC32     ?_20
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_30:
-   \        0x0   0x....'....        DC32     ?_21
+   \        0x0   0x....'....        DC32     outgoingBuffer
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_31:
-   \        0x0   0x....'....        DC32     s_cntRFRx
+   \        0x0   0x....'....        DC32     s_cntRFTx
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_32:
-   \        0x0   0x....'....        DC32     ?_22
+   \        0x0   0x....'....        DC32     ?_21
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_33:
-   \        0x0   0x4002'1000        DC32     0x40021000
+   \        0x0   0x....'....        DC32     s_cntRFRx
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_34:
-   \        0x0   0x....'....        DC32     hspi1
+   \        0x0   0x....'....        DC32     ?_22
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_35:
-   \        0x0   0x....'....        DC32     ?_23
+   \        0x0   0x4002'1000        DC32     0x40021000
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_36:
-   \        0x0   0x4002'0800        DC32     0x40020800
+   \        0x0   0x....'....        DC32     hspi1
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_37:
-   \        0x0   0x....'....        DC32     ?_24
+   \        0x0   0x....'....        DC32     ?_23
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_38:
-   \        0x0   0x4002'0000        DC32     0x40020000
+   \        0x0   0x4002'0800        DC32     0x40020800
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_39:
-   \        0x0   0x....'....        DC32     s_bIntFlag
+   \        0x0   0x....'....        DC32     ?_24
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_40:
-   \        0x0   0x....'....        DC32     ?_25
+   \        0x0   0x4002'0000        DC32     0x40020000
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_41:
-   \        0x0   0x....'....        DC32     ?_26
+   \        0x0   0x....'....        DC32     s_bIntFlag
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_42:
-   \        0x0   0x....'....        DC32     incomingBuffer
+   \        0x0   0x....'....        DC32     ?_25
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable19_43:
+   \        0x0   0x....'....        DC32     ?_26
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_44:
+   \        0x0   0x....'....        DC32     incomingBuffer
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_45:
    \        0x0   0x....'....        DC32     ?_27
 
    \                                 In section .rodata, align 4
@@ -2469,6 +2487,7 @@ Warning[Pe009]: nested comment is not allowed
    \              0x20 0x00
 
    \                                 In section .rodata, align 4
+   \                     ?_20:
    \        0x0   0x53 0x70          DC8 "Speed : %d bps\012"
 
    \              0x65 0x65    
@@ -2716,6 +2735,8 @@ Warning[Pe009]: nested comment is not allowed
        4  ??DataTable19_41
        4  ??DataTable19_42
        4  ??DataTable19_43
+       4  ??DataTable19_44
+       4  ??DataTable19_45
        4  ??DataTable19_5
        4  ??DataTable19_6
        4  ??DataTable19_7
@@ -2770,7 +2791,7 @@ Warning[Pe009]: nested comment is not allowed
       14  SI4463_Select
        6  SI4463_SetIntFlag
       42  SI4463_SetShutdown
-     198  SI4463_Test
+     218  SI4463_Test
       28  SI4463_WriteRead
       64  incomingBuffer
        6  nonDelay
@@ -2787,9 +2808,9 @@ Warning[Pe009]: nested comment is not allowed
  
    201 bytes in section .bss
    562 bytes in section .rodata
- 1'770 bytes in section .text
+ 1'798 bytes in section .text
  
- 1'770 bytes of CODE  memory
+ 1'798 bytes of CODE  memory
    562 bytes of CONST memory
    201 bytes of DATA  memory
 

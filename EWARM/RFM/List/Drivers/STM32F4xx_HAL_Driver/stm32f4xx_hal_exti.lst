@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:23
+#                                                         22/Sep/2022  08:40:09
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -18,7 +19,8 @@
 #        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
 #        --no_clustering --no_scheduling --debug --endian=little
 #        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
-#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Systems\Embedded Workbench 9.0 EWARM FS
+#        9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -39,7 +41,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_exti.o.d
 #    Locale            =  C
 #    List file         =
@@ -217,7 +220,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
     152              return HAL_ERROR;
    \                     ??HAL_EXTI_SetConfigLine_0: (+1)
    \        0xC   0x2001             MOVS     R0,#+1
-   \        0xE   0xE05A             B.N      ??HAL_EXTI_SetConfigLine_2
+   \        0xE   0xE05E             B.N      ??HAL_EXTI_SetConfigLine_2
     153            }
     154          
     155            /* Check parameters */
@@ -242,7 +245,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
     167            if ((pExtiConfig->Line & EXTI_CONFIG) != 0x00u)
    \       0x1E   0x6808             LDR      R0,[R1, #+0]
    \       0x20   0x0180             LSLS     R0,R0,#+6
-   \       0x22   0xD537             BPL.N    ??HAL_EXTI_SetConfigLine_3
+   \       0x22   0xD53B             BPL.N    ??HAL_EXTI_SetConfigLine_3
     168            {
     169              assert_param(IS_EXTI_TRIGGER(pExtiConfig->Trigger));
     170          
@@ -302,7 +305,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
    \       0x54   0x6808             LDR      R0,[R1, #+0]
    \       0x56   0xF010 0x60C0      ANDS     R0,R0,#0x6000000
    \       0x5A   0xF1B0 0x6FC0      CMP      R0,#+100663296
-   \       0x5E   0xD119             BNE.N    ??HAL_EXTI_SetConfigLine_3
+   \       0x5E   0xD11D             BNE.N    ??HAL_EXTI_SetConfigLine_3
     196              {
     197                assert_param(IS_EXTI_GPIO_PORT(pExtiConfig->GPIOSel));
     198                assert_param(IS_EXTI_GPIO_PIN(linepos));
@@ -311,24 +314,26 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
    \       0x60   0x....             LDR.N    R6,??DataTable6_2
    \       0x62   0x0020             MOVS     R0,R4
    \       0x64   0x0880             LSRS     R0,R0,#+2
-   \       0x66   0xF856 0x0020      LDR      R0,[R6, R0, LSL #+2]
+   \       0x66   0xF856 0x7020      LDR      R7,[R6, R0, LSL #+2]
     201                regval &= ~(SYSCFG_EXTICR1_EXTI0 << (SYSCFG_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
-   \       0x6A   0x270F             MOVS     R7,#+15
-   \       0x6C   0xEA5F 0x0C84      LSLS     R12,R4,#+2
-   \       0x70   0xF01C 0x0C0C      ANDS     R12,R12,#0xC
-   \       0x74   0xFA17 0xF70C      LSLS     R7,R7,R12
-   \       0x78   0x43B8             BICS     R0,R0,R7
+   \       0x6A   0xF05F 0x0C0F      MOVS     R12,#+15
+   \       0x6E   0xF014 0x0003      ANDS     R0,R4,#0x3
+   \       0x72   0xB2C0             UXTB     R0,R0
+   \       0x74   0x0080             LSLS     R0,R0,#+2
+   \       0x76   0xFA1C 0xFC00      LSLS     R12,R12,R0
+   \       0x7A   0xEA37 0x070C      BICS     R7,R7,R12
     202                regval |= (pExtiConfig->GPIOSel << (SYSCFG_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
-   \       0x7A   0x68CF             LDR      R7,[R1, #+12]
-   \       0x7C   0xEA5F 0x0C84      LSLS     R12,R4,#+2
-   \       0x80   0xF01C 0x0C0C      ANDS     R12,R12,#0xC
-   \       0x84   0xFA17 0xF70C      LSLS     R7,R7,R12
-   \       0x88   0x4338             ORRS     R0,R7,R0
-   \       0x8A   0x0003             MOVS     R3,R0
+   \       0x7E   0xF8D1 0xC00C      LDR      R12,[R1, #+12]
+   \       0x82   0xF014 0x0003      ANDS     R0,R4,#0x3
+   \       0x86   0xB2C0             UXTB     R0,R0
+   \       0x88   0x0080             LSLS     R0,R0,#+2
+   \       0x8A   0xFA1C 0xFC00      LSLS     R12,R12,R0
+   \       0x8E   0xEA5C 0x0707      ORRS     R7,R12,R7
+   \       0x92   0x003B             MOVS     R3,R7
     203                SYSCFG->EXTICR[linepos >> 2u] = regval;
-   \       0x8C   0x0020             MOVS     R0,R4
-   \       0x8E   0x0880             LSRS     R0,R0,#+2
-   \       0x90   0xF846 0x3020      STR      R3,[R6, R0, LSL #+2]
+   \       0x94   0x0020             MOVS     R0,R4
+   \       0x96   0x0880             LSRS     R0,R0,#+2
+   \       0x98   0xF846 0x3020      STR      R3,[R6, R0, LSL #+2]
     204              }
     205            }
     206          
@@ -336,58 +341,58 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
     208            /* Mask or set line */
     209            if ((pExtiConfig->Mode & EXTI_MODE_INTERRUPT) != 0x00u)
    \                     ??HAL_EXTI_SetConfigLine_3: (+1)
-   \       0x94   0x7908             LDRB     R0,[R1, #+4]
-   \       0x96   0x07C0             LSLS     R0,R0,#+31
-   \       0x98   0xD504             BPL.N    ??HAL_EXTI_SetConfigLine_8
+   \       0x9C   0x7908             LDRB     R0,[R1, #+4]
+   \       0x9E   0x07C0             LSLS     R0,R0,#+31
+   \       0xA0   0xD504             BPL.N    ??HAL_EXTI_SetConfigLine_8
     210            {
     211              EXTI->IMR |= maskline;
-   \       0x9A   0x....             LDR.N    R0,??DataTable6_3
-   \       0x9C   0x6806             LDR      R6,[R0, #+0]
-   \       0x9E   0x432E             ORRS     R6,R5,R6
-   \       0xA0   0x6006             STR      R6,[R0, #+0]
-   \       0xA2   0xE003             B.N      ??HAL_EXTI_SetConfigLine_9
+   \       0xA2   0x....             LDR.N    R0,??DataTable6_3
+   \       0xA4   0x6806             LDR      R6,[R0, #+0]
+   \       0xA6   0x432E             ORRS     R6,R5,R6
+   \       0xA8   0x6006             STR      R6,[R0, #+0]
+   \       0xAA   0xE003             B.N      ??HAL_EXTI_SetConfigLine_9
     212            }
     213            else
     214            {
     215              EXTI->IMR &= ~maskline;
    \                     ??HAL_EXTI_SetConfigLine_8: (+1)
-   \       0xA4   0x....             LDR.N    R0,??DataTable6_3
-   \       0xA6   0x6806             LDR      R6,[R0, #+0]
-   \       0xA8   0x43AE             BICS     R6,R6,R5
-   \       0xAA   0x6006             STR      R6,[R0, #+0]
+   \       0xAC   0x....             LDR.N    R0,??DataTable6_3
+   \       0xAE   0x6806             LDR      R6,[R0, #+0]
+   \       0xB0   0x43AE             BICS     R6,R6,R5
+   \       0xB2   0x6006             STR      R6,[R0, #+0]
     216            }
     217          
     218            /* Configure event mode : read current mode */
     219            /* Mask or set line */
     220            if ((pExtiConfig->Mode & EXTI_MODE_EVENT) != 0x00u)
    \                     ??HAL_EXTI_SetConfigLine_9: (+1)
-   \       0xAC   0x7908             LDRB     R0,[R1, #+4]
-   \       0xAE   0x0780             LSLS     R0,R0,#+30
-   \       0xB0   0xD504             BPL.N    ??HAL_EXTI_SetConfigLine_10
+   \       0xB4   0x7908             LDRB     R0,[R1, #+4]
+   \       0xB6   0x0780             LSLS     R0,R0,#+30
+   \       0xB8   0xD504             BPL.N    ??HAL_EXTI_SetConfigLine_10
     221            {
     222              EXTI->EMR |= maskline;
-   \       0xB2   0x....             LDR.N    R0,??DataTable6_4
-   \       0xB4   0x6806             LDR      R6,[R0, #+0]
-   \       0xB6   0x432E             ORRS     R6,R5,R6
-   \       0xB8   0x6006             STR      R6,[R0, #+0]
-   \       0xBA   0xE003             B.N      ??HAL_EXTI_SetConfigLine_11
+   \       0xBA   0x....             LDR.N    R0,??DataTable6_4
+   \       0xBC   0x6806             LDR      R6,[R0, #+0]
+   \       0xBE   0x432E             ORRS     R6,R5,R6
+   \       0xC0   0x6006             STR      R6,[R0, #+0]
+   \       0xC2   0xE003             B.N      ??HAL_EXTI_SetConfigLine_11
     223            }
     224            else
     225            {
     226              EXTI->EMR &= ~maskline;
    \                     ??HAL_EXTI_SetConfigLine_10: (+1)
-   \       0xBC   0x....             LDR.N    R0,??DataTable6_4
-   \       0xBE   0x6806             LDR      R6,[R0, #+0]
-   \       0xC0   0x43AE             BICS     R6,R6,R5
-   \       0xC2   0x6006             STR      R6,[R0, #+0]
+   \       0xC4   0x....             LDR.N    R0,??DataTable6_4
+   \       0xC6   0x6806             LDR      R6,[R0, #+0]
+   \       0xC8   0x43AE             BICS     R6,R6,R5
+   \       0xCA   0x6006             STR      R6,[R0, #+0]
     227            }
     228          
     229            return HAL_OK;
    \                     ??HAL_EXTI_SetConfigLine_11: (+1)
-   \       0xC4   0x2000             MOVS     R0,#+0
+   \       0xCC   0x2000             MOVS     R0,#+0
    \                     ??HAL_EXTI_SetConfigLine_2: (+1)
-   \       0xC6   0xBCF0             POP      {R4-R7}
-   \       0xC8   0x4770             BX       LR
+   \       0xCE   0xBCF0             POP      {R4-R7}
+   \       0xD0   0x4770             BX       LR
     230          }
     231          
     232          /**
@@ -417,7 +422,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
     247              return HAL_ERROR;
    \                     ??HAL_EXTI_GetConfigLine_0: (+1)
    \        0xC   0x2001             MOVS     R0,#+1
-   \        0xE   0xE049             B.N      ??HAL_EXTI_GetConfigLine_2
+   \        0xE   0xE04A             B.N      ??HAL_EXTI_GetConfigLine_2
     248            }
     249          
     250            /* Check the parameter */
@@ -479,7 +484,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
    \                     ??HAL_EXTI_GetConfigLine_5: (+1)
    \       0x40   0x6808             LDR      R0,[R1, #+0]
    \       0x42   0x0180             LSLS     R0,R0,#+6
-   \       0x44   0xD529             BPL.N    ??HAL_EXTI_GetConfigLine_6
+   \       0x44   0xD52A             BPL.N    ??HAL_EXTI_GetConfigLine_6
     281            {
     282              /* Check if configuration of selected line is enable */
     283              if ((EXTI->RTSR & maskline) != 0x00u)
@@ -522,7 +527,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
    \       0x68   0x6808             LDR      R0,[R1, #+0]
    \       0x6A   0xF010 0x60C0      ANDS     R0,R0,#0x6000000
    \       0x6E   0xF1B0 0x6FC0      CMP      R0,#+100663296
-   \       0x72   0xD10F             BNE.N    ??HAL_EXTI_GetConfigLine_10
+   \       0x72   0xD110             BNE.N    ??HAL_EXTI_GetConfigLine_10
     301              {
     302                assert_param(IS_EXTI_GPIO_PIN(linepos));
     303          
@@ -535,19 +540,20 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
     305                pExtiConfig->GPIOSel = ((regval << (SYSCFG_EXTICR1_EXTI1_Pos * (3uL - (linepos & 0x03u)))) >> 24);
    \       0x80   0xF014 0x0003      ANDS     R0,R4,#0x3
    \       0x84   0xF1D0 0x0003      RSBS     R0,R0,#+3
-   \       0x88   0x0080             LSLS     R0,R0,#+2
-   \       0x8A   0xFA13 0xF000      LSLS     R0,R3,R0
-   \       0x8E   0x0E00             LSRS     R0,R0,#+24
-   \       0x90   0x60C8             STR      R0,[R1, #+12]
-   \       0x92   0xE006             B.N      ??HAL_EXTI_GetConfigLine_11
+   \       0x88   0xB2C0             UXTB     R0,R0
+   \       0x8A   0x0080             LSLS     R0,R0,#+2
+   \       0x8C   0xFA13 0xF000      LSLS     R0,R3,R0
+   \       0x90   0x0E00             LSRS     R0,R0,#+24
+   \       0x92   0x60C8             STR      R0,[R1, #+12]
+   \       0x94   0xE006             B.N      ??HAL_EXTI_GetConfigLine_11
     306              }
     307              else
     308              {
     309                pExtiConfig->GPIOSel = 0x00u;
    \                     ??HAL_EXTI_GetConfigLine_10: (+1)
-   \       0x94   0x2000             MOVS     R0,#+0
-   \       0x96   0x60C8             STR      R0,[R1, #+12]
-   \       0x98   0xE003             B.N      ??HAL_EXTI_GetConfigLine_11
+   \       0x96   0x2000             MOVS     R0,#+0
+   \       0x98   0x60C8             STR      R0,[R1, #+12]
+   \       0x9A   0xE003             B.N      ??HAL_EXTI_GetConfigLine_11
     310              }
     311            }
     312            else
@@ -555,19 +561,19 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
     314              /* No Trigger selected */
     315              pExtiConfig->Trigger = EXTI_TRIGGER_NONE;
    \                     ??HAL_EXTI_GetConfigLine_6: (+1)
-   \       0x9A   0x2000             MOVS     R0,#+0
-   \       0x9C   0x6088             STR      R0,[R1, #+8]
+   \       0x9C   0x2000             MOVS     R0,#+0
+   \       0x9E   0x6088             STR      R0,[R1, #+8]
     316              pExtiConfig->GPIOSel = 0x00u;
-   \       0x9E   0x2000             MOVS     R0,#+0
-   \       0xA0   0x60C8             STR      R0,[R1, #+12]
+   \       0xA0   0x2000             MOVS     R0,#+0
+   \       0xA2   0x60C8             STR      R0,[R1, #+12]
     317            }
     318          
     319            return HAL_OK;
    \                     ??HAL_EXTI_GetConfigLine_11: (+1)
-   \       0xA2   0x2000             MOVS     R0,#+0
+   \       0xA4   0x2000             MOVS     R0,#+0
    \                     ??HAL_EXTI_GetConfigLine_2: (+1)
-   \       0xA4   0xBC70             POP      {R4-R6}
-   \       0xA6   0x4770             BX       LR
+   \       0xA6   0xBC70             POP      {R4-R6}
+   \       0xA8   0x4770             BX       LR
     320          }
     321          
     322          /**
@@ -593,7 +599,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
     335            {
     336              return HAL_ERROR;
    \        0x8   0x2001             MOVS     R0,#+1
-   \        0xA   0xE02E             B.N      ??HAL_EXTI_ClearConfigLine_1
+   \        0xA   0xE02F             B.N      ??HAL_EXTI_ClearConfigLine_1
     337            }
     338          
     339            /* Check the parameter */
@@ -626,7 +632,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
     353            if ((hexti->Line & EXTI_CONFIG) != 0x00u)
    \       0x26   0x6808             LDR      R0,[R1, #+0]
    \       0x28   0x0180             LSLS     R0,R0,#+6
-   \       0x2A   0xD51D             BPL.N    ??HAL_EXTI_ClearConfigLine_2
+   \       0x2A   0xD51E             BPL.N    ??HAL_EXTI_ClearConfigLine_2
     354            {
     355              EXTI->RTSR = (EXTI->RTSR & ~maskline);
    \       0x2C   0x....             LDR.N    R0,??DataTable6
@@ -644,35 +650,36 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
    \       0x3C   0x6808             LDR      R0,[R1, #+0]
    \       0x3E   0xF010 0x60C0      ANDS     R0,R0,#0x6000000
    \       0x42   0xF1B0 0x6FC0      CMP      R0,#+100663296
-   \       0x46   0xD10F             BNE.N    ??HAL_EXTI_ClearConfigLine_2
+   \       0x46   0xD110             BNE.N    ??HAL_EXTI_ClearConfigLine_2
     360              {
     361                assert_param(IS_EXTI_GPIO_PIN(linepos));
     362          
     363                regval = SYSCFG->EXTICR[linepos >> 2u];
-   \       0x48   0x....             LDR.N    R5,??DataTable6_2
+   \       0x48   0x....             LDR.N    R6,??DataTable6_2
    \       0x4A   0x0018             MOVS     R0,R3
    \       0x4C   0x0880             LSRS     R0,R0,#+2
-   \       0x4E   0xF855 0x0020      LDR      R0,[R5, R0, LSL #+2]
+   \       0x4E   0xF856 0x5020      LDR      R5,[R6, R0, LSL #+2]
     364                regval &= ~(SYSCFG_EXTICR1_EXTI0 << (SYSCFG_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
-   \       0x52   0x260F             MOVS     R6,#+15
-   \       0x54   0x009F             LSLS     R7,R3,#+2
-   \       0x56   0xF017 0x070C      ANDS     R7,R7,#0xC
-   \       0x5A   0x40BE             LSLS     R6,R6,R7
-   \       0x5C   0x43B0             BICS     R0,R0,R6
-   \       0x5E   0x0002             MOVS     R2,R0
+   \       0x52   0x270F             MOVS     R7,#+15
+   \       0x54   0xF013 0x0003      ANDS     R0,R3,#0x3
+   \       0x58   0xB2C0             UXTB     R0,R0
+   \       0x5A   0x0080             LSLS     R0,R0,#+2
+   \       0x5C   0x4087             LSLS     R7,R7,R0
+   \       0x5E   0x43BD             BICS     R5,R5,R7
+   \       0x60   0x002A             MOVS     R2,R5
     365                SYSCFG->EXTICR[linepos >> 2u] = regval;
-   \       0x60   0x0018             MOVS     R0,R3
-   \       0x62   0x0880             LSRS     R0,R0,#+2
-   \       0x64   0xF845 0x2020      STR      R2,[R5, R0, LSL #+2]
+   \       0x62   0x0018             MOVS     R0,R3
+   \       0x64   0x0880             LSRS     R0,R0,#+2
+   \       0x66   0xF846 0x2020      STR      R2,[R6, R0, LSL #+2]
     366              }
     367            }
     368          
     369            return HAL_OK;
    \                     ??HAL_EXTI_ClearConfigLine_2: (+1)
-   \       0x68   0x2000             MOVS     R0,#+0
+   \       0x6A   0x2000             MOVS     R0,#+0
    \                     ??HAL_EXTI_ClearConfigLine_1: (+1)
-   \       0x6A   0xBCF0             POP      {R4-R7}
-   \       0x6C   0x4770             BX       LR
+   \       0x6C   0xBCF0             POP      {R4-R7}
+   \       0x6E   0x4770             BX       LR
     370          }
     371          
     372          /**
@@ -689,27 +696,27 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
     381          {
    \                     HAL_EXTI_RegisterCallback: (+1)
    \        0x0   0xB410             PUSH     {R4}
-   \        0x2   0x0003             MOVS     R3,R0
+   \        0x2   0x0004             MOVS     R4,R0
     382            HAL_StatusTypeDef status = HAL_OK;
    \        0x4   0x2000             MOVS     R0,#+0
     383          
     384            switch (CallbackID)
-   \        0x6   0x000C             MOVS     R4,R1
-   \        0x8   0xB2E4             UXTB     R4,R4
-   \        0xA   0x2C00             CMP      R4,#+0
+   \        0x6   0x000B             MOVS     R3,R1
+   \        0x8   0xB2DB             UXTB     R3,R3
+   \        0xA   0x2B00             CMP      R3,#+0
    \        0xC   0xD101             BNE.N    ??HAL_EXTI_RegisterCallback_0
     385            {
     386              case  HAL_EXTI_COMMON_CB_ID:
     387                hexti->PendingCallback = pPendingCbfn;
-   \        0xE   0x605A             STR      R2,[R3, #+4]
+   \        0xE   0x6062             STR      R2,[R4, #+4]
     388                break;
    \       0x10   0xE001             B.N      ??HAL_EXTI_RegisterCallback_1
     389          
     390              default:
     391                status = HAL_ERROR;
    \                     ??HAL_EXTI_RegisterCallback_0: (+1)
-   \       0x12   0x2401             MOVS     R4,#+1
-   \       0x14   0x0020             MOVS     R0,R4
+   \       0x12   0x2301             MOVS     R3,#+1
+   \       0x14   0x0018             MOVS     R0,R3
     392                break;
     393            }
     394          
@@ -1008,20 +1015,20 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_e
        4  ??DataTable6_4
        4  ??DataTable6_5
        4  ??DataTable6_6
-     110  HAL_EXTI_ClearConfigLine
+     112  HAL_EXTI_ClearConfigLine
       18  HAL_EXTI_ClearPending
       18  HAL_EXTI_GenerateSWI
-     168  HAL_EXTI_GetConfigLine
+     170  HAL_EXTI_GetConfigLine
       16  HAL_EXTI_GetHandle
       26  HAL_EXTI_GetPending
       40  HAL_EXTI_IRQHandler
       28  HAL_EXTI_RegisterCallback
-     202  HAL_EXTI_SetConfigLine
+     210  HAL_EXTI_SetConfigLine
 
  
- 654 bytes in section .text
+ 666 bytes in section .text
  
- 654 bytes of CODE memory
+ 666 bytes of CODE memory
 
 Errors: none
 Warnings: none

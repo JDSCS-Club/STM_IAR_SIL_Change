@@ -269,7 +269,7 @@
                     <item>uwTimclock</item>
                     <item>uwPrescalerValue</item>
                     <item>uwTickFreq</item>
-                    <item></item>
+                    <item />
                 </expressions>
                 <col-names>
                     <item>Expression</item>

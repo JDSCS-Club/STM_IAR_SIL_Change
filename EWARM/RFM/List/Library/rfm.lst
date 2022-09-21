@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:26
+#                                                         22/Sep/2022  08:40:15
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                 =  thumb
@@ -14,7 +15,7 @@
 #        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
 #        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
 #        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Workbench 9.0 EWARM FS 9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -35,7 +36,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Library\rfm.o.d
 #    Locale                   =  C
 #    List file                =
@@ -918,7 +920,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     374          		//	초기로딩시 I2C에서 Load
     375          		g_idxTrainSet =(uint8_t) LoadTrainSetIdx();
    \        0xC   0x.... 0x....      BL       LoadTrainSetIdx
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable40_7
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable39_6
    \       0x14   0x7008             STRB     R0,[R1, #+0]
     376          		s_bOnce = 1;
    \       0x16   0x2001             MOVS     R0,#+1
@@ -927,7 +929,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     378          
     379          	return g_idxTrainSet;
    \                     ??GetTrainSetIdx_0: (+1)
-   \       0x1A   0x.... 0x....      LDR.W    R0,??DataTable40_7
+   \       0x1A   0x.... 0x....      LDR.W    R0,??DataTable39_6
    \       0x1E   0x7800             LDRB     R0,[R0, #+0]
    \       0x20   0xBD10             POP      {R4,PC}
     380          }
@@ -948,7 +950,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
    \        0x2   0xB081             SUB      SP,SP,#+4
     387          	g_idxTrainSet = idxTrainSet;
    \        0x4   0xF89D 0x0004      LDRB     R0,[SP, #+4]
-   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable40_7
+   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable39_6
    \        0xC   0x7008             STRB     R0,[R1, #+0]
     388          
     389              if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ),(uint32_t) 2,(uint32_t) 2 ) )
@@ -963,7 +965,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     390              {
     391                  printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
    \       0x22   0xF240 0x1287      MOVW     R2,#+391
-   \       0x26   0x.... 0x....      LDR.W    R1,??DataTable40_8
+   \       0x26   0x.... 0x....      LDR.W    R1,??DataTable40_7
    \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable39_4
    \       0x2E   0x.... 0x....      BL       printf
     392          
@@ -980,7 +982,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     398              	printf( "%s(%d) - %d\n", __func__, __LINE__, idxTrainSet );
    \       0x3C   0xF89D 0x3004      LDRB     R3,[SP, #+4]
    \       0x40   0xF44F 0x72C7      MOV      R2,#+398
-   \       0x44   0x.... 0x....      LDR.W    R1,??DataTable40_8
+   \       0x44   0x.... 0x....      LDR.W    R1,??DataTable40_7
    \       0x48   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x4C   0x.... 0x....      BL       printf
     399              }
@@ -1024,7 +1026,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     413              {
     414                  printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
    \       0x1C   0xF44F 0x72CF      MOV      R2,#+414
-   \       0x20   0x.... 0x....      LDR.W    R1,??DataTable40_9
+   \       0x20   0x.... 0x....      LDR.W    R1,??DataTable40_8
    \       0x24   0x.... 0x....      LDR.W    R0,??DataTable39_4
    \       0x28   0x.... 0x....      BL       printf
     415          
@@ -1068,7 +1070,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     430              	printf( "%s(%d) - %d\n", __func__, __LINE__, nManHop );
    \       0x60   0xF99D 0x3004      LDRSB    R3,[SP, #+4]
    \       0x64   0xF44F 0x72D7      MOV      R2,#+430
-   \       0x68   0x.... 0x....      LDR.W    R1,??DataTable40_9
+   \       0x68   0x.... 0x....      LDR.W    R1,??DataTable40_8
    \       0x6C   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x70   0x.... 0x....      BL       printf
     431              }
@@ -1101,7 +1103,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     441              {
     442                  printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
    \       0x18   0xF44F 0x72DD      MOV      R2,#+442
-   \       0x1C   0x.... 0x....      LDR.W    R1,??DataTable40_10
+   \       0x1C   0x.... 0x....      LDR.W    R1,??DataTable40_9
    \       0x20   0x.... 0x....      LDR.W    R0,??DataTable39_4
    \       0x24   0x.... 0x....      BL       printf
     443          
@@ -1118,7 +1120,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     449              	printf( "%s(%d) - %d\n", __func__, __LINE__, nManHop );
    \       0x32   0xF89D 0x3004      LDRB     R3,[SP, #+4]
    \       0x36   0xF240 0x12C1      MOVW     R2,#+449
-   \       0x3A   0x.... 0x....      LDR.W    R1,??DataTable40_10
+   \       0x3A   0x.... 0x....      LDR.W    R1,??DataTable40_9
    \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x42   0x.... 0x....      BL       printf
     450              }
@@ -1163,7 +1165,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     465              {
     466                  printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
    \       0x1C   0xF44F 0x72E9      MOV      R2,#+466
-   \       0x20   0x.... 0x....      LDR.W    R1,??DataTable40_11
+   \       0x20   0x.... 0x....      LDR.W    R1,??DataTable40_10
    \       0x24   0x.... 0x....      LDR.W    R0,??DataTable39_4
    \       0x28   0x.... 0x....      BL       printf
     467          
@@ -1191,7 +1193,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     476              	printf( "%s(%d) - %d\n", __func__, __LINE__, nCarNo );
    \       0x4A   0xF89D 0x3004      LDRB     R3,[SP, #+4]
    \       0x4E   0xF44F 0x72EE      MOV      R2,#+476
-   \       0x52   0x.... 0x....      LDR.W    R1,??DataTable40_11
+   \       0x52   0x.... 0x....      LDR.W    R1,??DataTable40_10
    \       0x56   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x5A   0x.... 0x....      BL       printf
     477              }
@@ -1220,7 +1222,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     488          	static uint8_t s_bOnce = 0;
     489          
     490          	if ( s_bOnce == 0 )
-   \        0x2   0x.... 0x....      LDR.W    R4,??DataTable40_12
+   \        0x2   0x.... 0x....      LDR.W    R4,??DataTable40_11
    \        0x6   0x7820             LDRB     R0,[R4, #+0]
    \        0x8   0x2800             CMP      R0,#+0
    \        0xA   0xD106             BNE.N    ??GetCarNo_0
@@ -1267,7 +1269,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     505              {
     506                  printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
    \       0x18   0xF44F 0x72FD      MOV      R2,#+506
-   \       0x1C   0x.... 0x....      LDR.W    R1,??DataTable40_13
+   \       0x1C   0x.... 0x....      LDR.W    R1,??DataTable40_12
    \       0x20   0x.... 0x....      LDR.W    R0,??DataTable39_4
    \       0x24   0x.... 0x....      BL       printf
     507          
@@ -1284,7 +1286,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     513              	printf( "%s(%d) - %d\n", __func__, __LINE__, nCarNo );
    \       0x32   0xF89D 0x3004      LDRB     R3,[SP, #+4]
    \       0x36   0xF240 0x2201      MOVW     R2,#+513
-   \       0x3A   0x.... 0x....      LDR.W    R1,??DataTable40_13
+   \       0x3A   0x.... 0x....      LDR.W    R1,??DataTable40_12
    \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x42   0x.... 0x....      BL       printf
     514          	}
@@ -1332,7 +1334,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     529              {
     530                  printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
    \       0x1C   0xF240 0x2212      MOVW     R2,#+530
-   \       0x20   0x.... 0x....      LDR.W    R1,??DataTable40_14
+   \       0x20   0x.... 0x....      LDR.W    R1,??DataTable40_13
    \       0x24   0x.... 0x....      LDR.W    R0,??DataTable39_4
    \       0x28   0x.... 0x....      BL       printf
     531          
@@ -1355,7 +1357,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     538              printf( "%s(%d) - %d\n", __func__, __LINE__, nSpkVol );
    \       0x42   0xF89D 0x3004      LDRB     R3,[SP, #+4]
    \       0x46   0xF240 0x221A      MOVW     R2,#+538
-   \       0x4A   0x.... 0x....      LDR.W    R1,??DataTable40_14
+   \       0x4A   0x.... 0x....      LDR.W    R1,??DataTable40_13
    \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x52   0x.... 0x....      BL       printf
     539          
@@ -2093,12 +2095,12 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_hop"
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
     835              printf( "[S/W Info]\n" );
-   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable44
+   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable43_3
    \        0xA   0x.... 0x....      BL       printf
     836              printf( " - Boot : %d Byte\n", FLASH_If_GetBootSize() );
    \        0xE   0x.... 0x....      BL       FLASH_If_GetBootSize
    \       0x12   0x0001             MOVS     R1,R0
-   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable44_1
+   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable44
    \       0x18   0x.... 0x....      BL       printf
     837              printf( " - App : %d Byte\n", FLASH_If_GetAppSize() );
    \       0x1C   0x.... 0x....      BL       FLASH_If_GetAppSize
@@ -2128,26 +2130,26 @@ Warning[Pe940]: missing return statement at end of non-void function
     847              uint16_t	nData;
     848          
     849              printf( "[Setting]\n" );
-   \        0x8   0x.... 0x....      LDR.W    R0,??DataTable45_1
+   \        0x8   0x.... 0x....      LDR.W    R0,??DataTable44_1
    \        0xC   0x.... 0x....      BL       printf
     850              printf( " - Train Set : %d\n", 100 + GetTrainSetIdx() );
    \       0x10   0x.... 0x....      BL       GetTrainSetIdx
    \       0x14   0xB2C0             UXTB     R0,R0
    \       0x16   0x3064             ADDS     R0,R0,#+100
    \       0x18   0x0001             MOVS     R1,R0
-   \       0x1A   0x.... 0x....      LDR.W    R0,??DataTable45_2
+   \       0x1A   0x.... 0x....      LDR.W    R0,??DataTable45_1
    \       0x1E   0x.... 0x....      BL       printf
     851              printf( " - Car No : %d\n", GetCarNo() );
    \       0x22   0x.... 0x....      BL       GetCarNo
    \       0x26   0xB2C0             UXTB     R0,R0
    \       0x28   0x0001             MOVS     R1,R0
-   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable45_3
+   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable45_2
    \       0x2E   0x.... 0x....      BL       printf
     852              printf( " - RF Channel: %d\n", GetChRx() );
    \       0x32   0x.... 0x....      BL       GetChRx
    \       0x36   0xB2C0             UXTB     R0,R0
    \       0x38   0x0001             MOVS     R1,R0
-   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable45_4
+   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable45_3
    \       0x3E   0x.... 0x....      BL       printf
     853              printf( " - Mode : %s(%d)\n", StrRFMMode( GetRFMMode() ), GetRFMMode()  );	//	Normal / Tx / Rx / Upgrade
    \       0x42   0x.... 0x....      BL       GetRFMMode
@@ -2158,25 +2160,25 @@ Warning[Pe940]: missing return statement at end of non-void function
    \       0x52   0xB2FF             UXTB     R7,R7
    \       0x54   0x003A             MOVS     R2,R7
    \       0x56   0x0001             MOVS     R1,R0
-   \       0x58   0x.... 0x....      LDR.W    R0,??DataTable45_5
+   \       0x58   0x.... 0x....      LDR.W    R0,??DataTable45_4
    \       0x5C   0x.... 0x....      BL       printf
     854              printf( " - GetChNearRFM() : %d\n", GetChNearRFM() );
    \       0x60   0x.... 0x....      BL       GetChNearRFM
    \       0x64   0xB2C0             UXTB     R0,R0
    \       0x66   0x0001             MOVS     R1,R0
-   \       0x68   0x.... 0x....      LDR.W    R0,??DataTable45_6
+   \       0x68   0x.... 0x....      LDR.W    R0,??DataTable45_5
    \       0x6C   0x.... 0x....      BL       printf
     855              printf( " - GetChNearRFT() : %d\n", GetChNearRFT() );
    \       0x70   0x.... 0x....      BL       GetChNearRFT
    \       0x74   0xB2C0             UXTB     R0,R0
    \       0x76   0x0001             MOVS     R1,R0
-   \       0x78   0x.... 0x....      LDR.W    R0,??DataTable46_3
+   \       0x78   0x.... 0x....      LDR.W    R0,??DataTable45_6
    \       0x7C   0x.... 0x....      BL       printf
     856              printf( " - GetChPARFT() : %d\n", GetChPARFT() );
    \       0x80   0x.... 0x....      BL       GetChPARFT
    \       0x84   0xB2C0             UXTB     R0,R0
    \       0x86   0x0001             MOVS     R1,R0
-   \       0x88   0x.... 0x....      LDR.W    R0,??DataTable46_4
+   \       0x88   0x.... 0x....      LDR.W    R0,??DataTable46_3
    \       0x8C   0x.... 0x....      BL       printf
     857              printf( " - GetChPA() : %d\n", GetChPA() );
    \       0x90   0x.... 0x....      BL       GetChPA
@@ -2217,11 +2219,11 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_info"
    \        0x4   0x000D             MOVS     R5,R1
     865              //	rfstat - RF Tx / Rx Status
     866              printf( "[RF Info] Tx : %d / Rx : %d\n", nTxPkt, nRxPkt );
-   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable47_4
+   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable46_4
    \        0xA   0x7802             LDRB     R2,[R0, #+0]
-   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable47_5
+   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable46_5
    \       0x10   0x7801             LDRB     R1,[R0, #+0]
-   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable47_6
+   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable47_4
    \       0x16   0x.... 0x....      BL       printf
     867          }
                  ^
@@ -2322,8 +2324,8 @@ Warning[Pe181]: argument is incompatible with corresponding format string
    \                     ??cmd_txpwr_0: (+1)
    \       0x1E   0xF89D 0x3000      LDRB     R3,[SP, #+0]
    \       0x22   0xF240 0x32A9      MOVW     R2,#+937
-   \       0x26   0x.... 0x....      LDR.W    R1,??DataTable47_7
-   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable47_8
+   \       0x26   0x.... 0x....      LDR.W    R1,??DataTable47_5
+   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable47_6
    \       0x2E   0x.... 0x....      BL       printf
     938          
     939              vRadio_Set_TxPower( nPwr );
@@ -2393,8 +2395,8 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     959              {
     960              	printf("%s(%d) - return\n", __func__, __LINE__);
    \       0x3C   0xF44F 0x7270      MOV      R2,#+960
-   \       0x40   0x.... 0x....      LDR.W    R1,??DataTable47_9
-   \       0x44   0x.... 0x....      LDR.W    R0,??DataTable47_10
+   \       0x40   0x.... 0x....      LDR.W    R1,??DataTable47_7
+   \       0x44   0x.... 0x....      LDR.W    R0,??DataTable47_8
    \       0x48   0x.... 0x....      BL       printf
     961              	return 0;
    \       0x4C   0x2000             MOVS     R0,#+0
@@ -2405,7 +2407,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     965              g_bSetRspIDManual = 1;
    \                     ??cmd_rspid_3: (+1)
    \       0x50   0x2001             MOVS     R0,#+1
-   \       0x52   0x.... 0x....      LDR.W    R1,??DataTable47_11
+   \       0x52   0x.... 0x....      LDR.W    R1,??DataTable47_9
    \       0x56   0x7008             STRB     R0,[R1, #+0]
     966          
     967              if ( nSet )
@@ -2415,7 +2417,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     968              {
     969              	//	Set ID Flag
     970              	g_flagRspID |= ( 0x1 << nID );
-   \       0x60   0x.... 0x....      LDR.W    R1,??DataTable47_12
+   \       0x60   0x.... 0x....      LDR.W    R1,??DataTable47_10
    \       0x64   0x880A             LDRH     R2,[R1, #+0]
    \       0x66   0x2301             MOVS     R3,#+1
    \       0x68   0xF99D 0x0000      LDRSB    R0,[SP, #+0]
@@ -2437,7 +2439,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     975              	//	Clear ID Flag
     976              	g_flagRspID &= ~( 0x1 << nID );
    \                     ??cmd_rspid_5: (+1)
-   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable47_12
+   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable47_10
    \       0x8A   0x880A             LDRH     R2,[R1, #+0]
    \       0x8C   0x2301             MOVS     R3,#+1
    \       0x8E   0xF99D 0x0000      LDRSB    R0,[SP, #+0]
@@ -2456,11 +2458,11 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     979          
     980              printf( "%s(%d) - ID Flag : 0x%04X\n", __func__, __LINE__, g_flagRspID );
    \                     ??cmd_rspid_6: (+1)
-   \       0xAA   0x.... 0x....      LDR.W    R0,??DataTable47_12
+   \       0xAA   0x.... 0x....      LDR.W    R0,??DataTable47_10
    \       0xAE   0x8803             LDRH     R3,[R0, #+0]
    \       0xB0   0xF44F 0x7275      MOV      R2,#+980
-   \       0xB4   0x.... 0x....      LDR.W    R1,??DataTable47_9
-   \       0xB8   0x.... 0x....      LDR.W    R0,??DataTable47_13
+   \       0xB4   0x.... 0x....      LDR.W    R1,??DataTable47_7
+   \       0xB8   0x.... 0x....      LDR.W    R0,??DataTable47_11
    \       0xBC   0x.... 0x....      BL       printf
     981          
     982          	return 1;
@@ -2484,10 +2486,10 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     991              //	occ [1(start)/0(stop)]	-	대승객방송
     992          
     993          	printf("%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0x.... 0x....      LDR.W    R6,??DataTable47_14
+   \        0x6   0x.... 0x....      LDR.W    R6,??DataTable47_12
    \        0xA   0xF240 0x32E1      MOVW     R2,#+993
    \        0xE   0x0031             MOVS     R1,R6
-   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable47_15
+   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable47_13
    \       0x14   0x.... 0x....      BL       printf
     994          
     995          	//	대승객방송 시작/종료
@@ -2521,7 +2523,7 @@ Warning[Pe181]: argument is incompatible with corresponding format string
    1006              	printf("%s(%d) - Start\n", __func__, __LINE__ );
    \       0x38   0xF240 0x32EE      MOVW     R2,#+1006
    \       0x3C   0x0031             MOVS     R1,R6
-   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable47_16
+   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable47_14
    \       0x42   0x.... 0x....      BL       printf
    1007          
    1008              	//	OCC Mode
@@ -2538,7 +2540,7 @@ Warning[Pe181]: argument is incompatible with corresponding format string
    1017          
    1018          		// 조명 On
    1019          		HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
-   \       0x4C   0x.... 0x....      LDR.W    R6,??DataTable47_17
+   \       0x4C   0x.... 0x....      LDR.W    R6,??DataTable47_15
    \       0x50   0x2201             MOVS     R2,#+1
    \       0x52   0xF44F 0x7100      MOV      R1,#+512
    \       0x56   0x0030             MOVS     R0,R6
@@ -2565,7 +2567,7 @@ Warning[Pe181]: argument is incompatible with corresponding format string
    \                     ??cmd_OccPa_1: (+1)
    \       0x74   0xF240 0x4205      MOVW     R2,#+1029
    \       0x78   0x0031             MOVS     R1,R6
-   \       0x7A   0x.... 0x....      LDR.W    R0,??DataTable47_18
+   \       0x7A   0x.... 0x....      LDR.W    R0,??DataTable47_16
    \       0x7E   0x.... 0x....      BL       printf
    1030          
    1031              	//	Normal Mode
@@ -2582,7 +2584,7 @@ Warning[Pe181]: argument is incompatible with corresponding format string
    1040          
    1041              	//	Spk Off.
    1042          		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
-   \       0x88   0x.... 0x....      LDR.W    R6,??DataTable47_17
+   \       0x88   0x.... 0x....      LDR.W    R6,??DataTable47_15
    \       0x8C   0x2200             MOVS     R2,#+0
    \       0x8E   0x2120             MOVS     R1,#+32
    \       0x90   0x0030             MOVS     R0,R6
@@ -2658,8 +2660,8 @@ Warning[Pe940]: missing return statement at end of non-void function
    1085          
    1086          		pAudioTx = &bufAudioDec[FRAME_ENC_SIZE * idx];
    \        0x6   0x26F0             MOVS     R6,#+240
-   \        0x8   0x.... 0x....      LDR.W    R9,??DataTable47_19
-   \        0xC   0x.... 0x....      LDR.W    R10,??DataTable47_20
+   \        0x8   0x.... 0x....      LDR.W    R9,??DataTable47_17
+   \        0xC   0x.... 0x....      LDR.W    R10,??DataTable47_18
    \       0x10   0xF899 0x0000      LDRB     R0,[R9, #+0]
    \       0x14   0x4370             MULS     R0,R6,R0
    \       0x16   0xEB0A 0x0700      ADD      R7,R10,R0
@@ -2667,7 +2669,7 @@ Warning[Pe940]: missing return statement at end of non-void function
    \       0x1A   0xF899 0x0000      LDRB     R0,[R9, #+0]
    \       0x1E   0x1C40             ADDS     R0,R0,#+1
    \       0x20   0x2102             MOVS     R1,#+2
-   \       0x22   0x.... 0x....      LDR.W    R5,??DataTable47_21
+   \       0x22   0x.... 0x....      LDR.W    R5,??DataTable47_19
    \       0x26   0xFB90 0xF2F1      SDIV     R2,R0,R1
    \       0x2A   0xFB01 0x0012      MLS      R0,R1,R2,R0
    \       0x2E   0x4370             MULS     R0,R6,R0
@@ -2686,7 +2688,7 @@ Warning[Pe167]: argument of type "int16_t *" is incompatible with parameter of
    \       0x34   0x2378             MOVS     R3,#+120
    \       0x36   0x4642             MOV      R2,R8
    \       0x38   0x0039             MOVS     R1,R7
-   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable47_22
+   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable47_20
    \       0x3E   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
    1093          
    1094          		pAudioRx = &bufAudioEnc[FRAME_ENC_SIZE * idx];
@@ -2731,7 +2733,7 @@ Warning[Pe167]: argument of type "int16_t *" is incompatible with parameter of
    1121          		if ( qBufCnt( &g_qBufAudioTx ) < ( ( I2S_DMA_LOOP_SIZE * 2 ) * ( I2S_DMA_LOOP_QCNT - 1 ) ) )
                  		                               ^
 Warning[Pa084]: pointless integer comparison, the result is always true
-   \       0x68   0x.... 0x....      LDR.W    R10,??DataTable47_23
+   \       0x68   0x.... 0x....      LDR.W    R10,??DataTable47_21
    \       0x6C   0x4650             MOV      R0,R10
    \       0x6E   0x.... 0x....      BL       qBufCnt
    1122          		{
@@ -2755,7 +2757,7 @@ Warning[Pa084]: pointless integer comparison, the result is always true
    \       0x7E   0x4648             MOV      R0,R9
    \       0x80   0xB2C0             UXTB     R0,R0
    \       0x82   0xF835 0x0030      LDRH     R0,[R5, R0, LSL #+3]
-   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable47_24
+   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable47_22
    \       0x8A   0x464A             MOV      R2,R9
    \       0x8C   0xB2D2             UXTB     R2,R2
    \       0x8E   0xF821 0x0012      STRH     R0,[R1, R2, LSL #+1]
@@ -2766,7 +2768,7 @@ Warning[Pa084]: pointless integer comparison, the result is always true
    1136          			qBufPut( &g_qBufAudioTx, (uint8_t *)r_audio_buff, ( I2S_DMA_LOOP_SIZE * 2 ) );
    \                     ??RFM_I2SEx_TxRxCpltCallback_1: (+1)
    \       0x98   0x223C             MOVS     R2,#+60
-   \       0x9A   0x.... 0x....      LDR.W    R1,??DataTable47_24
+   \       0x9A   0x.... 0x....      LDR.W    R1,??DataTable47_22
    \       0x9E   0x4650             MOV      R0,R10
    \       0xA0   0x.... 0x....      BL       qBufPut
    1137          
@@ -2804,14 +2806,14 @@ Warning[Pe009]: nested comment is not allowed
    1160          		//  Rx Buffering ( Packet Count : 0 ~ 4 )
    1161          		//  RF-Rx -> t_audio_buff
    1162          		if ( bRxBuffering )
-   \       0xB8   0x.... 0x....      LDR.W    R7,??DataTable47_25
+   \       0xB8   0x.... 0x....      LDR.W    R7,??DataTable47_23
    \       0xBC   0x7838             LDRB     R0,[R7, #+0]
    \       0xBE   0x2800             CMP      R0,#+0
    \       0xC0   0xD00A             BEQ.N    ??RFM_I2SEx_TxRxCpltCallback_2
    1163          		{
    1164          			//  Buffering
    1165          			if ( qBufCnt( &g_qBufAudioRx ) > ( ( I2S_DMA_LOOP_SIZE * 2 ) * 3 ) )
-   \       0xC2   0x.... 0x....      LDR.W    R0,??DataTable47_26
+   \       0xC2   0x.... 0x....      LDR.W    R0,??DataTable47_24
    \       0xC6   0x.... 0x....      BL       qBufCnt
    \       0xCA   0x28B5             CMP      R0,#+181
    \       0xCC   0xDB04             BLT.N    ??RFM_I2SEx_TxRxCpltCallback_2
@@ -2831,15 +2833,15 @@ Warning[Pe009]: nested comment is not allowed
    \                     ??RFM_I2SEx_TxRxCpltCallback_2: (+1)
    \       0xD8   0x7838             LDRB     R0,[R7, #+0]
    \       0xDA   0x2800             CMP      R0,#+0
-   \       0xDC   0xD15B             BNE.N    ??RFM_I2SEx_TxRxCpltCallback_3
+   \       0xDC   0xD167             BNE.N    ??RFM_I2SEx_TxRxCpltCallback_3
    1175          		{
    1176          			//  Rx Audio Out
    1177          			if ( qBufCnt( &g_qBufAudioRx ) >= ( I2S_DMA_LOOP_SIZE * 2 ) )
-   \       0xDE   0x.... 0x....      LDR.W    R8,??DataTable47_26
+   \       0xDE   0x.... 0x....      LDR.W    R8,??DataTable47_24
    \       0xE2   0x4640             MOV      R0,R8
    \       0xE4   0x.... 0x....      BL       qBufCnt
    \       0xE8   0x283C             CMP      R0,#+60
-   \       0xEA   0xDB4F             BLT.N    ??RFM_I2SEx_TxRxCpltCallback_4
+   \       0xEA   0xDB5B             BLT.N    ??RFM_I2SEx_TxRxCpltCallback_4
    1178          			{
    1179          				//	printf ( "G" );
    1180          				//  Queue Audio Data
@@ -2847,7 +2849,7 @@ Warning[Pe009]: nested comment is not allowed
    1182          #if defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
    1183          
    1184          				qBufGet( &g_qBufAudioRx, (uint8_t*)t_audio_buff, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
-   \       0xEC   0x.... 0x....      LDR.W    R7,??DataTable47_27
+   \       0xEC   0x.... 0x....      LDR.W    R7,??DataTable47_25
    \       0xF0   0x223C             MOVS     R2,#+60
    \       0xF2   0x0039             MOVS     R1,R7
    \       0xF4   0x4640             MOV      R0,R8
@@ -2864,86 +2866,94 @@ Warning[Pe009]: nested comment is not allowed
    \       0xFC   0x0010             MOVS     R0,R2
    \       0xFE   0xB2C0             UXTB     R0,R0
    \      0x100   0x2878             CMP      R0,#+120
-   \      0x102   0xDA48             BGE.N    ??RFM_I2SEx_TxRxCpltCallback_3
+   \      0x102   0xDA54             BGE.N    ??RFM_I2SEx_TxRxCpltCallback_3
    1192          				{
    1193          					if ( i % AUDIO_COMPR_RATE == 0 )
-   \      0x104   0xF012 0x0F03      TST      R2,#0x3
-   \      0x108   0xD132             BNE.N    ??RFM_I2SEx_TxRxCpltCallback_6
+   \      0x104   0x0010             MOVS     R0,R2
+   \      0x106   0xB2C0             UXTB     R0,R0
+   \      0x108   0x2304             MOVS     R3,#+4
+   \      0x10A   0xFB90 0xFCF3      SDIV     R12,R0,R3
+   \      0x10E   0xFB03 0x001C      MLS      R0,R3,R12,R0
+   \      0x112   0x2800             CMP      R0,#+0
+   \      0x114   0xD138             BNE.N    ??RFM_I2SEx_TxRxCpltCallback_6
    1194          					{
    1195          						if ( i == 0 )
-   \      0x10A   0x0010             MOVS     R0,R2
-   \      0x10C   0xB2C0             UXTB     R0,R0
-   \      0x10E   0x2800             CMP      R0,#+0
-   \      0x110   0xD107             BNE.N    ??RFM_I2SEx_TxRxCpltCallback_7
+   \      0x116   0x0010             MOVS     R0,R2
+   \      0x118   0xB2C0             UXTB     R0,R0
+   \      0x11A   0x2800             CMP      R0,#+0
+   \      0x11C   0xD107             BNE.N    ??RFM_I2SEx_TxRxCpltCallback_7
    1196          						{
    1197          							pAudioTx[ i ] = nlastSample;	//	t_audio_buff[i / AUDIO_COMPR_RATE];
-   \      0x112   0x.... 0x....      LDR.W    R0,??DataTable47_28
-   \      0x116   0x8800             LDRH     R0,[R0, #+0]
-   \      0x118   0x0013             MOVS     R3,R2
-   \      0x11A   0xB2DB             UXTB     R3,R3
-   \      0x11C   0xF826 0x0013      STRH     R0,[R6, R3, LSL #+1]
-   \      0x120   0xE00A             B.N      ??RFM_I2SEx_TxRxCpltCallback_8
+   \      0x11E   0x.... 0x....      LDR.W    R0,??DataTable47_26
+   \      0x122   0x8800             LDRH     R0,[R0, #+0]
+   \      0x124   0x0013             MOVS     R3,R2
+   \      0x126   0xB2DB             UXTB     R3,R3
+   \      0x128   0xF826 0x0013      STRH     R0,[R6, R3, LSL #+1]
+   \      0x12C   0xE00C             B.N      ??RFM_I2SEx_TxRxCpltCallback_8
    1198          						}
    1199          						else
    1200          						{
    1201          							pAudioTx[ i ] = t_audio_buff[i / AUDIO_COMPR_RATE - 1];
    \                     ??RFM_I2SEx_TxRxCpltCallback_7: (+1)
-   \      0x122   0x0010             MOVS     R0,R2
-   \      0x124   0xB2C0             UXTB     R0,R0
-   \      0x126   0x1080             ASRS     R0,R0,#+2
-   \      0x128   0xEB07 0x0040      ADD      R0,R7,R0, LSL #+1
-   \      0x12C   0xF830 0x0C02      LDRH     R0,[R0, #-2]
-   \      0x130   0x0013             MOVS     R3,R2
-   \      0x132   0xB2DB             UXTB     R3,R3
-   \      0x134   0xF826 0x0013      STRH     R0,[R6, R3, LSL #+1]
+   \      0x12E   0x0010             MOVS     R0,R2
+   \      0x130   0xB2C0             UXTB     R0,R0
+   \      0x132   0x2304             MOVS     R3,#+4
+   \      0x134   0xFB90 0xF0F3      SDIV     R0,R0,R3
+   \      0x138   0xEB07 0x0040      ADD      R0,R7,R0, LSL #+1
+   \      0x13C   0xF830 0x0C02      LDRH     R0,[R0, #+4294967294]
+   \      0x140   0x0013             MOVS     R3,R2
+   \      0x142   0xB2DB             UXTB     R3,R3
+   \      0x144   0xF826 0x0013      STRH     R0,[R6, R3, LSL #+1]
    1202          						}
    1203          						dtVal = (t_audio_buff[(i / AUDIO_COMPR_RATE)] - pAudioTx[ i ]) / AUDIO_COMPR_RATE;
    \                     ??RFM_I2SEx_TxRxCpltCallback_8: (+1)
-   \      0x138   0x0010             MOVS     R0,R2
-   \      0x13A   0xB2C0             UXTB     R0,R0
-   \      0x13C   0x1080             ASRS     R0,R0,#+2
-   \      0x13E   0xF937 0x3010      LDRSH    R3,[R7, R0, LSL #+1]
-   \      0x142   0x0010             MOVS     R0,R2
-   \      0x144   0xB2C0             UXTB     R0,R0
-   \      0x146   0xF936 0x0010      LDRSH    R0,[R6, R0, LSL #+1]
-   \      0x14A   0x1A1B             SUBS     R3,R3,R0
-   \      0x14C   0x2004             MOVS     R0,#+4
-   \      0x14E   0xFB93 0xF0F0      SDIV     R0,R3,R0
-   \      0x152   0x0001             MOVS     R1,R0
+   \      0x148   0x0010             MOVS     R0,R2
+   \      0x14A   0xB2C0             UXTB     R0,R0
+   \      0x14C   0x2304             MOVS     R3,#+4
+   \      0x14E   0xFB90 0xF0F3      SDIV     R0,R0,R3
+   \      0x152   0xF937 0x3010      LDRSH    R3,[R7, R0, LSL #+1]
+   \      0x156   0x0010             MOVS     R0,R2
+   \      0x158   0xB2C0             UXTB     R0,R0
+   \      0x15A   0xF936 0x0010      LDRSH    R0,[R6, R0, LSL #+1]
+   \      0x15E   0x1A1B             SUBS     R3,R3,R0
+   \      0x160   0x2004             MOVS     R0,#+4
+   \      0x162   0xFB93 0xF0F0      SDIV     R0,R3,R0
+   \      0x166   0x0001             MOVS     R1,R0
    1204          
    1205          						if( (i + AUDIO_COMPR_RATE) == FRAME_ENC_SIZE ) nlastSample = t_audio_buff[(i / AUDIO_COMPR_RATE)];		//	Last Sample
-   \      0x154   0x0010             MOVS     R0,R2
-   \      0x156   0xB2C0             UXTB     R0,R0
-   \      0x158   0x1D00             ADDS     R0,R0,#+4
-   \      0x15A   0x2878             CMP      R0,#+120
-   \      0x15C   0xD114             BNE.N    ??RFM_I2SEx_TxRxCpltCallback_9
-   \      0x15E   0x0010             MOVS     R0,R2
-   \      0x160   0xB2C0             UXTB     R0,R0
-   \      0x162   0x1080             ASRS     R0,R0,#+2
-   \      0x164   0xF837 0x0010      LDRH     R0,[R7, R0, LSL #+1]
-   \      0x168   0x.... 0x....      LDR.W    R3,??DataTable47_28
-   \      0x16C   0x8018             STRH     R0,[R3, #+0]
-   \      0x16E   0xE00B             B.N      ??RFM_I2SEx_TxRxCpltCallback_9
+   \      0x168   0x0010             MOVS     R0,R2
+   \      0x16A   0xB2C0             UXTB     R0,R0
+   \      0x16C   0x1D00             ADDS     R0,R0,#+4
+   \      0x16E   0x2878             CMP      R0,#+120
+   \      0x170   0xD116             BNE.N    ??RFM_I2SEx_TxRxCpltCallback_9
+   \      0x172   0x0010             MOVS     R0,R2
+   \      0x174   0xB2C0             UXTB     R0,R0
+   \      0x176   0x2304             MOVS     R3,#+4
+   \      0x178   0xFB90 0xF0F3      SDIV     R0,R0,R3
+   \      0x17C   0xF837 0x0010      LDRH     R0,[R7, R0, LSL #+1]
+   \      0x180   0x.... 0x....      LDR.W    R3,??DataTable47_26
+   \      0x184   0x8018             STRH     R0,[R3, #+0]
+   \      0x186   0xE00B             B.N      ??RFM_I2SEx_TxRxCpltCallback_9
    1206          					}
    1207          					else
    1208          					{
    1209          						//	sample간 보간.
    1210          						pAudioTx[ i ] = pAudioTx[ i - 1 ] + dtVal;
    \                     ??RFM_I2SEx_TxRxCpltCallback_6: (+1)
-   \      0x170   0x0010             MOVS     R0,R2
-   \      0x172   0xB2C0             UXTB     R0,R0
-   \      0x174   0xEB06 0x0040      ADD      R0,R6,R0, LSL #+1
-   \      0x178   0xF830 0x0C02      LDRH     R0,[R0, #-2]
-   \      0x17C   0xFA50 0xF081      UXTAB    R0,R0,R1
-   \      0x180   0x0013             MOVS     R3,R2
-   \      0x182   0xB2DB             UXTB     R3,R3
-   \      0x184   0xF826 0x0013      STRH     R0,[R6, R3, LSL #+1]
+   \      0x188   0x0010             MOVS     R0,R2
+   \      0x18A   0xB2C0             UXTB     R0,R0
+   \      0x18C   0xEB06 0x0040      ADD      R0,R6,R0, LSL #+1
+   \      0x190   0xF830 0x0C02      LDRH     R0,[R0, #+4294967294]
+   \      0x194   0xFA50 0xF081      UXTAB    R0,R0,R1
+   \      0x198   0x0013             MOVS     R3,R2
+   \      0x19A   0xB2DB             UXTB     R3,R3
+   \      0x19C   0xF826 0x0013      STRH     R0,[R6, R3, LSL #+1]
    1211          					}
    1212          			//		outBuf[ i ] = bufAudioDec[i / AUDIO_COMPR_RATE];
    1213          				}
    \                     ??RFM_I2SEx_TxRxCpltCallback_9: (+1)
-   \      0x188   0x1C52             ADDS     R2,R2,#+1
-   \      0x18A   0xE7B7             B.N      ??RFM_I2SEx_TxRxCpltCallback_5
+   \      0x1A0   0x1C52             ADDS     R2,R2,#+1
+   \      0x1A2   0xE7AB             B.N      ??RFM_I2SEx_TxRxCpltCallback_5
    1214          
    1215          #else	//	defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
    1216          
@@ -2955,12 +2965,12 @@ Warning[Pe009]: nested comment is not allowed
    1222          			{
    1223          				printf ( "B" );	 //  버퍼링시작 ( Buffering )
    \                     ??RFM_I2SEx_TxRxCpltCallback_4: (+1)
-   \      0x18C   0x....             ADR.N    R0,??DataTable42
-   \      0x18E   0x.... 0x....      BL       printf
+   \      0x1A4   0x....             ADR.N    R0,??DataTable42
+   \      0x1A6   0x.... 0x....      BL       printf
    1224          				//  Data
    1225          				bRxBuffering = 1;
-   \      0x192   0x2001             MOVS     R0,#+1
-   \      0x194   0x7038             STRB     R0,[R7, #+0]
+   \      0x1AA   0x2001             MOVS     R0,#+1
+   \      0x1AC   0x7038             STRB     R0,[R7, #+0]
    1226          			}
    1227          		}
    1228          		//  */
@@ -2968,7 +2978,7 @@ Warning[Pe009]: nested comment is not allowed
    1230          
    1231          }
    \                     ??RFM_I2SEx_TxRxCpltCallback_3: (+1)
-   \      0x196   0xE8BD 0x87F0      POP      {R4-R10,PC}
+   \      0x1AE   0xE8BD 0x87F0      POP      {R4-R10,PC}
 
    \                                 In section .bss, align 1
    \                     `RFM_I2SEx_TxRxCpltCallback::idx`:
@@ -2993,19 +3003,19 @@ Warning[Pe009]: nested comment is not allowed
    \        0x0   0xE92D 0x47F0      PUSH     {R4-R10,LR}
    \        0x4   0xB086             SUB      SP,SP,#+24
    1242          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0x.... 0x....      LDR.W    R4,??DataTable47_29
+   \        0x6   0x.... 0x....      LDR.W    R4,??DataTable47_27
    \        0xA   0xF240 0x42DA      MOVW     R2,#+1242
    \        0xE   0x0021             MOVS     R1,R4
-   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable47_15
+   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable47_13
    \       0x14   0x.... 0x....      BL       printf
    1243          
    1244          	//========================================================================
    1245          	I2C_BusScan( &hi2c1 );
-   \       0x18   0x.... 0x....      LDR.W    R6,??DataTable47_30
+   \       0x18   0x.... 0x....      LDR.W    R6,??DataTable47_28
    \       0x1C   0x0030             MOVS     R0,R6
    \       0x1E   0x.... 0x....      BL       I2C_BusScan
    1246          	I2C_BusScan( &hi2c3 );
-   \       0x22   0x.... 0x....      LDR.W    R5,??DataTable47_31
+   \       0x22   0x.... 0x....      LDR.W    R5,??DataTable47_29
    \       0x26   0x0028             MOVS     R0,R5
    \       0x28   0x.... 0x....      BL       I2C_BusScan
    1247          
@@ -3013,7 +3023,7 @@ Warning[Pe009]: nested comment is not allowed
    1249          	//	Car Number 설정.
    1250          	g_flagRspID |= (0x1 << GetCarNo());		//	자신의 ID Flag 설정.
    \       0x2C   0x.... 0x....      BL       GetCarNo
-   \       0x30   0x.... 0x....      LDR.W    R1,??DataTable47_12
+   \       0x30   0x.... 0x....      LDR.W    R1,??DataTable47_10
    \       0x34   0x880A             LDRH     R2,[R1, #+0]
    \       0x36   0x2301             MOVS     R3,#+1
    \       0x38   0xFA13 0xF000      LSLS     R0,R3,R0
@@ -3076,7 +3086,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \       0x92   0xF89D 0x300C      LDRB     R3,[SP, #+12]
    \       0x96   0xF240 0x42F1      MOVW     R2,#+1265
    \       0x9A   0x0021             MOVS     R1,R4
-   \       0x9C   0x.... 0x....      LDR.W    R0,??DataTable47_32
+   \       0x9C   0x.... 0x....      LDR.W    R0,??DataTable47_30
    \       0xA0   0x.... 0x....      BL       printf
    1266          
    1267          		//========================================================================
@@ -3092,7 +3102,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    1275          		//========================================================================
    1276          		//	I2S Callback 등록.
    1277          		SetCallbackI2STxRxCplt( RFM_I2SEx_TxRxCpltCallback );
-   \       0xAC   0x.... 0x....      LDR.W    R0,??DataTable47_33
+   \       0xAC   0x.... 0x....      LDR.W    R0,??DataTable47_31
    \       0xB0   0x.... 0x....      BL       SetCallbackI2STxRxCplt
    1278          //		HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)sine_table, (uint16_t*)bufAudio, 256 );
    1279          
@@ -3114,7 +3124,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    1287          		printf( "%s(%d) - EEPROM OK\n", __func__, __LINE__ );
    \       0xC4   0xF240 0x5207      MOVW     R2,#+1287
    \       0xC8   0x0021             MOVS     R1,R4
-   \       0xCA   0x.... 0x....      LDR.W    R0,??DataTable47_34
+   \       0xCA   0x.... 0x....      LDR.W    R0,??DataTable47_32
    \       0xCE   0x.... 0x....      BL       printf
    1288          		TestEEPROM( &hi2c1 ); //  Test EEPROM
    \       0xD2   0x0030             MOVS     R0,R6
@@ -3147,7 +3157,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1301          
    1302          		g_idxTrainSet = idxTrainSet;
    \                     ??InitRFM_4: (+1)
-   \       0xF2   0x.... 0x....      LDR.W    R0,??DataTable47_35
+   \       0xF2   0x.... 0x....      LDR.W    R0,??DataTable47_33
    \       0xF6   0x7006             STRB     R6,[R0, #+0]
    1303          	}
    1304          
@@ -3231,7 +3241,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1344          
    1345          		g_nSpkLevel = nSpkVol;
    \                     ??InitRFM_6: (+1)
-   \      0x156   0x.... 0x....      LDR.W    R0,??DataTable47_36
+   \      0x156   0x.... 0x....      LDR.W    R0,??DataTable47_34
    \      0x15A   0x7005             STRB     R5,[R0, #+0]
    1346          
    1347          		//  LCD : Spk Icon
@@ -3279,7 +3289,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1370          		//	g_nManHopping;		//	On(1) / Off(2) / Unused(0 : Other)
    1371          		g_nManHopping	=	2;	//	Hopping Diable
    \      0x184   0x2002             MOVS     R0,#+2
-   \      0x186   0x.... 0x....      LDR.W    R1,??DataTable47_37
+   \      0x186   0x.... 0x....      LDR.W    R1,??DataTable47_35
    \      0x18A   0x7008             STRB     R0,[R1, #+0]
    \      0x18C   0xE013             B.N      ??InitRFM_8
    1372          #endif	//	defined(USE_HOP_MANUAL)
@@ -3316,7 +3326,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1397          #if defined(USE_HOP_MANUAL)
    1398          		//	g_nManHopping;		//	On(1) / Off(2) / Unused(0 : Other)
    1399          		g_nManHopping	=	GetManHop();	//	Hopping Diable
-   \      0x19C   0x.... 0x....      LDR.W    R5,??DataTable47_37
+   \      0x19C   0x.... 0x....      LDR.W    R5,??DataTable47_35
    \      0x1A0   0x.... 0x....      BL       GetManHop
    \      0x1A4   0x7028             STRB     R0,[R5, #+0]
    1400          
@@ -3324,7 +3334,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    \      0x1A6   0x782B             LDRB     R3,[R5, #+0]
    \      0x1A8   0xF240 0x5279      MOVW     R2,#+1401
    \      0x1AC   0x0021             MOVS     R1,R4
-   \      0x1AE   0x.... 0x....      LDR.W    R0,??DataTable47_38
+   \      0x1AE   0x.... 0x....      LDR.W    R0,??DataTable47_36
    \      0x1B2   0x.... 0x....      BL       printf
    1402          #endif	//	defined(USE_HOP_MANUAL)
    1403          
@@ -3373,10 +3383,10 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    \      0x1CC   0x.... 0x....      BL       si446x_part_info
    1437          
    1438          	printf ( "=========================\n" );
-   \      0x1D0   0x.... 0x....      LDR.W    R0,??DataTable47_39
+   \      0x1D0   0x.... 0x....      LDR.W    R0,??DataTable47_37
    \      0x1D4   0x.... 0x....      BL       printf
    1439          	printf ( "%08x\n", Si446xCmd.PART_INFO.CHIPREV );
-   \      0x1D8   0x.... 0x....      LDR.W    R5,??DataTable47_40
+   \      0x1D8   0x.... 0x....      LDR.W    R5,??DataTable47_38
    \      0x1DC   0x.... 0x....      LDR.W    R6,??DataTable43
    \      0x1E0   0x7831             LDRB     R1,[R6, #+0]
    \      0x1E2   0x0028             MOVS     R0,R5
@@ -3402,7 +3412,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    \      0x20A   0x0028             MOVS     R0,R5
    \      0x20C   0x.... 0x....      BL       printf
    1445          	printf ( "-------------------------\n" );
-   \      0x210   0x.... 0x....      LDR.W    R0,??DataTable47_41
+   \      0x210   0x.... 0x....      LDR.W    R0,??DataTable47_39
    \      0x214   0x.... 0x....      BL       printf
    1446          
    1447          #endif
@@ -3413,8 +3423,8 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1452          		//========================================================================
    1453          		//  Radio Channel 설정.
    1454          		pRadioConfiguration->Radio_ChannelNumber = g_idxTrainSet;
-   \      0x218   0x.... 0x....      LDR.W    R0,??DataTable47_42
-   \      0x21C   0x.... 0x....      LDR.W    R1,??DataTable47_35
+   \      0x218   0x.... 0x....      LDR.W    R0,??DataTable47_40
+   \      0x21C   0x.... 0x....      LDR.W    R1,??DataTable47_33
    \      0x220   0x780A             LDRB     R2,[R1, #+0]
    \      0x222   0x6803             LDR      R3,[R0, #+0]
    \      0x224   0x711A             STRB     R2,[R3, #+4]
@@ -3426,7 +3436,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    \      0x22C   0x7903             LDRB     R3,[R0, #+4]
    \      0x22E   0xF240 0x52AF      MOVW     R2,#+1455
    \      0x232   0x0021             MOVS     R1,R4
-   \      0x234   0x.... 0x....      LDR.W    R0,??DataTable47_43
+   \      0x234   0x.... 0x....      LDR.W    R0,??DataTable47_41
    \      0x238   0x.... 0x....      BL       printf
    1457          	}
    1458          
@@ -3456,7 +3466,7 @@ Warning[Pe223]: function "srand" declared implicitly
 Warning[Pe223]: function "rand" declared implicitly
    \      0x260   0x.... 0x....      BL       rand
    \      0x264   0xF44F 0x717A      MOV      R1,#+1000
-   \      0x268   0x.... 0x....      LDR.W    R5,??DataTable47_44
+   \      0x268   0x.... 0x....      LDR.W    R5,??DataTable47_42
    \      0x26C   0xFB90 0xF2F1      SDIV     R2,R0,R1
    \      0x270   0xFB01 0x0012      MLS      R0,R1,R2,R0
    \      0x274   0x7028             STRB     R0,[R5, #+0]
@@ -3464,7 +3474,7 @@ Warning[Pe223]: function "rand" declared implicitly
    \      0x276   0x782B             LDRB     R3,[R5, #+0]
    \      0x278   0xF240 0x52BB      MOVW     R2,#+1467
    \      0x27C   0x0021             MOVS     R1,R4
-   \      0x27E   0x.... 0x....      LDR.W    R0,??DataTable47_45
+   \      0x27E   0x.... 0x....      LDR.W    R0,??DataTable47_43
    \      0x282   0x.... 0x....      BL       printf
    1468          
    1469          	//	초기 시작 Delay
@@ -3489,8 +3499,8 @@ Warning[Pe940]: missing return statement at end of non-void function "InitRFM"
    \        0x0   0xB510             PUSH     {R4,LR}
    1479          	printf( "%s(%d)\n", __func__, __LINE__ );
    \        0x2   0xF240 0x52C7      MOVW     R2,#+1479
-   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable47_46
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable47_15
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable47_44
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable47_13
    \        0xE   0x.... 0x....      BL       printf
    1480          
    1481          	InitRFM();
@@ -3614,7 +3624,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1548          				// PTT Key가 눌려있을시 전송.
    1549          				if( qBufCnt( &g_qBufAudioTx ) >= ( I2S_DMA_LOOP_SIZE * 2 ) )
    \                     ??LoopProcRFM_2: (+1)
-   \       0x2C   0x.... 0x....      LDR.W    R5,??DataTable47_23
+   \       0x2C   0x.... 0x....      LDR.W    R5,??DataTable47_21
    \       0x30   0x0028             MOVS     R0,R5
    \       0x32   0x.... 0x....      BL       qBufCnt
    \       0x36   0x283C             CMP      R0,#+60
@@ -3713,7 +3723,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1612          								(uint8_t)(pRadioConfiguration->Radio_PacketLength) );
    \                     ??LoopProcRFM_6: (+1)
    \       0x82   0x.... 0x....      BL       GetChPA
-   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable47_42
+   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable47_40
    \       0x8A   0x6809             LDR      R1,[R1, #+0]
    \       0x8C   0x794A             LDRB     R2,[R1, #+5]
    \       0x8E   0x4669             MOV      R1,SP
@@ -3748,7 +3758,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1628          									(uint8_t)(pRadioConfiguration->Radio_PacketLength) );
    \                     ??LoopProcRFM_7: (+1)
    \       0xB0   0x.... 0x....      BL       GetChPA
-   \       0xB4   0x.... 0x....      LDR.W    R1,??DataTable47_42
+   \       0xB4   0x.... 0x....      LDR.W    R1,??DataTable47_40
    \       0xB8   0x6809             LDR      R1,[R1, #+0]
    \       0xBA   0x794A             LDRB     R2,[R1, #+5]
    \       0xBC   0x4669             MOV      R1,SP
@@ -3773,7 +3783,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0xC4   0x.... 0x....      BL       GetRFMMode
    \       0xC8   0x0005             MOVS     R5,R0
    1644          		if( nRFMMode != nOldRFMMode )
-   \       0xCA   0x.... 0x....      LDR.W    R6,??DataTable47_47
+   \       0xCA   0x.... 0x....      LDR.W    R6,??DataTable47_45
    \       0xCE   0x0028             MOVS     R0,R5
    \       0xD0   0x7831             LDRB     R1,[R6, #+0]
    \       0xD2   0xB2C0             UXTB     R0,R0
@@ -3795,7 +3805,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0xE6   0x2014             MOVS     R0,#+20
    \       0xE8   0x.... 0x....      BL       LCDSetCursor
    1650          				LCDPrintf( "수신중..." );
-   \       0xEC   0x.... 0x....      LDR.W    R0,??DataTable47_48
+   \       0xEC   0x.... 0x....      LDR.W    R0,??DataTable47_46
    \       0xF0   0x.... 0x....      BL       LCDPrintf
    1651          				break;
    \       0xF4   0xE00F             B.N      ??LoopProcRFM_10
@@ -3822,7 +3832,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1665          					HAL_GPIO_WritePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_RESET ); //  RED LED
    \      0x108   0x2200             MOVS     R2,#+0
    \      0x10A   0xF44F 0x4180      MOV      R1,#+16384
-   \      0x10E   0x.... 0x....      LDR.W    R0,??DataTable47_49
+   \      0x10E   0x.... 0x....      LDR.W    R0,??DataTable47_47
    \      0x112   0x.... 0x....      BL       HAL_GPIO_WritePin
    1666          				}
    1667          #endif
@@ -3865,7 +3875,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1686          		{
    1687          			//	대승객 방송 모드인 경우 대승객 방송 음성 송출.
    1688          			if( qBufCnt( &g_qBufAudioTx ) >= ( I2S_DMA_LOOP_SIZE * 2 ) )
-   \      0x13A   0x.... 0x....      LDR.W    R5,??DataTable47_23
+   \      0x13A   0x.... 0x....      LDR.W    R5,??DataTable47_21
    \      0x13E   0x0028             MOVS     R0,R5
    \      0x140   0x.... 0x....      BL       qBufCnt
    \      0x144   0x283C             CMP      R0,#+60
@@ -3883,7 +3893,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1695          				qBufPut( &g_qBufAudioRx, (uint8_t*)bufRFTx.dat.data, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
    \      0x154   0x223C             MOVS     R2,#+60
    \      0x156   0xF10D 0x010A      ADD      R1,SP,#+10
-   \      0x15A   0x.... 0x....      LDR.W    R0,??DataTable47_26
+   \      0x15A   0x.... 0x....      LDR.W    R0,??DataTable47_24
    \      0x15E   0x.... 0x....      BL       qBufPut
    1696          
    1697          				//========================================================================
@@ -3904,7 +3914,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1706          					SendPktCh( GetChPA() + 1, (U8 *)&bufRFTx,
    1707          							(uint8_t)(pRadioConfiguration->Radio_PacketLength) );
    \      0x172   0x.... 0x....      BL       GetChPA
-   \      0x176   0x.... 0x....      LDR.W    R1,??DataTable47_42
+   \      0x176   0x.... 0x....      LDR.W    R1,??DataTable47_40
    \      0x17A   0x6809             LDR      R1,[R1, #+0]
    \      0x17C   0x794A             LDRB     R2,[R1, #+5]
    \      0x17E   0x4669             MOV      R1,SP
@@ -3920,7 +3930,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1713          							(uint8_t)(pRadioConfiguration->Radio_PacketLength ));
    \                     ??LoopProcRFM_14: (+1)
    \      0x18A   0x.... 0x....      BL       GetChPA
-   \      0x18E   0x.... 0x....      LDR.W    R1,??DataTable47_42
+   \      0x18E   0x.... 0x....      LDR.W    R1,??DataTable47_40
    \      0x192   0x6809             LDR      R1,[R1, #+0]
    \      0x194   0x794A             LDRB     R2,[R1, #+5]
    \      0x196   0x4669             MOV      R1,SP
@@ -3948,7 +3958,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1727          			&& ( GetRFMMode() != RFMModeUpgr )		//	Upgrade Mode - Skip
    1728          		)
    \                     ??LoopProcRFM_13: (+1)
-   \      0x1AC   0x.... 0x....      LDR.W    R5,??DataTable47_50
+   \      0x1AC   0x.... 0x....      LDR.W    R5,??DataTable47_48
    \      0x1B0   0x0021             MOVS     R1,R4
    \      0x1B2   0xB2C9             UXTB     R1,R1
    \      0x1B4   0x7828             LDRB     R0,[R5, #+0]
@@ -3997,7 +4007,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \                     ??LoopProcRFM_17: (+1)
    \      0x1F8   0x2200             MOVS     R2,#+0
    \      0x1FA   0xF44F 0x4180      MOV      R1,#+16384
-   \      0x1FE   0x....             LDR.N    R0,??DataTable47_49
+   \      0x1FE   0x....             LDR.N    R0,??DataTable47_47
    \      0x200   0x.... 0x....      BL       HAL_GPIO_WritePin
    1747          	}
    1748          
@@ -4007,7 +4017,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1752          
    1753          	if ( nTick - s_nTickStandby >= 1000 )
    \                     ??LoopProcRFM_16: (+1)
-   \      0x204   0x....             LDR.N    R6,??DataTable47_51
+   \      0x204   0x....             LDR.N    R6,??DataTable47_49
    \      0x206   0x0021             MOVS     R1,R4
    \      0x208   0xB2C9             UXTB     R1,R1
    \      0x20A   0x7830             LDRB     R0,[R6, #+0]
@@ -4041,7 +4051,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1766          			//	RFM(Board) Status LED
    1767          			HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
    \      0x230   0xF44F 0x4100      MOV      R1,#+32768
-   \      0x234   0x....             LDR.N    R0,??DataTable47_52
+   \      0x234   0x....             LDR.N    R0,??DataTable47_50
    \      0x236   0x.... 0x....      BL       HAL_GPIO_TogglePin
    1768          		}
    1769          
@@ -4091,7 +4101,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \      0x256   0xB2C9             UXTB     R1,R1
    \      0x258   0x7828             LDRB     R0,[R5, #+0]
    \      0x25A   0x1A09             SUBS     R1,R1,R0
-   \      0x25C   0x....             LDR.N    R0,??DataTable47_53
+   \      0x25C   0x....             LDR.N    R0,??DataTable47_51
    \      0x25E   0x4281             CMP      R1,R0
    \      0x260   0xDB10             BLT.N    ??LoopProcRFM_22
    \      0x262   0x.... 0x....      BL       GetRFMMode
@@ -4107,14 +4117,14 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1804          
    1805          		//  RF 수신 Start
    1806          		g_nChRx = GetChRx();	//	ChTS1_1 + g_idxTrainSet * 2 + ((g_nCarNo+1) % 2);	// 현재 호차 채널
-   \      0x270   0x....             LDR.N    R5,??DataTable47_54
+   \      0x270   0x....             LDR.N    R5,??DataTable47_52
    \      0x272   0x.... 0x....      BL       GetChRx
    \      0x276   0x7028             STRB     R0,[R5, #+0]
    1807          
    1808          		vRadio_StartRX(
    1809          			g_nChRx,	//g_idxTrainSet,	//		pRadioConfiguration->Radio_ChannelNumber,
    1810          			pRadioConfiguration->Radio_PacketLength );
-   \      0x278   0x....             LDR.N    R0,??DataTable47_42
+   \      0x278   0x....             LDR.N    R0,??DataTable47_40
    \      0x27A   0x6800             LDR      R0,[R0, #+0]
    \      0x27C   0x7941             LDRB     R1,[R0, #+5]
    \      0x27E   0x7828             LDRB     R0,[R5, #+0]
@@ -4134,7 +4144,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1823          			&&	GetRFMMode() == RFMModeNormal			//	Normal모드 : 상태정보 요청.
    1824          		)
    \                     ??LoopProcRFM_22: (+1)
-   \      0x284   0x....             LDR.N    R5,??DataTable47_55
+   \      0x284   0x....             LDR.N    R5,??DataTable47_53
    \      0x286   0x0021             MOVS     R1,R4
    \      0x288   0xB2C9             UXTB     R1,R1
    \      0x28A   0x7828             LDRB     R0,[R5, #+0]
@@ -4151,7 +4161,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1825          	{
    1826          		//	상태정보 요청.
    1827          		if ( s_idxCh < MaxTrainSet )
-   \      0x2A6   0x....             LDR.N    R6,??DataTable47_56
+   \      0x2A6   0x....             LDR.N    R6,??DataTable47_54
    \      0x2A8   0x7830             LDRB     R0,[R6, #+0]
    \      0x2AA   0x280A             CMP      R0,#+10
    \      0x2AC   0xDA06             BGE.N    ??LoopProcRFM_24
@@ -4265,7 +4275,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x18   0x2519             MOVS     R5,#+25
    \       0x1A   0x0026             MOVS     R6,R4
    \       0x1C   0xF05F 0x081B      MOVS     R8,#+27
-   \       0x20   0x.... 0x....      LDR.W    R9,??DataTable47_57
+   \       0x20   0x.... 0x....      LDR.W    R9,??DataTable47_55
    \       0x24   0x0038             MOVS     R0,R7
    \       0x26   0xB2C0             UXTB     R0,R0
    \       0x28   0xFB08 0xF000      MUL      R0,R8,R0
@@ -4282,7 +4292,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x3C   0xB2C0             UXTB     R0,R0
    \       0x3E   0xFB08 0xF800      MUL      R8,R8,R0
    \       0x42   0xEB09 0x0008      ADD      R0,R9,R8
-   \       0x46   0x....             LDR.N    R1,??DataTable47_58
+   \       0x46   0x....             LDR.N    R1,??DataTable47_56
    \       0x48   0x7809             LDRB     R1,[R1, #+0]
    \       0x4A   0x7681             STRB     R1,[R0, #+26]
    1875          
@@ -4299,8 +4309,8 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x50   0x8A63             LDRH     R3,[R4, #+18]
    \       0x52   0x003A             MOVS     R2,R7
    \       0x54   0xB2D2             UXTB     R2,R2
-   \       0x56   0x....             LDR.N    R1,??DataTable47_59
-   \       0x58   0x.... 0x....      LDR.W    R12,??DataTable47_60
+   \       0x56   0x....             LDR.N    R1,??DataTable47_57
+   \       0x58   0x.... 0x....      LDR.W    R12,??DataTable47_58
    \       0x5C   0x46BE             MOV      LR,R7
    \       0x5E   0xFA5F 0xFE8E      UXTB     LR,LR
    \       0x62   0x2014             MOVS     R0,#+20
@@ -4335,7 +4345,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1901          
    1902          	//	장치 응답 Flag 설정.
    1903          	g_flagRspID	|= ( 0x1 << nRspID );
-   \        0x4   0x....             LDR.N    R0,??DataTable47_12
+   \        0x4   0x....             LDR.N    R0,??DataTable47_10
    \        0x6   0x8801             LDRH     R1,[R0, #+0]
    \        0x8   0x2201             MOVS     R2,#+1
    \        0xA   0x40A2             LSLS     R2,R2,R4
@@ -4346,7 +4356,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1906          //DEL	stampStat[nRspID] = HAL_GetTick();
    1907          	g_devStat[nRspID].stampRx = HAL_GetTick();
    \       0x10   0x.... 0x....      BL       HAL_GetTick
-   \       0x14   0x....             LDR.N    R2,??DataTable47_57
+   \       0x14   0x....             LDR.N    R2,??DataTable47_55
    \       0x16   0x0023             MOVS     R3,R4
    \       0x18   0xB2DB             UXTB     R3,R3
    \       0x1A   0x211B             MOVS     R1,#+27
@@ -4368,7 +4378,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1914          	//	상태정보 갱신.
    1915          	//	Timeout 초과 상태정보 Disable
    1916          	if( g_bSetRspIDManual )
-   \        0x4   0x....             LDR.N    R0,??DataTable47_11
+   \        0x4   0x....             LDR.N    R0,??DataTable47_9
    \        0x6   0x7800             LDRB     R0,[R0, #+0]
    \        0x8   0x2800             CMP      R0,#+0
    \        0xA   0xD128             BNE.N    ??ReflashStat_0
@@ -4402,7 +4412,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1932          		if ( ( nTick - g_devStat[idx].stampRx ) > TIMEOUT_RECV_STATUS * 1000 )
    \                     ??ReflashStat_5: (+1)
    \       0x22   0x211B             MOVS     R1,#+27
-   \       0x24   0x....             LDR.N    R2,??DataTable47_57
+   \       0x24   0x....             LDR.N    R2,??DataTable47_55
    \       0x26   0x0023             MOVS     R3,R4
    \       0x28   0xB2DB             UXTB     R3,R3
    \       0x2A   0x0028             MOVS     R0,R5
@@ -4416,7 +4426,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x3C   0xDB0D             BLT.N    ??ReflashStat_4
    1933          		{
    1934          			g_flagRspID &= ~( 0x1 << idx );
-   \       0x3E   0x....             LDR.N    R0,??DataTable47_12
+   \       0x3E   0x....             LDR.N    R0,??DataTable47_10
    \       0x40   0x8803             LDRH     R3,[R0, #+0]
    \       0x42   0x2601             MOVS     R6,#+1
    \       0x44   0x40AE             LSLS     R6,R6,R5
@@ -4470,7 +4480,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \        0xE   0xDA0F             BGE.N    ??ReloadStampStat_1
    1958          	{
    1959          		if( g_flagRspID & ( 0x1 << idx ) )
-   \       0x10   0x....             LDR.N    R1,??DataTable47_12
+   \       0x10   0x....             LDR.N    R1,??DataTable47_10
    \       0x12   0x8809             LDRH     R1,[R1, #+0]
    \       0x14   0x2301             MOVS     R3,#+1
    \       0x16   0x4093             LSLS     R3,R3,R2
@@ -4478,7 +4488,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x1A   0xD007             BEQ.N    ??ReloadStampStat_2
    1960          		{
    1961          			g_devStat[idx].stampRx = nStamp;
-   \       0x1C   0x....             LDR.N    R3,??DataTable47_57
+   \       0x1C   0x....             LDR.N    R3,??DataTable47_55
    \       0x1E   0x0014             MOVS     R4,R2
    \       0x20   0xB2E4             UXTB     R4,R4
    \       0x22   0x211B             MOVS     R1,#+27
@@ -4595,6 +4605,10 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \        0x0   0x....'....        DC32     `GetTrainSetIdx::s_bOnce`
 
    \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable39_6:
+   \        0x0   0x....'....        DC32     g_idxTrainSet
+
+   \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable40:
    \        0x0   0x....'....        DC32     ?_9
 
@@ -4626,34 +4640,30 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable40_7:
-   \        0x0   0x....'....        DC32     g_idxTrainSet
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable40_8:
    \        0x0   0x....'....        DC32     `SetTrainSetIdx::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable40_9:
+   \                     ??DataTable40_8:
    \        0x0   0x....'....        DC32     `GetManHop::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable40_10:
+   \                     ??DataTable40_9:
    \        0x0   0x....'....        DC32     `SetManHop::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable40_11:
+   \                     ??DataTable40_10:
    \        0x0   0x....'....        DC32     `LoadCarNo::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable40_12:
+   \                     ??DataTable40_11:
    \        0x0   0x....'....        DC32     `GetCarNo::s_bOnce`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable40_13:
+   \                     ??DataTable40_12:
    \        0x0   0x....'....        DC32     `SetCarNo::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable40_14:
+   \                     ??DataTable40_13:
    \        0x0   0x....'....        DC32     `GetSpkVol::__func__`
 
    \                                 In section .text, align 4, keep-with-next
@@ -4723,12 +4733,16 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \        0x0   0x....'....        DC32     `cmd_hop::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable44:
+   \                     ??DataTable43_3:
    \        0x0   0x....'....        DC32     ?_25
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable44_1:
+   \                     ??DataTable44:
    \        0x0   0x....'....        DC32     ?_26
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable44_1:
+   \        0x0   0x....'....        DC32     ?_28
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable45:
@@ -4736,27 +4750,27 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable45_1:
-   \        0x0   0x....'....        DC32     ?_28
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable45_2:
    \        0x0   0x....'....        DC32     ?_29
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable45_3:
+   \                     ??DataTable45_2:
    \        0x0   0x....'....        DC32     ?_30
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable45_4:
+   \                     ??DataTable45_3:
    \        0x0   0x....'....        DC32     ?_31
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable45_5:
+   \                     ??DataTable45_4:
    \        0x0   0x....'....        DC32     ?_32
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable45_6:
+   \                     ??DataTable45_5:
    \        0x0   0x....'....        DC32     ?_33
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable45_6:
+   \        0x0   0x....'....        DC32     ?_34
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable46:
@@ -4772,11 +4786,15 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable46_3:
-   \        0x0   0x....'....        DC32     ?_34
+   \        0x0   0x....'....        DC32     ?_35
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable46_4:
-   \        0x0   0x....'....        DC32     ?_35
+   \        0x0   0x....'....        DC32     nRxPkt
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable46_5:
+   \        0x0   0x....'....        DC32     nTxPkt
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable47:
@@ -4796,230 +4814,222 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable47_4:
-   \        0x0   0x....'....        DC32     nRxPkt
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_5:
-   \        0x0   0x....'....        DC32     nTxPkt
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_6:
    \        0x0   0x....'....        DC32     ?_37
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_7:
+   \                     ??DataTable47_5:
    \        0x0   0x....'....        DC32     `cmd_txpwr::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_8:
+   \                     ??DataTable47_6:
    \        0x0   0x....'....        DC32     ?_38
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_9:
+   \                     ??DataTable47_7:
    \        0x0   0x....'....        DC32     `cmd_rspid::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_10:
+   \                     ??DataTable47_8:
    \        0x0   0x....'....        DC32     ?_39
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_11:
+   \                     ??DataTable47_9:
    \        0x0   0x....'....        DC32     g_bSetRspIDManual
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_12:
+   \                     ??DataTable47_10:
    \        0x0   0x....'....        DC32     g_flagRspID
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_13:
+   \                     ??DataTable47_11:
    \        0x0   0x....'....        DC32     ?_40
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_14:
+   \                     ??DataTable47_12:
    \        0x0   0x....'....        DC32     `cmd_OccPa::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_15:
+   \                     ??DataTable47_13:
    \        0x0   0x....'....        DC32     ?_41
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_16:
+   \                     ??DataTable47_14:
    \        0x0   0x....'....        DC32     ?_42
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_17:
+   \                     ??DataTable47_15:
    \        0x0   0x4002'1000        DC32     0x40021000
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_18:
+   \                     ??DataTable47_16:
    \        0x0   0x....'....        DC32     ?_43
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_19:
+   \                     ??DataTable47_17:
    \        0x0   0x....'....        DC32     `RFM_I2SEx_TxRxCpltCallback::idx`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_20:
+   \                     ??DataTable47_18:
    \        0x0   0x....'....        DC32     bufAudioDec
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_21:
+   \                     ??DataTable47_19:
    \        0x0   0x....'....        DC32     bufAudioEnc
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_22:
+   \                     ??DataTable47_20:
    \        0x0   0x....'....        DC32     hi2s3
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_23:
+   \                     ??DataTable47_21:
    \        0x0   0x....'....        DC32     g_qBufAudioTx
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_24:
+   \                     ??DataTable47_22:
    \        0x0   0x....'....        DC32     r_audio_buff
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_25:
+   \                     ??DataTable47_23:
    \        0x0   0x....'....        DC32     bRxBuffering
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_26:
+   \                     ??DataTable47_24:
    \        0x0   0x....'....        DC32     g_qBufAudioRx
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_27:
+   \                     ??DataTable47_25:
    \        0x0   0x....'....        DC32     t_audio_buff
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_28:
+   \                     ??DataTable47_26:
    \        0x0   0x....'....        DC32     `RFM_I2SEx_TxRxCpltCallback{2}{8}{9}{10}{11}::nlastSample`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_29:
+   \                     ??DataTable47_27:
    \        0x0   0x....'....        DC32     `InitRFM::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_30:
+   \                     ??DataTable47_28:
    \        0x0   0x....'....        DC32     hi2c1
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_31:
+   \                     ??DataTable47_29:
    \        0x0   0x....'....        DC32     hi2c3
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_32:
+   \                     ??DataTable47_30:
    \        0x0   0x....'....        DC32     ?_46
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_33:
+   \                     ??DataTable47_31:
    \        0x0   0x....'....        DC32     RFM_I2SEx_TxRxCpltCallback
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_34:
+   \                     ??DataTable47_32:
    \        0x0   0x....'....        DC32     ?_47
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_35:
+   \                     ??DataTable47_33:
    \        0x0   0x....'....        DC32     g_idxTrainSet
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_36:
+   \                     ??DataTable47_34:
    \        0x0   0x....'....        DC32     g_nSpkLevel
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_37:
+   \                     ??DataTable47_35:
    \        0x0   0x....'....        DC32     g_nManHopping
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_38:
+   \                     ??DataTable47_36:
    \        0x0   0x....'....        DC32     ?_48
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_39:
+   \                     ??DataTable47_37:
    \        0x0   0x....'....        DC32     ?_49
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_40:
+   \                     ??DataTable47_38:
    \        0x0   0x....'....        DC32     ?_50
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_41:
+   \                     ??DataTable47_39:
    \        0x0   0x....'....        DC32     ?_51
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_42:
+   \                     ??DataTable47_40:
    \        0x0   0x....'....        DC32     pRadioConfiguration
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_43:
+   \                     ??DataTable47_41:
    \        0x0   0x....'....        DC32     ?_52
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_44:
+   \                     ??DataTable47_42:
    \        0x0   0x....'....        DC32     g_offsetCA
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_45:
+   \                     ??DataTable47_43:
    \        0x0   0x....'....        DC32     ?_53
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_46:
+   \                     ??DataTable47_44:
    \        0x0   0x....'....        DC32     `RFM_main::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_47:
+   \                     ??DataTable47_45:
    \        0x0   0x....'....        DC32     `LoopProcRFM{2}{3}::nOldRFMMode`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_48:
+   \                     ??DataTable47_46:
    \        0x0   0x....'....        DC32     ?_54
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_49:
+   \                     ??DataTable47_47:
    \        0x0   0x4002'0400        DC32     0x40020400
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_50:
+   \                     ??DataTable47_48:
    \        0x0   0x....'....        DC32     g_nStampRxPkt
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_51:
+   \                     ??DataTable47_49:
    \        0x0   0x....'....        DC32     `LoopProcRFM::s_nTickStandby`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_52:
+   \                     ??DataTable47_50:
    \        0x0   0x4002'0C00        DC32     0x40020c00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_53:
+   \                     ??DataTable47_51:
    \        0x0   0x0004'93E1        DC32     0x493e1
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_54:
+   \                     ??DataTable47_52:
    \        0x0   0x....'....        DC32     g_nChRx
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_55:
+   \                     ??DataTable47_53:
    \        0x0   0x....'....        DC32     `LoopProcRFM::oldTickStatReq`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_56:
+   \                     ??DataTable47_54:
    \        0x0   0x....'....        DC32     `LoopProcRFM::s_idxCh`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_57:
+   \                     ??DataTable47_55:
    \        0x0   0x....'....        DC32     g_devStat
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_58:
+   \                     ??DataTable47_56:
    \        0x0   0x....'....        DC32     g_nRSSI
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_59:
+   \                     ??DataTable47_57:
    \        0x0   0x....'....        DC32     ?_55
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_60:
+   \                     ??DataTable47_58:
    \        0x0   0x....'....        DC32     _sVerList
 
    \                                 In section .rodata, align 4
@@ -5265,11 +5275,11 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
    \                                 In section .rodata, align 4
    \                     ?_17:
-   \        0x0   0x53 0x65          DC8 "Sep 21 2022"
+   \        0x0   0x53 0x65          DC8 "Sep 22 2022"
 
    \              0x70 0x20    
 
-   \              0x32 0x31    
+   \              0x32 0x32    
 
    \              0x20 0x32    
 
@@ -5279,13 +5289,13 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
    \                                 In section .rodata, align 4
    \                     ?_18:
-   \        0x0   0x31 0x33          DC8 "13:06:26"
+   \        0x0   0x30 0x38          DC8 "08:40:14"
 
-   \              0x3A 0x30    
+   \              0x3A 0x34    
 
-   \              0x36 0x3A    
+   \              0x30 0x3A    
 
-   \              0x32 0x36    
+   \              0x31 0x34    
 
    \              0x00
    \        0x9                      DS8 3
@@ -6467,13 +6477,13 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
        4  ??DataTable39_3
        4  ??DataTable39_4
        4  ??DataTable39_5
+       4  ??DataTable39_6
        4  ??DataTable40
        4  ??DataTable40_1
        4  ??DataTable40_10
        4  ??DataTable40_11
        4  ??DataTable40_12
        4  ??DataTable40_13
-       4  ??DataTable40_14
        4  ??DataTable40_2
        4  ??DataTable40_3
        4  ??DataTable40_4
@@ -6498,6 +6508,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
        4  ??DataTable43
        4  ??DataTable43_1
        4  ??DataTable43_2
+       4  ??DataTable43_3
        4  ??DataTable44
        4  ??DataTable44_1
        4  ??DataTable45
@@ -6512,6 +6523,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
        4  ??DataTable46_2
        4  ??DataTable46_3
        4  ??DataTable46_4
+       4  ??DataTable46_5
        4  ??DataTable47
        4  ??DataTable47_1
        4  ??DataTable47_10
@@ -6567,9 +6579,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
        4  ??DataTable47_56
        4  ??DataTable47_57
        4  ??DataTable47_58
-       4  ??DataTable47_59
        4  ??DataTable47_6
-       4  ??DataTable47_60
        4  ??DataTable47_7
        4  ??DataTable47_8
        4  ??DataTable47_9
@@ -6649,7 +6659,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
      102  LoadTrainSetIdx
      764  LoopProcRFM
       84  PrintVerInfo
-     410  RFM_I2SEx_TxRxCpltCallback
+     434  RFM_I2SEx_TxRxCpltCallback
       68  RFM_Spk
       88  RFM_main
      182  RF_RSSI
@@ -6708,9 +6718,9 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
  1'331 bytes in section .bss
      4 bytes in section .data
  1'252 bytes in section .rodata
- 5'660 bytes in section .text
+ 5'684 bytes in section .text
  
- 5'660 bytes of CODE  memory
+ 5'684 bytes of CODE  memory
  1'252 bytes of CONST memory
  1'335 bytes of DATA  memory
 

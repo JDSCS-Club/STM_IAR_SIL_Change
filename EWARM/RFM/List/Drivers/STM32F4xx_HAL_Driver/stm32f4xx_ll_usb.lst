@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:24
+#                                                         22/Sep/2022  08:40:11
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -18,7 +19,8 @@
 #        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
 #        --no_clustering --no_scheduling --debug --endian=little
 #        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
-#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Systems\Embedded Workbench 9.0 EWARM FS
+#        9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -39,7 +41,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_ll_usb.o.d
 #    Locale            =  C
 #    List file         =
@@ -2380,9 +2383,9 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_us
     957                                            uint8_t ch_ep_num, uint16_t len, uint8_t dma)
     958          {
    \                     USB_WritePacket: (+1)
-   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x0   0xE92D 0x43F0      PUSH     {R4-R9,LR}
    \        0x4   0x0007             MOVS     R7,R0
-   \        0x6   0x9C06             LDR      R4,[SP, #+24]
+   \        0x6   0x9C07             LDR      R4,[SP, #+28]
     959            uint32_t USBx_BASE = (uint32_t)USBx;
    \        0x8   0x46BC             MOV      R12,R7
     960            uint32_t *pSrc = (uint32_t *)src;
@@ -2393,7 +2396,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_us
    \        0xC   0x0020             MOVS     R0,R4
    \        0xE   0xB2C0             UXTB     R0,R0
    \       0x10   0x2800             CMP      R0,#+0
-   \       0x12   0xD117             BNE.N    ??USB_WritePacket_0
+   \       0x12   0xD11A             BNE.N    ??USB_WritePacket_0
     964            {
     965              count32b = ((uint32_t)len + 3U) / 4U;
    \       0x14   0x0018             MOVS     R0,R3
@@ -2406,27 +2409,28 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_us
    \       0x20   0x0006             MOVS     R6,R0
    \                     ??USB_WritePacket_1: (+1)
    \       0x22   0x42AE             CMP      R6,R5
-   \       0x24   0xD20E             BCS.N    ??USB_WritePacket_0
+   \       0x24   0xD211             BCS.N    ??USB_WritePacket_0
     967              {
     968                USBx_DFIFO((uint32_t)ch_ep_num) = __UNALIGNED_UINT32_READ(pSrc);
    \       0x26   0x4670             MOV      R0,LR
    \       0x28   0xF8D0 0x8000      LDR      R8,[R0, #+0]
-   \       0x2C   0x0010             MOVS     R0,R2
-   \       0x2E   0xB2C0             UXTB     R0,R0
-   \       0x30   0xEB1C 0x3000      ADDS     R0,R12,R0, LSL #+12
-   \       0x34   0xF510 0x5080      ADDS     R0,R0,#+4096
-   \       0x38   0xF8C0 0x8000      STR      R8,[R0, #+0]
+   \       0x2C   0x4691             MOV      R9,R2
+   \       0x2E   0xFA5F 0xF989      UXTB     R9,R9
+   \       0x32   0xF44F 0x5080      MOV      R0,#+4096
+   \       0x36   0xFB00 0xC909      MLA      R9,R0,R9,R12
+   \       0x3A   0xF519 0x5980      ADDS     R9,R9,#+4096
+   \       0x3E   0xF8C9 0x8000      STR      R8,[R9, #+0]
     969                pSrc++;
-   \       0x3C   0xF11E 0x0E04      ADDS     LR,LR,#+4
+   \       0x42   0xF11E 0x0E04      ADDS     LR,LR,#+4
     970              }
-   \       0x40   0x1C76             ADDS     R6,R6,#+1
-   \       0x42   0xE7EE             B.N      ??USB_WritePacket_1
+   \       0x46   0x1C76             ADDS     R6,R6,#+1
+   \       0x48   0xE7EB             B.N      ??USB_WritePacket_1
     971            }
     972          
     973            return HAL_OK;
    \                     ??USB_WritePacket_0: (+1)
-   \       0x44   0x2000             MOVS     R0,#+0
-   \       0x46   0xE8BD 0x81F0      POP      {R4-R8,PC}
+   \       0x4A   0x2000             MOVS     R0,#+0
+   \       0x4C   0xE8BD 0x83F0      POP      {R4-R9,PC}
     974          }
     975          
     976          /**
@@ -3765,10 +3769,10 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_us
    \       0x2A   0xD005             BEQ.N    ??USB_HC_Init_0
    \       0x2C   0x2F02             CMP      R7,#+2
    \       0x2E   0xD003             BEQ.N    ??USB_HC_Init_0
-   \       0x30   0xD35A             BCC.N    ??USB_HC_Init_1
+   \       0x30   0xD35E             BCC.N    ??USB_HC_Init_1
    \       0x32   0x2F03             CMP      R7,#+3
-   \       0x34   0xD038             BEQ.N    ??USB_HC_Init_2
-   \       0x36   0xE077             B.N      ??USB_HC_Init_3
+   \       0x34   0xD03A             BEQ.N    ??USB_HC_Init_2
+   \       0x36   0xE07D             B.N      ??USB_HC_Init_3
    1605            {
    1606              case EP_TYPE_CTRL:
    1607              case EP_TYPE_BULK:
@@ -3787,48 +3791,50 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_us
    \       0x48   0xF8C7 0x800C      STR      R8,[R7, #+12]
    1614          
    1615                if ((epnum & 0x80U) == 0x80U)
-   \       0x4C   0x0617             LSLS     R7,R2,#+24
-   \       0x4E   0xD513             BPL.N    ??USB_HC_Init_4
+   \       0x4C   0x0017             MOVS     R7,R2
+   \       0x4E   0xB2FF             UXTB     R7,R7
+   \       0x50   0x063F             LSLS     R7,R7,#+24
+   \       0x52   0xD513             BPL.N    ??USB_HC_Init_4
    1616                {
    1617                  USBx_HC((uint32_t)ch_num)->HCINTMSK |= USB_OTG_HCINTMSK_BBERRM;
-   \       0x50   0x000F             MOVS     R7,R1
-   \       0x52   0xB2FF             UXTB     R7,R7
-   \       0x54   0xEB1E 0x1747      ADDS     R7,LR,R7, LSL #+5
-   \       0x58   0xF517 0x67A0      ADDS     R7,R7,#+1280
-   \       0x5C   0x4688             MOV      R8,R1
-   \       0x5E   0xFA5F 0xF888      UXTB     R8,R8
-   \       0x62   0xEB1E 0x1848      ADDS     R8,LR,R8, LSL #+5
-   \       0x66   0xF518 0x68A0      ADDS     R8,R8,#+1280
-   \       0x6A   0xF8D8 0x800C      LDR      R8,[R8, #+12]
-   \       0x6E   0xF458 0x7880      ORRS     R8,R8,#0x100
-   \       0x72   0xF8C7 0x800C      STR      R8,[R7, #+12]
-   \       0x76   0xE016             B.N      ??USB_HC_Init_5
+   \       0x54   0x000F             MOVS     R7,R1
+   \       0x56   0xB2FF             UXTB     R7,R7
+   \       0x58   0xEB1E 0x1747      ADDS     R7,LR,R7, LSL #+5
+   \       0x5C   0xF517 0x67A0      ADDS     R7,R7,#+1280
+   \       0x60   0x4688             MOV      R8,R1
+   \       0x62   0xFA5F 0xF888      UXTB     R8,R8
+   \       0x66   0xEB1E 0x1848      ADDS     R8,LR,R8, LSL #+5
+   \       0x6A   0xF518 0x68A0      ADDS     R8,R8,#+1280
+   \       0x6E   0xF8D8 0x800C      LDR      R8,[R8, #+12]
+   \       0x72   0xF458 0x7880      ORRS     R8,R8,#0x100
+   \       0x76   0xF8C7 0x800C      STR      R8,[R7, #+12]
+   \       0x7A   0xE016             B.N      ??USB_HC_Init_5
    1618                }
    1619                else
    1620                {
    1621                  if ((USBx->CID & (0x1U << 8)) != 0U)
    \                     ??USB_HC_Init_4: (+1)
-   \       0x78   0xF8DC 0x703C      LDR      R7,[R12, #+60]
-   \       0x7C   0x05FF             LSLS     R7,R7,#+23
-   \       0x7E   0xD512             BPL.N    ??USB_HC_Init_5
+   \       0x7C   0xF8DC 0x703C      LDR      R7,[R12, #+60]
+   \       0x80   0x05FF             LSLS     R7,R7,#+23
+   \       0x82   0xD512             BPL.N    ??USB_HC_Init_5
    1622                  {
    1623                    USBx_HC((uint32_t)ch_num)->HCINTMSK |= (USB_OTG_HCINTMSK_NYET | USB_OTG_HCINTMSK_ACKM);
-   \       0x80   0x000F             MOVS     R7,R1
-   \       0x82   0xB2FF             UXTB     R7,R7
-   \       0x84   0xEB1E 0x1747      ADDS     R7,LR,R7, LSL #+5
-   \       0x88   0xF517 0x67A0      ADDS     R7,R7,#+1280
-   \       0x8C   0x4688             MOV      R8,R1
-   \       0x8E   0xFA5F 0xF888      UXTB     R8,R8
-   \       0x92   0xEB1E 0x1848      ADDS     R8,LR,R8, LSL #+5
-   \       0x96   0xF518 0x68A0      ADDS     R8,R8,#+1280
-   \       0x9A   0xF8D8 0x800C      LDR      R8,[R8, #+12]
-   \       0x9E   0xF058 0x0860      ORRS     R8,R8,#0x60
-   \       0xA2   0xF8C7 0x800C      STR      R8,[R7, #+12]
+   \       0x84   0x000F             MOVS     R7,R1
+   \       0x86   0xB2FF             UXTB     R7,R7
+   \       0x88   0xEB1E 0x1747      ADDS     R7,LR,R7, LSL #+5
+   \       0x8C   0xF517 0x67A0      ADDS     R7,R7,#+1280
+   \       0x90   0x4688             MOV      R8,R1
+   \       0x92   0xFA5F 0xF888      UXTB     R8,R8
+   \       0x96   0xEB1E 0x1848      ADDS     R8,LR,R8, LSL #+5
+   \       0x9A   0xF518 0x68A0      ADDS     R8,R8,#+1280
+   \       0x9E   0xF8D8 0x800C      LDR      R8,[R8, #+12]
+   \       0xA2   0xF058 0x0860      ORRS     R8,R8,#0x60
+   \       0xA6   0xF8C7 0x800C      STR      R8,[R7, #+12]
    1624                  }
    1625                }
    1626                break;
    \                     ??USB_HC_Init_5: (+1)
-   \       0xA6   0xE041             B.N      ??USB_HC_Init_6
+   \       0xAA   0xE045             B.N      ??USB_HC_Init_6
    1627          
    1628              case EP_TYPE_INTR:
    1629                USBx_HC((uint32_t)ch_num)->HCINTMSK = USB_OTG_HCINTMSK_XFRCM  |
@@ -3839,34 +3845,36 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_us
    1634                                                      USB_OTG_HCINTMSK_AHBERR |
    1635                                                      USB_OTG_HCINTMSK_FRMORM;
    \                     ??USB_HC_Init_2: (+1)
-   \       0xA8   0x000F             MOVS     R7,R1
-   \       0xAA   0xB2FF             UXTB     R7,R7
-   \       0xAC   0xEB1E 0x1747      ADDS     R7,LR,R7, LSL #+5
-   \       0xB0   0xF517 0x67A0      ADDS     R7,R7,#+1280
-   \       0xB4   0xF240 0x689D      MOVW     R8,#+1693
-   \       0xB8   0xF8C7 0x800C      STR      R8,[R7, #+12]
+   \       0xAC   0x000F             MOVS     R7,R1
+   \       0xAE   0xB2FF             UXTB     R7,R7
+   \       0xB0   0xEB1E 0x1747      ADDS     R7,LR,R7, LSL #+5
+   \       0xB4   0xF517 0x67A0      ADDS     R7,R7,#+1280
+   \       0xB8   0xF240 0x689D      MOVW     R8,#+1693
+   \       0xBC   0xF8C7 0x800C      STR      R8,[R7, #+12]
    1636          
    1637                if ((epnum & 0x80U) == 0x80U)
-   \       0xBC   0x0617             LSLS     R7,R2,#+24
-   \       0xBE   0xD512             BPL.N    ??USB_HC_Init_7
+   \       0xC0   0x0017             MOVS     R7,R2
+   \       0xC2   0xB2FF             UXTB     R7,R7
+   \       0xC4   0x063F             LSLS     R7,R7,#+24
+   \       0xC6   0xD512             BPL.N    ??USB_HC_Init_7
    1638                {
    1639                  USBx_HC((uint32_t)ch_num)->HCINTMSK |= USB_OTG_HCINTMSK_BBERRM;
-   \       0xC0   0x000F             MOVS     R7,R1
-   \       0xC2   0xB2FF             UXTB     R7,R7
-   \       0xC4   0xEB1E 0x1747      ADDS     R7,LR,R7, LSL #+5
-   \       0xC8   0xF517 0x67A0      ADDS     R7,R7,#+1280
-   \       0xCC   0x4688             MOV      R8,R1
-   \       0xCE   0xFA5F 0xF888      UXTB     R8,R8
-   \       0xD2   0xEB1E 0x1848      ADDS     R8,LR,R8, LSL #+5
-   \       0xD6   0xF518 0x68A0      ADDS     R8,R8,#+1280
-   \       0xDA   0xF8D8 0x800C      LDR      R8,[R8, #+12]
-   \       0xDE   0xF458 0x7880      ORRS     R8,R8,#0x100
-   \       0xE2   0xF8C7 0x800C      STR      R8,[R7, #+12]
+   \       0xC8   0x000F             MOVS     R7,R1
+   \       0xCA   0xB2FF             UXTB     R7,R7
+   \       0xCC   0xEB1E 0x1747      ADDS     R7,LR,R7, LSL #+5
+   \       0xD0   0xF517 0x67A0      ADDS     R7,R7,#+1280
+   \       0xD4   0x4688             MOV      R8,R1
+   \       0xD6   0xFA5F 0xF888      UXTB     R8,R8
+   \       0xDA   0xEB1E 0x1848      ADDS     R8,LR,R8, LSL #+5
+   \       0xDE   0xF518 0x68A0      ADDS     R8,R8,#+1280
+   \       0xE2   0xF8D8 0x800C      LDR      R8,[R8, #+12]
+   \       0xE6   0xF458 0x7880      ORRS     R8,R8,#0x100
+   \       0xEA   0xF8C7 0x800C      STR      R8,[R7, #+12]
    1640                }
    1641          
    1642                break;
    \                     ??USB_HC_Init_7: (+1)
-   \       0xE6   0xE021             B.N      ??USB_HC_Init_6
+   \       0xEE   0xE023             B.N      ??USB_HC_Init_6
    1643          
    1644              case EP_TYPE_ISOC:
    1645                USBx_HC((uint32_t)ch_num)->HCINTMSK = USB_OTG_HCINTMSK_XFRCM  |
@@ -3874,92 +3882,96 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_us
    1647                                                      USB_OTG_HCINTMSK_AHBERR |
    1648                                                      USB_OTG_HCINTMSK_FRMORM;
    \                     ??USB_HC_Init_1: (+1)
-   \       0xE8   0x000F             MOVS     R7,R1
-   \       0xEA   0xB2FF             UXTB     R7,R7
-   \       0xEC   0xEB1E 0x1747      ADDS     R7,LR,R7, LSL #+5
-   \       0xF0   0xF517 0x67A0      ADDS     R7,R7,#+1280
-   \       0xF4   0xF240 0x2825      MOVW     R8,#+549
-   \       0xF8   0xF8C7 0x800C      STR      R8,[R7, #+12]
+   \       0xF0   0x000F             MOVS     R7,R1
+   \       0xF2   0xB2FF             UXTB     R7,R7
+   \       0xF4   0xEB1E 0x1747      ADDS     R7,LR,R7, LSL #+5
+   \       0xF8   0xF517 0x67A0      ADDS     R7,R7,#+1280
+   \       0xFC   0xF240 0x2825      MOVW     R8,#+549
+   \      0x100   0xF8C7 0x800C      STR      R8,[R7, #+12]
    1649          
    1650                if ((epnum & 0x80U) == 0x80U)
-   \       0xFC   0x0617             LSLS     R7,R2,#+24
-   \       0xFE   0xD512             BPL.N    ??USB_HC_Init_8
+   \      0x104   0x0017             MOVS     R7,R2
+   \      0x106   0xB2FF             UXTB     R7,R7
+   \      0x108   0x063F             LSLS     R7,R7,#+24
+   \      0x10A   0xD512             BPL.N    ??USB_HC_Init_8
    1651                {
    1652                  USBx_HC((uint32_t)ch_num)->HCINTMSK |= (USB_OTG_HCINTMSK_TXERRM | USB_OTG_HCINTMSK_BBERRM);
-   \      0x100   0x000F             MOVS     R7,R1
-   \      0x102   0xB2FF             UXTB     R7,R7
-   \      0x104   0xEB1E 0x1747      ADDS     R7,LR,R7, LSL #+5
-   \      0x108   0xF517 0x67A0      ADDS     R7,R7,#+1280
-   \      0x10C   0x4688             MOV      R8,R1
-   \      0x10E   0xFA5F 0xF888      UXTB     R8,R8
-   \      0x112   0xEB1E 0x1848      ADDS     R8,LR,R8, LSL #+5
-   \      0x116   0xF518 0x68A0      ADDS     R8,R8,#+1280
-   \      0x11A   0xF8D8 0x800C      LDR      R8,[R8, #+12]
-   \      0x11E   0xF458 0x78C0      ORRS     R8,R8,#0x180
-   \      0x122   0xF8C7 0x800C      STR      R8,[R7, #+12]
+   \      0x10C   0x000F             MOVS     R7,R1
+   \      0x10E   0xB2FF             UXTB     R7,R7
+   \      0x110   0xEB1E 0x1747      ADDS     R7,LR,R7, LSL #+5
+   \      0x114   0xF517 0x67A0      ADDS     R7,R7,#+1280
+   \      0x118   0x4688             MOV      R8,R1
+   \      0x11A   0xFA5F 0xF888      UXTB     R8,R8
+   \      0x11E   0xEB1E 0x1848      ADDS     R8,LR,R8, LSL #+5
+   \      0x122   0xF518 0x68A0      ADDS     R8,R8,#+1280
+   \      0x126   0xF8D8 0x800C      LDR      R8,[R8, #+12]
+   \      0x12A   0xF458 0x78C0      ORRS     R8,R8,#0x180
+   \      0x12E   0xF8C7 0x800C      STR      R8,[R7, #+12]
    1653                }
    1654                break;
    \                     ??USB_HC_Init_8: (+1)
-   \      0x126   0xE001             B.N      ??USB_HC_Init_6
+   \      0x132   0xE001             B.N      ??USB_HC_Init_6
    1655          
    1656              default:
    1657                ret = HAL_ERROR;
    \                     ??USB_HC_Init_3: (+1)
-   \      0x128   0x2701             MOVS     R7,#+1
-   \      0x12A   0x0038             MOVS     R0,R7
+   \      0x134   0x2701             MOVS     R7,#+1
+   \      0x136   0x0038             MOVS     R0,R7
    1658                break;
    1659            }
    1660          
    1661            /* Enable the top level host channel interrupt. */
    1662            USBx_HOST->HAINTMSK |= 1UL << (ch_num & 0xFU);
    \                     ??USB_HC_Init_6: (+1)
-   \      0x12C   0xF51E 0x6780      ADDS     R7,LR,#+1024
-   \      0x130   0xF8D7 0x8018      LDR      R8,[R7, #+24]
-   \      0x134   0xF05F 0x0901      MOVS     R9,#+1
-   \      0x138   0xF011 0x070F      ANDS     R7,R1,#0xF
-   \      0x13C   0xFA19 0xF907      LSLS     R9,R9,R7
-   \      0x140   0xEA59 0x0808      ORRS     R8,R9,R8
-   \      0x144   0xF51E 0x6780      ADDS     R7,LR,#+1024
-   \      0x148   0xF8C7 0x8018      STR      R8,[R7, #+24]
+   \      0x138   0xF51E 0x6780      ADDS     R7,LR,#+1024
+   \      0x13C   0xF8D7 0x8018      LDR      R8,[R7, #+24]
+   \      0x140   0xF05F 0x0901      MOVS     R9,#+1
+   \      0x144   0xF011 0x070F      ANDS     R7,R1,#0xF
+   \      0x148   0xFA19 0xF907      LSLS     R9,R9,R7
+   \      0x14C   0xEA59 0x0808      ORRS     R8,R9,R8
+   \      0x150   0xF51E 0x6780      ADDS     R7,LR,#+1024
+   \      0x154   0xF8C7 0x8018      STR      R8,[R7, #+24]
    1663          
    1664            /* Make sure host channel interrupts are enabled. */
    1665            USBx->GINTMSK |= USB_OTG_GINTMSK_HCIM;
-   \      0x14C   0xF8DC 0x7018      LDR      R7,[R12, #+24]
-   \      0x150   0xF057 0x7700      ORRS     R7,R7,#0x2000000
-   \      0x154   0xF8CC 0x7018      STR      R7,[R12, #+24]
+   \      0x158   0xF8DC 0x7018      LDR      R7,[R12, #+24]
+   \      0x15C   0xF057 0x7700      ORRS     R7,R7,#0x2000000
+   \      0x160   0xF8CC 0x7018      STR      R7,[R12, #+24]
    1666          
    1667            /* Program the HCCHAR register */
    1668            if ((epnum & 0x80U) == 0x80U)
-   \      0x158   0x0617             LSLS     R7,R2,#+24
-   \      0x15A   0xD502             BPL.N    ??USB_HC_Init_9
+   \      0x164   0x0017             MOVS     R7,R2
+   \      0x166   0xB2FF             UXTB     R7,R7
+   \      0x168   0x063F             LSLS     R7,R7,#+24
+   \      0x16A   0xD502             BPL.N    ??USB_HC_Init_9
    1669            {
    1670              HCcharEpDir = (0x1U << 15) & USB_OTG_HCCHAR_EPDIR;
-   \      0x15C   0xF44F 0x4700      MOV      R7,#+32768
-   \      0x160   0xE000             B.N      ??USB_HC_Init_10
+   \      0x16C   0xF44F 0x4700      MOV      R7,#+32768
+   \      0x170   0xE000             B.N      ??USB_HC_Init_10
    1671            }
    1672            else
    1673            {
    1674              HCcharEpDir = 0U;
    \                     ??USB_HC_Init_9: (+1)
-   \      0x162   0x2700             MOVS     R7,#+0
+   \      0x172   0x2700             MOVS     R7,#+0
    1675            }
    1676          
    1677            if (speed == HPRT0_PRTSPD_LOW_SPEED)
    \                     ??USB_HC_Init_10: (+1)
-   \      0x164   0x46A0             MOV      R8,R4
-   \      0x166   0xFA5F 0xF888      UXTB     R8,R8
-   \      0x16A   0xF1B8 0x0F02      CMP      R8,#+2
-   \      0x16E   0xD102             BNE.N    ??USB_HC_Init_11
+   \      0x174   0x46A0             MOV      R8,R4
+   \      0x176   0xFA5F 0xF888      UXTB     R8,R8
+   \      0x17A   0xF1B8 0x0F02      CMP      R8,#+2
+   \      0x17E   0xD102             BNE.N    ??USB_HC_Init_11
    1678            {
    1679              HCcharLowSpeed = (0x1U << 17) & USB_OTG_HCCHAR_LSDEV;
-   \      0x170   0xF45F 0x3800      MOVS     R8,#+131072
-   \      0x174   0xE001             B.N      ??USB_HC_Init_12
+   \      0x180   0xF45F 0x3800      MOVS     R8,#+131072
+   \      0x184   0xE001             B.N      ??USB_HC_Init_12
    1680            }
    1681            else
    1682            {
    1683              HCcharLowSpeed = 0U;
    \                     ??USB_HC_Init_11: (+1)
-   \      0x176   0xF05F 0x0800      MOVS     R8,#+0
+   \      0x186   0xF05F 0x0800      MOVS     R8,#+0
    1684            }
    1685          
    1686            USBx_HC((uint32_t)ch_num)->HCCHAR = (((uint32_t)dev_address << 22) & USB_OTG_HCCHAR_DAD) |
@@ -3967,57 +3979,57 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_us
    1688                                                (((uint32_t)ep_type << 18) & USB_OTG_HCCHAR_EPTYP) |
    1689                                                ((uint32_t)mps & USB_OTG_HCCHAR_MPSIZ) | HCcharEpDir | HCcharLowSpeed;
    \                     ??USB_HC_Init_12: (+1)
-   \      0x17A   0x4699             MOV      R9,R3
-   \      0x17C   0xFA5F 0xF989      UXTB     R9,R9
-   \      0x180   0xEA5F 0x5989      LSLS     R9,R9,#+22
-   \      0x184   0xF019 0x59FE      ANDS     R9,R9,#0x1FC00000
-   \      0x188   0x4692             MOV      R10,R2
-   \      0x18A   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x18E   0xEA5F 0x2ACA      LSLS     R10,R10,#+11
-   \      0x192   0xF41A 0x4AF0      ANDS     R10,R10,#0x7800
-   \      0x196   0xEA5A 0x0909      ORRS     R9,R10,R9
-   \      0x19A   0x46AA             MOV      R10,R5
-   \      0x19C   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x1A0   0xEA5F 0x4A8A      LSLS     R10,R10,#+18
-   \      0x1A4   0xF41A 0x2A40      ANDS     R10,R10,#0xC0000
-   \      0x1A8   0xEA5A 0x0909      ORRS     R9,R10,R9
-   \      0x1AC   0x46B2             MOV      R10,R6
-   \      0x1AE   0xFA1F 0xFA8A      UXTH     R10,R10
-   \      0x1B2   0xEA5F 0x5A4A      LSLS     R10,R10,#+21
-   \      0x1B6   0xEA5F 0x5A5A      LSRS     R10,R10,#+21
-   \      0x1BA   0xEA5A 0x0909      ORRS     R9,R10,R9
-   \      0x1BE   0xEA57 0x0909      ORRS     R9,R7,R9
-   \      0x1C2   0xEA58 0x0909      ORRS     R9,R8,R9
-   \      0x1C6   0x468A             MOV      R10,R1
-   \      0x1C8   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x1CC   0xEB1E 0x1A4A      ADDS     R10,LR,R10, LSL #+5
-   \      0x1D0   0xF51A 0x6AA0      ADDS     R10,R10,#+1280
-   \      0x1D4   0xF8CA 0x9000      STR      R9,[R10, #+0]
+   \      0x18A   0x4699             MOV      R9,R3
+   \      0x18C   0xFA5F 0xF989      UXTB     R9,R9
+   \      0x190   0xEA5F 0x5989      LSLS     R9,R9,#+22
+   \      0x194   0xF019 0x59FE      ANDS     R9,R9,#0x1FC00000
+   \      0x198   0x4692             MOV      R10,R2
+   \      0x19A   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x19E   0xEA5F 0x2ACA      LSLS     R10,R10,#+11
+   \      0x1A2   0xF41A 0x4AF0      ANDS     R10,R10,#0x7800
+   \      0x1A6   0xEA5A 0x0909      ORRS     R9,R10,R9
+   \      0x1AA   0x46AA             MOV      R10,R5
+   \      0x1AC   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x1B0   0xEA5F 0x4A8A      LSLS     R10,R10,#+18
+   \      0x1B4   0xF41A 0x2A40      ANDS     R10,R10,#0xC0000
+   \      0x1B8   0xEA5A 0x0909      ORRS     R9,R10,R9
+   \      0x1BC   0x46B2             MOV      R10,R6
+   \      0x1BE   0xFA1F 0xFA8A      UXTH     R10,R10
+   \      0x1C2   0xEA5F 0x5A4A      LSLS     R10,R10,#+21
+   \      0x1C6   0xEA5F 0x5A5A      LSRS     R10,R10,#+21
+   \      0x1CA   0xEA5A 0x0909      ORRS     R9,R10,R9
+   \      0x1CE   0xEA57 0x0909      ORRS     R9,R7,R9
+   \      0x1D2   0xEA58 0x0909      ORRS     R9,R8,R9
+   \      0x1D6   0x468A             MOV      R10,R1
+   \      0x1D8   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x1DC   0xEB1E 0x1A4A      ADDS     R10,LR,R10, LSL #+5
+   \      0x1E0   0xF51A 0x6AA0      ADDS     R10,R10,#+1280
+   \      0x1E4   0xF8CA 0x9000      STR      R9,[R10, #+0]
    1690          
    1691            if (ep_type == EP_TYPE_INTR)
-   \      0x1D8   0x46A9             MOV      R9,R5
-   \      0x1DA   0xFA5F 0xF989      UXTB     R9,R9
-   \      0x1DE   0xF1B9 0x0F03      CMP      R9,#+3
-   \      0x1E2   0xD113             BNE.N    ??USB_HC_Init_13
+   \      0x1E8   0x46A9             MOV      R9,R5
+   \      0x1EA   0xFA5F 0xF989      UXTB     R9,R9
+   \      0x1EE   0xF1B9 0x0F03      CMP      R9,#+3
+   \      0x1F2   0xD113             BNE.N    ??USB_HC_Init_13
    1692            {
    1693              USBx_HC((uint32_t)ch_num)->HCCHAR |= USB_OTG_HCCHAR_ODDFRM ;
-   \      0x1E4   0x4689             MOV      R9,R1
-   \      0x1E6   0xFA5F 0xF989      UXTB     R9,R9
-   \      0x1EA   0xEB1E 0x1949      ADDS     R9,LR,R9, LSL #+5
-   \      0x1EE   0xF519 0x69A0      ADDS     R9,R9,#+1280
-   \      0x1F2   0xF8D9 0x9000      LDR      R9,[R9, #+0]
-   \      0x1F6   0xF059 0x5900      ORRS     R9,R9,#0x20000000
-   \      0x1FA   0x468A             MOV      R10,R1
-   \      0x1FC   0xFA5F 0xFA8A      UXTB     R10,R10
-   \      0x200   0xEB1E 0x1A4A      ADDS     R10,LR,R10, LSL #+5
-   \      0x204   0xF51A 0x6AA0      ADDS     R10,R10,#+1280
-   \      0x208   0xF8CA 0x9000      STR      R9,[R10, #+0]
+   \      0x1F4   0x4689             MOV      R9,R1
+   \      0x1F6   0xFA5F 0xF989      UXTB     R9,R9
+   \      0x1FA   0xEB1E 0x1949      ADDS     R9,LR,R9, LSL #+5
+   \      0x1FE   0xF519 0x69A0      ADDS     R9,R9,#+1280
+   \      0x202   0xF8D9 0x9000      LDR      R9,[R9, #+0]
+   \      0x206   0xF059 0x5900      ORRS     R9,R9,#0x20000000
+   \      0x20A   0x468A             MOV      R10,R1
+   \      0x20C   0xFA5F 0xFA8A      UXTB     R10,R10
+   \      0x210   0xEB1E 0x1A4A      ADDS     R10,LR,R10, LSL #+5
+   \      0x214   0xF51A 0x6AA0      ADDS     R10,R10,#+1280
+   \      0x218   0xF8CA 0x9000      STR      R9,[R10, #+0]
    1694            }
    1695          
    1696            return ret;
    \                     ??USB_HC_Init_13: (+1)
-   \      0x20C   0xB2C0             UXTB     R0,R0
-   \      0x20E   0xE8BD 0x87F0      POP      {R4-R10,PC}
+   \      0x21C   0xB2C0             UXTB     R0,R0
+   \      0x21E   0xE8BD 0x87F0      POP      {R4-R10,PC}
    1697          }
    1698          
    1699          /**
@@ -5007,7 +5019,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_us
         24   -> USB_EnableGlobalInt
         24   -> USB_FlushRxFifo
         24   -> USB_FlushTxFifo
-      24   USB_WritePacket
+      28   USB_WritePacket
 
 
    Section sizes:
@@ -5067,7 +5079,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_us
       28  USB_GetHostSpeed
        8  USB_GetMode
      354  USB_HC_Halt
-     530  USB_HC_Init
+     546  USB_HC_Init
       14  USB_HC_ReadInterrupt
      486  USB_HC_StartXfer
      258  USB_HostInit
@@ -5085,14 +5097,14 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_us
      236  USB_SetTurnaroundTime
      110  USB_StopDevice
      172  USB_StopHost
-      74  USB_WritePacket
+      80  USB_WritePacket
        4  tmpreg
 
  
      4 bytes in section .bss
- 6'708 bytes in section .text
+ 6'730 bytes in section .text
  
- 6'708 bytes of CODE memory
+ 6'730 bytes of CODE memory
      4 bytes of DATA memory
 
 Errors: none

@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:21
+#                                                         22/Sep/2022  08:40:06
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                 =  thumb
@@ -17,7 +18,7 @@
 #        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
 #        --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e
 #        --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Workbench 9.0 EWARM FS 9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -38,7 +39,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\display\PHan_Lib.o.d
 #    Locale                   =  C
 #    List file                =
@@ -196,14 +198,14 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\fonts\PHan_Lib.c
    \       0x22   0x....             LDR.N    R2,??DataTable2_1
    \       0x24   0x0008             MOVS     R0,R1
    \       0x26   0xB280             UXTH     R0,R0
-   \       0x28   0x0A80             LSRS     R0,R0,#+10
+   \       0x28   0x1280             ASRS     R0,R0,#+10
    \       0x2A   0xF010 0x001F      ANDS     R0,R0,#0x1F
    \       0x2E   0x7010             STRB     R0,[R2, #+0]
      69          	_uJoongsung	=	( wHanCode >> 5 ) & 0x001F;		//	Joongsung code
    \       0x30   0x....             LDR.N    R0,??DataTable2_2
    \       0x32   0x000B             MOVS     R3,R1
    \       0x34   0xB29B             UXTH     R3,R3
-   \       0x36   0x095B             LSRS     R3,R3,#+5
+   \       0x36   0x115B             ASRS     R3,R3,#+5
    \       0x38   0xF013 0x031F      ANDS     R3,R3,#0x1F
    \       0x3C   0x7003             STRB     R3,[R0, #+0]
      70          	_uJongsung	=	wHanCode & 0x001F;				//	Jongsung code
@@ -296,7 +298,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\fonts\PHan_Lib.c
    \       0xC8   0x4660             MOV      R0,R12
    \       0xCA   0xB2C0             UXTB     R0,R0
    \       0xCC   0x2820             CMP      R0,#+32
-   \       0xCE   0xDA3A             BGE.N    ??PHan_HanFontLoad_8
+   \       0xCE   0xDA38             BGE.N    ??PHan_HanFontLoad_8
      90          	{
      91          		FontPtr->FontBuffer[i] = K_font[uChoType * 20 + uChosung][i];
    \       0xD0   0x.... 0x....      LDR.W    R8,??DataTable2_16
@@ -305,82 +307,82 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\fonts\PHan_Lib.c
    \       0xDA   0xF05F 0x0A14      MOVS     R10,#+20
    \       0xDE   0x7818             LDRB     R0,[R3, #+0]
    \       0xE0   0xFB0A 0x0909      MLA      R9,R10,R9,R0
-   \       0xE4   0xEA5F 0x1949      LSLS     R9,R9,#+5
-   \       0xE8   0xEB08 0x0009      ADD      R0,R8,R9
-   \       0xEC   0x46E1             MOV      R9,R12
-   \       0xEE   0xFA5F 0xF989      UXTB     R9,R9
-   \       0xF2   0xF810 0x0009      LDRB     R0,[R0, R9]
-   \       0xF6   0x46E1             MOV      R9,R12
-   \       0xF8   0xFA5F 0xF989      UXTB     R9,R9
-   \       0xFC   0x44A9             ADD      R9,R5,R9
-   \       0xFE   0xF889 0x0004      STRB     R0,[R9, #+4]
+   \       0xE4   0xEA5F 0x1049      LSLS     R0,R9,#+5
+   \       0xE8   0x4440             ADD      R0,R8,R0
+   \       0xEA   0x46E1             MOV      R9,R12
+   \       0xEC   0xFA5F 0xF989      UXTB     R9,R9
+   \       0xF0   0xF810 0x0009      LDRB     R0,[R0, R9]
+   \       0xF4   0x46E1             MOV      R9,R12
+   \       0xF6   0xFA5F 0xF989      UXTB     R9,R9
+   \       0xFA   0x44A9             ADD      R9,R5,R9
+   \       0xFC   0xF889 0x0004      STRB     R0,[R9, #+4]
      92          		FontPtr->FontBuffer[i] |= K_font[160 + uJooType * 22 + uJoongsung][i];
-   \      0x102   0x4660             MOV      R0,R12
-   \      0x104   0xB2C0             UXTB     R0,R0
-   \      0x106   0x4428             ADD      R0,R5,R0
-   \      0x108   0xF890 0x9004      LDRB     R9,[R0, #+4]
-   \      0x10C   0xF89E 0xA000      LDRB     R10,[LR, #+0]
-   \      0x110   0xF05F 0x0B16      MOVS     R11,#+22
-   \      0x114   0x7830             LDRB     R0,[R6, #+0]
-   \      0x116   0xFB0B 0x0A0A      MLA      R10,R11,R10,R0
-   \      0x11A   0xEA5F 0x1A4A      LSLS     R10,R10,#+5
-   \      0x11E   0xEB08 0x000A      ADD      R0,R8,R10
-   \      0x122   0x46E0             MOV      R8,R12
-   \      0x124   0xFA5F 0xF888      UXTB     R8,R8
-   \      0x128   0x4440             ADD      R0,R0,R8
-   \      0x12A   0xF510 0x50A0      ADDS     R0,R0,#+5120
-   \      0x12E   0x7800             LDRB     R0,[R0, #+0]
-   \      0x130   0xEA50 0x0009      ORRS     R0,R0,R9
-   \      0x134   0x46E0             MOV      R8,R12
-   \      0x136   0xFA5F 0xF888      UXTB     R8,R8
-   \      0x13A   0x44A8             ADD      R8,R5,R8
-   \      0x13C   0xF888 0x0004      STRB     R0,[R8, #+4]
+   \      0x100   0x4660             MOV      R0,R12
+   \      0x102   0xB2C0             UXTB     R0,R0
+   \      0x104   0x4428             ADD      R0,R5,R0
+   \      0x106   0xF890 0x9004      LDRB     R9,[R0, #+4]
+   \      0x10A   0xF89E 0xA000      LDRB     R10,[LR, #+0]
+   \      0x10E   0xF05F 0x0B16      MOVS     R11,#+22
+   \      0x112   0x7830             LDRB     R0,[R6, #+0]
+   \      0x114   0xFB0B 0x0A0A      MLA      R10,R11,R10,R0
+   \      0x118   0xEA5F 0x104A      LSLS     R0,R10,#+5
+   \      0x11C   0x4440             ADD      R0,R8,R0
+   \      0x11E   0x46E0             MOV      R8,R12
+   \      0x120   0xFA5F 0xF888      UXTB     R8,R8
+   \      0x124   0x4440             ADD      R0,R0,R8
+   \      0x126   0xF510 0x50A0      ADDS     R0,R0,#+5120
+   \      0x12A   0x7800             LDRB     R0,[R0, #+0]
+   \      0x12C   0xEA50 0x0009      ORRS     R0,R0,R9
+   \      0x130   0x46E0             MOV      R8,R12
+   \      0x132   0xFA5F 0xF888      UXTB     R8,R8
+   \      0x136   0x44A8             ADD      R8,R5,R8
+   \      0x138   0xF888 0x0004      STRB     R0,[R8, #+4]
      93          	}
-   \      0x140   0xF11C 0x0C01      ADDS     R12,R12,#+1
-   \      0x144   0xE7C0             B.N      ??PHan_HanFontLoad_7
+   \      0x13C   0xF11C 0x0C01      ADDS     R12,R12,#+1
+   \      0x140   0xE7C2             B.N      ??PHan_HanFontLoad_7
      94          
      95          	//combine Jongsung
      96          	if ( uJongsung )
    \                     ??PHan_HanFontLoad_8: (+1)
-   \      0x146   0x7810             LDRB     R0,[R2, #+0]
-   \      0x148   0x2800             CMP      R0,#+0
-   \      0x14A   0xD023             BEQ.N    ??PHan_HanFontLoad_9
+   \      0x142   0x7810             LDRB     R0,[R2, #+0]
+   \      0x144   0x2800             CMP      R0,#+0
+   \      0x146   0xD022             BEQ.N    ??PHan_HanFontLoad_9
      97          	{
      98          		for ( i = 0; i < 32; i++ )	FontPtr->FontBuffer[i] |= K_font[248 + uJonType * 28 + uJongsung][i];
-   \      0x14C   0x2000             MOVS     R0,#+0
-   \      0x14E   0x4684             MOV      R12,R0
+   \      0x148   0x2000             MOVS     R0,#+0
+   \      0x14A   0x4684             MOV      R12,R0
    \                     ??PHan_HanFontLoad_10: (+1)
-   \      0x150   0x4660             MOV      R0,R12
-   \      0x152   0xB2C0             UXTB     R0,R0
-   \      0x154   0x2820             CMP      R0,#+32
-   \      0x156   0xDA1D             BGE.N    ??PHan_HanFontLoad_9
-   \      0x158   0x4660             MOV      R0,R12
-   \      0x15A   0xB2C0             UXTB     R0,R0
-   \      0x15C   0x4428             ADD      R0,R5,R0
-   \      0x15E   0x7903             LDRB     R3,[R0, #+4]
-   \      0x160   0x....             LDR.N    R6,??DataTable2_16
-   \      0x162   0xF897 0xE000      LDRB     LR,[R7, #+0]
-   \      0x166   0xF05F 0x081C      MOVS     R8,#+28
-   \      0x16A   0x7810             LDRB     R0,[R2, #+0]
-   \      0x16C   0xFB08 0x0E0E      MLA      LR,R8,LR,R0
-   \      0x170   0xEA5F 0x1E4E      LSLS     LR,LR,#+5
-   \      0x174   0xEB06 0x000E      ADD      R0,R6,LR
-   \      0x178   0x4666             MOV      R6,R12
-   \      0x17A   0xB2F6             UXTB     R6,R6
-   \      0x17C   0x4430             ADD      R0,R0,R6
-   \      0x17E   0xF510 0x50F8      ADDS     R0,R0,#+7936
-   \      0x182   0x7800             LDRB     R0,[R0, #+0]
-   \      0x184   0x4303             ORRS     R3,R0,R3
-   \      0x186   0x4660             MOV      R0,R12
-   \      0x188   0xB2C0             UXTB     R0,R0
-   \      0x18A   0x4428             ADD      R0,R5,R0
-   \      0x18C   0x7103             STRB     R3,[R0, #+4]
-   \      0x18E   0xF11C 0x0C01      ADDS     R12,R12,#+1
-   \      0x192   0xE7DD             B.N      ??PHan_HanFontLoad_10
+   \      0x14C   0x4660             MOV      R0,R12
+   \      0x14E   0xB2C0             UXTB     R0,R0
+   \      0x150   0x2820             CMP      R0,#+32
+   \      0x152   0xDA1C             BGE.N    ??PHan_HanFontLoad_9
+   \      0x154   0x4660             MOV      R0,R12
+   \      0x156   0xB2C0             UXTB     R0,R0
+   \      0x158   0x4428             ADD      R0,R5,R0
+   \      0x15A   0x7903             LDRB     R3,[R0, #+4]
+   \      0x15C   0x....             LDR.N    R6,??DataTable2_16
+   \      0x15E   0xF897 0xE000      LDRB     LR,[R7, #+0]
+   \      0x162   0xF05F 0x081C      MOVS     R8,#+28
+   \      0x166   0x7810             LDRB     R0,[R2, #+0]
+   \      0x168   0xFB08 0x0E0E      MLA      LR,R8,LR,R0
+   \      0x16C   0xEA5F 0x104E      LSLS     R0,LR,#+5
+   \      0x170   0x4430             ADD      R0,R6,R0
+   \      0x172   0x4666             MOV      R6,R12
+   \      0x174   0xB2F6             UXTB     R6,R6
+   \      0x176   0x4430             ADD      R0,R0,R6
+   \      0x178   0xF510 0x50F8      ADDS     R0,R0,#+7936
+   \      0x17C   0x7800             LDRB     R0,[R0, #+0]
+   \      0x17E   0x4303             ORRS     R3,R0,R3
+   \      0x180   0x4660             MOV      R0,R12
+   \      0x182   0xB2C0             UXTB     R0,R0
+   \      0x184   0x4428             ADD      R0,R5,R0
+   \      0x186   0x7103             STRB     R3,[R0, #+4]
+   \      0x188   0xF11C 0x0C01      ADDS     R12,R12,#+1
+   \      0x18C   0xE7DE             B.N      ??PHan_HanFontLoad_10
      99          	}
     100          }
    \                     ??PHan_HanFontLoad_9: (+1)
-   \      0x194   0xE8BD 0x8FF1      POP      {R0,R4-R11,PC}
+   \      0x18E   0xE8BD 0x8FF1      POP      {R0,R4-R11,PC}
     101          
     102          //========================================================================
     103          #else	//	defined(PHANFONT_LOCAL)
@@ -417,7 +419,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\fonts\PHan_Lib.c
     132          //========================================================================
     133          {
    \                     PHan_EngFontLoad: (+1)
-   \        0x0   0xB430             PUSH     {R4,R5}
+   \        0x0   0xB470             PUSH     {R4-R6}
     134          	uint16_t i;
     135          	char EngCode;
     136          
@@ -432,36 +434,37 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\fonts\PHan_Lib.c
    \        0xA   0x7802             LDRB     R2,[R0, #+0]
     141          
     142          	EngCode -= 0x20;  // FONT는 스페이스 부터 시작한다.
-   \        0xC   0xF1B2 0x0320      SUBS     R3,R2,#+32
+   \        0xC   0xF1B2 0x0420      SUBS     R4,R2,#+32
     143          
     144          	for ( i = 0 ; i < 16 ; i++ )
-   \       0x10   0x2200             MOVS     R2,#+0
+   \       0x10   0x2300             MOVS     R3,#+0
    \                     ??PHan_EngFontLoad_0: (+1)
-   \       0x12   0x0014             MOVS     R4,R2
-   \       0x14   0xB2A4             UXTH     R4,R4
-   \       0x16   0x2C10             CMP      R4,#+16
-   \       0x18   0xDA0E             BGE.N    ??PHan_EngFontLoad_1
+   \       0x12   0x001A             MOVS     R2,R3
+   \       0x14   0xB292             UXTH     R2,R2
+   \       0x16   0x2A10             CMP      R2,#+16
+   \       0x18   0xDA10             BGE.N    ??PHan_EngFontLoad_1
     145          	{
     146          		 FontPtr->FontBuffer[ i ] = wEngFon[EngCode][i];		
-   \       0x1A   0x....             LDR.N    R4,??DataTable2_17
-   \       0x1C   0x001D             MOVS     R5,R3
-   \       0x1E   0xB2ED             UXTB     R5,R5
-   \       0x20   0x01AD             LSLS     R5,R5,#+6
-   \       0x22   0x442C             ADD      R4,R4,R5
-   \       0x24   0x0015             MOVS     R5,R2
-   \       0x26   0xB2AD             UXTH     R5,R5
-   \       0x28   0xF854 0x4025      LDR      R4,[R4, R5, LSL #+2]
-   \       0x2C   0x0015             MOVS     R5,R2
-   \       0x2E   0xB2AD             UXTH     R5,R5
-   \       0x30   0x440D             ADD      R5,R1,R5
-   \       0x32   0x712C             STRB     R4,[R5, #+4]
+   \       0x1A   0x....             LDR.N    R5,??DataTable2_17
+   \       0x1C   0x0026             MOVS     R6,R4
+   \       0x1E   0xB2F6             UXTB     R6,R6
+   \       0x20   0x2240             MOVS     R2,#+64
+   \       0x22   0x4356             MULS     R6,R2,R6
+   \       0x24   0xEB05 0x0206      ADD      R2,R5,R6
+   \       0x28   0x001D             MOVS     R5,R3
+   \       0x2A   0xB2AD             UXTH     R5,R5
+   \       0x2C   0xF852 0x2025      LDR      R2,[R2, R5, LSL #+2]
+   \       0x30   0x001D             MOVS     R5,R3
+   \       0x32   0xB2AD             UXTH     R5,R5
+   \       0x34   0x440D             ADD      R5,R1,R5
+   \       0x36   0x712A             STRB     R2,[R5, #+4]
     147          	}
-   \       0x34   0x1C52             ADDS     R2,R2,#+1
-   \       0x36   0xE7EC             B.N      ??PHan_EngFontLoad_0
+   \       0x38   0x1C5B             ADDS     R3,R3,#+1
+   \       0x3A   0xE7EA             B.N      ??PHan_EngFontLoad_0
     148          }
    \                     ??PHan_EngFontLoad_1: (+1)
-   \       0x38   0xBC30             POP      {R4,R5}
-   \       0x3A   0x4770             BX       LR
+   \       0x3C   0xBC70             POP      {R4-R6}
+   \       0x3E   0x4770             BX       LR
     149          
     150          //========================================================================
     151          #endif	//	defined(PHANFONTENG_LOCAL)
@@ -642,7 +645,7 @@ Warning[Pe111]: statement is unreachable
    .cstack Function
    ------- --------
        4   PHan_CnvCodeWan2Johab
-       8   PHan_EngFontLoad
+      12   PHan_EngFontLoad
       24   PHan_FontLoad
         24   -> PHan_EngFontLoad
         24   -> PHan_HanFontLoad
@@ -674,9 +677,9 @@ Warning[Pe111]: statement is unreachable
        4  ??DataTable2_8
        4  ??DataTable2_9
       38  PHan_CnvCodeWan2Johab
-      60  PHan_EngFontLoad
+      64  PHan_EngFontLoad
      102  PHan_FontLoad
-     408  PHan_HanFontLoad
+     402  PHan_HanFontLoad
        1  _uChosung
        1  _uJongsung
        1  _uJoongsung
@@ -689,9 +692,9 @@ Warning[Pe111]: statement is unreachable
 
  
    9 bytes in section .bss
- 680 bytes in section .text
+ 678 bytes in section .text
  
- 680 bytes of CODE memory
+ 678 bytes of CODE memory
    9 bytes of DATA memory
 
 Errors: none

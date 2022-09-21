@@ -1,6 +1,7 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:23
+#                                                         22/Sep/2022  08:40:09
+# IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -18,7 +19,8 @@
 #        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
 #        --no_clustering --no_scheduling --debug --endian=little
 #        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
-#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        Systems\Embedded Workbench 9.0 EWARM FS
+#        9.20.3\arm\inc\c\DLib_Config_Full.h" -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
@@ -39,7 +41,8 @@
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
 #        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
-#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Core\Include\\")
+#        --dependencies=n
 #        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\STM32F4xx_HAL_Driver\stm32f4xx_hal_gpio.o.d
 #    Locale            =  C
 #    List file         =
@@ -236,7 +239,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_g
     175            uint32_t iocurrent = 0x00U;
    \        0x4   0x2400             MOVS     R4,#+0
     176            uint32_t temp = 0x00U;
-   \        0x6   0x2500             MOVS     R5,#+0
+   \        0x6   0x2600             MOVS     R6,#+0
     177          
     178            /* Check the parameters */
     179            assert_param(IS_GPIO_ALL_INSTANCE(GPIOx));
@@ -246,15 +249,15 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_g
     183          
     184            /* Configure the port pins */
     185            for(position = 0U; position < GPIO_NUMBER; position++)
-   \        0x8   0x2600             MOVS     R6,#+0
+   \        0x8   0x2500             MOVS     R5,#+0
    \                     ??HAL_GPIO_Init_0: (+1)
-   \        0xA   0x2E10             CMP      R6,#+16
-   \        0xC   0xF080 0x80F1      BCS.W    ??HAL_GPIO_Init_1
+   \        0xA   0x2D10             CMP      R5,#+16
+   \        0xC   0xF080 0x8100      BCS.W    ??HAL_GPIO_Init_1
     186            {
     187              /* Get the IO position */
     188              ioposition = 0x01U << position;
    \       0x10   0x2701             MOVS     R7,#+1
-   \       0x12   0xFA17 0xF206      LSLS     R2,R7,R6
+   \       0x12   0xFA17 0xF205      LSLS     R2,R7,R5
    \       0x16   0x0013             MOVS     R3,R2
     189              /* Get the current IO position */
     190              iocurrent = (uint32_t)(GPIO_Init->Pin) & ioposition;
@@ -264,7 +267,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_g
     191          
     192              if(iocurrent == ioposition)
    \       0x1E   0x429C             CMP      R4,R3
-   \       0x20   0xF040 0x80E5      BNE.W    ??HAL_GPIO_Init_2
+   \       0x20   0xF040 0x80F4      BNE.W    ??HAL_GPIO_Init_2
     193              {
     194                /*--------------------- GPIO Mode Configuration ------------------------*/
     195                /* In case of Output or Alternate function mode selection */
@@ -281,7 +284,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_g
    \       0x34   0xD002             BEQ.N    ??HAL_GPIO_Init_3
    \       0x36   0x684A             LDR      R2,[R1, #+4]
    \       0x38   0x2A12             CMP      R2,#+18
-   \       0x3A   0xD11B             BNE.N    ??HAL_GPIO_Init_4
+   \       0x3A   0xD11F             BNE.N    ??HAL_GPIO_Init_4
     198                {
     199                  /* Check the Speed parameter */
     200                  assert_param(IS_GPIO_SPEED(GPIO_Init->Speed));
@@ -291,278 +294,294 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_g
    \       0x3C   0xF8D0 0xC008      LDR      R12,[R0, #+8]
     203                  temp &= ~(GPIO_OSPEEDER_OSPEEDR0 << (position * 2U));
    \       0x40   0xF05F 0x0E03      MOVS     LR,#+3
-   \       0x44   0x0072             LSLS     R2,R6,#+1
-   \       0x46   0xFA1E 0xFE02      LSLS     LR,LR,R2
-   \       0x4A   0xEA3C 0x0C0E      BICS     R12,R12,LR
+   \       0x44   0x002A             MOVS     R2,R5
+   \       0x46   0xB2D2             UXTB     R2,R2
+   \       0x48   0x0052             LSLS     R2,R2,#+1
+   \       0x4A   0xFA1E 0xFE02      LSLS     LR,LR,R2
+   \       0x4E   0xEA3C 0x0C0E      BICS     R12,R12,LR
     204                  temp |= (GPIO_Init->Speed << (position * 2U));
-   \       0x4E   0xF8D1 0xE00C      LDR      LR,[R1, #+12]
-   \       0x52   0x0072             LSLS     R2,R6,#+1
-   \       0x54   0xFA1E 0xFE02      LSLS     LR,LR,R2
-   \       0x58   0xEA5E 0x0C0C      ORRS     R12,LR,R12
+   \       0x52   0xF8D1 0xE00C      LDR      LR,[R1, #+12]
+   \       0x56   0x002A             MOVS     R2,R5
+   \       0x58   0xB2D2             UXTB     R2,R2
+   \       0x5A   0x0052             LSLS     R2,R2,#+1
+   \       0x5C   0xFA1E 0xFE02      LSLS     LR,LR,R2
+   \       0x60   0xEA5E 0x0C0C      ORRS     R12,LR,R12
     205                  GPIOx->OSPEEDR = temp;
-   \       0x5C   0xF8C0 0xC008      STR      R12,[R0, #+8]
+   \       0x64   0xF8C0 0xC008      STR      R12,[R0, #+8]
     206          
     207                  /* Configure the IO Output Type */
     208                  temp = GPIOx->OTYPER;
-   \       0x60   0x6842             LDR      R2,[R0, #+4]
+   \       0x68   0x6842             LDR      R2,[R0, #+4]
     209                  temp &= ~(GPIO_OTYPER_OT_0 << position) ;
-   \       0x62   0x40B7             LSLS     R7,R7,R6
-   \       0x64   0x43BA             BICS     R2,R2,R7
+   \       0x6A   0x40AF             LSLS     R7,R7,R5
+   \       0x6C   0x43BA             BICS     R2,R2,R7
     210                  temp |= (((GPIO_Init->Mode & GPIO_OUTPUT_TYPE) >> 4U) << position);
-   \       0x66   0x684F             LDR      R7,[R1, #+4]
-   \       0x68   0xF3C7 0x1700      UBFX     R7,R7,#+4,#+1
-   \       0x6C   0x40B7             LSLS     R7,R7,R6
-   \       0x6E   0x433A             ORRS     R2,R7,R2
-   \       0x70   0x0015             MOVS     R5,R2
+   \       0x6E   0x684F             LDR      R7,[R1, #+4]
+   \       0x70   0xF3C7 0x1700      UBFX     R7,R7,#+4,#+1
+   \       0x74   0x40AF             LSLS     R7,R7,R5
+   \       0x76   0x433A             ORRS     R2,R7,R2
+   \       0x78   0x0016             MOVS     R6,R2
     211                  GPIOx->OTYPER = temp;
-   \       0x72   0x6045             STR      R5,[R0, #+4]
+   \       0x7A   0x6046             STR      R6,[R0, #+4]
     212                 }
     213          
     214                /* Activate the Pull-up or Pull down resistor for the current IO */
     215                temp = GPIOx->PUPDR;
    \                     ??HAL_GPIO_Init_4: (+1)
-   \       0x74   0x68C7             LDR      R7,[R0, #+12]
+   \       0x7C   0x68C7             LDR      R7,[R0, #+12]
     216                temp &= ~(GPIO_PUPDR_PUPDR0 << (position * 2U));
-   \       0x76   0xF05F 0x0C03      MOVS     R12,#+3
-   \       0x7A   0x0072             LSLS     R2,R6,#+1
-   \       0x7C   0xFA1C 0xF202      LSLS     R2,R12,R2
-   \       0x80   0x4397             BICS     R7,R7,R2
+   \       0x7E   0xF05F 0x0C03      MOVS     R12,#+3
+   \       0x82   0x002A             MOVS     R2,R5
+   \       0x84   0xB2D2             UXTB     R2,R2
+   \       0x86   0x0052             LSLS     R2,R2,#+1
+   \       0x88   0xFA1C 0xF202      LSLS     R2,R12,R2
+   \       0x8C   0x4397             BICS     R7,R7,R2
     217                temp |= ((GPIO_Init->Pull) << (position * 2U));
-   \       0x82   0xF8D1 0xE008      LDR      LR,[R1, #+8]
-   \       0x86   0x0072             LSLS     R2,R6,#+1
-   \       0x88   0xFA1E 0xFE02      LSLS     LR,LR,R2
-   \       0x8C   0xEA5E 0x0707      ORRS     R7,LR,R7
+   \       0x8E   0xF8D1 0xE008      LDR      LR,[R1, #+8]
+   \       0x92   0x002A             MOVS     R2,R5
+   \       0x94   0xB2D2             UXTB     R2,R2
+   \       0x96   0x0052             LSLS     R2,R2,#+1
+   \       0x98   0xFA1E 0xFE02      LSLS     LR,LR,R2
+   \       0x9C   0xEA5E 0x0707      ORRS     R7,LR,R7
     218                GPIOx->PUPDR = temp;
-   \       0x90   0x60C7             STR      R7,[R0, #+12]
+   \       0xA0   0x60C7             STR      R7,[R0, #+12]
     219          
     220                /* In case of Alternate function mode selection */
     221                if((GPIO_Init->Mode == GPIO_MODE_AF_PP) || (GPIO_Init->Mode == GPIO_MODE_AF_OD))
-   \       0x92   0x684A             LDR      R2,[R1, #+4]
-   \       0x94   0x2A02             CMP      R2,#+2
-   \       0x96   0xD002             BEQ.N    ??HAL_GPIO_Init_5
-   \       0x98   0x684A             LDR      R2,[R1, #+4]
-   \       0x9A   0x2A12             CMP      R2,#+18
-   \       0x9C   0xD11A             BNE.N    ??HAL_GPIO_Init_6
+   \       0xA2   0x684A             LDR      R2,[R1, #+4]
+   \       0xA4   0x2A02             CMP      R2,#+2
+   \       0xA6   0xD002             BEQ.N    ??HAL_GPIO_Init_5
+   \       0xA8   0x684A             LDR      R2,[R1, #+4]
+   \       0xAA   0x2A12             CMP      R2,#+18
+   \       0xAC   0xD11E             BNE.N    ??HAL_GPIO_Init_6
     222                {
     223                  /* Check the Alternate function parameter */
     224                  assert_param(IS_GPIO_AF(GPIO_Init->Alternate));
     225                  /* Configure Alternate function mapped with the current IO */
     226                  temp = GPIOx->AFR[position >> 3U];
    \                     ??HAL_GPIO_Init_5: (+1)
-   \       0x9E   0x0032             MOVS     R2,R6
-   \       0xA0   0x08D2             LSRS     R2,R2,#+3
-   \       0xA2   0xEB00 0x0282      ADD      R2,R0,R2, LSL #+2
-   \       0xA6   0x6A12             LDR      R2,[R2, #+32]
+   \       0xAE   0x002A             MOVS     R2,R5
+   \       0xB0   0x08D2             LSRS     R2,R2,#+3
+   \       0xB2   0xEB00 0x0282      ADD      R2,R0,R2, LSL #+2
+   \       0xB6   0x6A16             LDR      R6,[R2, #+32]
     227                  temp &= ~(0xFU << ((uint32_t)(position & 0x07U) * 4U)) ;
-   \       0xA8   0x250F             MOVS     R5,#+15
-   \       0xAA   0xEA5F 0x0E86      LSLS     LR,R6,#+2
-   \       0xAE   0xF01E 0x0E1C      ANDS     LR,LR,#0x1C
-   \       0xB2   0xFA15 0xF50E      LSLS     R5,R5,LR
-   \       0xB6   0x43AA             BICS     R2,R2,R5
+   \       0xB8   0xF05F 0x0E0F      MOVS     LR,#+15
+   \       0xBC   0xF015 0x0207      ANDS     R2,R5,#0x7
+   \       0xC0   0xB2D2             UXTB     R2,R2
+   \       0xC2   0x0092             LSLS     R2,R2,#+2
+   \       0xC4   0xFA1E 0xFE02      LSLS     LR,LR,R2
+   \       0xC8   0xEA36 0x060E      BICS     R6,R6,LR
     228                  temp |= ((uint32_t)(GPIO_Init->Alternate) << (((uint32_t)position & 0x07U) * 4U));
-   \       0xB8   0x690D             LDR      R5,[R1, #+16]
-   \       0xBA   0xEA5F 0x0E86      LSLS     LR,R6,#+2
-   \       0xBE   0xF01E 0x0E1C      ANDS     LR,LR,#0x1C
-   \       0xC2   0xFA15 0xF50E      LSLS     R5,R5,LR
-   \       0xC6   0x432A             ORRS     R2,R5,R2
-   \       0xC8   0x0017             MOVS     R7,R2
+   \       0xCC   0xF8D1 0xE010      LDR      LR,[R1, #+16]
+   \       0xD0   0xF015 0x0207      ANDS     R2,R5,#0x7
+   \       0xD4   0xB2D2             UXTB     R2,R2
+   \       0xD6   0x0092             LSLS     R2,R2,#+2
+   \       0xD8   0xFA1E 0xFE02      LSLS     LR,LR,R2
+   \       0xDC   0xEA5E 0x0606      ORRS     R6,LR,R6
+   \       0xE0   0x0037             MOVS     R7,R6
     229                  GPIOx->AFR[position >> 3U] = temp;
-   \       0xCA   0x0032             MOVS     R2,R6
-   \       0xCC   0x08D2             LSRS     R2,R2,#+3
-   \       0xCE   0xEB00 0x0282      ADD      R2,R0,R2, LSL #+2
-   \       0xD2   0x6217             STR      R7,[R2, #+32]
+   \       0xE2   0x002A             MOVS     R2,R5
+   \       0xE4   0x08D2             LSRS     R2,R2,#+3
+   \       0xE6   0xEB00 0x0282      ADD      R2,R0,R2, LSL #+2
+   \       0xEA   0x6217             STR      R7,[R2, #+32]
     230                }
     231          
     232                /* Configure IO Direction mode (Input, Output, Alternate or Analog) */
     233                temp = GPIOx->MODER;
    \                     ??HAL_GPIO_Init_6: (+1)
-   \       0xD4   0x6805             LDR      R5,[R0, #+0]
+   \       0xEC   0x6806             LDR      R6,[R0, #+0]
     234                temp &= ~(GPIO_MODER_MODER0 << (position * 2U));
-   \       0xD6   0x0072             LSLS     R2,R6,#+1
-   \       0xD8   0xFA1C 0xFC02      LSLS     R12,R12,R2
-   \       0xDC   0xEA35 0x050C      BICS     R5,R5,R12
+   \       0xEE   0x002A             MOVS     R2,R5
+   \       0xF0   0xB2D2             UXTB     R2,R2
+   \       0xF2   0x0052             LSLS     R2,R2,#+1
+   \       0xF4   0xFA1C 0xFC02      LSLS     R12,R12,R2
+   \       0xF8   0xEA36 0x060C      BICS     R6,R6,R12
     235                temp |= ((GPIO_Init->Mode & GPIO_MODE) << (position * 2U));
-   \       0xE0   0xF891 0xC004      LDRB     R12,[R1, #+4]
-   \       0xE4   0xF01C 0x0C03      ANDS     R12,R12,#0x3
-   \       0xE8   0x0072             LSLS     R2,R6,#+1
-   \       0xEA   0xFA1C 0xFC02      LSLS     R12,R12,R2
-   \       0xEE   0xEA5C 0x0505      ORRS     R5,R12,R5
+   \       0xFC   0xF891 0xC004      LDRB     R12,[R1, #+4]
+   \      0x100   0xF01C 0x0C03      ANDS     R12,R12,#0x3
+   \      0x104   0x002A             MOVS     R2,R5
+   \      0x106   0xB2D2             UXTB     R2,R2
+   \      0x108   0x0052             LSLS     R2,R2,#+1
+   \      0x10A   0xFA1C 0xFC02      LSLS     R12,R12,R2
+   \      0x10E   0xEA5C 0x0606      ORRS     R6,R12,R6
     236                GPIOx->MODER = temp;
-   \       0xF2   0x6005             STR      R5,[R0, #+0]
+   \      0x112   0x6006             STR      R6,[R0, #+0]
     237          
     238                /*--------------------- EXTI Mode Configuration ------------------------*/
     239                /* Configure the External Interrupt or event for the current IO */
     240                if((GPIO_Init->Mode & EXTI_MODE) == EXTI_MODE)
-   \       0xF4   0x684A             LDR      R2,[R1, #+4]
-   \       0xF6   0x00D2             LSLS     R2,R2,#+3
-   \       0xF8   0xD579             BPL.N    ??HAL_GPIO_Init_2
+   \      0x114   0x684A             LDR      R2,[R1, #+4]
+   \      0x116   0x00D2             LSLS     R2,R2,#+3
+   \      0x118   0xD578             BPL.N    ??HAL_GPIO_Init_2
     241                {
     242                  /* Enable SYSCFG Clock */
     243                  __HAL_RCC_SYSCFG_CLK_ENABLE();
-   \       0xFA   0x2200             MOVS     R2,#+0
-   \       0xFC   0x9200             STR      R2,[SP, #+0]
-   \       0xFE   0x.... 0x....      LDR.W    R2,??DataTable2
-   \      0x102   0x6817             LDR      R7,[R2, #+0]
-   \      0x104   0xF457 0x4780      ORRS     R7,R7,#0x4000
-   \      0x108   0x6017             STR      R7,[R2, #+0]
-   \      0x10A   0x6812             LDR      R2,[R2, #+0]
-   \      0x10C   0xF412 0x4280      ANDS     R2,R2,#0x4000
-   \      0x110   0x9200             STR      R2,[SP, #+0]
-   \      0x112   0x9A00             LDR      R2,[SP, #+0]
+   \      0x11A   0x2200             MOVS     R2,#+0
+   \      0x11C   0x9200             STR      R2,[SP, #+0]
+   \      0x11E   0x.... 0x....      LDR.W    R2,??DataTable2
+   \      0x122   0x6817             LDR      R7,[R2, #+0]
+   \      0x124   0xF457 0x4780      ORRS     R7,R7,#0x4000
+   \      0x128   0x6017             STR      R7,[R2, #+0]
+   \      0x12A   0x6812             LDR      R2,[R2, #+0]
+   \      0x12C   0xF412 0x4280      ANDS     R2,R2,#0x4000
+   \      0x130   0x9200             STR      R2,[SP, #+0]
+   \      0x132   0x9A00             LDR      R2,[SP, #+0]
     244          
     245                  temp = SYSCFG->EXTICR[position >> 2U];
-   \      0x114   0x....             LDR.N    R7,??DataTable2_1
-   \      0x116   0x0032             MOVS     R2,R6
-   \      0x118   0x0892             LSRS     R2,R2,#+2
-   \      0x11A   0xF857 0x2022      LDR      R2,[R7, R2, LSL #+2]
+   \      0x134   0x.... 0x....      LDR.W    R12,??DataTable2_1
+   \      0x138   0x002A             MOVS     R2,R5
+   \      0x13A   0x0892             LSRS     R2,R2,#+2
+   \      0x13C   0xF85C 0x7022      LDR      R7,[R12, R2, LSL #+2]
     246                  temp &= ~(0x0FU << (4U * (position & 0x03U)));
-   \      0x11E   0xF05F 0x0C0F      MOVS     R12,#+15
-   \      0x122   0xEA5F 0x0E86      LSLS     LR,R6,#+2
-   \      0x126   0xF01E 0x0E0C      ANDS     LR,LR,#0xC
-   \      0x12A   0xFA1C 0xFC0E      LSLS     R12,R12,LR
-   \      0x12E   0xEA32 0x020C      BICS     R2,R2,R12
+   \      0x140   0xF05F 0x0E0F      MOVS     LR,#+15
+   \      0x144   0xF015 0x0203      ANDS     R2,R5,#0x3
+   \      0x148   0xB2D2             UXTB     R2,R2
+   \      0x14A   0x0092             LSLS     R2,R2,#+2
+   \      0x14C   0xFA1E 0xFE02      LSLS     LR,LR,R2
+   \      0x150   0xEA37 0x070E      BICS     R7,R7,LR
     247                  temp |= ((uint32_t)(GPIO_GET_INDEX(GPIOx)) << (4U * (position & 0x03U)));
-   \      0x132   0x.... 0x....      LDR.W    R12,??DataTable2_2
-   \      0x136   0x4560             CMP      R0,R12
-   \      0x138   0xD101             BNE.N    ??HAL_GPIO_Init_7
-   \      0x13A   0x2500             MOVS     R5,#+0
-   \      0x13C   0xE023             B.N      ??HAL_GPIO_Init_8
+   \      0x154   0x....             LDR.N    R2,??DataTable2_2
+   \      0x156   0x4290             CMP      R0,R2
+   \      0x158   0xD101             BNE.N    ??HAL_GPIO_Init_7
+   \      0x15A   0x2600             MOVS     R6,#+0
+   \      0x15C   0xE023             B.N      ??HAL_GPIO_Init_8
    \                     ??HAL_GPIO_Init_7: (+1)
-   \      0x13E   0x....             LDR.N    R5,??DataTable2_3
-   \      0x140   0x42A8             CMP      R0,R5
-   \      0x142   0xD101             BNE.N    ??HAL_GPIO_Init_9
-   \      0x144   0x2501             MOVS     R5,#+1
-   \      0x146   0xE01E             B.N      ??HAL_GPIO_Init_8
+   \      0x15E   0x....             LDR.N    R2,??DataTable2_3
+   \      0x160   0x4290             CMP      R0,R2
+   \      0x162   0xD101             BNE.N    ??HAL_GPIO_Init_9
+   \      0x164   0x2601             MOVS     R6,#+1
+   \      0x166   0xE01E             B.N      ??HAL_GPIO_Init_8
    \                     ??HAL_GPIO_Init_9: (+1)
-   \      0x148   0x....             LDR.N    R5,??DataTable2_4
-   \      0x14A   0x42A8             CMP      R0,R5
-   \      0x14C   0xD101             BNE.N    ??HAL_GPIO_Init_10
-   \      0x14E   0x2502             MOVS     R5,#+2
-   \      0x150   0xE019             B.N      ??HAL_GPIO_Init_11
+   \      0x168   0x....             LDR.N    R2,??DataTable2_4
+   \      0x16A   0x4290             CMP      R0,R2
+   \      0x16C   0xD101             BNE.N    ??HAL_GPIO_Init_10
+   \      0x16E   0x2602             MOVS     R6,#+2
+   \      0x170   0xE019             B.N      ??HAL_GPIO_Init_11
    \                     ??HAL_GPIO_Init_10: (+1)
-   \      0x152   0x....             LDR.N    R5,??DataTable2_5
-   \      0x154   0x42A8             CMP      R0,R5
-   \      0x156   0xD101             BNE.N    ??HAL_GPIO_Init_12
-   \      0x158   0x2503             MOVS     R5,#+3
-   \      0x15A   0xE014             B.N      ??HAL_GPIO_Init_11
+   \      0x172   0x....             LDR.N    R2,??DataTable2_5
+   \      0x174   0x4290             CMP      R0,R2
+   \      0x176   0xD101             BNE.N    ??HAL_GPIO_Init_12
+   \      0x178   0x2603             MOVS     R6,#+3
+   \      0x17A   0xE014             B.N      ??HAL_GPIO_Init_11
    \                     ??HAL_GPIO_Init_12: (+1)
-   \      0x15C   0x....             LDR.N    R5,??DataTable2_6
-   \      0x15E   0x42A8             CMP      R0,R5
-   \      0x160   0xD101             BNE.N    ??HAL_GPIO_Init_13
-   \      0x162   0x2504             MOVS     R5,#+4
-   \      0x164   0xE00F             B.N      ??HAL_GPIO_Init_14
+   \      0x17C   0x....             LDR.N    R2,??DataTable2_6
+   \      0x17E   0x4290             CMP      R0,R2
+   \      0x180   0xD101             BNE.N    ??HAL_GPIO_Init_13
+   \      0x182   0x2604             MOVS     R6,#+4
+   \      0x184   0xE00F             B.N      ??HAL_GPIO_Init_14
    \                     ??HAL_GPIO_Init_13: (+1)
-   \      0x166   0x....             LDR.N    R5,??DataTable2_7
-   \      0x168   0x42A8             CMP      R0,R5
-   \      0x16A   0xD101             BNE.N    ??HAL_GPIO_Init_15
-   \      0x16C   0x2505             MOVS     R5,#+5
-   \      0x16E   0xE00A             B.N      ??HAL_GPIO_Init_14
+   \      0x186   0x....             LDR.N    R2,??DataTable2_7
+   \      0x188   0x4290             CMP      R0,R2
+   \      0x18A   0xD101             BNE.N    ??HAL_GPIO_Init_15
+   \      0x18C   0x2605             MOVS     R6,#+5
+   \      0x18E   0xE00A             B.N      ??HAL_GPIO_Init_14
    \                     ??HAL_GPIO_Init_15: (+1)
-   \      0x170   0x....             LDR.N    R5,??DataTable2_8
-   \      0x172   0x42A8             CMP      R0,R5
-   \      0x174   0xD101             BNE.N    ??HAL_GPIO_Init_16
-   \      0x176   0x2506             MOVS     R5,#+6
-   \      0x178   0xE005             B.N      ??HAL_GPIO_Init_17
+   \      0x190   0x....             LDR.N    R2,??DataTable2_8
+   \      0x192   0x4290             CMP      R0,R2
+   \      0x194   0xD101             BNE.N    ??HAL_GPIO_Init_16
+   \      0x196   0x2606             MOVS     R6,#+6
+   \      0x198   0xE005             B.N      ??HAL_GPIO_Init_17
    \                     ??HAL_GPIO_Init_16: (+1)
-   \      0x17A   0x....             LDR.N    R5,??DataTable2_9
-   \      0x17C   0x42A8             CMP      R0,R5
-   \      0x17E   0xD101             BNE.N    ??HAL_GPIO_Init_18
-   \      0x180   0x2507             MOVS     R5,#+7
-   \      0x182   0xE000             B.N      ??HAL_GPIO_Init_17
+   \      0x19A   0x....             LDR.N    R2,??DataTable2_9
+   \      0x19C   0x4290             CMP      R0,R2
+   \      0x19E   0xD101             BNE.N    ??HAL_GPIO_Init_18
+   \      0x1A0   0x2607             MOVS     R6,#+7
+   \      0x1A2   0xE000             B.N      ??HAL_GPIO_Init_17
    \                     ??HAL_GPIO_Init_18: (+1)
-   \      0x184   0x2508             MOVS     R5,#+8
+   \      0x1A4   0x2608             MOVS     R6,#+8
    \                     ??HAL_GPIO_Init_17: (+1)
    \                     ??HAL_GPIO_Init_14: (+1)
    \                     ??HAL_GPIO_Init_11: (+1)
    \                     ??HAL_GPIO_Init_8: (+1)
-   \      0x186   0xB2ED             UXTB     R5,R5
-   \      0x188   0xEA5F 0x0C86      LSLS     R12,R6,#+2
-   \      0x18C   0xF01C 0x0C0C      ANDS     R12,R12,#0xC
-   \      0x190   0xFA15 0xF50C      LSLS     R5,R5,R12
-   \      0x194   0x432A             ORRS     R2,R5,R2
+   \      0x1A6   0xB2F6             UXTB     R6,R6
+   \      0x1A8   0xF015 0x0203      ANDS     R2,R5,#0x3
+   \      0x1AC   0xB2D2             UXTB     R2,R2
+   \      0x1AE   0x0092             LSLS     R2,R2,#+2
+   \      0x1B0   0x4096             LSLS     R6,R6,R2
+   \      0x1B2   0x4337             ORRS     R7,R6,R7
     248                  SYSCFG->EXTICR[position >> 2U] = temp;
-   \      0x196   0x0035             MOVS     R5,R6
-   \      0x198   0x08AD             LSRS     R5,R5,#+2
-   \      0x19A   0xF847 0x2025      STR      R2,[R7, R5, LSL #+2]
+   \      0x1B4   0x002A             MOVS     R2,R5
+   \      0x1B6   0x0892             LSRS     R2,R2,#+2
+   \      0x1B8   0xF84C 0x7022      STR      R7,[R12, R2, LSL #+2]
     249          
     250                  /* Clear EXTI line configuration */
     251                  temp = EXTI->IMR;
-   \      0x19E   0x....             LDR.N    R7,??DataTable2_10
-   \      0x1A0   0x683D             LDR      R5,[R7, #+0]
+   \      0x1BC   0x....             LDR.N    R6,??DataTable2_10
+   \      0x1BE   0x6832             LDR      R2,[R6, #+0]
     252                  temp &= ~((uint32_t)iocurrent);
-   \      0x1A2   0x43A5             BICS     R5,R5,R4
+   \      0x1C0   0x43A2             BICS     R2,R2,R4
     253                  if((GPIO_Init->Mode & GPIO_MODE_IT) == GPIO_MODE_IT)
-   \      0x1A4   0xF8D1 0xC004      LDR      R12,[R1, #+4]
-   \      0x1A8   0xEA5F 0x3CCC      LSLS     R12,R12,#+15
-   \      0x1AC   0xD500             BPL.N    ??HAL_GPIO_Init_19
+   \      0x1C2   0xF8D1 0xC004      LDR      R12,[R1, #+4]
+   \      0x1C6   0xEA5F 0x3CCC      LSLS     R12,R12,#+15
+   \      0x1CA   0xD500             BPL.N    ??HAL_GPIO_Init_19
     254                  {
     255                    temp |= iocurrent;
-   \      0x1AE   0x4325             ORRS     R5,R4,R5
+   \      0x1CC   0x4322             ORRS     R2,R4,R2
     256                  }
     257                  EXTI->IMR = temp;
    \                     ??HAL_GPIO_Init_19: (+1)
-   \      0x1B0   0x603D             STR      R5,[R7, #+0]
+   \      0x1CE   0x6032             STR      R2,[R6, #+0]
     258          
     259                  temp = EXTI->EMR;
-   \      0x1B2   0x....             LDR.N    R7,??DataTable2_11
-   \      0x1B4   0x683A             LDR      R2,[R7, #+0]
+   \      0x1D0   0x....             LDR.N    R7,??DataTable2_11
+   \      0x1D2   0x683E             LDR      R6,[R7, #+0]
     260                  temp &= ~((uint32_t)iocurrent);
-   \      0x1B6   0x43A2             BICS     R2,R2,R4
+   \      0x1D4   0x43A6             BICS     R6,R6,R4
     261                  if((GPIO_Init->Mode & GPIO_MODE_EVT) == GPIO_MODE_EVT)
-   \      0x1B8   0xF8D1 0xC004      LDR      R12,[R1, #+4]
-   \      0x1BC   0xEA5F 0x3C8C      LSLS     R12,R12,#+14
-   \      0x1C0   0xD500             BPL.N    ??HAL_GPIO_Init_20
+   \      0x1D6   0xF8D1 0xC004      LDR      R12,[R1, #+4]
+   \      0x1DA   0xEA5F 0x3C8C      LSLS     R12,R12,#+14
+   \      0x1DE   0xD500             BPL.N    ??HAL_GPIO_Init_20
     262                  {
     263                    temp |= iocurrent;
-   \      0x1C2   0x4322             ORRS     R2,R4,R2
+   \      0x1E0   0x4326             ORRS     R6,R4,R6
     264                  }
     265                  EXTI->EMR = temp;
    \                     ??HAL_GPIO_Init_20: (+1)
-   \      0x1C4   0x603A             STR      R2,[R7, #+0]
+   \      0x1E2   0x603E             STR      R6,[R7, #+0]
     266          
     267                  /* Clear Rising Falling edge configuration */
     268                  temp = EXTI->RTSR;
-   \      0x1C6   0x....             LDR.N    R5,??DataTable2_12
-   \      0x1C8   0x682F             LDR      R7,[R5, #+0]
+   \      0x1E4   0x....             LDR.N    R7,??DataTable2_12
+   \      0x1E6   0x683A             LDR      R2,[R7, #+0]
     269                  temp &= ~((uint32_t)iocurrent);
-   \      0x1CA   0x43A7             BICS     R7,R7,R4
+   \      0x1E8   0x43A2             BICS     R2,R2,R4
     270                  if((GPIO_Init->Mode & RISING_EDGE) == RISING_EDGE)
-   \      0x1CC   0xF8D1 0xC004      LDR      R12,[R1, #+4]
-   \      0x1D0   0xEA5F 0x2CCC      LSLS     R12,R12,#+11
-   \      0x1D4   0xD500             BPL.N    ??HAL_GPIO_Init_21
+   \      0x1EA   0xF8D1 0xC004      LDR      R12,[R1, #+4]
+   \      0x1EE   0xEA5F 0x2CCC      LSLS     R12,R12,#+11
+   \      0x1F2   0xD500             BPL.N    ??HAL_GPIO_Init_21
     271                  {
     272                    temp |= iocurrent;
-   \      0x1D6   0x4327             ORRS     R7,R4,R7
+   \      0x1F4   0x4322             ORRS     R2,R4,R2
     273                  }
     274                  EXTI->RTSR = temp;
    \                     ??HAL_GPIO_Init_21: (+1)
-   \      0x1D8   0x602F             STR      R7,[R5, #+0]
+   \      0x1F6   0x603A             STR      R2,[R7, #+0]
     275          
     276                  temp = EXTI->FTSR;
-   \      0x1DA   0x....             LDR.N    R2,??DataTable2_13
-   \      0x1DC   0x6815             LDR      R5,[R2, #+0]
+   \      0x1F8   0x....             LDR.N    R7,??DataTable2_13
+   \      0x1FA   0x683E             LDR      R6,[R7, #+0]
     277                  temp &= ~((uint32_t)iocurrent);
-   \      0x1DE   0x43A5             BICS     R5,R5,R4
+   \      0x1FC   0x43A6             BICS     R6,R6,R4
     278                  if((GPIO_Init->Mode & FALLING_EDGE) == FALLING_EDGE)
-   \      0x1E0   0xF8D1 0xC004      LDR      R12,[R1, #+4]
-   \      0x1E4   0xEA5F 0x2C8C      LSLS     R12,R12,#+10
-   \      0x1E8   0xD500             BPL.N    ??HAL_GPIO_Init_22
+   \      0x1FE   0xF8D1 0xC004      LDR      R12,[R1, #+4]
+   \      0x202   0xEA5F 0x2C8C      LSLS     R12,R12,#+10
+   \      0x206   0xD500             BPL.N    ??HAL_GPIO_Init_22
     279                  {
     280                    temp |= iocurrent;
-   \      0x1EA   0x4325             ORRS     R5,R4,R5
+   \      0x208   0x4326             ORRS     R6,R4,R6
     281                  }
     282                  EXTI->FTSR = temp;
    \                     ??HAL_GPIO_Init_22: (+1)
-   \      0x1EC   0x6015             STR      R5,[R2, #+0]
+   \      0x20A   0x603E             STR      R6,[R7, #+0]
     283                }
     284              }
     285            }
    \                     ??HAL_GPIO_Init_2: (+1)
-   \      0x1EE   0x1C76             ADDS     R6,R6,#+1
-   \      0x1F0   0xE70B             B.N      ??HAL_GPIO_Init_0
+   \      0x20C   0x1C6D             ADDS     R5,R5,#+1
+   \      0x20E   0xE6FC             B.N      ??HAL_GPIO_Init_0
     286          }
    \                     ??HAL_GPIO_Init_1: (+1)
-   \      0x1F2   0xBDF1             POP      {R0,R4-R7,PC}
+   \      0x210   0xBDF1             POP      {R0,R4-R7,PC}
     287          
     288          /**
     289            * @brief  De-initializes the GPIOx peripheral registers to their default reset values.
@@ -594,192 +613,202 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_g
    \        0xA   0x2600             MOVS     R6,#+0
    \                     ??HAL_GPIO_DeInit_0: (+1)
    \        0xC   0x2E10             CMP      R6,#+16
-   \        0xE   0xF080 0x80CA      BCS.W    ??HAL_GPIO_DeInit_1
+   \        0xE   0xF080 0x80C3      BCS.W    ??HAL_GPIO_DeInit_1
     308            {
     309              /* Get the IO position */
     310              ioposition = 0x01U << position;
-   \       0x12   0x2201             MOVS     R2,#+1
-   \       0x14   0xFA12 0xF706      LSLS     R7,R2,R6
-   \       0x18   0x003B             MOVS     R3,R7
+   \       0x12   0x2701             MOVS     R7,#+1
+   \       0x14   0xFA17 0xF206      LSLS     R2,R7,R6
+   \       0x18   0x0013             MOVS     R3,R2
     311              /* Get the current IO position */
     312              iocurrent = (GPIO_Pin) & ioposition;
-   \       0x1A   0xEA13 0x0701      ANDS     R7,R3,R1
-   \       0x1E   0x003C             MOVS     R4,R7
+   \       0x1A   0xEA13 0x0201      ANDS     R2,R3,R1
+   \       0x1E   0x0014             MOVS     R4,R2
     313          
     314              if(iocurrent == ioposition)
    \       0x20   0x429C             CMP      R4,R3
-   \       0x22   0xF040 0x80BE      BNE.W    ??HAL_GPIO_DeInit_2
+   \       0x22   0xF040 0x80B7      BNE.W    ??HAL_GPIO_DeInit_2
     315              {
     316                /*------------------------- EXTI Mode Configuration --------------------*/
     317                tmp = SYSCFG->EXTICR[position >> 2U];
-   \       0x26   0x.... 0x....      LDR.W    R12,??DataTable2_1
-   \       0x2A   0x0037             MOVS     R7,R6
-   \       0x2C   0x08BF             LSRS     R7,R7,#+2
-   \       0x2E   0xF85C 0xE027      LDR      LR,[R12, R7, LSL #+2]
+   \       0x26   0x.... 0x....      LDR.W    LR,??DataTable2_1
+   \       0x2A   0x0032             MOVS     R2,R6
+   \       0x2C   0x0892             LSRS     R2,R2,#+2
+   \       0x2E   0xF85E 0x2022      LDR      R2,[LR, R2, LSL #+2]
     318                tmp &= (0x0FU << (4U * (position & 0x03U)));
-   \       0x32   0x270F             MOVS     R7,#+15
-   \       0x34   0xEA5F 0x0886      LSLS     R8,R6,#+2
-   \       0x38   0xF018 0x080C      ANDS     R8,R8,#0xC
-   \       0x3C   0xFA17 0xF808      LSLS     R8,R7,R8
-   \       0x40   0xEA18 0x0E0E      ANDS     LR,R8,LR
-   \       0x44   0x4675             MOV      R5,LR
+   \       0x32   0xF05F 0x0C0F      MOVS     R12,#+15
+   \       0x36   0xF016 0x0803      ANDS     R8,R6,#0x3
+   \       0x3A   0xFA5F 0xF888      UXTB     R8,R8
+   \       0x3E   0xEA5F 0x0888      LSLS     R8,R8,#+2
+   \       0x42   0xFA1C 0xF808      LSLS     R8,R12,R8
+   \       0x46   0xEA18 0x0202      ANDS     R2,R8,R2
+   \       0x4A   0x0015             MOVS     R5,R2
     319                if(tmp == ((uint32_t)(GPIO_GET_INDEX(GPIOx)) << (4U * (position & 0x03U))))
-   \       0x46   0x.... 0x....      LDR.W    LR,??DataTable2_2
-   \       0x4A   0x4570             CMP      R0,LR
-   \       0x4C   0xD102             BNE.N    ??HAL_GPIO_DeInit_3
-   \       0x4E   0xF05F 0x0E00      MOVS     LR,#+0
-   \       0x52   0xE032             B.N      ??HAL_GPIO_DeInit_4
+   \       0x4C   0x....             LDR.N    R2,??DataTable2_2
+   \       0x4E   0x4290             CMP      R0,R2
+   \       0x50   0xD102             BNE.N    ??HAL_GPIO_DeInit_3
+   \       0x52   0xF05F 0x0800      MOVS     R8,#+0
+   \       0x56   0xE02B             B.N      ??HAL_GPIO_DeInit_4
    \                     ??HAL_GPIO_DeInit_3: (+1)
-   \       0x54   0x.... 0x....      LDR.W    LR,??DataTable2_3
-   \       0x58   0x4570             CMP      R0,LR
-   \       0x5A   0xD102             BNE.N    ??HAL_GPIO_DeInit_5
-   \       0x5C   0xF05F 0x0E01      MOVS     LR,#+1
-   \       0x60   0xE02B             B.N      ??HAL_GPIO_DeInit_4
+   \       0x58   0x....             LDR.N    R2,??DataTable2_3
+   \       0x5A   0x4290             CMP      R0,R2
+   \       0x5C   0xD102             BNE.N    ??HAL_GPIO_DeInit_5
+   \       0x5E   0xF05F 0x0801      MOVS     R8,#+1
+   \       0x62   0xE025             B.N      ??HAL_GPIO_DeInit_4
    \                     ??HAL_GPIO_DeInit_5: (+1)
-   \       0x62   0x.... 0x....      LDR.W    LR,??DataTable2_4
-   \       0x66   0x4570             CMP      R0,LR
+   \       0x64   0x....             LDR.N    R2,??DataTable2_4
+   \       0x66   0x4290             CMP      R0,R2
    \       0x68   0xD102             BNE.N    ??HAL_GPIO_DeInit_6
-   \       0x6A   0xF05F 0x0E02      MOVS     LR,#+2
-   \       0x6E   0xE024             B.N      ??HAL_GPIO_DeInit_7
+   \       0x6A   0xF05F 0x0802      MOVS     R8,#+2
+   \       0x6E   0xE01F             B.N      ??HAL_GPIO_DeInit_7
    \                     ??HAL_GPIO_DeInit_6: (+1)
-   \       0x70   0x.... 0x....      LDR.W    LR,??DataTable2_5
-   \       0x74   0x4570             CMP      R0,LR
-   \       0x76   0xD102             BNE.N    ??HAL_GPIO_DeInit_8
-   \       0x78   0xF05F 0x0E03      MOVS     LR,#+3
-   \       0x7C   0xE01D             B.N      ??HAL_GPIO_DeInit_7
+   \       0x70   0x....             LDR.N    R2,??DataTable2_5
+   \       0x72   0x4290             CMP      R0,R2
+   \       0x74   0xD102             BNE.N    ??HAL_GPIO_DeInit_8
+   \       0x76   0xF05F 0x0803      MOVS     R8,#+3
+   \       0x7A   0xE019             B.N      ??HAL_GPIO_DeInit_7
    \                     ??HAL_GPIO_DeInit_8: (+1)
-   \       0x7E   0x.... 0x....      LDR.W    LR,??DataTable2_6
-   \       0x82   0x4570             CMP      R0,LR
-   \       0x84   0xD102             BNE.N    ??HAL_GPIO_DeInit_9
-   \       0x86   0xF05F 0x0E04      MOVS     LR,#+4
-   \       0x8A   0xE016             B.N      ??HAL_GPIO_DeInit_10
+   \       0x7C   0x....             LDR.N    R2,??DataTable2_6
+   \       0x7E   0x4290             CMP      R0,R2
+   \       0x80   0xD102             BNE.N    ??HAL_GPIO_DeInit_9
+   \       0x82   0xF05F 0x0804      MOVS     R8,#+4
+   \       0x86   0xE013             B.N      ??HAL_GPIO_DeInit_10
    \                     ??HAL_GPIO_DeInit_9: (+1)
-   \       0x8C   0x.... 0x....      LDR.W    LR,??DataTable2_7
-   \       0x90   0x4570             CMP      R0,LR
-   \       0x92   0xD102             BNE.N    ??HAL_GPIO_DeInit_11
-   \       0x94   0xF05F 0x0E05      MOVS     LR,#+5
-   \       0x98   0xE00F             B.N      ??HAL_GPIO_DeInit_10
+   \       0x88   0x....             LDR.N    R2,??DataTable2_7
+   \       0x8A   0x4290             CMP      R0,R2
+   \       0x8C   0xD102             BNE.N    ??HAL_GPIO_DeInit_11
+   \       0x8E   0xF05F 0x0805      MOVS     R8,#+5
+   \       0x92   0xE00D             B.N      ??HAL_GPIO_DeInit_10
    \                     ??HAL_GPIO_DeInit_11: (+1)
-   \       0x9A   0x.... 0x....      LDR.W    LR,??DataTable2_8
-   \       0x9E   0x4570             CMP      R0,LR
-   \       0xA0   0xD102             BNE.N    ??HAL_GPIO_DeInit_12
-   \       0xA2   0xF05F 0x0E06      MOVS     LR,#+6
-   \       0xA6   0xE008             B.N      ??HAL_GPIO_DeInit_13
+   \       0x94   0x....             LDR.N    R2,??DataTable2_8
+   \       0x96   0x4290             CMP      R0,R2
+   \       0x98   0xD102             BNE.N    ??HAL_GPIO_DeInit_12
+   \       0x9A   0xF05F 0x0806      MOVS     R8,#+6
+   \       0x9E   0xE007             B.N      ??HAL_GPIO_DeInit_13
    \                     ??HAL_GPIO_DeInit_12: (+1)
-   \       0xA8   0x.... 0x....      LDR.W    LR,??DataTable2_9
-   \       0xAC   0x4570             CMP      R0,LR
-   \       0xAE   0xD102             BNE.N    ??HAL_GPIO_DeInit_14
-   \       0xB0   0xF05F 0x0E07      MOVS     LR,#+7
-   \       0xB4   0xE001             B.N      ??HAL_GPIO_DeInit_13
+   \       0xA0   0x....             LDR.N    R2,??DataTable2_9
+   \       0xA2   0x4290             CMP      R0,R2
+   \       0xA4   0xD102             BNE.N    ??HAL_GPIO_DeInit_14
+   \       0xA6   0xF05F 0x0807      MOVS     R8,#+7
+   \       0xAA   0xE001             B.N      ??HAL_GPIO_DeInit_13
    \                     ??HAL_GPIO_DeInit_14: (+1)
-   \       0xB6   0xF05F 0x0E08      MOVS     LR,#+8
+   \       0xAC   0xF05F 0x0808      MOVS     R8,#+8
    \                     ??HAL_GPIO_DeInit_13: (+1)
    \                     ??HAL_GPIO_DeInit_10: (+1)
    \                     ??HAL_GPIO_DeInit_7: (+1)
    \                     ??HAL_GPIO_DeInit_4: (+1)
-   \       0xBA   0xFA5F 0xFE8E      UXTB     LR,LR
-   \       0xBE   0xEA5F 0x0886      LSLS     R8,R6,#+2
-   \       0xC2   0xF018 0x080C      ANDS     R8,R8,#0xC
-   \       0xC6   0xFA1E 0xFE08      LSLS     LR,LR,R8
-   \       0xCA   0x4575             CMP      R5,LR
-   \       0xCC   0xD132             BNE.N    ??HAL_GPIO_DeInit_15
+   \       0xB0   0xFA5F 0xF888      UXTB     R8,R8
+   \       0xB4   0xF016 0x0203      ANDS     R2,R6,#0x3
+   \       0xB8   0xB2D2             UXTB     R2,R2
+   \       0xBA   0x0092             LSLS     R2,R2,#+2
+   \       0xBC   0xFA18 0xF802      LSLS     R8,R8,R2
+   \       0xC0   0x4545             CMP      R5,R8
+   \       0xC2   0xD12C             BNE.N    ??HAL_GPIO_DeInit_15
     320                {
     321                  /* Clear EXTI line configuration */
     322                  EXTI->IMR &= ~((uint32_t)iocurrent);
-   \       0xCE   0x.... 0x....      LDR.W    LR,??DataTable2_10
-   \       0xD2   0xF8DE 0x8000      LDR      R8,[LR, #+0]
-   \       0xD6   0xEA38 0x0804      BICS     R8,R8,R4
-   \       0xDA   0xF8CE 0x8000      STR      R8,[LR, #+0]
+   \       0xC4   0x....             LDR.N    R2,??DataTable2_10
+   \       0xC6   0xF8D2 0x8000      LDR      R8,[R2, #+0]
+   \       0xCA   0xEA38 0x0804      BICS     R8,R8,R4
+   \       0xCE   0xF8C2 0x8000      STR      R8,[R2, #+0]
     323                  EXTI->EMR &= ~((uint32_t)iocurrent);
-   \       0xDE   0x.... 0x....      LDR.W    LR,??DataTable2_11
-   \       0xE2   0xF8DE 0x8000      LDR      R8,[LR, #+0]
-   \       0xE6   0xEA38 0x0804      BICS     R8,R8,R4
-   \       0xEA   0xF8CE 0x8000      STR      R8,[LR, #+0]
+   \       0xD2   0x....             LDR.N    R2,??DataTable2_11
+   \       0xD4   0xF8D2 0x8000      LDR      R8,[R2, #+0]
+   \       0xD8   0xEA38 0x0804      BICS     R8,R8,R4
+   \       0xDC   0xF8C2 0x8000      STR      R8,[R2, #+0]
     324                  
     325                  /* Clear Rising Falling edge configuration */
     326                  EXTI->RTSR &= ~((uint32_t)iocurrent);
-   \       0xEE   0x.... 0x....      LDR.W    LR,??DataTable2_12
-   \       0xF2   0xF8DE 0x8000      LDR      R8,[LR, #+0]
-   \       0xF6   0xEA38 0x0804      BICS     R8,R8,R4
-   \       0xFA   0xF8CE 0x8000      STR      R8,[LR, #+0]
+   \       0xE0   0x....             LDR.N    R2,??DataTable2_12
+   \       0xE2   0xF8D2 0x8000      LDR      R8,[R2, #+0]
+   \       0xE6   0xEA38 0x0804      BICS     R8,R8,R4
+   \       0xEA   0xF8C2 0x8000      STR      R8,[R2, #+0]
     327                  EXTI->FTSR &= ~((uint32_t)iocurrent);
-   \       0xFE   0x.... 0x....      LDR.W    LR,??DataTable2_13
-   \      0x102   0xF8DE 0x8000      LDR      R8,[LR, #+0]
-   \      0x106   0xEA38 0x0804      BICS     R8,R8,R4
-   \      0x10A   0xF8CE 0x8000      STR      R8,[LR, #+0]
+   \       0xEE   0x....             LDR.N    R2,??DataTable2_13
+   \       0xF0   0xF8D2 0x8000      LDR      R8,[R2, #+0]
+   \       0xF4   0xEA38 0x0804      BICS     R8,R8,R4
+   \       0xF8   0xF8C2 0x8000      STR      R8,[R2, #+0]
     328          
     329                  /* Configure the External Interrupt or event for the current IO */
     330                  tmp = 0x0FU << (4U * (position & 0x03U));
-   \      0x10E   0xEA5F 0x0E86      LSLS     LR,R6,#+2
-   \      0x112   0xF01E 0x0E0C      ANDS     LR,LR,#0xC
-   \      0x116   0xFA17 0xFE0E      LSLS     LR,R7,LR
-   \      0x11A   0x4675             MOV      R5,LR
+   \       0xFC   0xF016 0x0203      ANDS     R2,R6,#0x3
+   \      0x100   0xB2D2             UXTB     R2,R2
+   \      0x102   0x0092             LSLS     R2,R2,#+2
+   \      0x104   0xFA1C 0xF202      LSLS     R2,R12,R2
+   \      0x108   0x0015             MOVS     R5,R2
     331                  SYSCFG->EXTICR[position >> 2U] &= ~tmp;
-   \      0x11C   0x46B6             MOV      LR,R6
-   \      0x11E   0xEA5F 0x0E9E      LSRS     LR,LR,#+2
-   \      0x122   0xF85C 0xE02E      LDR      LR,[R12, LR, LSL #+2]
-   \      0x126   0xEA3E 0x0E05      BICS     LR,LR,R5
-   \      0x12A   0x46B0             MOV      R8,R6
-   \      0x12C   0xEA5F 0x0898      LSRS     R8,R8,#+2
-   \      0x130   0xF84C 0xE028      STR      LR,[R12, R8, LSL #+2]
+   \      0x10A   0x0032             MOVS     R2,R6
+   \      0x10C   0x0892             LSRS     R2,R2,#+2
+   \      0x10E   0xF85E 0x2022      LDR      R2,[LR, R2, LSL #+2]
+   \      0x112   0x43AA             BICS     R2,R2,R5
+   \      0x114   0x46B0             MOV      R8,R6
+   \      0x116   0xEA5F 0x0898      LSRS     R8,R8,#+2
+   \      0x11A   0xF84E 0x2028      STR      R2,[LR, R8, LSL #+2]
     332                }
     333          
     334                /*------------------------- GPIO Mode Configuration --------------------*/
     335                /* Configure IO Direction in Input Floating Mode */
     336                GPIOx->MODER &= ~(GPIO_MODER_MODER0 << (position * 2U));
    \                     ??HAL_GPIO_DeInit_15: (+1)
-   \      0x134   0xF05F 0x0C03      MOVS     R12,#+3
-   \      0x138   0xF8D0 0xE000      LDR      LR,[R0, #+0]
-   \      0x13C   0xEA5F 0x0846      LSLS     R8,R6,#+1
-   \      0x140   0xFA1C 0xF808      LSLS     R8,R12,R8
-   \      0x144   0xEA3E 0x0E08      BICS     LR,LR,R8
-   \      0x148   0xF8C0 0xE000      STR      LR,[R0, #+0]
+   \      0x11E   0xF05F 0x0E03      MOVS     LR,#+3
+   \      0x122   0x6802             LDR      R2,[R0, #+0]
+   \      0x124   0x46B0             MOV      R8,R6
+   \      0x126   0xFA5F 0xF888      UXTB     R8,R8
+   \      0x12A   0xEA5F 0x0848      LSLS     R8,R8,#+1
+   \      0x12E   0xFA1E 0xF808      LSLS     R8,LR,R8
+   \      0x132   0xEA32 0x0208      BICS     R2,R2,R8
+   \      0x136   0x6002             STR      R2,[R0, #+0]
     337          
     338                /* Configure the default Alternate Function in current IO */
     339                GPIOx->AFR[position >> 3U] &= ~(0xFU << ((uint32_t)(position & 0x07U) * 4U)) ;
-   \      0x14C   0x46B6             MOV      LR,R6
-   \      0x14E   0xEA5F 0x0EDE      LSRS     LR,LR,#+3
-   \      0x152   0xEB00 0x0E8E      ADD      LR,R0,LR, LSL #+2
-   \      0x156   0x46B0             MOV      R8,R6
-   \      0x158   0xEA5F 0x08D8      LSRS     R8,R8,#+3
-   \      0x15C   0xEB00 0x0888      ADD      R8,R0,R8, LSL #+2
-   \      0x160   0xF8D8 0x8020      LDR      R8,[R8, #+32]
-   \      0x164   0xEA5F 0x0986      LSLS     R9,R6,#+2
-   \      0x168   0xF019 0x091C      ANDS     R9,R9,#0x1C
-   \      0x16C   0xFA17 0xF709      LSLS     R7,R7,R9
-   \      0x170   0xEA38 0x0707      BICS     R7,R8,R7
-   \      0x174   0xF8CE 0x7020      STR      R7,[LR, #+32]
+   \      0x138   0x0032             MOVS     R2,R6
+   \      0x13A   0x08D2             LSRS     R2,R2,#+3
+   \      0x13C   0xEB00 0x0882      ADD      R8,R0,R2, LSL #+2
+   \      0x140   0x0032             MOVS     R2,R6
+   \      0x142   0x08D2             LSRS     R2,R2,#+3
+   \      0x144   0xEB00 0x0282      ADD      R2,R0,R2, LSL #+2
+   \      0x148   0xF8D2 0x9020      LDR      R9,[R2, #+32]
+   \      0x14C   0xF016 0x0207      ANDS     R2,R6,#0x7
+   \      0x150   0xB2D2             UXTB     R2,R2
+   \      0x152   0x0092             LSLS     R2,R2,#+2
+   \      0x154   0xFA1C 0xFC02      LSLS     R12,R12,R2
+   \      0x158   0xEA39 0x0C0C      BICS     R12,R9,R12
+   \      0x15C   0xF8C8 0xC020      STR      R12,[R8, #+32]
     340          
     341                /* Deactivate the Pull-up and Pull-down resistor for the current IO */
     342                GPIOx->PUPDR &= ~(GPIO_PUPDR_PUPDR0 << (position * 2U));
-   \      0x178   0x68C7             LDR      R7,[R0, #+12]
-   \      0x17A   0xEA5F 0x0E46      LSLS     LR,R6,#+1
-   \      0x17E   0xFA1C 0xFE0E      LSLS     LR,R12,LR
-   \      0x182   0xEA37 0x070E      BICS     R7,R7,LR
-   \      0x186   0x60C7             STR      R7,[R0, #+12]
+   \      0x160   0x68C2             LDR      R2,[R0, #+12]
+   \      0x162   0x46B4             MOV      R12,R6
+   \      0x164   0xFA5F 0xFC8C      UXTB     R12,R12
+   \      0x168   0xEA5F 0x0C4C      LSLS     R12,R12,#+1
+   \      0x16C   0xFA1E 0xFC0C      LSLS     R12,LR,R12
+   \      0x170   0xEA32 0x020C      BICS     R2,R2,R12
+   \      0x174   0x60C2             STR      R2,[R0, #+12]
     343          
     344                /* Configure the default value IO Output Type */
     345                GPIOx->OTYPER  &= ~(GPIO_OTYPER_OT_0 << position) ;
-   \      0x188   0x6847             LDR      R7,[R0, #+4]
-   \      0x18A   0x40B2             LSLS     R2,R2,R6
-   \      0x18C   0xEA37 0x0202      BICS     R2,R7,R2
-   \      0x190   0x6042             STR      R2,[R0, #+4]
+   \      0x176   0x6842             LDR      R2,[R0, #+4]
+   \      0x178   0x40B7             LSLS     R7,R7,R6
+   \      0x17A   0xEA32 0x0707      BICS     R7,R2,R7
+   \      0x17E   0x6047             STR      R7,[R0, #+4]
     346          
     347                /* Configure the default value for IO Speed */
     348                GPIOx->OSPEEDR &= ~(GPIO_OSPEEDER_OSPEEDR0 << (position * 2U));
-   \      0x192   0x6887             LDR      R7,[R0, #+8]
-   \      0x194   0x0072             LSLS     R2,R6,#+1
-   \      0x196   0xFA1C 0xFC02      LSLS     R12,R12,R2
-   \      0x19A   0xEA37 0x0C0C      BICS     R12,R7,R12
-   \      0x19E   0xF8C0 0xC008      STR      R12,[R0, #+8]
+   \      0x180   0x6887             LDR      R7,[R0, #+8]
+   \      0x182   0x0032             MOVS     R2,R6
+   \      0x184   0xB2D2             UXTB     R2,R2
+   \      0x186   0x0052             LSLS     R2,R2,#+1
+   \      0x188   0xFA1E 0xFE02      LSLS     LR,LR,R2
+   \      0x18C   0xEA37 0x0E0E      BICS     LR,R7,LR
+   \      0x190   0xF8C0 0xE008      STR      LR,[R0, #+8]
     349              }
     350            }
    \                     ??HAL_GPIO_DeInit_2: (+1)
-   \      0x1A2   0x1C76             ADDS     R6,R6,#+1
-   \      0x1A4   0xE732             B.N      ??HAL_GPIO_DeInit_0
+   \      0x194   0x1C76             ADDS     R6,R6,#+1
+   \      0x196   0xE739             B.N      ??HAL_GPIO_DeInit_0
     351          }
    \                     ??HAL_GPIO_DeInit_1: (+1)
-   \      0x1A6   0xE8BD 0x83F0      POP      {R4-R9,PC}
+   \      0x198   0xE8BD 0x83F0      POP      {R4-R9,PC}
     352          
     353          /**
     354            * @}
@@ -1171,19 +1200,19 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_g
        4  ??DataTable2_7
        4  ??DataTable2_8
        4  ??DataTable2_9
-     426  HAL_GPIO_DeInit
+     412  HAL_GPIO_DeInit
        2  HAL_GPIO_EXTI_Callback
       32  HAL_GPIO_EXTI_IRQHandler
-     500  HAL_GPIO_Init
+     530  HAL_GPIO_Init
       54  HAL_GPIO_LockPin
       22  HAL_GPIO_ReadPin
       34  HAL_GPIO_TogglePin
       26  HAL_GPIO_WritePin
 
  
- 1'156 bytes in section .text
+ 1'172 bytes in section .text
  
- 1'154 bytes of CODE memory (+ 2 bytes shared)
+ 1'170 bytes of CODE memory (+ 2 bytes shared)
 
 Errors: none
 Warnings: none
