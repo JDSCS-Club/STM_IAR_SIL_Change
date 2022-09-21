@@ -19,47 +19,20 @@
 //========================================================================
 //	Configuration
 
-//========================================================================
-//	그룹주파수 모드 : [ 1, 2 ] [ 3, 4 ] [ 5, 6 ], [ 7, 8 ], [ 9, 10 ]
-//		전송 :  2 -> 4 -> 6 -> 8 -> 10
-//			1 <- 3 <- 5 <- 7 <- 9
-#define		USE_COMM_MODE_CH_GRP			1		//	그룹주파수 모드. - [ 1, 2 ] [ 3, 4 ] ...
-
-#define		USE_RF_COMM_MODE				1		//	RF 통신 Mode
-
-enum eRFMode
-{
-	RFMode1			= 	1,				//
-	RFMode2			= 	2,				//	그룹주파수 모드.
-	RFModeDefault	=	RFMode1,
-	RFModeMax		=	2,
-};
+//#define		USE_BOOTLOADER					1
 
 //========================================================================
 //	Audio 압축관련.
-//#define		USE_AUDIO_INTERPOL_COMPRESS		1		//	보간압축사용.
+#define		USE_AUDIO_INTERPOL_COMPRESS		1		//	보간압축사용.
 
-#if defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
-
-//#define	AUDIO_COMPR_RATE	8	//	Audio 압축율.
-//#define	AUDIO_COMPR_RATE	6	//	Audio 압축율.
-#define	AUDIO_COMPR_RATE	4	//	Audio 압축율.
-//#define	AUDIO_COMPR_RATE	2	//	Audio 압축율.
-//#define	AUDIO_COMPR_RATE	1	//	Audio 압축율.
-
-#endif	//	defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
-
-#define		USE_AUDIO_ADPCM						1		//	ADPCM 압축 사용. 1/4 압축.
-
+//#define		USE_AUDIO_SPEEX_CODEC			1		//	Speex Audio Codec 사용.
 
 //========================================================================
 //	RF 설정.
+//#define		USE_IEEE802_15_4G				1		//	radio_config_802_15_4g.h 사용.
 
 //	장치별 Channel 구분. Data 충돌 방지.
 #define		USE_CH_ISO_DEV					1		//	장치별 수신 채널 분리. ( Channel Isolation Each Device )
-
-
-#define		USE_ODD_TS_CH_SHIFT				1		//	홀수 편성 채널 Shift.
 
 //========================================================================
 //	패킷 설정.
@@ -99,21 +72,6 @@ enum eRFMode
 
 
 #define		TIMEOUT_RECV_STATUS				4		//	상태정보 수신 Timeout. ( seconds )
-
-//========================================================================
-//	Route 상태정보		-	무정전장치 Routing 경로 설정. ( 중간에 고장난 수신기 Pass )
-#define		USE_ROUTE_REQ					1		//	Route 상태 정보
-
-#define		USE_ROUTE_REQ_RFM				1		//	수신기에서 Route 상태 정보 요청 ( Req : 1 -> 2 / Rsp : 1 <- 2 )
-
-#if defined(USE_ROUTE_REQ)
-#define		TIME_ROUTE_REQ					1//10		//	Route 상태정보 요청 주기 10초.
-
-#define		TIMEOUT_RECV_ROUTE				5		//	상태정보 수신 Timeout. ( seconds )
-#endif
-
-//	Route 수신기 -> 송신기
-#define		USE_ROUTE_NEAREST_RFM			1		//	수신기 -> 송신기 중계 연결. ( 가장가까운 수신기에서 송신기로 중계 )
 
 //========================================================================
 //	모니터링

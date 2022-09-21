@@ -28,13 +28,13 @@
 typedef struct _Menu
 {
 	char 		**sItem;						//	Item Name
-	int			cntItem;						//	Menu Item Count
-	int			currIdx;						//	Current Item Index
-	void		(*cbFunc)( int idxItem );		//	Callback Func
+	uint8_t			cntItem;						//	Menu Item Count
+	uint8_t			currIdx;						//	Current Item Index
+	void		(*cbFunc)( uint8_t idxItem );		//	Callback Func
 } Menu_t;
 
-int 	IsMenuMaint			( void );			//	MainMenu Maintenace Menu활성화.
-void 	EnableMenuMaint		( int bEnable );	//	MainMenu Maintenace Menu활성화.
+uint8_t 	IsMenuMaint			( void );			//	MainMenu Maintenace Menu활성화.
+void 	EnableMenuMaint		( uint8_t bEnable );	//	MainMenu Maintenace Menu활성화.
 
 extern Menu_t	g_MenuMain;						//	Main Menu
 extern Menu_t	g_MenuLightCtrl;				//	Light Ctrl
@@ -42,36 +42,29 @@ extern Menu_t	g_MenuTrainSet;					//	TrainSet
 
 extern char 	_sVerList[16][20];				//	Version Info
 
-extern char 	_sSelfTestList[15][20]; 		//자기진단 결과 업데이트
 //========================================================================
 //	Menu Procedure
 
-void 	ProcMenuMain		( int idxItem );	//	Main
-void	ProcMenuTrainSet	( int idxItem );	//	TrainSet
-void 	ProcMenuLightCtrl	( int idxItem );	//	LightCtrl
+void 	ProcMenuMain		( uint8_t idxItem );	//	Main
+void	ProcMenuTrainSet	( uint8_t idxItem );	//	TrainSet
+void 	ProcMenuLightCtrl	( uint8_t idxItem );	//	LightCtrl
 
-void 	ProcMenuRFTID		( int idxItem );	//	송신기 ID설정.
-
-//========================================================================
-void 	ProcMenuSelfTest	( int idxItem );	//	자가진단 ( 호차별 상태정보 점검 )
-
-void 	ProcMenuSetting		( int idxItem );	//	설정
-
-void 	ProcMenuSetMic		( int idxItem );
-void 	ProcMenuSetSpk		( int idxItem );
-void 	ProcMenuSetTxPwr	( int idxItem );
-void 	ProcMenuSetRFMode	( int idxItem );
+void 	ProcMenuRFTID		( uint8_t idxItem );	//	송신기 ID설정.
 
 //========================================================================
+void 	ProcMenuSelfTest	( uint8_t idxItem );	//	자가진단 ( 호차별 상태정보 점검 )
 
-void 	ProcMenuDiag		( int idxItem );	//	Diag
-void	ProcMenuVer			( int idxItem );	//	Menu Version	while( ( HAL_GetTick() - nTxStamp) <= 4 )	;	//	Tx 시작 후 완료까지 : 3msec
+void 	ProcMenuSetting		( uint8_t idxItem );	//	설정
 
-void	ProcMenuCmd			( int idxItem );	//	Command
+void 	ProcMenuSetMic		( uint8_t idxItem );
+void 	ProcMenuSetSpk		( uint8_t idxItem );
+void 	ProcMenuSetTxPwr	( uint8_t idxItem );
 
-void	ProcMenuSetCmdTS	( int idxItem  );
-void	ProcMenuSetCmdCar	( int idxItem  );
-void 	ProcMenuSetCmdRFMode( int idxItem );
+//========================================================================
+
+void 	ProcMenuDiag		( uint8_t idxItem );	//	Diag
+void	ProcMenuVer			( uint8_t idxItem );	//	Menu Version
+void	ProcMenuCmd			( uint8_t idxItem );	//	Command
 
 //========================================================================
 
@@ -86,7 +79,7 @@ void	ProcDispStat 		( void );
 void    UpdateLCDMain		( void );
 void    UpdateLCDMenu		( void );
 
-void	UpdateLCDMonitor	( int nTick );		//	LCD : 모니터링 상태 Update
+void	UpdateLCDMonitor	( uint8_t nTick );		//	LCD : 모니터링 상태 Update
 
 //========================================================================
 //	Menu Key Proc
@@ -97,6 +90,9 @@ void    ProcBtnDown			( void );
 void    ProcBtnMenu			( void );
 void    ProcBtnOK			( void );
 
+
+void	SetActiveMenu( Menu_t *pActiveMenu );
+Menu_t	*GetActiveMenu( void );
 //========================================================================
 #endif
 //========================================================================

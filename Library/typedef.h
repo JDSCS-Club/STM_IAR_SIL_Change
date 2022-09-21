@@ -36,20 +36,20 @@
 #else			/* Embedded platform */
 
 /* This type MUST be 8 bit */
-typedef unsigned char	BYTE;
+	//typedef unsigned char	BYTE;
 
 /* These types MUST be 16 bit */
-typedef short			SHORT;
-typedef unsigned short	WORD;
-typedef unsigned short	WCHAR;
+	//typedef short			SHORT;
+	//typedef unsigned short	WORD;
+	//typedef unsigned short	WCHAR;
 
 /* These types MUST be 16 bit or 32 bit */
-typedef int				INT;
-typedef unsigned int	UINT;
+	//typedef int				INT;
+	//typedef unsigned int	UINT;
 
 /* These types MUST be 32 bit */
-typedef long			LONG;
-typedef unsigned long	DWORD;
+	//typedef long			LONG;
+	//typedef unsigned long	DWORD;
 
 #endif
 
@@ -68,19 +68,19 @@ typedef char char_t;
 
 typedef char                CHAR;
 typedef signed char         INT8;
-typedef unsigned char       UCHAR;
+//typedef unsigned char       UCHAR;
 typedef unsigned char       UINT8;
-typedef unsigned char       BYTE;
+//typedef unsigned char       BYTE;
 typedef signed short        INT16;
-typedef unsigned short      USHORT;
+//typedef unsigned short      USHORT;
 typedef unsigned short      UINT16;
-typedef unsigned short      WORD;
+//typedef unsigned short      WORD;
 typedef signed int          INT32;
 typedef unsigned int        UINT32;
-typedef unsigned long       ULONG;
+//typedef unsigned long       ULONG;
 
 
-typedef unsigned char 		BIT;
+//typedef unsigned char 		BIT;
 typedef unsigned char 		U8;
 typedef unsigned int 		U16;
 typedef unsigned long 		U32;
@@ -116,9 +116,9 @@ typedef unsigned __int64    UINT64;
 //	ItLib ip Address
 typedef struct ip_addr {
 	union {
-		struct { UCHAR s_b1, s_b2, s_b3, s_b4; } S_un_b;
-		struct { USHORT s_w1, s_w2; } S_un_w;
-		ULONG S_addr;
+		struct { U8 s_b1, s_b2, s_b3, s_b4; } S_un_b;
+		struct { UINT16 s_w1, s_w2; } S_un_w;
+		U32 S_addr;
 	} S_un;
 
 #if 0	

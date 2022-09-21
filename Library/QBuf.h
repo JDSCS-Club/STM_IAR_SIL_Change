@@ -23,18 +23,18 @@ typedef struct _Queue_t
 {
 #define QMAX 256
 
-	unsigned char queue[QMAX];
+	UINT8 queue[QMAX];
 
-	int front, rear;
+	uint16_t front, rear;
 
 } Queue_t;
 
 //========================================================================
-int				qcount		( Queue_t *q );
+uint8_t				qcount		( Queue_t *q );
 void			init_queue	( Queue_t *q );
 void			clear_queue	( Queue_t *q );
-int				qput		( Queue_t *q, unsigned char k );
-unsigned char	qget		( Queue_t *q );
+uint8_t				qput		( Queue_t *q, S8 k );
+uint8_t 	qget		( Queue_t *q );
 //========================================================================
 
 
@@ -43,22 +43,22 @@ typedef struct _QBuf_t
 //#define QBUFMAX 128
 
 	uint8_t	*qBuf;
-	int	size;
+	uint16_t	size;
 
-	int front, rear;
+	uint16_t front, rear;
 
 } QBuf_t;
 
 //===========================================================================
-void	qBufInit	( QBuf_t *q, uint8_t *_qBuf, int _size );
+void	qBufInit	( QBuf_t *q, uint8_t *_qBuf, uint16_t _size );
 void	qBufClear	( QBuf_t *q );
-int		qBufCnt		( QBuf_t *q );
-int		qBufPut		( QBuf_t *q, uint8_t *pBuf, int size );
-int		qBufGet		( QBuf_t *q, uint8_t *pBuf, int size );
+uint8_t		qBufCnt		( QBuf_t *q );
+uint8_t		qBufPut		( QBuf_t *q, uint8_t *pBuf, uint16_t size );
+uint8_t		qBufGet		( QBuf_t *q, uint8_t *pBuf, uint16_t size );
 //===========================================================================
 
 //===========================================================================
-void	QBufTest	( QBuf_t *q, int blkSize );
+void	QBufTest	( QBuf_t *q, uint16_t blkSize );
 //===========================================================================
 
 

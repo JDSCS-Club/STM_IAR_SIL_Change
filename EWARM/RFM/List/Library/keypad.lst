@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  23:37:24
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:25
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                 =  thumb
@@ -68,475 +68,502 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\keypad.c
      13          
      14          //========================================================================
      15          // Header
-     16          #include <stdio.h>
-     17          
-     18          #include "main.h"				//	DOME_GPIO_Port, ...
+     16          
+     17          //#include <stdarg.h>
+     18          #include <stdio.h>			//	printf()
+     19          
+     20          #include <stdint.h>			//	uint32_t
+     21          
+     22          #include <string.h>			//	memset()
+     23          
+     24          #include "typedef.h"			//	uint32_t, ...
+     25          #include "compiler_defs.h"		//	U8,
 
   # warning unrecognized compiler
     ^
 "C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
           #warning directive: unrecognized compiler
-     19          
-     20          #include "rfm.h"				//	g_nSpkLevel, ...
 
-  typedef unsigned char       BYTE;
-                              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",73  Warning[Pe301]: typedef
-          name has already been declared (with same type)
+  typedef unsigned char U8;
+                        ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",788  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
 
-  typedef unsigned short      WORD;
-                              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",77  Warning[Pe301]: typedef
-          name has already been declared (with same type)
+  typedef unsigned int U16;
+                       ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",789  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
 
-  typedef unsigned char 		BIT;
-                        		^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",83  Warning[Pe301]: typedef
-          name has already been declared (with same type)
+  typedef unsigned long U32;
+                        ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",790  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
 
-  typedef unsigned char 		U8;
-                        		^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",84  Warning[Pe301]: typedef
-          name has already been declared (with same type)
+  typedef signed char S8;
+                      ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",792  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
 
-  typedef unsigned int 		U16;
-                       		^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",85  Warning[Pe301]: typedef
-          name has already been declared (with same type)
+  typedef signed int S16;
+                     ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",793  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
 
-  typedef unsigned long 		U32;
-                        		^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",86  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-
-  typedef signed char 		S8;
-                      		^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",88  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-
-  typedef signed int 			S16;
-                     			^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",89  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-
-  typedef signed long 		S32;
-                      		^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",90  Warning[Pe301]: typedef
-          name has already been declared (with same type)
+  typedef signed long S32;
+                      ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",794  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+     26          
+     27          #include <stdio.h>
+     28          
+     29          #include "main.h"				//	DOME_GPIO_Port, ...
+     30          
+     31          #include "rfm.h"				//	g_nSpkLevel, ...
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",304  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",293  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",322  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",311  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",468  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",419  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",506  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",457  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",511  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",462  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",533  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",484  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",559  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",510  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",567  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",518  Warning[Pe040]: 
           expected an identifier
-     21          
-     22          #include "keypad.h"
-     23          
-     24          #include "Adafruit_SSD1306.h"	//	OLED Display
-     25          
-     26          #include "menu.h"				//	g_bEnMenuMaint
-     27          
-     28          #include "audio.h"				//	Audio Function	g_qBufAudioTx
-     29          
-     30          //========================================================================
-     31          // Define
      32          
-     33          
-     34          //========================================================================
-     35          // Function
+     33          #include "keypad.h"
+     34          
+     35          #include "Adafruit_SSD1306.h"	//	OLED Display
      36          
-
-   \                                 In section .bss, align 4
-     37          static int s_btnStat[9] = { 0, };	//	Default ( 1 - pull-up )
-   \                     s_btnStat:
-   \        0x0                      DS8 36
+     37          #include "menu.h"				//	g_bEnMenuMaint
      38          
-     39          //========================================================================
-
-   \                                 In section .text, align 2, keep-with-next
-     40          int	GetKey( int eKey )
-     41          //========================================================================
-     42          {
-     43          	return (s_btnStat[eKey]);
-   \                     GetKey: (+1)
-   \        0x0   0x.... 0x....      LDR.W    R1,??DataTable12
-   \        0x4   0xF851 0x0020      LDR      R0,[R1, R0, LSL #+2]
-   \        0x8   0x4770             BX       LR
-     44          }
+     39          #include "audio.h"
+     40          
+     41          //#include "audio.h"				//	Audio Function
+     42          
+     43          //========================================================================
+     44          // Define
      45          
      46          
      47          //========================================================================
+     48          // Function
+     49          
+
+   \                                 In section .bss, align 4
+     50          static uint8_t s_btnStat[9] = { 0, };	//	Default ( 1 - pull-up )
+   \                     s_btnStat:
+   \        0x0                      DS8 12
+     51          
+     52          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-     48          void GetKeyStat( int *btnStat )
-     49          //========================================================================
-     50          {
+     53          uint8_t	GetKey( uint8_t eKey )
+     54          //========================================================================
+     55          {
+     56          	return (uint8_t)(s_btnStat[eKey]);
+   \                     GetKey: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R1,??DataTable12
+   \        0x4   0xB2C0             UXTB     R0,R0
+   \        0x6   0x5C08             LDRB     R0,[R1, R0]
+   \        0x8   0x4770             BX       LR
+     57          }
+     58          
+     59          
+     60          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     61          void GetKeyStat( uint8_t *btnStat )
+     62          //========================================================================
+     63          {
    \                     GetKeyStat: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
-     51          	//	Pull-Up ( Active Low )
-     52          	btnStat[0] = !( HAL_GPIO_ReadPin( DOME1_GPIO_Port, DOME1_Pin ) );	//	Menu
+     64          	//	Pull-Up ( Active Low )
+     65          
+     66          	if(( HAL_GPIO_ReadPin( DOME1_GPIO_Port, DOME1_Pin ) == 0 ))
    \        0x4   0x.... 0x....      LDR.W    R5,??DataTable12_1
    \        0x8   0x2101             MOVS     R1,#+1
    \        0xA   0x0028             MOVS     R0,R5
    \        0xC   0x.... 0x....      BL       HAL_GPIO_ReadPin
    \       0x10   0x2800             CMP      R0,#+0
    \       0x12   0xD101             BNE.N    ??GetKeyStat_0
+     67          	{
+     68          		btnStat[0] = 1;;	//	Menu
    \       0x14   0x2001             MOVS     R0,#+1
-   \       0x16   0xE000             B.N      ??GetKeyStat_1
+   \       0x16   0x7020             STRB     R0,[R4, #+0]
+     69          	}
+     70          
+     71          	if(( HAL_GPIO_ReadPin( DOME2_GPIO_Port, DOME2_Pin ) == 0 ))
    \                     ??GetKeyStat_0: (+1)
-   \       0x18   0x2000             MOVS     R0,#+0
+   \       0x18   0x2102             MOVS     R1,#+2
+   \       0x1A   0x0028             MOVS     R0,R5
+   \       0x1C   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \       0x20   0x2800             CMP      R0,#+0
+   \       0x22   0xD101             BNE.N    ??GetKeyStat_1
+     72          	{
+     73          		btnStat[1] = 1 ;	//	Up
+   \       0x24   0x2001             MOVS     R0,#+1
+   \       0x26   0x7060             STRB     R0,[R4, #+1]
+     74          	}
+     75          
+     76          	if(( HAL_GPIO_ReadPin( DOME3_GPIO_Port, DOME3_Pin )== 0 ))
    \                     ??GetKeyStat_1: (+1)
-   \       0x1A   0xB2C0             UXTB     R0,R0
-   \       0x1C   0x6020             STR      R0,[R4, #+0]
-     53          	btnStat[1] = !( HAL_GPIO_ReadPin( DOME2_GPIO_Port, DOME2_Pin ) );	//	Up
-   \       0x1E   0x2102             MOVS     R1,#+2
-   \       0x20   0x0028             MOVS     R0,R5
-   \       0x22   0x.... 0x....      BL       HAL_GPIO_ReadPin
-   \       0x26   0x2800             CMP      R0,#+0
-   \       0x28   0xD101             BNE.N    ??GetKeyStat_2
-   \       0x2A   0x2001             MOVS     R0,#+1
-   \       0x2C   0xE000             B.N      ??GetKeyStat_3
+   \       0x28   0x2104             MOVS     R1,#+4
+   \       0x2A   0x0028             MOVS     R0,R5
+   \       0x2C   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \       0x30   0x2800             CMP      R0,#+0
+   \       0x32   0xD101             BNE.N    ??GetKeyStat_2
+     77          	{
+     78          		btnStat[2] = 1;	//	OK
+   \       0x34   0x2001             MOVS     R0,#+1
+   \       0x36   0x70A0             STRB     R0,[R4, #+2]
+     79          	}
+     80          
+     81          	if(( HAL_GPIO_ReadPin( DOME4_GPIO_Port, DOME4_Pin )== 0 ))
    \                     ??GetKeyStat_2: (+1)
-   \       0x2E   0x2000             MOVS     R0,#+0
+   \       0x38   0x2108             MOVS     R1,#+8
+   \       0x3A   0x0028             MOVS     R0,R5
+   \       0x3C   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \       0x40   0x2800             CMP      R0,#+0
+   \       0x42   0xD101             BNE.N    ??GetKeyStat_3
+     82          	{
+     83          		btnStat[3] = 1;	//	Light
+   \       0x44   0x2001             MOVS     R0,#+1
+   \       0x46   0x70E0             STRB     R0,[R4, #+3]
+     84          	}
+     85          
+     86          	if(( HAL_GPIO_ReadPin( DOME5_GPIO_Port, DOME5_Pin )== 0 ))
    \                     ??GetKeyStat_3: (+1)
-   \       0x30   0xB2C0             UXTB     R0,R0
-   \       0x32   0x6060             STR      R0,[R4, #+4]
-     54          	btnStat[2] = !( HAL_GPIO_ReadPin( DOME3_GPIO_Port, DOME3_Pin ) );	//	OK
-   \       0x34   0x2104             MOVS     R1,#+4
-   \       0x36   0x0028             MOVS     R0,R5
-   \       0x38   0x.... 0x....      BL       HAL_GPIO_ReadPin
-   \       0x3C   0x2800             CMP      R0,#+0
-   \       0x3E   0xD101             BNE.N    ??GetKeyStat_4
-   \       0x40   0x2001             MOVS     R0,#+1
-   \       0x42   0xE000             B.N      ??GetKeyStat_5
+   \       0x48   0x2110             MOVS     R1,#+16
+   \       0x4A   0x0028             MOVS     R0,R5
+   \       0x4C   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \       0x50   0x2800             CMP      R0,#+0
+   \       0x52   0xD101             BNE.N    ??GetKeyStat_4
+     87          	{
+     88          		btnStat[4] = 1;	//	Down
+   \       0x54   0x2001             MOVS     R0,#+1
+   \       0x56   0x7120             STRB     R0,[R4, #+4]
+     89          	}
+     90          
+     91          	if(( HAL_GPIO_ReadPin( DOME6_GPIO_Port, DOME6_Pin )== 0 ))
    \                     ??GetKeyStat_4: (+1)
-   \       0x44   0x2000             MOVS     R0,#+0
+   \       0x58   0x2120             MOVS     R1,#+32
+   \       0x5A   0x0028             MOVS     R0,R5
+   \       0x5C   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \       0x60   0x2800             CMP      R0,#+0
+   \       0x62   0xD101             BNE.N    ??GetKeyStat_5
+     92          	{
+     93          		btnStat[5] = 1;	//	Vol
+   \       0x64   0x2001             MOVS     R0,#+1
+   \       0x66   0x7160             STRB     R0,[R4, #+5]
+     94          	}
+     95          
+     96          	if(( HAL_GPIO_ReadPin( PTT_KEY_GPIO_Port, PTT_KEY_Pin )== 0 ))
    \                     ??GetKeyStat_5: (+1)
-   \       0x46   0xB2C0             UXTB     R0,R0
-   \       0x48   0x60A0             STR      R0,[R4, #+8]
-     55          	btnStat[3] = !( HAL_GPIO_ReadPin( DOME4_GPIO_Port, DOME4_Pin ) );	//	Light
-   \       0x4A   0x2108             MOVS     R1,#+8
-   \       0x4C   0x0028             MOVS     R0,R5
-   \       0x4E   0x.... 0x....      BL       HAL_GPIO_ReadPin
-   \       0x52   0x2800             CMP      R0,#+0
-   \       0x54   0xD101             BNE.N    ??GetKeyStat_6
-   \       0x56   0x2001             MOVS     R0,#+1
-   \       0x58   0xE000             B.N      ??GetKeyStat_7
+   \       0x68   0x2180             MOVS     R1,#+128
+   \       0x6A   0x0028             MOVS     R0,R5
+   \       0x6C   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \       0x70   0x2800             CMP      R0,#+0
+   \       0x72   0xD101             BNE.N    ??GetKeyStat_6
+     97          	{
+     98          		btnStat[6] = 1;
+   \       0x74   0x2001             MOVS     R0,#+1
+   \       0x76   0x71A0             STRB     R0,[R4, #+6]
+     99          	}
+    100          
+    101          	if(( HAL_GPIO_ReadPin( SOS_KEY_GPIO_Port, SOS_KEY_Pin )== 0 ))
    \                     ??GetKeyStat_6: (+1)
-   \       0x5A   0x2000             MOVS     R0,#+0
+   \       0x78   0x2140             MOVS     R1,#+64
+   \       0x7A   0x0028             MOVS     R0,R5
+   \       0x7C   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \       0x80   0x2800             CMP      R0,#+0
+   \       0x82   0xD101             BNE.N    ??GetKeyStat_7
+    102          	{
+    103          		btnStat[7] = 1;
+   \       0x84   0x2001             MOVS     R0,#+1
+   \       0x86   0x71E0             STRB     R0,[R4, #+7]
+    104          	}
+    105          
+    106          
+    107          		//	Pull-Down ( Active High )
+    108          	btnStat[8] = ( HAL_GPIO_ReadPin( ON_OFF_KEY_GPIO_Port, ON_OFF_KEY_Pin ) );
    \                     ??GetKeyStat_7: (+1)
-   \       0x5C   0xB2C0             UXTB     R0,R0
-   \       0x5E   0x60E0             STR      R0,[R4, #+12]
-     56          	btnStat[4] = !( HAL_GPIO_ReadPin( DOME5_GPIO_Port, DOME5_Pin ) );	//	Down
-   \       0x60   0x2110             MOVS     R1,#+16
-   \       0x62   0x0028             MOVS     R0,R5
-   \       0x64   0x.... 0x....      BL       HAL_GPIO_ReadPin
-   \       0x68   0x2800             CMP      R0,#+0
-   \       0x6A   0xD101             BNE.N    ??GetKeyStat_8
-   \       0x6C   0x2001             MOVS     R0,#+1
-   \       0x6E   0xE000             B.N      ??GetKeyStat_9
-   \                     ??GetKeyStat_8: (+1)
-   \       0x70   0x2000             MOVS     R0,#+0
-   \                     ??GetKeyStat_9: (+1)
-   \       0x72   0xB2C0             UXTB     R0,R0
-   \       0x74   0x6120             STR      R0,[R4, #+16]
-     57          	btnStat[5] = !( HAL_GPIO_ReadPin( DOME6_GPIO_Port, DOME6_Pin ) );	//	Vol
-   \       0x76   0x2120             MOVS     R1,#+32
-   \       0x78   0x0028             MOVS     R0,R5
-   \       0x7A   0x.... 0x....      BL       HAL_GPIO_ReadPin
-   \       0x7E   0x2800             CMP      R0,#+0
-   \       0x80   0xD101             BNE.N    ??GetKeyStat_10
-   \       0x82   0x2001             MOVS     R0,#+1
-   \       0x84   0xE000             B.N      ??GetKeyStat_11
-   \                     ??GetKeyStat_10: (+1)
-   \       0x86   0x2000             MOVS     R0,#+0
-   \                     ??GetKeyStat_11: (+1)
-   \       0x88   0xB2C0             UXTB     R0,R0
-   \       0x8A   0x6160             STR      R0,[R4, #+20]
-     58          	btnStat[6] = !( HAL_GPIO_ReadPin( PTT_KEY_GPIO_Port, PTT_KEY_Pin ) );
-   \       0x8C   0x2180             MOVS     R1,#+128
-   \       0x8E   0x0028             MOVS     R0,R5
-   \       0x90   0x.... 0x....      BL       HAL_GPIO_ReadPin
-   \       0x94   0x2800             CMP      R0,#+0
-   \       0x96   0xD101             BNE.N    ??GetKeyStat_12
-   \       0x98   0x2001             MOVS     R0,#+1
-   \       0x9A   0xE000             B.N      ??GetKeyStat_13
-   \                     ??GetKeyStat_12: (+1)
-   \       0x9C   0x2000             MOVS     R0,#+0
-   \                     ??GetKeyStat_13: (+1)
-   \       0x9E   0xB2C0             UXTB     R0,R0
-   \       0xA0   0x61A0             STR      R0,[R4, #+24]
-     59          	btnStat[7] = !( HAL_GPIO_ReadPin( SOS_KEY_GPIO_Port, SOS_KEY_Pin ) );
-   \       0xA2   0x2140             MOVS     R1,#+64
-   \       0xA4   0x0028             MOVS     R0,R5
-   \       0xA6   0x.... 0x....      BL       HAL_GPIO_ReadPin
-   \       0xAA   0x2800             CMP      R0,#+0
-   \       0xAC   0xD101             BNE.N    ??GetKeyStat_14
-   \       0xAE   0x2001             MOVS     R0,#+1
-   \       0xB0   0xE000             B.N      ??GetKeyStat_15
-   \                     ??GetKeyStat_14: (+1)
-   \       0xB2   0x2000             MOVS     R0,#+0
-   \                     ??GetKeyStat_15: (+1)
-   \       0xB4   0xB2C0             UXTB     R0,R0
-   \       0xB6   0x61E0             STR      R0,[R4, #+28]
-     60          
-     61          	//	Pull-Down ( Active High )
-     62          	btnStat[8] = ( HAL_GPIO_ReadPin( ON_OFF_KEY_GPIO_Port, ON_OFF_KEY_Pin ) );
-   \       0xB8   0xF44F 0x7100      MOV      R1,#+512
-   \       0xBC   0x0028             MOVS     R0,R5
-   \       0xBE   0x.... 0x....      BL       HAL_GPIO_ReadPin
-   \       0xC2   0x6220             STR      R0,[R4, #+32]
-     63          }
-   \       0xC4   0xBD31             POP      {R0,R4,R5,PC}
-     64          
-     65          #include <string.h>		//	memcmp()
-     66          
-     67          //========================================================================
+   \       0x88   0xF44F 0x7100      MOV      R1,#+512
+   \       0x8C   0x0028             MOVS     R0,R5
+   \       0x8E   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \       0x92   0x7220             STRB     R0,[R4, #+8]
+    109          
+    110          
+    111          }
+   \       0x94   0xBD31             POP      {R0,R4,R5,PC}
+    112          
+    113          #include <string.h>		//	memcmp()
+    114          
+    115          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-     68          void LoopProcKey ( uint32_t tickCurr )
-     69          //========================================================================
-     70          {
+    116          void LoopProcKey ( uint32_t tickCurr )
+    117          //========================================================================
+    118          {
    \                     LoopProcKey: (+1)
-   \        0x0   0xE92D 0x41F8      PUSH     {R3-R8,LR}
-   \        0x4   0xB089             SUB      SP,SP,#+36
-   \        0x6   0x0004             MOVS     R4,R0
-     71          	//========================================================================
-     72          	static uint32_t tickBase = 0;
-     73          	int 	btnStat[9];
-     74          
-     75          	//    if( ( HAL_GetTick() - tickBase ) >= 1000 )
-     76          	if ( ( tickCurr - tickBase ) >= 100 )
-   \        0x8   0x.... 0x....      LDR.W    R5,??DataTable12_2
-   \        0xC   0x6828             LDR      R0,[R5, #+0]
-   \        0xE   0x1A20             SUBS     R0,R4,R0
-   \       0x10   0x2864             CMP      R0,#+100
-   \       0x12   0xD353             BCC.N    ??LoopProcKey_0
-     77          	{
-     78          		//========================================================================
-     79          		//  Period : 100 ms
-     80          
-     81          		//========================================================================
-     82          		//	Key 값 얻기.
-     83          		GetKeyStat( btnStat );
-   \       0x14   0x4668             MOV      R0,SP
-   \       0x16   0x.... 0x....      BL       GetKeyStat
-     84          
-     85          		if ( memcmp( s_btnStat, btnStat, sizeof( btnStat ) ) != 0 )
-   \       0x1A   0x.... 0x....      LDR.W    R6,??DataTable12
-   \       0x1E   0x2224             MOVS     R2,#+36
-   \       0x20   0x4669             MOV      R1,SP
-   \       0x22   0x0030             MOVS     R0,R6
-   \       0x24   0x.... 0x....      BL       memcmp
-   \       0x28   0x2800             CMP      R0,#+0
-   \       0x2A   0xD046             BEQ.N    ??LoopProcKey_1
-     86          		{
-     87          			//	Key Value Changed.
-     88          //			int i;
-     89          //			printf("[s_btnStat] ");
-     90          //			for( i = 0; i < 9; i++ ) printf("%d ", s_btnStat[i]);
-     91          //			printf("\n");
-     92          //			printf("[btnStat] ");
-     93          //			for( i = 0; i < 9; i++ ) printf("%d ", btnStat[i]);
-     94          //			printf("\n");
-     95          
-     96          			if ( s_btnStat[0] != btnStat[0] )	KeyMenu		( btnStat[0] );	//	DOME1
-   \       0x2C   0x6830             LDR      R0,[R6, #+0]
-   \       0x2E   0x9900             LDR      R1,[SP, #+0]
+   \        0x0   0xE92D 0x41FF      PUSH     {R0-R8,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+    119          	//========================================================================
+    120          	static uint32_t tickBase = 0;
+    121          	uint8_t 	btnStat[9];
+    122          
+    123          	//    if( ( HAL_GetTick() - tickBase ) >= 1000 )
+    124          	if ( ( tickCurr - tickBase ) >= 100 )
+   \        0x6   0x.... 0x....      LDR.W    R5,??DataTable12_2
+   \        0xA   0x6828             LDR      R0,[R5, #+0]
+   \        0xC   0x1A20             SUBS     R0,R4,R0
+   \        0xE   0x2864             CMP      R0,#+100
+   \       0x10   0xD355             BCC.N    ??LoopProcKey_0
+    125          	{
+    126          		//========================================================================
+    127          		//  Period : 100 ms
+    128          
+    129          		//========================================================================
+    130          		//	Key 값 얻기.
+    131          		GetKeyStat( btnStat );
+   \       0x12   0x4668             MOV      R0,SP
+   \       0x14   0x.... 0x....      BL       GetKeyStat
+    132          
+    133          		if ( memcmp( s_btnStat, btnStat, sizeof( btnStat ) ) != 0 )
+   \       0x18   0x.... 0x....      LDR.W    R6,??DataTable12
+   \       0x1C   0x2209             MOVS     R2,#+9
+   \       0x1E   0x4669             MOV      R1,SP
+   \       0x20   0x0030             MOVS     R0,R6
+   \       0x22   0x.... 0x....      BL       memcmp
+   \       0x26   0x2800             CMP      R0,#+0
+   \       0x28   0xD048             BEQ.N    ??LoopProcKey_1
+    134          		{
+    135          			//	Key Value Changed.
+    136          //			int i;
+    137          //			printf("[s_btnStat] ");
+    138          //			for( i = 0; i < 9; i++ ) printf("%d ", s_btnStat[i]);
+    139          //			printf("\n");
+    140          //			printf("[btnStat] ");
+    141          //			for( i = 0; i < 9; i++ ) printf("%d ", btnStat[i]);
+    142          //			printf("\n");
+    143          
+    144          			if ( s_btnStat[0] != btnStat[0] )
+   \       0x2A   0x7830             LDRB     R0,[R6, #+0]
+   \       0x2C   0xF89D 0x1000      LDRB     R1,[SP, #+0]
    \       0x30   0x4288             CMP      R0,R1
-   \       0x32   0xD002             BEQ.N    ??LoopProcKey_2
-   \       0x34   0x9800             LDR      R0,[SP, #+0]
-   \       0x36   0x.... 0x....      BL       KeyMenu
-     97          			if ( s_btnStat[1] != btnStat[1] )	KeyUp		( btnStat[1] );	//	DOME2
+   \       0x32   0xD003             BEQ.N    ??LoopProcKey_2
+    145          			{
+    146          				KeyMenu		( btnStat[0] );	//	DOME1
+   \       0x34   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \       0x38   0x.... 0x....      BL       KeyMenu
+    147          			}
+    148          			if ( s_btnStat[1] != btnStat[1] )
    \                     ??LoopProcKey_2: (+1)
-   \       0x3A   0x466F             MOV      R7,SP
-   \       0x3C   0x6870             LDR      R0,[R6, #+4]
-   \       0x3E   0x6879             LDR      R1,[R7, #+4]
-   \       0x40   0x4288             CMP      R0,R1
-   \       0x42   0xD002             BEQ.N    ??LoopProcKey_3
-   \       0x44   0x6878             LDR      R0,[R7, #+4]
-   \       0x46   0x.... 0x....      BL       KeyUp
-     98          			if ( s_btnStat[2] != btnStat[2] )	KeyOK		( btnStat[2] );	//	DOME3
+   \       0x3C   0x466F             MOV      R7,SP
+   \       0x3E   0x7870             LDRB     R0,[R6, #+1]
+   \       0x40   0x7879             LDRB     R1,[R7, #+1]
+   \       0x42   0x4288             CMP      R0,R1
+   \       0x44   0xD002             BEQ.N    ??LoopProcKey_3
+    149          			{
+    150          				KeyUp		( btnStat[1] );	//	DOME2
+   \       0x46   0x7878             LDRB     R0,[R7, #+1]
+   \       0x48   0x.... 0x....      BL       KeyUp
+    151          			}
+    152          			if ( s_btnStat[2] != btnStat[2] )
    \                     ??LoopProcKey_3: (+1)
-   \       0x4A   0x68B0             LDR      R0,[R6, #+8]
-   \       0x4C   0x68B9             LDR      R1,[R7, #+8]
-   \       0x4E   0x4288             CMP      R0,R1
-   \       0x50   0xD002             BEQ.N    ??LoopProcKey_4
-   \       0x52   0x68B8             LDR      R0,[R7, #+8]
-   \       0x54   0x.... 0x....      BL       KeyOK
-     99          			if ( s_btnStat[3] != btnStat[3] )	KeyLight	( btnStat[3] );	//	DOME4
+   \       0x4C   0x78B0             LDRB     R0,[R6, #+2]
+   \       0x4E   0x78B9             LDRB     R1,[R7, #+2]
+   \       0x50   0x4288             CMP      R0,R1
+   \       0x52   0xD002             BEQ.N    ??LoopProcKey_4
+    153          			{
+    154          				KeyOK		( btnStat[2] );	//	DOME3
+   \       0x54   0x78B8             LDRB     R0,[R7, #+2]
+   \       0x56   0x.... 0x....      BL       KeyOK
+    155          			}
+    156          			if ( s_btnStat[3] != btnStat[3] )
    \                     ??LoopProcKey_4: (+1)
-   \       0x58   0x68F0             LDR      R0,[R6, #+12]
-   \       0x5A   0x68F9             LDR      R1,[R7, #+12]
-   \       0x5C   0x4288             CMP      R0,R1
-   \       0x5E   0xD002             BEQ.N    ??LoopProcKey_5
-   \       0x60   0x68F8             LDR      R0,[R7, #+12]
-   \       0x62   0x.... 0x....      BL       KeyLight
-    100          			if ( s_btnStat[4] != btnStat[4] )	KeyDown		( btnStat[4] );	//	DOME5
+   \       0x5A   0x78F0             LDRB     R0,[R6, #+3]
+   \       0x5C   0x78F9             LDRB     R1,[R7, #+3]
+   \       0x5E   0x4288             CMP      R0,R1
+   \       0x60   0xD002             BEQ.N    ??LoopProcKey_5
+    157          			{
+    158          				KeyLight	( btnStat[3] );	//	DOME4
+   \       0x62   0x78F8             LDRB     R0,[R7, #+3]
+   \       0x64   0x.... 0x....      BL       KeyLight
+    159          			}
+    160          			if ( s_btnStat[4] != btnStat[4] )
    \                     ??LoopProcKey_5: (+1)
-   \       0x66   0x6930             LDR      R0,[R6, #+16]
-   \       0x68   0x6939             LDR      R1,[R7, #+16]
-   \       0x6A   0x4288             CMP      R0,R1
-   \       0x6C   0xD002             BEQ.N    ??LoopProcKey_6
-   \       0x6E   0x6938             LDR      R0,[R7, #+16]
-   \       0x70   0x.... 0x....      BL       KeyDown
-    101          			if ( s_btnStat[5] != btnStat[5] )	KeyVol		( btnStat[5] );	//	DOME6
+   \       0x68   0x7930             LDRB     R0,[R6, #+4]
+   \       0x6A   0x7939             LDRB     R1,[R7, #+4]
+   \       0x6C   0x4288             CMP      R0,R1
+   \       0x6E   0xD002             BEQ.N    ??LoopProcKey_6
+    161          			{
+    162          				KeyDown		( btnStat[4] );	//	DOME5
+   \       0x70   0x7938             LDRB     R0,[R7, #+4]
+   \       0x72   0x.... 0x....      BL       KeyDown
+    163          			}
+    164          			if ( s_btnStat[5] != btnStat[5] )
    \                     ??LoopProcKey_6: (+1)
-   \       0x74   0x6970             LDR      R0,[R6, #+20]
-   \       0x76   0x6979             LDR      R1,[R7, #+20]
-   \       0x78   0x4288             CMP      R0,R1
-   \       0x7A   0xD002             BEQ.N    ??LoopProcKey_7
-   \       0x7C   0x6978             LDR      R0,[R7, #+20]
-   \       0x7E   0x.... 0x....      BL       KeyVol
-    102          			if ( s_btnStat[6] != btnStat[6] )	KeyPtt		( btnStat[6] );	//	PTT
+   \       0x76   0x7970             LDRB     R0,[R6, #+5]
+   \       0x78   0x7979             LDRB     R1,[R7, #+5]
+   \       0x7A   0x4288             CMP      R0,R1
+   \       0x7C   0xD002             BEQ.N    ??LoopProcKey_7
+    165          			{
+    166          				KeyVol		( btnStat[5] );	//	DOME6
+   \       0x7E   0x7978             LDRB     R0,[R7, #+5]
+   \       0x80   0x.... 0x....      BL       KeyVol
+    167          
+    168          			}
+    169          			if ( s_btnStat[6] != btnStat[6] )
    \                     ??LoopProcKey_7: (+1)
-   \       0x82   0x69B0             LDR      R0,[R6, #+24]
-   \       0x84   0x69B9             LDR      R1,[R7, #+24]
-   \       0x86   0x4288             CMP      R0,R1
-   \       0x88   0xD002             BEQ.N    ??LoopProcKey_8
-   \       0x8A   0x69B8             LDR      R0,[R7, #+24]
-   \       0x8C   0x.... 0x....      BL       KeyPtt
-    103          			if ( s_btnStat[7] != btnStat[7] )	KeySos		( btnStat[7] );	//	SOS
+   \       0x84   0x79B0             LDRB     R0,[R6, #+6]
+   \       0x86   0x79B9             LDRB     R1,[R7, #+6]
+   \       0x88   0x4288             CMP      R0,R1
+   \       0x8A   0xD002             BEQ.N    ??LoopProcKey_8
+    170          			{
+    171          				KeyPtt		( btnStat[6] );	//	PTT
+   \       0x8C   0x79B8             LDRB     R0,[R7, #+6]
+   \       0x8E   0x.... 0x....      BL       KeyPtt
+    172          			}
+    173          			if ( s_btnStat[7] != btnStat[7] )
    \                     ??LoopProcKey_8: (+1)
-   \       0x90   0x69F0             LDR      R0,[R6, #+28]
-   \       0x92   0x69F9             LDR      R1,[R7, #+28]
-   \       0x94   0x4288             CMP      R0,R1
-   \       0x96   0xD002             BEQ.N    ??LoopProcKey_9
-   \       0x98   0x69F8             LDR      R0,[R7, #+28]
-   \       0x9A   0x.... 0x....      BL       KeySos
-    104          			if ( s_btnStat[8] != btnStat[8] )	KeyPwrOnOff	( btnStat[8] );	//	ON/OFF
+   \       0x92   0x79F0             LDRB     R0,[R6, #+7]
+   \       0x94   0x79F9             LDRB     R1,[R7, #+7]
+   \       0x96   0x4288             CMP      R0,R1
+   \       0x98   0xD002             BEQ.N    ??LoopProcKey_9
+    174          			{
+    175          				KeySos		( btnStat[7] );	//	SOS
+   \       0x9A   0x79F8             LDRB     R0,[R7, #+7]
+   \       0x9C   0x.... 0x....      BL       KeySos
+    176          			}
+    177          			if ( s_btnStat[8] != btnStat[8] )
    \                     ??LoopProcKey_9: (+1)
-   \       0x9E   0x6A30             LDR      R0,[R6, #+32]
-   \       0xA0   0x6A39             LDR      R1,[R7, #+32]
-   \       0xA2   0x4288             CMP      R0,R1
-   \       0xA4   0xD002             BEQ.N    ??LoopProcKey_10
-   \       0xA6   0x6A38             LDR      R0,[R7, #+32]
-   \       0xA8   0x.... 0x....      BL       KeyPwrOnOff
-    105          
-    106          			//	값 저장.
-    107          			memcpy( s_btnStat, btnStat, sizeof( btnStat ) );
+   \       0xA0   0x7A30             LDRB     R0,[R6, #+8]
+   \       0xA2   0x7A39             LDRB     R1,[R7, #+8]
+   \       0xA4   0x4288             CMP      R0,R1
+   \       0xA6   0xD002             BEQ.N    ??LoopProcKey_10
+    178          			{
+    179          				KeyPwrOnOff	( btnStat[8] );	//	ON/OFF
+   \       0xA8   0x7A38             LDRB     R0,[R7, #+8]
+   \       0xAA   0x.... 0x....      BL       KeyPwrOnOff
+    180          			}
+    181          
+    182          			//	값 저장.
+    183          			memcpy( s_btnStat, btnStat, sizeof( btnStat ) );
    \                     ??LoopProcKey_10: (+1)
-   \       0xAC   0x2724             MOVS     R7,#+36
-   \       0xAE   0x46E8             MOV      R8,SP
-   \       0xB0   0x003A             MOVS     R2,R7
-   \       0xB2   0x4641             MOV      R1,R8
-   \       0xB4   0x0030             MOVS     R0,R6
-   \       0xB6   0x.... 0x....      BL       __aeabi_memcpy
-    108          		}
-    109          
-    110          		tickBase = tickCurr;
+   \       0xAE   0x2709             MOVS     R7,#+9
+   \       0xB0   0x46E8             MOV      R8,SP
+   \       0xB2   0x003A             MOVS     R2,R7
+   \       0xB4   0x4641             MOV      R1,R8
+   \       0xB6   0x0030             MOVS     R0,R6
+   \       0xB8   0x.... 0x....      BL       __aeabi_memcpy
+    184          		}
+    185          
+    186          		tickBase = tickCurr;
    \                     ??LoopProcKey_1: (+1)
-   \       0xBA   0x602C             STR      R4,[R5, #+0]
-    111          	}
-    112          
-    113          	//========================================================================
-    114          	//	* [송신기][MENU] : 유지보수 메뉴 진입 기능 추가.
-    115          	//		- [OK]버튼을 누른상태에서 [MENU]버튼을 3초간 누를 경우 Maintance모드로 진입함.
-    116          
-    117          	static uint32_t tickBase2 = 0;
-    118          
-    119          	if ( ( tickCurr - tickBase2 ) >= 1000 && IsMenuMaint() == 0 )
+   \       0xBC   0x602C             STR      R4,[R5, #+0]
+    187          	}
+    188          
+    189          	//========================================================================
+    190          	//	* [송신기][MENU] : 유지보수 메뉴 진입 기능 추가.
+    191          	//		- [OK]버튼을 누른상태에서 [MENU]버튼을 3초간 누를 경우 Maintance모드로 진입함.
+    192          
+    193          	static uint32_t tickBase2 = 0;
+    194          
+    195          	if ( ( tickCurr - tickBase2 ) >= (1000 & IsMenuMaint()) )
    \                     ??LoopProcKey_0: (+1)
-   \       0xBC   0x.... 0x....      LDR.W    R5,??DataTable12_3
-   \       0xC0   0x6828             LDR      R0,[R5, #+0]
-   \       0xC2   0x1A20             SUBS     R0,R4,R0
-   \       0xC4   0xF5B0 0x7F7A      CMP      R0,#+1000
-   \       0xC8   0xD31A             BCC.N    ??LoopProcKey_11
-   \       0xCA   0x.... 0x....      BL       IsMenuMaint
-   \       0xCE   0x2800             CMP      R0,#+0
-   \       0xD0   0xD116             BNE.N    ??LoopProcKey_11
-    120          	{
-    121          		//	Period : 1 sec
-    122          		static int s_cntKeyOkMenu = 0;
-    123          		if ( s_btnStat[eKeyOk] && s_btnStat[eKeyMenu] )
-   \       0xD2   0x....             LDR.N    R1,??DataTable12
-   \       0xD4   0x6888             LDR      R0,[R1, #+8]
-   \       0xD6   0x2800             CMP      R0,#+0
-   \       0xD8   0xD007             BEQ.N    ??LoopProcKey_12
-   \       0xDA   0x6808             LDR      R0,[R1, #+0]
-   \       0xDC   0x2800             CMP      R0,#+0
-   \       0xDE   0xD004             BEQ.N    ??LoopProcKey_12
-    124          		{
-    125          			s_cntKeyOkMenu++;
-   \       0xE0   0x....             LDR.N    R0,??DataTable12_4
-   \       0xE2   0x6801             LDR      R1,[R0, #+0]
-   \       0xE4   0x1C49             ADDS     R1,R1,#+1
-   \       0xE6   0x6001             STR      R1,[R0, #+0]
-   \       0xE8   0xE002             B.N      ??LoopProcKey_13
-    126          		}
-    127          		else
-    128          		{
-    129          			s_cntKeyOkMenu = 0;
+   \       0xBE   0x....             LDR.N    R5,??DataTable12_3
+   \       0xC0   0x.... 0x....      BL       IsMenuMaint
+   \       0xC4   0xF410 0x707A      ANDS     R0,R0,#0x3E8
+   \       0xC8   0x6829             LDR      R1,[R5, #+0]
+   \       0xCA   0x1A61             SUBS     R1,R4,R1
+   \       0xCC   0x4281             CMP      R1,R0
+   \       0xCE   0xD316             BCC.N    ??LoopProcKey_11
+    196          	{
+    197          		//	Period : 1 sec
+    198          		static uint8_t s_cntKeyOkMenu = 0;
+    199          		if ( (s_btnStat[eKeyOk] != 0) && (s_btnStat[eKeyMenu] != 0) )
+   \       0xD0   0x....             LDR.N    R1,??DataTable12
+   \       0xD2   0x7888             LDRB     R0,[R1, #+2]
+   \       0xD4   0x2800             CMP      R0,#+0
+   \       0xD6   0xD007             BEQ.N    ??LoopProcKey_12
+   \       0xD8   0x7808             LDRB     R0,[R1, #+0]
+   \       0xDA   0x2800             CMP      R0,#+0
+   \       0xDC   0xD004             BEQ.N    ??LoopProcKey_12
+    200          		{
+    201          			s_cntKeyOkMenu++;
+   \       0xDE   0x....             LDR.N    R0,??DataTable12_4
+   \       0xE0   0x7801             LDRB     R1,[R0, #+0]
+   \       0xE2   0x1C49             ADDS     R1,R1,#+1
+   \       0xE4   0x7001             STRB     R1,[R0, #+0]
+   \       0xE6   0xE002             B.N      ??LoopProcKey_13
+    202          		}
+    203          		else
+    204          		{
+    205          			s_cntKeyOkMenu = 0;
    \                     ??LoopProcKey_12: (+1)
-   \       0xEA   0x2000             MOVS     R0,#+0
-   \       0xEC   0x....             LDR.N    R1,??DataTable12_4
-   \       0xEE   0x6008             STR      R0,[R1, #+0]
-    130          		}
-    131          
-    132          		if ( s_cntKeyOkMenu > 3 )	//	3초 이상 누를 경우.
+   \       0xE8   0x2000             MOVS     R0,#+0
+   \       0xEA   0x....             LDR.N    R1,??DataTable12_4
+   \       0xEC   0x7008             STRB     R0,[R1, #+0]
+    206          		}
+    207          
+    208          		if ( s_cntKeyOkMenu > 3 )	//	3초 이상 누를 경우.
    \                     ??LoopProcKey_13: (+1)
-   \       0xF0   0x....             LDR.N    R0,??DataTable12_4
-   \       0xF2   0x6800             LDR      R0,[R0, #+0]
-   \       0xF4   0x2804             CMP      R0,#+4
-   \       0xF6   0xDB02             BLT.N    ??LoopProcKey_14
-    133          		{
-    134          			EnableMenuMaint( 1 );
-   \       0xF8   0x2001             MOVS     R0,#+1
-   \       0xFA   0x.... 0x....      BL       EnableMenuMaint
-    135          		}
-    136          
-    137          		tickBase2 = tickCurr;
+   \       0xEE   0x....             LDR.N    R0,??DataTable12_4
+   \       0xF0   0x7800             LDRB     R0,[R0, #+0]
+   \       0xF2   0x2804             CMP      R0,#+4
+   \       0xF4   0xDB02             BLT.N    ??LoopProcKey_14
+    209          		{
+    210          			EnableMenuMaint((uint8_t) 1 );
+   \       0xF6   0x2001             MOVS     R0,#+1
+   \       0xF8   0x.... 0x....      BL       EnableMenuMaint
+    211          		}
+    212          
+    213          		tickBase2 = tickCurr;
    \                     ??LoopProcKey_14: (+1)
-   \       0xFE   0x602C             STR      R4,[R5, #+0]
-    138          	}
-    139          
-    140          	//========================================================================
-    141          
-    142          
-    143          #if defined(USE_FREERTOS)
-    144          	osDelay( 1 );		//	1 msec
-    145          #else
-    146          //        HAL_Delay( 1 );
-    147          #endif
-    148          }
+   \       0xFC   0x602C             STR      R4,[R5, #+0]
+    214          	}
+    215          
+    216          	//========================================================================
+    217          
+    218          
+    219          #if defined(USE_FREERTOS)
+    220          	osDelay( 1 );		//	1 msec
+    221          #else
+    222          //        HAL_Delay( 1 );
+    223          #endif
+    224          }
    \                     ??LoopProcKey_11: (+1)
-   \      0x100   0xB00A             ADD      SP,SP,#+40
-   \      0x102   0xE8BD 0x81F0      POP      {R4-R8,PC}
+   \       0xFE   0xE8BD 0x81FF      POP      {R0-R8,PC}
 
    \                                 In section .bss, align 4
    \                     `LoopProcKey::tickBase`:
@@ -546,720 +573,699 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\keypad.c
    \                     `LoopProcKey::tickBase2`:
    \        0x0                      DS8 4
 
-   \                                 In section .bss, align 4
-   \                     `LoopProcKey{4}{5}::s_cntKeyOkMenu`:
-   \        0x0                      DS8 4
-    149          
-    150          //========================================================================
-    151          //		KeyPad ( Dome Button )
-    152          //========================================================================
-    153          
-    154          //========================================================================
+   \                                 In section .bss, align 1
+   \                     `LoopProcKey{13}{14}::s_cntKeyOkMenu`:
+   \        0x0                      DS8 1
+    225          
+    226          //========================================================================
+    227          //		KeyPad ( Dome Button )
+    228          //========================================================================
+    229          
+    230          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    155          void KeyMenu( int bValue )
-    156          //========================================================================
-    157          {
+    231          void KeyMenu( uint8_t bValue )
+    232          //========================================================================
+    233          {
    \                     KeyMenu: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    158          	//========================================================================
-    159          	//	bValue : 0(Up) / 1(Down)
-    160          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
+    234          	//========================================================================
+    235          	//	bValue : 0(Up) / 1(Down)
+    236          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
    \        0x4   0x0023             MOVS     R3,R4
-   \        0x6   0x22A0             MOVS     R2,#+160
-   \        0x8   0x....             LDR.N    R1,??DataTable12_5
-   \        0xA   0x....             LDR.N    R0,??DataTable12_6
-   \        0xC   0x.... 0x....      BL       printf
-    161          
-    162          	if ( bValue )
-   \       0x10   0x2C00             CMP      R4,#+0
-   \       0x12   0xD001             BEQ.N    ??KeyMenu_0
-    163          	{
-    164          //		LCDMenu();
-    165          		ProcBtnMenu();
-   \       0x14   0x.... 0x....      BL       ProcBtnMenu
-    166          	}
-    167          }
+   \        0x6   0xB2DB             UXTB     R3,R3
+   \        0x8   0x22EC             MOVS     R2,#+236
+   \        0xA   0x....             LDR.N    R1,??DataTable12_5
+   \        0xC   0x....             LDR.N    R0,??DataTable12_6
+   \        0xE   0x.... 0x....      BL       printf
+    237          
+    238          	if ( bValue != 0 )
+   \       0x12   0x0020             MOVS     R0,R4
+   \       0x14   0xB2C0             UXTB     R0,R0
+   \       0x16   0x2800             CMP      R0,#+0
+   \       0x18   0xD001             BEQ.N    ??KeyMenu_0
+    239          	{
+    240          //		LCDMenu();
+    241          		ProcBtnMenu();
+   \       0x1A   0x.... 0x....      BL       ProcBtnMenu
+    242          	}
+    243          }
    \                     ??KeyMenu_0: (+1)
-   \       0x18   0xBD10             POP      {R4,PC}
-    168          
-    169          //========================================================================
+   \       0x1E   0xBD10             POP      {R4,PC}
+    244          
+    245          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    170          void KeyOK( int bValue )
-    171          //========================================================================
-    172          {
+    246          void KeyOK( uint8_t bValue )
+    247          //========================================================================
+    248          {
    \                     KeyOK: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    173          	//========================================================================
-    174          	//	bValue : 0(Up) / 1(Down)
-    175          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
+    249          	//========================================================================
+    250          	//	bValue : 0(Up) / 1(Down)
+    251          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
    \        0x4   0x0023             MOVS     R3,R4
-   \        0x6   0x22AF             MOVS     R2,#+175
-   \        0x8   0x....             LDR.N    R1,??DataTable12_7
-   \        0xA   0x....             LDR.N    R0,??DataTable12_6
-   \        0xC   0x.... 0x....      BL       printf
-    176          
-    177          	if ( bValue )
-   \       0x10   0x2C00             CMP      R4,#+0
-   \       0x12   0xD001             BEQ.N    ??KeyOK_0
-    178          	{
-    179          		ProcBtnOK();
-   \       0x14   0x.... 0x....      BL       ProcBtnOK
-    180          	}
-    181          }
+   \        0x6   0xB2DB             UXTB     R3,R3
+   \        0x8   0x22FB             MOVS     R2,#+251
+   \        0xA   0x....             LDR.N    R1,??DataTable12_7
+   \        0xC   0x....             LDR.N    R0,??DataTable12_6
+   \        0xE   0x.... 0x....      BL       printf
+    252          
+    253          	if ( bValue != 0)
+   \       0x12   0x0020             MOVS     R0,R4
+   \       0x14   0xB2C0             UXTB     R0,R0
+   \       0x16   0x2800             CMP      R0,#+0
+   \       0x18   0xD001             BEQ.N    ??KeyOK_0
+    254          	{
+    255          		ProcBtnOK();
+   \       0x1A   0x.... 0x....      BL       ProcBtnOK
+    256          	}
+    257          }
    \                     ??KeyOK_0: (+1)
-   \       0x18   0xBD10             POP      {R4,PC}
-    182          
-    183          
-    184          //========================================================================
+   \       0x1E   0xBD10             POP      {R4,PC}
+    258          
+    259          
+    260          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    185          void KeyLight( int bValue )
-    186          //========================================================================
-    187          {
+    261          void KeyLight( uint8_t bValue )
+    262          //========================================================================
+    263          {
    \                     KeyLight: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    188          	//========================================================================
-    189          	//	bValue : 0(Up) / 1(Down)
-    190          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
+    264          	//========================================================================
+    265          	//	bValue : 0(Up) / 1(Down)
+    266          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
    \        0x4   0x0023             MOVS     R3,R4
-   \        0x6   0x22BE             MOVS     R2,#+190
-   \        0x8   0x....             LDR.N    R1,??DataTable12_8
-   \        0xA   0x....             LDR.N    R0,??DataTable12_6
-   \        0xC   0x.... 0x....      BL       printf
-    191          
-    192          	//========================================================================
-    193          	//	Light On/Off Toggle
-    194          	static int bOnOff = 0;
-    195          
-    196          	//========================================================================
-    197          	//	GPIO제어.
-    198          	if ( bValue )
-   \       0x10   0x2C00             CMP      R4,#+0
-   \       0x12   0xD01A             BEQ.N    ??KeyLight_0
-    199          	{
-    200          		if ( bOnOff == 0 )
-   \       0x14   0x....             LDR.N    R5,??DataTable12_9
-   \       0x16   0x6828             LDR      R0,[R5, #+0]
+   \        0x6   0xB2DB             UXTB     R3,R3
+   \        0x8   0xF44F 0x7285      MOV      R2,#+266
+   \        0xC   0x....             LDR.N    R1,??DataTable12_8
+   \        0xE   0x....             LDR.N    R0,??DataTable12_6
+   \       0x10   0x.... 0x....      BL       printf
+    267          
+    268          	//========================================================================
+    269          	//	Light On/Off Toggle
+    270          	static uint8_t bOnOff = 0;
+    271          
+    272          	//========================================================================
+    273          	//	GPIO제어.
+    274          	if ( bValue != 0 )
+   \       0x14   0x0020             MOVS     R0,R4
+   \       0x16   0xB2C0             UXTB     R0,R0
    \       0x18   0x2800             CMP      R0,#+0
-   \       0x1A   0xD10B             BNE.N    ??KeyLight_1
-    201          		{
-    202          			//	Flash Light On
-    203          			HAL_GPIO_WritePin( FLASH_ON_GPIO_Port, FLASH_ON_Pin, GPIO_PIN_SET );
-   \       0x1C   0x2201             MOVS     R2,#+1
-   \       0x1E   0xF44F 0x7180      MOV      R1,#+256
-   \       0x22   0x....             LDR.N    R0,??DataTable12_10
-   \       0x24   0x.... 0x....      BL       HAL_GPIO_WritePin
-    204          
-    205          			LCDLight( 1 );
-   \       0x28   0x2001             MOVS     R0,#+1
-   \       0x2A   0x.... 0x....      BL       LCDLight
-    206          			bOnOff = 1;
-   \       0x2E   0x2001             MOVS     R0,#+1
-   \       0x30   0x6028             STR      R0,[R5, #+0]
-   \       0x32   0xE00A             B.N      ??KeyLight_0
-    207          		}
-    208          		else
-    209          		{
-    210          			//	Flash Light Off
-    211          			HAL_GPIO_WritePin( FLASH_ON_GPIO_Port, FLASH_ON_Pin, GPIO_PIN_RESET );
+   \       0x1A   0xD01A             BEQ.N    ??KeyLight_0
+    275          	{
+    276          		if ( bOnOff == 0 )
+   \       0x1C   0x....             LDR.N    R5,??DataTable12_9
+   \       0x1E   0x7828             LDRB     R0,[R5, #+0]
+   \       0x20   0x2800             CMP      R0,#+0
+   \       0x22   0xD10B             BNE.N    ??KeyLight_1
+    277          		{
+    278          			//	Flash Light On
+    279          			HAL_GPIO_WritePin( FLASH_ON_GPIO_Port, FLASH_ON_Pin, GPIO_PIN_SET );
+   \       0x24   0x2201             MOVS     R2,#+1
+   \       0x26   0xF44F 0x7180      MOV      R1,#+256
+   \       0x2A   0x....             LDR.N    R0,??DataTable12_10
+   \       0x2C   0x.... 0x....      BL       HAL_GPIO_WritePin
+    280          
+    281          			LCDLight( 1 );
+   \       0x30   0x2001             MOVS     R0,#+1
+   \       0x32   0x.... 0x....      BL       LCDLight
+    282          			bOnOff = 1;
+   \       0x36   0x2001             MOVS     R0,#+1
+   \       0x38   0x7028             STRB     R0,[R5, #+0]
+   \       0x3A   0xE00A             B.N      ??KeyLight_0
+    283          		}
+    284          		else
+    285          		{
+    286          			//	Flash Light Off
+    287          			HAL_GPIO_WritePin( FLASH_ON_GPIO_Port, FLASH_ON_Pin, GPIO_PIN_RESET );
    \                     ??KeyLight_1: (+1)
-   \       0x34   0x2200             MOVS     R2,#+0
-   \       0x36   0xF44F 0x7180      MOV      R1,#+256
-   \       0x3A   0x....             LDR.N    R0,??DataTable12_10
-   \       0x3C   0x.... 0x....      BL       HAL_GPIO_WritePin
-    212          
-    213          			LCDLight( 0 );
-   \       0x40   0x2000             MOVS     R0,#+0
-   \       0x42   0x.... 0x....      BL       LCDLight
-    214          			bOnOff = 0;
-   \       0x46   0x2000             MOVS     R0,#+0
-   \       0x48   0x6028             STR      R0,[R5, #+0]
-    215          		}
-    216          	}
-    217          }
+   \       0x3C   0x2200             MOVS     R2,#+0
+   \       0x3E   0xF44F 0x7180      MOV      R1,#+256
+   \       0x42   0x....             LDR.N    R0,??DataTable12_10
+   \       0x44   0x.... 0x....      BL       HAL_GPIO_WritePin
+    288          
+    289          			LCDLight( 0 );
+   \       0x48   0x2000             MOVS     R0,#+0
+   \       0x4A   0x.... 0x....      BL       LCDLight
+    290          			bOnOff = 0;
+   \       0x4E   0x2000             MOVS     R0,#+0
+   \       0x50   0x7028             STRB     R0,[R5, #+0]
+    291          		}
+    292          	}
+    293          }
    \                     ??KeyLight_0: (+1)
-   \       0x4A   0xBD31             POP      {R0,R4,R5,PC}
+   \       0x52   0xBD31             POP      {R0,R4,R5,PC}
 
-   \                                 In section .bss, align 4
+   \                                 In section .bss, align 1
    \                     `KeyLight::bOnOff`:
-   \        0x0                      DS8 4
-    218          
-    219          //========================================================================
+   \        0x0                      DS8 1
+    294          
+    295          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    220          void KeyUp( int bValue )
-    221          //========================================================================
-    222          {
+    296          void KeyUp( uint8_t bValue )
+    297          //========================================================================
+    298          {
    \                     KeyUp: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    223          	//========================================================================
-    224          	//	bValue : 0(Up) / 1(Down)
-    225          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
+    299          	//========================================================================
+    300          	//	bValue : 0(Up) / 1(Down)
+    301          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
    \        0x4   0x0023             MOVS     R3,R4
-   \        0x6   0x22E1             MOVS     R2,#+225
-   \        0x8   0x....             LDR.N    R1,??DataTable12_11
-   \        0xA   0x....             LDR.N    R0,??DataTable12_6
-   \        0xC   0x.... 0x....      BL       printf
-    226          
-    227          	if( bValue )
-   \       0x10   0x2C00             CMP      R4,#+0
-   \       0x12   0xD001             BEQ.N    ??KeyUp_0
-    228          	{
-    229          		ProcBtnUp();
-   \       0x14   0x.... 0x....      BL       ProcBtnUp
-    230          	}
-    231          }
+   \        0x6   0xB2DB             UXTB     R3,R3
+   \        0x8   0xF240 0x122D      MOVW     R2,#+301
+   \        0xC   0x....             LDR.N    R1,??DataTable12_11
+   \        0xE   0x....             LDR.N    R0,??DataTable12_6
+   \       0x10   0x.... 0x....      BL       printf
+    302          
+    303          	if( bValue != 0)
+   \       0x14   0x0020             MOVS     R0,R4
+   \       0x16   0xB2C0             UXTB     R0,R0
+   \       0x18   0x2800             CMP      R0,#+0
+   \       0x1A   0xD001             BEQ.N    ??KeyUp_0
+    304          	{
+    305          		ProcBtnUp();
+   \       0x1C   0x.... 0x....      BL       ProcBtnUp
+    306          	}
+    307          }
    \                     ??KeyUp_0: (+1)
-   \       0x18   0xBD10             POP      {R4,PC}
-    232          
-    233          //========================================================================
+   \       0x20   0xBD10             POP      {R4,PC}
+    308          
+    309          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    234          void KeyDown( int bValue )
-    235          //========================================================================
-    236          {
+    310          void KeyDown( uint8_t bValue )
+    311          //========================================================================
+    312          {
    \                     KeyDown: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    237          	//========================================================================
-    238          	//	bValue : 0(Up) / 1(Down)
-    239          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
+    313          	//========================================================================
+    314          	//	bValue : 0(Up) / 1(Down)
+    315          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
    \        0x4   0x0023             MOVS     R3,R4
-   \        0x6   0x22EF             MOVS     R2,#+239
-   \        0x8   0x....             LDR.N    R1,??DataTable12_12
-   \        0xA   0x....             LDR.N    R0,??DataTable12_6
-   \        0xC   0x.... 0x....      BL       printf
-    240          
-    241          	if( bValue )
-   \       0x10   0x2C00             CMP      R4,#+0
-   \       0x12   0xD001             BEQ.N    ??KeyDown_0
-    242          	{
-    243          		ProcBtnDown();
-   \       0x14   0x.... 0x....      BL       ProcBtnDown
-    244          	}
-    245          }
+   \        0x6   0xB2DB             UXTB     R3,R3
+   \        0x8   0xF240 0x123B      MOVW     R2,#+315
+   \        0xC   0x....             LDR.N    R1,??DataTable12_12
+   \        0xE   0x....             LDR.N    R0,??DataTable12_6
+   \       0x10   0x.... 0x....      BL       printf
+    316          
+    317          	if( bValue != 0)
+   \       0x14   0x0020             MOVS     R0,R4
+   \       0x16   0xB2C0             UXTB     R0,R0
+   \       0x18   0x2800             CMP      R0,#+0
+   \       0x1A   0xD001             BEQ.N    ??KeyDown_0
+    318          	{
+    319          		ProcBtnDown();
+   \       0x1C   0x.... 0x....      BL       ProcBtnDown
+    320          	}
+    321          }
    \                     ??KeyDown_0: (+1)
-   \       0x18   0xBD10             POP      {R4,PC}
-    246          
-    247          //========================================================================
+   \       0x20   0xBD10             POP      {R4,PC}
+    322          
+    323          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    248          void KeyVol( int bValue )
-    249          //========================================================================
-    250          {
+    324          void KeyVol( uint8_t bValue )
+    325          //========================================================================
+    326          {
    \                     KeyVol: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    251          	//========================================================================
-    252          	//	bValue : 0(Up) / 1(Down)
-    253          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
+    327          	//========================================================================
+    328          	//	bValue : 0(Up) / 1(Down)
+    329          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
    \        0x4   0x0023             MOVS     R3,R4
-   \        0x6   0x22FD             MOVS     R2,#+253
-   \        0x8   0x....             LDR.N    R1,??DataTable12_13
-   \        0xA   0x....             LDR.N    R0,??DataTable12_6
-   \        0xC   0x.... 0x....      BL       printf
-    254          
-    255          	if( bValue )
-   \       0x10   0x2C00             CMP      R4,#+0
-   \       0x12   0xD01B             BEQ.N    ??KeyVol_0
-    256          	{
-    257          
-    258          		g_nSpkLevel = ( g_nSpkLevel + 1 ) % 4;  //  0, 1, 2, 3
-   \       0x14   0x....             LDR.N    R5,??DataTable12_14
-   \       0x16   0x6828             LDR      R0,[R5, #+0]
-   \       0x18   0x1C40             ADDS     R0,R0,#+1
-   \       0x1A   0x2104             MOVS     R1,#+4
-   \       0x1C   0xFB90 0xF2F1      SDIV     R2,R0,R1
-   \       0x20   0xFB01 0x0012      MLS      R0,R1,R2,R0
-   \       0x24   0x6028             STR      R0,[R5, #+0]
-    259          
-    260          		//========================================================================
-    261          		SetSpkVol( g_nSpkLevel );
-   \       0x26   0x6828             LDR      R0,[R5, #+0]
-   \       0x28   0x.... 0x....      BL       SetSpkVol
-    262          		//========================================================================
-    263          
-    264          		if ( g_nSpkLevel )
-   \       0x2C   0x6828             LDR      R0,[R5, #+0]
-   \       0x2E   0x2800             CMP      R0,#+0
-   \       0x30   0xD006             BEQ.N    ??KeyVol_1
-    265          		{
-    266          			//	RFM SPK On
-    267          //				HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
-    268          			//	RFM SPK Off
-    269          //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
-    270          			RFM_Spk(0);
-   \       0x32   0x2000             MOVS     R0,#+0
-   \       0x34   0x.... 0x....      BL       RFM_Spk
-    271          
-    272          			LCDSpeaker( g_nSpkLevel );
-   \       0x38   0x6828             LDR      R0,[R5, #+0]
-   \       0x3A   0x.... 0x....      BL       LCDSpeaker
-   \       0x3E   0xE005             B.N      ??KeyVol_0
-    273          		}
-    274          		else
-    275          		{
-    276          			//	RFM SPK Off
-    277          //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
-    278          			RFM_Spk(0);
+   \        0x6   0xB2DB             UXTB     R3,R3
+   \        0x8   0xF240 0x1249      MOVW     R2,#+329
+   \        0xC   0x....             LDR.N    R1,??DataTable12_13
+   \        0xE   0x....             LDR.N    R0,??DataTable12_6
+   \       0x10   0x.... 0x....      BL       printf
+    330          
+    331          	if( bValue != 0 )
+   \       0x14   0x0020             MOVS     R0,R4
+   \       0x16   0xB2C0             UXTB     R0,R0
+   \       0x18   0x2800             CMP      R0,#+0
+   \       0x1A   0xD01B             BEQ.N    ??KeyVol_0
+    332          	{
+    333          
+    334          		g_nSpkLevel = ( g_nSpkLevel + 1 ) % 4;  //  0, 1, 2, 3
+   \       0x1C   0x....             LDR.N    R5,??DataTable12_14
+   \       0x1E   0x7828             LDRB     R0,[R5, #+0]
+   \       0x20   0x1C40             ADDS     R0,R0,#+1
+   \       0x22   0x2104             MOVS     R1,#+4
+   \       0x24   0xFB90 0xF2F1      SDIV     R2,R0,R1
+   \       0x28   0xFB01 0x0012      MLS      R0,R1,R2,R0
+   \       0x2C   0x7028             STRB     R0,[R5, #+0]
+    335          
+    336          		//========================================================================
+    337          		SetSpkVol( g_nSpkLevel );
+   \       0x2E   0x7828             LDRB     R0,[R5, #+0]
+   \       0x30   0x.... 0x....      BL       SetSpkVol
+    338          		//========================================================================
+    339          
+    340          		if ( g_nSpkLevel != 0 )
+   \       0x34   0x7828             LDRB     R0,[R5, #+0]
+   \       0x36   0x2800             CMP      R0,#+0
+   \       0x38   0xD006             BEQ.N    ??KeyVol_1
+    341          		{
+    342          			//	RFM SPK On
+    343          //				HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
+    344          			//	RFM SPK Off
+    345          //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
+    346          			RFM_Spk((uint8_t)0);
+   \       0x3A   0x2000             MOVS     R0,#+0
+   \       0x3C   0x.... 0x....      BL       RFM_Spk
+    347          
+    348          			LCDSpeaker( g_nSpkLevel );
+   \       0x40   0x7828             LDRB     R0,[R5, #+0]
+   \       0x42   0x.... 0x....      BL       LCDSpeaker
+   \       0x46   0xE005             B.N      ??KeyVol_0
+    349          		}
+    350          		else
+    351          		{
+    352          			//	RFM SPK Off
+    353          //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
+    354          			RFM_Spk((uint8_t)0);
    \                     ??KeyVol_1: (+1)
-   \       0x40   0x2000             MOVS     R0,#+0
-   \       0x42   0x.... 0x....      BL       RFM_Spk
-    279          
-    280          			LCDSpeaker( 0 );
-   \       0x46   0x2000             MOVS     R0,#+0
-   \       0x48   0x.... 0x....      BL       LCDSpeaker
-    281          		}
-    282          	}
-    283          }
-   \                     ??KeyVol_0: (+1)
-   \       0x4C   0xBD31             POP      {R0,R4,R5,PC}
-    284          
-    285          //========================================================================
-    286          //		Side Button
-    287          //========================================================================
-    288          
-    289          
-    290          //========================================================================
-
-   \                                 In section .text, align 2, keep-with-next
-    291          void KeyPtt( int bValue )
-    292          //========================================================================
-    293          {
-   \                     KeyPtt: (+1)
-   \        0x0   0xB530             PUSH     {R4,R5,LR}
-   \        0x2   0xB085             SUB      SP,SP,#+20
-   \        0x4   0x0004             MOVS     R4,R0
-    294          	//========================================================================
-    295          #if defined( USE_TEST_PTT_AUDIO_LOOP )
-    296          
-    297          	//	Audio Loopback Test
-    298          	KeyTestLoopback( bValue );
-    299          
-    300          	return ;
-    301          #endif
-    302          	//========================================================================
-    303          
-    304          	//========================================================================
-    305          	//	bValue : 0(Up) / 1(Down)
-    306          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
-   \        0x6   0x0023             MOVS     R3,R4
-   \        0x8   0xF44F 0x7299      MOV      R2,#+306
-   \        0xC   0x....             LDR.N    R1,??DataTable12_15
-   \        0xE   0x....             LDR.N    R0,??DataTable12_6
-   \       0x10   0x.... 0x....      BL       printf
-    307          
-    308          	//	송신기 -> 수신기	:	방송
-    309          
-    310          	if ( bValue )
-   \       0x14   0x2C00             CMP      R4,#+0
-   \       0x16   0xD036             BEQ.N    ??KeyPtt_0
-    311          	{
-    312          #if defined(USE_CH_ISO_DEV)
-    313          		SetChPA( GetChNearRFM() );		//	가장 가까운 수신기 설정.
-   \       0x18   0x.... 0x....      BL       GetChNearRFM
-   \       0x1C   0x.... 0x....      BL       SetChPA
-    314          
-    315          		SetChPARFT( GetChNearRFT( 190 ) );	//	가까운 송신기 설정.
-                 		^
-Warning[Pe223]: function "SetChPARFT" declared implicitly
-   \       0x20   0x20BE             MOVS     R0,#+190
-   \       0x22   0x.... 0x....      BL       GetChNearRFT
-   \       0x26   0x.... 0x....      BL       SetChPARFT
-    316          #endif
-    317          
-    318          #if defined( USE_AUDIO_ADPCM )	//	ADPCM 사용. - 1/4 압축
-    319          		ADPCM_ClearEncodeBuf();			//	인코딩 버퍼 Clear
-                 		^
-Warning[Pe223]: function "ADPCM_ClearEncodeBuf" declared implicitly
-   \       0x2A   0x.... 0x....      BL       ADPCM_ClearEncodeBuf
-    320          		qBufClear( &g_qBufAudioTx );	//	Tx Buffer Clear
-   \       0x2E   0x....             LDR.N    R0,??DataTable12_16
-   \       0x30   0x.... 0x....      BL       qBufClear
-    321          #endif
-    322          
-    323          		LCDSetCursor( 20, 13 );
-   \       0x34   0x210D             MOVS     R1,#+13
-   \       0x36   0x2014             MOVS     R0,#+20
-   \       0x38   0x.... 0x....      BL       LCDSetCursor
-    324          
-    325          		if ( IsMenuMaint() )
-   \       0x3C   0x.... 0x....      BL       IsMenuMaint
-   \       0x40   0x2800             CMP      R0,#+0
-   \       0x42   0xD010             BEQ.N    ??KeyPtt_1
-    326          		{
-    327          			//	Maint Mode : 송신채널 표시.
-    328          			char sBuf[20];
-    329          			sprintf( sBuf, "방송중(%d/%d)", GetCh2Car(GetChPA()), GetChPA() );	//	Channel -> Car
-   \       0x44   0x.... 0x....      BL       GetChPA
-   \       0x48   0x0005             MOVS     R5,R0
-   \       0x4A   0x.... 0x....      BL       GetChPA
-   \       0x4E   0x.... 0x....      BL       GetCh2Car
-   \       0x52   0x0002             MOVS     R2,R0
-   \       0x54   0x002B             MOVS     R3,R5
-   \       0x56   0x....             LDR.N    R1,??DataTable12_17
-   \       0x58   0x4668             MOV      R0,SP
-   \       0x5A   0x.... 0x....      BL       sprintf
-    330          			LCDPrintf( sBuf );
-   \       0x5E   0x4668             MOV      R0,SP
-   \       0x60   0x.... 0x....      BL       LCDPrintf
-   \       0x64   0xE002             B.N      ??KeyPtt_2
-    331          		}
-    332          		else
-    333          		{
-    334          			LCDPrintf( "방송중..." );
-   \                     ??KeyPtt_1: (+1)
-   \       0x66   0x....             LDR.N    R0,??DataTable12_18
-   \       0x68   0x.... 0x....      BL       LCDPrintf
-    335          		}
-    336          
-    337          		SetRFMMode( RFMModeTx );
-   \                     ??KeyPtt_2: (+1)
-   \       0x6C   0x2001             MOVS     R0,#+1
-   \       0x6E   0x.... 0x....      BL       SetRFMMode
-    338          
-    339          		//  Green LED On
-    340          		HAL_GPIO_WritePin ( LED_ON_A_GPIO_Port, LED_ON_A_Pin, GPIO_PIN_SET ); //  Green LED
-   \       0x72   0x2201             MOVS     R2,#+1
-   \       0x74   0xF44F 0x5100      MOV      R1,#+8192
-   \       0x78   0x....             LDR.N    R0,??DataTable12_10
-   \       0x7A   0x.... 0x....      BL       HAL_GPIO_WritePin
-    341          
-    342          		//	방송 - 시작
-    343          		SendPA( 1 );		//	SendRF - Send PA ( 송신기 -> 수신기 )
-   \       0x7E   0x2001             MOVS     R0,#+1
-   \       0x80   0x.... 0x....      BL       SendPA
-   \       0x84   0xE016             B.N      ??KeyPtt_3
-    344          	}
-    345          	else
-    346          	{
-    347          		//========================================================================
-    348          		//  편성 : XXX
-    349          		UpdateLCDMain();
-   \                     ??KeyPtt_0: (+1)
-   \       0x86   0x.... 0x....      BL       UpdateLCDMain
-    350          
-    351          		SetRFMMode( RFMModeNormal );
-   \       0x8A   0x2000             MOVS     R0,#+0
-   \       0x8C   0x.... 0x....      BL       SetRFMMode
-    352          
-    353          #if defined(USE_CH_ISO_DEV)
-    354          		SetChPA( GetChNearRFM() );		//	가장 가까운 수신기 설정.
-   \       0x90   0x.... 0x....      BL       GetChNearRFM
-   \       0x94   0x.... 0x....      BL       SetChPA
+   \       0x48   0x2000             MOVS     R0,#+0
+   \       0x4A   0x.... 0x....      BL       RFM_Spk
     355          
-    356          		SetChPARFT( GetChNearRFT( 190 ) );	//	가까운 송신기 설정.
-                 		^
-Warning[Pe223]: function "SetChPARFT" declared implicitly
-   \       0x98   0x20BE             MOVS     R0,#+190
-   \       0x9A   0x.... 0x....      BL       GetChNearRFT
-   \       0x9E   0x.... 0x....      BL       SetChPARFT
-    357          #endif
-    358          
-    359          		//  Green LED Off
-    360          		HAL_GPIO_WritePin ( LED_ON_A_GPIO_Port, LED_ON_A_Pin, GPIO_PIN_RESET ); //  Green LED
-   \       0xA2   0x2200             MOVS     R2,#+0
-   \       0xA4   0xF44F 0x5100      MOV      R1,#+8192
-   \       0xA8   0x....             LDR.N    R0,??DataTable12_10
-   \       0xAA   0x.... 0x....      BL       HAL_GPIO_WritePin
-    361          
-    362          		//	방송 - 종료
-    363          		SendPA( 0 );		//	SendRF - Send PA ( 송신기 -> 수신기 )
-   \       0xAE   0x2000             MOVS     R0,#+0
-   \       0xB0   0x.... 0x....      BL       SendPA
-    364          	}
-    365          }
-   \                     ??KeyPtt_3: (+1)
-   \       0xB4   0xB005             ADD      SP,SP,#+20
-   \       0xB6   0xBD30             POP      {R4,R5,PC}
-    366          
-    367          
-    368          //========================================================================
+    356          			LCDSpeaker( (uint8_t)0 );
+   \       0x4E   0x2000             MOVS     R0,#+0
+   \       0x50   0x.... 0x....      BL       LCDSpeaker
+    357          		}
+    358          	}
+    359          }
+   \                     ??KeyVol_0: (+1)
+   \       0x54   0xBD31             POP      {R0,R4,R5,PC}
+    360          
+    361          //========================================================================
+    362          //		Side Button
+    363          //========================================================================
+    364          
+    365          
+    366          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    369          void KeySos( int bValue )
-    370          //========================================================================
-    371          {
-   \                     KeySos: (+1)
-   \        0x0   0xB530             PUSH     {R4,R5,LR}
+    367          void KeyPtt( uint8_t bValue )
+    368          //========================================================================
+    369          {
+   \                     KeyPtt: (+1)
+   \        0x0   0xB518             PUSH     {R3,R4,LR}
    \        0x2   0xB085             SUB      SP,SP,#+20
    \        0x4   0x0004             MOVS     R4,R0
-    372          	//	bValue : 0(Up) / 1(Down)
-    373          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
+    370          	//========================================================================
+    371          #if defined( USE_TEST_PTT_AUDIO_LOOP )
+    372          
+    373          	//	Audio Loopback Test
+    374          	KeyTestLoopback( bValue );
+    375          
+    376          	return ;
+    377          #endif
+    378          	//========================================================================
+    379          
+    380          	//========================================================================
+    381          	//	bValue : 0(Up) / 1(Down)
+    382          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
    \        0x6   0x0023             MOVS     R3,R4
-   \        0x8   0xF240 0x1275      MOVW     R2,#+373
-   \        0xC   0x....             LDR.N    R1,??DataTable12_19
-   \        0xE   0x....             LDR.N    R0,??DataTable12_6
-   \       0x10   0x.... 0x....      BL       printf
-    374          
-    375          	//	송신기 -> 송신기	:	통화
-    376          
-    377          	if ( bValue )
-   \       0x14   0x2C00             CMP      R4,#+0
-   \       0x16   0xD030             BEQ.N    ??KeySos_0
-    378          	{
-    379          #if defined(USE_CH_ISO_DEV)
-    380          		SetChPARFT( GetChNearRFT( 190 ) );	//	가까운 송신기 설정.
-                 		^
-Warning[Pe223]: function "SetChPARFT" declared implicitly
-   \       0x18   0x20BE             MOVS     R0,#+190
-   \       0x1A   0x.... 0x....      BL       GetChNearRFT
-   \       0x1E   0x.... 0x....      BL       SetChPARFT
-    381          
-    382          		SetChPA( GetChNearRFM() );		//	가장 가까운 수신기 설정.
-   \       0x22   0x.... 0x....      BL       GetChNearRFM
-   \       0x26   0x.... 0x....      BL       SetChPA
-    383          #endif
-    384          
-    385          #if defined( USE_AUDIO_ADPCM )	//	ADPCM 사용. - 1/4 압축
-    386          		ADPCM_ClearEncodeBuf();			//	인코딩 버퍼 Clear
-                 		^
-Warning[Pe223]: function "ADPCM_ClearEncodeBuf" declared implicitly
-   \       0x2A   0x.... 0x....      BL       ADPCM_ClearEncodeBuf
-    387          		qBufClear( &g_qBufAudioTx );	//	Tx Buffer Clear
-   \       0x2E   0x....             LDR.N    R0,??DataTable12_16
-   \       0x30   0x.... 0x....      BL       qBufClear
-    388          #endif
-    389          
-    390          		//	송신중
-    391          		LCDSetCursor( 20, 13 );
-   \       0x34   0x210D             MOVS     R1,#+13
-   \       0x36   0x2014             MOVS     R0,#+20
-   \       0x38   0x.... 0x....      BL       LCDSetCursor
-    392          		if ( IsMenuMaint() )
-   \       0x3C   0x.... 0x....      BL       IsMenuMaint
-   \       0x40   0x2800             CMP      R0,#+0
-   \       0x42   0xD010             BEQ.N    ??KeySos_1
-    393          		{
-    394          			//	Maint Mode : 송신채널 표시.
-    395          			char sBuf[20];
-    396          			sprintf( sBuf, "통화중(%d/%d)", GetCh2Car(GetChPA()), GetChPA() );	//	Channel -> Car
-   \       0x44   0x.... 0x....      BL       GetChPA
-   \       0x48   0x0005             MOVS     R5,R0
-   \       0x4A   0x.... 0x....      BL       GetChPA
-   \       0x4E   0x.... 0x....      BL       GetCh2Car
-   \       0x52   0x0002             MOVS     R2,R0
-   \       0x54   0x002B             MOVS     R3,R5
-   \       0x56   0x....             LDR.N    R1,??DataTable12_20
-   \       0x58   0x4668             MOV      R0,SP
-   \       0x5A   0x.... 0x....      BL       sprintf
-    397          			LCDPrintf( sBuf );
-   \       0x5E   0x4668             MOV      R0,SP
-   \       0x60   0x.... 0x....      BL       LCDPrintf
-   \       0x64   0xE002             B.N      ??KeySos_2
-    398          		}
-    399          		else
-    400          		{
-    401          			LCDPrintf( "통화중..." );
-   \                     ??KeySos_1: (+1)
-   \       0x66   0x....             LDR.N    R0,??DataTable12_21
-   \       0x68   0x.... 0x....      BL       LCDPrintf
+   \        0x8   0xB2DB             UXTB     R3,R3
+   \        0xA   0xF44F 0x72BF      MOV      R2,#+382
+   \        0xE   0x....             LDR.N    R1,??DataTable12_15
+   \       0x10   0x....             LDR.N    R0,??DataTable12_6
+   \       0x12   0x.... 0x....      BL       printf
+    383          
+    384          	//	송신기 -> 수신기	:	방송
+    385          
+    386          	if ( bValue != 0)
+   \       0x16   0x0020             MOVS     R0,R4
+   \       0x18   0xB2C0             UXTB     R0,R0
+   \       0x1A   0x2800             CMP      R0,#+0
+   \       0x1C   0xD02D             BEQ.N    ??KeyPtt_0
+    387          	{
+    388          #if defined(USE_CH_ISO_DEV)
+    389          		SetChPA( GetChNearRFM() );		//	가장 가까운 수신기 설정.
+   \       0x1E   0x.... 0x....      BL       GetChNearRFM
+   \       0x22   0xB2C0             UXTB     R0,R0
+   \       0x24   0x.... 0x....      BL       SetChPA
+    390          
+    391          		SetChPARFT( GetChNearRFT() );	//	가까운 송신기 설정.
+   \       0x28   0x.... 0x....      BL       GetChNearRFT
+   \       0x2C   0xB2C0             UXTB     R0,R0
+   \       0x2E   0x.... 0x....      BL       SetChPARFT
+    392          #endif
+    393          
+    394          		LCDSetCursor( 20, 13 );
+   \       0x32   0x210D             MOVS     R1,#+13
+   \       0x34   0x2014             MOVS     R0,#+20
+   \       0x36   0x.... 0x....      BL       LCDSetCursor
+    395          
+    396          		if ( IsMenuMaint() )
+   \       0x3A   0x.... 0x....      BL       IsMenuMaint
+   \       0x3E   0x2800             CMP      R0,#+0
+   \       0x40   0xD00B             BEQ.N    ??KeyPtt_1
+    397          		{
+    398          			//	Maint Mode : 송신채널 표시.
+    399          			S8 sBuf[20];
+    400          			sprintf( sBuf, "방송중...(%d)", GetChPA() );
+                 			         ^
+Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
+          "char *"
+   \       0x42   0x.... 0x....      BL       GetChPA
+   \       0x46   0x0002             MOVS     R2,R0
+   \       0x48   0xB2D2             UXTB     R2,R2
+   \       0x4A   0x....             LDR.N    R1,??DataTable12_16
+   \       0x4C   0x4668             MOV      R0,SP
+   \       0x4E   0x.... 0x....      BL       sprintf
+    401          			LCDPrintf( sBuf );
+                 			           ^
+Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
+          "char *"
+   \       0x52   0x4668             MOV      R0,SP
+   \       0x54   0x.... 0x....      BL       LCDPrintf
+   \       0x58   0xE002             B.N      ??KeyPtt_2
     402          		}
-    403          
-    404          		SetRFMMode( RFMModeTx );
-   \                     ??KeySos_2: (+1)
-   \       0x6C   0x2001             MOVS     R0,#+1
-   \       0x6E   0x.... 0x....      BL       SetRFMMode
-    405          
-    406          		//	통화 - 시작
-    407          		SendCall( CtrlStart );		//	SendRF - Send Call ( 송신기 -> 송신기 )
+    403          		else
+    404          		{
+    405          			LCDPrintf( "방송중..." );
+   \                     ??KeyPtt_1: (+1)
+   \       0x5A   0x....             LDR.N    R0,??DataTable12_17
+   \       0x5C   0x.... 0x....      BL       LCDPrintf
+    406          		}
+    407          
+    408          		SetRFMMode( (uint8_t)RFMModeTx );
+   \                     ??KeyPtt_2: (+1)
+   \       0x60   0x2001             MOVS     R0,#+1
+   \       0x62   0x.... 0x....      BL       SetRFMMode
+    409          
+    410          		//  Green LED On
+    411          		HAL_GPIO_WritePin ( LED_ON_A_GPIO_Port, LED_ON_A_Pin, GPIO_PIN_SET ); //  Green LED
+   \       0x66   0x2201             MOVS     R2,#+1
+   \       0x68   0xF44F 0x5100      MOV      R1,#+8192
+   \       0x6C   0x....             LDR.N    R0,??DataTable12_10
+   \       0x6E   0x.... 0x....      BL       HAL_GPIO_WritePin
+    412          
+    413          		//	방송 - 시작
+    414          		SendPA((uint8_t) 1 );		//	SendRF - Send PA ( 송신기 -> 수신기 )
    \       0x72   0x2001             MOVS     R0,#+1
-   \       0x74   0x.... 0x....      BL       SendCall
-   \       0x78   0xE010             B.N      ??KeySos_3
-    408          	}
-    409          	else
-    410          	{
-    411          #if defined(USE_CH_ISO_DEV)
-    412          		SetChPARFT( GetChNearRFT( 190 ) );	//	가까운 송신기 설정.
-                 		^
-Warning[Pe223]: function "SetChPARFT" declared implicitly
-   \                     ??KeySos_0: (+1)
-   \       0x7A   0x20BE             MOVS     R0,#+190
-   \       0x7C   0x.... 0x....      BL       GetChNearRFT
-   \       0x80   0x.... 0x....      BL       SetChPARFT
-    413          
-    414          		SetChPA( GetChNearRFM() );		//	가장 가까운 수신기 설정.
-   \       0x84   0x.... 0x....      BL       GetChNearRFM
-   \       0x88   0x.... 0x....      BL       SetChPA
-    415          #endif
-    416          
-    417          		//    편성 : 100
-    418          		UpdateLCDMain();
-   \       0x8C   0x.... 0x....      BL       UpdateLCDMain
-    419          //		LCDSetCursor( 20, 13 );
-    420          //		LCDPrintf( "편성 : 100" );
+   \       0x74   0x.... 0x....      BL       SendPA
+   \       0x78   0xE017             B.N      ??KeyPtt_3
+    415          	}
+    416          	else
+    417          	{
+    418          		//========================================================================
+    419          		//  편성 : XXX
+    420          		UpdateLCDMain();
+   \                     ??KeyPtt_0: (+1)
+   \       0x7A   0x.... 0x....      BL       UpdateLCDMain
     421          
-    422          		SetRFMMode( RFMModeNormal );
-   \       0x90   0x2000             MOVS     R0,#+0
-   \       0x92   0x.... 0x....      BL       SetRFMMode
+    422          		SetRFMMode( (uint8_t)RFMModeNormal );
+   \       0x7E   0x2000             MOVS     R0,#+0
+   \       0x80   0x.... 0x....      BL       SetRFMMode
     423          
-    424          		//	통화 - 종료
-    425          		SendCall( CtrlStop );		//	SendRF - Send Call ( 송신기 -> 송신기 )
-   \       0x96   0x2000             MOVS     R0,#+0
-   \       0x98   0x.... 0x....      BL       SendCall
-    426          	}
-    427          }
-   \                     ??KeySos_3: (+1)
-   \       0x9C   0xB005             ADD      SP,SP,#+20
-   \       0x9E   0xBD30             POP      {R4,R5,PC}
-    428          
+    424          #if defined(USE_CH_ISO_DEV)
+    425          		SetChPA( GetChNearRFM() );		//	가장 가까운 수신기 설정.
+   \       0x84   0x.... 0x....      BL       GetChNearRFM
+   \       0x88   0xB2C0             UXTB     R0,R0
+   \       0x8A   0x.... 0x....      BL       SetChPA
+    426          
+    427          		SetChPARFT( GetChNearRFT() );	//	가까운 송신기 설정.
+   \       0x8E   0x.... 0x....      BL       GetChNearRFT
+   \       0x92   0xB2C0             UXTB     R0,R0
+   \       0x94   0x.... 0x....      BL       SetChPARFT
+    428          #endif
     429          
-    430          //========================================================================
-    431          //		Power Button
-    432          //========================================================================
-    433          
-    434          //========================================================================
+    430          		//  Green LED Off
+    431          		HAL_GPIO_WritePin ( LED_ON_A_GPIO_Port, LED_ON_A_Pin, GPIO_PIN_RESET ); //  Green LED
+   \       0x98   0x2200             MOVS     R2,#+0
+   \       0x9A   0xF44F 0x5100      MOV      R1,#+8192
+   \       0x9E   0x....             LDR.N    R0,??DataTable12_10
+   \       0xA0   0x.... 0x....      BL       HAL_GPIO_WritePin
+    432          
+    433          		//	방송 - 종료
+    434          		SendPA((uint8_t) 0 );		//	SendRF - Send PA ( 송신기 -> 수신기 )
+   \       0xA4   0x2000             MOVS     R0,#+0
+   \       0xA6   0x.... 0x....      BL       SendPA
+    435          	}
+    436          }
+   \                     ??KeyPtt_3: (+1)
+   \       0xAA   0xB006             ADD      SP,SP,#+24
+   \       0xAC   0xBD10             POP      {R4,PC}
+    437          
+    438          
+    439          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    435          void	KeyPwrOnOff		( int bValue )
-    436          //========================================================================
-    437          {
+    440          void KeySos( uint8_t bValue )
+    441          //========================================================================
+    442          {
+   \                     KeySos: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    443          	//	bValue : 0(Up) / 1(Down)
+    444          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
+   \        0x4   0x0023             MOVS     R3,R4
+   \        0x6   0xB2DB             UXTB     R3,R3
+   \        0x8   0xF44F 0x72DE      MOV      R2,#+444
+   \        0xC   0x....             LDR.N    R1,??DataTable12_18
+   \        0xE   0x....             LDR.N    R0,??DataTable12_6
+   \       0x10   0x.... 0x....      BL       printf
+    445          
+    446          	//	송신기 -> 송신기	:	통화
+    447          
+    448          	if ( bValue != 0 )
+   \       0x14   0x0020             MOVS     R0,R4
+   \       0x16   0xB2C0             UXTB     R0,R0
+   \       0x18   0x2800             CMP      R0,#+0
+   \       0x1A   0xD017             BEQ.N    ??KeySos_0
+    449          	{
+    450          #if defined(USE_CH_ISO_DEV)
+    451          		SetChPARFT( GetChNearRFT() );	//	가까운 송신기 설정.
+   \       0x1C   0x.... 0x....      BL       GetChNearRFT
+   \       0x20   0xB2C0             UXTB     R0,R0
+   \       0x22   0x.... 0x....      BL       SetChPARFT
+    452          
+    453          		SetChPA( GetChNearRFM() );		//	가장 가까운 수신기 설정.
+   \       0x26   0x.... 0x....      BL       GetChNearRFM
+   \       0x2A   0xB2C0             UXTB     R0,R0
+   \       0x2C   0x.... 0x....      BL       SetChPA
+    454          #endif
+    455          
+    456          		//	송신중
+    457          		LCDSetCursor( 20, 13 );
+   \       0x30   0x210D             MOVS     R1,#+13
+   \       0x32   0x2014             MOVS     R0,#+20
+   \       0x34   0x.... 0x....      BL       LCDSetCursor
+    458          		LCDPrintf( "통화중..." );
+   \       0x38   0x....             LDR.N    R0,??DataTable12_19
+   \       0x3A   0x.... 0x....      BL       LCDPrintf
+    459          
+    460          		SetRFMMode((uint8_t) RFMModeTx );
+   \       0x3E   0x2001             MOVS     R0,#+1
+   \       0x40   0x.... 0x....      BL       SetRFMMode
+    461          
+    462          		//	통화 - 시작
+    463          		SendCall((uint8_t) CtrlStart );		//	SendRF - Send Call ( 송신기 -> 송신기 )
+   \       0x44   0x2001             MOVS     R0,#+1
+   \       0x46   0x.... 0x....      BL       SendCall
+   \       0x4A   0xE011             B.N      ??KeySos_1
+    464          	}
+    465          	else
+    466          	{
+    467          #if defined(USE_CH_ISO_DEV)
+    468          		SetChPARFT( GetChNearRFT() );	//	가까운 송신기 설정.
+   \                     ??KeySos_0: (+1)
+   \       0x4C   0x.... 0x....      BL       GetChNearRFT
+   \       0x50   0xB2C0             UXTB     R0,R0
+   \       0x52   0x.... 0x....      BL       SetChPARFT
+    469          
+    470          		SetChPA( GetChNearRFM() );		//	가장 가까운 수신기 설정.
+   \       0x56   0x.... 0x....      BL       GetChNearRFM
+   \       0x5A   0xB2C0             UXTB     R0,R0
+   \       0x5C   0x.... 0x....      BL       SetChPA
+    471          #endif
+    472          
+    473          		//    편성 : 100
+    474          		UpdateLCDMain();
+   \       0x60   0x.... 0x....      BL       UpdateLCDMain
+    475          //		LCDSetCursor( 20, 13 );
+    476          //		LCDPrintf( "편성 : 100" );
+    477          
+    478          		SetRFMMode( (uint8_t)RFMModeNormal );
+   \       0x64   0x2000             MOVS     R0,#+0
+   \       0x66   0x.... 0x....      BL       SetRFMMode
+    479          
+    480          		//	통화 - 종료
+    481          		SendCall( (uint8_t)CtrlStop );		//	SendRF - Send Call ( 송신기 -> 송신기 )
+   \       0x6A   0x2000             MOVS     R0,#+0
+   \       0x6C   0x.... 0x....      BL       SendCall
+    482          	}
+    483          }
+   \                     ??KeySos_1: (+1)
+   \       0x70   0xBD10             POP      {R4,PC}
+    484          
+    485          
+    486          //========================================================================
+    487          //		Power Button
+    488          //========================================================================
+    489          
+    490          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    491          void	KeyPwrOnOff		( uint8_t bValue )
+    492          //========================================================================
+    493          {
    \                     KeyPwrOnOff: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    438          	//	bValue : 0(Up) / 1(Down)
-    439          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
-   \        0x4   0x....             LDR.N    R5,??DataTable12_22
+    494          	//	bValue : 0(Up) / 1(Down)
+    495          	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
+   \        0x4   0x....             LDR.N    R5,??DataTable12_20
    \        0x6   0x0023             MOVS     R3,R4
-   \        0x8   0xF240 0x12B7      MOVW     R2,#+439
-   \        0xC   0x0029             MOVS     R1,R5
-   \        0xE   0x....             LDR.N    R0,??DataTable12_6
-   \       0x10   0x.... 0x....      BL       printf
-    440          
-    441          	static int bPowerOn = 0;
-    442          
-    443          	if ( bValue )
-   \       0x14   0x2C00             CMP      R4,#+0
-   \       0x16   0xD003             BEQ.N    ??KeyPwrOnOff_0
-    444          	{
-    445          		bPowerOn = 1;
-   \       0x18   0x2001             MOVS     R0,#+1
-   \       0x1A   0x....             LDR.N    R1,??DataTable12_23
-   \       0x1C   0x6008             STR      R0,[R1, #+0]
-   \       0x1E   0xE00F             B.N      ??KeyPwrOnOff_1
-    446          	}
-    447          	else
-    448          	{
-    449          		if( bPowerOn )
+   \        0x8   0xB2DB             UXTB     R3,R3
+   \        0xA   0xF240 0x12EF      MOVW     R2,#+495
+   \        0xE   0x0029             MOVS     R1,R5
+   \       0x10   0x....             LDR.N    R0,??DataTable12_6
+   \       0x12   0x.... 0x....      BL       printf
+    496          
+    497          	static uint8_t bPowerOn = 0;
+    498          
+    499          	if ( bValue != 0)
+   \       0x16   0x0020             MOVS     R0,R4
+   \       0x18   0xB2C0             UXTB     R0,R0
+   \       0x1A   0x2800             CMP      R0,#+0
+   \       0x1C   0xD003             BEQ.N    ??KeyPwrOnOff_0
+    500          	{
+    501          		bPowerOn = 1;
+   \       0x1E   0x2001             MOVS     R0,#+1
+   \       0x20   0x....             LDR.N    R1,??DataTable12_21
+   \       0x22   0x7008             STRB     R0,[R1, #+0]
+   \       0x24   0xE00F             B.N      ??KeyPwrOnOff_1
+    502          	}
+    503          	else
+    504          	{
+    505          		if( bPowerOn != 0)
    \                     ??KeyPwrOnOff_0: (+1)
-   \       0x20   0x....             LDR.N    R0,??DataTable12_23
-   \       0x22   0x6800             LDR      R0,[R0, #+0]
-   \       0x24   0x2800             CMP      R0,#+0
-   \       0x26   0xD00B             BEQ.N    ??KeyPwrOnOff_1
-    450          		{
-    451          			//========================================================================
-    452          			//	Power Off
-    453          			printf( "%s(%d) - Power Off\n", __func__, __LINE__  );
-   \       0x28   0xF240 0x12C5      MOVW     R2,#+453
-   \       0x2C   0x0029             MOVS     R1,R5
-   \       0x2E   0x....             LDR.N    R0,??DataTable12_24
-   \       0x30   0x.... 0x....      BL       printf
-    454          
-    455          			HAL_GPIO_WritePin( ON_OFF_EN_GPIO_Port, ON_OFF_EN_Pin, GPIO_PIN_RESET );
-   \       0x34   0x2200             MOVS     R2,#+0
-   \       0x36   0xF44F 0x6180      MOV      R1,#+1024
-   \       0x3A   0x....             LDR.N    R0,??DataTable12_1
-   \       0x3C   0x.... 0x....      BL       HAL_GPIO_WritePin
-    456          		}
-    457          	}
-    458          }
+   \       0x26   0x....             LDR.N    R0,??DataTable12_21
+   \       0x28   0x7800             LDRB     R0,[R0, #+0]
+   \       0x2A   0x2800             CMP      R0,#+0
+   \       0x2C   0xD00B             BEQ.N    ??KeyPwrOnOff_1
+    506          		{
+    507          			//========================================================================
+    508          			//	Power Off
+    509          			printf( "%s(%d) - Power Off\n", __func__, __LINE__  );
+   \       0x2E   0xF240 0x12FD      MOVW     R2,#+509
+   \       0x32   0x0029             MOVS     R1,R5
+   \       0x34   0x....             LDR.N    R0,??DataTable12_22
+   \       0x36   0x.... 0x....      BL       printf
+    510          
+    511          			HAL_GPIO_WritePin( ON_OFF_EN_GPIO_Port, ON_OFF_EN_Pin, GPIO_PIN_RESET );
+   \       0x3A   0x2200             MOVS     R2,#+0
+   \       0x3C   0xF44F 0x6180      MOV      R1,#+1024
+   \       0x40   0x....             LDR.N    R0,??DataTable12_1
+   \       0x42   0x.... 0x....      BL       HAL_GPIO_WritePin
+    512          		}
+    513          	}
+    514          }
    \                     ??KeyPwrOnOff_1: (+1)
-   \       0x40   0xBD31             POP      {R0,R4,R5,PC}
+   \       0x46   0xBD31             POP      {R0,R4,R5,PC}
 
-   \                                 In section .bss, align 4
+   \                                 In section .bss, align 1
    \                     `KeyPwrOnOff::bPowerOn`:
-   \        0x0                      DS8 4
-    459          
-    460          //========================================================================
-    461          
-    462          
-    463          //========================================================================
-    464          //		Power Button
-    465          //========================================================================
-    466          
-    467          
+   \        0x0                      DS8 1
+    515          
+    516          //========================================================================
+    517          
+    518          
+    519          //========================================================================
+    520          //		Power Button
+    521          //========================================================================
+    522          
+    523          
 
    \                                 In section .text, align 2, keep-with-next
-    468          void	KeyTestLoopback( int bValue )
-    469          {
+    524          void	KeyTestLoopback( uint8_t bValue )
+    525          {
    \                     KeyTestLoopback: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    470          
-    471          #if 1
-    472          
-    473          	//	Speex Loopback Test
-    474          	//	Audio Loopback Proc
-    475          
-    476          	if ( bValue )
-   \        0x4   0x2C00             CMP      R4,#+0
-   \        0x6   0xD00E             BEQ.N    ??KeyTestLoopback_0
-    477          	{
-    478          		//	송신중
-    479          		LCDSetCursor( 10, 13 );
-   \        0x8   0x210D             MOVS     R1,#+13
-   \        0xA   0x200A             MOVS     R0,#+10
-   \        0xC   0x.... 0x....      BL       LCDSetCursor
-    480          		LCDPrintf( "Audio Loop" );
-   \       0x10   0x....             LDR.N    R0,??DataTable12_25
-   \       0x12   0x.... 0x....      BL       LCDPrintf
-    481          
-    482          		//	Spk On
-    483          //		LCDSpeaker( 1 );
-    484          //		LCDSpeaker( 1 );
-    485          
-    486          		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
-   \       0x16   0x2201             MOVS     R2,#+1
-   \       0x18   0x2120             MOVS     R1,#+32
-   \       0x1A   0x....             LDR.N    R0,??DataTable12_26
-   \       0x1C   0x.... 0x....      BL       HAL_GPIO_WritePin
-    487          
-    488          		//	Codec Loopback On
-    489          //		AudioRxTxLoop();
-    490          		AudioDMALoopback();
-   \       0x20   0x.... 0x....      BL       AudioDMALoopback
-   \       0x24   0xE008             B.N      ??KeyTestLoopback_1
-    491          
-    492          		//	Codec Loopback On
-    493          //		AudioPlayDMASine();
-    494          
-    495          //DEL		AudioLoopbackDMASpeex();
-    496          		//	-> Speex는 성능문제로 사용 X
-    497          //		AudioLoopbackDMACompress();
-    498          	}
-    499          	else
-    500          	{
-    501          		//    편성 : 100
-    502          		UpdateLCDMain();
+    526          
+    527          #if 1
+    528          
+    529          	//	Speex Loopback Test
+    530          	//	Audio Loopback Proc
+    531          
+    532          	if ( bValue != 0 )
+   \        0x4   0x0020             MOVS     R0,R4
+   \        0x6   0xB2C0             UXTB     R0,R0
+   \        0x8   0x2800             CMP      R0,#+0
+   \        0xA   0xD00E             BEQ.N    ??KeyTestLoopback_0
+    533          	{
+    534          		//	송신중
+    535          		LCDSetCursor( 10, 13 );
+   \        0xC   0x210D             MOVS     R1,#+13
+   \        0xE   0x200A             MOVS     R0,#+10
+   \       0x10   0x.... 0x....      BL       LCDSetCursor
+    536          		LCDPrintf( "Audio Loop" );
+   \       0x14   0x....             LDR.N    R0,??DataTable12_23
+   \       0x16   0x.... 0x....      BL       LCDPrintf
+    537          
+    538          		//	Spk On
+    539          //		LCDSpeaker( 1 );
+    540          //		LCDSpeaker( 1 );
+    541          
+    542          		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
+   \       0x1A   0x2201             MOVS     R2,#+1
+   \       0x1C   0x2120             MOVS     R1,#+32
+   \       0x1E   0x....             LDR.N    R0,??DataTable12_24
+   \       0x20   0x.... 0x....      BL       HAL_GPIO_WritePin
+    543          
+    544          		//	Codec Loopback On
+    545          //		AudioRxTxLoop();
+    546          		AudioDMALoopback();
+   \       0x24   0x.... 0x....      BL       AudioDMALoopback
+   \       0x28   0xE008             B.N      ??KeyTestLoopback_1
+    547          
+    548          		//	Codec Loopback On
+    549          //		AudioPlayDMASine();
+    550          
+    551          //DEL		AudioLoopbackDMASpeex();
+    552          		//	-> Speex는 성능문제로 사용 X
+    553          //		AudioLoopbackDMACompress();
+    554          	}
+    555          	else
+    556          	{
+    557          		//    편성 : 100
+    558          		UpdateLCDMain();
    \                     ??KeyTestLoopback_0: (+1)
-   \       0x26   0x.... 0x....      BL       UpdateLCDMain
-    503          //		LCDSetCursor( 20, 13 );
-    504          //		LCDPrintf( "편성 : 100" );
-    505          
-    506          		//	Spk Off
-    507          //		LCDSpeaker( 0 );
-    508          
-    509          		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
-   \       0x2A   0x2200             MOVS     R2,#+0
-   \       0x2C   0x2120             MOVS     R1,#+32
-   \       0x2E   0x....             LDR.N    R0,??DataTable12_26
-   \       0x30   0x.... 0x....      BL       HAL_GPIO_WritePin
-    510          
-    511          		//	Codec Loopback Off
-    512          		AudioStop();
-   \       0x34   0x.... 0x....      BL       AudioStop
-    513          	}
-    514          #endif
-    515          
-    516          }
+   \       0x2A   0x.... 0x....      BL       UpdateLCDMain
+    559          //		LCDSetCursor( 20, 13 );
+    560          //		LCDPrintf( "편성 : 100" );
+    561          
+    562          		//	Spk Off
+    563          //		LCDSpeaker( 0 );
+    564          
+    565          		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
+   \       0x2E   0x2200             MOVS     R2,#+0
+   \       0x30   0x2120             MOVS     R1,#+32
+   \       0x32   0x....             LDR.N    R0,??DataTable12_24
+   \       0x34   0x.... 0x....      BL       HAL_GPIO_WritePin
+    566          
+    567          		//	Codec Loopback Off
+    568          		AudioStop();
+   \       0x38   0x.... 0x....      BL       AudioStop
+    569          	}
+    570          #endif
+    571          
+    572          }
    \                     ??KeyTestLoopback_1: (+1)
-   \       0x38   0xBD10             POP      {R4,PC}
+   \       0x3C   0xBD10             POP      {R4,PC}
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable12:
@@ -1279,7 +1285,7 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable12_4:
-   \        0x0   0x....'....        DC32     `LoopProcKey{4}{5}::s_cntKeyOkMenu`
+   \        0x0   0x....'....        DC32     `LoopProcKey{13}{14}::s_cntKeyOkMenu`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable12_5:
@@ -1327,46 +1333,38 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable12_16:
-   \        0x0   0x....'....        DC32     g_qBufAudioTx
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_17:
    \        0x0   0x....'....        DC32     ?_1
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_18:
+   \                     ??DataTable12_17:
    \        0x0   0x....'....        DC32     ?_2
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_19:
+   \                     ??DataTable12_18:
    \        0x0   0x....'....        DC32     `KeySos::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_20:
+   \                     ??DataTable12_19:
    \        0x0   0x....'....        DC32     ?_3
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_21:
-   \        0x0   0x....'....        DC32     ?_4
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_22:
+   \                     ??DataTable12_20:
    \        0x0   0x....'....        DC32     `KeyPwrOnOff::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_23:
+   \                     ??DataTable12_21:
    \        0x0   0x....'....        DC32     `KeyPwrOnOff::bPowerOn`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_24:
+   \                     ??DataTable12_22:
+   \        0x0   0x....'....        DC32     ?_4
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable12_23:
    \        0x0   0x....'....        DC32     ?_5
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_25:
-   \        0x0   0x....'....        DC32     ?_6
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable12_26:
+   \                     ??DataTable12_24:
    \        0x0   0x4002'1000        DC32     0x40021000
 
    \                                 In section .rodata, align 4
@@ -1388,7 +1386,7 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
 
    \                                 In section .rodata, align 4
    \                     ?_1:
-   \        0x0   0xEB 0xB0          DC8 "\353\260\251\354\206\241\354\244\221(%d/%d)"
+   \        0x0   0xEB 0xB0          DC8 "\353\260\251\354\206\241\354\244\221...(%d)"
 
    \              0xA9 0xEC    
 
@@ -1396,11 +1394,11 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
 
    \              0xEC 0xA4    
 
-   \              0x91 0x28    
+   \              0x91 0x2E    
 
-   \              0x25 0x64    
+   \              0x2E 0x2E    
 
-   \              0x2F 0x25    
+   \              0x28 0x25    
 
    \              0x64 0x29    
 
@@ -1426,27 +1424,6 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
 
    \                                 In section .rodata, align 4
    \                     ?_3:
-   \        0x0   0xED 0x86          DC8 "\355\206\265\355\231\224\354\244\221(%d/%d)"
-
-   \              0xB5 0xED    
-
-   \              0x99 0x94    
-
-   \              0xEC 0xA4    
-
-   \              0x91 0x28    
-
-   \              0x25 0x64    
-
-   \              0x2F 0x25    
-
-   \              0x64 0x29    
-
-   \              0x00
-   \       0x11                      DS8 3
-
-   \                                 In section .rodata, align 4
-   \                     ?_4:
    \        0x0   0xED 0x86          DC8 "\355\206\265\355\231\224\354\244\221..."
 
    \              0xB5 0xED    
@@ -1463,7 +1440,7 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
    \        0xD                      DS8 3
 
    \                                 In section .rodata, align 4
-   \                     ?_5:
+   \                     ?_4:
    \        0x0   0x25 0x73          DC8 "%s(%d) - Power Off\012"
 
    \              0x28 0x25    
@@ -1485,7 +1462,7 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
    \              0x0A 0x00
 
    \                                 In section .rodata, align 4
-   \                     ?_6:
+   \                     ?_5:
    \        0x0   0x41 0x75          DC8 "Audio Loop"
 
    \              0x64 0x69    
@@ -1498,9 +1475,9 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
 
    \              0x00
    \        0xB                      DS8 1
-    517          
-    518          
-    519          //========================================================================
+    573          
+    574          
+    575          //========================================================================
 
    Maximum stack usage in bytes:
 
@@ -1523,8 +1500,6 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
          8   -> ProcBtnOK
          8   -> printf
       32   KeyPtt
-        32   -> ADPCM_ClearEncodeBuf
-        32   -> GetCh2Car
         32   -> GetChNearRFM
         32   -> GetChNearRFT
         32   -> GetChPA
@@ -1538,28 +1513,21 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
         32   -> SetRFMMode
         32   -> UpdateLCDMain
         32   -> printf
-        32   -> qBufClear
         32   -> sprintf
       16   KeyPwrOnOff
         16   -> HAL_GPIO_WritePin
         16   -> printf
-      32   KeySos
-        32   -> ADPCM_ClearEncodeBuf
-        32   -> GetCh2Car
-        32   -> GetChNearRFM
-        32   -> GetChNearRFT
-        32   -> GetChPA
-        32   -> IsMenuMaint
-        32   -> LCDPrintf
-        32   -> LCDSetCursor
-        32   -> SendCall
-        32   -> SetChPA
-        32   -> SetChPARFT
-        32   -> SetRFMMode
-        32   -> UpdateLCDMain
-        32   -> printf
-        32   -> qBufClear
-        32   -> sprintf
+       8   KeySos
+         8   -> GetChNearRFM
+         8   -> GetChNearRFT
+         8   -> LCDPrintf
+         8   -> LCDSetCursor
+         8   -> SendCall
+         8   -> SetChPA
+         8   -> SetChPARFT
+         8   -> SetRFMMode
+         8   -> UpdateLCDMain
+         8   -> printf
        8   KeyTestLoopback
          8   -> AudioDMALoopback
          8   -> AudioStop
@@ -1575,21 +1543,21 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
         16   -> RFM_Spk
         16   -> SetSpkVol
         16   -> printf
-      64   LoopProcKey
-        64   -> EnableMenuMaint
-        64   -> GetKeyStat
-        64   -> IsMenuMaint
-        64   -> KeyDown
-        64   -> KeyLight
-        64   -> KeyMenu
-        64   -> KeyOK
-        64   -> KeyPtt
-        64   -> KeyPwrOnOff
-        64   -> KeySos
-        64   -> KeyUp
-        64   -> KeyVol
-        64   -> __aeabi_memcpy
-        64   -> memcmp
+      40   LoopProcKey
+        40   -> EnableMenuMaint
+        40   -> GetKeyStat
+        40   -> IsMenuMaint
+        40   -> KeyDown
+        40   -> KeyLight
+        40   -> KeyMenu
+        40   -> KeyOK
+        40   -> KeyPtt
+        40   -> KeyPwrOnOff
+        40   -> KeySos
+        40   -> KeyUp
+        40   -> KeyVol
+        40   -> __aeabi_memcpy
+        40   -> memcmp
 
 
    Section sizes:
@@ -1614,8 +1582,6 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
        4  ??DataTable12_22
        4  ??DataTable12_23
        4  ??DataTable12_24
-       4  ??DataTable12_25
-       4  ??DataTable12_26
        4  ??DataTable12_3
        4  ??DataTable12_4
        4  ??DataTable12_5
@@ -1626,39 +1592,38 @@ Warning[Pe223]: function "SetChPARFT" declared implicitly
       16  ?_0
       20  ?_1
       16  ?_2
-      20  ?_3
-      16  ?_4
-      20  ?_5
-      12  ?_6
+      16  ?_3
+      20  ?_4
+      12  ?_5
       10  GetKey
-     198  GetKeyStat
-      26  KeyDown
-      76  KeyLight
-      26  KeyMenu
-      26  KeyOK
-     184  KeyPtt
-      66  KeyPwrOnOff
-     160  KeySos
-      58  KeyTestLoopback
-      26  KeyUp
-      78  KeyVol
-     262  LoopProcKey
-       4  bOnOff
-       4  bPowerOn
-      36  s_btnStat
-       4  s_cntKeyOkMenu
+     150  GetKeyStat
+      34  KeyDown
+      84  KeyLight
+      32  KeyMenu
+      32  KeyOK
+     174  KeyPtt
+      72  KeyPwrOnOff
+     114  KeySos
+      62  KeyTestLoopback
+      34  KeyUp
+      86  KeyVol
+     258  LoopProcKey
+       1  bOnOff
+       1  bPowerOn
+      12  s_btnStat
+       1  s_cntKeyOkMenu
        4  tickBase
        4  tickBase2
       80  -- Other
 
  
-    56 bytes in section .bss
-   200 bytes in section .rodata
- 1'304 bytes in section .text
+    23 bytes in section .bss
+   180 bytes in section .rodata
+ 1'242 bytes in section .text
  
- 1'304 bytes of CODE  memory
-   200 bytes of CONST memory
-    56 bytes of DATA  memory
+ 1'242 bytes of CODE  memory
+   180 bytes of CONST memory
+    23 bytes of DATA  memory
 
 Errors: none
-Warnings: 24
+Warnings: 17

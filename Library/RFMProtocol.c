@@ -38,26 +38,15 @@
 
 #include "eeprom.h"				//	AddrEEPUpgrMGN1
 
+#include "diag.h"
+
+#include "upgrade.h"
+
 #include "cli.h"
 
 //==========================================================================
 //	Define
 
-//==========================================================================
-extern int ChTx_1 	= 	_ChTx_1;	//	* CH8 : 송신기#1 - (Car No : 11) - 915 + 0.25 * 8
-extern int ChTx_2 	= 	_ChTx_2;	//	* CH9 : 송신기#2 - (Car No : 12)
-extern int ChTS1_1 	= 	_ChTS1_1;	//	1호차 수신기 채널
-//==========================================================================
-
-
-
-int m_lightReSendCnt = 0; // 수신기에서 사용하는 변수.
-int m_lightTxSentCnt = 0; //송신기에서 전송하는 방법.
-int m_light_Val = 0xFF;
-
-int m_RouteReq_OK = 0; //Route 기능에서 내가 요청에 응답이 수신되었는지 확인.
-
-int m_RouteRunFlag = 0; // 전파 방해금지를 위해 동작 조건을 설정.
 
 //==========================================================================
 //	Function
@@ -74,32 +63,29 @@ int m_RouteRunFlag = 0; // 전파 방해금지를 위해 동작 조건을 설정
 //==========================================================================
 
 //========================================================================
-void _MakePktHdr	( RFMPkt *pPkt, int addrSrc, int addrDest, int nLen, int nPktCmd )
+void _MakePktHdr	( RFMPkt *pPkt, uint8_t addrSrc, uint8_t addrDest, uint8_t nLen, uint8_t nPktCmd )
 //========================================================================
 {
 #if	defined(USE_HOPPING)
 
 	if ( nPktCmd == PktStat
-		|| nPktCmd == PktStatReq
 		|| nPktCmd == PktCmd
 		|| nPktCmd == PktUpgr
-		|| nPktCmd == PktRouteReq
-		|| nPktCmd == PktRouteRsp
 		)
 	{
 		//	상태정보의 경우 Seq / ID : 0x00
 		pPkt->hdr.bHdrID		=	HdrID1;		//	Header ID #1
 		pPkt->hdr.nSeq			=	0x00;		//	Sequence
 		pPkt->hdr.nIDFlag		=	0x00;		//	ID Flag
-
-		pPkt->dat.cmd.nSpare[0] = GetTrainSetIdx(); // 편성 정보를 전달한다. //_JDS
-
-
 	}
 	else
 	{
 		g_nPktSeq++;
-		if ( g_nPktSeq == 0 )	g_nPktSeq++;
+		if ( g_nPktSeq == 0 )
+		{
+			g_nPktSeq++;
+		}
+
 		pPkt->hdr.nSeq			=	g_nPktSeq;			//
 
 		if ( GetDevID() == DevRF900T )
@@ -108,12 +94,12 @@ void _MakePktHdr	( RFMPkt *pPkt, int addrSrc, int addrDest, int nLen, int nPktCm
 			//		송신기의 송/수신반경과 수신기의 송/수신반경의 차이로 
 			//		송신기가 상태정보를 수신후에 수신기에 송신을 할때 범위에 도달하지 못하는 경우가 있으므로, 
 			//		수신기에서 중계를 할 수 있도록 송신기 ID만 설정하여 송신함.
-			pPkt->hdr.nIDFlag		=	(0x1 << GetCarNo());	//	송신기는 자신의 ID만 Set하여 전송.
+			pPkt->hdr.nIDFlag		= (uint16_t)	((uint16_t)0x1 << (uint16_t)GetCarNo());	//	송신기는 자신의 ID만 Set하여 전송.
 		}
 		else
 		{
 			//	수신기.
-			pPkt->hdr.nIDFlag		=	g_flagRspID;		//
+			pPkt->hdr.nIDFlag		=	 g_flagRspID;		//
 		}
 	}
 
@@ -131,7 +117,7 @@ void _MakePktHdr	( RFMPkt *pPkt, int addrSrc, int addrDest, int nLen, int nPktCm
 #if defined(USE_CH_ISO_DEV)		//	장치별 채널분리.
 
 //========================================================================
-void _MakePktHdr2	( RFMPkt *pPkt, int nPktCmd )
+void _MakePktHdr2	( RFMPkt *pPkt, uint8_t nPktCmd )
 //========================================================================
 {
 	//	상태정보의 경우 Seq / ID : 0x00
@@ -140,51 +126,27 @@ void _MakePktHdr2	( RFMPkt *pPkt, int nPktCmd )
 	pPkt->hdr2.nTS			=	GetTrainSetIdx();	//	ID Flag
 	pPkt->hdr2.nPktCmd		=	nPktCmd;			//	Status
 
-	if((GetDevID() == DevRF900T && GetRFMMode() == RFMModeTx)|| (GetRFMMode() == RFMModeOcc) )
-	{
-		// 전송 페키지 카운터.
-		g_nPktSeq_2++;
-		if ( g_nPktSeq_2 == 0 )	g_nPktSeq_2++;
-		pPkt->hdr2.nSeq			=	g_nPktSeq_2;
-	}
-
-
 //	CLEAR_BIT(pPkt->hdr2.nTS, (0x1<<7));
 //	SET_BIT(pPkt->hdr2.nTS, (0x1<<6));
 
 #if defined( USE_RFT_REG_TO_RFM )
-
-	if ( GetDevID() == DevRF900T )
+	//	자신의 송신기 ID Flag 설정.	-	재수신 받지 않음.
+	if( GetRFTID() == 1 )
 	{
-		//	자신의 송신기 ID Flag 설정.	-	재수신 받지 않음.
-		if( GetRFTID() == 1 )
+		pPkt->hdr2.bRFT1	=	1;	//	SET_BIT( pPkt->hdr2.nSrcCh, (0x1<<6) );	//
+		if( GetChPARFT() != 0 )
 		{
-			pPkt->hdr2.bRFT1	=	1;	//	SET_BIT( pPkt->hdr2.nSrcCh, (0x1<<6) );	//
-			if( GetChPARFT() != 0 )	pPkt->hdr2.bRFT2	=	1;	//	송신기에 직접 전송하는경우.
-		}
-		else if( GetRFTID() == 2 )
-		{
-			pPkt->hdr2.bRFT2	=	1;	//	SET_BIT( pPkt->hdr2.nSrcCh, (0x1<<7) );//
-			if( GetChPARFT() != 0 )	pPkt->hdr2.bRFT1	=	1;	//	송신기에 직접 전송하는경우.
+			pPkt->hdr2.bRFT2	=	1;	//	송신기에 직접 전송하는경우.
 		}
 	}
-	else
+	else if( GetRFTID() == 2 )
 	{
-
-		if( GetChRx() == ChTS1_1 )	//	1호차 수신기
+		pPkt->hdr2.bRFT2	=	1;	//	SET_BIT( pPkt->hdr2.nSrcCh, (0x1<<7) );//
+		if( GetChPARFT() != 0 )
 		{
-			pPkt->hdr2.bRFT1	=	1;	//	SET_BIT( pPkt->hdr2.nSrcCh, (0x1<<6) );	//
-			//if( GetChPARFT() != 0 )	pPkt->hdr2.bRFT2	=	1;	//	송신기에 직접 전송하는경우.
-
-		}
-		else
-		{
-			pPkt->hdr2.bRFT2	=	1;	//	SET_BIT( pPkt->hdr2.nSrcCh, (0x1<<7) );//
-			//if( GetChPARFT() != 0 )	pPkt->hdr2.bRFT1	=	1;	//	송신기에 직접 전송하는경우.
-
+			pPkt->hdr2.bRFT1	=	1;	//	송신기에 직접 전송하는경우.
 		}
 	}
-
 
 #endif
 }
@@ -192,7 +154,7 @@ void _MakePktHdr2	( RFMPkt *pPkt, int nPktCmd )
 #endif	//	defined(USE_CH_ISO_DEV)		//	장치별 채널분리.
 
 //==========================================================================
-void _MakeRFCmd( RFMPkt	*pPkt, char *sCmd, int nRSSI )
+void _MakeRFCmd( RFMPkt	*pPkt, S8 *sCmd, uint8_t nRSSI )
 //==========================================================================
 {
 	printf( "%s(%d)\n", __func__, __LINE__ );
@@ -201,24 +163,25 @@ void _MakeRFCmd( RFMPkt	*pPkt, char *sCmd, int nRSSI )
 
 	//========================================================================
 	//	Packet Header
-	_MakePktHdr( pPkt, GetDevID(), 0xFF, RFPktDataLen, PktCmd );
+	_MakePktHdr( pPkt, (uint8_t)GetDevID(),(uint8_t) 0xFF, (uint8_t)RFPktDataLen,(uint8_t) PktCmd );
 
 	//========================================================================
 	//	Command
-	pPkt->dat.cmd.nRSSIOver = nRSSI;		//	명령 동작 RSSI 범위.
+	pPkt->dat.cmd.nRSSIOver = (int8_t)nRSSI;		//	명령 동작 RSSI 범위.
 	strcpy( pPkt->dat.cmd.sCmd, sCmd );		//	명령 전송.
-
-	pPkt->dat.cmd.nSpare[0] = GetTrainSetIdx(); // 편성 정보를 전달한다. //_JDS
 
 	//========================================================================
 }
 
 
 //========================================================================
-void  SendStatReq( int nDestCh )
+void SendStatReq( uint8_t nDestCh )
 //========================================================================
 {
-	if ( GetDbg() == 3)	printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() )
+	{
+		printf( "%s(%d)\n", __func__, __LINE__ );
+	}
 
 	RFMPkt			stPkt;
 	RFMPktStatReq	*pStatReq;
@@ -228,43 +191,31 @@ void  SendStatReq( int nDestCh )
 
 	//========================================================================
 	//	Packet Header
-	_MakePktHdr( &stPkt, GetDevID(), 0xFF, sizeof( RFMPktStatReq ), PktStatReq );
+	_MakePktHdr( &stPkt, (uint8_t)GetDevID(), (uint8_t)0xFF, (uint8_t)sizeof( RFMPktStatReq ),(uint8_t) PktStatReq );
 
 	//========================================================================
 	//	Packet Body
-	pStatReq->nSrcCh	=	GetChRx();			//	수신받을 채널
+	pStatReq->nSrcCh	=	GetChRx();	//	수신받을 채널
 
 	pStatReq->nCarNo	=	GetCarNo();			//	호차번호.
 	pStatReq->nTrainNo	=	GetTrainSetIdx();	//	편성번호.
 
-#if defined(USE_ROUTE_NEAREST_RFM)
-
-	pStatReq->nNearCh	=	GetChNearRFM();		//	가장 가까운 수신기(RFM) 채널
-
-#endif	//	 defined(USE_ROUTE_NEAREST_RFM)
-
-	if (m_lightTxSentCnt) //조명등 OFF 동작을 라우터 프로토콜에 15초 동안 추가해서 기능 확인. _JDS
-	{
-		m_lightTxSentCnt--;
-
-		pStatReq->nSpare1[0] = m_light_Val;
-
-		if ( GetDbg() == 6 ) printf("SeStReq:CC \n");
-	}
-
 	//========================================================================
 	//	Send RF
-	SendPktCh( nDestCh, (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + sizeof( RFMPktStatReq ) );
+	SendPktCh( (uint8_t)nDestCh, (U8 *)&stPkt, (uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktStatReq )) );
 }
 
 //========================================================================
-void SendStat( int nDestCh )
+void SendStat( uint8_t nDestCh )
 //========================================================================
 {
 	//	RF Mode가 RFMModeNormal인 경우.
 	//		상태정보 전송.
 
-	if ( GetDbg() == 3 )	printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() )
+	{
+		printf( "%s(%d)\n", __func__, __LINE__ );
+	}
 
 	RFMPkt		stPkt;
 	RFMPktStat	*pStat;
@@ -274,7 +225,7 @@ void SendStat( int nDestCh )
 
 	//========================================================================
 	//	Packet Header
-	_MakePktHdr( &stPkt, GetDevID(), 0xFF, sizeof( RFMPktStat ), PktStat );
+	_MakePktHdr( &stPkt, (uint8_t)GetDevID(),(uint8_t) 0xFF,(uint8_t) sizeof( RFMPktStat ),(uint8_t) PktStat );
 
 	//========================================================================
 	//	Status Data
@@ -295,7 +246,6 @@ void SendStat( int nDestCh )
 	pStat->rspID		=	g_flagRspID;		//	Rsp ID Flag
 
 	pStat->nManHop		=	g_nManHopping;		//	Manual Hopping Setting
-	pStat->nRFMode		=	g_nRFMode;			//	RFMode
 
 	pStat->nDevFlag		=	g_nDevFlag;			//	Device Flag : 조명 상태 등.
 
@@ -303,23 +253,22 @@ void SendStat( int nDestCh )
 
 	//========================================================================
 	//	Send RF
-
-	if( g_nRFMode == RFMode2 )//#if defined(USE_COMM_MODE_CH_GRP)	//	그룹주파수 모드. - [ 1, 2 ] [ 3, 4 ] ...
-	{
-		//	짝수 호차는 3msec Delay ( 송신시 충돌 방지 )
-		if( pStat->nCarNo % 2 == 0 ) HAL_Delay( 3 );
-	}//#endif
-
 #if defined(USE_CH_ISO_DEV)
 	//	상태정보는 송신기로 전송.
-	int nCh;
+	uint8_t nCh;
 
 	//========================================================================
-	if ( nDestCh == 0 )	nCh = ChTx_1;	//	Default
-	else				nCh = nDestCh;
+	if ( nDestCh == 0 )
+	{
+		nCh = (uint8_t)ChTx_1;
+	}
+	else
+	{
+		nCh = (uint8_t)nDestCh;
+	}
 	//========================================================================
 
-	SendPktCh(nCh, (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + sizeof( RFMPktStat ) );
+	SendPktCh((uint8_t)nCh, (U8 *)&stPkt, (uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktStat )) );
 #else
 	SendPacket( (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + sizeof( RFMPktStat ) );
 #endif
@@ -328,92 +277,7 @@ void SendStat( int nDestCh )
 
 
 //========================================================================
-void SendRouteReq( int nDestCh ) // 요청하는 부분.
-//========================================================================
-{
-	if ( GetDbg() == 3 )	printf( "%s(%d)\n", __func__, __LINE__ );
-
-	RFMPkt			stPkt;
-	RFMPktRoute		*pRouteReq;
-
-	memset( &stPkt, 0, sizeof( stPkt ) );
-	pRouteReq = (RFMPktRoute *)&stPkt.dat.routeReq;
-
-	//========================================================================
-	//	Packet Header
-	_MakePktHdr( &stPkt, GetDevID(), 0xFF, sizeof( RFMPktRoute ), PktRouteReq );
-
-	//========================================================================
-	//	Packet Body
-	pRouteReq->nSrcCh	=	GetChRx();			//	수신받을 채널
-	pRouteReq->nSrcDev	=	GetDevID();			//	RFT / RFM
-
-	pRouteReq->nCarNo	=	GetCarNo();			//	호차번호.
-	pRouteReq->nTrainNo	=	GetTrainSetIdx();	//	편성번호.
-
-
-	if (m_lightReSendCnt) //조명등 OFF 동작을 라우터 프로토콜에 15초 동안 추가해서 기능 확인.
-	{
-		m_lightReSendCnt--;
-
-		pRouteReq->nSpare1[0] = m_light_Val;
-
-		if ( GetDbg() == 6 ) printf("SeReq:AA \n");
-	}
-
-
-	//========================================================================
-	//	Send RF
-	SendPktCh( nDestCh, (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + sizeof( RFMPktRoute ) );
-}
-
-//========================================================================
-void SendRouteRsp( int nDestCh ) //응답하는 부분.
-//========================================================================
-{
-	if ( GetDbg() == 3 )	printf( "%s(%d)\n", __func__, __LINE__ );
-
-	RFMPkt			stPkt;
-	RFMPktRoute	*pRouteRsp;
-
-	memset( &stPkt, 0, sizeof( stPkt ) );
-	pRouteRsp = (RFMPktRoute *)&stPkt.dat.routeRsp;
-
-	//========================================================================
-	//	Packet Header
-	_MakePktHdr( &stPkt, GetDevID(), 0xFF, sizeof( RFMPktRoute ), PktRouteRsp );
-
-	//========================================================================
-	//	Packet Body
-	pRouteRsp->nSrcCh	=	GetChRx();			//	수신받을 채널
-	pRouteRsp->nSrcDev	=	GetDevID();			//	RFT / RFM
-
-	pRouteRsp->nCarNo	=	GetCarNo();			//	호차번호.
-	pRouteRsp->nTrainNo	=	GetTrainSetIdx();	//	편성번호.
-
-	if(GetRFMMode() == RFMModeNormal) //_JDS
-	{
-		if (m_lightReSendCnt) {
-			m_lightReSendCnt--;
-			pRouteRsp->nSpare1[1] = m_light_Val;
-
-			if ( GetDbg() == 6 ) printf("SeRep:BB \n");
-
-		}
-	}
-	else
-	{
-		m_lightReSendCnt = 0;
-	}
-
-	//========================================================================
-	//	Send RF
-	SendPktCh( nDestCh, (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + sizeof( RFMPktRoute ) );
-}
-
-
-//========================================================================
-void SendPA( int nStartStop )
+void SendPA( uint8_t nStartStop )
 //========================================================================
 {
 	printf( "%s(%d)\n", __func__, __LINE__ );
@@ -427,7 +291,7 @@ void SendPA( int nStartStop )
 	//========================================================================
 	//	Packet Header
 #if defined(USE_CH_ISO_DEV)
-	_MakePktHdr2( &stPkt, PktCtrlPaCall );
+	_MakePktHdr2( &stPkt, (uint8_t)PktCtrlPaCall );
 #else
 	_MakePktHdr( &stPkt, GetDevID(), 0xFF, sizeof( RFMPktCtrlPACall ), PktCtrlPaCall );
 #endif
@@ -446,13 +310,13 @@ void SendPA( int nStartStop )
 	if ( GetChPARFT() != 0 )
 	{
 		//	송신기에 전송.
-		SendPktCh( GetChPARFT(), (uint8_t *)&stPkt,
-			(U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
+		SendPktCh( (uint8_t)GetChPARFT(), (U8 *)&stPkt,
+			(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall )) );
 	}
 
 	//	수신기에 전송
-	SendPktCh( GetChPA(), (uint8_t *)&stPkt,
-		(U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
+	SendPktCh( (uint8_t)GetChPA(), (U8 *)&stPkt,
+			(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall )) );
 
 #else
 	SendPacket( (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
@@ -463,7 +327,7 @@ void SendPA( int nStartStop )
 
 
 //========================================================================
-void SendCall( int nStartStop )
+void SendCall( uint8_t nStartStop )
 //========================================================================
 {
 	printf( "%s(%d)\n", __func__, __LINE__ );
@@ -477,7 +341,7 @@ void SendCall( int nStartStop )
 	//========================================================================
 	//	Packet Header
 #if defined(USE_CH_ISO_DEV)
-	_MakePktHdr2( &stPkt, PktCtrlPaCall );
+	_MakePktHdr2( &stPkt, (uint8_t)PktCtrlPaCall );
 #else
 	_MakePktHdr( &stPkt, GetDevID(), 0xFF, sizeof( RFMPktCtrlPACall ), PktCtrlPaCall );
 #endif
@@ -496,15 +360,15 @@ void SendCall( int nStartStop )
 	if ( GetChPARFT() != 0 )
 	{
 		//	송신기에 직접 전송.
-		SendPktCh( GetChPARFT(), (uint8_t *)&stPkt,
-			(U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
+		SendPktCh( (uint8_t)GetChPARFT(), (U8 *)&stPkt,
+				(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall )) );
 	}
 	else
 	{
 		//	수신기를 통해 전송.
-		SendPktCh( GetChPA(),	//GetChOtherRFT(),
-				(uint8_t *)&stPkt,
-				(U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
+		SendPktCh( (uint8_t)GetChPA(),	//GetChOtherRFT(),
+				(U8 *)&stPkt,
+				(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall )) );
 	}
 
 #else
@@ -517,7 +381,7 @@ void SendCall( int nStartStop )
 }
 
 //========================================================================
-void SendOCCPA( int nStartStop )
+void SendOCCPA( uint8_t nStartStop )
 //========================================================================
 {
 	printf( "%s(%d)\n", __func__, __LINE__ );
@@ -531,7 +395,7 @@ void SendOCCPA( int nStartStop )
 	//========================================================================
 	//	Packet Header
 #if defined(USE_CH_ISO_DEV)
-	_MakePktHdr2( &stPkt, PktCtrlPaCall );
+	_MakePktHdr2( &stPkt, (uint8_t)PktCtrlPaCall );
 #else
 	_MakePktHdr( &stPkt, GetDevID(), 0xFF, sizeof( RFMPktCtrlPACall ), PktCtrlPaCall );
 #endif
@@ -540,7 +404,7 @@ void SendOCCPA( int nStartStop )
 	//	Status Data
 	pPACall->nStartStop		=	nStartStop;
 
-	pPACall->nTypePACall	=	CtrlPA;
+	pPACall->nTypePACall	=	CtrlOccPa;
 
 	//========================================================================
 	//	Send RF
@@ -550,15 +414,13 @@ void SendOCCPA( int nStartStop )
 	if ( GetChPARFT() != 0 )
 	{
 		//	송신기에 전송.
-		//SendPktCh( GetChPARFT(), (uint8_t *)&stPkt,
-		//	(U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
+		SendPktCh( (uint8_t)GetChPARFT(), (U8 *)&stPkt,
+				(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall )) );
 	}
 
 	//	수신기에 전송
-	SendPktCh( GetChRFMUp(), (uint8_t *)&stPkt,
-		(U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
-
-	printf( "%s(%d)\n", __func__, GetChPA() + ChGap );
+	SendPktCh( (uint8_t)GetChPA(), (U8 *)&stPkt,
+			(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) ));
 
 #else
 	SendPacket( (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
@@ -569,7 +431,7 @@ void SendOCCPA( int nStartStop )
 
 
 //========================================================================
-void SendLight( int nOnOff )
+void SendLight( uint8_t nOnOff )
 //========================================================================
 {
 	printf( "%s(%d)\n", __func__, __LINE__ );
@@ -584,7 +446,7 @@ void SendLight( int nOnOff )
 	//	Packet Header
 #if defined(USE_CH_ISO_DEV)
 
-	_MakePktHdr2( &stPkt, PktLight );
+	_MakePktHdr2( &stPkt,(uint8_t) PktLight );
 
 #else
 
@@ -600,8 +462,8 @@ void SendLight( int nOnOff )
 	//	Send RF
 #if defined(USE_CH_ISO_DEV)
 
-	SendPktCh( GetChPA(), (uint8_t *)&stPkt,
-		(U8)sizeof( RFMPktHdr ) + sizeof( RFMPktLight ) );
+	SendPktCh( (uint8_t)GetChPA(), (U8 *)&stPkt,
+			(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktLight )) );
 
 #else
 
@@ -616,50 +478,39 @@ void SendLight( int nOnOff )
 void SendLightOn( void )
 //==========================================================================
 {
-	SendLight( 1 );		//	Light On
-
-
-	m_lightTxSentCnt = 20;
-	m_light_Val = 0xDD;
-
-
+	SendLight((uint8_t) 1 );		//	Light On
 }
 
 //==========================================================================
 void SendLightOff( void )
 //==========================================================================
 {
-	SendLight( 0 );		//	Light Off
-
-	m_lightTxSentCnt = 20;
-	m_light_Val = 0xCC;
-
+	SendLight((uint8_t) 0 );		//	Light Off
 }
 
 //==========================================================================
-void SendRFCmdCh( int nCh, char *sCmd, int nRSSI )
+void SendRFCmdCh( uint8_t nCh, char *sCmd, uint8_t nRSSI )
 //==========================================================================
 {
 	printf( "%s(%d)\n", __func__, __LINE__ );
 	//========================================================================
 	RFMPkt			stPkt;
-	_MakeRFCmd( &stPkt, sCmd, nRSSI );
+	_MakeRFCmd( &stPkt, sCmd, (uint8_t)nRSSI );
 
 	//========================================================================
 	//	Send RF
-	SendPktCh( nCh, (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + RFPktDataLen );
+	SendPktCh( (uint8_t)nCh, (U8 *)&stPkt, (uint8_t)(sizeof( RFMPktHdr ) + RFPktDataLen) );
 	//========================================================================
 }
 
 //==========================================================================
-void SendRFCmd( char *sCmd, int nRSSI )
+void SendRFCmd( char *sCmd, uint8_t nRSSI )
 //==========================================================================
 {
 	printf( "%s(%d)\n", __func__, __LINE__ );
 	//========================================================================
 	RFMPkt			stPkt;
-	_MakeRFCmd( &stPkt, sCmd, nRSSI );
-
+	_MakeRFCmd( &stPkt, sCmd, (uint8_t)nRSSI );
 
 	//========================================================================
 	//	Send RF
@@ -667,12 +518,11 @@ void SendRFCmd( char *sCmd, int nRSSI )
 
 	//========================================================================
 	//	모든 수신기로 전송.
-//	for ( int nCh = ChTS_base; nCh < ChTS1_1 + (ChGap * 10); nCh++ )
-	for ( int nCh = ChTS_base; nCh < ChMax; nCh++ )
+	for ( uint8_t nCh = (uint8_t)ChTS_base; nCh < (uint8_t)(ChTS1_1 + (ChGap * 10)); nCh++ )
 	{
-		SendPktCh( nCh, (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + RFPktDataLen );
+		SendPktCh( (uint8_t)nCh, (U8 *)&stPkt, (uint8_t)(sizeof( RFMPktHdr ) + RFPktDataLen ));
 
-		HAL_Delay(3);	//	Tx Delay
+		HAL_Delay((uint32_t)3);	//	Tx Delay
 	}
 	//========================================================================
 }
@@ -683,50 +533,14 @@ void SendRFCmdReset( void )
 {
 	printf( "%s(%d)\n", __func__, __LINE__ );
 
-	SendRFCmd( "reset", 190 );
+	SendRFCmd( "reset", (uint8_t)190 );
 
 	//========================================================================
 	//	Reset시 Upgrade채널도 reset
 	RFMPkt			stPkt;
-	_MakeRFCmd( &stPkt, "reset", 190 );
-	SendPktCh( ChUpgrDst, (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + RFPktDataLen );
+	_MakeRFCmd( &stPkt, "reset", (uint8_t)190 );
+	SendPktCh((uint8_t) ChUpgrDst, (U8 *)&stPkt, (uint8_t)(sizeof( RFMPktHdr ) + RFPktDataLen) );
 	//========================================================================
-}
-
-//==========================================================================
-void SendRFCmdCar( int nCar )
-//==========================================================================
-{
-	printf( "%s(%d)\n", __func__, __LINE__ );
-
-	char sBuf[100];
-	sprintf(sBuf, "car %d", nCar );
-
-	SendRFCmd( sBuf, 190 );
-}
-
-//==========================================================================
-void SendRFCmdTS( int nIdx )
-//==========================================================================
-{
-	printf( "%s(%d)\n", __func__, __LINE__ );
-
-	char sBuf[100];
-	sprintf(sBuf, "ts %d", nIdx );
-
-	SendRFCmd( sBuf, 190 );
-}
-
-//==========================================================================
-void SendRFCmdRFMode( int nMode )
-//==========================================================================
-{
-	printf( "%s(%d)\n", __func__, __LINE__ );
-
-	char sBuf[100];
-	sprintf(sBuf, "rfmod %d", nMode );
-
-	SendRFCmd( sBuf, 190 );
 }
 
 //==========================================================================
@@ -735,12 +549,12 @@ void SendRFCmdDFUMode( void )
 {
 	printf( "%s(%d)\n", __func__, __LINE__ );
 	//==========================================================================
-	SendRFCmd( "stboot", 247 );	//	DFU모드의 경우 아주 근접(RSSI-247)하지 않으면 동작하지 않도록 한다!!!
+	SendRFCmd( "stboot", (uint8_t)247 );	//	DFU모드의 경우 아주 근접(RSSI-247)하지 않으면 동작하지 않도록 한다!!!
 	//==========================================================================
 }
 
 //==========================================================================
-void SendRFCmdUpgrade( int bRetry )
+void SendRFCmdUpgrade( uint16_t bRetry )
 //==========================================================================
 {
 	//==========================================================================
@@ -755,18 +569,18 @@ void SendRFCmdUpgrade( int bRetry )
 	{
 		//	Upgrade 채널로 전송
 		//	Upgrade Mode로 변경.
-		SendRFCmdCh( ChUpgrDst, "upgrade 1", 200 );	//	DFU모드의 경우 근접(RSSI-200)하지 않으면 동작하지 않도록 한다!!!
+		SendRFCmdCh( (uint8_t)ChUpgrDst, (char *)"upgrade 1", (uint8_t) 200 );	//	DFU모드의 경우 근접(RSSI-200)하지 않으면 동작하지 않도록 한다!!!
 	}
 	else
 	{
 		//	Upgrade Mode로 변경.
-		SendRFCmd( "upgrade 1", 200 );	//	DFU모드의 경우 근접(RSSI-200)하지 않으면 동작하지 않도록 한다!!!
+		SendRFCmd( (char *)"upgrade 1", (uint8_t)200 );	//	DFU모드의 경우 근접(RSSI-200)하지 않으면 동작하지 않도록 한다!!!
 	}
 	//==========================================================================
 
-	SetUpgrReTry( bRetry );			//	Retry 설정.
+	SetUpgrReTry((uint16_t) bRetry );			//	Retry 설정.
 
-	HAL_Delay( 500 );	//	sleep 200 msec
+	HAL_Delay( (uint32_t)500 );	//	sleep 200 msec
 
 	//========================================================================
 	//	Upgrade Image 전송.
@@ -780,7 +594,7 @@ void SendRFCmdUpgrade( int bRetry )
 }
 
 //==========================================================================
-void	SendUpgrData		( uint32_t nAddrTarget, int nPktTot, int nPktIdx, uint8_t *sBuf, int nSize )	//	Send Upgrade Data
+void	SendUpgrData		( uint32_t nAddrTarget, uint16_t nPktTot, uint16_t nPktIdx, uint8_t *sBuf, uint8_t nSize )	//	Send Upgrade Data
 //==========================================================================
 {
 //	printf( "%s(%d)\n", __func__, __LINE__ );
@@ -790,7 +604,7 @@ void	SendUpgrData		( uint32_t nAddrTarget, int nPktTot, int nPktIdx, uint8_t *sB
 
 	//========================================================================
 	//	Packet Header
-	_MakePktHdr( &stPkt, GetDevID(), 0xFF, RFPktDataLen, PktUpgr );
+	_MakePktHdr( &stPkt, (uint8_t)GetDevID(), (uint8_t)0xFF, (uint8_t)RFPktDataLen,(uint8_t) PktUpgr );
 
 	//========================================================================
 	//	Packet Body
@@ -801,26 +615,22 @@ void	SendUpgrData		( uint32_t nAddrTarget, int nPktTot, int nPktIdx, uint8_t *sB
 	pUpgr->idxPkt		=	nPktIdx;
 	pUpgr->nSize		=	nSize;
 
-	if (stPkt.hdr.nPktCmd == PktUpgr) //같은 편성만 업데이트가 가능 하도록 기능 추가.
+	if( GetUpgrReTry() )
 	{
-		pUpgr->nSpare2[0] = GetTrainSetIdx(); //
+		pUpgr->bFlag	|=	PktUpgrFlagRetry;	//	Retry Flag
 	}
 
-
-
-	if( GetUpgrReTry() ) pUpgr->bFlag	|=	PktUpgrFlagRetry;	//	Retry Flag
-
-	memcpy( pUpgr->data, sBuf, nSize );
+	memcpy( pUpgr->data, sBuf, (uint32_t)nSize );
 
 	//========================================================================
 	//	Send RF
-	SendPktCh( ChUpgrDst, (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + RFPktDataLen );
+	SendPktCh( (uint8_t)ChUpgrDst, (U8 *)&stPkt, (uint8_t)(sizeof( RFMPktHdr ) + RFPktDataLen) );
 
 	//========================================================================
 }
 
 //==========================================================================
-void	SendUpgrStat		( int nUpgrResult )	//	Send Upgrade Data
+void	SendUpgrStat		( uint8_t nUpgrResult )	//	Send Upgrade Data
 //==========================================================================
 {
 	printf( "%s(%d) - %d\n", __func__, __LINE__, nUpgrResult );
@@ -830,7 +640,7 @@ void	SendUpgrStat		( int nUpgrResult )	//	Send Upgrade Data
 
 	//========================================================================
 	//	Packet Header
-	_MakePktHdr( &stPkt, GetDevID(), 0xFF, RFPktDataLen, PktUpgrStat );
+	_MakePktHdr( &stPkt, (uint8_t)GetDevID(), (uint8_t)0xFF, (uint8_t)RFPktDataLen, (uint8_t)PktUpgrStat );
 
 	//========================================================================
 	//	Packet Body
@@ -845,12 +655,12 @@ void	SendUpgrStat		( int nUpgrResult )	//	Send Upgrade Data
 #if defined( USE_CH_ISO_DEV )
 
 	//	송신기#1
-	SendPktCh( ChTx_1, (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + RFPktDataLen );
+	SendPktCh( (uint8_t)ChTx_1, (U8 *)&stPkt, (uint8_t)(sizeof( RFMPktHdr ) + RFPktDataLen) );
 
-	HAL_Delay(3);	//	재전송 전 Delay
+	HAL_Delay((uint32_t)3);	//	재전송 전 Delay
 
 	//	송신기#2
-	SendPktCh( ChTx_2, (U8 *)&stPkt, (U8)sizeof( RFMPktHdr ) + RFPktDataLen );
+	SendPktCh( (uint8_t)ChTx_2, (U8 *)&stPkt, (uint8_t)(sizeof( RFMPktHdr ) + RFPktDataLen) );
 
 #else
 	int nCh;
@@ -870,79 +680,19 @@ void	SendUpgrStat		( int nUpgrResult )	//	Send Upgrade Data
 //		Process Packet
 //==========================================================================
 
-
 //========================================================================
-int	ProcPktStatReq		( const RFMPkt *pRFPkt )
+uint8_t	ProcPktStat			( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
-
-	const RFMPktStatReq *pStatReq = &pRFPkt->dat.statReq;
-
-	// 같은 편성 번호 차량 명령에만 반응한다. )
-	if ((pStatReq->nTrainNo != GetTrainSetIdx())) return 0;
-
-	m_RouteRunFlag = ((10 - GetCarNo())*5);
-
-	//	수신기의 경우 송신기 상태정보 갱신.
-	//		-> 상태정보 요청한 송신기의 상태정보를 갱신한다.
-	if ( GetDevID() == DevRF900M )
+	if ( GetDbg() )
 	{
-
-		int idx = pStatReq->nCarNo;
-
-		//========================================================================
-		//	장치 응답 Flag 설정.
-		SetStat( idx );		//	상태정보 설정.
-
-		//========================================================================
-		//	RSSI 갱신
-		g_devStat[idx].stat.nChRx 	= pStatReq->nSrcCh;
-		g_devStat[idx].stampRx 		= HAL_GetTick();
-		g_devStat[idx].nRSSI 		= g_nRSSI;
-#if defined(USE_ROUTE_NEAREST_RFM)	//	수신기 -> 송신기 중계 연결. ( 가장가까운 수신기에서 송신기로 중계 )
-		g_devStat[idx].nNearCh 		= pStatReq->nNearCh;	//	송신기 입장에서 가까운 수신기(RFM)채널.
-#endif	//	defined(USE_ROUTE_NEAREST_RFM)
-
-		if(pStatReq->nSpare1[0] == 0xCC)
-		{
-			// 조명 Off 명령 수신시.
-			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET );
-			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET );
-
-			if ( GetDbg() == 6 ) printf("StReq: Led_OFF \n");
-
-		}
-		else if(pStatReq->nSpare1[0] == 0xDD)
-		{
-			// 조명 ON 명령 수신시.
-			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
-			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
-
-			if ( GetDbg() == 6 ) printf("Req: Led_ON \n");
-
-		}
-
+		printf( "%s(%d)\n", __func__, __LINE__ );
 	}
 
-	//	Source Channel로 상태정보 송신.
-	SendStat( pStatReq->nSrcCh );
-}
-
-
-//========================================================================
-int	ProcPktStat			( const RFMPkt *pRFPkt )
-//========================================================================
-{
-	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
-
-	int nRspID = pRFPkt->dat.stat.nCarNo;
+	uint8_t nRspID = pRFPkt->dat.stat.nCarNo;
 	const RFMPktStat *pStat = &pRFPkt->dat.stat;
 	//	상태정보 수신.
 //		printf ( "[Stat] Car:%d\n", pRFPkt->dat.stat.nCarNo );
-
-	if(pStat->nTrainNo !=	GetTrainSetIdx()) return 0;	//	편성번호 확인.
-
 
 	if( nRspID < MaxCarNo	//	MaxCarNo(13)
 		&& ( pStat->nDevID == DevRF900M || pStat->nDevID == DevRF900T )
@@ -951,9 +701,9 @@ int	ProcPktStat			( const RFMPkt *pRFPkt )
 		)
 	{
 		//	장치 응답 Flag 설정.
-		SetStat( nRspID );		//	상태정보 설정.
+		SetStat( (uint8_t)nRspID );		//	상태정보 설정.
 
-		UpdateStat( pStat );	//	상태정보 Update. ( 버전정보 갱신 등 )
+		UpdateStat((RFMPktStat *) pStat );	//	상태정보 Update. ( 버전정보 갱신 등 )
 	}
 
 	//========================================================================
@@ -977,202 +727,52 @@ int	ProcPktStat			( const RFMPkt *pRFPkt )
 	}
 #endif
 	//========================================================================
+
+	return (uint8_t)0;
 }
 
-
 //========================================================================
-int	ProcPktRouteReq		( const RFMPkt *pRFPkt ) //요청.
+uint8_t	ProcPktStatReq		( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	//	Source Channel로 Route 응답.
-	const RFMPktRoute *pRouteReq = &pRFPkt->dat.routeReq;
-
-	// 같은 편성 번호 차량 명령에만 반응한다. )
-	if ((pRouteReq->nTrainNo  != GetTrainSetIdx())) return 0;
-
-	if ( GetDbg() == 3 )		printf( "%s(%d) - %d\n", __func__, __LINE__, pRouteReq->nSrcCh );
-
-	if ( GetDbg() == 5 ) printf( "Req : %d\n",pRouteReq->nSrcCh);
-
-
-
-
-	if ( GetDevID() == DevRF900M )
+	if ( GetDbg() )
 	{
-		//	수신기의 경우 Route경로 설정.
-		int idx = pRouteReq->nCarNo;
-
-		if( pRouteReq->nSrcDev == DevRF900M )
-		{
-			//	1. 인접한 송신기로 등록.
-
-			//	2. 가까운 수신기에 Route정보 요청.
-
-			if ( pRouteReq->nSrcCh < GetChRx() )
-			{
-				//	1 -> 2 ...
-				SetChRFMDown( pRouteReq->nSrcCh );
-
-#if defined(USE_ROUTE_REQ_RFM)
-				//	수신기에서 요청의 경우 다음수신기로 요청하지 않음.
-#else
-				//	다음 수신기로 Route 요청.
-				SendRouteReq( GetChRx() + ChGap );
-#endif
-			}
-			else if ( pRouteReq->nSrcCh > GetChRx() )
-			{
-				//	... 3 <- 4
-				SetChRFMUp( pRouteReq->nSrcCh );
-
-#if defined(USE_ROUTE_REQ_RFM)
-				//	수신기에서 요청의 경우 다음수신기로 요청하지 않음.
-#else
-				//	다음 수신기로 Route 요청.
-				if( g_nCarNo != 1 )	//	1호차가 아닌경우
-					SendRouteReq( GetChRx() - ChGap );
-#endif
-			}
-		}
-#if defined(USE_ROUTE_REQ_RFM)
-				//	수신기에서 요청의 경우 다음수신기로 요청하지 않음.
-#else
-		else if( pRouteReq->nSrcDev == DevRF900T )
-		{
-			//	송신기에서 전송시  상위 / 하위 수신기 확인.
-			//	1 <- 2 -> 3 ...
-
-			//	다음 수신기로 Route 요청.
-			SendRouteReq( GetChRx() + ChGap );
-
-			if( g_nCarNo != 1 )	//	1호차가 아닌경우
-				SendRouteReq( GetChRx() - ChGap );
-		}
-#endif
-
-
-		//========================================================================
-		//	Route 정보 갱신
-		if (pRouteReq->nSpare1[0] == 0xAA) // 조명등 OFF 데이타를 받으면, 강제로 종료 한다. ( 내가 받은 데이타)  _JDS
-		{
-			// 조명 Off 명령 수신시.
-			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET );
-			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET );
-
-			if ( GetDbg() == 6 ) printf("Req: Led_OFF \n");
-
-		}
-		else if (pRouteReq->nSpare1[0] == 0xBB) // 조명등 ON 데이타를 받으면, 강제로 종료 한다. ( 내가 받은 데이타)  _JDS
-		{
-			// 조명 ON 명령 수신시.
-			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
-			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
-
-			if ( GetDbg() == 6 ) printf("Req: Led_ON \n");
-
-		}
-
+		printf( "%s(%d)\n", __func__, __LINE__ );
 	}
 
-	//	Resp Delay
-//	HAL_Delay( 3 );	//	Route 응답 Delay
-	SendRouteRsp( pRouteReq->nSrcCh );
+	const RFMPktStatReq *pStatReq = &pRFPkt->dat.statReq;
 
-	m_RouteReq_OK = 1;
-
-	m_RouteRunFlag = ((10 - GetCarNo())*5);
-
-}
-
-
-//========================================================================
-int	ProcPktRouteRsp		( const RFMPkt *pRFPkt )
-//========================================================================
-{
-	const RFMPktRoute *pRouteRsp = &pRFPkt->dat.routeRsp;
-
-	// 같은 편성 번호 차량 명령에만 반응한다. )
-	if ((pRouteRsp->nTrainNo != GetTrainSetIdx())) return 0;
-
-
-	g_nStampRouteRsp = HAL_GetTick();		//	응답 시간 저장.
-	g_nIdxRouteFindNext = 0;				//	Find Index 초기화.
-
-	if ( GetDbg() == 3 )		printf( "%s(%d) - %d\n", __func__, __LINE__, pRouteRsp->nSrcCh );
-
-	if ( GetDbg() == 5 ) printf( "Rsp : %d\n",pRouteRsp->nSrcCh);
-
-
-
-
-
+	//	수신기의 경우 송신기 상태정보 갱신.
+	//		-> 상태정보 요청한 송신기의 상태정보를 갱신한다.
 	if ( GetDevID() == DevRF900M )
 	{
-		//	수신기의 경우 Route경로 설정.
-		int idx = pRouteRsp->nCarNo;
-
-		if( pRouteRsp->nSrcDev == DevRF900M )
-		{
-			//	1. 인접한 송신기로 등록.
-
-			//	2. 가까운 수신기에 Route정보 요청.
-
-			if ( pRouteRsp->nSrcCh < GetChRx() )
-			{
-				//	1 -> 2 ...
-				SetChRFMDown( pRouteRsp->nSrcCh );
-
-				//	다음 수신기로 Route 요청.
-			}
-			else if ( pRouteRsp->nSrcCh > GetChRx() )
-			{
-				//	... 3 <- 4
-				SetChRFMUp( pRouteRsp->nSrcCh );
-
-				//	다음 수신기로 Route 요청.
-			}
-		}
-
-		if( pRouteRsp->nSrcDev == DevRF900T )
-		{
-			//	송신기에서 전송시  상위 / 하위 수신기 확인.
-			//	1 <- 2 -> 3 ...
-
-			//	다음 수신기로 Route 요청.
-		}
+		uint8_t idx = pStatReq->nCarNo;
 
 		//========================================================================
-		//	Route 정보 갱신
+		//	장치 응답 Flag 설정.
+		SetStat( (uint8_t)idx );		//	상태정보 설정.
 
-		if (pRouteRsp->nSpare1[1] == 0xAA) // 조명등 OFF 데이타를 받으면, 강제로 종료 한다. ( 내가 받은 데이타)  _JDS
-		{
-			// 조명 Off 명령 수신시.
-			HAL_GPIO_WritePin(LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET);
-
-			if ( GetDbg() == 6 ) printf("Rep: Led_OFF \n");
-
-		}
-		else if (pRouteRsp->nSpare1[1] == 0xBB)
-		{
-			// 조명 ON 명령 수신시.
-			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
-			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
-
-			if ( GetDbg() == 6 ) printf("Req: Led_ON \n");
-
-
-		}
-
+		//========================================================================
+		//	RSSI 갱신
+		g_devStat[idx].stat.nChRx = pStatReq->nSrcCh;
+		g_devStat[idx].nRSSI = g_nRSSI;
 	}
+
+	//	Source Channel로 상태정보 송신.
+	SendStat( pStatReq->nSrcCh );
+
+	return (uint8_t) 0;
 }
 
 
 //========================================================================
-int	ProcPktCtrlPaCall	( const RFMPkt *pRFPkt )
+uint8_t	ProcPktCtrlPaCall	( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() )
+	{
+		printf( "%s(%d)\n", __func__, __LINE__ );
+	}
 
 	//	방송/통화 시작 종료 명령.
 	const RFMPktCtrlPACall	*pCtrl = &pRFPkt->dat.pacall;
@@ -1181,26 +781,33 @@ int	ProcPktCtrlPaCall	( const RFMPkt *pRFPkt )
 	{
 	case CtrlStart:
 		printf("[Start]");
-		SetRFMMode( RFMModeRx );
+		SetRFMMode( (uint8_t)RFMModeRx );
 		break;
 	case CtrlStop:
 		printf("[Stop]");
-		SetRFMMode( RFMModeNormal );
+		SetRFMMode( (uint8_t)RFMModeNormal );
 		//  송신기 & 수신기 Spk Relay Off
 		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_RESET );
-
-		qBufClear( &g_qBufAudioRx );	//	Tx Buffer Clear
-
 		break;
-	default:			printf("%s:Invalid\n", __func__);	return 0;
+	//default:
+	//	printf("%s:Invalid\n", __func__);
+	//	return 0;
 	}
 
 	switch ( pCtrl->nTypePACall )
 	{
-	case CtrlPA:		printf("[PA]");						break;
-	case CtrlCall:		printf("[Call]");					break;
-	case CtrlOccPa:		printf("[OccPa]");					break;
-	default:			printf("%s:Invalid\n", __func__);	return 0;
+	case CtrlPA:
+		printf("[PA]");
+		break;
+	case CtrlCall:
+		printf("[Call]");
+		break;
+	case CtrlOccPa:
+		printf("[OccPa]");
+		break;
+	//default:
+	//	printf("%s:Invalid\n", __func__);
+	//	return 0;
 	}
 
 	printf("\n");
@@ -1210,27 +817,21 @@ int	ProcPktCtrlPaCall	( const RFMPkt *pRFPkt )
 		//	수신기
 
 		//	가까이 있는 송신기 설정. ( 수신기 -> 송신기 중계시 사용 )
-		SetChPARFT( GetChNearRFT( 190 ) );	//	RSSI 190 이상인경우 : 수신기 -> 송신기 중계
+		SetChPARFT( GetChNearRFT() );
 	}
 
-	g_nStampRxPkt = HAL_GetTick();		//	방송/통화 Stamp
+	g_nStampRxPkt = (uint8_t)HAL_GetTick();		//	방송/통화 Stamp
+
+	return (uint8_t) 0;
 }
 
 //========================================================================
-int	ProcPktPA			( const RFMPkt *pRFPkt )
+uint8_t	ProcPktPA			( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	//RFMPktStat *pStat = &pRFPkt->dat.stat;
-
-	const RFMPktHdr2 *pHdr = &pRFPkt->hdr2;
-
-	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
-
-
-	if ( pHdr->nTS != GetTrainSetIdx() )
+	if ( GetDbg() )
 	{
-		//	열차번호가 다른경우 : Skip
-		return 0;	//	Skip
+		printf( "%s(%d)\n", __func__, __LINE__ );
 	}
 
 	//========================================================================
@@ -1241,15 +842,15 @@ int	ProcPktPA			( const RFMPkt *pRFPkt )
 		uint16_t	 *pAudioBuf = (uint16_t*)pRFPkt->dat.data;
 
 		//  방송 : 송신기 -> 수신기
-		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, ( I2S_DMA_LOOP_SIZE * 2 ) );
+		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, ( (uint16_t)I2S_DMA_LOOP_SIZE * 2 ) );
 
 		// 조명 On
 		HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
 
-		SetRFMMode( RFMModeRx );
+		SetRFMMode( (uint8_t)RFMModeRx );
 
 		//	Codec Speaker On
-		RFM_Spk(1);
+		RFM_Spk((uint8_t)1);
 		//  수신기 Spk Relay On
 		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_SET );
 	}
@@ -1260,30 +861,33 @@ int	ProcPktPA			( const RFMPkt *pRFPkt )
 
 #if defined(USE_RFT_ONLY_RX_SPK_ON)
 		//  송신기 : 수신중인 경우 SPK ON
-
-		WriteI2CCodec( 0x0c, 0x2A );	// 갑자기 소리 커지는 문제 해결하기 위해 추가.
 //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
-		RFM_Spk(1);
+		RFM_Spk((uint8_t)1);
 #endif
 
 		//  방송 : 송신기 -> 수신기
-		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, ( I2S_DMA_LOOP_SIZE * 2 ) );
+		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
 		//========================================================================
 
 		//  송신기
-		SetRFMMode( RFMModeRx );
+		SetRFMMode( (uint8_t)RFMModeRx );
 
 		//  Red LED On
 		HAL_GPIO_WritePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_SET ); //  RED LED
 	}
-	g_nStampRxPkt = HAL_GetTick();		//	방송/통화 Stamp
+	g_nStampRxPkt = (uint8_t)HAL_GetTick();		//	방송/통화 Stamp
+
+	return (uint8_t) 0;
 }
 
 //========================================================================
-int	ProcPktCall			( const RFMPkt *pRFPkt )
+uint8_t	ProcPktCall			( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() )
+	{
+		printf( "%s(%d)\n", __func__, __LINE__ );
+	}
 
 	if( GetDevID() == DevRF900T )
 	{
@@ -1293,12 +897,12 @@ int	ProcPktCall			( const RFMPkt *pRFPkt )
 		//  통화 ( SOS )
 		uint16_t	 *pAudioBuf = (uint16_t*)pRFPkt->dat.data;
 
-		SetRFMMode( RFMModeRx );
+		SetRFMMode( (uint8_t)RFMModeRx );
 
 #if defined(USE_RFT_ONLY_RX_SPK_ON)
 		//  송신기 : 수신중인 경우 SPK ON
 //		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
-		RFM_Spk(1);
+		RFM_Spk((uint8_t)1);
 #endif
 
 		//  Red LED On
@@ -1306,25 +910,30 @@ int	ProcPktCall			( const RFMPkt *pRFPkt )
 
 		//  통화 : 송신기 -> 송신기
 
-		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, ( I2S_DMA_LOOP_SIZE * 2 ) );
+		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
 	}
 	else if ( GetDevID() == DevRF900M )
 	{
 		//	수신기
 
-		SetRFMMode( RFMModeRx );
+		SetRFMMode( (uint8_t)RFMModeRx );
 	}
 
-	g_nStampRxPkt = HAL_GetTick();		//	방송/통화 Stamp
+	g_nStampRxPkt = (uint8_t)HAL_GetTick();		//	방송/통화 Stamp
+
+	return (uint8_t) 0;
 }
 
 
 //========================================================================
-int	ProcPktDevConn			( const RFMPkt *pRFPkt )
+uint8_t	ProcPktDevConn			( const RFMPkt *pRFPkt )
 //========================================================================
 {
 	//	Device Node Connection
-	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() )
+	{
+		printf( "%s(%d)\n", __func__, __LINE__ );
+	}
 
 	const RFMPktDevConn	*pConn = &pRFPkt->dat.devConn;
 
@@ -1332,22 +941,26 @@ int	ProcPktDevConn			( const RFMPkt *pRFPkt )
 	{
 		//========================================================================
 		//	송신기
-		SetDevConn( pConn->nSrcCh, pConn->nDevType, pConn->nConnect );
+		//SetDevConn( pConn->nSrcCh, pConn->nDevType, pConn->nConnect );
 	}
 	else if ( GetDevID() == DevRF900M )
 	{
 		//========================================================================
 		//	수신기
-		SetDevConn( pConn->nSrcCh, pConn->nDevType, pConn->nConnect );
+		//SetDevConn( pConn->nSrcCh, pConn->nDevType, pConn->nConnect );
 	}
+
+	return (uint8_t) 0;
 }
 
 //========================================================================
-int	ProcPktLight		( const RFMPkt *pRFPkt )
+uint8_t	ProcPktLight		( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
-
+	if ( GetDbg() )
+	{
+		printf( "%s(%d)\n", __func__, __LINE__ );
+	}
 
 	if ( GetDevID() == DevRF900M && pRFPkt->hdr.nPktCmd == PktLight )
 	{
@@ -1356,35 +969,31 @@ int	ProcPktLight		( const RFMPkt *pRFPkt )
 		{
 			// 조명 Off 명령 수신시.
 			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET );
-
-			m_lightReSendCnt = 10;
-			m_light_Val = 0xAA;
 		}
 		else if ( pRFPkt->dat.light.nOnOff == 1 )
 		{
 			// 조명 On 명령 수신시.
 			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
-
-			m_lightReSendCnt = 10;
-			m_light_Val = 0xBB;
 		}
 	}
+
+	return (uint8_t) 0;
 }
 
 
 //========================================================================
-int	ProcPktCmd			( const RFMPkt *pRFPkt )
+uint8_t	ProcPktCmd			( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() )
+	{
+		printf( "%s(%d)\n", __func__, __LINE__ );
+	}
 
 	//	RSSI Check
 	printf( "%s(%d) - %s\n", __func__, __LINE__, pRFPkt->dat.cmd.sCmd );
 
-	// 같은 편성 번호 차량 명령에만 반응한다. )
-	if ((pRFPkt->dat.cmd.nSpare[0] != GetTrainSetIdx())) return 0;
-
-	if ( g_nRSSI >= pRFPkt->dat.cmd.nRSSIOver&& (pRFPkt->dat.cmd.nSpare[0] == GetTrainSetIdx())) // 같은 편성 번호 차량 명령에만 반응한다. )
+	if ( (uint8_t)g_nRSSI >= (uint8_t)(pRFPkt->dat.cmd.nRSSIOver) )
 	{
 		if ( pRFPkt->dat.cmd.nRsp == 1 )
 		{
@@ -1394,17 +1003,19 @@ int	ProcPktCmd			( const RFMPkt *pRFPkt )
 		}
 
 		//	RSSI값 확인 후 해당 범위 내에 있는 경우 명령 동작.
-		ProcessCommand((char *)pRFPkt->dat.cmd.sCmd );
+		ProcessCommand( (char *) pRFPkt->dat.cmd.sCmd );
 	}
-
 }
 
 
 //========================================================================
-int	ProcPktCmdRsp		( const RFMPkt *pRFPkt )
+uint8_t	ProcPktCmdRsp		( const RFMPkt *pRFPkt )
 //========================================================================
 {
-	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() )
+	{
+		printf( "%s(%d)\n", __func__, __LINE__ );
+	}
 
 	//	Command 처리결과 응답.
 
@@ -1416,14 +1027,17 @@ uint8_t	s_bUpgrDataValid[(MaxUpgrDataPacket + 7) / 8];	//	4000];	//	Upgrade Data
 //========================================================================
 
 //========================================================================
-int	ProcPktUpgr			( const RFMPkt *pRFPkt )
+uint8_t	ProcPktUpgr			( const RFMPkt *pRFPkt )
 //========================================================================
 {
 	//========================================================================
 	//	Upgrade Flash Image
 	//========================================================================
 
-	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() )
+	{
+		printf( "%s(%d)\n", __func__, __LINE__ );
+	}
 
 	//========================================================================
 	//	Data Flash영역에 Write
@@ -1445,11 +1059,6 @@ int	ProcPktUpgr			( const RFMPkt *pRFPkt )
 //	memcpy( pUpgr->data, sBuf, nSize );
 
 	//========================================================================
-
-	// 같은 편성 번호 차량 명령에만 반응한다. )
-	if (pUpgr->nSpare2[0] != GetTrainSetIdx()) { return 0; }
-
-
 	static int	s_rxPkt;
 
 	if ( pUpgr->idxPkt == 0 )
@@ -1540,25 +1149,25 @@ int	ProcPktUpgr			( const RFMPkt *pRFPkt )
 			buf[3] = ( filesize >> 8 ) & 0xFF;
 			buf[4] = ( filesize >> 0 ) & 0xFF;
 
-		    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf, 5 );
+		    M24_HAL_WriteBytes( &hi2c1, (uint16_t)0xA0, (uint16_t)AddrEEPUpgrMGN1, (uint8_t *)buf,(uint16_t) 5 );
 
 			memset( buf, 0, sizeof( buf ) );
 
-		    M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf, 5 );
+		    M24_HAL_ReadBytes( &hi2c1,(uint16_t) 0xA0, (uint16_t)AddrEEPUpgrMGN1, (uint8_t *)buf, (uint16_t)5 );
 
 		    filesize = ( buf[2] << 16 ) | ( buf[3] << 8 ) | ( buf[4] );
 
 			printf( "%s(%d) - EEPROM [0,1] : 0x%02X 0x%02X / ( bin size : %d )\n", __func__, __LINE__, buf[0], buf[1], filesize );
 
-			HAL_Delay( 2000 );	//	Upgrade 결과전송 전 Delay
+			HAL_Delay( (uint32_t)2000 );	//	Upgrade 결과전송 전 Delay
 
 			//===========================================================================
 			//	Send Upgrade Result
-			SendUpgrStat( UpgrStatSuccess );	//	Upgrade 결과전송.
-			HAL_Delay( 100 );	//	Upgrade 결과전송 전 Delay
-			SendUpgrStat( UpgrStatSuccess );	//	Upgrade 결과전송.
-			HAL_Delay( 100 );	//	Upgrade 결과전송 전 Delay
-			SendUpgrStat( UpgrStatSuccess );	//	Upgrade 결과전송.
+			SendUpgrStat( (uint8_t)UpgrStatSuccess );	//	Upgrade 결과전송.
+			HAL_Delay((uint32_t) 100 );	//	Upgrade 결과전송 전 Delay
+			SendUpgrStat( (uint8_t)UpgrStatSuccess );	//	Upgrade 결과전송.
+			HAL_Delay( (uint32_t)100 );	//	Upgrade 결과전송 전 Delay
+			SendUpgrStat((uint8_t) UpgrStatSuccess );	//	Upgrade 결과전송.
 
 			//===========================================================================
 			//	Reset
@@ -1567,15 +1176,15 @@ int	ProcPktUpgr			( const RFMPkt *pRFPkt )
 		}
 		else
 		{
-			HAL_Delay( 2000 );	//	Upgrade 결과전송 전 Delay
+			HAL_Delay( (uint32_t)2000 );	//	Upgrade 결과전송 전 Delay
 
 			//===========================================================================
 			//	Send Upgrade Result
 			SendUpgrStat( UpgrStatFailed );		//	Upgrade 결과전송.
-			HAL_Delay( 100 );	//	Upgrade 결과전송 전 Delay
-			SendUpgrStat( UpgrStatFailed );	//	Upgrade 결과전송.
-			HAL_Delay( 100 );	//	Upgrade 결과전송 전 Delay
-			SendUpgrStat( UpgrStatFailed );	//	Upgrade 결과전송.
+			HAL_Delay( (uint32_t)100 );	//	Upgrade 결과전송 전 Delay
+			SendUpgrStat( (uint8_t)UpgrStatFailed );	//	Upgrade 결과전송.
+			HAL_Delay((uint32_t) 100 );	//	Upgrade 결과전송 전 Delay
+			SendUpgrStat( (uint8_t)UpgrStatFailed );	//	Upgrade 결과전송.
 
 			//	Upgrade Failed
 			printf("%s(%d) - Upgrade Failed\n", __func__, __LINE__ );
@@ -1583,14 +1192,14 @@ int	ProcPktUpgr			( const RFMPkt *pRFPkt )
 		//========================================================================
 
 		//========================================================================
-		SetRFMMode( RFMModeNormal );	//	Normal 모드로 설정.
+		SetRFMMode( (uint8_t)RFMModeNormal );	//	Normal 모드로 설정.
 		//========================================================================
 	}
 }
 
 
 //========================================================================
-int	ProcPktUpgrStat			( const RFMPkt *pRFPkt )
+uint8_t	ProcPktUpgrStat			( const RFMPkt *pRFPkt )
 //========================================================================
 {
 	//========================================================================
@@ -1598,7 +1207,10 @@ int	ProcPktUpgrStat			( const RFMPkt *pRFPkt )
 	//========================================================================
 
 	//	Upgrade 결과 수신후 수신기 LCD창에 표시.
-	if ( GetDbg() == 3 )		printf( "%s(%d)\n", __func__, __LINE__ );
+	if ( GetDbg() )
+	{
+		printf( "%s(%d)\n", __func__, __LINE__ );
+	}
 
 	char sBuf[50];
 

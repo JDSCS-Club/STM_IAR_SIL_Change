@@ -26,15 +26,17 @@
 
 #include <stdint.h>			//	uint32_t,
 
-void SetUpgrReTry		( int _bUpgrRetry );
+void SetUpgrReTry		( uint16_t _bUpgrRetry );
 
-int UpgrSendImage		( uint32_t baseAddr, uint32_t nSize );
+uint32_t UpgrSendImage		( uint32_t nAddrBase, uint32_t nSizeImage );
 
-int UpgrSendImageBoot	( void );
+uint32_t UpgrSendImageBoot	( void );
 
-int UpgrSendImageApp	( void );
+uint32_t UpgrSendImageApp	( void );
 
-int cmd_upgrade			( int argc, char * argv[] );
+uint8_t cmd_upgrade			( uint8_t argc, char * argv[] );
+
+uint16_t GetUpgrReTry( void );
 
 //========================================================================
 #endif

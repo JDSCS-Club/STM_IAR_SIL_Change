@@ -32,9 +32,22 @@
 #include <string.h>
 #include <stdio.h>
 
+
+#include <stdio.h>			//	printf()
+
+#include <stdint.h>			//	uint32_t
+
+#include <string.h>			//	memset()
+
+#include "typedef.h"			//	uint32_t, ...
+#include "compiler_defs.h"		//	U8,
+
+
 #include "eeprom.h"		//	eeprom
 
 #include "main.h"		//	hi2c1
+
+#include "Adafruit_SSD1306.h"
 
 //========================================================================
 void I2C_BusScan( I2C_HandleTypeDef *phi2c )
@@ -53,7 +66,7 @@ void I2C_BusScan( I2C_HandleTypeDef *phi2c )
 		 * retries 2
 		 * timeout 2
 		 */
-		result = HAL_I2C_IsDeviceReady( phi2c, (uint16_t)( i << 1 ), 2, 2 );
+		result = HAL_I2C_IsDeviceReady( phi2c, (uint16_t)( i << 1 ),(uint32_t) 2,(uint32_t) 2 );
 		if ( result != HAL_OK ) // HAL_ERROR or HAL_BUSY or HAL_TIMEOUT
 		{
 			printf( "." ); // No ACK received at that address
@@ -83,12 +96,12 @@ void TestEEPROM( I2C_HandleTypeDef *hi2c )
 	char c[100]={20,20,20};
 	
 	printf("%s - 0x%02X, 0x%02X, 0x%02X\r\n", __func__, c[0],c[1],c[2]);
-	M24_HAL_ReadBytes(hi2c, 0xA0, 0x100, (uint8_t *)c, 100);
+	M24_HAL_ReadBytes(hi2c, (uint16_t)0xA0,(uint16_t) 0x100, (uint8_t *)c, (uint16_t)100);
 	printf("%s - 0x%02X, 0x%02X, 0x%02X\r\n", __func__, c[0],c[1],c[2]);
 	
-	M24_HAL_WriteBytes(hi2c, 0xA0, 0x100, (uint8_t *)d, 100);
+	M24_HAL_WriteBytes(hi2c, 0xA0, 0x100, (uint8_t *)d, (uint16_t)100);
 
-	M24_HAL_ReadBytes(hi2c, 0xA0, 0x100, (uint8_t *)c, 100);
+	M24_HAL_ReadBytes(hi2c,(uint16_t) 0xA0, (uint16_t)0x100, (uint8_t *)c,(uint16_t) 100);
 	printf("%s - 0x%02X, 0x%02X, 0x%02X\r\n", __func__, c[0],c[1],c[2]);
 }
 
@@ -105,19 +118,19 @@ void TestEEPROM( I2C_HandleTypeDef *hi2c )
   * @retval
   */
 //========================================================================
-int M24_HAL_WriteBytes( I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint8_t *pData, uint16_t TxBufferSize )
+uint8_t M24_HAL_WriteBytes( I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint8_t *pData, uint16_t TxBufferSize )
 //========================================================================
 {
 	while ( HAL_I2C_Mem_Write( hi2c, (uint16_t)DevAddress, (uint16_t)MemAddress, I2C_MEMADD_SIZE_16BIT, pData, (uint16_t)TxBufferSize, 1000 ) != HAL_OK );
 
-	HAL_Delay(5);
+	HAL_Delay((uint32_t)5);
 
 	return 1;
 }
 
 
 //========================================================================
-int M24_HAL_ReadBytes( I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint8_t *pData, uint16_t RxBufferSize )
+uint8_t M24_HAL_ReadBytes( I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint8_t *pData, uint16_t RxBufferSize )
 //========================================================================
 {
 	int TimeOut;
@@ -129,7 +142,7 @@ int M24_HAL_ReadBytes( I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t Me
 }
 
 //========================================================================
-int cmd_eepromRead		( int argc, char * argv[] )
+uint8_t cmd_eepromRead		( uint8_t argc, char * argv[] )
 //========================================================================
 {
     //	eepr [address]
@@ -142,14 +155,14 @@ int cmd_eepromRead		( int argc, char * argv[] )
         break;
     }
 
-	M24_HAL_ReadBytes(&hi2c1, 0xA0, nAddr, (uint8_t *)buf, 1);
+	M24_HAL_ReadBytes(&hi2c1, (uint16_t)0xA0, (uint16_t)nAddr, (uint8_t *)buf, (uint16_t)1);
 
 	printf("[0x%04X] 0x%02X\n", nAddr, buf[0]);
 }
 
 
 //========================================================================
-int cmd_eepromWrite	( int argc, char * argv[] )
+uint8_t cmd_eepromWrite	( uint8_t argc, char * argv[] )
 //========================================================================
 {
     //	eepw [address] [value]
@@ -168,14 +181,14 @@ int cmd_eepromWrite	( int argc, char * argv[] )
 
     printf("[0x%04X] 0x%02X\n", nAddr, buf[0]);
 
-	M24_HAL_WriteBytes(&hi2c1, 0xA0, nAddr, (uint8_t *)buf, 1);
+	M24_HAL_WriteBytes(&hi2c1, 0xA0, nAddr, (uint8_t *)buf,(uint16_t) 1);
 
 	printf("[0x%04X] 0x%02X\n", nAddr, buf[0]);
 }
 
 
 //========================================================================
-int cmd_eepromDump		( int argc, char * argv[] )
+uint8_t cmd_eepromDump		( uint8_t argc, char * argv[] )
 //========================================================================
 {
     //	eepr [address]
@@ -193,7 +206,7 @@ int cmd_eepromDump		( int argc, char * argv[] )
         break;
     }
 
-	M24_HAL_ReadBytes(&hi2c1, 0xA0, nAddr, (uint8_t *)buf, nSize);
+	M24_HAL_ReadBytes(&hi2c1,(uint16_t) 0xA0, (uint16_t)nAddr, (uint8_t *)buf, (uint16_t)nSize);
 
 	printf("[0x%04X] size : %d\n", nAddr, nSize);
 

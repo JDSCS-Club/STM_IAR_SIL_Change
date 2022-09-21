@@ -17,7 +17,18 @@
 #include <stdio.h>			//	printf()
 #include <string.h>			//	memcpy()
 
+#include <stdio.h>			//	printf()
+
+#include <stdint.h>			//	uint32_t
+
+#include <string.h>			//	memset()
+
+#include "typedef.h"			//	uint32_t, ...
+#include "compiler_defs.h"		//	U8,
+
 #include "QBuf.h"
+
+#include "Adafruit_SSD1306.h"
 
 //========================================================================
 // Define
@@ -46,14 +57,14 @@ void clear_queue( Queue_t *q )
 }
 
 //===========================================================================
-int qcount( Queue_t *q )
+uint8_t qcount( Queue_t *q )
 //===========================================================================
 {
 	return (((q->rear+QMAX)-q->front) % QMAX);
 }
 
 //===========================================================================
-int qput( Queue_t *q, unsigned char k )
+uint8_t qput( Queue_t *q, S8 k )
 //===========================================================================
 {
 	if ( (q->rear + 1) % QMAX == q->front )
@@ -68,7 +79,7 @@ int qput( Queue_t *q, unsigned char k )
 }
 
 //===========================================================================
-unsigned char qget( Queue_t *q )
+uint8_t qget( Queue_t *q )
 //===========================================================================
 {
 	unsigned char i;
@@ -87,7 +98,7 @@ unsigned char qget( Queue_t *q )
 
 
 //===========================================================================
-void qBufInit( QBuf_t *q, uint8_t *_qBuf, int _size )
+void qBufInit( QBuf_t *q, uint8_t *_qBuf, uint16_t _size )
 //===========================================================================
 {
 	q->front = q->rear = 0;
@@ -107,14 +118,14 @@ void qBufClear( QBuf_t *q )
 }
 
 //===========================================================================
-int qBufCnt( QBuf_t *q )
+uint8_t qBufCnt( QBuf_t *q )
 //===========================================================================
 {
 	return ( ( ( q->rear + q->size ) - q->front ) % q->size );
 }
 
 //===========================================================================
-int qBufPut( QBuf_t *q, uint8_t *pBuf, int size )
+uint8_t qBufPut( QBuf_t *q, uint8_t *pBuf, uint16_t size )
 //===========================================================================
 {
 	if ( ( q->rear + size ) % q->size == q->front )
@@ -134,7 +145,7 @@ int qBufPut( QBuf_t *q, uint8_t *pBuf, int size )
 }
 
 //===========================================================================
-int qBufGet( QBuf_t *q, uint8_t *pBuf, int size )
+uint8_t qBufGet( QBuf_t *q, uint8_t *pBuf, uint16_t size )
 //===========================================================================
 {
 	//*
@@ -157,7 +168,7 @@ int qBufGet( QBuf_t *q, uint8_t *pBuf, int size )
 
 
 //===========================================================================
-void	QBufTest	( QBuf_t *q, int blkSize )
+void	QBufTest	( QBuf_t *q, uint16_t blkSize )
 //===========================================================================
 {
 	int i, j;

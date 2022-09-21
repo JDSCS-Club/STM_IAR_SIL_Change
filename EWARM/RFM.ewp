@@ -1173,6 +1173,12 @@
             <group>
                 <name>Si446x</name>
                 <file>
+                    <name>$PROJ_DIR$\..\Drivers\radio\Si446x\radio_si4463.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Drivers\radio\Si446x\si4463.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Drivers\radio\Si446x\si446x_api_lib.c</name>
                 </file>
                 <file>

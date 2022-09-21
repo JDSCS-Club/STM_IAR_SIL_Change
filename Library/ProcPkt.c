@@ -17,6 +17,12 @@
 
 //#include "..\bsp.h"
 
+#include <stdio.h>			//	printf()
+
+#include <stdint.h>			//	uint32_t
+
+#include <string.h>			//	memset()
+
 #include "typedef.h"			//	uint32_t, ...
 
 #include "compiler_defs.h"		//	U8,
@@ -32,33 +38,34 @@
 #include "rfm.h"				//	eRFMMode
 #include "audio.h"				//	I2S_DMA_LOOP_SIZE
 
+#include "diag.h"
+
 /*------------------------------------------------------------------------*/
 /*                          Global variables                              */
 /*------------------------------------------------------------------------*/
 SEGMENT_VARIABLE(bMain_IT_Status, U8, SEG_XDATA);
 
-int nTxPkt = 0;
-int nRxPkt = 0;
+uint8_t nTxPkt = 0;
+uint8_t nRxPkt = 0;
 
-int nHopPkt = 0;		//	Hopping Packet Count
-int nDropPkt = 0;		//	Drop Packet Count ( 처리된 Packet을 다시 받는 경우. )
-int nDropPkt_2 = 0;		//	Drop Packet Count ( 처리된 Packet을 다시 받는 경우. )
+uint8_t nHopPkt = 0;		//	Hopping Packet Count
+uint8_t nDropPkt = 0;		//	Drop Packet Count ( 처리된 Packet을 다시 받는 경우. )
 
-int nRxErr = 0;			//	Error Packet Count
-int nCrcErr = 0;
+uint8_t nRxErr = 0;			//	Error Packet Count
+uint8_t nCrcErr = 0;
 
-int nTxStamp = 0;
-int nTxStampComp = 0;	//	Tx Complete
-int nRxStamp = 0;
+uint32_t nTxStamp = 0;
+uint32_t nTxStampComp = 0;	//	Tx Complete
+uint32_t nRxStamp = 0;
 
 //========================================================================
-int			g_bSetRspIDManual	=	0;				//  RspID Flag 수동설정. ( 디버깅용 )
+uint8_t			g_bSetRspIDManual	=	0;				//  RspID Flag 수동설정. ( 디버깅용 )
 //========================================================================
 
 uint16_t	g_flagRspID 	=	0x00;				//  범위 안의 Device ID Flag ( 0 ~ 15 bit )
 uint8_t	 	g_nPktSeq 		=	0x00;				//  Packet Sequence
-uint8_t		g_nPktSeq_2		=   0x00;
-static int	s_bShowPkt		=	DEFAULT_EN_SHOW_PKT;	//	1;
+
+static uint8_t	s_bShowPkt		=	DEFAULT_EN_SHOW_PKT;	//	1;
 
 /*------------------------------------------------------------------------*/
 /*                              Defines                                   */
@@ -114,14 +121,17 @@ U16 wPayloadLenghtFromPhr(U8* pbPhrMsb);
 /*------------------------------------------------------------------------*/
 
 //========================================================================
-void Dump( const char *sTitle, const char *sBuf, int nSize )
+void Dump( const S8 *sTitle, const S8 *sBuf, uint8_t nSize )
 //========================================================================
 {
-	if ( GetDbg() < 10 )	return;
+	if ( GetDbg() < 2 )
+	{
+		return;
+	}
 
 	printf( "%s : ", sTitle );
 
-	int i;
+	uint8_t i;
 
 	for( i = 0; i < nSize; i++ )
 	{
@@ -149,12 +159,12 @@ void TestProcPkt(void)
 		currTick = HAL_GetTick();
 
 		// Demo Application Poll-Handler function
-		LoopProcPkt( currTick );
+		LoopProcPkt( (uint16_t)currTick );
 	}
 }
 
 //========================================================================
-int	InitProcPkt ( void )
+uint8_t	InitProcPkt ( void )
 //========================================================================
 {
 
@@ -189,11 +199,11 @@ int	InitProcPkt ( void )
 
 #endif
 
-	return TRUE;
+	return (uint8_t)TRUE;
 }
 
 //========================================================================
-int _ChkDropPktSeq( uint8_t _nRxSeq, uint8_t _currSeq )
+uint8_t _ChkDropPktSeq( uint8_t _nRxSeq, uint8_t _currSeq )
 //========================================================================
 {
 	//	현재 받은 Packet Sequence가 새로운 패킷인지 확인.
@@ -201,56 +211,59 @@ int _ChkDropPktSeq( uint8_t _nRxSeq, uint8_t _currSeq )
 
 	if ( _nRxSeq == _currSeq )		//	Seq가 같은 Packet 수신시 Drop
 	{
-		return 1;	//	Pkt Drop
+		return (uint8_t)1;	//	Pkt Drop
 	}
 
 	//	Rx Packet이 currPkt보다 1크면 처리.
 	uint8_t currSeq = _currSeq;
-	if ( ++currSeq == 0 )	currSeq++;
-	if ( (_nRxSeq >= currSeq) )		//	Seq가 같은 Packet 수신시 Drop
+	if ( ++currSeq == 0 )
 	{
-		return 0;	//	Valid Pkt
+		currSeq++;
 	}
 
+	if ( _nRxSeq == currSeq )		//	Seq가 같은 Packet 수신시 Drop
+	{
+		return (uint8_t)0;	//	Valid Pkt
+	}
 
 	//	현재 패킷보다 이전에 받은 5개 패킷은 Drop
-
-	uint8_t nRxSeq = _nRxSeq;
-	for( int i = 0; i < 5; i++ )
+	for( uint8_t i = 0; i < 5; i++ )
 	{
-		if ( ++nRxSeq == 0 )	nRxSeq++;
-		if ( nRxSeq == _currSeq )		//	Seq가 같은 Packet 수신시 Drop
+		if ( ++_nRxSeq == 0 )
 		{
-			return 1;	//	Pkt Drop
+			_nRxSeq++;
+		}
+
+		if ( _nRxSeq == _currSeq )		//	Seq가 같은 Packet 수신시 Drop
+		{
+			return (uint8_t)1;	//	Pkt Drop
 		}
 	}
 
-
-	return 0;	//	Valid Pkt
+	return (uint8_t)0;	//	Valid Pkt
 }
 
 //========================================================================
-int ProcPktHdr1( const RFMPkt *pRFPkt, int nSize  )
+uint8_t ProcPktHdr1( const RFMPkt *pRFPkt, uint8_t nSize  )
 //========================================================================
 {
 
 #if defined(USE_HOPPING)
-
-
 	//========================================================================
 	//	Packet Filtering
 	//		- Pkt 처리 여부 확인.
-	if	(	pRFPkt->hdr.nSeq != 0 &&
+	if	(	((pRFPkt->hdr.nSeq) != 0) &&
 			(
 //				(pRFPkt->hdr.nSeq == g_nPktSeq)		//	Seq가 같은 Packet 수신시 Drop
-				_ChkDropPktSeq(pRFPkt->hdr.nSeq, g_nPktSeq)		//	Seq가 같은 Packet 수신시 Drop
-				|| GetRFMMode() == RFMModeTx		//	송신모드에서는 Packet Drop
+				((_ChkDropPktSeq((uint8_t)pRFPkt->hdr.nSeq,(uint8_t) g_nPktSeq) != 0) 		//	Seq가 같은 Packet 수신시 Drop
+				||
+				((uint8_t)GetRFMMode() ==(uint8_t) 1))		//	송신모드에서는 Packet Drop
 			)
 		)
 	{
 		//	이미 처리된 Packet Skip.
 		nDropPkt++;
-		return 0;		//	Skip
+		return (uint8_t)0;		//	Skip
 	}
 
 	//========================================================================
@@ -334,274 +347,120 @@ int ProcPktHdr1( const RFMPkt *pRFPkt, int nSize  )
 #endif	//	defined(USE_HOPPING)
 	//========================================================================
 
-	return 1;
+	return (uint8_t)1;
 }
 
 
 //========================================================================
-int ProcPktHdr2( const RFMPkt *pRFPkt, int nSize  )
+uint8_t ProcPktHdr2( const RFMPkt *pRFPkt, uint8_t nSize  )
 //========================================================================
 {
 	//	편성번호가 다른경우 Skip
 
-	const RFMPktHdr2 *pHdr = &pRFPkt->hdr2;
+	const RFMPktHdr2 *pHdr = (&pRFPkt->hdr2);
 
-	char buf[64];
+	S8 buf[64];
 
 	if ( pHdr->nTS != GetTrainSetIdx() )
 	{
 		//	열차번호가 다른경우 : Skip
-		return 0;	//	Skip
+		return (uint8_t)0;	//	Skip
 	}
-
-	if(GetDevID() == DevRF900M)
-	{
-
-		if(g_nPktSeq_2 == 255) g_nPktSeq_2 = 0;
-		//========================================================================
-		//	Packet Filtering
-		//		- Pkt 처리 여부 확인.
-		if	(	pRFPkt->hdr2.nSeq != 0 &&
-				(
-	//				(pRFPkt->hdr.nSeq == g_nPktSeq)		//	Seq가 같은 Packet 수신시 Drop
-					_ChkDropPktSeq(pRFPkt->hdr2.nSeq, g_nPktSeq_2) &&		//	Seq가 같은 Packet 수신시 Drop
-					GetRFMMode() == RFMModeRx		//	송신모드에서는 Packet Drop
-				)
-			)
-		{
-			//	이미 처리된 Packet Skip.
-			nDropPkt_2++;
-
-
-			//ADPCM_ClearEncodeBuf();			//	인코딩 버퍼 Clear
-
-
-			ADPCM_ClearDecodeBuf(); // 에러 패키지에도 소리가 정상.
-			memset( g_pRadioRxPkt, 0, 0x40 );			//	Buffer Clear
-			//qBufClear( &g_pRadioRxPkt );	//	Rx Buffer Clear  // 에러 패키지에도 소리가 정상.
-			//qBufClear( &g_qBufAudioRx );	//	Tx Buffer Clear
-
-			if ( GetDbg() == 7 )
-			{
-				printf("D_B Skip: %d \n",nDropPkt_2);
-			}
-
-			return 0;		//	Skip
-		}
-		else if ( pRFPkt->hdr2.nSeq != 0 )
-		{
-
-
-			if ( GetDbg() == 7 )
-			{
-				//printf("G_D_B:nPk %d, %d,%d \n",pRFPkt->hdr.nPktCmd,pRFPkt->hdr2.nSeq,g_nPktSeq_2);
-			}
-
-			//	Seq No. 가 0이 아닌경우 Seq 갱신.
-			g_nPktSeq_2 = pRFPkt->hdr2.nSeq;	//	Packet Seq 갱신.
-
-		}
-
-	}
-
-
 
 #if defined(USE_HOPPING)
 
 	if ( GetDevID() == DevRF900T )
 	{
 		//	송신기의 경우 중계하지 않음.
-		return 1;
+		return (uint8_t)1;
 	}
 	else if ( GetDevID() == DevRF900M )
 	{
 		//	송신기로부터 Data 수신 시
-		if( pHdr->nSrcCh == ChTx_1 || pHdr->nSrcCh == ChTx_2 )
+		if( (pHdr->nSrcCh == ChTx_1) || (pHdr->nSrcCh == ChTx_2) )
 		{
 			//	상위 / 하위 채널로 중계.
 			//	1 <= 2 => 3
 			nHopPkt++;
-			memcpy( buf, pRFPkt, 64 );
+			memcpy( buf, pRFPkt, (uint32_t)64 );
 			RFMPkt	*pSendPkt = (RFMPkt *)buf;
 			pSendPkt->hdr2.nSrcCh = GetChRx();
 
+//#if defined(USE_RFT_REG_TO_RFM)
+//			if ( GetChPARFT() == ChTx_1 && pSendPkt->hdr2.bRFT1 == 0 )
+//			{
+//				pSendPkt->hdr2.bRFT1 = 1;
+//				SendPktCh( GetChPARFT(), buf, nSize );
+//			}
+//			else if ( GetChPARFT() == ChTx_2 && pSendPkt->hdr2.bRFT2 == 0 )
+//			{
+//				pSendPkt->hdr2.bRFT2 = 1;
+//				SendPktCh( GetChPARFT(), buf, nSize );
+//			}
+//#endif
 
-			if( g_nRFMode == RFMode2 )//#if defined(USE_COMM_MODE_CH_GRP)	//	그룹주파수 모드. - [ 1, 2 ] [ 3, 4 ] ...
+			SendPktCh( GetChRx() + ChGap, buf,(uint8_t) nSize );
+
+			HAL_Delay( (uint32_t)3 );		//	최소 Delay
+
+			if ( g_nCarNo != 1 )	//	1호차가 아닌 경우.
 			{
-				if ( g_nCarNo % 2 == 0 )	SendPktCh( GetChRx() + ChGap, buf, nSize ); //	짝수 Car
-				else						SendPktCh( GetChRx() - ChGap, buf, nSize ); //	홀수 Car
+				SendPktCh( GetChRx() - ChGap, buf, (uint8_t)nSize );
 			}
-			else	//#else
-			{
-				//	현재 동작중인 상위 / 하위 채널로 중계.
-#if defined(USE_ROUTE_REQ)
-
-				if(g_nCarNo != 10)
-				{
-					if( GetChRFMUp() )
-					{
-						SendPktCh( GetChRFMUp(), buf, nSize );
-					}
-				}
-
-				if(g_nCarNo != 1)
-				{
-					if( GetChRFMDown() )
-					{
-						SendPktCh( GetChRFMDown(), buf, nSize );
-					}
-				}
-
-#else
-				SendPktCh( GetChRx() + ChGap, buf, nSize );
-
-	//DEL			HAL_Delay( 3 );		//	최소 Delay
-
-				if ( g_nCarNo != 1 )	//	1호차가 아닌 경우.
-					SendPktCh( GetChRx() - ChGap, buf, nSize );
-#endif
-			}//#endif
 		}
 		//	수신기로부터 Data 수신 시
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-#if defined(USE_ROUTE_REQ)
-		else if( pHdr->nSrcCh <= ( GetChRx() - ChGap ) )
-#else
 		else if( pHdr->nSrcCh == ( GetChRx() - ChGap ) )
-#endif
 		{
 			//	상위 채널로 중계.
 			//	1 -> 2 => 3
 			nHopPkt++;
-			memcpy( buf, pRFPkt, 64 );
+			memcpy( buf, pRFPkt, (uint32_t)64 );
 			RFMPkt	*pSendPkt = (RFMPkt *)buf;
 			pSendPkt->hdr2.nSrcCh = GetChRx();
 
-#if defined(USE_ROUTE_NEAREST_RFM)	//	수신기 -> 송신기 중계 연결. ( 가장가까운 수신기에서 송신기로 중계 )
-			if ( g_devStat[RFTCarNo1].nNearCh == GetChRx()		//	송신기의 가까운 채널이 자신의 채널이면 송신기로 중계.
-					&& pSendPkt->hdr2.bRFT1 == 0 )
+#if defined(USE_RFT_REG_TO_RFM)
+			if ( (GetChPARFT() == ChTx_1) && (pSendPkt->hdr2.bRFT1 == 0) )
 			{
 				pSendPkt->hdr2.bRFT1 = 1;
-				SendPktCh( ChTx_1, buf, nSize );
+				SendPktCh( GetChPARFT(), (U8 *)buf, (uint8_t)nSize );
 			}
-			else if ( g_devStat[RFTCarNo2].nNearCh == GetChRx()	//	송신기의 가까운 채널이 자신의 채널이면 송신기로 중계.
-					&& pSendPkt->hdr2.bRFT2 == 0 )
+			else if (( GetChPARFT() == ChTx_2) && (pSendPkt->hdr2.bRFT2 == 0) )
 			{
 				pSendPkt->hdr2.bRFT2 = 1;
-				SendPktCh( ChTx_2, buf, nSize );
+				SendPktCh( GetChPARFT(),(U8 *) buf,(uint8_t) nSize );
 			}
-
-#elif defined(USE_RFT_REG_TO_RFM)	//	송신기 가까운 수신기에 등록. (중계동작)
-			if ( GetChPARFT() == ChTx_1 && pSendPkt->hdr2.bRFT1 == 0 )
-			{
-				pSendPkt->hdr2.bRFT1 = 1;
-				SendPktCh( ChTx_1, buf, nSize );
-			}
-			else if ( GetChPARFT() == ChTx_2 && pSendPkt->hdr2.bRFT2 == 0 )
-			{
-				pSendPkt->hdr2.bRFT2 = 1;
-				SendPktCh( ChTx_2, buf, nSize );
-			}
-#endif	//	defined(USE_RFT_REG_TO_RFM)
-
-			if( g_nRFMode == RFMode2 )//#if defined(USE_COMM_MODE_CH_GRP)	//	그룹주파수 모드. - [ 1, 2 ] [ 3, 4 ] ...
-			{
-				if ( g_nCarNo % 2 == 0 )
-				{
-					SendPktCh( GetChRx() + ChGap, buf, nSize ); //	짝수 Car
-				}
-			}
-			else	//	#else
-			{
-#if defined(USE_ROUTE_REQ)
-				//	현재 동작중인 상위 채널로 중계
-				if( GetChRFMUp() )
-				{
-					SendPktCh( GetChRFMUp(), buf, nSize );
-				}
-				else
-				{
-					HAL_Delay(1);
-				}
-#else
-				SendPktCh( GetChRx() + ChGap, buf, nSize );
 #endif
-			}//#endif
+
+			SendPktCh( GetChRx() + ChGap,(U8 *) buf, (uint8_t)nSize );
 		}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-#if defined(USE_ROUTE_REQ)
-		else if( pHdr->nSrcCh >= ( GetChRx() + ChGap ) )
-#else
-		else if( pHdr->nSrcCh == ( GetChRx() + ChGap ) )
-#endif
+		else if( pHdr->nSrcCh == ( GetChRx() + 1 ) )
 		{
 			//	하위 채널로 중계.
 			//	1 <= 2 <- 3
 			nHopPkt++;
-			memcpy( buf, pRFPkt, 64 );
+			memcpy( buf, pRFPkt, (uint32_t)64 );
 			RFMPkt	*pSendPkt = (RFMPkt *)buf;
 			pSendPkt->hdr2.nSrcCh = GetChRx();
 
-#if defined(USE_ROUTE_NEAREST_RFM)	//	수신기 -> 송신기 중계 연결. ( 가장가까운 수신기에서 송신기로 중계 )
-			if ( g_devStat[RFTCarNo1].nNearCh == GetChRx()		//	송신기의 가까운 채널이 자신의 채널이면 송신기로 중계.
-					&& pSendPkt->hdr2.bRFT1 == 0 )
+#if defined(USE_RFT_REG_TO_RFM)
+			if ( (GetChPARFT() == ChTx_1) && (pSendPkt->hdr2.bRFT1 == 0) )
 			{
 				pSendPkt->hdr2.bRFT1 = 1;
-				SendPktCh( ChTx_1, buf, nSize );
+				SendPktCh( GetChPARFT(),(U8 *) buf, (uint8_t)nSize );
 			}
-			else if ( g_devStat[RFTCarNo2].nNearCh == GetChRx()	//	송신기의 가까운 채널이 자신의 채널이면 송신기로 중계.
-					&& pSendPkt->hdr2.bRFT2 == 0 )
+			else if ( (GetChPARFT() == ChTx_2) && (pSendPkt->hdr2.bRFT2 == 0) )
 			{
 				pSendPkt->hdr2.bRFT2 = 1;
-				SendPktCh( ChTx_2, buf, nSize );
+				SendPktCh( GetChPARFT(),(U8 *)buf, (uint8_t)nSize );
 			}
-
-#elif defined(USE_RFT_REG_TO_RFM)	//	송신기 가까운 수신기에 등록. (중계동작)
-			if ( GetChPARFT() == ChTx_1 && pSendPkt->hdr2.bRFT1 == 0 )
-			{
-				pSendPkt->hdr2.bRFT1 = 1;
-				SendPktCh( GetChPARFT(), buf, nSize );
-			}
-			else if ( GetChPARFT() == ChTx_2 && pSendPkt->hdr2.bRFT2 == 0 )
-			{
-				pSendPkt->hdr2.bRFT2 = 1;
-				SendPktCh( GetChPARFT(), buf, nSize );
-			}
-#endif	//	defined(USE_RFT_REG_TO_RFM)
-
-			if( g_nRFMode == RFMode2 )	//#if defined(USE_COMM_MODE_CH_GRP)	//	그룹주파수 모드. - [ 1, 2 ] [ 3, 4 ] ...
-			{
-				if ( g_nCarNo % 2 == 1 )
-				{
-					SendPktCh( GetChRx() - ChGap, buf, nSize ); //	홀수 Car
-				}
-			}
-			else//#else
-			{
-#if defined(USE_ROUTE_REQ)
-				//	현재 동작중인 하위 채널로 중계
-				if( GetChRFMDown() )
-				{
-					SendPktCh( GetChRFMDown(), buf, nSize );
-				}
-				else
-				{
-					HAL_Delay( 1 );
-				}
-
-#else
-				if ( g_nCarNo != 1 )	//	1호차가 아닌 경우.
-					SendPktCh( GetChRx() - ChGap, buf, nSize );
 #endif
 
-
-			}//#endif
+			SendPktCh( GetChRx() - ChGap,(U8 *) buf,(uint8_t) nSize );
 		}
 	}
 #endif	//	defined(USE_HOPPING)
+
+	return (uint8_t) 0;
 }
 
 ////========================================================================
@@ -620,7 +479,7 @@ int ProcPktHdr2( const RFMPkt *pRFPkt, int nSize  )
 //}
 
 //========================================================================
-void CallbackRecvPacket( const char *pData, int nSize )
+void CallbackRecvPacket( const S8 *pData, uint8_t nSize )
 //========================================================================
 {
 	const RFMPkt	*pRFPkt = (const RFMPkt *)pData;
@@ -650,13 +509,9 @@ void CallbackRecvPacket( const char *pData, int nSize )
 		return ;
 	}
 
-
-
-	//if ( GetDbg() == 7 ) printf("nPk_End %d\n",pRFPkt->hdr.nPktCmd);
-
 	//========================================================================
 	//	Proc Packet
-	switch ( (pRFPkt->hdr.nPktCmd)&0xFF )
+	switch ( pRFPkt->hdr.nPktCmd )
 	{
 	case PktCall:		ProcPktCall			( pRFPkt );		break;
 	case PktPA:			ProcPktPA			( pRFPkt );		break;
@@ -667,8 +522,6 @@ void CallbackRecvPacket( const char *pData, int nSize )
 	case PktCmd:		ProcPktCmd			( pRFPkt );		break;
 	case PktUpgr:		ProcPktUpgr			( pRFPkt );		break;
 	case PktUpgrStat:	ProcPktUpgrStat		( pRFPkt );		break;
-	case PktRouteReq:	ProcPktRouteReq		( pRFPkt );		break;
-	case PktRouteRsp:	ProcPktRouteRsp		( pRFPkt );		break;
 	default:
 //		printf( "%s(%d) - Invalid Value(%d)\n", __func__, __LINE__, pRFPkt->hdr.nPktCmd );
 		printf( "E\n" );	//	Packet Error
@@ -683,55 +536,112 @@ void CallbackRecvPacket( const char *pData, int nSize )
  *
  */
 //========================================================================
-void LoopProcPkt( int nTick )
+void LoopProcPkt( uint16_t nTick )
 //========================================================================
 {
 	bMain_IT_Status = bRadio_Check_Tx_RX();
 
-	if( ( bMain_IT_Status & SI446X_CMD_GET_CHIP_STATUS_REP_CHIP_PEND_CMD_ERROR_PEND_BIT )
-			|| ( bMain_IT_Status & SI446X_CMD_GET_INT_STATUS_REP_PH_STATUS_CRC_ERROR_BIT ) )
+#if defined( USE_IEEE802_15_4G )
+
+#if OLD
+
+
+	switch (bMain_IT_Status)
 	{
-		//	Rx Packet Error or CRC Error
-		printf ( "E" );
+	case SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_SENT_PEND_BIT:
 
-		//memset( g_pRadioRxPkt, 0, 0x40 );			//	Buffer Clear
+		// Configure PKT_CONFIG1 for RX
+		si446x_set_property(SI446X_PROP_GRP_ID_PKT, 1, SI446X_PROP_GRP_INDEX_PKT_CONFIG1, bPktConfig1ForRx);
+		// Start RX with Packet handler settings
+		vRadio_StartRX(pRadioConfiguration->Radio_ChannelNumber,
+			pRadioConfiguration->Radio_PacketLength);
 
-		//ADPCM_ClearEncodeBuf();			//	인코딩 버퍼 Clear
-
-
-		ADPCM_ClearDecodeBuf(); // 에러 패키지에도 소리가 정상.
-		memset( g_pRadioRxPkt, 0, 0x40 );			//	Buffer Clear
-        //qBufClear( &g_pRadioRxPkt );	//	Rx Buffer Clear  // 에러 패키지에도 소리가 정상.
-		//qBufClear( &g_qBufAudioRx );	//	Tx Buffer Clear
-
-
-	}
-	else if( bMain_IT_Status & SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_RX_PEND_BIT )
-	{
-		//	Rx Packet Receive Complete
 		HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
+
+		nTxPkt++;
+		nTxStamp = HAL_GetTick();
+
+		// Custom message sent successfully
+		if ( nTxPkt % 250 == 0 )
+		{
+			printf ( "T" );
+		}
+
+		break;
+
+	case SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_RX_PEND_BIT:
+
+		HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
+
+		// PHR was put in the RX FIFO in an LSB order, Payload in an MSB order. Store both in MSB in customRadioPacket[]
+		customRadioPacket[0u] = bBitOrderReverse(customRadioPacket[0u]);
+		customRadioPacket[1u] = bBitOrderReverse(customRadioPacket[1u]);
 
 		nRxPkt++;
 		nRxStamp = HAL_GetTick();
 
-		Dump("Rx", g_pRadioRxPkt, 0x40);
-
+		Dump("Rx", customRadioPacket, 0x40);
 		if ( nRxPkt % 250 == 0 )
 		{
 			printf ( "R" );
 		}
 
+//		CallbackRecvPacket( customRadioPacket, 0x40 );
+		CallbackRecvPacket( &customRadioPacket[2], (0x40 - 2) );
 
-		CallbackRecvPacket( g_pRadioRxPkt, 0x40 );
-		//memset( g_pRadioRxPkt, 0, 0x40 );			//	Buffer Clear
+		// Configure PKT_CONFIG1 for RX
+		si446x_set_property(SI446X_PROP_GRP_ID_PKT, 1, SI446X_PROP_GRP_INDEX_PKT_CONFIG1, bPktConfig1ForRx);
+		// Start RX with Packet handler settings
+		vRadio_StartRX(pRadioConfiguration->Radio_ChannelNumber,
+			pRadioConfiguration->Radio_PacketLength);
+
+		break;
+
+	default:
+		break;
+	} /* switch */
+
+#else
+
+	if( bMain_IT_Status & SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_RX_PEND_BIT )
+	{
+		HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
+
+		// PHR was put in the RX FIFO in an LSB order, Payload in an MSB order. Store both in MSB in customRadioPacket[]
+		g_pRadioRxPkt[0u] = bBitOrderReverse(g_pRadioRxPkt[0u]);
+		g_pRadioRxPkt[1u] = bBitOrderReverse(g_pRadioRxPkt[1u]);
+
+		nRxPkt++;
+		nRxStamp = HAL_GetTick();
+
+		Dump("Rx", g_pRadioRxPkt, 0x40);
+		if ( nRxPkt % 250 == 0 )
+		{
+			printf ( "R" );
+		}
+
+//		CallbackRecvPacket( customRadioPacket, 0x40 );
+		CallbackRecvPacket( &g_pRadioRxPkt[2], (0x40 - 2) );
+
+//		// Configure PKT_CONFIG1 for RX
+//		si446x_set_property(SI446X_PROP_GRP_ID_PKT, 1, SI446X_PROP_GRP_INDEX_PKT_CONFIG1, bPktConfig1ForRx);
+//		// Start RX with Packet handler settings
+//		vRadio_StartRX(pRadioConfiguration->Radio_ChannelNumber,
+//			pRadioConfiguration->Radio_PacketLength);
 	}
 
 	if( bMain_IT_Status & SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_SENT_PEND_BIT )
 	{
+//		// Configure PKT_CONFIG1 for RX
+//		si446x_set_property(SI446X_PROP_GRP_ID_PKT, 1, SI446X_PROP_GRP_INDEX_PKT_CONFIG1, bPktConfig1ForRx);
+//		// Start RX with Packet handler settings
+//		vRadio_StartRX(pRadioConfiguration->Radio_ChannelNumber,
+//			pRadioConfiguration->Radio_PacketLength);
+
 		HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
 
 		nTxPkt++;
-		nTxStampComp = HAL_GetTick();	//	송신완료 Stamp
+		nTxStamp = HAL_GetTick();
 
 		// Custom message sent successfully
 		if ( nTxPkt % 250 == 0 )
@@ -740,17 +650,133 @@ void LoopProcPkt( int nTick )
 		}
 	}
 
+//	if	(	bMain_IT_Status &
+//			( SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_RX_PEND_BIT | SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_SENT_PEND_BIT )
+//			)
+//	{
+//		// Configure PKT_CONFIG1 for RX
+//		si446x_set_property(SI446X_PROP_GRP_ID_PKT, 1, SI446X_PROP_GRP_INDEX_PKT_CONFIG1, bPktConfig1ForRx);
+//		// Start RX with Packet handler settings
+//		vRadio_StartRX(pRadioConfiguration->Radio_ChannelNumber,
+//			pRadioConfiguration->Radio_PacketLength);
+//	}
+
+#endif
+
+
+#else
+
+
+#if OLD
+
+	switch ( bMain_IT_Status )
+	{
+	//========================================================================
+	//  Transmit
+	case SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_SENT_PEND_BIT:
+
+		HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
+//		HAL_GPIO_TogglePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin );
+
+		nTxPkt++;
+		nTxStamp = HAL_GetTick();
+		if ( nTxPkt % 250 == 0 )
+		{
+			printf ( "T" );
+		}
+		/* Clear Packet Sending flag */
+
+		break;
+
+	//========================================================================
+	//  Receive
+	case SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_RX_PEND_BIT:
+
+		HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
+
+		nRxPkt++;
+		nRxStamp = HAL_GetTick();
+
+		Dump("Rx", customRadioPacket, 0x40);
+		if ( nRxPkt % 250 == 0 )
+		{
+			printf ( "R" );
+		}
+
+		CallbackRecvPacket( customRadioPacket, 0x40 );
+
+		//	Half-Duplex
+		if ( GetRFMMode() != RFMModeTx )
+		{
+			//  송신모드가 아닌경우 수신 Start
+			// Start RX with radio packet length
+			vRadio_StartRX (
+				pRadioConfiguration->Radio_ChannelNumber,
+				pRadioConfiguration->Radio_PacketLength );
+		}
+
+		break;
+
+	default:
+		break;
+	}
+
+#else
+	if(( ( bMain_IT_Status & SI446X_CMD_GET_CHIP_STATUS_REP_CHIP_PEND_CMD_ERROR_PEND_BIT ) != 0)
+			||( ( bMain_IT_Status & SI446X_CMD_GET_INT_STATUS_REP_PH_STATUS_CRC_ERROR_BIT ) != 0) )
+	{
+		//	Rx Packet Error or CRC Error
+		printf ( "E" );
+	}
+	else if( (bMain_IT_Status & SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_RX_PEND_BIT) != 0 )
+	{
+		//	Rx Packet Receive Complete
+		HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
+
+		nRxPkt++;
+		nRxStamp = HAL_GetTick();
+
+		//Dump((S8 *)"Rx", (S8)g_pRadioRxPkt, (uint8_t)(0x40));
+
+		if ( (nRxPkt % 250) == 0 )
+		{
+			printf ( "R" );
+		}
+
+		CallbackRecvPacket((S8 *) &g_pRadioRxPkt,(uint8_t) 0x40 );
+		//memset( g_pRadioRxPkt, 0, 0x40 );			//	Buffer Clear
+	}
+
+	if( (bMain_IT_Status & SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_SENT_PEND_BIT) != 0 )
+	{
+		HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
+
+		nTxPkt++;
+		nTxStampComp = HAL_GetTick();	//	송신완료 Stamp
+
+		// Custom message sent successfully
+		if (( nTxPkt % 250) == 0 )
+		{
+			printf ( "T" );
+		}
+	}
+
+#endif
+
+
+#endif
+
 #if defined(USE_SHOW_PKT)
 
-	static int s_oldTick = 0;
+	static uint16_t s_oldTick = 0;
 
-	if ( s_bShowPkt != 0 &&
-		( nTick - s_oldTick ) >= 1000 )
+	if ( (s_bShowPkt != 0) &&
+		(( nTick - s_oldTick ) >= 1000) )
 	{
 		//	1 sec
 
 		printf("PKT : Tx(%d) / Rx(%d) / Hop(%d) / Drop(%d) / RspID( 0x%04X ) / RxErr(%d) / Crc(%d) / RSSI(%d)\n", //__func__,
-				       nTxPkt, nRxPkt, nHopPkt, nDropPkt_2, g_flagRspID, nRxErr, nCrcErr, g_nRSSI );
+				nTxPkt, nRxPkt, nHopPkt, nDropPkt, g_flagRspID, nRxErr, nCrcErr, g_nRSSI );
 
 		s_oldTick = nTick;
 	}
@@ -772,19 +798,19 @@ U16 wPayloadLenghtFromPhr(U8* pbPhrMsb)
 
 	// Get the lenght from the PHR in MSB
 	bPhrLsbUpperByte = bBitOrderReverse(*pbPhrMsb);
-	bPhrLsbLowerByte = bBitOrderReverse(*(pbPhrMsb+1));
-	wLength = ((bPhrLsbUpperByte & 0x0003)<<8) | (bPhrLsbLowerByte & 0x00FF);
+	bPhrLsbLowerByte = bBitOrderReverse(pbPhrMsb[1]);
+	wLength = ((bPhrLsbUpperByte &(U16) 0x0003)<<8) | (bPhrLsbLowerByte &(U16) 0x00FF);
 
 	// Lenght in PHR includes FCS length (2 or 4 bytes). Adjust returned value accordingly
 	if ((bPhrLsbUpperByte & 0x10) == 0x10)
 	{
 		// 2-byte FCS
-		return (wLength-2);
+		return (U16)(wLength-2);
 	}
 	else
 	{
 		// 4-byte FCS
-		return (wLength-4);
+		return (U16)(wLength-4);
 	}
 }
 
@@ -797,91 +823,77 @@ U16 wPayloadLenghtFromPhr(U8* pbPhrMsb)
 U8 bBitOrderReverse(U8 bByteToReverse)
 //========================================================================
 {
-	bByteToReverse = (bByteToReverse & 0xF0) >> 4 | (bByteToReverse & 0x0F) << 4;
-	bByteToReverse = (bByteToReverse & 0xCC) >> 2 | (bByteToReverse & 0x33) << 2;
-	bByteToReverse = (bByteToReverse & 0xAA) >> 1 | (bByteToReverse & 0x55) << 1;
+	bByteToReverse = ((bByteToReverse & (U8)0xF0) >> 4) | ((bByteToReverse & (U8)0x0F) << 4);
+	bByteToReverse = ((bByteToReverse & (U8)0xCC) >> 2) | ((bByteToReverse & (U8)0x33) << 2);
+	bByteToReverse = ((bByteToReverse & (U8)0xAA) >> 1) | ((bByteToReverse & (U8)0x55) << 1);
 
-	return bByteToReverse;
+	return (U8)bByteToReverse;
 }
 
 
 //========================================================================
-int SendPacket( const char *sBuf, int nSize )
+uint8_t SendPacket( const S8 *sBuf, uint8_t nSize )
 //========================================================================
 {
-
-	int i = 0;
-	int s_idxTrainSet = 0;
-	int sListBuf[20]={1,2,3,4,5,
-		   			  6,7,8,9,10,
-					  11,12,13,14,15,
-					   0, 0, 0, 0, 0};
-
-		for(i = 0;i < 15;i++)
-		{
-			if(g_idxTrainSet  == sListBuf[i])
-			{
-				s_idxTrainSet = i;
-				break;
-			}
-		
-		}
-
-
 	//	printf("%s(%d)\n", __func__, __LINE__);
 
-	Dump("Tx", sBuf, 0x40);
+	//Dump("Tx", sBuf, 0x40);
 
 	//	CH1 : 1, 3, 5
 	//	CH2 :  2, 4, 6
-	int nCh = ChTS1_1 + s_idxTrainSet * 2 + ((g_nCarNo + 1) % 2); // 현재 호차 채널
+	uint8_t nCh = ChTS1_1 + (g_idxTrainSet * 2) + ((g_nCarNo + 1) % 2); // 현재 호차 채널
 
 	//========================================================================
-	while( ( HAL_GetTick() - nTxStamp) <= 3 )	;	//	Tx 시작 후 완료까지 : 3msec
+	while( ( HAL_GetTick() - nTxStamp) < 3 )//	Tx 시작 후 완료까지 : 3msec
+	{
+
+	}
 	//========================================================================
 
 	vRadio_StartTx_Variable_Packet (
-		nCh,	//g_idxTrainSet,	//		pRadioConfiguration->Radio_ChannelNumber,
+		(U8) nCh,	//g_idxTrainSet,	//		pRadioConfiguration->Radio_ChannelNumber,
 		(U8 *)&sBuf[0],
-		pRadioConfiguration->Radio_PacketLength );
+		(U8)pRadioConfiguration->Radio_PacketLength );
 
 	//========================================================================
 	nTxStamp = HAL_GetTick();
 	//========================================================================
 
-	return TRUE;
+	return (uint8_t)TRUE;
 }
 
 //========================================================================
-int SendPktCh	( int nCh, const char *sBuf, int nSize )
+uint8_t SendPktCh	( uint8_t nCh, const U8 *sBuf, uint8_t nSize )
 //========================================================================
 {
-	Dump("Tx", sBuf, 0x40);
+	//Dump("Tx", sBuf, 0x40);
 
 	//========================================================================
-//	while( ( HAL_GetTick() - nTxStamp) <= 3 )	;	//	Tx 시작 후 완료까지 : 3msec
-	while( ( HAL_GetTick() - nTxStamp) <= 4 )	;	//	Tx 시작 후 완료까지 : 3msec
+	while( ( HAL_GetTick() - nTxStamp) < 3 )//	Tx 시작 후 완료까지 : 3msec
+	{
+
+	}
 	//========================================================================
 
 	vRadio_StartTx_Variable_Packet (
 		nCh,	//		pRadioConfiguration->Radio_ChannelNumber,
-		(U8 *)&sBuf[0],
+		(U8 *) &sBuf[0],
 		pRadioConfiguration->Radio_PacketLength );
 
 	//========================================================================
 	nTxStamp = HAL_GetTick();
 	//========================================================================
 
-	return TRUE;
+	return (uint8_t)TRUE;
 }
 
 
 //========================================================================
-int cmd_pktmon      ( int argc, char * argv[] )
+uint8_t cmd_pktmon      ( uint8_t argc, char * argv[] )
 //========================================================================
 {
 	//	bEnable ( 1 / 0 )
-	int bEnable = 1;	//	Default : Enable
+	uint8_t bEnable = 1;	//	Default : Enable
 
 	switch ( argc )
 	{
@@ -893,4 +905,6 @@ int cmd_pktmon      ( int argc, char * argv[] )
 	printf( "%s(%d) - En(%d)\n", __func__, __LINE__, bEnable );
 
 	s_bShowPkt = bEnable;
+
+	return (uint8_t) 0;
 }

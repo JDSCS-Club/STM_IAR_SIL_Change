@@ -44,7 +44,7 @@
 #define	RTS_LOW		GPIO_PIN_RESET
 #define	RTS_HIGH	GPIO_PIN_SET
 
-int		input_check		( void );
+uint8_t		input_check		( void );
 
 void	SerialInit		( UART_HandleTypeDef *_phuart1, UART_HandleTypeDef *_phuart2 );
 

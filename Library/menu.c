@@ -1,12 +1,24 @@
 
-#include "main.h"
+
 
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
-#include <stdarg.h>
+//#include <stdarg.h>
 #include <stdbool.h>
+
+#include <stdio.h>			//	printf()
+
+#include <stdint.h>			//	uint32_t
+
+#include <string.h>			//	memset()
+
+#include "typedef.h"			//	uint32_t, ...
+#include "compiler_defs.h"		//	U8,
+
+
+#include "main.h"
 
 #include "QBuf.h"
 
@@ -31,6 +43,7 @@
 #include "ProcPkt.h"				//	g_flagRspID
 
 #include "cli.h"
+
 
 //========================================================================
 //	Menu LightCtrl
@@ -94,26 +107,26 @@ Menu_t	g_MenuVerList = {
 //	Menu TrainSet	-	편성설정메뉴 ( 100 ~ 119 )
 
 char *_sTrainSet[] = {
-	" 401 편성",
-	" 402 편성",
-	" 403 편성",
-	" 404 편성",
-	" 405 편성",
-	" 406 편성",
-	" 407 편성",
-	" 408 편성",
-	" 409 편성",
-	" 410 편성",
-	" 411 편성",
-	" 412 편성",
-	" 413 편성",
-	" 414 편성",
-	" 415 편성",
-	//" 300 편성",
-	//" 300 편성",
-	//" 300 편성",
-	//" 300 편성",
-	//" 300 편성",
+	" 100 편성",
+	" 101 편성",
+	" 102 편성",
+	" 103 편성",
+	" 104 편성",
+	" 105 편성",
+	" 106 편성",
+	" 107 편성",
+	" 108 편성",
+	" 109 편성",
+	" 110 편성",
+	" 111 편성",
+	" 112 편성",
+	" 113 편성",
+	" 114 편성",
+	" 115 편성",
+	" 116 편성",
+	" 117 편성",
+	" 118 편성",
+	" 119 편성",
 };
 
 Menu_t	g_MenuTrainSet = {
@@ -144,43 +157,21 @@ Menu_t	g_MenuRFTIDList = {
 //	Menu SelfTest - 자가진단
 
 #if defined(USE_RFT_MENU_SELFTEST)
-
-char _sSelfTestList[15][20] = {
-		"01 호차 : --",	//
-		"02 호차 : --",	//
-		"03 호차 : --",	//
-		"04 호차 : --",	//
-		"05 호차 : --",	//
-		"06 호차 : --",	//
-		"07 호차 : --",
-		"08 호차 : --",
-		"09 호차 : --",
-		"10 호차 : --",
+char *_sSelfTestList[] = {
+	" 1 호차 : OK",	//
+	" 2 호차 : OK",	//
+	" 3 호차 : OK",	//
+	" 4 호차 : N/A",	//
+	" 5 호차 : N/A",	//
+	" 6 호차 : OK",	//
 };
 
-char *_sSelfTestList_OK[] = {
-	_sSelfTestList[0],
-	_sSelfTestList[1],
-	_sSelfTestList[2],
-	_sSelfTestList[3],
-	_sSelfTestList[4],
-	_sSelfTestList[5],
-	_sSelfTestList[6],
-	_sSelfTestList[7],
-	_sSelfTestList[8],
-	_sSelfTestList[9],
-
-};
-
-
-Menu_t	g_MenuSelfTestList_OK = {
-	_sSelfTestList_OK,
-	sizeof(_sSelfTestList_OK)/sizeof(char *),		//	Item Count
+Menu_t	g_MenuSelfTestList = {
+	_sSelfTestList,
+	sizeof(_sSelfTestList)/sizeof(char *),		//	Item Count
 	0,						// 	curr Idx
 	ProcMenuSelfTest		//	Callback Function
 };
-
-
 #endif	//	defined(USE_RFT_MENU_SELFTEST)
 
 //========================================================================
@@ -209,7 +200,6 @@ char *_sSettingList[] = {
 	" Mic Vol",		//	Mic Volume
 	" Spk Vol",		//	Spk Volume
 	" RF Tx Pwr",	//	RF Tx Power
-	" RF Mode",		//	RF Mode
 };
 
 Menu_t	g_MenuSettingList = {
@@ -270,18 +260,6 @@ Menu_t	g_MenuSetTxPwrList = {
 };
 
 
-//	[RFMode : 1(1채널중계) / 2(2채널그룹)]",
-char *_sSetRFMode[] = { 	" RFMode 1",	//	1
-							" RFMode 2",	//	2
-						};
-
-Menu_t	g_MenuSetRFModeList = {
-	_sSetRFMode,
-	sizeof(_sSetRFMode)/sizeof(char *),		//	Item Count
-	0,							// 	curr Idx
-	ProcMenuSetRFMode			//	Callback Function
-};
-
 #endif	//	defined(USE_RFT_MENU_SETTING)
 
 //========================================================================
@@ -289,13 +267,10 @@ Menu_t	g_MenuSetRFModeList = {
 
 #if defined(USE_RFT_MENU_CMD)
 char *_sCmdList[] = {
-	" Reset", //  Reset
-	//DEL	" DFU Mode",		//  DFU Mode
-	" TS Set",
-	" Car Set",
-	" RFMode Set",
-	" Upgrade ReTry", //  Upgrade Re-Try
-	" Upgrade",		  //  Upgrade
+	" Reset",			//  Reset
+	" DFU Mode",		//  DFU Mode
+	" Upgrade ReTry",	//  Upgrade Re-Try
+	" Upgrade",			//  Upgrade
 };
 
 Menu_t	g_MenuCmdList = {
@@ -305,46 +280,6 @@ Menu_t	g_MenuCmdList = {
 	ProcMenuCmd				//	Callback Function
 };
 #endif	//	defined(USE_RFT_MENU_CMD)
-
-//	호차 설정
-char *_sSetCmdCarList[] = {	" Car : 1",
-							" Car : 2",
-							" Car : 3",
-							" Car : 4",
-							" Car : 5",
-							" Car : 6",
-							" Car : 7",
-							" Car : 8",
-							" Car : 9",
-							" Car : 10",
-						};
-
-Menu_t	g_MenuSetCmdCarList = {
-	_sSetCmdCarList,
-	sizeof(_sSetCmdCarList)/sizeof(char *),		//	Item Count
-	0,						// 	curr Idx
-	ProcMenuSetCmdCar		//	Callback Function
-};
-
-//	편성 설정
-Menu_t	g_MenuSetCmdTSList = {
-	_sTrainSet,								//	편성 : 100, 편성 : 101, ...
-	sizeof(_sTrainSet)/sizeof(char *),		//	Item Count
-	0,						// 	curr Idx
-	ProcMenuSetCmdTS		//	Callback Function
-};
-
-//	RFMode 설정
-char *_sSetCmdRFModeList[] = {	" RFMode 1",
-								" RFMode 2",
-								};
-
-Menu_t	g_MenuSetCmdRFModeList = {
-	_sSetCmdRFModeList,
-	sizeof(_sSetCmdRFModeList)/sizeof(char *),		//	Item Count
-	0,						// 	curr Idx
-	ProcMenuSetCmdRFMode		//	Callback Function
-};
 
 //========================================================================
 //	Main Menu
@@ -375,20 +310,20 @@ enum eMenuIdx
 };
 
 //========================================================================
-int	g_bEnMenuMaint	= 	0;	//	MainMenu Maintenace Menu활성화.
+uint8_t	g_bEnMenuMaint	= 	0;	//	MainMenu Maintenace Menu활성화.
 
-int 	IsMenuMaint			( void )			//	MainMenu Maintenace Menu활성화.
+uint8_t 	IsMenuMaint			( void )			//	MainMenu Maintenace Menu활성화.
 {
-	return g_bEnMenuMaint;
+	return (uint8_t)g_bEnMenuMaint;
 }
 
 //========================================================================
-void EnableMenuMaint( int bEnable )
+void EnableMenuMaint( uint8_t bEnable )
 //========================================================================
 {
 	g_bEnMenuMaint = bEnable;
 
-	if ( bEnable )
+	if ( bEnable != 0 )
 	{
 		//	LCD [Menu Maint.]
 		LCDPrintfXY( 10, 13, "[Maint. Menu]" );
@@ -448,7 +383,7 @@ Menu_t	g_MenuMainMaint = {
 Menu_t	*g_pActiveMenu	=	NULL;
 //========================================================================
 
-static int _bEnDispStat = 0;
+static uint8_t _bEnDispStat = 0;
 
 //========================================================================
 void	SetActiveMenu( Menu_t *pActiveMenu )
@@ -468,11 +403,9 @@ Menu_t	*GetActiveMenu( void )
 void	UpdateLCDMain( void )
 //========================================================================
 {
+	S8 sBuf[30];
 
-
-	char sBuf[30];
-
-	sprintf( sBuf, "편성 : %d", 400 + g_idxTrainSet);
+	sprintf( sBuf, "편성 : %d", 100 + g_idxTrainSet );
 
 //	LCDPrintf( "편성 : 100" );
 	LCDPrintfXY( 20, 13, sBuf );
@@ -488,14 +421,12 @@ void	UpdateLCDMenu( void )
 		return;
 	}
 
-	char	**sMenu;
-	int		*pIdxMenu, *pCntMenu;
+	S8	**sMenu;
+	int8_t		*pIdxMenu, *pCntMenu;
 
 	sMenu		=	g_pActiveMenu->sItem;
 	pIdxMenu	=	&g_pActiveMenu->currIdx;
 	pCntMenu	=	&g_pActiveMenu->cntItem;
-
-
 
 	//  Main화면 Clear
 	LCDClearMain();
@@ -518,19 +449,19 @@ void	UpdateLCDMenu( void )
 }
 
 //========================================================================
-void	UpdateLCDMonitor( int nTick )
+void	UpdateLCDMonitor( uint8_t nTick )
 //========================================================================
 {
-	static int oldTick = 0;
+	static uint8_t oldTick = 0;
 
-	if ( nTick - oldTick > 1000 )
+	if ( (nTick - oldTick) > 1000 )
 	{
-		if( _bEnDispStat )
+		if( _bEnDispStat != 0 )
 		{
 			//	상태정보 현시.
 			LCDSetCursor( 5, 13 );
 
-			char sBuf[100];
+			S8 sBuf[100];
 			sprintf(sBuf, "Stat:%04X / %02d", g_flagRspID, g_nRSSI );
 			LCDPrintf( sBuf );
 		}
@@ -543,7 +474,10 @@ void	UpdateLCDMonitor( int nTick )
 void	ProcBtnUp( void )
 //========================================================================
 {
-	if ( GetActiveMenu() == NULL ) return;
+	if ( GetActiveMenu() == NULL )
+	{
+		return;
+	}
 
 	//	Menu : Up Key Press
 
@@ -572,7 +506,10 @@ void	ProcBtnUp( void )
 void	ProcBtnDown( void )
 //========================================================================
 {
-	if ( GetActiveMenu() == NULL ) return;
+	if ( GetActiveMenu() == NULL )
+	{
+		return;
+	}
 
 	//	Menu : Down Key Press
 	g_pActiveMenu->currIdx++;
@@ -607,7 +544,7 @@ void	ProcBtnMenu( void )
 
 		//	Set Main Menu
 
-		if ( g_bEnMenuMaint )
+		if ( g_bEnMenuMaint != 0 )
 		{
 			//	Maintenance 유지보수 메뉴 활성화.
 			SetActiveMenu( &g_MenuMainMaint );
@@ -643,11 +580,11 @@ void	ProcLightOn ( void )
 	//========================================================================
 
 	SendLightOn();	 //  조명On 명령 전송.
-	HAL_Delay( 200 );
+	HAL_Delay( (uint32_t)200 );
 	SendLightOn();	 //  조명On 명령 전송.
-	HAL_Delay( 200 );
+	HAL_Delay( (uint32_t)200 );
 	SendLightOn();	 //  조명On 명령 전송.
-	HAL_Delay( 200 );
+	HAL_Delay( (uint32_t)200 );
 	SendLightOn();	 //  조명On 명령 전송.
 
 #if defined(USE_STAT_LIGHT)
@@ -668,11 +605,11 @@ void	ProcLightOff ( void )
 	//========================================================================
 
 	SendLightOff();	 //  조명Off 명령 전송.
-	HAL_Delay( 200 );
+	HAL_Delay( (uint32_t)200 );
 	SendLightOff();	 //  조명Off 명령 전송.
-	HAL_Delay( 200 );
+	HAL_Delay((uint32_t) 200 );
 	SendLightOff();	 //  조명Off 명령 전송.
-	HAL_Delay( 200 );
+	HAL_Delay((uint32_t) 200 );
 	SendLightOff();	 //  조명Off 명령 전송.
 
 #if defined(USE_STAT_LIGHT)
@@ -699,19 +636,13 @@ void	ProcDispStat ( void )
 }
 
 //========================================================================
-void	ProcMenuTrainSet( int idxItem  )
+void	ProcMenuTrainSet( uint8_t idxItem  )
 //========================================================================
 {
-	int sListBuf[20]={1,2,3,4,5,
-		   			  6,7,8,9,10,
-					  11,12,13,14,15,
-					   0, 0, 0, 0, 0};
-					   
 	LCDSetCursor( 20, 13 );
 	LCDPrintf( "[편성설정]" );
-	g_idxTrainSet =sListBuf[idxItem];	//	메뉴 Index값으로 설정.
-
-	SetTrainSetIdx( g_idxTrainSet );
+	g_idxTrainSet = idxItem;	//	메뉴 Index값으로 설정.
+	SetTrainSetIdx((uint8_t) g_idxTrainSet );
 
 #if defined(USE_CH_ISO_DEV)		//	장치별로 채널 구분.
 	//	각 장치별로 채널 구분.
@@ -723,7 +654,7 @@ void	ProcMenuTrainSet( int idxItem  )
 #endif
 
 	//  1초후 Main화면 갱신.
-	HAL_Delay( 1000 );
+	HAL_Delay( (uint32_t)1000 );
 	UpdateLCDMain();
 
 	//  메뉴 Exit
@@ -732,7 +663,7 @@ void	ProcMenuTrainSet( int idxItem  )
 
 
 //========================================================================
-void	ProcMenuVer( int idxItem  )
+void	ProcMenuVer( uint8_t idxItem  )
 //========================================================================
 {
 	//	Upgrade Ok / Cancel
@@ -746,70 +677,22 @@ void	ProcMenuVer( int idxItem  )
 
 
 //========================================================================
-void	ProcMenuCmd( int idxItem  )
+void	ProcMenuCmd( uint8_t idxItem  )
 //========================================================================
 {
-	//	하위매뉴진입 : 편성 / 호차 설정.
-	switch ( idxItem )
-	{
-	case 1:		//	Train Set
-		SetActiveMenu( &g_MenuSetCmdTSList );
-		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
-
-		UpdateLCDMenu();
-		return;
-	case 2:		//	Car Set
-		SetActiveMenu( &g_MenuSetCmdCarList );
-		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
-
-		UpdateLCDMenu();
-		return;
-	case 3:		//	RFMode Set
-		SetActiveMenu( &g_MenuSetCmdRFModeList );
-		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
-
-		UpdateLCDMenu();
-		return;
-	}
-
 	LCDSetCursor( 20, 13 );
 	LCDPrintf( "[명령전송]" );
 
 	switch( idxItem )
 	{
 	case 0:		SendRFCmdReset();		break;		//	Reset 명령.
-//DEL	case 1:		SendRFCmdDFUMode();		break;		//	DFU Mode 명령.
-	case 4:		SendRFCmdUpgrade(1);	break;		//	Upgrade(Re-Try 명령.
-	case 5:		SendRFCmdUpgrade(0);	break;		//	Upgrade 명령.
+	case 1:		SendRFCmdDFUMode();		break;		//	DFU Mode 명령.
+	case 2:		SendRFCmdUpgrade((uint16_t)1);	break;		//	Upgrade(Re-Try 명령.
+	case 3:		SendRFCmdUpgrade((uint16_t)0);	break;		//	Upgrade 명령.
 	}
 
 	//  1초후 Main화면 갱신.
-	HAL_Delay( 1000 );
-	UpdateLCDMain();
-
-	//  메뉴 Exit
-	SetActiveMenu( NULL );
-}
-
-
-//========================================================================
-void	ProcMenuSetCmdTS( int idxItem  )
-//========================================================================
-{
-
-	int sListBuf[20]={1,2,3,4,5,
-		   			  6,7,8,9,10,
-					  11,12,13,14,15,
-					   0, 0, 0, 0, 0};
-
-
-	LCDSetCursor( 20, 13 );
-	LCDPrintf( "[명령전송]" );
-
-	SendRFCmdTS(sListBuf[idxItem]);		//	편성설정.
-
-	//  1초후 Main화면 갱신.
-	HAL_Delay( 1000 );
+	HAL_Delay( (uint32_t)1000 );
 	UpdateLCDMain();
 
 	//  메뉴 Exit
@@ -817,57 +700,10 @@ void	ProcMenuSetCmdTS( int idxItem  )
 }
 
 //========================================================================
-void	ProcMenuSetCmdCar( int idxItem  )
+void 	ProcMenuMain( uint8_t idxItem )
 //========================================================================
 {
-	LCDSetCursor( 20, 13 );
-	LCDPrintf( "[명령전송]" );
-
-	SendRFCmdCar(idxItem + 1);		//	호차설정.
-
-	//  1초후 Main화면 갱신.
-	HAL_Delay( 1000 );
-	UpdateLCDMain();
-
-	//  메뉴 Exit
-	SetActiveMenu( NULL );
-}
-
-//========================================================================
-void	ProcMenuSetCmdRFMode( int idxItem  )
-//========================================================================
-{
-	LCDSetCursor( 20, 13 );
-	LCDPrintf( "[명령전송]" );
-
-	SendRFCmdRFMode(idxItem + 1);		//	RF Mode 설정.
-
-	HAL_Delay( 100 );	//	100 msec
-
-	//	RF Mode 설정 후 Reset 명령
-	SendRFCmdReset();
-
-	//  1초후 Main화면 갱신.
-	HAL_Delay( 1000 );
-	UpdateLCDMain();
-
-	//  메뉴 Exit
-	SetActiveMenu( NULL );
-}
-
-
-//========================================================================
-void 	ProcMenuMain( int idxItem )
-//========================================================================
-{
-
-
-	int i = 0;
-	int sListBuf[20]={1,2,3,4,5,
-		   			  6,7,8,9,10,
-					  11,12,13,14,15,
-					   0, 0, 0, 0, 0};;
-
+	uint8_t sReVel = 0;
 
 	switch ( idxItem )
 	{
@@ -907,14 +743,8 @@ void 	ProcMenuMain( int idxItem )
 
 	case eMenuIdxTrainSet:	//	2:		 //  편성설정.
 
-
-		for(i = 0;i < 15;i++)
-		{
-			if(g_idxTrainSet  == sListBuf[i]) break;
-		}
-
 		SetActiveMenu( &g_MenuTrainSet );
-		GetActiveMenu()->currIdx = i;	//	메뉴 Index초기화.
+		GetActiveMenu()->currIdx = (int8_t)g_idxTrainSet;	//	메뉴 Index초기화.
 
 		UpdateLCDMenu();
 		break;
@@ -924,26 +754,26 @@ void 	ProcMenuMain( int idxItem )
 	case eMenuIdxRFTID:		//	3:		 //  송신기 ID
 
 		SetActiveMenu( &g_MenuRFTIDList );
-		GetActiveMenu()->currIdx = ( ( GetCarNo() + 1 ) % 2 );	//	메뉴 Index초기화.
+
+		sReVel = GetCarNo();
+		GetActiveMenu()->currIdx = (int8_t)( ( (int8_t)sReVel + 1 ) % 2 );	//	메뉴 Index초기화.
 
 		UpdateLCDMenu();
 		break;
 
 #endif	//	defined(USE_RFT_MENU_DIAG)
 
-#if defined(USE_RFT_MENU_SELFTEST)
+#if defined(USE_RFT_MENU_RFTID)
 
 	case eMenuIdxSelfTest:	//	4:		 //  송신기 ID
 
-
-		SetActiveMenu( &g_MenuSelfTestList_OK );
-		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+		SetActiveMenu( &g_MenuSelfTestList );
+		GetActiveMenu()->currIdx = (int8_t)0;	//	메뉴 Index초기화.
 
 		UpdateLCDMenu();
-
 		break;
 
-#endif	//	defined(USE_RFT_MENU_SELFTEST)
+#endif	//	defined(USE_RFT_MENU_DIAG)
 
 
 #if defined(USE_RFT_MENU_DIAG)
@@ -951,7 +781,7 @@ void 	ProcMenuMain( int idxItem )
 	case eMenuIdxDiag:		//	5:		 //  진단
 
 		SetActiveMenu( &g_MenuDiagList );
-		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+		GetActiveMenu()->currIdx = (int8_t)0;	//	메뉴 Index초기화.
 
 		UpdateLCDMenu();
 		break;
@@ -963,7 +793,7 @@ void 	ProcMenuMain( int idxItem )
 	case eMenuIdxSetting:	//	6:		 //  설정
 
 		SetActiveMenu( &g_MenuSettingList );
-		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+		GetActiveMenu()->currIdx = (int8_t)0;	//	메뉴 Index초기화.
 
 		UpdateLCDMenu();
 		break;
@@ -987,7 +817,7 @@ void 	ProcMenuMain( int idxItem )
 	case eMenuIdxCmd:		//	8:		 //  명령전송.
 
 		SetActiveMenu( &g_MenuCmdList );
-		GetActiveMenu()->currIdx = 0;	//	메뉴 Index초기화.
+		GetActiveMenu()->currIdx = (int8_t)0;	//	메뉴 Index초기화.
 
 		UpdateLCDMenu();
 		break;
@@ -1012,7 +842,7 @@ void 	ProcMenuMain( int idxItem )
 
 
 //========================================================================
-void 	ProcMenuLightCtrl( int idxItem )
+void 	ProcMenuLightCtrl( uint8_t idxItem )
 //========================================================================
 {
 	LCDMenuUpDown( 0 );
@@ -1027,14 +857,14 @@ void 	ProcMenuLightCtrl( int idxItem )
 	}
 
 	//  1초후 Main화면 갱신.
-	HAL_Delay( 1000 );
+	HAL_Delay( (uint32_t)1000 );
 	UpdateLCDMain();
 
 	SetActiveMenu( NULL );
 }
 
 //========================================================================
-void 	ProcMenuRFTID( int idxItem )
+void 	ProcMenuRFTID( uint8_t idxItem )
 //========================================================================
 {
 	LCDMenuUpDown( 0 );	//	UpDown Off
@@ -1042,12 +872,12 @@ void 	ProcMenuRFTID( int idxItem )
 	switch( idxItem )
 	{
 	case 0:	//	송신기 #1
-		SetCarNo( RFTCarNo1 );	//	CarNo ( 11 )
+		SetCarNo((uint8_t) RFTCarNo1 );	//	CarNo ( 11 )
 		LCDPrintf( "Set RFT#1" );
 		break;
 
 	case 1:	//	송신기 #2
-		SetCarNo( RFTCarNo2 );	//	CarNo ( 12 )
+		SetCarNo( (uint8_t) RFTCarNo2 );	//	CarNo ( 12 )
 		LCDPrintf( "Set RFT#2" );
 		break;
 
@@ -1057,30 +887,27 @@ void 	ProcMenuRFTID( int idxItem )
 	}
 
 	//  1초후 Main화면 갱신.
-	HAL_Delay( 1000 );
+	HAL_Delay( (uint32_t)1000 );
 	UpdateLCDMain();
 
 	SetActiveMenu( NULL );
 }
 
 //========================================================================
-void 	ProcMenuSelfTest( int idxItem )
+void 	ProcMenuSelfTest( uint8_t idxItem )
 //========================================================================
 {
 	LCDMenuUpDown( 0 );
 
 	//  1초후 Main화면 갱신.
-	HAL_Delay( 1000 );
-
-
-	SetActiveMenu( NULL );
-
+	HAL_Delay( (uint32_t)1000 );
 	UpdateLCDMain();
 
+	SetActiveMenu( NULL );
 }
 
 //========================================================================
-void 	ProcMenuDiag( int idxItem )
+void 	ProcMenuDiag( uint8_t idxItem )
 //========================================================================
 {
 	LCDMenuUpDown( 0 );
@@ -1131,10 +958,14 @@ void 	ProcMenuDiag( int idxItem )
 
 
 //========================================================================
-void 	ProcMenuSetting( int idxItem )
+void 	ProcMenuSetting( uint8_t idxItem )
 //========================================================================
 {
+	uint8_t sReVel = 0;
+
 	LCDMenuUpDown( 0 );
+
+
 
 //	" Mic Vol",		//	Mic Volume
 //	" Spk Vol",		//	Spk Volume
@@ -1144,7 +975,9 @@ void 	ProcMenuSetting( int idxItem )
 	{
 	case 0:		//	Mic Volume
 		SetActiveMenu( &g_MenuSetMicList );
-		GetActiveMenu()->currIdx = GetMicVol();	//	메뉴 Index초기화.
+
+		sReVel =  (uint8_t)GetMicVol();	//	메뉴 Index초기화.
+		GetActiveMenu()->currIdx =(int8_t)sReVel;
 
 		UpdateLCDMenu();
 
@@ -1152,21 +985,17 @@ void 	ProcMenuSetting( int idxItem )
 
 	case 1:		//	Spk Volume
 		SetActiveMenu( &g_MenuSetSpkList );
-		GetActiveMenu()->currIdx = GetSpkVol();	//	메뉴 Index초기화.
 
+		sReVel =  (uint8_t)GetSpkVol();	//	메뉴 Index초기화.
+
+		GetActiveMenu()->currIdx = (int8_t)sReVel;
 		UpdateLCDMenu();
 		break;
 
 	case 2:		//	RF Tx Power
 		SetActiveMenu( &g_MenuSetTxPwrList );
-		GetActiveMenu()->currIdx = 7;	//	메뉴 Index초기화.
 
-		UpdateLCDMenu();
-		break;
-
-	case 3:		//	RF Mode
-		SetActiveMenu( &g_MenuSetRFModeList );
-		GetActiveMenu()->currIdx = g_nRFMode - 1;	//	메뉴 Index초기화.
+		GetActiveMenu()->currIdx =(int8_t) 7;	//	메뉴 Index초기화.
 
 		UpdateLCDMenu();
 		break;
@@ -1178,7 +1007,7 @@ void 	ProcMenuSetting( int idxItem )
 }
 
 //========================================================================
-void 	ProcMenuSetMic( int idxItem )
+void 	ProcMenuSetMic( uint8_t idxItem )
 //========================================================================
 {
 	LCDMenuUpDown( 0 );
@@ -1204,14 +1033,14 @@ void 	ProcMenuSetMic( int idxItem )
 		break;
 	}
 	//  1초후 Main화면 갱신.
-	HAL_Delay( 1000 );
+	HAL_Delay((uint32_t) 1000 );
 	UpdateLCDMain();
 
 	SetActiveMenu( NULL );
 }
 
 //========================================================================
-void 	ProcMenuSetSpk( int idxItem )
+void 	ProcMenuSetSpk( uint8_t idxItem )
 //========================================================================
 {
 	LCDMenuUpDown( 0 );
@@ -1231,7 +1060,7 @@ void 	ProcMenuSetSpk( int idxItem )
 		break;
 	}
 	//  1초후 Main화면 갱신.
-	HAL_Delay( 1000 );
+	HAL_Delay( (uint32_t)1000 );
 	UpdateLCDMain();
 
 	SetActiveMenu( NULL );
@@ -1239,7 +1068,7 @@ void 	ProcMenuSetSpk( int idxItem )
 
 
 //========================================================================
-void 	ProcMenuSetTxPwr( int idxItem )
+void 	ProcMenuSetTxPwr( uint8_t idxItem )
 //========================================================================
 {
 	LCDMenuUpDown( 0 );
@@ -1256,45 +1085,24 @@ void 	ProcMenuSetTxPwr( int idxItem )
 
 	switch( idxItem )
 	{
-	case 0:	vRadio_Set_TxPower(0);		break;
-	case 1:	vRadio_Set_TxPower(1);		break;
-	case 2:	vRadio_Set_TxPower(4);		break;
-	case 3:	vRadio_Set_TxPower(7);		break;
-	case 4:	vRadio_Set_TxPower(12);		break;
-	case 5:	vRadio_Set_TxPower(40);		break;
-	case 6:	vRadio_Set_TxPower(127);	break;
+	case 0:	vRadio_Set_TxPower((U8)0);		break;
+	case 1:	vRadio_Set_TxPower((U8)1);		break;
+	case 2:	vRadio_Set_TxPower((U8)4);		break;
+	case 3:	vRadio_Set_TxPower((U8)7);		break;
+	case 4:	vRadio_Set_TxPower((U8)12);		break;
+	case 5:	vRadio_Set_TxPower((U8)40);		break;
+	case 6:	vRadio_Set_TxPower((U8)127);	break;
 	default:
 		printf("%s(%d) - invalid menu(%d)\n", __func__, __LINE__, idxItem);
 		break;
 	}
 	//  1초후 Main화면 갱신.
-	HAL_Delay( 1000 );
+	HAL_Delay( (uint32_t)1000 );
 	UpdateLCDMain();
 
 	SetActiveMenu( NULL );
 }
 
-
-//========================================================================
-void 	ProcMenuSetRFMode( int idxItem )
-//========================================================================
-{
-	LCDMenuUpDown( 0 );
-
-	switch( idxItem )
-	{
-	case 0:	SetRFMode(1);		break;
-	case 1:	SetRFMode(2);		break;
-	default:
-		printf("%s(%d) - invalid menu(%d)\n", __func__, __LINE__, idxItem);
-		break;
-	}
-	//  1초후 Main화면 갱신.
-	HAL_Delay( 1000 );
-	UpdateLCDMain();
-
-	SetActiveMenu( NULL );
-}
 
 //========================================================================
 void	ProcBtnOK( void )

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  23:37:25
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:25
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                     =  thumb
@@ -77,16 +77,6 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\unicode.c
      20          #include <string.h>		//	memset()
      21          
      22          #include "typedef.h"
-
-  typedef unsigned char       BYTE;
-                              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",73  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-
-  typedef unsigned short      WORD;
-                              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",77  Warning[Pe301]: typedef
-          name has already been declared (with same type)
      23          
      24          #include "unicode.h"
      25          
@@ -24871,4 +24861,4 @@ Warning[Pe181]: argument is incompatible with corresponding format string
  42'304 bytes of CONST memory
 
 Errors: none
-Warnings: 8
+Warnings: 6

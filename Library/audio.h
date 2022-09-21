@@ -37,7 +37,7 @@
 enum eAudioConfI2SDMA
 {
 //	I2S_DMA_LOOP_SIZE	=	32,		//	[4Byte Commnad] [ 60Byte Stream Data ]
-	I2S_DMA_LOOP_SIZE	=	(RFPktDataLen/2),	//	[4Byte Commnad] [ 60Byte Stream Data ]
+	I2S_DMA_LOOP_SIZE	=	30,	//	[4Byte Commnad] [ 60Byte Stream Data ]
 //	I2S_DMA_LOOP_QCNT	=	4,					//	Queue Count
 //	I2S_DMA_LOOP_QCNT	=	5,					//	Queue Count
 	I2S_DMA_LOOP_QCNT	=	8,					//	Queue Count
@@ -50,17 +50,17 @@ enum eAudioMode
 	eAModRFRx			=	0x4,
 };
 
-extern int16_t sine_table[];
-extern uint16_t null_table[];
+extern int16_t sine_table[160];
+extern uint16_t null_table[256];
 
 extern QBuf_t	g_qBufAudioRx;		//	Audio Queue Buffer	( RF Rx Buffer )
 extern QBuf_t	g_qBufAudioTx;		//	Audio Queue Buffer	( RF Tx Buffer )
 
-extern uint16_t	g_bufAudioRx[];		//	512
-extern uint16_t	g_bufAudioTx[];		//	512
+extern uint16_t	g_bufAudioRx[I2S_DMA_LOOP_SIZE * I2S_DMA_LOOP_QCNT];		//	512
+extern uint16_t	g_bufAudioTx[I2S_DMA_LOOP_SIZE * I2S_DMA_LOOP_QCNT];		//	512
 
-extern int16_t	t_audio_buff[];
-extern int16_t	r_audio_buff[];
+extern int16_t	t_audio_buff[I2S_DMA_LOOP_SIZE * 2];
+extern int16_t	r_audio_buff[I2S_DMA_LOOP_SIZE * 2];
 
 
 //========================================================================
@@ -79,7 +79,10 @@ void	AudioStop				( void );
 void	SetCallbackI2STxRxCplt	( void ( *pCallbackTxRxCplt )( I2S_HandleTypeDef *hi2s ) );
 
 void 	AudioSine_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s );
+void 	AudioLoopback_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s );
 
+void Default_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s );
+void AudioSpeex_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s );
 //========================================================================
 enum eAudioIC
 {
@@ -87,10 +90,10 @@ enum eAudioIC
 	AudioMAX9860	=	0x01,
 };
 
-extern int	g_nAudioIC;
+extern uint8_t	g_nAudioIC;
 
-void	SetAudioIC( int nAudioIC );
-int		GetAudioIC( void );
+void	SetAudioIC( uint8_t nAudioIC );
+uint8_t		GetAudioIC( void );
 
 //========================================================================
 
@@ -100,26 +103,27 @@ int		GetAudioIC( void );
 //
 //========================================================================
 
-int		WriteI2CCodec		( uint8_t addr, uint8_t data );
+uint8_t		WriteI2CCodec		( uint8_t addr, uint8_t data );
 void	InitCodecMAX9860	( void );
 
 //========================================================================
 
-int		AudioDMALoopback		( void );
-int		AudioDMARFM				( void );
+uint8_t		AudioDMALoopback		( void );
+uint8_t		AudioDMARFM				( void );
 
-int 	AudioLoopbackDMASpeex	( void );
+uint8_t 	AudioLoopbackDMASpeex	( void );
+uint8_t		AudioLoopbackDMACompress( void );
 
-int		AudioPlayDMASine		( void );
+uint8_t		AudioPlayDMASine		( void );
 
-void	AudioSpkVol				( int nSpkVol );
-void	AudioMicVol				( int nMicVol );
+void	AudioSpkVol				( uint8_t nSpkVol );
+void	AudioMicVol				( uint8_t nMicVol );
 
 //========================================================================
 //	Command Function
 
-int 	cmd_audio	( int argc, char *argv[] );
-int 	cmd_codec	( int argc, char *argv[] );
+uint8_t 	cmd_audio	( uint8_t argc, char *argv[] );
+uint8_t 	cmd_codec	( uint8_t argc, char *argv[] );
 
 //========================================================================
 

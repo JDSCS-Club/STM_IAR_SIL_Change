@@ -21,6 +21,18 @@
   * @{
   */
 
+
+#include <stdio.h>			//	printf()
+
+#include <stdint.h>			//	uint32_t
+
+#include <string.h>			//	memset()
+
+#include "typedef.h"			//	uint32_t, ...
+#include "compiler_defs.h"		//	U8,
+
+
+
 /* Includes ------------------------------------------------------------------*/
 #include "flash_if.h"
 
@@ -73,10 +85,10 @@ uint32_t FLASH_If_Erase(uint32_t StartSector)
   if (HAL_FLASHEx_Erase(&pEraseInit, &SectorError) != HAL_OK)
   {
      /* Error occurred while page erase */
-     return (1);
+     return (uint32_t)(1);
   }
   
-  return (0);
+  return (uint32_t)(0);
 }
 
 //========================================================================
@@ -101,10 +113,10 @@ uint32_t FLASH_If_EraseSectors(uint32_t StartSector, uint32_t nSectorNum)
   if (HAL_FLASHEx_Erase(&pEraseInit, &SectorError) != HAL_OK)
   {
      /* Error occurred while page erase */
-     return (1);
+     return (uint32_t)(1);
   }
 
-  return (0);
+  return (uint32_t)(0);
 }
 
 /**
@@ -121,17 +133,26 @@ uint32_t FLASH_If_Write(uint32_t FlashAddress, uint32_t* Data ,uint32_t DataLeng
 {
   uint32_t i = 0;
 
-  for (i = 0; (i < DataLength) && (FlashAddress <= (USER_FLASH_END_ADDRESS-4)); i++)
+  uint32_t *spDate = (uint32_t *)Data;
+
+  for (i = 0;
+		  (
+			((i < DataLength) != 0) &&
+		    (FlashAddress <= ((uint32_t)USER_FLASH_END_ADDRESS-4))
+		   )
+		    ; i++)
   {
     /* Device voltage range supposed to be [2.7V to 3.6V], the operation will
        be done by word */ 
-    if (HAL_FLASH_Program(TYPEPROGRAM_WORD, FlashAddress, *(uint32_t*)(Data+i)) == HAL_OK)      
+    if (HAL_FLASH_Program((uint32_t)TYPEPROGRAM_WORD,(uint32_t) FlashAddress, *(uint64_t*)spDate[i]) == HAL_OK)
     {
      /* Check the written value */
-      if (*(uint32_t*)FlashAddress != *(uint32_t*)(Data+i))
+
+     // if (*(uint32_t*)FlashAddress != *(uint32_t*)(Data+i))
+    	if (*(uint32_t*)FlashAddress != *(uint32_t*)spDate[i])
       {
         /* Flash content doesn't match SRAM content */
-        return(FLASHIF_WRITINGCTRL_ERROR);
+        return (uint32_t)(FLASHIF_WRITINGCTRL_ERROR);
       }
       /* Increment FLASH destination address */
       FlashAddress += 4;
@@ -139,11 +160,11 @@ uint32_t FLASH_If_Write(uint32_t FlashAddress, uint32_t* Data ,uint32_t DataLeng
     else
     {
       /* Error occurred while writing data in Flash memory */
-      return (FLASHIF_WRITING_ERROR);
+      return (uint32_t)(FLASHIF_WRITING_ERROR);
     }
   }
 
-  return (FLASHIF_OK);
+  return (uint32_t)(FLASHIF_OK);
 }
 
 /**
@@ -174,12 +195,12 @@ uint16_t FLASH_If_GetWriteProtectionStatus(void)
   if(ProtectedSECTOR != 0)
   {
     /* Some sectors inside the user flash area are write protected */
-    return FLASHIF_PROTECTION_WRPENABLED;
+    return (uint16_t)FLASHIF_PROTECTION_WRPENABLED;
   }
   else
   { 
     /* No write protected sectors inside the user flash area */
-    return FLASHIF_PROTECTION_NONE;
+    return (uint16_t)FLASHIF_PROTECTION_NONE;
   }
 }
 
@@ -291,7 +312,7 @@ uint32_t	FLASH_If_FindLastData	( uint32_t baseAddr, uint32_t endAddr )
 
 	uint32_t findAddr;
 
-	int	nFound = 0;
+	uint32_t	nFound = 0;
 
 	for( findAddr = endAddr; findAddr > baseAddr; findAddr -= 4 )
 	{
@@ -303,8 +324,14 @@ uint32_t	FLASH_If_FindLastData	( uint32_t baseAddr, uint32_t endAddr )
 		}
 	}
 
-	if ( nFound == 0 )	return 0;		//	Not Found
-	else 				return (findAddr - baseAddr) + 4;
+	if ( nFound == 0 )
+	{
+		return (uint32_t)0;		//	Not Found
+	}
+	else
+	{
+		return (uint32_t)(findAddr - baseAddr) + 4;
+	}
 }
 
 //========================================================================

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  23:37:24
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:25
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                 =  thumb
@@ -88,46 +88,89 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.c
      32          #include <string.h>
      33          #include <stdio.h>
      34          
-     35          #include "eeprom.h"		//	eeprom
-     36          
-     37          #include "main.h"		//	hi2c1
+     35          
+     36          #include <stdio.h>			//	printf()
+     37          
+     38          #include <stdint.h>			//	uint32_t
+     39          
+     40          #include <string.h>			//	memset()
+     41          
+     42          #include "typedef.h"			//	uint32_t, ...
+     43          #include "compiler_defs.h"		//	U8,
 
   # warning unrecognized compiler
     ^
 "C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
           #warning directive: unrecognized compiler
-     38          
-     39          //========================================================================
+
+  typedef unsigned char U8;
+                        ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",788  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned int U16;
+                       ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",789  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned long U32;
+                        ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",790  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed char S8;
+                      ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",792  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed int S16;
+                     ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",793  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed long S32;
+                      ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",794  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+     44          
+     45          
+     46          #include "eeprom.h"		//	eeprom
+     47          
+     48          #include "main.h"		//	hi2c1
+     49          
+     50          #include "Adafruit_SSD1306.h"
+     51          
+     52          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-     40          void I2C_BusScan( I2C_HandleTypeDef *phi2c )
-     41          //========================================================================
-     42          {
+     53          void I2C_BusScan( I2C_HandleTypeDef *phi2c )
+     54          //========================================================================
+     55          {
    \                     I2C_BusScan: (+1)
    \        0x0   0xB570             PUSH     {R4-R6,LR}
    \        0x2   0x0004             MOVS     R4,R0
-     43          
-     44          	printf( "Scanning I2C bus:\r\n" );
+     56          
+     57          	printf( "Scanning I2C bus:\r\n" );
    \        0x4   0x....             LDR.N    R0,??DataTable4_4
    \        0x6   0x.... 0x....      BL       printf
-     45          	HAL_StatusTypeDef result;
-     46          	uint8_t i;
-     47          	for ( i = 1; i < 128; i++ )
+     58          	HAL_StatusTypeDef result;
+     59          	uint8_t i;
+     60          	for ( i = 1; i < 128; i++ )
    \        0xA   0x2601             MOVS     R6,#+1
    \                     ??I2C_BusScan_0: (+1)
    \        0xC   0x0030             MOVS     R0,R6
    \        0xE   0xB2C0             UXTB     R0,R0
    \       0x10   0x2880             CMP      R0,#+128
    \       0x12   0xDA1B             BGE.N    ??I2C_BusScan_1
-     48          	{
-     49          		/*
-     50          		 * the HAL wants a left aligned i2c address
-     51          		 * &hi2c1 is the handle
-     52          		 * (uint16_t)(i<<1) is the i2c address left aligned
-     53          		 * retries 2
-     54          		 * timeout 2
-     55          		 */
-     56          		result = HAL_I2C_IsDeviceReady( phi2c, (uint16_t)( i << 1 ), 2, 2 );
+     61          	{
+     62          		/*
+     63          		 * the HAL wants a left aligned i2c address
+     64          		 * &hi2c1 is the handle
+     65          		 * (uint16_t)(i<<1) is the i2c address left aligned
+     66          		 * retries 2
+     67          		 * timeout 2
+     68          		 */
+     69          		result = HAL_I2C_IsDeviceReady( phi2c, (uint16_t)( i << 1 ),(uint32_t) 2,(uint32_t) 2 );
    \       0x14   0x2302             MOVS     R3,#+2
    \       0x16   0x2202             MOVS     R2,#+2
    \       0x18   0x0031             MOVS     R1,R6
@@ -137,71 +180,71 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.c
    \       0x20   0x0020             MOVS     R0,R4
    \       0x22   0x.... 0x....      BL       HAL_I2C_IsDeviceReady
    \       0x26   0x0005             MOVS     R5,R0
-     57          		if ( result != HAL_OK ) // HAL_ERROR or HAL_BUSY or HAL_TIMEOUT
+     70          		if ( result != HAL_OK ) // HAL_ERROR or HAL_BUSY or HAL_TIMEOUT
    \       0x28   0x0028             MOVS     R0,R5
    \       0x2A   0xB2C0             UXTB     R0,R0
    \       0x2C   0x2800             CMP      R0,#+0
    \       0x2E   0xD002             BEQ.N    ??I2C_BusScan_2
-     58          		{
-     59          			printf( "." ); // No ACK received at that address
+     71          		{
+     72          			printf( "." ); // No ACK received at that address
    \       0x30   0x....             ADR.N    R0,??DataTable4
    \       0x32   0x.... 0x....      BL       printf
-     60          		}
-     61          		if ( result == HAL_OK )
+     73          		}
+     74          		if ( result == HAL_OK )
    \                     ??I2C_BusScan_2: (+1)
    \       0x36   0x0028             MOVS     R0,R5
    \       0x38   0xB2C0             UXTB     R0,R0
    \       0x3A   0x2800             CMP      R0,#+0
    \       0x3C   0xD104             BNE.N    ??I2C_BusScan_3
-     62          		{
-     63          			printf( "0x%X", i ); // Received an ACK at that address
+     75          		{
+     76          			printf( "0x%X", i ); // Received an ACK at that address
    \       0x3E   0x0031             MOVS     R1,R6
    \       0x40   0xB2C9             UXTB     R1,R1
    \       0x42   0x....             LDR.N    R0,??DataTable4_5
    \       0x44   0x.... 0x....      BL       printf
-     64          		}
-     65          	}
+     77          		}
+     78          	}
    \                     ??I2C_BusScan_3: (+1)
    \       0x48   0x1C76             ADDS     R6,R6,#+1
    \       0x4A   0xE7DF             B.N      ??I2C_BusScan_0
-     66          	printf( "\r\n" );
+     79          	printf( "\r\n" );
    \                     ??I2C_BusScan_1: (+1)
    \       0x4C   0x....             ADR.N    R0,??DataTable4_1
    \       0x4E   0x.... 0x....      BL       printf
-     67          }
+     80          }
    \       0x52   0xBD70             POP      {R4-R6,PC}
-     68          
-     69          
-     70          //int at24_HAL_WriteBytes	(I2C_HandleTypeDef *hi2c,uint16_t DevAddress,uint16_t MemAddress, uint8_t *pData,uint16_t TxBufferSize);
-     71          //int at24_HAL_ReadBytes	(I2C_HandleTypeDef *hi2c,uint16_t DevAddress,uint16_t MemAddress, uint8_t *pData,uint16_t RxBufferSize);
-     72          
-     73          //int at24_HAL_SequentialRead(I2C_HandleTypeDef *hi2c ,uint8_t DevAddress,uint16_t MemAddress,uint8_t *pData,uint16_t RxBufferSize);
-     74          //int at24_HAL_EraseMemFull(I2C_HandleTypeDef *hi2c);
-     75          //int at24_HAL_WriteString(I2C_HandleTypeDef *hi2c,char *pString ,uint16_t MemAddress ,uint8_t length);
-     76          //int at24_HAL_ReadString(I2C_HandleTypeDef *hi2c,char *pString,uint16_t MemAddress,uint8_t length);
-     77          
-     78          //========================================================================
+     81          
+     82          
+     83          //int at24_HAL_WriteBytes	(I2C_HandleTypeDef *hi2c,uint16_t DevAddress,uint16_t MemAddress, uint8_t *pData,uint16_t TxBufferSize);
+     84          //int at24_HAL_ReadBytes	(I2C_HandleTypeDef *hi2c,uint16_t DevAddress,uint16_t MemAddress, uint8_t *pData,uint16_t RxBufferSize);
+     85          
+     86          //int at24_HAL_SequentialRead(I2C_HandleTypeDef *hi2c ,uint8_t DevAddress,uint16_t MemAddress,uint8_t *pData,uint16_t RxBufferSize);
+     87          //int at24_HAL_EraseMemFull(I2C_HandleTypeDef *hi2c);
+     88          //int at24_HAL_WriteString(I2C_HandleTypeDef *hi2c,char *pString ,uint16_t MemAddress ,uint8_t length);
+     89          //int at24_HAL_ReadString(I2C_HandleTypeDef *hi2c,char *pString,uint16_t MemAddress,uint8_t length);
+     90          
+     91          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-     79          void TestEEPROM( I2C_HandleTypeDef *hi2c )
-     80          //========================================================================
-     81          {
+     92          void TestEEPROM( I2C_HandleTypeDef *hi2c )
+     93          //========================================================================
+     94          {
    \                     TestEEPROM: (+1)
    \        0x0   0xB5F0             PUSH     {R4-R7,LR}
    \        0x2   0xB0B3             SUB      SP,SP,#+204
    \        0x4   0x0004             MOVS     R4,R0
-     82          	char d[100]={7,5,10};
+     95          	char d[100]={7,5,10};
    \        0x6   0xA81A             ADD      R0,SP,#+104
    \        0x8   0x....             LDR.N    R1,??DataTable4_6
    \        0xA   0x2264             MOVS     R2,#+100
    \        0xC   0x.... 0x....      BL       __aeabi_memcpy4
-     83          	char c[100]={20,20,20};
+     96          	char c[100]={20,20,20};
    \       0x10   0xA801             ADD      R0,SP,#+4
    \       0x12   0x....             LDR.N    R1,??DataTable4_7
    \       0x14   0x2264             MOVS     R2,#+100
    \       0x16   0x.... 0x....      BL       __aeabi_memcpy4
-     84          	
-     85          	printf("%s - 0x%02X, 0x%02X, 0x%02X\r\n", __func__, c[0],c[1],c[2]);
+     97          	
+     98          	printf("%s - 0x%02X, 0x%02X, 0x%02X\r\n", __func__, c[0],c[1],c[2]);
    \       0x1A   0x....             LDR.N    R5,??DataTable4_8
    \       0x1C   0x....             LDR.N    R6,??DataTable4_9
    \       0x1E   0xAF01             ADD      R7,SP,#+4
@@ -212,7 +255,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.c
    \       0x2A   0x0031             MOVS     R1,R6
    \       0x2C   0x0028             MOVS     R0,R5
    \       0x2E   0x.... 0x....      BL       printf
-     86          	M24_HAL_ReadBytes(hi2c, 0xA0, 0x100, (uint8_t *)c, 100);
+     99          	M24_HAL_ReadBytes(hi2c, (uint16_t)0xA0,(uint16_t) 0x100, (uint8_t *)c, (uint16_t)100);
    \       0x32   0x2064             MOVS     R0,#+100
    \       0x34   0x9000             STR      R0,[SP, #+0]
    \       0x36   0xAB01             ADD      R3,SP,#+4
@@ -220,7 +263,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.c
    \       0x3C   0x21A0             MOVS     R1,#+160
    \       0x3E   0x0020             MOVS     R0,R4
    \       0x40   0x.... 0x....      BL       M24_HAL_ReadBytes
-     87          	printf("%s - 0x%02X, 0x%02X, 0x%02X\r\n", __func__, c[0],c[1],c[2]);
+    100          	printf("%s - 0x%02X, 0x%02X, 0x%02X\r\n", __func__, c[0],c[1],c[2]);
    \       0x44   0x78B8             LDRB     R0,[R7, #+2]
    \       0x46   0x9000             STR      R0,[SP, #+0]
    \       0x48   0x787B             LDRB     R3,[R7, #+1]
@@ -228,8 +271,8 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.c
    \       0x4E   0x0031             MOVS     R1,R6
    \       0x50   0x0028             MOVS     R0,R5
    \       0x52   0x.... 0x....      BL       printf
-     88          	
-     89          	M24_HAL_WriteBytes(hi2c, 0xA0, 0x100, (uint8_t *)d, 100);
+    101          	
+    102          	M24_HAL_WriteBytes(hi2c, 0xA0, 0x100, (uint8_t *)d, (uint16_t)100);
    \       0x56   0x2064             MOVS     R0,#+100
    \       0x58   0x9000             STR      R0,[SP, #+0]
    \       0x5A   0xAB1A             ADD      R3,SP,#+104
@@ -237,8 +280,8 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.c
    \       0x60   0x21A0             MOVS     R1,#+160
    \       0x62   0x0020             MOVS     R0,R4
    \       0x64   0x.... 0x....      BL       M24_HAL_WriteBytes
-     90          
-     91          	M24_HAL_ReadBytes(hi2c, 0xA0, 0x100, (uint8_t *)c, 100);
+    103          
+    104          	M24_HAL_ReadBytes(hi2c,(uint16_t) 0xA0, (uint16_t)0x100, (uint8_t *)c,(uint16_t) 100);
    \       0x68   0x2064             MOVS     R0,#+100
    \       0x6A   0x9000             STR      R0,[SP, #+0]
    \       0x6C   0xAB01             ADD      R3,SP,#+4
@@ -246,7 +289,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.c
    \       0x72   0x21A0             MOVS     R1,#+160
    \       0x74   0x0020             MOVS     R0,R4
    \       0x76   0x.... 0x....      BL       M24_HAL_ReadBytes
-     92          	printf("%s - 0x%02X, 0x%02X, 0x%02X\r\n", __func__, c[0],c[1],c[2]);
+    105          	printf("%s - 0x%02X, 0x%02X, 0x%02X\r\n", __func__, c[0],c[1],c[2]);
    \       0x7A   0x78B8             LDRB     R0,[R7, #+2]
    \       0x7C   0x9000             STR      R0,[SP, #+0]
    \       0x7E   0x787B             LDRB     R3,[R7, #+1]
@@ -254,35 +297,35 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.c
    \       0x84   0x0031             MOVS     R1,R6
    \       0x86   0x0028             MOVS     R0,R5
    \       0x88   0x.... 0x....      BL       printf
-     93          }
+    106          }
    \       0x8C   0xB033             ADD      SP,SP,#+204
    \       0x8E   0xBDF0             POP      {R4-R7,PC}
-     94          
-     95          /**
-     96            * @brief               : This function handles Writing Array of Bytes on the specific Address .
-     97            * 					   This program have this feature that don't force you to use absolute 16 bytes
-     98            * 					   you can use more than 16 bytes buffer.
-     99            * @param  hi2c         : Pointer to a I2C_HandleTypeDef structure that contains
-    100            *                        the configuration information for the specified I2C.
-    101            * @param	DevAddress   : specifies the slave address to be programmed(EEPROM ADDRESS).
-    102            * @param	MemAddress   : Internal memory address (WHERE YOU WANNA WRITE TO)
-    103            * @param	pData	     : Pointer to data buffer
-    104            * @param  TxBufferSize : Amount of data you wanna Write
-    105            * @retval
-    106            */
-    107          //========================================================================
+    107          
+    108          /**
+    109            * @brief               : This function handles Writing Array of Bytes on the specific Address .
+    110            * 					   This program have this feature that don't force you to use absolute 16 bytes
+    111            * 					   you can use more than 16 bytes buffer.
+    112            * @param  hi2c         : Pointer to a I2C_HandleTypeDef structure that contains
+    113            *                        the configuration information for the specified I2C.
+    114            * @param	DevAddress   : specifies the slave address to be programmed(EEPROM ADDRESS).
+    115            * @param	MemAddress   : Internal memory address (WHERE YOU WANNA WRITE TO)
+    116            * @param	pData	     : Pointer to data buffer
+    117            * @param  TxBufferSize : Amount of data you wanna Write
+    118            * @retval
+    119            */
+    120          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    108          int M24_HAL_WriteBytes( I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint8_t *pData, uint16_t TxBufferSize )
-    109          //========================================================================
-    110          {
+    121          uint8_t M24_HAL_WriteBytes( I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint8_t *pData, uint16_t TxBufferSize )
+    122          //========================================================================
+    123          {
    \                     M24_HAL_WriteBytes: (+1)
    \        0x0   0xB5FE             PUSH     {R1-R7,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
    \        0x6   0x0016             MOVS     R6,R2
    \        0x8   0x001F             MOVS     R7,R3
-    111          	while ( HAL_I2C_Mem_Write( hi2c, (uint16_t)DevAddress, (uint16_t)MemAddress, I2C_MEMADD_SIZE_16BIT, pData, (uint16_t)TxBufferSize, 1000 ) != HAL_OK );
+    124          	while ( HAL_I2C_Mem_Write( hi2c, (uint16_t)DevAddress, (uint16_t)MemAddress, I2C_MEMADD_SIZE_16BIT, pData, (uint16_t)TxBufferSize, 1000 ) != HAL_OK );
    \                     ??M24_HAL_WriteBytes_0: (+1)
    \        0xA   0xF44F 0x707A      MOV      R0,#+1000
    \        0xE   0x9002             STR      R0,[SP, #+8]
@@ -298,34 +341,34 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.c
    \       0x24   0x.... 0x....      BL       HAL_I2C_Mem_Write
    \       0x28   0x2800             CMP      R0,#+0
    \       0x2A   0xD1EE             BNE.N    ??M24_HAL_WriteBytes_0
-    112          
-    113          	HAL_Delay(5);
+    125          
+    126          	HAL_Delay((uint32_t)5);
    \       0x2C   0x2005             MOVS     R0,#+5
    \       0x2E   0x.... 0x....      BL       HAL_Delay
-    114          
-    115          	return 1;
+    127          
+    128          	return 1;
    \       0x32   0x2001             MOVS     R0,#+1
    \       0x34   0xBDFE             POP      {R1-R7,PC}
-    116          }
-    117          
-    118          
-    119          //========================================================================
+    129          }
+    130          
+    131          
+    132          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    120          int M24_HAL_ReadBytes( I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint8_t *pData, uint16_t RxBufferSize )
-    121          //========================================================================
-    122          {
+    133          uint8_t M24_HAL_ReadBytes( I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint8_t *pData, uint16_t RxBufferSize )
+    134          //========================================================================
+    135          {
    \                     M24_HAL_ReadBytes: (+1)
    \        0x0   0xE92D 0x41FF      PUSH     {R0-R8,LR}
    \        0x4   0x0004             MOVS     R4,R0
    \        0x6   0x000D             MOVS     R5,R1
    \        0x8   0x0016             MOVS     R6,R2
    \        0xA   0x001F             MOVS     R7,R3
-    123          	int TimeOut;
-    124          
-    125          	TimeOut = 0;
+    136          	int TimeOut;
+    137          
+    138          	TimeOut = 0;
    \        0xC   0xF05F 0x0800      MOVS     R8,#+0
-    126          	while ( HAL_I2C_Mem_Read( hi2c, (uint16_t)DevAddress, (uint16_t)MemAddress, I2C_MEMADD_SIZE_16BIT, pData, (uint16_t)RxBufferSize, 1000 ) != HAL_OK && TimeOut < 10 ) TimeOut++;
+    139          	while ( HAL_I2C_Mem_Read( hi2c, (uint16_t)DevAddress, (uint16_t)MemAddress, I2C_MEMADD_SIZE_16BIT, pData, (uint16_t)RxBufferSize, 1000 ) != HAL_OK && TimeOut < 10 ) TimeOut++;
    \                     ??M24_HAL_ReadBytes_0: (+1)
    \       0x10   0xF44F 0x707A      MOV      R0,#+1000
    \       0x14   0x9002             STR      R0,[SP, #+8]
@@ -345,239 +388,243 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.c
    \       0x36   0xDA02             BGE.N    ??M24_HAL_ReadBytes_1
    \       0x38   0xF118 0x0801      ADDS     R8,R8,#+1
    \       0x3C   0xE7E8             B.N      ??M24_HAL_ReadBytes_0
-    127          
-    128          	return 1;
+    140          
+    141          	return 1;
    \                     ??M24_HAL_ReadBytes_1: (+1)
    \       0x3E   0x2001             MOVS     R0,#+1
    \       0x40   0xB004             ADD      SP,SP,#+16
    \       0x42   0xE8BD 0x81F0      POP      {R4-R8,PC}
-    129          }
-    130          
-    131          //========================================================================
+    142          }
+    143          
+    144          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    132          int cmd_eepromRead		( int argc, char * argv[] )
-    133          //========================================================================
-    134          {
+    145          uint8_t cmd_eepromRead		( uint8_t argc, char * argv[] )
+    146          //========================================================================
+    147          {
    \                     cmd_eepromRead: (+1)
    \        0x0   0xB530             PUSH     {R4,R5,LR}
    \        0x2   0xB085             SUB      SP,SP,#+20
    \        0x4   0x0004             MOVS     R4,R0
    \        0x6   0x000D             MOVS     R5,R1
-    135              //	eepr [address]
-    136              int 	nAddr = 0;
+    148              //	eepr [address]
+    149              int 	nAddr = 0;
    \        0x8   0x2000             MOVS     R0,#+0
    \        0xA   0x9001             STR      R0,[SP, #+4]
-    137              uint8_t	buf[10];
-    138          
-    139              switch ( argc )
-   \        0xC   0x2C02             CMP      R4,#+2
-   \        0xE   0xD104             BNE.N    ??cmd_eepromRead_0
-    140              {
-    141              case 2:		sscanf( argv[1], "%d", &nAddr );		//	cmd [address]
-   \       0x10   0xAA01             ADD      R2,SP,#+4
-   \       0x12   0x....             ADR.N    R1,??DataTable4_2
-   \       0x14   0x6868             LDR      R0,[R5, #+4]
-   \       0x16   0x.... 0x....      BL       sscanf
-    142                  break;
-    143              }
-    144          
-    145          	M24_HAL_ReadBytes(&hi2c1, 0xA0, nAddr, (uint8_t *)buf, 1);
+    150              uint8_t	buf[10];
+    151          
+    152              switch ( argc )
+   \        0xC   0x0020             MOVS     R0,R4
+   \        0xE   0xB2C0             UXTB     R0,R0
+   \       0x10   0x2802             CMP      R0,#+2
+   \       0x12   0xD104             BNE.N    ??cmd_eepromRead_0
+    153              {
+    154              case 2:		sscanf( argv[1], "%d", &nAddr );		//	cmd [address]
+   \       0x14   0xAA01             ADD      R2,SP,#+4
+   \       0x16   0x....             ADR.N    R1,??DataTable4_2
+   \       0x18   0x6868             LDR      R0,[R5, #+4]
+   \       0x1A   0x.... 0x....      BL       sscanf
+    155                  break;
+    156              }
+    157          
+    158          	M24_HAL_ReadBytes(&hi2c1, (uint16_t)0xA0, (uint16_t)nAddr, (uint8_t *)buf, (uint16_t)1);
    \                     ??cmd_eepromRead_0: (+1)
-   \       0x1A   0x2001             MOVS     R0,#+1
-   \       0x1C   0x9000             STR      R0,[SP, #+0]
-   \       0x1E   0xAB02             ADD      R3,SP,#+8
-   \       0x20   0x9801             LDR      R0,[SP, #+4]
-   \       0x22   0x0002             MOVS     R2,R0
-   \       0x24   0xB292             UXTH     R2,R2
-   \       0x26   0x21A0             MOVS     R1,#+160
-   \       0x28   0x....             LDR.N    R0,??DataTable4_10
-   \       0x2A   0x.... 0x....      BL       M24_HAL_ReadBytes
-    146          
-    147          	printf("[0x%04X] 0x%02X\n", nAddr, buf[0]);
-   \       0x2E   0xF89D 0x2008      LDRB     R2,[SP, #+8]
-   \       0x32   0x9901             LDR      R1,[SP, #+4]
-   \       0x34   0x....             LDR.N    R0,??DataTable4_11
-   \       0x36   0x.... 0x....      BL       printf
-    148          }
+   \       0x1E   0x2001             MOVS     R0,#+1
+   \       0x20   0x9000             STR      R0,[SP, #+0]
+   \       0x22   0xAB02             ADD      R3,SP,#+8
+   \       0x24   0x9801             LDR      R0,[SP, #+4]
+   \       0x26   0x0002             MOVS     R2,R0
+   \       0x28   0xB292             UXTH     R2,R2
+   \       0x2A   0x21A0             MOVS     R1,#+160
+   \       0x2C   0x....             LDR.N    R0,??DataTable4_10
+   \       0x2E   0x.... 0x....      BL       M24_HAL_ReadBytes
+    159          
+    160          	printf("[0x%04X] 0x%02X\n", nAddr, buf[0]);
+   \       0x32   0xF89D 0x2008      LDRB     R2,[SP, #+8]
+   \       0x36   0x9901             LDR      R1,[SP, #+4]
+   \       0x38   0x....             LDR.N    R0,??DataTable4_11
+   \       0x3A   0x.... 0x....      BL       printf
+    161          }
                  ^
 Warning[Pe940]: missing return statement at end of non-void function
           "cmd_eepromRead"
-   \       0x3A   0xB005             ADD      SP,SP,#+20
-   \       0x3C   0xBD30             POP      {R4,R5,PC}
-    149          
-    150          
-    151          //========================================================================
+   \       0x3E   0xB005             ADD      SP,SP,#+20
+   \       0x40   0xBD30             POP      {R4,R5,PC}
+    162          
+    163          
+    164          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    152          int cmd_eepromWrite	( int argc, char * argv[] )
-    153          //========================================================================
-    154          {
+    165          uint8_t cmd_eepromWrite	( uint8_t argc, char * argv[] )
+    166          //========================================================================
+    167          {
    \                     cmd_eepromWrite: (+1)
    \        0x0   0xB570             PUSH     {R4-R6,LR}
    \        0x2   0xB086             SUB      SP,SP,#+24
    \        0x4   0x0005             MOVS     R5,R0
    \        0x6   0x000C             MOVS     R4,R1
-    155              //	eepw [address] [value]
-    156              int 	nAddr = 0;
+    168              //	eepw [address] [value]
+    169              int 	nAddr = 0;
    \        0x8   0x2000             MOVS     R0,#+0
    \        0xA   0x9001             STR      R0,[SP, #+4]
-    157              int		nVal = 0;
+    170              int		nVal = 0;
    \        0xC   0x2000             MOVS     R0,#+0
    \        0xE   0x9002             STR      R0,[SP, #+8]
-    158              uint8_t	buf[10];
-    159          
-    160              switch ( argc )
-   \       0x10   0x0028             MOVS     R0,R5
-   \       0x12   0x2802             CMP      R0,#+2
-   \       0x14   0xD006             BEQ.N    ??cmd_eepromWrite_0
-   \       0x16   0x2803             CMP      R0,#+3
-   \       0x18   0xD109             BNE.N    ??cmd_eepromWrite_1
-    161              {
-    162              case 3:		sscanf( argv[2], "%d", &nVal );			//	cmd [address] [value]
-   \                     ??cmd_eepromWrite_2: (+1)
-   \       0x1A   0xAA02             ADD      R2,SP,#+8
-   \       0x1C   0x....             ADR.N    R1,??DataTable4_2
-   \       0x1E   0x68A0             LDR      R0,[R4, #+8]
-   \       0x20   0x.... 0x....      BL       sscanf
-    163              case 2:		sscanf( argv[1], "%d", &nAddr );		//	cmd [address]
-   \                     ??cmd_eepromWrite_0: (+1)
-   \       0x24   0xAA01             ADD      R2,SP,#+4
-   \       0x26   0x....             ADR.N    R1,??DataTable4_2
-   \       0x28   0x6860             LDR      R0,[R4, #+4]
-   \       0x2A   0x.... 0x....      BL       sscanf
-    164                  break;
-    165              }
-    166          
-    167              buf[0] = nVal;
-   \                     ??cmd_eepromWrite_1: (+1)
-   \       0x2E   0x9802             LDR      R0,[SP, #+8]
-   \       0x30   0xF88D 0x000C      STRB     R0,[SP, #+12]
-    168          
-    169              printf("[0x%04X] 0x%02X\n", nAddr, buf[0]);
-   \       0x34   0x....             LDR.N    R6,??DataTable4_11
-   \       0x36   0xF89D 0x200C      LDRB     R2,[SP, #+12]
-   \       0x3A   0x9901             LDR      R1,[SP, #+4]
-   \       0x3C   0x0030             MOVS     R0,R6
-   \       0x3E   0x.... 0x....      BL       printf
-    170          
-    171          	M24_HAL_WriteBytes(&hi2c1, 0xA0, nAddr, (uint8_t *)buf, 1);
-   \       0x42   0x2001             MOVS     R0,#+1
-   \       0x44   0x9000             STR      R0,[SP, #+0]
-   \       0x46   0xAB03             ADD      R3,SP,#+12
-   \       0x48   0x9801             LDR      R0,[SP, #+4]
-   \       0x4A   0x0002             MOVS     R2,R0
-   \       0x4C   0xB292             UXTH     R2,R2
-   \       0x4E   0x21A0             MOVS     R1,#+160
-   \       0x50   0x....             LDR.N    R0,??DataTable4_10
-   \       0x52   0x.... 0x....      BL       M24_HAL_WriteBytes
+    171              uint8_t	buf[10];
     172          
-    173          	printf("[0x%04X] 0x%02X\n", nAddr, buf[0]);
-   \       0x56   0xF89D 0x200C      LDRB     R2,[SP, #+12]
-   \       0x5A   0x9901             LDR      R1,[SP, #+4]
-   \       0x5C   0x0030             MOVS     R0,R6
-   \       0x5E   0x.... 0x....      BL       printf
-    174          }
+    173              switch ( argc )
+   \       0x10   0x0028             MOVS     R0,R5
+   \       0x12   0xB2C0             UXTB     R0,R0
+   \       0x14   0x2802             CMP      R0,#+2
+   \       0x16   0xD006             BEQ.N    ??cmd_eepromWrite_0
+   \       0x18   0x2803             CMP      R0,#+3
+   \       0x1A   0xD109             BNE.N    ??cmd_eepromWrite_1
+    174              {
+    175              case 3:		sscanf( argv[2], "%d", &nVal );			//	cmd [address] [value]
+   \                     ??cmd_eepromWrite_2: (+1)
+   \       0x1C   0xAA02             ADD      R2,SP,#+8
+   \       0x1E   0x....             ADR.N    R1,??DataTable4_2
+   \       0x20   0x68A0             LDR      R0,[R4, #+8]
+   \       0x22   0x.... 0x....      BL       sscanf
+    176              case 2:		sscanf( argv[1], "%d", &nAddr );		//	cmd [address]
+   \                     ??cmd_eepromWrite_0: (+1)
+   \       0x26   0xAA01             ADD      R2,SP,#+4
+   \       0x28   0x....             ADR.N    R1,??DataTable4_2
+   \       0x2A   0x6860             LDR      R0,[R4, #+4]
+   \       0x2C   0x.... 0x....      BL       sscanf
+    177                  break;
+    178              }
+    179          
+    180              buf[0] = nVal;
+   \                     ??cmd_eepromWrite_1: (+1)
+   \       0x30   0x9802             LDR      R0,[SP, #+8]
+   \       0x32   0xF88D 0x000C      STRB     R0,[SP, #+12]
+    181          
+    182              printf("[0x%04X] 0x%02X\n", nAddr, buf[0]);
+   \       0x36   0x....             LDR.N    R6,??DataTable4_11
+   \       0x38   0xF89D 0x200C      LDRB     R2,[SP, #+12]
+   \       0x3C   0x9901             LDR      R1,[SP, #+4]
+   \       0x3E   0x0030             MOVS     R0,R6
+   \       0x40   0x.... 0x....      BL       printf
+    183          
+    184          	M24_HAL_WriteBytes(&hi2c1, 0xA0, nAddr, (uint8_t *)buf,(uint16_t) 1);
+   \       0x44   0x2001             MOVS     R0,#+1
+   \       0x46   0x9000             STR      R0,[SP, #+0]
+   \       0x48   0xAB03             ADD      R3,SP,#+12
+   \       0x4A   0x9801             LDR      R0,[SP, #+4]
+   \       0x4C   0x0002             MOVS     R2,R0
+   \       0x4E   0xB292             UXTH     R2,R2
+   \       0x50   0x21A0             MOVS     R1,#+160
+   \       0x52   0x....             LDR.N    R0,??DataTable4_10
+   \       0x54   0x.... 0x....      BL       M24_HAL_WriteBytes
+    185          
+    186          	printf("[0x%04X] 0x%02X\n", nAddr, buf[0]);
+   \       0x58   0xF89D 0x200C      LDRB     R2,[SP, #+12]
+   \       0x5C   0x9901             LDR      R1,[SP, #+4]
+   \       0x5E   0x0030             MOVS     R0,R6
+   \       0x60   0x.... 0x....      BL       printf
+    187          }
                  ^
 Warning[Pe940]: missing return statement at end of non-void function
           "cmd_eepromWrite"
-   \       0x62   0xB006             ADD      SP,SP,#+24
-   \       0x64   0xBD70             POP      {R4-R6,PC}
-    175          
-    176          
-    177          //========================================================================
+   \       0x64   0xB006             ADD      SP,SP,#+24
+   \       0x66   0xBD70             POP      {R4-R6,PC}
+    188          
+    189          
+    190          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    178          int cmd_eepromDump		( int argc, char * argv[] )
-    179          //========================================================================
-    180          {
+    191          uint8_t cmd_eepromDump		( uint8_t argc, char * argv[] )
+    192          //========================================================================
+    193          {
    \                     cmd_eepromDump: (+1)
    \        0x0   0xB578             PUSH     {R3-R6,LR}
    \        0x2   0xB0C3             SUB      SP,SP,#+268
    \        0x4   0x0004             MOVS     R4,R0
    \        0x6   0x000D             MOVS     R5,R1
-    181              //	eepr [address]
-    182          	int		nAddr = 0;
+    194              //	eepr [address]
+    195          	int		nAddr = 0;
    \        0x8   0x2000             MOVS     R0,#+0
    \        0xA   0x9002             STR      R0,[SP, #+8]
-    183              int 	nSize = 256;
+    196              int 	nSize = 256;
    \        0xC   0xF44F 0x7080      MOV      R0,#+256
    \       0x10   0x9001             STR      R0,[SP, #+4]
-    184          
-    185              int		i;
-    186          
-    187              uint8_t	buf[256];		//	Page
-    188          
-    189              switch ( argc )
-   \       0x12   0x0020             MOVS     R0,R4
-   \       0x14   0x2802             CMP      R0,#+2
-   \       0x16   0xD006             BEQ.N    ??cmd_eepromDump_0
-   \       0x18   0x2803             CMP      R0,#+3
-   \       0x1A   0xD109             BNE.N    ??cmd_eepromDump_1
-    190              {
-    191              case 3:		sscanf( argv[2], "%d", &nSize );		//	cmd [address] [Size]
-   \                     ??cmd_eepromDump_2: (+1)
-   \       0x1C   0xAA01             ADD      R2,SP,#+4
-   \       0x1E   0x....             ADR.N    R1,??DataTable4_2
-   \       0x20   0x68A8             LDR      R0,[R5, #+8]
-   \       0x22   0x.... 0x....      BL       sscanf
-    192              case 2:		sscanf( argv[1], "%d", &nAddr );		//	cmd [address]
-   \                     ??cmd_eepromDump_0: (+1)
-   \       0x26   0xAA02             ADD      R2,SP,#+8
-   \       0x28   0x....             ADR.N    R1,??DataTable4_2
-   \       0x2A   0x6868             LDR      R0,[R5, #+4]
-   \       0x2C   0x.... 0x....      BL       sscanf
-    193                  break;
-    194              }
-    195          
-    196          	M24_HAL_ReadBytes(&hi2c1, 0xA0, nAddr, (uint8_t *)buf, nSize);
-   \                     ??cmd_eepromDump_1: (+1)
-   \       0x30   0x9801             LDR      R0,[SP, #+4]
-   \       0x32   0xB280             UXTH     R0,R0
-   \       0x34   0x9000             STR      R0,[SP, #+0]
-   \       0x36   0xAB03             ADD      R3,SP,#+12
-   \       0x38   0x9802             LDR      R0,[SP, #+8]
-   \       0x3A   0x0002             MOVS     R2,R0
-   \       0x3C   0xB292             UXTH     R2,R2
-   \       0x3E   0x21A0             MOVS     R1,#+160
-   \       0x40   0x....             LDR.N    R0,??DataTable4_10
-   \       0x42   0x.... 0x....      BL       M24_HAL_ReadBytes
     197          
-    198          	printf("[0x%04X] size : %d\n", nAddr, nSize);
-   \       0x46   0x9A01             LDR      R2,[SP, #+4]
-   \       0x48   0x9902             LDR      R1,[SP, #+8]
-   \       0x4A   0x....             LDR.N    R0,??DataTable4_12
-   \       0x4C   0x.... 0x....      BL       printf
+    198              int		i;
     199          
-    200          	for( i = 0; i < nSize; i++ )
-   \       0x50   0x2600             MOVS     R6,#+0
+    200              uint8_t	buf[256];		//	Page
+    201          
+    202              switch ( argc )
+   \       0x12   0x0020             MOVS     R0,R4
+   \       0x14   0xB2C0             UXTB     R0,R0
+   \       0x16   0x2802             CMP      R0,#+2
+   \       0x18   0xD006             BEQ.N    ??cmd_eepromDump_0
+   \       0x1A   0x2803             CMP      R0,#+3
+   \       0x1C   0xD109             BNE.N    ??cmd_eepromDump_1
+    203              {
+    204              case 3:		sscanf( argv[2], "%d", &nSize );		//	cmd [address] [Size]
+   \                     ??cmd_eepromDump_2: (+1)
+   \       0x1E   0xAA01             ADD      R2,SP,#+4
+   \       0x20   0x....             ADR.N    R1,??DataTable4_2
+   \       0x22   0x68A8             LDR      R0,[R5, #+8]
+   \       0x24   0x.... 0x....      BL       sscanf
+    205              case 2:		sscanf( argv[1], "%d", &nAddr );		//	cmd [address]
+   \                     ??cmd_eepromDump_0: (+1)
+   \       0x28   0xAA02             ADD      R2,SP,#+8
+   \       0x2A   0x....             ADR.N    R1,??DataTable4_2
+   \       0x2C   0x6868             LDR      R0,[R5, #+4]
+   \       0x2E   0x.... 0x....      BL       sscanf
+    206                  break;
+    207              }
+    208          
+    209          	M24_HAL_ReadBytes(&hi2c1,(uint16_t) 0xA0, (uint16_t)nAddr, (uint8_t *)buf, (uint16_t)nSize);
+   \                     ??cmd_eepromDump_1: (+1)
+   \       0x32   0x9801             LDR      R0,[SP, #+4]
+   \       0x34   0xB280             UXTH     R0,R0
+   \       0x36   0x9000             STR      R0,[SP, #+0]
+   \       0x38   0xAB03             ADD      R3,SP,#+12
+   \       0x3A   0x9802             LDR      R0,[SP, #+8]
+   \       0x3C   0x0002             MOVS     R2,R0
+   \       0x3E   0xB292             UXTH     R2,R2
+   \       0x40   0x21A0             MOVS     R1,#+160
+   \       0x42   0x....             LDR.N    R0,??DataTable4_10
+   \       0x44   0x.... 0x....      BL       M24_HAL_ReadBytes
+    210          
+    211          	printf("[0x%04X] size : %d\n", nAddr, nSize);
+   \       0x48   0x9A01             LDR      R2,[SP, #+4]
+   \       0x4A   0x9902             LDR      R1,[SP, #+8]
+   \       0x4C   0x....             LDR.N    R0,??DataTable4_12
+   \       0x4E   0x.... 0x....      BL       printf
+    212          
+    213          	for( i = 0; i < nSize; i++ )
+   \       0x52   0x2600             MOVS     R6,#+0
    \                     ??cmd_eepromDump_3: (+1)
-   \       0x52   0x9801             LDR      R0,[SP, #+4]
-   \       0x54   0x4286             CMP      R6,R0
-   \       0x56   0xDA0D             BGE.N    ??cmd_eepromDump_4
-    201          	{
-    202          		printf("0x%02X ", buf[i]);
-   \       0x58   0xA803             ADD      R0,SP,#+12
-   \       0x5A   0x5D81             LDRB     R1,[R0, R6]
-   \       0x5C   0x....             LDR.N    R0,??DataTable4_13
-   \       0x5E   0x.... 0x....      BL       printf
-    203          		if ( ((i+1)%16) == 0 ) printf("\n");
-   \       0x62   0x1C70             ADDS     R0,R6,#+1
-   \       0x64   0xF010 0x0F0F      TST      R0,#0xF
-   \       0x68   0xD102             BNE.N    ??cmd_eepromDump_5
-   \       0x6A   0x....             ADR.N    R0,??DataTable4_3
-   \       0x6C   0x.... 0x....      BL       printf
-    204          	}
+   \       0x54   0x9801             LDR      R0,[SP, #+4]
+   \       0x56   0x4286             CMP      R6,R0
+   \       0x58   0xDA0D             BGE.N    ??cmd_eepromDump_4
+    214          	{
+    215          		printf("0x%02X ", buf[i]);
+   \       0x5A   0xA803             ADD      R0,SP,#+12
+   \       0x5C   0x5D81             LDRB     R1,[R0, R6]
+   \       0x5E   0x....             LDR.N    R0,??DataTable4_13
+   \       0x60   0x.... 0x....      BL       printf
+    216          		if ( ((i+1)%16) == 0 ) printf("\n");
+   \       0x64   0x1C70             ADDS     R0,R6,#+1
+   \       0x66   0xF010 0x0F0F      TST      R0,#0xF
+   \       0x6A   0xD102             BNE.N    ??cmd_eepromDump_5
+   \       0x6C   0x....             ADR.N    R0,??DataTable4_3
+   \       0x6E   0x.... 0x....      BL       printf
+    217          	}
    \                     ??cmd_eepromDump_5: (+1)
-   \       0x70   0x1C76             ADDS     R6,R6,#+1
-   \       0x72   0xE7EE             B.N      ??cmd_eepromDump_3
-    205          }
+   \       0x72   0x1C76             ADDS     R6,R6,#+1
+   \       0x74   0xE7EE             B.N      ??cmd_eepromDump_3
+    218          }
                  ^
 Warning[Pe940]: missing return statement at end of non-void function
           "cmd_eepromDump"
    \                     ??cmd_eepromDump_4: (+1)
-   \       0x74   0xB044             ADD      SP,SP,#+272
-   \       0x76   0xBD70             POP      {R4-R6,PC}
+   \       0x76   0xB044             ADD      SP,SP,#+272
+   \       0x78   0xBD70             POP      {R4-R6,PC}
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable4:
@@ -981,8 +1028,8 @@ Warning[Pe940]: missing return statement at end of non-void function
 
    \                                 In section .rodata, align 2
    \        0x0   0x0A 0x00          DC8 "\012"
-    206          
-    207          
+    219          
+    220          
 
    Maximum stack usage in bytes:
 
@@ -1049,17 +1096,17 @@ Warning[Pe940]: missing return statement at end of non-void function
       70  M24_HAL_ReadBytes
       54  M24_HAL_WriteBytes
      144  TestEEPROM
-     120  cmd_eepromDump
-      62  cmd_eepromRead
-     102  cmd_eepromWrite
+     122  cmd_eepromDump
+      66  cmd_eepromRead
+     104  cmd_eepromWrite
       12  -- Other
 
  
  332 bytes in section .rodata
- 692 bytes in section .text
+ 700 bytes in section .text
  
- 692 bytes of CODE  memory
+ 700 bytes of CODE  memory
  332 bytes of CONST memory
 
 Errors: none
-Warnings: 4
+Warnings: 10

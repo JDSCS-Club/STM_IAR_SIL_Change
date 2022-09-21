@@ -63,6 +63,10 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\BrowseInfo\Library\diag.pbi: \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\serial.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\QBuf.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\radio\Si446x\radio_si4463.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\radio\Si446x\si4463.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\stdbool.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\radio\radio.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm_config.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\radio\Si446x\si446x_api_lib.h \
@@ -71,4 +75,5 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\BrowseInfo\Library\diag.pbi: \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm_config.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\cli.h \
-  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\diag.h
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\diag.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\radio\Si446x\si4463.h

@@ -13,6 +13,13 @@
 
 //========================================================================
 // Header
+
+#include <stdio.h>			//	printf()
+
+#include <stdint.h>			//	uint32_t
+
+#include <string.h>			//	memset()
+
 #include "rfm.h"
 
 #include "RFMProtocol.h"            //  DevNone
@@ -37,48 +44,41 @@
 
 #include "ProcPkt.h"				//	nTxPkt
 
-#include "adpcm.h"					//	ADPCM Codec
+#include "diag.h"
 
-#include "adc.h"
+#include "flash_if.h"
 
-#include "cli.h"
 
 //========================================================================
 // Define
 
 //========================================================================
 
-int		g_nDevID		=	DevNone;			//  Device ID ( 1 : RF900M / 2 : RF900T )
+uint8_t		g_nDevID		=	DevNone;			//  Device ID ( 1 : RF900M / 2 : RF900T )
 
-int		g_nDevFlag		=	DevFlagNone;		//  Device Flag ( Light )
+uint8_t		g_nDevFlag		=	DevFlagNone;		//  Device Flag ( Light )
 
-int		g_idxTrainSet	=	0;	  				//  Train Set Index
-int		g_nCarNo		=	0;	  				//  Car Number
+uint8_t		g_idxTrainSet	=	0;	  				//  Train Set Index
+uint8_t		g_nCarNo		=	0;	  				//  Car Number
 
-int		g_nChRx			=	_ChTS1_1;			//  RF Rx Channel
+uint8_t		g_nChRx			=	ChTS1_1;			//  RF Rx Channel
 
-int	 	g_nSpkLevel		=	DefaultSpkVol;		//  Default (1) - 0(Mute) / 1 / 2(Normal) / 3
+uint8_t	 	g_nSpkLevel		=	DefaultSpkVol;		//  Default (1) - 0(Mute) / 1 / 2(Normal) / 3
 
-int	 	g_nRFMMode 		=	RFMModeNormal;		//  eRFMMode
+uint8_t	 	g_nRFMMode 		=	RFMModeNormal;		//  eRFMMode
 
-int		g_offsetCA		=	0;					//	충돌회피 Offset ( msec ) ( 0 ~ 1000 )
+uint8_t		g_offsetCA		=	0;					//	충돌회피 Offset ( msec ) ( 0 ~ 1000 )
 
-int		g_nStampRxPkt	=	0;					//	방송/통화 Stamp
+uint8_t		g_nStampRxPkt	=	0;					//	방송/통화 Stamp
 
-int		g_nRSSI			=	0;					//	RSSI Value
-
-#if defined(USE_RF_COMM_MODE)
-int		g_nRFMode		=	0;					//	RF Mode 무선 중계 모드. eRFMode ( RFMode1 / RFMode2 )
-#endif
+uint8_t		g_nRSSI			=	0;					//	RSSI Value
 
 #if defined(USE_HOP_MANUAL)
-int		g_nManHopping	=	0;					//	On(1) / Off(2) / Unused(0 : Other)
+uint8_t		g_nManHopping	=	0;					//	On(1) / Off(2) / Unused(0 : Other)
 #endif	//	defined(USE_HOP_MANUAL)
 
 //	Device Stat
 RFMDevStat		g_devStat[ MaxCarNo ] = { 0, };
-
-
 
 //========================================================================
 
@@ -86,14 +86,14 @@ RFMDevStat		g_devStat[ MaxCarNo ] = { 0, };
 // Function
 
 //========================================================================
-int GetDevID    ( void )
+uint8_t GetDevID    ( void )
 //========================================================================
 {
-	return g_nDevID;
+	return (uint8_t)g_nDevID;
 }
 
 //========================================================================
-void SetDevID    ( int nDevID )
+void SetDevID    ( uint8_t nDevID )
 //========================================================================
 {
 	printf( "%s : %s(%d)\n", __func__,
@@ -103,14 +103,14 @@ void SetDevID    ( int nDevID )
 }
 
 //========================================================================
-int		GetRFMMode	( void )
+uint8_t		GetRFMMode	( void )
 //========================================================================
 {
 	return g_nRFMMode;
 }
 
 //========================================================================
-void	SetRFMMode	( int nRFMMode )
+void	SetRFMMode	( uint8_t nRFMMode )
 //========================================================================
 {
 	if ( g_nRFMMode != nRFMMode && nRFMMode == RFMModeNormal )
@@ -122,29 +122,36 @@ void	SetRFMMode	( int nRFMMode )
 	if ( g_nRFMMode != nRFMMode )
 	{
 		//	타 모드에서 Normal 모드로 변경시 상태정보 ID Flag값 유지.
-		printf( "%s", StrRFMMode( nRFMMode ) );
+		printf( "%s", StrRFMMode((int8_t) nRFMMode ) );
 	}
 
 	g_nRFMMode = nRFMMode;
 }
 
 //========================================================================
-char	*StrRFMMode		( int nRFMMode )
+U8	*StrRFMMode		( int8_t nRFMMode )
 //========================================================================
 {
 	switch( nRFMMode )
 	{
-	case RFMModeNormal:		return "[Normal]";
-	case RFMModeTx:			return "[Tx]";
-	case RFMModeRx:			return "[Rx]";
-	case RFMModeOcc:		return "[Occ]";
-	case RFMModeUpgr:		return "[Upgr]";
-	default:				return "[N/A]";
+	case RFMModeNormal:		return (U8 *)"[Normal]";
+	case RFMModeTx:			return (U8 *)"[Tx]";
+	case RFMModeRx:			return (U8 *)"[Rx]";
+	case RFMModeOcc:		return (U8 *)"[Occ]";
+	case RFMModeUpgr:		return (U8 *)"[Upgr]";
+	default:
+
+		break;
+
+
 	}
+
+	return (U8 *)"[N/A]";
+
 }
 
 //========================================================================
-int	GetRFTID( void )	//	송신기 ID
+uint8_t	GetRFTID( void )	//	송신기 ID
 //========================================================================
 {
 	//	송신기 ID 얻기.
@@ -152,14 +159,24 @@ int	GetRFTID( void )	//	송신기 ID
 	//	송신기 #1 / #2
 	//	ChTx_1			=	8,			//	* CH8 : 송신기#1 - (Car No : 11)
 	//	ChTx_2			=	9,			//	* CH9 : 송신기#2 - (Car No : 12)
-	if ( g_nCarNo == RFTCarNo1 ) return 1;			//	11
-	else if ( g_nCarNo == RFTCarNo2 ) return 2;		//	12
-	else return 0;
+	if ( g_nCarNo == (uint8_t)RFTCarNo1 )
+	{
+		return (uint8_t)1;			//	11
+	}
+	else if ( g_nCarNo == (uint8_t)RFTCarNo2 )
+	{
+		return (uint8_t)2;		//	12
+	}
+	else
+	{
+		return (uint8_t)0;
+	}
+
 	//========================================================================
 }
 
 //========================================================================
-int GetChRx( void )
+uint8_t GetChRx( void )
 //========================================================================
 {
 	//	Get Self Rx Channel
@@ -171,44 +188,38 @@ int GetChRx( void )
 	{
 		//========================================================================
 		//	송신기 #1 / #2
-		//	ChTx_1			=	8,				//	* CH8 : 송신기#1 - (Car No : 11)
-		//	ChTx_2			=	ChTx_1+ChGap,	//	* CH9 : 송신기#2 - (Car No : 12)
-		return ChTx_1 + ( ( g_nCarNo + 1) % 2 )*ChGap;	// 현재 호차 채널
+		//	ChTx_1			=	8,			//	* CH8 : 송신기#1 - (Car No : 11)
+		//	ChTx_2			=	9,			//	* CH9 : 송신기#2 - (Car No : 12)
+		return (uint8_t)(ChTx_1 + ( ( g_nCarNo + 1) % 2 ));	// 현재 호차 채널
 		//========================================================================
 	}
 	else if ( GetDevID() == DevRF900M )
 	{
-		if( g_nRFMode == RFMode2 )//#if defined(USE_COMM_MODE_CH_GRP)
-		{
-			//	그룹주파수 모드. - [ 1, 2 ] [ 3, 4 ] ...
-			return ChTS1_1 + (( g_nCarNo - 1 )/2)*ChGap;	// 현재 호차 채널
-		}
-		else	//	#else
-		{
-			//========================================================================
-			//	수신기.
-			//	ChTS1_1			=	11,			//	* CH11 : 1편성 ( 1호차 )
-			//	ChTS1_2			=	12,			//	* CH12 : 1편성 ( 2호차 )
-			//
-			//		...
-			//
-			//	ChTS1_10		=	20,			//	* CH20 : 1편성 ( 10호차 )
-			return ChTS1_1 + ( g_nCarNo - 1 )*ChGap;	// 현재 호차 채널
-			//========================================================================
-		}	//	#endif
+		//========================================================================
+		//	수신기.
+		//	ChTS1_1			=	11,			//	* CH11 : 1편성 ( 1호차 )
+		//	ChTS1_2			=	12,			//	* CH12 : 1편성 ( 2호차 )
+		//
+		//		...
+		//
+		//	ChTS1_10		=	20,			//	* CH20 : 1편성 ( 10호차 )
+		return (uint8_t)( ChTS1_1 + (( g_nCarNo - 1 )*ChGap));	// 현재 호차 채널
+		//========================================================================
 	}
 
 #else
 	//========================================================================
 	//	CH1 : 1, 3, 5
 	//	CH2 :  2, 4, 6
-	return ChTS1_1 + g_idxTrainSet * 2 + ( ( g_nCarNo + 1 ) % 2 );	// 현재 호차 채널
+	return (uint8_t)(ChTS1_1 + (g_idxTrainSet * 2) + ( ( g_nCarNo + 1 ) % 2 ));	// 현재 호차 채널
 #endif
 	//========================================================================
+
+	return (uint8_t)0;
 }
 
 //========================================================================
-int		GetChOtherRFT	( void )			//	타 송신기 채널.
+uint8_t		GetChOtherRFT	( void )			//	타 송신기 채널.
 //========================================================================
 {
 	//========================================================================
@@ -216,23 +227,23 @@ int		GetChOtherRFT	( void )			//	타 송신기 채널.
 	//	ChTx_1			=	8,				//	* CH8 : 송신기#1 - (Car No : 11)
 	//	ChTx_2			=	9,				//	* CH9 : 송신기#2 - (Car No : 12)
 //	return ChTx_1 + ( g_nCarNo % 2 );		// Self 송신기 채널
-	return ChTx_1 + ( ( g_nCarNo ) % 2 )*ChGap;	// Other 송신기 채널
+	return ChTx_1 + ( ( g_nCarNo ) % 2 );	// Other 송신기 채널
 	//========================================================================
 }
 
 
 //========================================================================
-int		IsNearRFT	( void )			//	가까운 송신기 존재 유무 확인.
+uint8_t		IsNearRFT	( void )			//	가까운 송신기 존재 유무 확인.
 //========================================================================
 {
-	int nCh = ChTS1_1;		//	Default
+	uint8_t nCh = ChTS1_1;		//	Default
 
 	//	가장가까운 호차 검색.
-	int nMaxRSSI = 0;
-	for ( int idx = 1; idx <= 10; idx++ )
+	uint8_t nMaxRSSI = 0;
+	for ( uint8_t idx = 1; idx <= 10; idx++ )
 	{
 		//	Car #1 ~ #10
-		if ( g_devStat[idx].nRSSI > nMaxRSSI )
+		if ( (g_devStat[idx].nRSSI) > nMaxRSSI )
 		{
 			nCh = g_devStat[idx].stat.nChRx;		//	채널 설정.
 			nMaxRSSI = g_devStat[idx].nRSSI;
@@ -244,14 +255,14 @@ int		IsNearRFT	( void )			//	가까운 송신기 존재 유무 확인.
 
 
 //========================================================================
-int		GetChNearRFT	( int nMinRSSI )			//	가장 가까운 송신기 채널.
+uint8_t		GetChNearRFT	( void )			//	가장 가까운 송신기 채널.
 //========================================================================
 {
-	int nCh = 0;		//	Default
+	uint8_t nCh = 0;		//	Default
 
 	//	가장가까운 송신기 검색.
-	int nMaxRSSI = 0;
-	for ( int idx = 11; idx <= 12; idx++ )			//	송신기 채널 검색.
+	uint8_t nMaxRSSI = 0;
+	for ( uint8_t idx = 11; idx <= 12; idx++ )			//	송신기 채널 검색.
 	{
 		//	Car #1 ~ #10
 		if ( g_devStat[idx].nRSSI > nMaxRSSI )
@@ -261,24 +272,18 @@ int		GetChNearRFT	( int nMinRSSI )			//	가장 가까운 송신기 채널.
 		}
 	}
 
-	if ( nMinRSSI > nMaxRSSI )
-	{
-		//	RSSI값이 한계 이상 낮은경우 선택 X
-		nCh = 0;
-	}
-
 	return nCh;
 }
 
 //========================================================================
-int		GetChNearRFM	( void )			//	가장 가까운 수신기 채널.
+uint8_t		GetChNearRFM	( void )			//	가장 가까운 수신기 채널.
 //========================================================================
 {
-	int nCh = ChTS1_1;		//	Default
+	uint8_t nCh = ChTS1_1;		//	Default
 
 	//	가장가까운 호차 검색.
-	int nMaxRSSI = 0;
-	for ( int idx = 1; idx <= 10; idx++ )
+	uint8_t nMaxRSSI = 0;
+	for ( uint8_t idx = 1; idx <= 10; idx++ )
 	{
 		//	Car #1 ~ #10
 		if ( g_devStat[idx].nRSSI > nMaxRSSI )
@@ -293,10 +298,10 @@ int		GetChNearRFM	( void )			//	가장 가까운 수신기 채널.
 
 //========================================================================
 //	방송채널 : 송신기에서 수신기로 송신할 방송채널 설정.
-int		g_nChPA	=	_ChTS1_1;		//	Default
+uint8_t		g_nChPA	=	ChTS1_1;		//	Default
 
 //========================================================================
-void	SetChPA( int nCh )
+void	SetChPA( uint8_t nCh )
 //========================================================================
 {
 	//	방송채널 설정.
@@ -304,37 +309,17 @@ void	SetChPA( int nCh )
 }
 
 //========================================================================
-int		GetChPA( void )
+uint8_t		GetChPA( void )
 //========================================================================
 {
 	//	방송채널 설정.
 	return g_nChPA;
 }
 
-//========================================================================
-int		GetCh2Car( int nCh )	//	채널 -> 호차정보 변환.
-//========================================================================
-{
-	//	채널 -> 호차정보.
-	int nCar;
-	if ( nCh == ChTx_1 )		nCar = RFTCarNo1;	//	송신기#1
-	else if ( nCh == ChTx_2 )	nCar = RFTCarNo2;	//	송신기#2
-	else
-	{
-		//	ChTS1_1 - 21	:	1호차.
-		//	1 ~ 10호차.
-		nCar = ( nCh - ChTS1_1 ) / ChGap + 1;
-	}
-
-	return nCar;
-}
-
-
-
-int		g_nChRFT	=	0;		//	Default
+uint8_t		g_nChRFT	=	0;		//	Default
 
 //========================================================================
-void	SetChPARFT( int nCh )	//	가까운 송신기 채널(방송/통화용) 설정.
+void	SetChPARFT( uint8_t nCh )	//	가까운 송신기 채널(방송/통화용) 설정.
 //========================================================================
 {
 	//	방송채널 설정.
@@ -342,106 +327,52 @@ void	SetChPARFT( int nCh )	//	가까운 송신기 채널(방송/통화용) 설�
 }
 
 //========================================================================
-int		GetChPARFT( void )		//	가까운 송신기 채널(방송/통화용) 설정.
+uint8_t		GetChPARFT( void )		//	가까운 송신기 채널(방송/통화용) 설정.
 //========================================================================
 {
 	//	방송채널 설정.
 	return g_nChRFT;
 }
 
-#if defined(USE_ROUTE_REQ)
-
-int		g_nChRFMUp		=	0;		//	Default
-int		g_nChRFMDown	=	0;		//	Default
-
-int		g_nStampRouteRsp		=	0;	//	Route Rsp TimeStamp
-int		g_nIdxRouteFindNext		=	0;	//	Next호차 Find Index / Route Rsp 수신시 Reset
-
-//========================================================================
-void	SetChRFMUp( int nCh )	//	가까운 수신기 채널 ( Up )
-//========================================================================
-{
-	//	방송채널 설정.
-	g_nChRFMUp	= nCh;
-}
-
-//========================================================================
-int		GetChRFMUp( void )		//	가까운 수신기 채널 ( Up )
-//========================================================================
-{
-	//	방송채널 설정.
-	return g_nChRFMUp;
-}
-
-//========================================================================
-void	SetChRFMDown( int nCh )	//	가까운 수신기 채널 ( Down )
-//========================================================================
-{
-	//	방송채널 설정.
-	g_nChRFMDown	= nCh;
-}
-
-//========================================================================
-int		GetChRFMDown( void )	//	가까운 수신기 채널 ( Down )
-//========================================================================
-{
-	//	방송채널 설정.
-	return g_nChRFMDown;
-}
-
-
-#endif
-
 //========================================================================
 
 #include "eeprom.h"    //  EEPROM
 
 //========================================================================
-int		LoadTrainSetIdx	( void )
+int8_t		LoadTrainSetIdx	( void )
 //========================================================================
 {
     uint8_t     idxTrainSet = 0;
 
-    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
+    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), (uint32_t)2, (uint32_t)2 ) )
     {
         printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
 
-        return -1;
+        return (int8_t)-1;
     }
 
 //    M24_HAL_ReadBytes( &hi2c1, 0xA0, 0x10, (uint8_t *)&idxTrainSet, 1 );
-    M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPTrainSet, (uint8_t *)&idxTrainSet, 1 );
+    M24_HAL_ReadBytes( &hi2c1, (uint16_t)0xA0,(uint16_t) AddrEEPTrainSet, (uint8_t *)&idxTrainSet,(uint16_t) 1 );
 
-    if ( GetDbg() == 1 )
-    	printf( "%s(%d) - %d\n", __func__, __LINE__, idxTrainSet );
-
-    //========================================================================
-#if defined(USE_ODD_TS_CH_SHIFT)
-    if( (idxTrainSet%2) == 1 )
+    if ( GetDbg() > 0 )
     {
-    	//	홀수 편성 채널 ( Shift ChGap/2 )
-    	ChTx_1		=	ChTx_1 + (ChGap/2);
-    	ChTx_2		=	ChTx_2 + (ChGap/2);
-        ChTS1_1		= 	ChTS1_1 + (ChGap/2);
+    	printf( "%s(%d) - %d\n", __func__, __LINE__, idxTrainSet );
     }
-#endif
-    //========================================================================
 
-
-    return idxTrainSet;
+    return (int8_t)idxTrainSet;
 }
 
 
 //========================================================================
-int		GetTrainSetIdx		( void )
+uint8_t		GetTrainSetIdx		( void )
 //========================================================================
 {
-	static int s_bOnce 			=	0;
+	static uint8_t s_bOnce 			=	0;
 
 	if ( s_bOnce == 0 )
 	{
 		//	초기로딩시 I2C에서 Load
-		g_idxTrainSet = LoadTrainSetIdx();
+		g_idxTrainSet =(uint8_t) LoadTrainSetIdx();
 		s_bOnce = 1;
 	}
 
@@ -450,201 +381,170 @@ int		GetTrainSetIdx		( void )
 
 
 //========================================================================
-void	SetTrainSetIdx	( int idxTrainSet )
+void	SetTrainSetIdx	( uint8_t idxTrainSet )
 //========================================================================
 {
 	g_idxTrainSet = idxTrainSet;
 
-    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
+    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ),(uint32_t) 2,(uint32_t) 2 ) )
     {
         printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
 
         return ;
     }
 
-    if ( GetDbg() == 1 )
+    if ( GetDbg() > 0 )
+    {
     	printf( "%s(%d) - %d\n", __func__, __LINE__, idxTrainSet );
+    }
 //    M24_HAL_WriteBytes( &hi2c1, 0xA0, 0x10, (uint8_t *)&idxTrainSet, 1 );
-    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPTrainSet, (uint8_t *)&idxTrainSet, 1 );
+    M24_HAL_WriteBytes( &hi2c1,(uint16_t) 0xA0, (uint16_t)AddrEEPTrainSet, (uint8_t *)&idxTrainSet, (uint16_t)1 );
 }
-
-#if defined(USE_RF_COMM_MODE)
-
-//========================================================================
-int		GetRFMode	( void )
-//========================================================================
-{
-    uint8_t     nRFMode = 0;
-
-    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
-    {
-        printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
-
-        return -1;
-    }
-
-    M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPRFMode, (uint8_t *)&nRFMode, 1 );
-
-    if ( nRFMode > RFModeMax || nRFMode < 1 ) nRFMode = RFModeDefault;	//	Default Hop Man
-
-    if ( GetDbg() == 1 )
-    	printf( "%s(%d) - %d\n", __func__, __LINE__, nRFMode );
-
-    return nRFMode;
-}
-
-//========================================================================
-void	SetRFMode	( int nRFMode )
-//========================================================================
-{
-    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
-    {
-        printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
-
-        return ;
-    }
-
-    if ( GetDbg() == 1 )
-    	printf( "%s(%d) - %d\n", __func__, __LINE__, nRFMode );
-
-    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPRFMode, (uint8_t *)&nRFMode, 1 );
-}
-
-#endif
 
 #if defined(USE_HOP_MANUAL)
 
 //========================================================================
-int		GetManHop	( void )
+int8_t		GetManHop	( void )
 //========================================================================
 {
-    uint8_t     nManHop = 0;
+    int8_t     nManHop = 0;
 
-    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
+    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), (uint32_t)2, (uint32_t)2 ) )
     {
         printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
 
-        return -1;
+        return (int8_t)-1;
     }
 
 //    M24_HAL_ReadBytes( &hi2c1, 0xA0, 0x0D, (uint8_t *)&nManHop, 1 );
-    M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPManHop, (uint8_t *)&nManHop, 1 );
+    M24_HAL_ReadBytes( &hi2c1,(uint16_t) 0xA0, (uint16_t)AddrEEPManHop, (uint8_t *)&nManHop,(uint16_t) 1 );
 
 //    if ( nManHop > 2 || nManHop < 0 ) nManHop = 0;
-    if ( nManHop > 2 || nManHop < 0 ) nManHop = DEFAULT_HOP_MAN_VAL;	//	Default Hop Man
+    if ( (nManHop > 2) || (nManHop < 0))
+    {
+    	nManHop = (int8_t)DEFAULT_HOP_MAN_VAL;	//	Default Hop Man
+    }
 
-    if ( GetDbg() == 1 )
+    if ( GetDbg() > 0 )
+    {
     	printf( "%s(%d) - %d\n", __func__, __LINE__, nManHop );
+    }
 
-    return nManHop;
+    return (int8_t)nManHop;
 }
 
 //========================================================================
-void	SetManHop	( int nManHop )
+void	SetManHop	( uint8_t nManHop )
 //========================================================================
 {
-    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
+    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), (uint32_t)2,(uint32_t) 2 ) )
     {
         printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
 
         return ;
     }
 
-    if ( GetDbg() == 1 )
+    if ( GetDbg() > 0 )
+    {
     	printf( "%s(%d) - %d\n", __func__, __LINE__, nManHop );
+    }
 
 //    M24_HAL_WriteBytes( &hi2c1, 0xA0, 0x0D, (uint8_t *)&nManHop, 1 );
-    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPManHop, (uint8_t *)&nManHop, 1 );
+    M24_HAL_WriteBytes( &hi2c1,(uint16_t) 0xA0, (uint16_t)AddrEEPManHop, (uint8_t *)&nManHop, (uint16_t)1 );
 }
 
 #endif	//	defined(USE_HOP_MANUAL)
 
 //========================================================================
-int		LoadCarNo		( void )
+int8_t		LoadCarNo		( void )
 //========================================================================
 {
     uint8_t     nCarNo = 0;
 
-    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
+    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ),(uint32_t) 2, (uint32_t)2 ) )
     {
         printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
 
-        return -1;
+        return (int8_t)-1;
     }
 
 //    M24_HAL_ReadBytes( &hi2c1, 0xA0, 0x0E, (uint8_t *)&nCarNo, 1 );
-    M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPCarNo, (uint8_t *)&nCarNo, 1 );
+    M24_HAL_ReadBytes( &hi2c1, (uint16_t)0xA0, (uint16_t)AddrEEPCarNo, (uint8_t *)&nCarNo,(uint16_t) 1 );
 
-    if ( GetDbg() == 1 )
+    if ( GetDbg() > 0 )
+    {
     	printf( "%s(%d) - %d\n", __func__, __LINE__, nCarNo );
+    }
 
     g_nCarNo = nCarNo;
 
-    return nCarNo;
+    return (int8_t)nCarNo;
 }
 
 //========================================================================
-int		GetCarNo		( void )
+uint8_t		GetCarNo		( void )
 //========================================================================
 {
-	static int s_bOnce = 0;
+	static uint8_t s_bOnce = 0;
 
 	if ( s_bOnce == 0 )
 	{
 		//	초기로딩시 I2C에서 Load
-		g_nCarNo = LoadCarNo();
+		g_nCarNo = (uint8_t)LoadCarNo();
 		s_bOnce = 1;
 	}
 
-	return g_nCarNo;
+	return(uint8_t) g_nCarNo;
 }
 
 //========================================================================
-void	SetCarNo		( int nCarNo )
+void	SetCarNo		( uint8_t nCarNo )
 //========================================================================
 {
-    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
+    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), (uint32_t)2, (uint32_t)2 ) )
     {
         printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
 
         return ;
     }
 
-	if ( GetDbg() == 1 )
+	if ( GetDbg() > 0 )
+	{
     	printf( "%s(%d) - %d\n", __func__, __LINE__, nCarNo );
+	}
 
 	g_nCarNo = nCarNo;
 
 //    M24_HAL_WriteBytes( &hi2c1, 0xA0, 0x0E, (uint8_t *)&nCarNo, 1 );
-    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPCarNo, (uint8_t *)&nCarNo, 1 );
+    M24_HAL_WriteBytes( &hi2c1,(uint16_t) 0xA0, (uint16_t)AddrEEPCarNo, (uint8_t *)&nCarNo,(uint16_t) (uint16_t)1 );
 }
 
 //========================================================================
-int		GetSpkVol	    ( void )
+int8_t		GetSpkVol	    ( void )
 //========================================================================
 {
     uint8_t     nSpkVol = 0;
 
-    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
+    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ),(uint32_t) 2,(uint32_t) 2 ) )
     {
         printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
 
-        return -1;
+        return (int8_t)-1;
     }
 
 //    M24_HAL_ReadBytes( &hi2c1, 0xA0, 0x0F, (uint8_t *)&nSpkVol, 1 );
-    M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPSpkVol, (uint8_t *)&nSpkVol, 1 );
+    M24_HAL_ReadBytes( &hi2c1,(uint16_t) 0xA0, (uint16_t)AddrEEPSpkVol, (uint8_t *)&nSpkVol, (uint16_t)1 );
 
     printf( "%s(%d) - %d\n", __func__, __LINE__, nSpkVol );
 
-    return nSpkVol;
+    return (int8_t)nSpkVol;
 }
 
 //========================================================================
-void	SetSpkVol	    ( int nSpkVol )
+void	SetSpkVol	    ( uint8_t nSpkVol )
 //========================================================================
 {
-    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
+    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), (uint32_t)2,(uint32_t) 2 ) )
     {
         printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
 
@@ -654,11 +554,11 @@ void	SetSpkVol	    ( int nSpkVol )
     printf( "%s(%d) - %d\n", __func__, __LINE__, nSpkVol );
 
 //    M24_HAL_WriteBytes( &hi2c1, 0xA0, 0x0F, (uint8_t *)&nSpkVol, 1 );
-    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPSpkVol, (uint8_t *)&nSpkVol, 1 );
+    M24_HAL_WriteBytes( &hi2c1, (uint16_t)0xA0,(uint16_t) AddrEEPSpkVol, (uint8_t *)&nSpkVol, (uint16_t)1 );
 
     //========================================================================
     //	Codec MAX9860ETG+
-    if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x10 << 1 ), 2, 2 ) )
+    if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x10 << 1 ),(uint32_t) 2, (uint32_t)2 ) )
     {
     	AudioSpkVol( nSpkVol );
     }
@@ -666,31 +566,31 @@ void	SetSpkVol	    ( int nSpkVol )
 
 
 //========================================================================
-int		GetMicVol	    ( void )
+int8_t		GetMicVol	    ( void )
 //========================================================================
 {
     uint8_t     nMicVol = 0;
 
-    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
+    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ),(uint32_t) 2,(uint32_t) 2 ) )
     {
         printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
 
-        return -1;
+        return (int8_t)-1;
     }
 
 //    M24_HAL_ReadBytes( &hi2c1, 0xA0, 0x0F, (uint8_t *)&nSpkVol, 1 );
-    M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPMicVol, (uint8_t *)&nMicVol, 1 );
+    M24_HAL_ReadBytes( &hi2c1, (uint16_t)0xA0, (uint16_t)AddrEEPMicVol, (uint8_t *)&nMicVol,(uint16_t) 1 );
 
     printf( "%s(%d) - %d\n", __func__, __LINE__, nMicVol );
 
-    return nMicVol;
+    return (int8_t)nMicVol;
 }
 
 //========================================================================
-void	SetMicVol	    ( int nMicVol )
+void	SetMicVol	    ( uint8_t nMicVol )
 //========================================================================
 {
-    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
+    if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ),(uint32_t) 2,(uint32_t) 2 ) )
     {
         printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
 
@@ -700,11 +600,11 @@ void	SetMicVol	    ( int nMicVol )
     printf( "%s(%d) - %d\n", __func__, __LINE__, nMicVol );
 
 //    M24_HAL_WriteBytes( &hi2c1, 0xA0, 0x0F, (uint8_t *)&nSpkVol, 1 );
-    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPMicVol, (uint8_t *)&nMicVol, 1 );
+    M24_HAL_WriteBytes( &hi2c1, (uint16_t)0xA0, (uint16_t)AddrEEPMicVol, (uint8_t *)&nMicVol, (uint16_t)1 );
 
     //========================================================================
     //	Codec MAX9860ETG+
-    if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x10 << 1 ), 2, 2 ) )
+    if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x10 << 1 ),(uint32_t) 2,(uint32_t) 2 ) )
     {
     	AudioMicVol( nMicVol );
     }
@@ -723,7 +623,7 @@ void RF_RSSI( void )
     si446x_get_modem_status_fast_clear_read();
 //	si446x_get_modem_status(0xff);
 
-    if ( GetDbg() == 1 )
+    if ( GetDbg() > 0 )
     {
         printf( "%s(%d) - ant1:%d / ant2:%d / curr:%d / latch:%d\n", __func__, __LINE__,
                 Si446xCmd.GET_MODEM_STATUS.ANT1_RSSI,
@@ -737,20 +637,40 @@ void RF_RSSI( void )
 
     rssi = Si446xCmd.GET_MODEM_STATUS.LATCH_RSSI;
 
-    if ( rssi > 200 )                        LCDRSSI( 5 );  //  RSSI 5
-    else if ( 160 < rssi && rssi <= 200 )    LCDRSSI( 4 );  //  RSSI 4
-    else if ( 130 < rssi && rssi <= 160 )    LCDRSSI( 3 );  //  RSSI 3
-    else if ( 100 < rssi && rssi <= 130 )    LCDRSSI( 2 );  //  RSSI 2
-    else if ( 85 < rssi && rssi <= 100 )     LCDRSSI( 1 );  //  RSSI 1
-    else if ( rssi <= 85 )                   LCDRSSI( 0 );  //  RSSI 0
+    if ( rssi > 200 )
+    {
+    	LCDRSSI( 5 );  //  RSSI 5
+    }
+    else if ( 160 < rssi && rssi <= 200 )
+    {
+    	LCDRSSI( 4 );  //  RSSI 4
+    }
+    else if ( 130 < rssi && rssi <= 160 )
+    {
+    	LCDRSSI( 3 );  //  RSSI 3
+    }
+    else if ( 100 < rssi && rssi <= 130 )
+    {
+    	LCDRSSI( 2 );  //  RSSI 2
+    }
+    else if ( 85 < rssi && rssi <= 100 )
+    {
+    	LCDRSSI( 1 );  //  RSSI 1
+    }
+    else if ( rssi <= 85 )
+    {
+    	LCDRSSI( 0 );  //  RSSI 0
+    }
 }
 
 //========================================================================
-void	RFM_Spk			( int bOnOff )		//	1(On) / 0(Off)
+void	RFM_Spk			( uint8_t bOnOff )		//	1(On) / 0(Off)
 //========================================================================
 {
-	if( GetDbg() == 1 )
+	if( GetDbg() > 1 )
+	{
 		printf("%s(%d) - %d\n", __func__, __LINE__, bOnOff);
+	}
 
     if ( bOnOff )
     {
@@ -802,25 +722,11 @@ void PrintVerInfo( void )
 
 
 //========================================================================
-int cmd_ts      ( int argc, char * argv[] )
+uint8_t cmd_ts      ( uint8_t argc, char * argv[] )
 //========================================================================
 {
-
-	int i = 0;
-	int sListBuf[20]={1,2,3,4,5,
-		   			  6,7,8,9,10,
-					  11,12,13,14,15,
-					   0, 0, 0, 0, 0};
-
     //	ts [train set] ( 0 ~ 9 )
-    int 		nTrainSet = 0;
-
-    if( argc <= 1 )
-    {
-        printf( "Train Set : %d\n", 400 + GetTrainSetIdx() );
-
-    	return 0;
-    }
+	uint8_t 		nTrainSet = 0;
 
     switch ( argc )
     {
@@ -828,43 +734,24 @@ int cmd_ts      ( int argc, char * argv[] )
         break;
     }
 
+    if ( (nTrainSet < 0) || (MaxTrainSet <= nTrainSet ))
+    {
+    	nTrainSet = 0;
+    }
 
-	for(i = 0;i <= 15;i++)
-	{
-		if(nTrainSet  == sListBuf[i])
-		{
-			nTrainSet  = sListBuf[i];
-			break;
-		}
-		else if( i  >= 15) 
-		{
-			nTrainSet = 0;
-		}
-	}
-
-
-   // if ( nTrainSet < 0 || MaxTrainSet <= nTrainSet )  nTrainSet = 0;
-
-   	printf( "%s(%d) - Train Set : %d\n", __func__, __LINE__, (nTrainSet + 400) );
+   	printf( "%s(%d) - Train Set : %d\n", __func__, __LINE__, nTrainSet + 100 );
 
     SetTrainSetIdx( nTrainSet );
 
-    return 0;
+    return (uint8_t) 0;
 }
 
 //========================================================================
-int cmd_ch      ( int argc, char * argv[] )
+uint8_t cmd_ch      ( uint8_t argc, char * argv[] )
 //========================================================================
 {
     //	ch [channel] ( 0 ~ 9 )
-    int 		nCh = 0;
-
-    if( argc <= 1 )
-    {
-        printf( "RF Channel: %d\n", GetChRx() );
-
-    	return 0;
-    }
+	uint8_t 		nCh = 0;
 
     switch ( argc )
     {
@@ -873,30 +760,28 @@ int cmd_ch      ( int argc, char * argv[] )
         break;
     }
 
-    if ( nCh < 0 || MaxTrainSet <= nCh )  nCh = 0;
+    if ( nCh < 0 || MaxTrainSet <= nCh )
+    {
+    	nCh = 0;
+    }
 
-    if ( GetDbg() == 1 )
+    if ( GetDbg() > 0 )
+    {
     	printf( "%s(%d) - Channel : %d\n", __func__, __LINE__, nCh );
+    }
 
     SetTrainSetIdx( nCh );
 
-	return 0;
+    return (uint8_t) 0;
 }
 
 
 //========================================================================
-int cmd_car     ( int argc, char * argv[] )
+uint8_t cmd_car     ( uint8_t argc, char * argv[] )
 //========================================================================
 {
     //	car [Car No] ( 0 ~ 9 )
-    int 		nCar = 0;
-
-    if( argc <= 1 )
-    {
-        printf( "Car No : %d\n", GetCarNo() );
-
-        return 0;
-    }
+	uint8_t 		nCar = 0;
 
     switch ( argc )
     {
@@ -905,22 +790,25 @@ int cmd_car     ( int argc, char * argv[] )
         break;
     }
 
-    if ( nCar < 0 || MaxCarNo < nCar )  nCar = 0;
+    if ( nCar < 0 || MaxCarNo < nCar )
+    {
+    	nCar = 0;
+    }
 
     printf( "%s(%d) - Car No : %d\n", __func__, __LINE__, nCar );
 
     SetCarNo( nCar );
 
-	return 0;
+    return (uint8_t) 0;
 }
 
 
 //========================================================================
-int cmd_hop     ( int argc, char * argv[] )
+uint8_t cmd_hop     ( uint8_t argc, char * argv[] )
 //========================================================================
 {
     //	car [Car No] ( 0 ~ 9 )
-    int 		nManHop = 0;
+	uint8_t 		nManHop = 0;
 
     switch ( argc )
     {
@@ -930,39 +818,18 @@ int cmd_hop     ( int argc, char * argv[] )
     }
 
 //  g_nManHopping;		//	On(1) / Off(2) / Unused(0 : Other)
-    if ( nManHop < 0 || 2 < nManHop )  nManHop = 0;
+    if ( nManHop < 0 || 2 < nManHop )
+    {
+    	nManHop = 0;
+    }
 
     printf( "%s(%d) - Manual Hop : %d\n", __func__, __LINE__, nManHop );
 
-    g_nManHopping = nManHop;
     SetManHop( nManHop );
 }
 
-
 //========================================================================
-int cmd_rfmod     ( int argc, char * argv[] )
-//========================================================================
-{
-    int 		nRFMode = 0;
-
-    switch ( argc )
-    {
-    case 2:		sscanf( argv[1], "%d", &nRFMode );	        //	cmd [Car No]
-//	case 2:		sText = argv[1];						//	sscanf( argv[1], "%s", sText );		//	cmd [Text]
-        break;
-    }
-
-//  g_nManHopping;		//	On(1) / Off(2) / Unused(0 : Other)
-    if ( nRFMode < 1 || RFModeMax < nRFMode )  nRFMode = RFModeDefault;
-
-    printf( "%s(%d) - RFMode : %d\n", __func__, __LINE__, nRFMode );
-
-    g_nRFMode = nRFMode;
-    SetRFMode( nRFMode );
-}
-
-//========================================================================
-int cmd_swinfo    ( int argc, char * argv[] )
+uint8_t cmd_swinfo    ( uint8_t argc, char * argv[] )
 //========================================================================
 {
     printf( "[S/W Info]\n" );
@@ -971,30 +838,28 @@ int cmd_swinfo    ( int argc, char * argv[] )
 }
 
 //========================================================================
-int cmd_info    ( int argc, char * argv[] )
+uint8_t cmd_info    ( uint8_t argc, char * argv[] )
 //========================================================================
 {
     //	info - Train Setting Config
     uint8_t		nBuf[10];
-    int 		nCh = 0;
+    uint8_t 		nCh = 0;
     uint16_t	nData;
 
     printf( "[Setting]\n" );
-    printf( " - Train Set : %d\n", 400 + GetTrainSetIdx() );
+    printf( " - Train Set : %d\n", 100 + GetTrainSetIdx() );
     printf( " - Car No : %d\n", GetCarNo() );
     printf( " - RF Channel: %d\n", GetChRx() );
     printf( " - Mode : %s(%d)\n", StrRFMMode( GetRFMMode() ), GetRFMMode()  );	//	Normal / Tx / Rx / Upgrade
     printf( " - GetChNearRFM() : %d\n", GetChNearRFM() );
-    printf( " - GetChNearRFT() : %d\n", GetChNearRFT( 190 ) );
+    printf( " - GetChNearRFT() : %d\n", GetChNearRFT() );
     printf( " - GetChPARFT() : %d\n", GetChPARFT() );
     printf( " - GetChPA() : %d\n", GetChPA() );
-    printf( " - GetChRFMUp() : %d\n", GetChRFMUp() );
-    printf( " - GetChRFMDown() : %d\n", GetChRFMDown() );
 }
 
 
 //========================================================================
-int cmd_rfstat    ( int argc, char * argv[] )
+uint8_t cmd_rfstat    ( uint8_t argc, char * argv[] )
 //========================================================================
 {
     //	rfstat - RF Tx / Rx Status
@@ -1003,11 +868,11 @@ int cmd_rfstat    ( int argc, char * argv[] )
 
 #if defined(USE_TEST_RF_TX_LOOP)
 //========================================================================
-int cmd_rftx    ( int argc, char * argv[] )
+uint8_t cmd_rftx    ( uint8_t argc, char * argv[] )
 //========================================================================
 {
     //	RF Tx
-    int 	nCh		=	0;
+	uint8_t 	nCh		=	0;
 
     switch ( argc )
     {
@@ -1019,7 +884,7 @@ int cmd_rftx    ( int argc, char * argv[] )
     printf( "%s(%d) - CH(%d)\n", __func__, __LINE__, nCh );
 
     uint8_t sBuf[100];
-    int nCnt = 0;
+    uint8_t nCnt = 0;
 
     while ( 1 )
     {
@@ -1056,7 +921,7 @@ int cmd_rftx    ( int argc, char * argv[] )
 #endif
 
 //========================================================================
-int cmd_txpwr    ( int argc, char * argv[] )
+uint8_t cmd_txpwr    ( uint8_t argc, char * argv[] )
 //========================================================================
 {
     //	RF Tx
@@ -1075,12 +940,12 @@ int cmd_txpwr    ( int argc, char * argv[] )
 }
 
 //========================================================================
-int cmd_rspid     ( int argc, char * argv[] )
+uint8_t cmd_rspid     ( uint8_t argc, char * argv[] )
 //========================================================================
 {
     //	rspid [Car No] [0/1]
-    int 		nID 	= 0;
-    int 		nSet 	= 0;
+	uint8_t 		nID 	= 0;
+	uint8_t 		nSet 	= 0;
 
     switch ( argc )
     {
@@ -1119,7 +984,7 @@ int cmd_rspid     ( int argc, char * argv[] )
 
 
 //========================================================================
-int cmd_OccPa     ( int argc, char * argv[] )
+uint8_t cmd_OccPa     ( uint8_t argc, char * argv[] )
 //========================================================================
 {
 	//========================================================================
@@ -1128,7 +993,7 @@ int cmd_OccPa     ( int argc, char * argv[] )
 	printf("%s(%d)\n", __func__, __LINE__ );
 
 	//	대승객방송 시작/종료
-    int 		nOnOff 	= 0;
+	uint8_t 		nOnOff 	= 0;
 
     switch ( argc )
     {
@@ -1140,6 +1005,8 @@ int cmd_OccPa     ( int argc, char * argv[] )
     {
     	printf("%s(%d) - Start\n", __func__, __LINE__ );
 
+    	//	OCC Mode
+    	SetRFMMode( (uint8_t)RFMModeOcc );
 
 #if USE_RFM_OCC_PA
 
@@ -1156,28 +1023,13 @@ int cmd_OccPa     ( int argc, char * argv[] )
 
 		//  수신기 Spk Relay On
 		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_SET );
-
-
-		//
-		//SetRFMMode( RFMModeTx );
-
-
-		//SetChPA(ChTS1_1 );		//	가장 가까운 수신기 설정.
-
-		//	방송 - 시작
-		SendOCCPA( 1 );
-
-		//	OCC Mode
-		SetRFMMode( RFMModeOcc );
-
-
     }
     else
     {
     	printf("%s(%d) - Stop\n", __func__, __LINE__ );
 
     	//	Normal Mode
-    	SetRFMMode( RFMModeNormal );
+    	SetRFMMode( (uint8_t)RFMModeNormal );
 
 #if USE_RFM_OCC_PA
 
@@ -1191,10 +1043,6 @@ int cmd_OccPa     ( int argc, char * argv[] )
 
 		//  수신기 Spk Relay Off
 		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_RESET );
-
-
-		//	방송 - 종료
-		SendOCCPA( 0 );
     }
 }
 
@@ -1208,42 +1056,32 @@ int cmd_OccPa     ( int argc, char * argv[] )
 //	interpolation compress ( 보간압축 )
 #if defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
 
+//#define	AUDIO_COMPR_RATE	8	//	Audio 압축율.
+//#define	AUDIO_COMPR_RATE	6	//	Audio 압축율.
+#define	AUDIO_COMPR_RATE	4	//	Audio 압축율.
+//#define	AUDIO_COMPR_RATE	2	//	Audio 압축율.
+//#define	AUDIO_COMPR_RATE	1	//	Audio 압축율.
+
 #define	FRAME_ENC_SIZE		(I2S_DMA_LOOP_SIZE * AUDIO_COMPR_RATE)
 
 static int16_t	bufAudioEnc[FRAME_ENC_SIZE * 2];	//	Rx
 static int16_t	bufAudioDec[FRAME_ENC_SIZE * 2];	//	Tx
 
-#elif defined( USE_AUDIO_ADPCM )	//	ADPCM 사용. - 1/4 압축
-
-#define	FRAME_ENC_SIZE		(I2S_DMA_LOOP_SIZE * 4)		//	1/4 압축
-
-static int16_t	bufAudioEnc[FRAME_ENC_SIZE * 2];	//	Rx
-static int16_t	bufAudioDec[FRAME_ENC_SIZE * 2];	//	Tx
-
-signed short lowpass_Filter(signed short input)
-{
-	static signed short last_sample=0;
-	signed short retvalue = ((input + (last_sample * 7)) >> 3);
-	last_sample = retvalue;
-	return retvalue;
-}
-
-#endif	//
+#endif	//	defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
 //========================================================================
 
-static int bRxBuffering = 1;	//  Rx Buffering. ( Packet 4 ~ Packet 0)
+static uint8_t bRxBuffering = 1;	//  Rx Buffering. ( Packet 4 ~ Packet 0)
 
 //========================================================================
 void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 //========================================================================
 {
-	static int 	idx = 0;
+	static uint8_t 	idx = 0;
 	int16_t		*pAudioTx;
 	int16_t		*pAudioRx;
 
-
 	{
-#if defined( USE_AUDIO_INTERPOL_COMPRESS )	|| defined( USE_AUDIO_ADPCM ) //	보간압축사용 or ADPCM 사용.
+#if defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
 
 		pAudioTx = &bufAudioDec[FRAME_ENC_SIZE * idx];
 		pAudioRx = &bufAudioEnc[FRAME_ENC_SIZE * (( idx + 1 ) % 2)];
@@ -1257,7 +1095,7 @@ void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 		idx = ( idx + 1 ) % 2;
 		pAudioTx = &bufAudioDec[FRAME_ENC_SIZE * idx];
 
-#else
+#else	//	defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
 
 		pAudioTx = &t_audio_buff[I2S_DMA_LOOP_SIZE * idx];
 		pAudioRx = &r_audio_buff[I2S_DMA_LOOP_SIZE * (( idx + 1 ) % 2)];
@@ -1289,7 +1127,7 @@ void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 #if defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
 
 			//	Encoding : 8 KHz -> 2 KHz
-			int i;
+			uint8_t i;
 			for( i = 0; i < I2S_DMA_LOOP_SIZE; i++ )
 			{
 				r_audio_buff[ i ] = pAudioRx[ i * AUDIO_COMPR_RATE ];
@@ -1297,25 +1135,7 @@ void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 
 			qBufPut( &g_qBufAudioTx, (uint8_t *)r_audio_buff, ( I2S_DMA_LOOP_SIZE * 2 ) );
 
-#elif defined( USE_AUDIO_ADPCM )	//	ADPCM 사용. - 1/4 압축
-
-			//	ADPCM : 16 bit -> 4 bit
-			int i;
-			uint8_t *pABuf = (uint8_t *)r_audio_buff;
-			for( i = 0; i < I2S_DMA_LOOP_SIZE*2; i++ )
-			{
-				//*
-				pABuf[i] = (uint8_t)((uint8_t)((ADPCM_Encode(lowpass_Filter((int16_t)pAudioRx[i*2])<<1)&(0x0F))<<4)
-								| (uint8_t)(ADPCM_Encode(lowpass_Filter((int16_t)pAudioRx[i*2+1])<<1)&0x0F));
-				/*/
-				pABuf[i] = (uint8_t)((uint8_t)((ADPCM_Encode((int16_t)pAudioRx[i*2])&(0x0F))<<4)
-								| (uint8_t)(ADPCM_Encode((int16_t)pAudioRx[i*2+1])&0x0F));
-				//	*/
-			}
-
-			qBufPut( &g_qBufAudioTx, (uint8_t *)r_audio_buff, ( I2S_DMA_LOOP_SIZE * 2 ) );
-
-#else	//
+#else	//	defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
 			//========================================================================
 			//	Queue Put
 			qBufPut( &g_qBufAudioTx, (uint8_t *)pAudioRx, ( I2S_DMA_LOOP_SIZE * 2 ) );
@@ -1330,7 +1150,7 @@ void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 
 		/*/
 
-#if defined( USE_AUDIO_INTERPOL_COMPRESS ) || defined( USE_AUDIO_ADPCM )	//	보간압축사용 or ACPCM 사용
+#if defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
 		memset( pAudioTx, 0, FRAME_ENC_SIZE * 2 );	//	Tx
 #else
 		memset( pAudioTx, 0, I2S_DMA_LOOP_SIZE * 2 );
@@ -1348,9 +1168,7 @@ void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 				bRxBuffering = 0;
 
 				printf ( "F" );	 //  버퍼링종료 ( Buffering End - Buffer Full )
-
 			}
-
 		}
 
 		if ( bRxBuffering == 0 )
@@ -1363,13 +1181,13 @@ void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 
 #if defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
 
-				qBufGet( &g_qBufAudioRx, (uint8_t*)t_audio_buff, ( I2S_DMA_LOOP_SIZE * 2 ) );
+				qBufGet( &g_qBufAudioRx, (uint8_t*)t_audio_buff, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
 
-				int dtVal;	//	sample 보간.
+				uint8_t dtVal;	//	sample 보간.
 				static int16_t nlastSample = 0;
 
 				//	Decoding : 2 KHz -> 8 KHz
-				int i;
+				uint8_t i;
 				for( i = 0; i < FRAME_ENC_SIZE; i++ )
 				{
 					if ( i % AUDIO_COMPR_RATE == 0 )
@@ -1394,20 +1212,7 @@ void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 			//		outBuf[ i ] = bufAudioDec[i / AUDIO_COMPR_RATE];
 				}
 
-#elif defined( USE_AUDIO_ADPCM )	//	ADPCM 사용. - 1/4 압축
-
-				qBufGet( &g_qBufAudioRx, (uint8_t*)t_audio_buff, ( I2S_DMA_LOOP_SIZE * 2 ) );
-
-				uint8_t *pABuf = (uint8_t *)t_audio_buff;
-				//	Decoding : 4 bit -> 16 bit
-				int i;
-				for( i = 0; i < FRAME_ENC_SIZE/2; i++ )
-				{
-					pAudioTx[i*2] = (uint16_t)ADPCM_Decode((uint8_t)((pABuf[i]&(0xF0)))>>4);
-					pAudioTx[i*2+1] = (uint16_t)ADPCM_Decode((uint8_t)(pABuf[i]&0x0F));
-				}
-
-#else	//
+#else	//	defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
 
 				qBufGet( &g_qBufAudioRx, (uint8_t*)pAudioTx, ( I2S_DMA_LOOP_SIZE * 2 ) );
 
@@ -1415,20 +1220,14 @@ void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 			}
 			else
 			{
-				//printf ( "B" );	 //  버퍼링시작 ( Buffering )
+				printf ( "B" );	 //  버퍼링시작 ( Buffering )
 				//  Data
 				bRxBuffering = 1;
-
-
-#if defined( USE_AUDIO_ADPCM )	//	ADPCM 사용. - 1/4 압축
-				ADPCM_ClearDecodeBuf();
-				//qBufClear( &g_qBufAudioRx );	//	Tx Buffer Clear
-#endif
-
 			}
 		}
 		//  */
 	}
+
 }
 
 
@@ -1437,7 +1236,7 @@ void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 //========================================================================
 
 //========================================================================
-int InitRFM( void )
+uint8_t InitRFM( void )
 //========================================================================
 {
 	printf( "%s(%d)\n", __func__, __LINE__ );
@@ -1452,11 +1251,11 @@ int InitRFM( void )
 
 	//========================================================================
 	//	Codec MAX9860ETG+
-	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x10 << 1 ), 2, 2 ) )
+	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x10 << 1 ), (uint32_t)2,(uint32_t) 2 ) )
 	{
 		//  Read Rev.
 		char buf[10];
-		int cntRetry;
+		uint8_t cntRetry;
 
 		cntRetry = 0;
 
@@ -1483,7 +1282,7 @@ int InitRFM( void )
 
 	//========================================================================
 	//	편성번호 Load
-	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ), 2, 2 ) )
+	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ),(uint32_t) 2, (uint32_t)2 ) )
 	{
 		printf( "%s(%d) - EEPROM OK\n", __func__, __LINE__ );
 		TestEEPROM( &hi2c1 ); //  Test EEPROM
@@ -1517,7 +1316,7 @@ int InitRFM( void )
 		LCDClear();
 		LCDDrawRect( 0, 0, 128, 32, 1 );
 
-		HAL_Delay( 500 );
+		HAL_Delay((uint32_t) 500 );
 
 		//  LCD : 메뉴 화면.
 		LCDMenu();
@@ -1534,7 +1333,7 @@ int InitRFM( void )
 		//  Spk Vol Set
 		//  Default (1) - 0(Mute) / 1 / 2(Normal) / 3
 
-		int	 nSpkVol;
+		uint8_t	 nSpkVol;
 		nSpkVol = GetSpkVol();
 
 		if ( nSpkVol < 0 || nSpkVol > MaxSpkVol )
@@ -1552,7 +1351,7 @@ int InitRFM( void )
 		//  Mic Vol Set
 		//  Default (5) - 0 ~ 9
 
-		int	 nMicVol;
+		uint8_t	 nMicVol;
 		nMicVol = GetMicVol();
 
 		if ( nMicVol < 0 || nMicVol > MaxMicVol )
@@ -1562,8 +1361,8 @@ int InitRFM( void )
 		}
 
 		//========================================================================
-#if defined(USE_AUDIO_INTERPOL_COMPRESS) || defined( USE_AUDIO_ADPCM )
-		//	보간압축 or ADPCM 사용시 음량 Level 조절.
+#if defined(USE_AUDIO_INTERPOL_COMPRESS)
+		//	보간압축 사용시 음량 Level 조절.
 		WriteI2CCodec( 0x0B, 0x60 );	//  10 ( +18 dB )
 #endif
 
@@ -1580,8 +1379,20 @@ int InitRFM( void )
 		SetDevID( DevRF900M );	 //  수신기.
 
 		//  수신기 스피커 레벨 변경.
+//#if defined(USE_AUDIO_INTERPOL_COMPRESS)
+//		//	보간압축 사용시 음량 Level 조절.
+////		WriteI2CCodec( 0x09, 0x06 );	//  0x12 ( 0 )
+//		WriteI2CCodec( 0x09, 0x00 );	//  0x00 ( +3 )
+//		WriteI2CCodec( 0x0B, 0x60 );	//  10 ( +18 dB )
+//
+//#else
+//		WriteI2CCodec( 0x09, 0x12 );	//  0x12 ( -6 )
+
 		//	20.09.01 - 2호선 24칸차량설정.
 		WriteI2CCodec( 0x09, 0x06 );	//  0x06 ( 0 )
+
+		//		WriteI2CCodec( 0x09, 0x1A );	//  0x1A ( -10 )
+//#endif
 
 #if defined(USE_HOP_MANUAL)
 		//	g_nManHopping;		//	On(1) / Off(2) / Unused(0 : Other)
@@ -1593,20 +1404,13 @@ int InitRFM( void )
 	}
 	//========================================================================
 
-#if defined(USE_RF_COMM_MODE)
-		//	g_nManHopping;		//	On(1) / Off(2) / Unused(0 : Other)
-		g_nRFMode	=	GetRFMode();	//	Hopping Diable
-
-		printf("%s(%d) - RFMode ( %d )\n", __func__, __LINE__, g_nRFMode );
-#endif	//	defined(USE_HOP_MANUAL)
-
 #if defined(USE_RFT_ONLY_RX_SPK_ON)
 
 	if ( GetDevID() == DevRF900T )
 	{
 		//  송신기 : 수신중이 아닌경우 SPK OFF
 //		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
-		RFM_Spk(0);
+		RFM_Spk((uint8_t)0);
 	}
 
 #endif
@@ -1642,31 +1446,14 @@ int InitRFM( void )
 
 #endif
 
-	int i = 0;
-	int s_idxTrainSet = 0;
-	int sListBuf[20]={1,2,3,4,5,
-		   			  6,7,8,9,10,
-					  11,12,13,14,15,
-					   0, 0, 0, 0, 0};
-
-		for(i = 0;i < 15;i++)
-		{
-			if(g_idxTrainSet  == sListBuf[i])
-			{
-				s_idxTrainSet = i;
-				break;
-			}
-		
-		}
-
 	//========================================================================
 	//	Radio 초기화 이후 채널 설정해줌.
 	{
 		//========================================================================
 		//  Radio Channel 설정.
-		pRadioConfiguration->Radio_ChannelNumber = s_idxTrainSet;
-		printf("%s(%d) - Radio Ch(%d) / s_idxTrainSet(%d)\n", __func__, __LINE__,
-				pRadioConfiguration->Radio_ChannelNumber, s_idxTrainSet );
+		pRadioConfiguration->Radio_ChannelNumber = g_idxTrainSet;
+		printf("%s(%d) - Radio Ch(%d) / g_idxTrainSet(%d)\n", __func__, __LINE__,
+				pRadioConfiguration->Radio_ChannelNumber, g_idxTrainSet );
 	}
 
 	//========================================================================
@@ -1680,13 +1467,13 @@ int InitRFM( void )
 	printf( "%s(%d) - offsetCA( %d )\n", __func__, __LINE__, g_offsetCA );
 
 	//	초기 시작 Delay
-	HAL_Delay(g_offsetCA);
+	HAL_Delay((uint32_t)g_offsetCA);
 
 	//========================================================================
 }
 
 //========================================================================
-int RFM_main( void )
+uint8_t RFM_main( void )
 //========================================================================
 {
 	printf( "%s(%d)\n", __func__, __LINE__ );
@@ -1703,7 +1490,7 @@ int RFM_main( void )
 
 #if defined(USE_TEST_RF_TX_LOOP)
 	//========================================================================
-	//cmd_rftx( int argc, char * argv[] )
+	//cmd_rftx( uint8_t argc, char * argv[] )
 //	ProcessCommand( "tx 0" );
 
 	char *argv[] = {"tx", "0"};
@@ -1713,7 +1500,7 @@ int RFM_main( void )
 
 	InitProcPkt();
 
-	int nTick;
+	uint8_t nTick;
 
 	/* Infinite main loop */
 	while ( 1 )
@@ -1745,13 +1532,9 @@ int RFM_main( void )
 
 
 //========================================================================
-void LoopProcRFM ( int nTick )
+void LoopProcRFM ( uint8_t nTick )
 //========================================================================
 {
-	static int nTxOccPkt = 0;
-	static int nRxOccPkt = 0;
-
-
 	RFMPkt	bufRFTx;
 
 	//========================================================================
@@ -1766,7 +1549,7 @@ void LoopProcRFM ( int nTick )
 				if( qBufCnt( &g_qBufAudioTx ) >= ( I2S_DMA_LOOP_SIZE * 2 ) )
 				{
 					//		printf ( "G" );
-					qBufGet( &g_qBufAudioTx, (uint8_t*)bufRFTx.dat.data, ( I2S_DMA_LOOP_SIZE * 2 ) );
+					qBufGet( &g_qBufAudioTx, (uint8_t*)bufRFTx.dat.data, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
 
 #if defined(USE_HOPPING)
 					//========================================================================
@@ -1775,11 +1558,11 @@ void LoopProcRFM ( int nTick )
 					//	Header #2
 					if( GetKey(eKeyPtt) )
 					{
-						_MakePktHdr2( &bufRFTx, PktPA );
+						_MakePktHdr2( &bufRFTx, (uint8_t)PktPA );
 					}
 					else
 					{
-						_MakePktHdr2( &bufRFTx, PktCall );
+						_MakePktHdr2( &bufRFTx, (uint8_t) PktCall );
 					}
 
 #else
@@ -1821,12 +1604,12 @@ void LoopProcRFM ( int nTick )
 						if ( GetChPARFT() != 0 )
 						{
 							//	송신기에 전송.
-							SendPktCh( GetChPARFT(), (uint8_t *)&bufRFTx,
-								(U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
+							SendPktCh( GetChPARFT(), (U8 *)&bufRFTx,
+									(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall )) );
 						}
 
-						SendPktCh( GetChPA(), (uint8_t *)&bufRFTx,
-							pRadioConfiguration->Radio_PacketLength );
+						SendPktCh( GetChPA(), (U8 *)&bufRFTx,
+								(uint8_t)(pRadioConfiguration->Radio_PacketLength) );
 					}
 					else
 					{
@@ -1835,14 +1618,14 @@ void LoopProcRFM ( int nTick )
 						if ( GetChPARFT() != 0 )
 						{
 							//	송신기에 직접 전송.
-							SendPktCh( GetChPARFT(), (uint8_t *)&bufRFTx,
-								(U8)sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall ) );
+							SendPktCh( GetChPARFT(), (U8 *)&bufRFTx,
+									(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall )) );
 						}
 						else
 						{
 							//	수신기를 통해 전송.
-							SendPktCh( GetChPA(), (uint8_t *)&bufRFTx,
-								pRadioConfiguration->Radio_PacketLength );
+							SendPktCh( GetChPA(), (U8 *)&bufRFTx,
+									(uint8_t)(pRadioConfiguration->Radio_PacketLength) );
 						}
 					}
 
@@ -1855,33 +1638,16 @@ void LoopProcRFM ( int nTick )
 		}
 
 		//========================================================================
-		static int nOldRFMMode = 0;
+		static uint8_t nOldRFMMode = 0;
 
-		int nRFMMode = GetRFMMode();
+		uint8_t nRFMMode = GetRFMMode();
 		if( nRFMMode != nOldRFMMode )
 		{
 			switch ( nRFMMode )
 			{
 			case RFMModeRx:
 				LCDSetCursor( 20, 13 );
-				if ( IsMenuMaint() )
-				{
-					//	Maint Mode : 송신채널 표시.
-					char sBuf[20];
-					sprintf( sBuf, "수신중(%d/%d)", GetCh2Car(GetChNearRFM()), GetChNearRFM() );	//	Channel -> Car
-					LCDPrintf( sBuf );
-				}
-				else
-				{
-					LCDPrintf( "수신중..." );
-				}
-
-				//========================================================================
-				//	송신기 음성 수신시에 Codec 재설정 : 음성 수신 짧게 반복시 Codec이 죽는현상 디버깅.
-				//InitCodecMAX9860();
-				//========================================================================
-
-
+				LCDPrintf( "수신중..." );
 				break;
 
 			case RFMModeNormal:
@@ -1893,7 +1659,7 @@ void LoopProcRFM ( int nTick )
 				if ( GetDevID() == DevRF900T )
 				{
 					//  송신기 : 수신중이 아닌경우 SPK OFF
-					RFM_Spk(0);
+					RFM_Spk((uint8_t)0);
 
 					//  Red LED Off
 					HAL_GPIO_WritePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_RESET ); //  RED LED
@@ -1924,40 +1690,28 @@ void LoopProcRFM ( int nTick )
 				//		printf ( "G" );
 				//========================================================================
 				//	Audio ( 대승객방송 음성 )
-				qBufGet( &g_qBufAudioTx, (uint8_t*)bufRFTx.dat.data, ( I2S_DMA_LOOP_SIZE * 2 ) );
+				qBufGet( &g_qBufAudioTx, (uint8_t*)bufRFTx.dat.data, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
 				//	Audio Loopback ( 대승객방송 음성 )
-				qBufPut( &g_qBufAudioRx, (uint8_t*)bufRFTx.dat.data, ( I2S_DMA_LOOP_SIZE * 2 ) );
+				qBufPut( &g_qBufAudioRx, (uint8_t*)bufRFTx.dat.data, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
 
 				//========================================================================
 				//	Packet Header	-	OCC PA 전송
 
 				//	Header #2
-				_MakePktHdr2( &bufRFTx, PktPA );
+				_MakePktHdr2( &bufRFTx, (uint8_t)PktPA );
 
-
-				/*
 				if( GetChRx() == ChTS1_1 )	//	1호차 수신기
 				{
 					//	1 -> 2 ... -> 10
-					SendPktCh( GetChRFMUp(), (uint8_t *)&bufRFTx,
-						pRadioConfiguration->Radio_PacketLength );
+					SendPktCh( GetChPA() + 1, (U8 *)&bufRFTx,
+							(uint8_t)(pRadioConfiguration->Radio_PacketLength) );
 				}
 				else
 				{
 					// 10 -> 9 ... -> 1
-					SendPktCh( GetChPA() - ChGap, (uint8_t *)&bufRFTx,
-						pRadioConfiguration->Radio_PacketLength );
+					SendPktCh( GetChPA() - 1, (U8 *)&bufRFTx,
+							(uint8_t)(pRadioConfiguration->Radio_PacketLength ));
 				}
-				*/
-
-				SendPktCh( GetChRFMUp(), (uint8_t *)&bufRFTx,
-						pRadioConfiguration->Radio_PacketLength );
-
-
-				nTxOccPkt++;
-
-				if((nTxOccPkt) % 100 == 0) printf ( "OccSend (%d) \n",GetChPA() );
-
 
 				// 조명 On
 				HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
@@ -1974,7 +1728,7 @@ void LoopProcRFM ( int nTick )
 		)
 	{
 		// Rx 패킷이 500 ms 없을 경우 수신모드 해제
-		SetRFMMode( RFMModeNormal );
+		SetRFMMode((uint8_t) RFMModeNormal );
 
 		//  수신기 Spk Relay Off
 		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_RESET );
@@ -1984,7 +1738,7 @@ void LoopProcRFM ( int nTick )
 		{
 			//  송신기 : 수신중이 아닌경우 SPK OFF
 //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
-			RFM_Spk(0);
+			RFM_Spk((uint8_t)0);
 		}
 #endif
 
@@ -1994,7 +1748,7 @@ void LoopProcRFM ( int nTick )
 
 	//========================================================================
 	//  수신기 Standby GPIO 제어 : 모듈동작시 1초간격 Blink
-	static int s_nTickStandby;
+	static uint8_t s_nTickStandby;
 
 	if ( nTick - s_nTickStandby >= 1000 )
 	{
@@ -2045,7 +1799,7 @@ void LoopProcRFM ( int nTick )
 	{
 		//========================================================================
 		//	Normal 모드로 변경.
-		SetRFMMode( RFMModeNormal );	//	Normal Mode 로 변경
+		SetRFMMode( (uint8_t)RFMModeNormal );	//	Normal Mode 로 변경
 		//========================================================================
 
 		//  RF 수신 Start
@@ -2058,164 +1812,46 @@ void LoopProcRFM ( int nTick )
 
 #endif
 
-
-//===================================================송신기 장치 상태정보 요청..=================================================================================
 #if defined(USE_STAT_REQ)	//	송신기 : 상태 정보 요청 100 msec간격.
-
+	//========================================================================
 	//	송신기 장치 상태정보 요청.
-	static int oldTickStatReq = 0;
-	static int s_idxCh = 0;
+	static uint8_t oldTickStatReq = 0;
+	static uint8_t s_idxCh = 0;
 
-	if	( 	GetDevID() == DevRF900T						//	송신기
+	if	( ( (nTick - oldTickStatReq) > TIME_STAT_REQ )	//	주기 : 200 msec
+			&&	GetDevID() == DevRF900T					//	송신기
 			&&	GetRFMMode() == RFMModeNormal			//	Normal모드 : 상태정보 요청.
-			&& GetAdcPow() == 0) // 충전 OPEN 중이면.
+		)
 	{
-#if defined(USE_ROUTE_REQ_RFM)//	수신기에서 요청의 경우 송신기가 요청하지 않음.
-#else
-#if defined(USE_ROUTE_REQ)	//	송신기 : Route 정보 요청.
-		static int oldTickRouteReq = 0;
-
-		if( (nTick - oldTickRouteReq ) > (TIME_ROUTE_REQ * 1000) )
+		//	상태정보 요청.
+		if ( s_idxCh < MaxTrainSet )
 		{
-			//	송신기 -> 수신기 : Route 정보 요청.
-			SendRouteReq( GetChNearRFM() );		//	가까운 수신기로 Route정보 요청.
-
-			oldTickRouteReq = nTick + 1000;		//	1초 이후 부터 시작.
-			oldTickStatReq = nTick + 1000;		//	1초 이후 부터 시작.
+			//========================================================================
+			//	수신기 상태정보
+			SendStatReq( ChTS1_1 + (s_idxCh*ChGap) );
 		}
 		else
-#endif		//	defined(USE_ROUTE_REQ)	//	송신기 : Route 정보 요청.
-#endif
-		if	( (nTick - oldTickStatReq) > TIME_STAT_REQ )	//	주기 : 300 msec
 		{
-			//	상태정보 요청.
-			if ( s_idxCh < MaxRFMNo )
+			//========================================================================
+			//	송신기 상태정보
+			if( ChTx_1 + ( s_idxCh % 2 ) != GetChRx() )
 			{
-				//========================================================================
-				//	수신기 상태정보
-				SendStatReq( ChTS1_1 + (s_idxCh*ChGap) );
+				//	타 송신기에 상태정보 요청.
+				SendStatReq( ChTx_1 + ( s_idxCh % 2 ) );
 			}
-			else
-			{
-				//========================================================================
-				//	송신기 상태정보
-				if( ChTx_1 + ( s_idxCh % 2 )*ChGap != GetChRx() )
-				{
-					//	타 송신기에 상태정보 요청.
-					SendStatReq( ChTx_1 + ( s_idxCh % 2 )*ChGap );
-				}
-			}
-
-	//		if ( s_idxCh == 0 )
-	//		{
-	//		    //	Reflash Status
-	//		    ReflashStat( nTick );	//	상태정보 갱신.
-	//		}
-
-			s_idxCh = ( s_idxCh + 1 ) % ( MaxRFMNo + 2 );	//	MaxRFMNo : 10 + 2(송신기 2채널)
-
-			oldTickStatReq = nTick;
-		}
-	}
-	else if(GetDevID() == DevRF900T && GetRFMMode() != RFMModeNormal)
-	{
-		m_lightTxSentCnt = 0;
-	}
-
-#endif
-//===================================================수신기 Route 요청.=================================================================================
-
-#if defined(USE_ROUTE_REQ_RFM)	//	수신기 Route 요청.
-	static int oldTickRouteReq = 0;
-
-	static int s_ChkRsp = 0;
-	static int s_JumpRouteRsq = 0;
-	static int s_TimerVal = 0;
-
-	if	( 	GetDevID() == DevRF900M						//	수신기
-			&&	GetRFMMode() == RFMModeNormal			//	Normal모드 : 상태정보 요청.
-			&& m_RouteRunFlag != 0 )//&& 	g_nRFMode == RFMode1)
-	{
-
-		if(g_nCarNo == 1) s_TimerVal = 1000;
-		else s_TimerVal = 1500;
-
-		if((((nTick - oldTickRouteReq ) > (TIME_ROUTE_REQ * s_TimerVal)) || m_RouteReq_OK == 1) && s_ChkRsp == 0)
-		{
-			m_RouteReq_OK = 0;
-
-			//	수신기 -> 수신기 : Route 정보 요청.
-			//	1 -> 2
-			//		 2 -> 3
-			//			  3 -> 4
-			if ( g_nCarNo != 10 )	//	10호차 Skip
-			{
-				//	다음번 수신기에 정보 요청
-				SendRouteReq( GetChRx() + ChGap );		//
-
-				if ( GetDbg() == 5 ) printf( "Tr:%d\n",GetChRx() + ChGap );
-
-				//	Timeout 발생시 그 다음 수신기로 정보 요청.
-			}
-
-			oldTickRouteReq = nTick;			//	1초 이후 부터 시작.
-
-			m_RouteRunFlag--;
-
-			if( g_nCarNo != 9 && g_nCarNo != 10) s_ChkRsp = 1;
-
 		}
 
-		if( s_ChkRsp == 1
-				&& (nTick - oldTickRouteReq ) > 500		//	송신후 응답시간 ( 100 msec ) 이상 시간이 지났다면
-				&& ( g_nCarNo != 9 && g_nCarNo != 10 )	//	다음호차 검색은 9/10호차 Skip
-				)
-		{
+//		if ( s_idxCh == 0 )
+//		{
+//		    //	Reflash Status
+//		    ReflashStat( nTick );	//	상태정보 갱신.
+//		}
 
-			
-			//	다음 호차검색
+		s_idxCh = ( s_idxCh + 1 ) % ( MaxTrainSet + 2 );	//	MaxTrainSet : 10 + 2(송신기 2채널)
 
-			if ( ( nTick - g_nStampRouteRsp ) > (TIMEOUT_RECV_ROUTE * 1000) ) // Rsp  수신 데이티가 5초이상 없다면, 다음 다다음 호차 호출.
-			{
-				//	Timeout 발생시.
-				//	다음호차부터  ~ 10까지 상태정보 전송 검색.
-
-				//	g_nIdxRouteFindNext	Index 증가하면서 10호차 까지 상태정보 검색.
-				//	[1] [2-X] ->[3] ->[4] ... -> [10]
-				SendRouteReq( GetChRx() + (2 + g_nIdxRouteFindNext) * ChGap );
-
-				if ( GetDbg() == 5 ) printf( "Tr~:%d\n",GetChRx() + (2 + g_nIdxRouteFindNext) * ChGap  );
-
-				if ( ( g_nCarNo + 2 + g_nIdxRouteFindNext ) > 10 )
-				{
-					g_nIdxRouteFindNext = 0;
-					s_JumpRouteRsq = 0;
-				}
-				else
-				{
-					s_JumpRouteRsq++;
-
-					if(s_JumpRouteRsq>=5)
-					{
-						//g_nIdxRouteFindNext +=  (s_JumpRouteRsq/5); //
-						g_nIdxRouteFindNext += 1;
-						s_JumpRouteRsq = 0;
-					}
-
-
-					//g_nIdxRouteFindNext++;
-				}
-			}
-			s_ChkRsp = 0;
-		}
+		oldTickStatReq = nTick;
 	}
-	else if(GetDevID() == DevRF900M	&& (GetRFMMode() == RFMModeTx || GetRFMMode() == RFMModeRx))
-	{
-		m_lightReSendCnt = 0;
-	}
-
 #endif
-
 }
 
 //========================================================================
@@ -2227,7 +1863,7 @@ void UpdateStat( RFMPktStat *pStat )
 
 	if ( 0 < pStat->nCarNo && pStat->nCarNo <= MaxCarNo )
 	{
-		int idx = pStat->nCarNo;
+		uint8_t idx = pStat->nCarNo;
 
 		//========================================================================
 		//	상태정보 갱신.
@@ -2240,16 +1876,7 @@ void UpdateStat( RFMPktStat *pStat )
 		//========================================================================
 		//	버전정보 갱신.
 
-#if defined( USE_COMM_MODE_CH_GRP )
-		sprintf(_sVerList[idx], "%02d:%d/R%d,%03d", idx,
-				pStat->ver_build,
-				pStat->nRFMode,
-				g_devStat[idx].nRSSI
-				);
-
-		sprintf(_sSelfTestList[(idx-1)],"%02d 호차 : OK",idx);
-
-#elif defined( USE_HOP_MANUAL )
+#if defined(USE_HOP_MANUAL)
 		sprintf(_sVerList[idx], "%02d:v%d/hop(%d)", idx,
 				pStat->ver_build,
 				pStat->nManHop
@@ -2266,7 +1893,7 @@ void UpdateStat( RFMPktStat *pStat )
 }
 
 //========================================================================
-void SetStat( int nRspID )
+void SetStat( uint8_t nRspID )
 //========================================================================
 {
 	//	상태정보 저장.
@@ -2280,12 +1907,10 @@ void SetStat( int nRspID )
 	g_devStat[nRspID].stampRx = HAL_GetTick();
 }
 
-
 //========================================================================
-void ReflashStat( int nTick )
+void ReflashStat( uint8_t nTick )
 //========================================================================
 {
-	static int m_ReFlahStat_Cnt = 0;
 	//	상태정보 갱신.
 	//	Timeout 초과 상태정보 Disable
 	if( g_bSetRspIDManual )
@@ -2294,37 +1919,7 @@ void ReflashStat( int nTick )
 		return ;
 	}
 
-
-	 if ( ( nTick - g_devStat[m_ReFlahStat_Cnt].stampRx ) > (TIMEOUT_RECV_STATUS * 1000) )
-	{
-		g_flagRspID &= ~( 0x1 << m_ReFlahStat_Cnt );
-
-
-		sprintf(_sSelfTestList[m_ReFlahStat_Cnt-1],"%02d 호차 : NG",(m_ReFlahStat_Cnt));
-
-		//========================================================================
-		//	Timeout 발생시 RSSI값 초기화.
-		g_devStat[m_ReFlahStat_Cnt].nRSSI 	= 	0;
-		g_devStat[m_ReFlahStat_Cnt].nNearCh 	= 	0;	//	nNearCh 초기화.
-		//========================================================================
-	}
-
-	 if(m_ReFlahStat_Cnt >= 10)
-	{
-		m_ReFlahStat_Cnt = 1;
-	}
-	 else
-	 {
-		 m_ReFlahStat_Cnt++;
-	 }
-
-
-
-
-
-
-	/*
-	int idx;
+	uint8_t idx;
 
 	for( idx = 0; idx < MaxCarNo; idx++ )
 	{
@@ -2334,20 +1929,16 @@ void ReflashStat( int nTick )
 			continue;
 		}
 
-		if ( ( nTick - g_devStat[idx].stampRx ) > (TIMEOUT_RECV_STATUS * 5000) )
+		if ( ( nTick - g_devStat[idx].stampRx ) > TIMEOUT_RECV_STATUS * 1000 )
 		{
 			g_flagRspID &= ~( 0x1 << idx );
 
-
-
 			//========================================================================
 			//	Timeout 발생시 RSSI값 초기화.
-			g_devStat[idx].nRSSI 	= 	0;
-			g_devStat[idx].nNearCh 	= 	0;	//	nNearCh 초기화.
+			g_devStat[idx].nRSSI = 0;
 			//========================================================================
 		}
 	}
-	*/
 }
 
 
@@ -2359,9 +1950,9 @@ void ReloadStampStat( void )
 	//	-> 상태정보 시간 최신값으로 유지.
 	//	-> 방송/통화 중 상태정보 전송을 하지 않기 때문에 방송통화 이후에 상태정보가 Reset되는 현상 방지.
 
-	int nStamp = HAL_GetTick();
+	uint8_t nStamp = HAL_GetTick();
 
-	int idx;
+	uint8_t idx;
 
 	for( idx = 0; idx < 16; idx++ )
 	{
@@ -2370,17 +1961,15 @@ void ReloadStampStat( void )
 			g_devStat[idx].stampRx = nStamp;
 		}
 	}
-
-	g_nStampRouteRsp = HAL_GetTick();		//	Normal 모드로 전환시 응답 시간 Reset
 }
 
 
 #if defined(USE_ENV_TEST)
 
-static int	s_bEnLoopRFTx = 0;
+static uint8_t	s_bEnLoopRFTx = 0;
 
 //========================================================================
-void	SetLoopRFTx		( int bEnable )	//	RF Data 전송 유지..
+void	SetLoopRFTx		( uint8_t bEnable )	//	RF Data 전송 유지..
 //========================================================================
 {
 	printf( "%s(%d) - Loop RF Tx : %d\n", __func__, __LINE__, bEnable );
@@ -2399,12 +1988,12 @@ void	SetLoopRFTx		( int bEnable )	//	RF Data 전송 유지..
 
 
 //========================================================================
-int cmd_rftx      ( int argc, char * argv[] )
+uint8_t cmd_rftx      ( uint8_t argc, char * argv[] )
 //========================================================================
 {
 	//	bEnable ( 1 / 0 )
-	int bEnable = 0;
-	int nCh = 0;	//	Channel
+	uint8_t bEnable = 0;
+	uint8_t nCh = 0;	//	Channel
 	uint8_t nPA = 0x7F;	//	Power Amplifier
 	char *sRFType;
 

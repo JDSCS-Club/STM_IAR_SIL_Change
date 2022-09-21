@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  23:37:24
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:25
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -69,16 +69,6 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\version.c
      16          
      17          #include "version.h"
      18          #include "VerInfo.h"		//	VER_INFO structure
-
-  typedef unsigned char       BYTE;
-                              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",73  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-
-  typedef unsigned short      WORD;
-                              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",77  Warning[Pe301]: typedef
-          name has already been declared (with same type)
      19          
      20          //========================================================================
      21          // Define
@@ -93,9 +83,9 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\version.c
    \                                 In section .data, align 4
      25          VER_INFO			g_Version = {
    \                     g_Version:
-   \        0x0   0x0001 0x0001      DC16 1, 1, 0, 370, 0
+   \        0x0   0x0001 0x0001      DC16 1, 1, 0, 274, 0
 
-   \               0x0000 0x017
+   \               0x0000 0x011
 
    \              2 0x0000
    \        0xA   0x00 0x00          DC8 0, 0, 0, 0, 0, 0
@@ -311,4 +301,4 @@ Warning[Pe223]: function "printf" declared implicitly
   36 bytes of DATA  memory
 
 Errors: none
-Warnings: 3
+Warnings: 1

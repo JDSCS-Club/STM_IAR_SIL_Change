@@ -31,7 +31,7 @@ void	SetBootMode	( int nMode );
 int		GetBootMode	( void );
 
 //========================================================================
-int 	cmd_stboot ( int argc, char *argv[] );
+uint8_t 	cmd_stboot ( uint8_t argc, char *argv[] );
 //========================================================================
 
 #endif	/* BOOTLOADER_H */

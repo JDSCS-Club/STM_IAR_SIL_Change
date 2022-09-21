@@ -1,0 +1,4242 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:22
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\Si446x\si4463.c
+#    Command line      =
+#        -f
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\radio\Si446x\si4463.o.rsp
+#        (C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\Si446x\si4463.c -D
+#        USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\List\Drivers\radio\Si446x -o
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\radio\Si446x
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/CMSIS/Include\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/radio\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/display\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Library\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\radio\Si446x\si4463.o.d
+#    Locale            =  C
+#    List file         =
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\List\Drivers\radio\Si446x\si4463.lst
+#    Object file       =
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\radio\Si446x\si4463.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#      __dlib_version  =  6
+#
+###############################################################################
+
+C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\Si446x\si4463.c
+      1          /*
+      2           * si4463.c
+      3           *
+      4           *  Created on: 30 / 2017
+      5           *      Author: MINI
+      6           */
+      7          
+      8          #include <stdbool.h>
+      9          #include <stdint.h>
+     10          #include "si4463.h"
+     11          
+     12          //#include "radio_config.h"
+     13          /*
+     14          #include "radio_config_Si4463.h"
+     15          //#include "radio_config_Si4463_c2a.h"
+     16          /*/
+                 ^
+Warning[Pe009]: nested comment is not allowed
+     17          #include "radio_config_802_15_4g.h"
+     18          //	*/
+     19          
+     20          
+
+   \                                 In section .text, align 2, keep-with-next
+     21          uint8_t SI4463_WaitCTS(const si4463_t * si4463, uint8_t times, const uint8_t delayPerTime)
+     22          {
+   \                     SI4463_WaitCTS: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+     23          	uint8_t result = 1;
+   \        0x8   0x2701             MOVS     R7,#+1
+     24          
+     25          	while(times)
+   \                     ??SI4463_WaitCTS_0: (+1)
+   \        0xA   0x0028             MOVS     R0,R5
+   \        0xC   0xB2C0             UXTB     R0,R0
+   \        0xE   0x2800             CMP      R0,#+0
+   \       0x10   0xD015             BEQ.N    ??SI4463_WaitCTS_1
+     26          	{
+     27          		if (si4463->IsClearToSend())
+   \       0x12   0x69A0             LDR      R0,[R4, #+24]
+   \       0x14   0x4780             BLX      R0
+   \       0x16   0x2800             CMP      R0,#+0
+   \       0x18   0xD002             BEQ.N    ??SI4463_WaitCTS_2
+     28          		{
+     29          			result = 1;
+   \       0x1A   0x2001             MOVS     R0,#+1
+   \       0x1C   0x0007             MOVS     R7,R0
+     30          			break;
+   \       0x1E   0xE00E             B.N      ??SI4463_WaitCTS_1
+     31          		}
+     32          		else
+     33          		{
+     34          			if(times == 1)
+   \                     ??SI4463_WaitCTS_2: (+1)
+   \       0x20   0x0028             MOVS     R0,R5
+   \       0x22   0xB2C0             UXTB     R0,R0
+   \       0x24   0x2801             CMP      R0,#+1
+   \       0x26   0xD102             BNE.N    ??SI4463_WaitCTS_3
+     35          			{
+     36          				/* If it last try when try to send NOP command */
+     37          				SI4463_SendNop(si4463);
+   \       0x28   0x0020             MOVS     R0,R4
+   \       0x2A   0x.... 0x....      BL       SI4463_SendNop
+     38          			}
+     39          
+     40          			result = 0;
+   \                     ??SI4463_WaitCTS_3: (+1)
+   \       0x2E   0x2000             MOVS     R0,#+0
+   \       0x30   0x0007             MOVS     R7,R0
+     41          			si4463->DelayMs(delayPerTime);
+   \       0x32   0x0030             MOVS     R0,R6
+   \       0x34   0xB2C0             UXTB     R0,R0
+   \       0x36   0x6961             LDR      R1,[R4, #+20]
+   \       0x38   0x4788             BLX      R1
+     42          			times--;
+   \       0x3A   0x1E6D             SUBS     R5,R5,#+1
+   \       0x3C   0xE7E5             B.N      ??SI4463_WaitCTS_0
+     43          		}
+     44          	}
+     45          
+     46          	return result;
+   \                     ??SI4463_WaitCTS_1: (+1)
+   \       0x3E   0x0038             MOVS     R0,R7
+   \       0x40   0xB2C0             UXTB     R0,R0
+   \       0x42   0xBDF2             POP      {R1,R4-R7,PC}
+     47          }
+     48          
+     49          /**
+     50           * @brief Reset SI4463 chip by toggling SDN line. Wait CTS and send NOP.
+     51           * @param[in] si4463 Initialized si4463 structure
+     52           * @warning Have to invokes only before SI4463_Init()
+     53           */
+
+   \                                 In section .text, align 2, keep-with-next
+     54          void SI4463_Reset(const si4463_t * si4463)
+     55          {
+   \                     SI4463_Reset: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+     56          	/*
+     57          	 *  In the Si4x6x chips there is a timeout after POR built-in to make sure
+     58          	 *  if there is no host activity (SPI comms), the chip would go back to
+     59          	 *  inactive state saving energy. Inactive state is the state the chip is
+     60          	 *  sitting in after POR.
+     61          	 *  Because of this time-out, some refinement is necessary on the recommended
+     62          	 *  startup sequence of AN633, as follows:
+     63          	 *  1. Assert SDN.
+     64          	 *  2. Wait at least 10us.
+     65          	 *  3. Deassert SDN.
+     66          	 *  4. Wait at least 14ms or until GPIO1(CTS) goes  HIGH.
+     67          	 *  5. Issue the POWER_UP command over SPI (or send first line of patch if applied).
+     68          	 *  This first SPI transaction has to take less than 4ms (NSEL LOW time).
+     69          	 *  If it cannot be guaranteed, send a shorter command (e.g. NOP) first,
+     70          	 *  check CTS, then send POWER_UP or patch.
+     71          	 */
+     72          	si4463->SetShutdown();
+   \        0x4   0x6860             LDR      R0,[R4, #+4]
+   \        0x6   0x4780             BLX      R0
+     73          	si4463->DelayMs(10);
+   \        0x8   0x200A             MOVS     R0,#+10
+   \        0xA   0x6961             LDR      R1,[R4, #+20]
+   \        0xC   0x4788             BLX      R1
+     74          	si4463->ClearShutdown();
+   \        0xE   0x68A0             LDR      R0,[R4, #+8]
+   \       0x10   0x4780             BLX      R0
+     75          	SI4463_WaitCTS(si4463, SI4463_TRIES, SI4463_DELAY_TRIES);
+   \       0x12   0x2201             MOVS     R2,#+1
+   \       0x14   0x2164             MOVS     R1,#+100
+   \       0x16   0x0020             MOVS     R0,R4
+   \       0x18   0x.... 0x....      BL       SI4463_WaitCTS
+     76          
+     77          	SI4463_SendNop(si4463);
+   \       0x1C   0x0020             MOVS     R0,R4
+   \       0x1E   0x.... 0x....      BL       SI4463_SendNop
+     78          	SI4463_WaitCTS(si4463, SI4463_TRIES, SI4463_DELAY_TRIES);
+   \       0x22   0x2201             MOVS     R2,#+1
+   \       0x24   0x2164             MOVS     R1,#+100
+   \       0x26   0x0020             MOVS     R0,R4
+   \       0x28   0x.... 0x....      BL       SI4463_WaitCTS
+     79          }
+   \       0x2C   0xBD10             POP      {R4,PC}
+     80          
+
+   \                                 In section .text, align 2, keep-with-next
+     81          int8_t SI4463_SendCommand(const si4463_t * si4463, const uint8_t * cmdChain, const uint16_t cmdLen)
+     82          {
+   \                     SI4463_SendCommand: (+1)
+   \        0x0   0xE92D 0x47F0      PUSH     {R4-R10,LR}
+   \        0x4   0xF5AD 0x6D80      SUB      SP,SP,#+1024
+   \        0x8   0x0004             MOVS     R4,R0
+   \        0xA   0x000D             MOVS     R5,R1
+   \        0xC   0x0016             MOVS     R6,R2
+     83          	int8_t result = SI4463_OK;
+   \        0xE   0x2700             MOVS     R7,#+0
+     84          	uint8_t ctsData[1024];
+     85              
+     86          	memset(ctsData, 0, cmdLen);
+   \       0x10   0x46B0             MOV      R8,R6
+   \       0x12   0xFA1F 0xF888      UXTH     R8,R8
+   \       0x16   0xF05F 0x0900      MOVS     R9,#+0
+   \       0x1A   0x46EA             MOV      R10,SP
+   \       0x1C   0x464A             MOV      R2,R9
+   \       0x1E   0x4641             MOV      R1,R8
+   \       0x20   0x4650             MOV      R0,R10
+   \       0x22   0x.... 0x....      BL       __aeabi_memset
+     87          
+     88          	if(SI4463_WaitCTS(si4463, SI4463_TRIES, SI4463_DELAY_TRIES))
+   \       0x26   0x2201             MOVS     R2,#+1
+   \       0x28   0x2164             MOVS     R1,#+100
+   \       0x2A   0x0020             MOVS     R0,R4
+   \       0x2C   0x.... 0x....      BL       SI4463_WaitCTS
+   \       0x30   0x2800             CMP      R0,#+0
+   \       0x32   0xD00B             BEQ.N    ??SI4463_SendCommand_0
+     89          	{
+     90          		/* CTS is clear and we can send data */
+     91          		si4463->Select();
+   \       0x34   0x68E0             LDR      R0,[R4, #+12]
+   \       0x36   0x4780             BLX      R0
+     92          		si4463->WriteRead(cmdChain, ctsData, cmdLen);
+   \       0x38   0x0032             MOVS     R2,R6
+   \       0x3A   0xB292             UXTH     R2,R2
+   \       0x3C   0x4669             MOV      R1,SP
+   \       0x3E   0x0028             MOVS     R0,R5
+   \       0x40   0x6823             LDR      R3,[R4, #+0]
+   \       0x42   0x4798             BLX      R3
+     93          		si4463->Deselect();
+   \       0x44   0x6920             LDR      R0,[R4, #+16]
+   \       0x46   0x4780             BLX      R0
+     94          		result = SI4463_OK;
+   \       0x48   0x2000             MOVS     R0,#+0
+   \       0x4A   0xE001             B.N      ??SI4463_SendCommand_1
+     95          	}
+     96          	else
+     97          	{
+     98          		result = SI4463_ERR_NO_HW_CTS;
+   \                     ??SI4463_SendCommand_0: (+1)
+   \       0x4C   0xF07F 0x001D      MVNS     R0,#+29
+     99          	}
+    100          
+    101          	return result;
+   \                     ??SI4463_SendCommand_1: (+1)
+   \       0x50   0xB240             SXTB     R0,R0
+   \       0x52   0xF50D 0x6D80      ADD      SP,SP,#+1024
+   \       0x56   0xE8BD 0x87F0      POP      {R4-R10,PC}
+    102          }
+    103          
+
+   \                                 In section .text, align 2, keep-with-next
+    104          int8_t SI4463_ReadCommandBuffer(const si4463_t * si4463, uint8_t * cmdBuf, const uint8_t cmdChainLen)
+    105          {
+   \                     SI4463_ReadCommandBuffer: (+1)
+   \        0x0   0xE92D 0x47F8      PUSH     {R3-R10,LR}
+   \        0x4   0xF5AD 0x6D80      SUB      SP,SP,#+1024
+   \        0x8   0xB081             SUB      SP,SP,#+4
+   \        0xA   0x0004             MOVS     R4,R0
+   \        0xC   0x000D             MOVS     R5,R1
+   \        0xE   0x0016             MOVS     R6,R2
+    106          	int8_t result = SI4463_OK;
+   \       0x10   0x2700             MOVS     R7,#+0
+    107          	uint8_t cmdChain[1024+1];
+    108          	memset(cmdChain, 0, cmdChainLen+1);
+   \       0x12   0x46B0             MOV      R8,R6
+   \       0x14   0xFA5F 0xF888      UXTB     R8,R8
+   \       0x18   0xF118 0x0801      ADDS     R8,R8,#+1
+   \       0x1C   0xF05F 0x0900      MOVS     R9,#+0
+   \       0x20   0x46EA             MOV      R10,SP
+   \       0x22   0x464A             MOV      R2,R9
+   \       0x24   0x4641             MOV      R1,R8
+   \       0x26   0x4650             MOV      R0,R10
+   \       0x28   0x.... 0x....      BL       __aeabi_memset
+    109          	cmdChain[0] = SI4463_CMD_READ_CMD_BUF;
+   \       0x2C   0x2044             MOVS     R0,#+68
+   \       0x2E   0xF88D 0x0000      STRB     R0,[SP, #+0]
+    110          
+    111          	if(SI4463_WaitCTS(si4463, SI4463_TRIES, SI4463_DELAY_TRIES))
+   \       0x32   0x2201             MOVS     R2,#+1
+   \       0x34   0x2164             MOVS     R1,#+100
+   \       0x36   0x0020             MOVS     R0,R4
+   \       0x38   0x.... 0x....      BL       SI4463_WaitCTS
+   \       0x3C   0x2800             CMP      R0,#+0
+   \       0x3E   0xD00B             BEQ.N    ??SI4463_ReadCommandBuffer_0
+    112          	{
+    113          		/* CTS is clear and we can send data */
+    114          		si4463->Select();
+   \       0x40   0x68E0             LDR      R0,[R4, #+12]
+   \       0x42   0x4780             BLX      R0
+    115          		si4463->WriteRead(cmdChain, cmdBuf, sizeof(cmdChain));
+   \       0x44   0xF240 0x4201      MOVW     R2,#+1025
+   \       0x48   0x0029             MOVS     R1,R5
+   \       0x4A   0x4668             MOV      R0,SP
+   \       0x4C   0x6823             LDR      R3,[R4, #+0]
+   \       0x4E   0x4798             BLX      R3
+    116          		si4463->Deselect();
+   \       0x50   0x6920             LDR      R0,[R4, #+16]
+   \       0x52   0x4780             BLX      R0
+    117          		result = SI4463_OK;
+   \       0x54   0x2000             MOVS     R0,#+0
+   \       0x56   0xE001             B.N      ??SI4463_ReadCommandBuffer_1
+    118          	}
+    119          	else
+    120          	{
+    121          		result = SI4463_ERR_NO_HW_CTS;
+   \                     ??SI4463_ReadCommandBuffer_0: (+1)
+   \       0x58   0xF07F 0x001D      MVNS     R0,#+29
+    122          	}
+    123          
+    124          	return result;
+   \                     ??SI4463_ReadCommandBuffer_1: (+1)
+   \       0x5C   0xB240             SXTB     R0,R0
+   \       0x5E   0xF50D 0x6D81      ADD      SP,SP,#+1032
+   \       0x62   0xE8BD 0x87F0      POP      {R4-R10,PC}
+    125          }
+    126          
+
+   \                                 In section .text, align 2, keep-with-next
+    127          void SI4463_SendNop(const si4463_t * si4463)
+    128          {
+   \                     SI4463_SendNop: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x2101             MOVS     R1,#+1
+   \        0x6   0x2200             MOVS     R2,#+0
+   \        0x8   0xF10D 0x0501      ADD      R5,SP,#+1
+   \        0xC   0x0028             MOVS     R0,R5
+   \        0xE   0x.... 0x....      BL       __aeabi_memset
+   \       0x12   0x2101             MOVS     R1,#+1
+   \       0x14   0x2200             MOVS     R2,#+0
+   \       0x16   0x466D             MOV      R5,SP
+   \       0x18   0x0028             MOVS     R0,R5
+   \       0x1A   0x.... 0x....      BL       __aeabi_memset
+    129          	uint8_t nop[1] = {SI4463_CMD_NOP};
+    130          	uint8_t ctsData[1] = {0x00};
+    131          
+    132          	si4463->Select();
+   \       0x1E   0x68E0             LDR      R0,[R4, #+12]
+   \       0x20   0x4780             BLX      R0
+    133          	si4463->WriteRead(nop, ctsData, sizeof(nop));
+   \       0x22   0x2201             MOVS     R2,#+1
+   \       0x24   0x4669             MOV      R1,SP
+   \       0x26   0xF10D 0x0001      ADD      R0,SP,#+1
+   \       0x2A   0x6823             LDR      R3,[R4, #+0]
+   \       0x2C   0x4798             BLX      R3
+    134          	si4463->Deselect();
+   \       0x2E   0x6920             LDR      R0,[R4, #+16]
+   \       0x30   0x4780             BLX      R0
+    135          }
+   \       0x32   0xBD31             POP      {R0,R4,R5,PC}
+    136          
+
+   \                                 In section .text, align 2, keep-with-next
+    137          uint8_t SI4463_GetSwCts(const si4463_t * si4463)
+    138          {
+   \                     SI4463_GetSwCts: (+1)
+   \        0x0   0xE92D 0x43F0      PUSH     {R4-R9,LR}
+   \        0x4   0xB085             SUB      SP,SP,#+20
+   \        0x6   0x0004             MOVS     R4,R0
+    139          	uint8_t result = 0;
+   \        0x8   0x2500             MOVS     R5,#+0
+    140          	int8_t commResult = SI4463_OK;
+   \        0xA   0x2600             MOVS     R6,#+0
+    141          	uint8_t answer[SI4463_CMD_BUF_LEN];
+    142          	memset(answer, 0x00, SI4463_CMD_BUF_LEN);
+   \        0xC   0x2711             MOVS     R7,#+17
+   \        0xE   0xF05F 0x0800      MOVS     R8,#+0
+   \       0x12   0x46E9             MOV      R9,SP
+   \       0x14   0x4642             MOV      R2,R8
+   \       0x16   0x0039             MOVS     R1,R7
+   \       0x18   0x4648             MOV      R0,R9
+   \       0x1A   0x.... 0x....      BL       __aeabi_memset
+    143          
+    144          	commResult += SI4463_ReadCommandBuffer(si4463, answer, 2);
+   \       0x1E   0x2202             MOVS     R2,#+2
+   \       0x20   0x4669             MOV      R1,SP
+   \       0x22   0x0020             MOVS     R0,R4
+   \       0x24   0x.... 0x....      BL       SI4463_ReadCommandBuffer
+   \       0x28   0x0001             MOVS     R1,R0
+   \       0x2A   0x1989             ADDS     R1,R1,R6
+    145          	if((answer[1] == SI4463_BYTE_CTS))
+   \       0x2C   0xF89D 0x0001      LDRB     R0,[SP, #+1]
+   \       0x30   0x28FF             CMP      R0,#+255
+   \       0x32   0xD101             BNE.N    ??SI4463_GetSwCts_0
+    146          	{
+    147          		result = SI4463_BYTE_CTS;
+   \       0x34   0x20FF             MOVS     R0,#+255
+   \       0x36   0xE000             B.N      ??SI4463_GetSwCts_1
+    148          	}
+    149          	else
+    150          	{
+    151          		result = SI4463_BYTE_DUMMY;
+   \                     ??SI4463_GetSwCts_0: (+1)
+   \       0x38   0x2000             MOVS     R0,#+0
+    152          	}
+    153          
+    154          	return result;
+   \                     ??SI4463_GetSwCts_1: (+1)
+   \       0x3A   0xB2C0             UXTB     R0,R0
+   \       0x3C   0xB005             ADD      SP,SP,#+20
+   \       0x3E   0xE8BD 0x83F0      POP      {R4-R9,PC}
+    155          }
+    156          
+
+   \                                 In section .text, align 2, keep-with-next
+    157          int8_t SI4463_WaitSwCTS(const si4463_t * si4463, uint8_t times, const uint8_t delayPerTime)
+    158          {
+   \                     SI4463_WaitSwCTS: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    159          	uint8_t result = 1;
+   \        0x8   0x2701             MOVS     R7,#+1
+    160          
+    161          	while(times)
+   \                     ??SI4463_WaitSwCTS_0: (+1)
+   \        0xA   0x0028             MOVS     R0,R5
+   \        0xC   0xB2C0             UXTB     R0,R0
+   \        0xE   0x2800             CMP      R0,#+0
+   \       0x10   0xD00E             BEQ.N    ??SI4463_WaitSwCTS_1
+    162          	{
+    163          		if (si4463->IsClearToSend())
+   \       0x12   0x69A0             LDR      R0,[R4, #+24]
+   \       0x14   0x4780             BLX      R0
+   \       0x16   0x2800             CMP      R0,#+0
+   \       0x18   0xD002             BEQ.N    ??SI4463_WaitSwCTS_2
+    164          		{
+    165          			result = 1;
+   \       0x1A   0x2001             MOVS     R0,#+1
+   \       0x1C   0x0007             MOVS     R7,R0
+    166          			break;
+   \       0x1E   0xE007             B.N      ??SI4463_WaitSwCTS_1
+    167          		}
+    168          		else
+    169          		{
+    170          			result = 0;
+   \                     ??SI4463_WaitSwCTS_2: (+1)
+   \       0x20   0x2000             MOVS     R0,#+0
+   \       0x22   0x0007             MOVS     R7,R0
+    171          			si4463->DelayMs(delayPerTime);
+   \       0x24   0x0030             MOVS     R0,R6
+   \       0x26   0xB2C0             UXTB     R0,R0
+   \       0x28   0x6961             LDR      R1,[R4, #+20]
+   \       0x2A   0x4788             BLX      R1
+    172          			times--;
+   \       0x2C   0x1E6D             SUBS     R5,R5,#+1
+   \       0x2E   0xE7EC             B.N      ??SI4463_WaitSwCTS_0
+    173          		}
+    174          	}
+    175          
+    176          	return result;
+   \                     ??SI4463_WaitSwCTS_1: (+1)
+   \       0x30   0x0038             MOVS     R0,R7
+   \       0x32   0xB240             SXTB     R0,R0
+   \       0x34   0xBDF2             POP      {R1,R4-R7,PC}
+    177          }
+    178          
+
+   \                                 In section .text, align 2, keep-with-next
+    179          int8_t SI4463_Init(const si4463_t * si4463)
+    180          {
+   \                     SI4463_Init: (+1)
+   \        0x0   0xE92D 0x4FF8      PUSH     {R3-R11,LR}
+   \        0x4   0xF5AD 0x6DFC      SUB      SP,SP,#+2016
+   \        0x8   0x0004             MOVS     R4,R0
+    181          	int8_t result = SI4463_OK;
+   \        0xA   0x2500             MOVS     R5,#+0
+    182          	uint8_t radioConfigurationDataArray[]  = RADIO_CONFIGURATION_DATA_ARRAY;
+   \        0xC   0xA8FF             ADD      R0,SP,#+1020
+   \        0xE   0x3008             ADDS     R0,R0,#+8
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable17
+   \       0x14   0xF44F 0x7277      MOV      R2,#+988
+   \       0x18   0x.... 0x....      BL       __aeabi_memcpy4
+    183          	uint8_t * currentPt = &radioConfigurationDataArray[0];
+   \       0x1C   0xAEFF             ADD      R6,SP,#+1020
+   \       0x1E   0x3608             ADDS     R6,R6,#+8
+    184          
+    185          	/* Start with RESET and POWER_UP commands.
+    186          	 * POWER_UP there is into RADIO_CONFIGURATION_DATA_ARRAY*/
+    187          	SI4463_Reset(si4463);
+   \       0x20   0x0020             MOVS     R0,R4
+   \       0x22   0x.... 0x....      BL       SI4463_Reset
+    188          
+    189          	/* Send all commands while pointer not equal 0x00 (0x00 presence in the end of the configuration array) */
+    190          	while(*currentPt != 0x00)
+   \                     ??SI4463_Init_0: (+1)
+   \       0x26   0x7830             LDRB     R0,[R6, #+0]
+   \       0x28   0x2800             CMP      R0,#+0
+   \       0x2A   0xD02F             BEQ.N    ??SI4463_Init_1
+    191          	{
+    192          		uint8_t len = *currentPt;
+   \       0x2C   0x7837             LDRB     R7,[R6, #+0]
+    193          		uint8_t command[1024];
+    194          		memset(command, 0, len);
+   \       0x2E   0x46B8             MOV      R8,R7
+   \       0x30   0xFA5F 0xF888      UXTB     R8,R8
+   \       0x34   0xF05F 0x0900      MOVS     R9,#+0
+   \       0x38   0xF10D 0x0A04      ADD      R10,SP,#+4
+   \       0x3C   0x464A             MOV      R2,R9
+   \       0x3E   0x4641             MOV      R1,R8
+   \       0x40   0x4650             MOV      R0,R10
+   \       0x42   0x.... 0x....      BL       __aeabi_memset
+    195          		currentPt++;
+   \       0x46   0x1C76             ADDS     R6,R6,#+1
+    196          		memcpy(command, currentPt, len);
+   \       0x48   0x46BA             MOV      R10,R7
+   \       0x4A   0xFA5F 0xFA8A      UXTB     R10,R10
+   \       0x4E   0x9600             STR      R6,[SP, #+0]
+   \       0x50   0xF10D 0x0B04      ADD      R11,SP,#+4
+   \       0x54   0x4652             MOV      R2,R10
+   \       0x56   0x9900             LDR      R1,[SP, #+0]
+   \       0x58   0x4658             MOV      R0,R11
+   \       0x5A   0x.... 0x....      BL       __aeabi_memcpy
+    197          
+    198          		result = SI4463_SendCommand(si4463, command, len);
+   \       0x5E   0x003A             MOVS     R2,R7
+   \       0x60   0xB2D2             UXTB     R2,R2
+   \       0x62   0xB292             UXTH     R2,R2
+   \       0x64   0xA901             ADD      R1,SP,#+4
+   \       0x66   0x0020             MOVS     R0,R4
+   \       0x68   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x6C   0x0005             MOVS     R5,R0
+    199          		if (result != SI4463_OK)
+   \       0x6E   0x0028             MOVS     R0,R5
+   \       0x70   0xB240             SXTB     R0,R0
+   \       0x72   0x2800             CMP      R0,#+0
+   \       0x74   0xD10A             BNE.N    ??SI4463_Init_1
+    200          		{
+    201          			break;
+    202          		}
+    203          		currentPt += len;
+   \                     ??SI4463_Init_2: (+1)
+   \       0x76   0x0038             MOVS     R0,R7
+   \       0x78   0xB2C0             UXTB     R0,R0
+   \       0x7A   0x4406             ADD      R6,R6,R0
+    204          		/* In the SI4463_SendCommand there is a polling of CTS signal.
+    205          		 * But without delay after applying command from configuration array
+    206          		 * invoke chip error "CMD_ERROR_COMMAND_BUSY" that means sending command
+    207          		 * before accepting previous.
+    208          		 * upd. Seems to issues may send only NOP command for delay between commands.
+    209          		 * upd2. No. Nop isnt working, back to delay scheme
+    210          		 */
+    211          		//*
+    212          		//si4463->DelayMs(100);
+    213          		//*/
+    214          		if(!(SI4463_GetSwCts(si4463) == SI4463_BYTE_CTS))
+   \       0x7C   0x0020             MOVS     R0,R4
+   \       0x7E   0x.... 0x....      BL       SI4463_GetSwCts
+   \       0x82   0x28FF             CMP      R0,#+255
+   \       0x84   0xD0CF             BEQ.N    ??SI4463_Init_0
+    215          		{
+    216          			result = SI4463_ERR_NO_SW_CTS;
+   \       0x86   0xF07F 0x0027      MVNS     R0,#+39
+   \       0x8A   0x0005             MOVS     R5,R0
+    217          			break;
+    218          		}
+    219          		//	*/
+    220          	}
+    221          
+    222          	return result;
+   \                     ??SI4463_Init_1: (+1)
+   \       0x8C   0x0028             MOVS     R0,R5
+   \       0x8E   0xB240             SXTB     R0,R0
+   \       0x90   0xF50D 0x6DE0      ADD      SP,SP,#+1792
+   \       0x94   0xB039             ADD      SP,SP,#+228
+   \       0x96   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+    223          }
+    224          
+
+   \                                 In section .text, align 2, keep-with-next
+    225          int8_t SI4463_VerifyInit(const si4463_t * si4463)
+    226          {
+   \                     SI4463_VerifyInit: (+1)
+   \        0x0   0xE92D 0x4FF8      PUSH     {R3-R11,LR}
+   \        0x4   0xB0C0             SUB      SP,SP,#+256
+   \        0x6   0x0004             MOVS     R4,R0
+    227          	int8_t result = SI4463_OK;
+   \        0x8   0x2500             MOVS     R5,#+0
+    228          	uint8_t buffer[16];
+    229          	memset(buffer, 0x00, 16);
+   \        0xA   0x2010             MOVS     R0,#+16
+   \        0xC   0x903F             STR      R0,[SP, #+252]
+   \        0xE   0x2000             MOVS     R0,#+0
+   \       0x10   0x903E             STR      R0,[SP, #+248]
+   \       0x12   0xAE01             ADD      R6,SP,#+4
+   \       0x14   0x9A3E             LDR      R2,[SP, #+248]
+   \       0x16   0x993F             LDR      R1,[SP, #+252]
+   \       0x18   0x0030             MOVS     R0,R6
+   \       0x1A   0x.... 0x....      BL       __aeabi_memset
+    230          
+    231          	//0x07, RF_POWER_UP,
+    232          	//TODO think about it
+    233          	memset(buffer, 0x00, 16);
+   \       0x1E   0x2010             MOVS     R0,#+16
+   \       0x20   0x903D             STR      R0,[SP, #+244]
+   \       0x22   0x2000             MOVS     R0,#+0
+   \       0x24   0x903C             STR      R0,[SP, #+240]
+   \       0x26   0xAE01             ADD      R6,SP,#+4
+   \       0x28   0x9A3C             LDR      R2,[SP, #+240]
+   \       0x2A   0x993D             LDR      R1,[SP, #+244]
+   \       0x2C   0x0030             MOVS     R0,R6
+   \       0x2E   0x.... 0x....      BL       __aeabi_memset
+    234          
+    235          	//0x08, RF_GPIO_PIN_CFG,
+    236          	//TODO think about it
+    237          	memset(buffer, 0x00, 16);
+   \       0x32   0x2010             MOVS     R0,#+16
+   \       0x34   0x903B             STR      R0,[SP, #+236]
+   \       0x36   0x2000             MOVS     R0,#+0
+   \       0x38   0x903A             STR      R0,[SP, #+232]
+   \       0x3A   0xAE01             ADD      R6,SP,#+4
+   \       0x3C   0x9A3A             LDR      R2,[SP, #+232]
+   \       0x3E   0x993B             LDR      R1,[SP, #+236]
+   \       0x40   0x0030             MOVS     R0,R6
+   \       0x42   0x.... 0x....      BL       __aeabi_memset
+    238          
+    239          	//0x06, RF_GLOBAL_XO_TUNE_2,
+    240          	memset(buffer, 0x00, 16);
+   \       0x46   0x2010             MOVS     R0,#+16
+   \       0x48   0x9039             STR      R0,[SP, #+228]
+   \       0x4A   0x2000             MOVS     R0,#+0
+   \       0x4C   0x9038             STR      R0,[SP, #+224]
+   \       0x4E   0xAE01             ADD      R6,SP,#+4
+   \       0x50   0x9A38             LDR      R2,[SP, #+224]
+   \       0x52   0x9939             LDR      R1,[SP, #+228]
+   \       0x54   0x0030             MOVS     R0,R6
+   \       0x56   0x.... 0x....      BL       __aeabi_memset
+    241          	SI4463_GetProperty(si4463, 0x00, 0x02, 0x00, buffer);
+   \       0x5A   0xA801             ADD      R0,SP,#+4
+   \       0x5C   0x9000             STR      R0,[SP, #+0]
+   \       0x5E   0x2300             MOVS     R3,#+0
+   \       0x60   0x2202             MOVS     R2,#+2
+   \       0x62   0x2100             MOVS     R1,#+0
+   \       0x64   0x0020             MOVS     R0,R4
+   \       0x66   0x.... 0x....      BL       SI4463_GetProperty
+    242          
+    243          	//0x05, RF_GLOBAL_CONFIG_1,
+    244          	memset(buffer, 0x00, 16);
+   \       0x6A   0x2010             MOVS     R0,#+16
+   \       0x6C   0x9037             STR      R0,[SP, #+220]
+   \       0x6E   0x2000             MOVS     R0,#+0
+   \       0x70   0x9036             STR      R0,[SP, #+216]
+   \       0x72   0xAE01             ADD      R6,SP,#+4
+   \       0x74   0x9A36             LDR      R2,[SP, #+216]
+   \       0x76   0x9937             LDR      R1,[SP, #+220]
+   \       0x78   0x0030             MOVS     R0,R6
+   \       0x7A   0x.... 0x....      BL       __aeabi_memset
+    245          	SI4463_GetProperty(si4463, 0x00, 0x01, 0x03, buffer);
+   \       0x7E   0xA801             ADD      R0,SP,#+4
+   \       0x80   0x9000             STR      R0,[SP, #+0]
+   \       0x82   0x2303             MOVS     R3,#+3
+   \       0x84   0x2201             MOVS     R2,#+1
+   \       0x86   0x2100             MOVS     R1,#+0
+   \       0x88   0x0020             MOVS     R0,R4
+   \       0x8A   0x.... 0x....      BL       SI4463_GetProperty
+    246          
+    247          	//0x08, RF_INT_CTL_ENABLE_4,
+    248          	memset(buffer, 0x00, 16);
+   \       0x8E   0x2010             MOVS     R0,#+16
+   \       0x90   0x9035             STR      R0,[SP, #+212]
+   \       0x92   0x2000             MOVS     R0,#+0
+   \       0x94   0x9034             STR      R0,[SP, #+208]
+   \       0x96   0xAE01             ADD      R6,SP,#+4
+   \       0x98   0x9A34             LDR      R2,[SP, #+208]
+   \       0x9A   0x9935             LDR      R1,[SP, #+212]
+   \       0x9C   0x0030             MOVS     R0,R6
+   \       0x9E   0x.... 0x....      BL       __aeabi_memset
+    249          	SI4463_GetProperty(si4463, 0x01, 0x04, 0x00, buffer);
+   \       0xA2   0xA801             ADD      R0,SP,#+4
+   \       0xA4   0x9000             STR      R0,[SP, #+0]
+   \       0xA6   0x2300             MOVS     R3,#+0
+   \       0xA8   0x2204             MOVS     R2,#+4
+   \       0xAA   0x2101             MOVS     R1,#+1
+   \       0xAC   0x0020             MOVS     R0,R4
+   \       0xAE   0x.... 0x....      BL       SI4463_GetProperty
+    250          
+    251          	//0x08, RF_FRR_CTL_A_MODE_4,
+    252          	memset(buffer, 0x00, 16);
+   \       0xB2   0x2010             MOVS     R0,#+16
+   \       0xB4   0x9033             STR      R0,[SP, #+204]
+   \       0xB6   0x2000             MOVS     R0,#+0
+   \       0xB8   0x9032             STR      R0,[SP, #+200]
+   \       0xBA   0xAE01             ADD      R6,SP,#+4
+   \       0xBC   0x9A32             LDR      R2,[SP, #+200]
+   \       0xBE   0x9933             LDR      R1,[SP, #+204]
+   \       0xC0   0x0030             MOVS     R0,R6
+   \       0xC2   0x.... 0x....      BL       __aeabi_memset
+    253          	SI4463_GetProperty(si4463, 0x02, 0x04, 0x00, buffer);
+   \       0xC6   0xA801             ADD      R0,SP,#+4
+   \       0xC8   0x9000             STR      R0,[SP, #+0]
+   \       0xCA   0x2300             MOVS     R3,#+0
+   \       0xCC   0x2204             MOVS     R2,#+4
+   \       0xCE   0x2102             MOVS     R1,#+2
+   \       0xD0   0x0020             MOVS     R0,R4
+   \       0xD2   0x.... 0x....      BL       SI4463_GetProperty
+    254          
+    255          	//0x0D, RF_PREAMBLE_TX_LENGTH_9,
+    256          	memset(buffer, 0x00, 16);
+   \       0xD6   0x2010             MOVS     R0,#+16
+   \       0xD8   0x9031             STR      R0,[SP, #+196]
+   \       0xDA   0x2000             MOVS     R0,#+0
+   \       0xDC   0x9030             STR      R0,[SP, #+192]
+   \       0xDE   0xAE01             ADD      R6,SP,#+4
+   \       0xE0   0x9A30             LDR      R2,[SP, #+192]
+   \       0xE2   0x9931             LDR      R1,[SP, #+196]
+   \       0xE4   0x0030             MOVS     R0,R6
+   \       0xE6   0x.... 0x....      BL       __aeabi_memset
+    257          	SI4463_GetProperty(si4463, 0x10, 0x09, 0x00, buffer);
+   \       0xEA   0xA801             ADD      R0,SP,#+4
+   \       0xEC   0x9000             STR      R0,[SP, #+0]
+   \       0xEE   0x2300             MOVS     R3,#+0
+   \       0xF0   0x2209             MOVS     R2,#+9
+   \       0xF2   0x2110             MOVS     R1,#+16
+   \       0xF4   0x0020             MOVS     R0,R4
+   \       0xF6   0x.... 0x....      BL       SI4463_GetProperty
+    258          
+    259          	//0x09, RF_SYNC_CONFIG_5,
+    260          	memset(buffer, 0x00, 16);
+   \       0xFA   0x2010             MOVS     R0,#+16
+   \       0xFC   0x902F             STR      R0,[SP, #+188]
+   \       0xFE   0x2000             MOVS     R0,#+0
+   \      0x100   0x902E             STR      R0,[SP, #+184]
+   \      0x102   0xAE01             ADD      R6,SP,#+4
+   \      0x104   0x9A2E             LDR      R2,[SP, #+184]
+   \      0x106   0x992F             LDR      R1,[SP, #+188]
+   \      0x108   0x0030             MOVS     R0,R6
+   \      0x10A   0x.... 0x....      BL       __aeabi_memset
+    261          	SI4463_GetProperty(si4463, 0x11, 0x05, 0x00, buffer);
+   \      0x10E   0xA801             ADD      R0,SP,#+4
+   \      0x110   0x9000             STR      R0,[SP, #+0]
+   \      0x112   0x2300             MOVS     R3,#+0
+   \      0x114   0x2205             MOVS     R2,#+5
+   \      0x116   0x2111             MOVS     R1,#+17
+   \      0x118   0x0020             MOVS     R0,R4
+   \      0x11A   0x.... 0x....      BL       SI4463_GetProperty
+    262          
+    263          	//0x0B, RF_PKT_CRC_CONFIG_7,
+    264          	memset(buffer, 0x00, 16);
+   \      0x11E   0x2010             MOVS     R0,#+16
+   \      0x120   0x902D             STR      R0,[SP, #+180]
+   \      0x122   0x2000             MOVS     R0,#+0
+   \      0x124   0x902C             STR      R0,[SP, #+176]
+   \      0x126   0xAE01             ADD      R6,SP,#+4
+   \      0x128   0x9A2C             LDR      R2,[SP, #+176]
+   \      0x12A   0x992D             LDR      R1,[SP, #+180]
+   \      0x12C   0x0030             MOVS     R0,R6
+   \      0x12E   0x.... 0x....      BL       __aeabi_memset
+    265          	SI4463_GetProperty(si4463, 0x12, 0x07, 0x00, buffer); //SEEMS NO VALID
+   \      0x132   0xA801             ADD      R0,SP,#+4
+   \      0x134   0x9000             STR      R0,[SP, #+0]
+   \      0x136   0x2300             MOVS     R3,#+0
+   \      0x138   0x2207             MOVS     R2,#+7
+   \      0x13A   0x2112             MOVS     R1,#+18
+   \      0x13C   0x0020             MOVS     R0,R4
+   \      0x13E   0x.... 0x....      BL       SI4463_GetProperty
+    266          
+    267          	//0x10, RF_PKT_LEN_12,
+    268          	memset(buffer, 0x00, 16);
+   \      0x142   0x2010             MOVS     R0,#+16
+   \      0x144   0x902B             STR      R0,[SP, #+172]
+   \      0x146   0x2000             MOVS     R0,#+0
+   \      0x148   0x902A             STR      R0,[SP, #+168]
+   \      0x14A   0xAE01             ADD      R6,SP,#+4
+   \      0x14C   0x9A2A             LDR      R2,[SP, #+168]
+   \      0x14E   0x992B             LDR      R1,[SP, #+172]
+   \      0x150   0x0030             MOVS     R0,R6
+   \      0x152   0x.... 0x....      BL       __aeabi_memset
+    269          	SI4463_GetProperty(si4463, 0x12, 0x0C, 0x08, buffer);
+   \      0x156   0xA801             ADD      R0,SP,#+4
+   \      0x158   0x9000             STR      R0,[SP, #+0]
+   \      0x15A   0x2308             MOVS     R3,#+8
+   \      0x15C   0x220C             MOVS     R2,#+12
+   \      0x15E   0x2112             MOVS     R1,#+18
+   \      0x160   0x0020             MOVS     R0,R4
+   \      0x162   0x.... 0x....      BL       SI4463_GetProperty
+    270          
+    271          	//0x10, RF_PKT_FIELD_2_CRC_CONFIG_12,
+    272          	memset(buffer, 0x00, 16);
+   \      0x166   0x2010             MOVS     R0,#+16
+   \      0x168   0x9029             STR      R0,[SP, #+164]
+   \      0x16A   0x2000             MOVS     R0,#+0
+   \      0x16C   0x9028             STR      R0,[SP, #+160]
+   \      0x16E   0xAE01             ADD      R6,SP,#+4
+   \      0x170   0x9A28             LDR      R2,[SP, #+160]
+   \      0x172   0x9929             LDR      R1,[SP, #+164]
+   \      0x174   0x0030             MOVS     R0,R6
+   \      0x176   0x.... 0x....      BL       __aeabi_memset
+    273          	SI4463_GetProperty(si4463, 0x12, 0x0C, 0x14, buffer); //SEEMS NO VALID
+   \      0x17A   0xA801             ADD      R0,SP,#+4
+   \      0x17C   0x9000             STR      R0,[SP, #+0]
+   \      0x17E   0x2314             MOVS     R3,#+20
+   \      0x180   0x220C             MOVS     R2,#+12
+   \      0x182   0x2112             MOVS     R1,#+18
+   \      0x184   0x0020             MOVS     R0,R4
+   \      0x186   0x.... 0x....      BL       SI4463_GetProperty
+    274          
+    275          	//0x10, RF_PKT_FIELD_5_CRC_CONFIG_12,
+    276          	memset(buffer, 0x00, 16);
+   \      0x18A   0x2010             MOVS     R0,#+16
+   \      0x18C   0x9027             STR      R0,[SP, #+156]
+   \      0x18E   0x2000             MOVS     R0,#+0
+   \      0x190   0x9026             STR      R0,[SP, #+152]
+   \      0x192   0xAE01             ADD      R6,SP,#+4
+   \      0x194   0x9A26             LDR      R2,[SP, #+152]
+   \      0x196   0x9927             LDR      R1,[SP, #+156]
+   \      0x198   0x0030             MOVS     R0,R6
+   \      0x19A   0x.... 0x....      BL       __aeabi_memset
+    277          	SI4463_GetProperty(si4463, 0x12, 0x0C, 0x20, buffer); //SEEMS NO VALID
+   \      0x19E   0xA801             ADD      R0,SP,#+4
+   \      0x1A0   0x9000             STR      R0,[SP, #+0]
+   \      0x1A2   0x2320             MOVS     R3,#+32
+   \      0x1A4   0x220C             MOVS     R2,#+12
+   \      0x1A6   0x2112             MOVS     R1,#+18
+   \      0x1A8   0x0020             MOVS     R0,R4
+   \      0x1AA   0x.... 0x....      BL       SI4463_GetProperty
+    278          
+    279          	//0x0D, RF_PKT_RX_FIELD_3_CRC_CONFIG_9,
+    280          	memset(buffer, 0x00, 16);
+   \      0x1AE   0x2010             MOVS     R0,#+16
+   \      0x1B0   0x9025             STR      R0,[SP, #+148]
+   \      0x1B2   0x2000             MOVS     R0,#+0
+   \      0x1B4   0x9024             STR      R0,[SP, #+144]
+   \      0x1B6   0xAE01             ADD      R6,SP,#+4
+   \      0x1B8   0x9A24             LDR      R2,[SP, #+144]
+   \      0x1BA   0x9925             LDR      R1,[SP, #+148]
+   \      0x1BC   0x0030             MOVS     R0,R6
+   \      0x1BE   0x.... 0x....      BL       __aeabi_memset
+    281          	SI4463_GetProperty(si4463, 0x12, 0x09, 0x2C, buffer);
+   \      0x1C2   0xA801             ADD      R0,SP,#+4
+   \      0x1C4   0x9000             STR      R0,[SP, #+0]
+   \      0x1C6   0x232C             MOVS     R3,#+44
+   \      0x1C8   0x2209             MOVS     R2,#+9
+   \      0x1CA   0x2112             MOVS     R1,#+18
+   \      0x1CC   0x0020             MOVS     R0,R4
+   \      0x1CE   0x.... 0x....      BL       SI4463_GetProperty
+    282          
+    283          	//0x10, RF_MODEM_MOD_TYPE_12,
+    284          	memset(buffer, 0x00, 16);
+   \      0x1D2   0x2010             MOVS     R0,#+16
+   \      0x1D4   0x9023             STR      R0,[SP, #+140]
+   \      0x1D6   0x2000             MOVS     R0,#+0
+   \      0x1D8   0x9022             STR      R0,[SP, #+136]
+   \      0x1DA   0xAE01             ADD      R6,SP,#+4
+   \      0x1DC   0x9A22             LDR      R2,[SP, #+136]
+   \      0x1DE   0x9923             LDR      R1,[SP, #+140]
+   \      0x1E0   0x0030             MOVS     R0,R6
+   \      0x1E2   0x.... 0x....      BL       __aeabi_memset
+    285          	SI4463_GetProperty(si4463, 0x20, 0x0C, 0x00, buffer);
+   \      0x1E6   0xA801             ADD      R0,SP,#+4
+   \      0x1E8   0x9000             STR      R0,[SP, #+0]
+   \      0x1EA   0x2300             MOVS     R3,#+0
+   \      0x1EC   0x220C             MOVS     R2,#+12
+   \      0x1EE   0x2120             MOVS     R1,#+32
+   \      0x1F0   0x0020             MOVS     R0,R4
+   \      0x1F2   0x.... 0x....      BL       SI4463_GetProperty
+    286          
+    287          
+    288          	//0x05, RF_MODEM_FREQ_DEV_0_1,
+    289          	memset(buffer, 0x00, 16);
+   \      0x1F6   0x2010             MOVS     R0,#+16
+   \      0x1F8   0x9021             STR      R0,[SP, #+132]
+   \      0x1FA   0x2000             MOVS     R0,#+0
+   \      0x1FC   0x9020             STR      R0,[SP, #+128]
+   \      0x1FE   0xAE01             ADD      R6,SP,#+4
+   \      0x200   0x9A20             LDR      R2,[SP, #+128]
+   \      0x202   0x9921             LDR      R1,[SP, #+132]
+   \      0x204   0x0030             MOVS     R0,R6
+   \      0x206   0x.... 0x....      BL       __aeabi_memset
+    290          	SI4463_GetProperty(si4463, 0x12, 0x01, 0x0C, buffer);
+   \      0x20A   0xA801             ADD      R0,SP,#+4
+   \      0x20C   0x9000             STR      R0,[SP, #+0]
+   \      0x20E   0x230C             MOVS     R3,#+12
+   \      0x210   0x2201             MOVS     R2,#+1
+   \      0x212   0x2112             MOVS     R1,#+18
+   \      0x214   0x0020             MOVS     R0,R4
+   \      0x216   0x.... 0x....      BL       SI4463_GetProperty
+    291          
+    292          	//0x0C, RF_MODEM_TX_RAMP_DELAY_8,
+    293          	memset(buffer, 0x00, 16);
+   \      0x21A   0x2010             MOVS     R0,#+16
+   \      0x21C   0x901F             STR      R0,[SP, #+124]
+   \      0x21E   0x2000             MOVS     R0,#+0
+   \      0x220   0x901E             STR      R0,[SP, #+120]
+   \      0x222   0xAE01             ADD      R6,SP,#+4
+   \      0x224   0x9A1E             LDR      R2,[SP, #+120]
+   \      0x226   0x991F             LDR      R1,[SP, #+124]
+   \      0x228   0x0030             MOVS     R0,R6
+   \      0x22A   0x.... 0x....      BL       __aeabi_memset
+    294          	SI4463_GetProperty(si4463, 0x20, 0x08, 0x18, buffer);
+   \      0x22E   0xA801             ADD      R0,SP,#+4
+   \      0x230   0x9000             STR      R0,[SP, #+0]
+   \      0x232   0x2318             MOVS     R3,#+24
+   \      0x234   0x2208             MOVS     R2,#+8
+   \      0x236   0x2120             MOVS     R1,#+32
+   \      0x238   0x0020             MOVS     R0,R4
+   \      0x23A   0x.... 0x....      BL       SI4463_GetProperty
+    295          
+    296          	//0x0D, RF_MODEM_BCR_OSR_1_9,
+    297          	memset(buffer, 0x00, 16);
+   \      0x23E   0x2010             MOVS     R0,#+16
+   \      0x240   0x901D             STR      R0,[SP, #+116]
+   \      0x242   0x2000             MOVS     R0,#+0
+   \      0x244   0x901C             STR      R0,[SP, #+112]
+   \      0x246   0xAE01             ADD      R6,SP,#+4
+   \      0x248   0x9A1C             LDR      R2,[SP, #+112]
+   \      0x24A   0x991D             LDR      R1,[SP, #+116]
+   \      0x24C   0x0030             MOVS     R0,R6
+   \      0x24E   0x.... 0x....      BL       __aeabi_memset
+    298          	SI4463_GetProperty(si4463, 0x20, 0x09, 0x22, buffer);
+   \      0x252   0xA801             ADD      R0,SP,#+4
+   \      0x254   0x9000             STR      R0,[SP, #+0]
+   \      0x256   0x2322             MOVS     R3,#+34
+   \      0x258   0x2209             MOVS     R2,#+9
+   \      0x25A   0x2120             MOVS     R1,#+32
+   \      0x25C   0x0020             MOVS     R0,R4
+   \      0x25E   0x.... 0x....      BL       SI4463_GetProperty
+    299          
+    300          	//0x0B, RF_MODEM_AFC_GEAR_7,
+    301          	memset(buffer, 0x00, 16);
+   \      0x262   0x2010             MOVS     R0,#+16
+   \      0x264   0x901B             STR      R0,[SP, #+108]
+   \      0x266   0x2000             MOVS     R0,#+0
+   \      0x268   0x901A             STR      R0,[SP, #+104]
+   \      0x26A   0xAE01             ADD      R6,SP,#+4
+   \      0x26C   0x9A1A             LDR      R2,[SP, #+104]
+   \      0x26E   0x991B             LDR      R1,[SP, #+108]
+   \      0x270   0x0030             MOVS     R0,R6
+   \      0x272   0x.... 0x....      BL       __aeabi_memset
+    302          	SI4463_GetProperty(si4463, 0x20, 0x07, 0x2C, buffer);
+   \      0x276   0xA801             ADD      R0,SP,#+4
+   \      0x278   0x9000             STR      R0,[SP, #+0]
+   \      0x27A   0x232C             MOVS     R3,#+44
+   \      0x27C   0x2207             MOVS     R2,#+7
+   \      0x27E   0x2120             MOVS     R1,#+32
+   \      0x280   0x0020             MOVS     R0,R4
+   \      0x282   0x.... 0x....      BL       SI4463_GetProperty
+    303          
+    304          	//0x05, RF_MODEM_AGC_CONTROL_1,
+    305          	memset(buffer, 0x00, 16);
+   \      0x286   0x2010             MOVS     R0,#+16
+   \      0x288   0x9019             STR      R0,[SP, #+100]
+   \      0x28A   0x2000             MOVS     R0,#+0
+   \      0x28C   0x9018             STR      R0,[SP, #+96]
+   \      0x28E   0xAE01             ADD      R6,SP,#+4
+   \      0x290   0x9A18             LDR      R2,[SP, #+96]
+   \      0x292   0x9919             LDR      R1,[SP, #+100]
+   \      0x294   0x0030             MOVS     R0,R6
+   \      0x296   0x.... 0x....      BL       __aeabi_memset
+    306          	SI4463_GetProperty(si4463, 0x20, 0x01, 0x35, buffer);
+   \      0x29A   0xA801             ADD      R0,SP,#+4
+   \      0x29C   0x9000             STR      R0,[SP, #+0]
+   \      0x29E   0x2335             MOVS     R3,#+53
+   \      0x2A0   0x2201             MOVS     R2,#+1
+   \      0x2A2   0x2120             MOVS     R1,#+32
+   \      0x2A4   0x0020             MOVS     R0,R4
+   \      0x2A6   0x.... 0x....      BL       SI4463_GetProperty
+    307          
+    308          	//0x0D, RF_MODEM_AGC_WINDOW_SIZE_9,
+    309          	memset(buffer, 0x00, 16);
+   \      0x2AA   0x2010             MOVS     R0,#+16
+   \      0x2AC   0x9017             STR      R0,[SP, #+92]
+   \      0x2AE   0x2000             MOVS     R0,#+0
+   \      0x2B0   0x9016             STR      R0,[SP, #+88]
+   \      0x2B2   0xAE01             ADD      R6,SP,#+4
+   \      0x2B4   0x9A16             LDR      R2,[SP, #+88]
+   \      0x2B6   0x9917             LDR      R1,[SP, #+92]
+   \      0x2B8   0x0030             MOVS     R0,R6
+   \      0x2BA   0x.... 0x....      BL       __aeabi_memset
+    310          	SI4463_GetProperty(si4463, 0x20, 0x09, 0x38, buffer);
+   \      0x2BE   0xA801             ADD      R0,SP,#+4
+   \      0x2C0   0x9000             STR      R0,[SP, #+0]
+   \      0x2C2   0x2338             MOVS     R3,#+56
+   \      0x2C4   0x2209             MOVS     R2,#+9
+   \      0x2C6   0x2120             MOVS     R1,#+32
+   \      0x2C8   0x0020             MOVS     R0,R4
+   \      0x2CA   0x.... 0x....      BL       SI4463_GetProperty
+    311          
+    312          	//0x0D, RF_MODEM_OOK_CNT1_9,
+    313          	memset(buffer, 0x00, 16);
+   \      0x2CE   0x2010             MOVS     R0,#+16
+   \      0x2D0   0x9015             STR      R0,[SP, #+84]
+   \      0x2D2   0x2000             MOVS     R0,#+0
+   \      0x2D4   0x9014             STR      R0,[SP, #+80]
+   \      0x2D6   0xAE01             ADD      R6,SP,#+4
+   \      0x2D8   0x9A14             LDR      R2,[SP, #+80]
+   \      0x2DA   0x9915             LDR      R1,[SP, #+84]
+   \      0x2DC   0x0030             MOVS     R0,R6
+   \      0x2DE   0x.... 0x....      BL       __aeabi_memset
+    314          	SI4463_GetProperty(si4463, 0x20, 0x09, 0x42, buffer);
+   \      0x2E2   0xA801             ADD      R0,SP,#+4
+   \      0x2E4   0x9000             STR      R0,[SP, #+0]
+   \      0x2E6   0x2342             MOVS     R3,#+66
+   \      0x2E8   0x2209             MOVS     R2,#+9
+   \      0x2EA   0x2120             MOVS     R1,#+32
+   \      0x2EC   0x0020             MOVS     R0,R4
+   \      0x2EE   0x.... 0x....      BL       SI4463_GetProperty
+    315          
+    316          	//0x05, RF_MODEM_RSSI_CONTROL_1,
+    317          	memset(buffer, 0x00, 16);
+   \      0x2F2   0x2010             MOVS     R0,#+16
+   \      0x2F4   0x9013             STR      R0,[SP, #+76]
+   \      0x2F6   0x2000             MOVS     R0,#+0
+   \      0x2F8   0x9012             STR      R0,[SP, #+72]
+   \      0x2FA   0xAE01             ADD      R6,SP,#+4
+   \      0x2FC   0x9A12             LDR      R2,[SP, #+72]
+   \      0x2FE   0x9913             LDR      R1,[SP, #+76]
+   \      0x300   0x0030             MOVS     R0,R6
+   \      0x302   0x.... 0x....      BL       __aeabi_memset
+    318          	SI4463_GetProperty(si4463, 0x20, 0x01, 0x4C, buffer);
+   \      0x306   0xA801             ADD      R0,SP,#+4
+   \      0x308   0x9000             STR      R0,[SP, #+0]
+   \      0x30A   0x234C             MOVS     R3,#+76
+   \      0x30C   0x2201             MOVS     R2,#+1
+   \      0x30E   0x2120             MOVS     R1,#+32
+   \      0x310   0x0020             MOVS     R0,R4
+   \      0x312   0x.... 0x....      BL       SI4463_GetProperty
+    319          
+    320          	//0x05, RF_MODEM_RSSI_COMP_1,
+    321          	memset(buffer, 0x00, 16);
+   \      0x316   0x2010             MOVS     R0,#+16
+   \      0x318   0x9011             STR      R0,[SP, #+68]
+   \      0x31A   0x2000             MOVS     R0,#+0
+   \      0x31C   0x9010             STR      R0,[SP, #+64]
+   \      0x31E   0xAE01             ADD      R6,SP,#+4
+   \      0x320   0x9A10             LDR      R2,[SP, #+64]
+   \      0x322   0x9911             LDR      R1,[SP, #+68]
+   \      0x324   0x0030             MOVS     R0,R6
+   \      0x326   0x.... 0x....      BL       __aeabi_memset
+    322          	SI4463_GetProperty(si4463, 0x20, 0x01, 0x4E, buffer);
+   \      0x32A   0xA801             ADD      R0,SP,#+4
+   \      0x32C   0x9000             STR      R0,[SP, #+0]
+   \      0x32E   0x234E             MOVS     R3,#+78
+   \      0x330   0x2201             MOVS     R2,#+1
+   \      0x332   0x2120             MOVS     R1,#+32
+   \      0x334   0x0020             MOVS     R0,R4
+   \      0x336   0x.... 0x....      BL       SI4463_GetProperty
+    323          
+    324          	//0x05, RF_MODEM_CLKGEN_BAND_1,
+    325          	memset(buffer, 0x00, 16);
+   \      0x33A   0x2010             MOVS     R0,#+16
+   \      0x33C   0x900F             STR      R0,[SP, #+60]
+   \      0x33E   0x2000             MOVS     R0,#+0
+   \      0x340   0x900E             STR      R0,[SP, #+56]
+   \      0x342   0xAE01             ADD      R6,SP,#+4
+   \      0x344   0x9A0E             LDR      R2,[SP, #+56]
+   \      0x346   0x990F             LDR      R1,[SP, #+60]
+   \      0x348   0x0030             MOVS     R0,R6
+   \      0x34A   0x.... 0x....      BL       __aeabi_memset
+    326          	SI4463_GetProperty(si4463, 0x20, 0x01, 0x51, buffer);
+   \      0x34E   0xA801             ADD      R0,SP,#+4
+   \      0x350   0x9000             STR      R0,[SP, #+0]
+   \      0x352   0x2351             MOVS     R3,#+81
+   \      0x354   0x2201             MOVS     R2,#+1
+   \      0x356   0x2120             MOVS     R1,#+32
+   \      0x358   0x0020             MOVS     R0,R4
+   \      0x35A   0x.... 0x....      BL       SI4463_GetProperty
+    327          
+    328          	//0x10, RF_MODEM_CHFLT_RX1_CHFLT_COE13_7_0_12,
+    329          	memset(buffer, 0x00, 16);
+   \      0x35E   0x2010             MOVS     R0,#+16
+   \      0x360   0x900D             STR      R0,[SP, #+52]
+   \      0x362   0x2000             MOVS     R0,#+0
+   \      0x364   0x900C             STR      R0,[SP, #+48]
+   \      0x366   0xAE01             ADD      R6,SP,#+4
+   \      0x368   0x9A0C             LDR      R2,[SP, #+48]
+   \      0x36A   0x990D             LDR      R1,[SP, #+52]
+   \      0x36C   0x0030             MOVS     R0,R6
+   \      0x36E   0x.... 0x....      BL       __aeabi_memset
+    330          	SI4463_GetProperty(si4463, 0x21, 0x0C, 0x00, buffer);
+   \      0x372   0xA801             ADD      R0,SP,#+4
+   \      0x374   0x9000             STR      R0,[SP, #+0]
+   \      0x376   0x2300             MOVS     R3,#+0
+   \      0x378   0x220C             MOVS     R2,#+12
+   \      0x37A   0x2121             MOVS     R1,#+33
+   \      0x37C   0x0020             MOVS     R0,R4
+   \      0x37E   0x.... 0x....      BL       SI4463_GetProperty
+    331          
+    332          	//0x10, RF_MODEM_CHFLT_RX1_CHFLT_COE1_7_0_12,
+    333          	memset(buffer, 0x00, 16);
+   \      0x382   0x2010             MOVS     R0,#+16
+   \      0x384   0x900B             STR      R0,[SP, #+44]
+   \      0x386   0x2000             MOVS     R0,#+0
+   \      0x388   0x900A             STR      R0,[SP, #+40]
+   \      0x38A   0xAE01             ADD      R6,SP,#+4
+   \      0x38C   0x9A0A             LDR      R2,[SP, #+40]
+   \      0x38E   0x990B             LDR      R1,[SP, #+44]
+   \      0x390   0x0030             MOVS     R0,R6
+   \      0x392   0x.... 0x....      BL       __aeabi_memset
+    334          	SI4463_GetProperty(si4463, 0x21, 0x0C, 0x0C, buffer);
+   \      0x396   0xA801             ADD      R0,SP,#+4
+   \      0x398   0x9000             STR      R0,[SP, #+0]
+   \      0x39A   0x230C             MOVS     R3,#+12
+   \      0x39C   0x220C             MOVS     R2,#+12
+   \      0x39E   0x2121             MOVS     R1,#+33
+   \      0x3A0   0x0020             MOVS     R0,R4
+   \      0x3A2   0x.... 0x....      BL       SI4463_GetProperty
+    335          
+    336          	//0x10, RF_MODEM_CHFLT_RX2_CHFLT_COE7_7_0_12,
+    337          	memset(buffer, 0x00, 16);
+   \      0x3A6   0x2010             MOVS     R0,#+16
+   \      0x3A8   0x9009             STR      R0,[SP, #+36]
+   \      0x3AA   0x2000             MOVS     R0,#+0
+   \      0x3AC   0x9008             STR      R0,[SP, #+32]
+   \      0x3AE   0xAE01             ADD      R6,SP,#+4
+   \      0x3B0   0x9A08             LDR      R2,[SP, #+32]
+   \      0x3B2   0x9909             LDR      R1,[SP, #+36]
+   \      0x3B4   0x0030             MOVS     R0,R6
+   \      0x3B6   0x.... 0x....      BL       __aeabi_memset
+    338          	SI4463_GetProperty(si4463, 0x21, 0x0C, 0x18, buffer);
+   \      0x3BA   0xA801             ADD      R0,SP,#+4
+   \      0x3BC   0x9000             STR      R0,[SP, #+0]
+   \      0x3BE   0x2318             MOVS     R3,#+24
+   \      0x3C0   0x220C             MOVS     R2,#+12
+   \      0x3C2   0x2121             MOVS     R1,#+33
+   \      0x3C4   0x0020             MOVS     R0,R4
+   \      0x3C6   0x.... 0x....      BL       SI4463_GetProperty
+    339          
+    340          	//0x08, RF_PA_MODE_4,
+    341          	memset(buffer, 0x00, 16);
+   \      0x3CA   0x2010             MOVS     R0,#+16
+   \      0x3CC   0x9007             STR      R0,[SP, #+28]
+   \      0x3CE   0x2000             MOVS     R0,#+0
+   \      0x3D0   0x9006             STR      R0,[SP, #+24]
+   \      0x3D2   0xAE01             ADD      R6,SP,#+4
+   \      0x3D4   0x9A06             LDR      R2,[SP, #+24]
+   \      0x3D6   0x9907             LDR      R1,[SP, #+28]
+   \      0x3D8   0x0030             MOVS     R0,R6
+   \      0x3DA   0x.... 0x....      BL       __aeabi_memset
+    342          	SI4463_GetProperty(si4463, 0x22, 0x04, 0x00, buffer);
+   \      0x3DE   0xA801             ADD      R0,SP,#+4
+   \      0x3E0   0x9000             STR      R0,[SP, #+0]
+   \      0x3E2   0x2300             MOVS     R3,#+0
+   \      0x3E4   0x2204             MOVS     R2,#+4
+   \      0x3E6   0x2122             MOVS     R1,#+34
+   \      0x3E8   0x0020             MOVS     R0,R4
+   \      0x3EA   0x.... 0x....      BL       SI4463_GetProperty
+    343          
+    344          	//0x0B, RF_SYNTH_PFDCP_CPFF_7,
+    345          	memset(buffer, 0x00, 16);
+   \      0x3EE   0x2010             MOVS     R0,#+16
+   \      0x3F0   0x9005             STR      R0,[SP, #+20]
+   \      0x3F2   0x2600             MOVS     R6,#+0
+   \      0x3F4   0xAF01             ADD      R7,SP,#+4
+   \      0x3F6   0x0032             MOVS     R2,R6
+   \      0x3F8   0x9905             LDR      R1,[SP, #+20]
+   \      0x3FA   0x0038             MOVS     R0,R7
+   \      0x3FC   0x.... 0x....      BL       __aeabi_memset
+    346          	SI4463_GetProperty(si4463, 0x23, 0x07, 0x00, buffer);
+   \      0x400   0xA801             ADD      R0,SP,#+4
+   \      0x402   0x9000             STR      R0,[SP, #+0]
+   \      0x404   0x2300             MOVS     R3,#+0
+   \      0x406   0x2207             MOVS     R2,#+7
+   \      0x408   0x2123             MOVS     R1,#+35
+   \      0x40A   0x0020             MOVS     R0,R4
+   \      0x40C   0x.... 0x....      BL       SI4463_GetProperty
+    347          
+    348          	//0x10, RF_MATCH_VALUE_1_12,
+    349          	memset(buffer, 0x00, 16);
+   \      0x410   0x2710             MOVS     R7,#+16
+   \      0x412   0xF05F 0x0800      MOVS     R8,#+0
+   \      0x416   0xF10D 0x0904      ADD      R9,SP,#+4
+   \      0x41A   0x4642             MOV      R2,R8
+   \      0x41C   0x0039             MOVS     R1,R7
+   \      0x41E   0x4648             MOV      R0,R9
+   \      0x420   0x.... 0x....      BL       __aeabi_memset
+    350          	SI4463_GetProperty(si4463, 0x30, 0x0C, 0x00, buffer);
+   \      0x424   0xA801             ADD      R0,SP,#+4
+   \      0x426   0x9000             STR      R0,[SP, #+0]
+   \      0x428   0x2300             MOVS     R3,#+0
+   \      0x42A   0x220C             MOVS     R2,#+12
+   \      0x42C   0x2130             MOVS     R1,#+48
+   \      0x42E   0x0020             MOVS     R0,R4
+   \      0x430   0x.... 0x....      BL       SI4463_GetProperty
+    351          
+    352          	//0x0C, RF_FREQ_CONTROL_INTE_8,
+    353          	memset(buffer, 0x00, 16);
+   \      0x434   0xF05F 0x0910      MOVS     R9,#+16
+   \      0x438   0xF05F 0x0A00      MOVS     R10,#+0
+   \      0x43C   0xF10D 0x0B04      ADD      R11,SP,#+4
+   \      0x440   0x4652             MOV      R2,R10
+   \      0x442   0x4649             MOV      R1,R9
+   \      0x444   0x4658             MOV      R0,R11
+   \      0x446   0x.... 0x....      BL       __aeabi_memset
+    354          	SI4463_GetProperty(si4463, 0x40, 0x08, 0x00, buffer);
+   \      0x44A   0xA801             ADD      R0,SP,#+4
+   \      0x44C   0x9000             STR      R0,[SP, #+0]
+   \      0x44E   0x2300             MOVS     R3,#+0
+   \      0x450   0x2208             MOVS     R2,#+8
+   \      0x452   0x2140             MOVS     R1,#+64
+   \      0x454   0x0020             MOVS     R0,R4
+   \      0x456   0x.... 0x....      BL       SI4463_GetProperty
+    355          
+    356          	return result;
+   \      0x45A   0x0028             MOVS     R0,R5
+   \      0x45C   0xB240             SXTB     R0,R0
+   \      0x45E   0xB041             ADD      SP,SP,#+260
+   \      0x460   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+    357          }
+    358          
+
+   \                                 In section .text, align 2, keep-with-next
+    359          int8_t SI4463_PowerUp(const si4463_t * si4463)
+    360          {
+   \                     SI4463_PowerUp: (+1)
+   \        0x0   0xE92D 0x41F8      PUSH     {R3-R8,LR}
+   \        0x4   0xB087             SUB      SP,SP,#+28
+   \        0x6   0x0004             MOVS     R4,R0
+    361          	int8_t result = SI4463_OK;
+   \        0x8   0x2500             MOVS     R5,#+0
+    362          	uint8_t answer[SI4463_CMD_BUF_LEN];
+    363          	memset(answer, 0x00, SI4463_CMD_BUF_LEN);
+   \        0xA   0x2611             MOVS     R6,#+17
+   \        0xC   0x2700             MOVS     R7,#+0
+   \        0xE   0xF10D 0x0808      ADD      R8,SP,#+8
+   \       0x12   0x003A             MOVS     R2,R7
+   \       0x14   0x0031             MOVS     R1,R6
+   \       0x16   0x4640             MOV      R0,R8
+   \       0x18   0x.... 0x....      BL       __aeabi_memset
+    364          	uint8_t cmdChain[7] = {SI4463_CMD_POWER_UP,
+    365          							0x00,
+    366          							0x00,
+    367          							(RADIO_CONFIGURATION_DATA_RADIO_XO_FREQ & 0xFF000000) >> 24,
+    368          							(RADIO_CONFIGURATION_DATA_RADIO_XO_FREQ & 0x00FF0000) >> 16,
+    369          							(RADIO_CONFIGURATION_DATA_RADIO_XO_FREQ & 0x0000FF00) >> 8,
+    370          							(RADIO_CONFIGURATION_DATA_RADIO_XO_FREQ & 0x000000FF)};
+   \       0x1C   0x4668             MOV      R0,SP
+   \       0x1E   0x.... 0x....      LDR.W    R1,??DataTable17_1
+   \       0x22   0xE9D1 0x2300      LDRD     R2,R3,[R1, #+0]
+   \       0x26   0xE9C0 0x2300      STRD     R2,R3,[R0, #+0]
+    371          
+    372          	result = SI4463_SendCommand(si4463, cmdChain, 7);
+   \       0x2A   0x2207             MOVS     R2,#+7
+   \       0x2C   0x4669             MOV      R1,SP
+   \       0x2E   0x0020             MOVS     R0,R4
+   \       0x30   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x34   0x4680             MOV      R8,R0
+    373          
+    374          	/* Delay need for set up the chip in the POWER_UP state */
+    375          	si4463->DelayMs(1000);
+   \       0x36   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x3A   0x6961             LDR      R1,[R4, #+20]
+   \       0x3C   0x4788             BLX      R1
+    376          
+    377          	return result;
+   \       0x3E   0x4640             MOV      R0,R8
+   \       0x40   0xB240             SXTB     R0,R0
+   \       0x42   0xB008             ADD      SP,SP,#+32
+   \       0x44   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    378          }
+    379          
+
+   \                                 In section .text, align 2, keep-with-next
+    380          int8_t SI4463_GetInterrupts(si4463_t * si4463)
+    381          {
+   \                     SI4463_GetInterrupts: (+1)
+   \        0x0   0xE92D 0x4FF8      PUSH     {R3-R11,LR}
+   \        0x4   0xB086             SUB      SP,SP,#+24
+   \        0x6   0x0007             MOVS     R7,R0
+    382          	int8_t result = SI4463_OK;
+   \        0x8   0xF05F 0x0800      MOVS     R8,#+0
+    383          	uint8_t answer[SI4463_CMD_BUF_LEN];
+    384          	memset(answer, 0x00, SI4463_CMD_BUF_LEN);
+   \        0xC   0xF05F 0x0911      MOVS     R9,#+17
+   \       0x10   0xF05F 0x0A00      MOVS     R10,#+0
+   \       0x14   0xF10D 0x0B04      ADD      R11,SP,#+4
+   \       0x18   0x4652             MOV      R2,R10
+   \       0x1A   0x4649             MOV      R1,R9
+   \       0x1C   0x4658             MOV      R0,R11
+   \       0x1E   0x.... 0x....      BL       __aeabi_memset
+    385          	uint8_t cmdChain[4] = {SI4463_CMD_GET_INT_STATUS, 0xFF, 0xFF, 0xFF};
+   \       0x22   0x4668             MOV      R0,SP
+   \       0x24   0x.... 0x....      LDR.W    R1,??DataTable17_2
+   \       0x28   0x680A             LDR      R2,[R1, #+0]
+   \       0x2A   0x6002             STR      R2,[R0, #+0]
+    386          	uint8_t phPend, modemPend, chipPend;
+    387          
+    388          	result += SI4463_SendCommand(si4463, cmdChain, 4);
+   \       0x2C   0x2204             MOVS     R2,#+4
+   \       0x2E   0x4669             MOV      R1,SP
+   \       0x30   0x0038             MOVS     R0,R7
+   \       0x32   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x36   0x4683             MOV      R11,R0
+   \       0x38   0xEB1B 0x0B08      ADDS     R11,R11,R8
+    389          	result += SI4463_ReadCommandBuffer(si4463, answer, 9);
+   \       0x3C   0x2209             MOVS     R2,#+9
+   \       0x3E   0xA901             ADD      R1,SP,#+4
+   \       0x40   0x0038             MOVS     R0,R7
+   \       0x42   0x.... 0x....      BL       SI4463_ReadCommandBuffer
+   \       0x46   0xEB10 0x000B      ADDS     R0,R0,R11
+    390          
+    391          	/* Get pend bytes */
+    392          	if(result == SI4463_OK && answer[1] == SI4463_BYTE_CTS)
+   \       0x4A   0x0001             MOVS     R1,R0
+   \       0x4C   0xB249             SXTB     R1,R1
+   \       0x4E   0x2900             CMP      R1,#+0
+   \       0x50   0xF040 0x8090      BNE.W    ??SI4463_GetInterrupts_0
+   \       0x54   0xA901             ADD      R1,SP,#+4
+   \       0x56   0x784A             LDRB     R2,[R1, #+1]
+   \       0x58   0x2AFF             CMP      R2,#+255
+   \       0x5A   0xF040 0x808B      BNE.W    ??SI4463_GetInterrupts_0
+    393          	{
+    394          		phPend = answer[4];
+   \       0x5E   0x790A             LDRB     R2,[R1, #+4]
+   \       0x60   0x0014             MOVS     R4,R2
+    395          		modemPend = answer[6];
+   \       0x62   0x7989             LDRB     R1,[R1, #+6]
+   \       0x64   0x000D             MOVS     R5,R1
+    396          		chipPend = answer[8];
+   \       0x66   0xF89D 0x100C      LDRB     R1,[SP, #+12]
+   \       0x6A   0x000E             MOVS     R6,R1
+    397          
+    398          		/* Get interrupts for structure pointer */
+    399          
+    400          		/* PH pending interrupts */
+    401          		si4463->interrupts.filterMatch = ((phPend & 0x80) >> 7) & 0x01;
+   \       0x6C   0x0021             MOVS     R1,R4
+   \       0x6E   0xB2C9             UXTB     R1,R1
+   \       0x70   0x09C9             LSRS     R1,R1,#+7
+   \       0x72   0x7739             STRB     R1,[R7, #+28]
+    402          		si4463->interrupts.filterMiss = ((phPend & 0x40) >> 6) & 0x01;
+   \       0x74   0x0021             MOVS     R1,R4
+   \       0x76   0xB2C9             UXTB     R1,R1
+   \       0x78   0x0989             LSRS     R1,R1,#+6
+   \       0x7A   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \       0x7E   0x7779             STRB     R1,[R7, #+29]
+    403          		si4463->interrupts.packetSent = ((phPend & 0x20) >> 5) & 0x01;
+   \       0x80   0x0021             MOVS     R1,R4
+   \       0x82   0xB2C9             UXTB     R1,R1
+   \       0x84   0x0949             LSRS     R1,R1,#+5
+   \       0x86   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \       0x8A   0x77B9             STRB     R1,[R7, #+30]
+    404          		si4463->interrupts.packetRx = ((phPend & 0x10) >> 4) & 0x01;
+   \       0x8C   0x0021             MOVS     R1,R4
+   \       0x8E   0xB2C9             UXTB     R1,R1
+   \       0x90   0x0909             LSRS     R1,R1,#+4
+   \       0x92   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \       0x96   0x77F9             STRB     R1,[R7, #+31]
+    405          		si4463->interrupts.crcError = ((phPend & 0x08) >> 3) & 0x01;
+   \       0x98   0x0021             MOVS     R1,R4
+   \       0x9A   0xB2C9             UXTB     R1,R1
+   \       0x9C   0x08C9             LSRS     R1,R1,#+3
+   \       0x9E   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \       0xA2   0xF887 0x1020      STRB     R1,[R7, #+32]
+    406          		// Null bit
+    407          		si4463->interrupts.txFifoAlmostEmpty = ((phPend & 0x02) >> 1) & 0x01;
+   \       0xA6   0x0021             MOVS     R1,R4
+   \       0xA8   0xB2C9             UXTB     R1,R1
+   \       0xAA   0x0849             LSRS     R1,R1,#+1
+   \       0xAC   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \       0xB0   0xF887 0x1021      STRB     R1,[R7, #+33]
+    408          		si4463->interrupts.rxFifoAlmostFull = phPend & 0x01;
+   \       0xB4   0xF014 0x0101      ANDS     R1,R4,#0x1
+   \       0xB8   0xF887 0x1022      STRB     R1,[R7, #+34]
+    409          
+    410          		/* Modem interrupts */
+    411          		// Null bit
+    412          		si4463->interrupts.postambleDetect = ((modemPend & 0x40) >> 6) & 0x01;
+   \       0xBC   0x0029             MOVS     R1,R5
+   \       0xBE   0xB2C9             UXTB     R1,R1
+   \       0xC0   0x0989             LSRS     R1,R1,#+6
+   \       0xC2   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \       0xC6   0xF887 0x1023      STRB     R1,[R7, #+35]
+    413          		si4463->interrupts.invalidSync = ((modemPend & 0x20) >> 5) & 0x01;
+   \       0xCA   0x0029             MOVS     R1,R5
+   \       0xCC   0xB2C9             UXTB     R1,R1
+   \       0xCE   0x0949             LSRS     R1,R1,#+5
+   \       0xD0   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \       0xD4   0xF887 0x1024      STRB     R1,[R7, #+36]
+    414          		si4463->interrupts.rssiJump = ((modemPend & 0x10) >> 4) & 0x01;
+   \       0xD8   0x0029             MOVS     R1,R5
+   \       0xDA   0xB2C9             UXTB     R1,R1
+   \       0xDC   0x0909             LSRS     R1,R1,#+4
+   \       0xDE   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \       0xE2   0xF887 0x1025      STRB     R1,[R7, #+37]
+    415          		si4463->interrupts.rssi = ((modemPend & 0x08) >> 3) & 0x01;
+   \       0xE6   0x0029             MOVS     R1,R5
+   \       0xE8   0xB2C9             UXTB     R1,R1
+   \       0xEA   0x08C9             LSRS     R1,R1,#+3
+   \       0xEC   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \       0xF0   0xF887 0x1026      STRB     R1,[R7, #+38]
+    416          		si4463->interrupts.invalidPreamble = ((modemPend & 0x04) >> 2) & 0x01;
+   \       0xF4   0x0029             MOVS     R1,R5
+   \       0xF6   0xB2C9             UXTB     R1,R1
+   \       0xF8   0x0889             LSRS     R1,R1,#+2
+   \       0xFA   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \       0xFE   0xF887 0x1027      STRB     R1,[R7, #+39]
+    417          		si4463->interrupts.preambleDetect = ((modemPend & 0x02) >> 1) & 0x01;
+   \      0x102   0x0029             MOVS     R1,R5
+   \      0x104   0xB2C9             UXTB     R1,R1
+   \      0x106   0x0849             LSRS     R1,R1,#+1
+   \      0x108   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \      0x10C   0xF887 0x1028      STRB     R1,[R7, #+40]
+    418          		si4463->interrupts.syncDetect = modemPend & 0x01;
+   \      0x110   0xF015 0x0101      ANDS     R1,R5,#0x1
+   \      0x114   0xF887 0x1029      STRB     R1,[R7, #+41]
+    419          
+    420          		/* Chip interrupts */
+    421          		//Null bit
+    422          		si4463->interrupts.cal = ((chipPend & 0x40) >> 6) & 0x01;
+   \      0x118   0x0031             MOVS     R1,R6
+   \      0x11A   0xB2C9             UXTB     R1,R1
+   \      0x11C   0x0989             LSRS     R1,R1,#+6
+   \      0x11E   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \      0x122   0xF887 0x102A      STRB     R1,[R7, #+42]
+    423          		si4463->interrupts.fifoUnderflowOverflowError = ((chipPend & 0x20) >> 5) & 0x01;
+   \      0x126   0x0031             MOVS     R1,R6
+   \      0x128   0xB2C9             UXTB     R1,R1
+   \      0x12A   0x0949             LSRS     R1,R1,#+5
+   \      0x12C   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \      0x130   0xF887 0x102B      STRB     R1,[R7, #+43]
+    424          		si4463->interrupts.stateChange = ((chipPend & 0x10) >> 4) & 0x01;
+   \      0x134   0x0031             MOVS     R1,R6
+   \      0x136   0xB2C9             UXTB     R1,R1
+   \      0x138   0x0909             LSRS     R1,R1,#+4
+   \      0x13A   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \      0x13E   0xF887 0x102C      STRB     R1,[R7, #+44]
+    425          		si4463->interrupts.cmdError = ((chipPend & 0x08) >> 3) & 0x01;
+   \      0x142   0x0031             MOVS     R1,R6
+   \      0x144   0xB2C9             UXTB     R1,R1
+   \      0x146   0x08C9             LSRS     R1,R1,#+3
+   \      0x148   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \      0x14C   0xF887 0x102D      STRB     R1,[R7, #+45]
+    426          		si4463->interrupts.chipReady = ((chipPend & 0x04) >> 2) & 0x01;
+   \      0x150   0x0031             MOVS     R1,R6
+   \      0x152   0xB2C9             UXTB     R1,R1
+   \      0x154   0x0889             LSRS     R1,R1,#+2
+   \      0x156   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \      0x15A   0xF887 0x102E      STRB     R1,[R7, #+46]
+    427          		si4463->interrupts.lowBatt = ((chipPend & 0x02) >> 1) & 0x01;
+   \      0x15E   0x0031             MOVS     R1,R6
+   \      0x160   0xB2C9             UXTB     R1,R1
+   \      0x162   0x0849             LSRS     R1,R1,#+1
+   \      0x164   0xF011 0x0101      ANDS     R1,R1,#0x1
+   \      0x168   0xF887 0x102F      STRB     R1,[R7, #+47]
+    428          		si4463->interrupts.wut = chipPend & 0x01;
+   \      0x16C   0xF016 0x0101      ANDS     R1,R6,#0x1
+   \      0x170   0xF887 0x1030      STRB     R1,[R7, #+48]
+    429          	}
+    430          
+    431          
+    432          	return result;
+   \                     ??SI4463_GetInterrupts_0: (+1)
+   \      0x174   0xB240             SXTB     R0,R0
+   \      0x176   0xB007             ADD      SP,SP,#+28
+   \      0x178   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+    433          }
+    434          
+
+   \                                 In section .text, align 2, keep-with-next
+    435          int8_t SI4463_ClearInterrupts(const si4463_t * si4463)
+    436          {
+   \                     SI4463_ClearInterrupts: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0xB086             SUB      SP,SP,#+24
+   \        0x6   0x0004             MOVS     R4,R0
+    437          	int8_t result = SI4463_OK;
+   \        0x8   0x2500             MOVS     R5,#+0
+    438          	uint8_t answer[SI4463_CMD_BUF_LEN];
+    439          	memset(answer, 0x00, SI4463_CMD_BUF_LEN);
+   \        0xA   0x2611             MOVS     R6,#+17
+   \        0xC   0x2700             MOVS     R7,#+0
+   \        0xE   0xF10D 0x0804      ADD      R8,SP,#+4
+   \       0x12   0x003A             MOVS     R2,R7
+   \       0x14   0x0031             MOVS     R1,R6
+   \       0x16   0x4640             MOV      R0,R8
+   \       0x18   0x.... 0x....      BL       __aeabi_memset
+    440          	uint8_t cmdChain[4] = {SI4463_CMD_GET_INT_STATUS, 0x00, 0x00, 0x00};
+   \       0x1C   0x4668             MOV      R0,SP
+   \       0x1E   0x.... 0x....      LDR.W    R1,??DataTable17_3
+   \       0x22   0x680A             LDR      R2,[R1, #+0]
+   \       0x24   0x6002             STR      R2,[R0, #+0]
+    441          
+    442          	result += SI4463_SendCommand(si4463, cmdChain, 4);
+   \       0x26   0x2204             MOVS     R2,#+4
+   \       0x28   0x4669             MOV      R1,SP
+   \       0x2A   0x0020             MOVS     R0,R4
+   \       0x2C   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x30   0x4680             MOV      R8,R0
+   \       0x32   0xEB18 0x0805      ADDS     R8,R8,R5
+    443          	result += SI4463_ReadCommandBuffer(si4463, answer, 9);
+   \       0x36   0x2209             MOVS     R2,#+9
+   \       0x38   0xA901             ADD      R1,SP,#+4
+   \       0x3A   0x0020             MOVS     R0,R4
+   \       0x3C   0x.... 0x....      BL       SI4463_ReadCommandBuffer
+   \       0x40   0xEB10 0x0008      ADDS     R0,R0,R8
+    444          
+    445          	if((result == SI4463_OK) && (answer[1] == SI4463_BYTE_CTS))
+   \       0x44   0x0001             MOVS     R1,R0
+   \       0x46   0xB249             SXTB     R1,R1
+   \       0x48   0x2900             CMP      R1,#+0
+   \       0x4A   0xD105             BNE.N    ??SI4463_ClearInterrupts_0
+   \       0x4C   0xF89D 0x1005      LDRB     R1,[SP, #+5]
+   \       0x50   0x29FF             CMP      R1,#+255
+   \       0x52   0xD101             BNE.N    ??SI4463_ClearInterrupts_0
+    446          	{
+    447          		result = SI4463_OK;
+   \       0x54   0x2100             MOVS     R1,#+0
+   \       0x56   0x0008             MOVS     R0,R1
+    448          
+    449          	}
+    450          
+    451          	return result;
+   \                     ??SI4463_ClearInterrupts_0: (+1)
+   \       0x58   0xB240             SXTB     R0,R0
+   \       0x5A   0xB006             ADD      SP,SP,#+24
+   \       0x5C   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    452          }
+    453          
+
+   \                                 In section .text, align 2, keep-with-next
+    454          int8_t SI4463_ClearAllInterrupts(const si4463_t * si4463)
+    455          {
+   \                     SI4463_ClearAllInterrupts: (+1)
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    456          	int8_t result = SI4463_OK;
+   \        0x4   0x2500             MOVS     R5,#+0
+    457          
+    458          	result += SI4463_ClearInterrupts(si4463);
+   \        0x6   0x0020             MOVS     R0,R4
+   \        0x8   0x.... 0x....      BL       SI4463_ClearInterrupts
+   \        0xC   0x0006             MOVS     R6,R0
+   \        0xE   0x1976             ADDS     R6,R6,R5
+    459          	result += SI4463_ClearChipStatus(si4463);
+   \       0x10   0x0020             MOVS     R0,R4
+   \       0x12   0x.... 0x....      BL       SI4463_ClearChipStatus
+   \       0x16   0x1980             ADDS     R0,R0,R6
+    460          
+    461          	return result;
+   \       0x18   0xB240             SXTB     R0,R0
+   \       0x1A   0xBD70             POP      {R4-R6,PC}
+    462          }
+    463          
+
+   \                                 In section .text, align 2, keep-with-next
+    464          int8_t SI4463_GetPartInfo(const si4463_t * si4463, uint8_t * pRxData)
+    465          {
+   \                     SI4463_GetPartInfo: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    466          	int8_t result = SI4463_OK;
+   \        0x6   0x2600             MOVS     R6,#+0
+    467          	uint8_t cmdChain[1] = {SI4463_CMD_PART_INFO};
+   \        0x8   0x.... 0x....      LDR.W    R0,??DataTable17_4
+   \        0xC   0x7800             LDRB     R0,[R0, #+0]
+   \        0xE   0xF88D 0x0000      STRB     R0,[SP, #+0]
+    468          
+    469          	result += SI4463_SendCommand(si4463, cmdChain, 1);
+   \       0x12   0x2201             MOVS     R2,#+1
+   \       0x14   0x4669             MOV      R1,SP
+   \       0x16   0x0020             MOVS     R0,R4
+   \       0x18   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x1C   0x0007             MOVS     R7,R0
+   \       0x1E   0x19BF             ADDS     R7,R7,R6
+    470          	result += SI4463_ReadCommandBuffer(si4463, pRxData, 9);
+   \       0x20   0x2209             MOVS     R2,#+9
+   \       0x22   0x0029             MOVS     R1,R5
+   \       0x24   0x0020             MOVS     R0,R4
+   \       0x26   0x.... 0x....      BL       SI4463_ReadCommandBuffer
+   \       0x2A   0x19C0             ADDS     R0,R0,R7
+    471          
+    472          	return result;
+   \       0x2C   0xB240             SXTB     R0,R0
+   \       0x2E   0xBDF2             POP      {R1,R4-R7,PC}
+    473          }
+    474          
+
+   \                                 In section .text, align 2, keep-with-next
+    475          int8_t SI4463_GetFuncInfo( const si4463_t * si4463, uint8_t * pRxData )
+    476          {
+   \                     SI4463_GetFuncInfo: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    477          	int8_t result = SI4463_OK;
+   \        0x6   0x2600             MOVS     R6,#+0
+    478          	uint8_t cmdChain[1] = { SI4463_CMD_FUNC_INFO };
+   \        0x8   0x.... 0x....      LDR.W    R0,??DataTable17_5
+   \        0xC   0x7800             LDRB     R0,[R0, #+0]
+   \        0xE   0xF88D 0x0000      STRB     R0,[SP, #+0]
+    479          
+    480          	result += SI4463_SendCommand( si4463, cmdChain, 1 );
+   \       0x12   0x2201             MOVS     R2,#+1
+   \       0x14   0x4669             MOV      R1,SP
+   \       0x16   0x0020             MOVS     R0,R4
+   \       0x18   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x1C   0x0007             MOVS     R7,R0
+   \       0x1E   0x19BF             ADDS     R7,R7,R6
+    481          	result += SI4463_ReadCommandBuffer( si4463, pRxData, 7 );
+   \       0x20   0x2207             MOVS     R2,#+7
+   \       0x22   0x0029             MOVS     R1,R5
+   \       0x24   0x0020             MOVS     R0,R4
+   \       0x26   0x.... 0x....      BL       SI4463_ReadCommandBuffer
+   \       0x2A   0x19C0             ADDS     R0,R0,R7
+    482          
+    483          	return result;
+   \       0x2C   0xB240             SXTB     R0,R0
+   \       0x2E   0xBDF2             POP      {R1,R4-R7,PC}
+    484          }
+    485          
+
+   \                                 In section .text, align 2, keep-with-next
+    486          int8_t SI4463_GetChipStatus(si4463_t * si4463)
+    487          {
+   \                     SI4463_GetChipStatus: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0xB086             SUB      SP,SP,#+24
+   \        0x6   0x0004             MOVS     R4,R0
+    488          	int8_t result = SI4463_OK;
+   \        0x8   0x2500             MOVS     R5,#+0
+    489          	uint8_t answer[SI4463_CMD_BUF_LEN];
+    490          	memset(answer, 0x00, SI4463_CMD_BUF_LEN);
+   \        0xA   0x2611             MOVS     R6,#+17
+   \        0xC   0x2700             MOVS     R7,#+0
+   \        0xE   0xF10D 0x0804      ADD      R8,SP,#+4
+   \       0x12   0x003A             MOVS     R2,R7
+   \       0x14   0x0031             MOVS     R1,R6
+   \       0x16   0x4640             MOV      R0,R8
+   \       0x18   0x.... 0x....      BL       __aeabi_memset
+    491          	uint8_t cmdChain[2] = {SI4463_CMD_GET_CHIP_STATUS, 0x7F};
+   \       0x1C   0x.... 0x....      LDR.W    R0,??DataTable17_6
+   \       0x20   0x8800             LDRH     R0,[R0, #+0]
+   \       0x22   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+    492          
+    493          	result += SI4463_SendCommand(si4463, cmdChain, 2);
+   \       0x26   0x2202             MOVS     R2,#+2
+   \       0x28   0x4669             MOV      R1,SP
+   \       0x2A   0x0020             MOVS     R0,R4
+   \       0x2C   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x30   0x4680             MOV      R8,R0
+   \       0x32   0xEB18 0x0805      ADDS     R8,R8,R5
+    494          	result += SI4463_ReadCommandBuffer(si4463, answer, 5);
+   \       0x36   0x2205             MOVS     R2,#+5
+   \       0x38   0xA901             ADD      R1,SP,#+4
+   \       0x3A   0x0020             MOVS     R0,R4
+   \       0x3C   0x.... 0x....      BL       SI4463_ReadCommandBuffer
+   \       0x40   0xEB10 0x0008      ADDS     R0,R0,R8
+    495          
+    496          	if((result == SI4463_OK) && (answer[1] == SI4463_BYTE_CTS))
+   \       0x44   0x0001             MOVS     R1,R0
+   \       0x46   0xB249             SXTB     R1,R1
+   \       0x48   0x2900             CMP      R1,#+0
+   \       0x4A   0xD10E             BNE.N    ??SI4463_GetChipStatus_0
+   \       0x4C   0xF89D 0x1005      LDRB     R1,[SP, #+5]
+   \       0x50   0x29FF             CMP      R1,#+255
+   \       0x52   0xD10A             BNE.N    ??SI4463_GetChipStatus_0
+    497          	{
+    498          		si4463->chipStatus.cmdError = (si4463_cmd_err_status_t)answer[4];
+   \       0x54   0xF89D 0x1008      LDRB     R1,[SP, #+8]
+   \       0x58   0xF884 0x1031      STRB     R1,[R4, #+49]
+    499          		si4463->chipStatus.cmdErrCmdId = answer[5];
+   \       0x5C   0xF89D 0x1009      LDRB     R1,[SP, #+9]
+   \       0x60   0xF884 0x1032      STRB     R1,[R4, #+50]
+    500          		result = SI4463_OK;
+   \       0x64   0x2100             MOVS     R1,#+0
+   \       0x66   0x0008             MOVS     R0,R1
+   \       0x68   0xE004             B.N      ??SI4463_GetChipStatus_1
+    501          	}
+    502          	else
+    503          	{
+    504          		si4463->chipStatus.cmdError = (si4463_cmd_err_status_t)0xFF;
+   \                     ??SI4463_GetChipStatus_0: (+1)
+   \       0x6A   0x21FF             MOVS     R1,#+255
+   \       0x6C   0xF884 0x1031      STRB     R1,[R4, #+49]
+    505          		si4463->chipStatus.cmdErrCmdId = 0xFF;
+   \       0x70   0xF884 0x1032      STRB     R1,[R4, #+50]
+    506          	}
+    507          
+    508          	return result;
+   \                     ??SI4463_GetChipStatus_1: (+1)
+   \       0x74   0xB240             SXTB     R0,R0
+   \       0x76   0xB006             ADD      SP,SP,#+24
+   \       0x78   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    509          }
+    510          
+
+   \                                 In section .text, align 2, keep-with-next
+    511          int8_t SI4463_ClearChipStatus(const si4463_t * si4463)
+    512          {
+   \                     SI4463_ClearChipStatus: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0xB086             SUB      SP,SP,#+24
+   \        0x6   0x0004             MOVS     R4,R0
+    513          	int8_t result = SI4463_OK;
+   \        0x8   0x2500             MOVS     R5,#+0
+    514          	uint8_t answer[SI4463_CMD_BUF_LEN];
+    515          	memset(answer, 0x00, SI4463_CMD_BUF_LEN);
+   \        0xA   0x2611             MOVS     R6,#+17
+   \        0xC   0x2700             MOVS     R7,#+0
+   \        0xE   0xF10D 0x0804      ADD      R8,SP,#+4
+   \       0x12   0x003A             MOVS     R2,R7
+   \       0x14   0x0031             MOVS     R1,R6
+   \       0x16   0x4640             MOV      R0,R8
+   \       0x18   0x.... 0x....      BL       __aeabi_memset
+    516          	uint8_t cmdChain[2] = {SI4463_CMD_GET_CHIP_STATUS, 0x00};
+   \       0x1C   0x.... 0x....      LDR.W    R0,??DataTable17_7
+   \       0x20   0x8800             LDRH     R0,[R0, #+0]
+   \       0x22   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+    517          
+    518          	result += SI4463_SendCommand(si4463, cmdChain, 2);
+   \       0x26   0x2202             MOVS     R2,#+2
+   \       0x28   0x4669             MOV      R1,SP
+   \       0x2A   0x0020             MOVS     R0,R4
+   \       0x2C   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x30   0x4680             MOV      R8,R0
+   \       0x32   0xEB18 0x0805      ADDS     R8,R8,R5
+    519          	result += SI4463_ReadCommandBuffer(si4463, answer, 5);
+   \       0x36   0x2205             MOVS     R2,#+5
+   \       0x38   0xA901             ADD      R1,SP,#+4
+   \       0x3A   0x0020             MOVS     R0,R4
+   \       0x3C   0x.... 0x....      BL       SI4463_ReadCommandBuffer
+   \       0x40   0xEB10 0x0008      ADDS     R0,R0,R8
+    520          
+    521          	if((result == SI4463_OK) && (answer[1] == SI4463_BYTE_CTS))
+   \       0x44   0x0001             MOVS     R1,R0
+   \       0x46   0xB249             SXTB     R1,R1
+   \       0x48   0x2900             CMP      R1,#+0
+   \       0x4A   0xD105             BNE.N    ??SI4463_ClearChipStatus_0
+   \       0x4C   0xF89D 0x1005      LDRB     R1,[SP, #+5]
+   \       0x50   0x29FF             CMP      R1,#+255
+   \       0x52   0xD101             BNE.N    ??SI4463_ClearChipStatus_0
+    522          	{
+    523          		result = SI4463_OK;
+   \       0x54   0x2100             MOVS     R1,#+0
+   \       0x56   0x0008             MOVS     R0,R1
+    524          	}
+    525          
+    526          	return result;
+   \                     ??SI4463_ClearChipStatus_0: (+1)
+   \       0x58   0xB240             SXTB     R0,R0
+   \       0x5A   0xB006             ADD      SP,SP,#+24
+   \       0x5C   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    527          }
+    528          
+
+   \                                 In section .text, align 2, keep-with-next
+    529          si4463_state_t SI4463_GetCurrentState(const si4463_t * si4463)
+    530          {
+   \                     SI4463_GetCurrentState: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0xB086             SUB      SP,SP,#+24
+   \        0x6   0x0004             MOVS     R4,R0
+    531          	int8_t commResult = SI4463_OK;
+   \        0x8   0x2600             MOVS     R6,#+0
+    532          	si4463_state_t result = noState;
+   \        0xA   0x2500             MOVS     R5,#+0
+    533          	uint8_t answer[SI4463_CMD_BUF_LEN];
+    534          	memset(answer, 0x00, SI4463_CMD_BUF_LEN);
+   \        0xC   0x2711             MOVS     R7,#+17
+   \        0xE   0xF05F 0x0800      MOVS     R8,#+0
+   \       0x12   0xF10D 0x0904      ADD      R9,SP,#+4
+   \       0x16   0x4642             MOV      R2,R8
+   \       0x18   0x0039             MOVS     R1,R7
+   \       0x1A   0x4648             MOV      R0,R9
+   \       0x1C   0x.... 0x....      BL       __aeabi_memset
+    535          	uint8_t cmdChain[1] = {SI4463_CMD_REQUEST_DEVICE_STATE};
+   \       0x20   0x.... 0x....      LDR.W    R0,??DataTable17_8
+   \       0x24   0x7800             LDRB     R0,[R0, #+0]
+   \       0x26   0xF88D 0x0000      STRB     R0,[SP, #+0]
+    536          
+    537          	commResult += SI4463_SendCommand(si4463, cmdChain, 1);
+   \       0x2A   0x2201             MOVS     R2,#+1
+   \       0x2C   0x4669             MOV      R1,SP
+   \       0x2E   0x0020             MOVS     R0,R4
+   \       0x30   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x34   0x4681             MOV      R9,R0
+   \       0x36   0xEB19 0x0906      ADDS     R9,R9,R6
+    538          	commResult += SI4463_ReadCommandBuffer(si4463, answer, 3);
+   \       0x3A   0x2203             MOVS     R2,#+3
+   \       0x3C   0xA901             ADD      R1,SP,#+4
+   \       0x3E   0x0020             MOVS     R0,R4
+   \       0x40   0x.... 0x....      BL       SI4463_ReadCommandBuffer
+   \       0x44   0x0001             MOVS     R1,R0
+   \       0x46   0xEB11 0x0109      ADDS     R1,R1,R9
+    539          
+    540          	if((answer[1] != SI4463_BYTE_CTS) || (commResult != SI4463_OK))
+   \       0x4A   0xF89D 0x0005      LDRB     R0,[SP, #+5]
+   \       0x4E   0x28FF             CMP      R0,#+255
+   \       0x50   0xD103             BNE.N    ??SI4463_GetCurrentState_0
+   \       0x52   0x0008             MOVS     R0,R1
+   \       0x54   0xB240             SXTB     R0,R0
+   \       0x56   0x2800             CMP      R0,#+0
+   \       0x58   0xD001             BEQ.N    ??SI4463_GetCurrentState_1
+    541          	{
+    542          		result = noState;
+   \                     ??SI4463_GetCurrentState_0: (+1)
+   \       0x5A   0x2000             MOVS     R0,#+0
+   \       0x5C   0xE001             B.N      ??SI4463_GetCurrentState_2
+    543          	}
+    544          	else
+    545          	{
+    546          		result = (si4463_state_t)answer[2];
+   \                     ??SI4463_GetCurrentState_1: (+1)
+   \       0x5E   0xF89D 0x0006      LDRB     R0,[SP, #+6]
+    547          	}
+    548          
+    549          	return result;
+   \                     ??SI4463_GetCurrentState_2: (+1)
+   \       0x62   0xB2C0             UXTB     R0,R0
+   \       0x64   0xB007             ADD      SP,SP,#+28
+   \       0x66   0xE8BD 0x83F0      POP      {R4-R9,PC}
+    550          }
+    551          
+
+   \                                 In section .text, align 2, keep-with-next
+    552          int8_t SI4463_SetCurrentState(const si4463_t * si4463, const si4463_state_t state)
+    553          {
+   \                     SI4463_SetCurrentState: (+1)
+   \        0x0   0xE92D 0x41FC      PUSH     {R2-R8,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+    554          	int8_t result = SI4463_OK;
+   \        0x8   0x2700             MOVS     R7,#+0
+    555          	si4463_state_t newState = noState;
+   \        0xA   0x2600             MOVS     R6,#+0
+    556          	uint8_t cmdChain[2] = {SI4463_CMD_CHANGE_STATE, (uint8_t)state};
+   \        0xC   0x....             LDR.N    R0,??DataTable17_9
+   \        0xE   0x8800             LDRH     R0,[R0, #+0]
+   \       0x10   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+   \       0x14   0xF88D 0x5001      STRB     R5,[SP, #+1]
+    557          
+    558          	result += SI4463_SendCommand(si4463, cmdChain, sizeof(cmdChain));
+   \       0x18   0x2202             MOVS     R2,#+2
+   \       0x1A   0x4669             MOV      R1,SP
+   \       0x1C   0x0020             MOVS     R0,R4
+   \       0x1E   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x22   0x4680             MOV      R8,R0
+   \       0x24   0xEB18 0x0807      ADDS     R8,R8,R7
+    559          
+    560          	/* Check software CTS */
+    561          	if(!(SI4463_GetSwCts(si4463) == SI4463_BYTE_CTS))
+   \       0x28   0x0020             MOVS     R0,R4
+   \       0x2A   0x.... 0x....      BL       SI4463_GetSwCts
+   \       0x2E   0x28FF             CMP      R0,#+255
+   \       0x30   0xD001             BEQ.N    ??SI4463_SetCurrentState_0
+    562          	{
+    563          		result += SI4463_ERR_NO_SW_CTS;
+   \       0x32   0xF1B8 0x0828      SUBS     R8,R8,#+40
+    564          	}
+    565          
+    566          	/* Get current state */
+    567          	newState = SI4463_GetCurrentState(si4463);
+   \                     ??SI4463_SetCurrentState_0: (+1)
+   \       0x36   0x0020             MOVS     R0,R4
+   \       0x38   0x.... 0x....      BL       SI4463_GetCurrentState
+   \       0x3C   0x0001             MOVS     R1,R0
+    568          
+    569          	/* Check what new state is setted */
+    570          	if (state != newState)
+   \       0x3E   0x0028             MOVS     R0,R5
+   \       0x40   0x000A             MOVS     R2,R1
+   \       0x42   0xB2C0             UXTB     R0,R0
+   \       0x44   0xB2D2             UXTB     R2,R2
+   \       0x46   0x4290             CMP      R0,R2
+   \       0x48   0xD001             BEQ.N    ??SI4463_SetCurrentState_1
+    571          	{
+    572          		result += SI4463_NG;
+   \       0x4A   0xF1B8 0x0801      SUBS     R8,R8,#+1
+    573          	}
+    574          
+    575          	return result;
+   \                     ??SI4463_SetCurrentState_1: (+1)
+   \       0x4E   0x4640             MOV      R0,R8
+   \       0x50   0xB240             SXTB     R0,R0
+   \       0x52   0xE8BD 0x81F6      POP      {R1,R2,R4-R8,PC}
+    576          }
+
+   \                                 In section .rodata, align 2
+   \                     ?_14:
+   \        0x0   0x34 0x00          DC8 52, 0
+    577          
+
+   \                                 In section .text, align 2, keep-with-next
+    578          int8_t SI4463_StartRx(const si4463_t * si4463, const uint16_t len, const bool goToRxAfterTimeout, const bool goToRxAfterValid, const bool goToRxAfterInvalid)
+    579          {
+   \                     SI4463_StartRx: (+1)
+   \        0x0   0xE92D 0x4FF1      PUSH     {R0,R4-R11,LR}
+   \        0x4   0xB082             SUB      SP,SP,#+8
+   \        0x6   0x000D             MOVS     R5,R1
+   \        0x8   0x0016             MOVS     R6,R2
+   \        0xA   0x001F             MOVS     R7,R3
+   \        0xC   0x9C0C             LDR      R4,[SP, #+48]
+    580          	int8_t result = SI4463_OK;
+   \        0xE   0xF05F 0x0800      MOVS     R8,#+0
+    581          	uint8_t stateAfterTimeout = 0x00;
+   \       0x12   0xF05F 0x0900      MOVS     R9,#+0
+    582          	uint8_t stateAfterValid = 0x00;
+   \       0x16   0xF05F 0x0A00      MOVS     R10,#+0
+    583          	uint8_t stateAfterInvalid = 0x00;
+   \       0x1A   0xF05F 0x0B00      MOVS     R11,#+0
+    584          
+    585          	if (goToRxAfterTimeout)
+   \       0x1E   0x0030             MOVS     R0,R6
+   \       0x20   0xB2C0             UXTB     R0,R0
+   \       0x22   0x2800             CMP      R0,#+0
+   \       0x24   0xD001             BEQ.N    ??SI4463_StartRx_0
+    586          	{
+    587          		stateAfterTimeout = 0x08;
+   \       0x26   0x2008             MOVS     R0,#+8
+   \       0x28   0x4681             MOV      R9,R0
+    588          	}
+    589          
+    590          	if (goToRxAfterValid)
+   \                     ??SI4463_StartRx_0: (+1)
+   \       0x2A   0x0038             MOVS     R0,R7
+   \       0x2C   0xB2C0             UXTB     R0,R0
+   \       0x2E   0x2800             CMP      R0,#+0
+   \       0x30   0xD001             BEQ.N    ??SI4463_StartRx_1
+    591          	{
+    592          		stateAfterValid = 0x08;
+   \       0x32   0x2008             MOVS     R0,#+8
+   \       0x34   0x4682             MOV      R10,R0
+    593          	}
+    594          
+    595          	if (goToRxAfterInvalid)
+   \                     ??SI4463_StartRx_1: (+1)
+   \       0x36   0x0020             MOVS     R0,R4
+   \       0x38   0xB2C0             UXTB     R0,R0
+   \       0x3A   0x2800             CMP      R0,#+0
+   \       0x3C   0xD001             BEQ.N    ??SI4463_StartRx_2
+    596          	{
+    597          		stateAfterInvalid = 0x08;
+   \       0x3E   0x2008             MOVS     R0,#+8
+   \       0x40   0x4683             MOV      R11,R0
+    598          	}
+    599          
+    600          	uint8_t cmdChain[8] = {SI4463_CMD_START_RX,
+    601          							RADIO_CONFIGURATION_DATA_CHANNEL_NUMBER,
+    602          							0x00,
+    603          							(len & 0xFF00) >> 8,
+    604          							len & 0xFF,
+    605          							stateAfterTimeout,
+    606          							stateAfterValid,
+    607          							stateAfterInvalid};
+   \                     ??SI4463_StartRx_2: (+1)
+   \       0x42   0x4668             MOV      R0,SP
+   \       0x44   0x....             LDR.N    R1,??DataTable17_10
+   \       0x46   0xE9D1 0x2300      LDRD     R2,R3,[R1, #+0]
+   \       0x4A   0xE9C0 0x2300      STRD     R2,R3,[R0, #+0]
+   \       0x4E   0x0028             MOVS     R0,R5
+   \       0x50   0xB280             UXTH     R0,R0
+   \       0x52   0x0A00             LSRS     R0,R0,#+8
+   \       0x54   0xF88D 0x0003      STRB     R0,[SP, #+3]
+   \       0x58   0x0028             MOVS     R0,R5
+   \       0x5A   0xF88D 0x0004      STRB     R0,[SP, #+4]
+   \       0x5E   0xF88D 0x9005      STRB     R9,[SP, #+5]
+   \       0x62   0xF88D 0xA006      STRB     R10,[SP, #+6]
+   \       0x66   0xF88D 0xB007      STRB     R11,[SP, #+7]
+    608          
+    609          	result += SI4463_SendCommand(si4463, cmdChain, sizeof(cmdChain));
+   \       0x6A   0x2208             MOVS     R2,#+8
+   \       0x6C   0x4669             MOV      R1,SP
+   \       0x6E   0x9802             LDR      R0,[SP, #+8]
+   \       0x70   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x74   0xEB10 0x0008      ADDS     R0,R0,R8
+    610          
+    611          
+    612          	//if(SI4463_WaitCTS(si4463, SI4463_TRIES, SI4463_DELAY_TRIES))
+    613          	//{
+    614          		/* Got HW CTS signal */
+    615          		/* Try to get SW CTS signal */
+    616          		//if(!SI4463_WaitSwCTS(si4463, SI4463_TRIES, SI4463_DELAY_TRIES))
+    617          		//{
+    618          			/* Can't got SW CTS signal */
+    619          		//	result = SI4463_WARN_NO_SW_CTS_AFTER_CMD;
+    620          		//}
+    621          	//}
+    622          	//else
+    623          	//{
+    624          	//	/* Can't got HW CTS after send command */
+    625          	//	result += SI4463_WARN_NO_HW_CTS_AFTER_CMD;
+    626          	//}
+    627          
+    628          	return result;
+   \       0x78   0xB240             SXTB     R0,R0
+   \       0x7A   0xE8BD 0x8FFE      POP      {R1-R11,PC}
+    629          }
+
+   \                                 In section .rodata, align 4
+   \                     ?_15:
+   \        0x0   0x32 0x0A          DC8 50, 10, 0, 0, 0, 0, 0, 0
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00
+    630          
+
+   \                                 In section .text, align 2, keep-with-next
+    631          int8_t SI4463_StartTx(const si4463_t * si4463, const uint16_t len, const bool goToRxAfterTx)
+    632          {
+   \                     SI4463_StartTx: (+1)
+   \        0x0   0xE92D 0x43FE      PUSH     {R1-R9,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+   \        0x8   0x0016             MOVS     R6,R2
+    633          	int8_t result = SI4463_OK;
+   \        0xA   0x2700             MOVS     R7,#+0
+    634          	uint8_t stateAfterTx = 0x00;
+   \        0xC   0xF05F 0x0800      MOVS     R8,#+0
+    635          
+    636          	if (goToRxAfterTx)
+   \       0x10   0x0030             MOVS     R0,R6
+   \       0x12   0xB2C0             UXTB     R0,R0
+   \       0x14   0x2800             CMP      R0,#+0
+   \       0x16   0xD001             BEQ.N    ??SI4463_StartTx_0
+    637          	{
+    638          		stateAfterTx = 0x80;
+   \       0x18   0x2080             MOVS     R0,#+128
+   \       0x1A   0x4680             MOV      R8,R0
+    639          	}
+    640          
+    641          	uint8_t cmdChain[5] = {SI4463_CMD_START_TX,
+    642          								RADIO_CONFIGURATION_DATA_CHANNEL_NUMBER,
+    643          								stateAfterTx,
+    644          								((len & 0xFF00) >> 8) & 0x1F,
+    645          								len & 0xFF};
+   \                     ??SI4463_StartTx_0: (+1)
+   \       0x1C   0x4668             MOV      R0,SP
+   \       0x1E   0x....             LDR.N    R1,??DataTable17_11
+   \       0x20   0xE9D1 0x2300      LDRD     R2,R3,[R1, #+0]
+   \       0x24   0xE9C0 0x2300      STRD     R2,R3,[R0, #+0]
+   \       0x28   0xF88D 0x8002      STRB     R8,[SP, #+2]
+   \       0x2C   0x0028             MOVS     R0,R5
+   \       0x2E   0xB280             UXTH     R0,R0
+   \       0x30   0x0A00             LSRS     R0,R0,#+8
+   \       0x32   0xF010 0x001F      ANDS     R0,R0,#0x1F
+   \       0x36   0xF88D 0x0003      STRB     R0,[SP, #+3]
+   \       0x3A   0x0028             MOVS     R0,R5
+   \       0x3C   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    646          
+    647          	result += SI4463_SendCommand(si4463, cmdChain, 5);
+   \       0x40   0x2205             MOVS     R2,#+5
+   \       0x42   0x4669             MOV      R1,SP
+   \       0x44   0x0020             MOVS     R0,R4
+   \       0x46   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x4A   0x4681             MOV      R9,R0
+   \       0x4C   0xEB19 0x0907      ADDS     R9,R9,R7
+    648          
+    649          	/* TODO post to the forum
+    650          	 * If no wait of CTS line polling there is possibility what
+    651          	 * for next command data will not be translated */
+    652          	if(SI4463_WaitCTS(si4463, SI4463_TRIES, SI4463_DELAY_TRIES))
+   \       0x50   0x2201             MOVS     R2,#+1
+   \       0x52   0x2164             MOVS     R1,#+100
+   \       0x54   0x0020             MOVS     R0,R4
+   \       0x56   0x.... 0x....      BL       SI4463_WaitCTS
+   \       0x5A   0x2800             CMP      R0,#+0
+   \       0x5C   0xD00A             BEQ.N    ??SI4463_StartTx_1
+    653          	{
+    654          		/* Got HW CTS signal */
+    655          		/* Try to get SW CTS signal */
+    656          		if(!SI4463_WaitSwCTS(si4463, SI4463_TRIES, SI4463_DELAY_TRIES))
+   \       0x5E   0x2201             MOVS     R2,#+1
+   \       0x60   0x2164             MOVS     R1,#+100
+   \       0x62   0x0020             MOVS     R0,R4
+   \       0x64   0x.... 0x....      BL       SI4463_WaitSwCTS
+   \       0x68   0x2800             CMP      R0,#+0
+   \       0x6A   0xD105             BNE.N    ??SI4463_StartTx_2
+    657          		{
+    658          			/* Can't got SW CTS signal */
+    659          			result = SI4463_WARN_NO_SW_CTS_AFTER_CMD;
+   \       0x6C   0xF07F 0x0045      MVNS     R0,#+69
+   \       0x70   0x4681             MOV      R9,R0
+   \       0x72   0xE001             B.N      ??SI4463_StartTx_2
+    660          		}
+    661          	}
+    662          	else
+    663          	{
+    664          		/* Can't got HW CTS after send command */
+    665          		result += SI4463_WARN_NO_HW_CTS_AFTER_CMD;
+   \                     ??SI4463_StartTx_1: (+1)
+   \       0x74   0xF1B9 0x093C      SUBS     R9,R9,#+60
+    666          	}
+    667          
+    668          	return result;
+   \                     ??SI4463_StartTx_2: (+1)
+   \       0x78   0x4648             MOV      R0,R9
+   \       0x7A   0xB240             SXTB     R0,R0
+   \       0x7C   0xE8BD 0x83FE      POP      {R1-R9,PC}
+    669          }
+
+   \                                 In section .rodata, align 4
+   \                     ?_16:
+   \        0x0   0x31 0x0A          DC8 49, 10, 0, 0, 0
+
+   \              0x00 0x00    
+
+   \              0x00
+   \        0x5                      DS8 3
+    670          
+
+   \                                 In section .text, align 2, keep-with-next
+    671          int8_t SI4463_WriteTxFifo(const si4463_t * si4463, const uint8_t * msg, const uint16_t msgLen)
+    672          {
+   \                     SI4463_WriteTxFifo: (+1)
+   \        0x0   0xE92D 0x4FF8      PUSH     {R3-R11,LR}
+   \        0x4   0xF5AD 0x6D81      SUB      SP,SP,#+1032
+   \        0x8   0x0004             MOVS     R4,R0
+   \        0xA   0x000D             MOVS     R5,R1
+   \        0xC   0x0016             MOVS     R6,R2
+    673          	//TODO check what len < FIFO size
+    674          	int8_t result = SI4463_OK;
+   \        0xE   0x2700             MOVS     R7,#+0
+    675          	uint8_t command[1024+1];
+    676          	memset(command, 0, msgLen+1);
+   \       0x10   0x46B0             MOV      R8,R6
+   \       0x12   0xFA1F 0xF888      UXTH     R8,R8
+   \       0x16   0xF118 0x0801      ADDS     R8,R8,#+1
+   \       0x1A   0xF05F 0x0900      MOVS     R9,#+0
+   \       0x1E   0xF10D 0x0A04      ADD      R10,SP,#+4
+   \       0x22   0x464A             MOV      R2,R9
+   \       0x24   0x4641             MOV      R1,R8
+   \       0x26   0x4650             MOV      R0,R10
+   \       0x28   0x.... 0x....      BL       __aeabi_memset
+    677          
+    678          	command[0] = SI4463_CMD_WRITE_TX_FIFO;
+   \       0x2C   0x2066             MOVS     R0,#+102
+   \       0x2E   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    679          	memcpy(&command[1], msg, msgLen);
+   \       0x32   0x46B2             MOV      R10,R6
+   \       0x34   0xFA1F 0xFA8A      UXTH     R10,R10
+   \       0x38   0x9500             STR      R5,[SP, #+0]
+   \       0x3A   0xF10D 0x0B05      ADD      R11,SP,#+5
+   \       0x3E   0x4652             MOV      R2,R10
+   \       0x40   0x9900             LDR      R1,[SP, #+0]
+   \       0x42   0x4658             MOV      R0,R11
+   \       0x44   0x.... 0x....      BL       __aeabi_memcpy
+    680          
+    681          	result += SI4463_SendCommand(si4463, command, sizeof(command));
+   \       0x48   0xF240 0x4201      MOVW     R2,#+1025
+   \       0x4C   0xA901             ADD      R1,SP,#+4
+   \       0x4E   0x0020             MOVS     R0,R4
+   \       0x50   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x54   0x19C0             ADDS     R0,R0,R7
+    682          
+    683          	return result;
+   \       0x56   0xB240             SXTB     R0,R0
+   \       0x58   0xF50D 0x6D80      ADD      SP,SP,#+1024
+   \       0x5C   0xB003             ADD      SP,SP,#+12
+   \       0x5E   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+    684          }
+    685          
+
+   \                                 In section .text, align 2, keep-with-next
+    686          int8_t SI4463_ReadRxFifo(const si4463_t * si4463, uint8_t * msg, const uint16_t msgLen)
+    687          {
+   \                     SI4463_ReadRxFifo: (+1)
+   \        0x0   0xE92D 0x4FF3      PUSH     {R0,R1,R4-R11,LR}
+   \        0x4   0xF5AD 0x6D00      SUB      SP,SP,#+2048
+   \        0x8   0xB083             SUB      SP,SP,#+12
+   \        0xA   0x0004             MOVS     R4,R0
+   \        0xC   0x0015             MOVS     R5,R2
+    688          	int8_t result = SI4463_OK;
+   \        0xE   0x2600             MOVS     R6,#+0
+    689          	uint8_t tryCount = SI4463_TRIES;
+   \       0x10   0x2764             MOVS     R7,#+100
+    690          	uint8_t cmdBuf[1024 + 1];
+    691          	memset(cmdBuf, 0x00, msgLen + 1);
+   \       0x12   0x46A8             MOV      R8,R5
+   \       0x14   0xFA1F 0xF888      UXTH     R8,R8
+   \       0x18   0xF118 0x0801      ADDS     R8,R8,#+1
+   \       0x1C   0x2000             MOVS     R0,#+0
+   \       0x1E   0x9000             STR      R0,[SP, #+0]
+   \       0x20   0xF50D 0x6981      ADD      R9,SP,#+1032
+   \       0x24   0x9A00             LDR      R2,[SP, #+0]
+   \       0x26   0x4641             MOV      R1,R8
+   \       0x28   0x4648             MOV      R0,R9
+   \       0x2A   0x.... 0x....      BL       __aeabi_memset
+    692          
+    693          	uint8_t command[1024+1];
+    694          	memset(command, 0, msgLen+1);
+   \       0x2E   0x46A9             MOV      R9,R5
+   \       0x30   0xFA1F 0xF989      UXTH     R9,R9
+   \       0x34   0xF119 0x0901      ADDS     R9,R9,#+1
+   \       0x38   0xF05F 0x0A00      MOVS     R10,#+0
+   \       0x3C   0xF10D 0x0B04      ADD      R11,SP,#+4
+   \       0x40   0x4652             MOV      R2,R10
+   \       0x42   0x4649             MOV      R1,R9
+   \       0x44   0x4658             MOV      R0,R11
+   \       0x46   0x.... 0x....      BL       __aeabi_memset
+    695          	command[0] = SI4463_CMD_READ_RX_FIFO;
+   \       0x4A   0x2077             MOVS     R0,#+119
+   \       0x4C   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    696          
+    697          	//TODO check what len < FIFO size
+    698          	//TODO rewrite
+    699          	while(tryCount)
+   \                     ??SI4463_ReadRxFifo_0: (+1)
+   \       0x50   0x0038             MOVS     R0,R7
+   \       0x52   0xB2C0             UXTB     R0,R0
+   \       0x54   0x2800             CMP      R0,#+0
+   \       0x56   0xD027             BEQ.N    ??SI4463_ReadRxFifo_1
+    700          	{
+    701          		if(si4463->IsClearToSend())
+   \       0x58   0x69A0             LDR      R0,[R4, #+24]
+   \       0x5A   0x4780             BLX      R0
+   \       0x5C   0x2800             CMP      R0,#+0
+   \       0x5E   0xD01B             BEQ.N    ??SI4463_ReadRxFifo_2
+    702          		{
+    703          			/* CTS is clear and we can send data */
+    704          			si4463->Select();
+   \       0x60   0x68E0             LDR      R0,[R4, #+12]
+   \       0x62   0x4780             BLX      R0
+    705          			si4463->WriteRead(command, cmdBuf, sizeof(command));
+   \       0x64   0xF240 0x4201      MOVW     R2,#+1025
+   \       0x68   0xF50D 0x6181      ADD      R1,SP,#+1032
+   \       0x6C   0xA801             ADD      R0,SP,#+4
+   \       0x6E   0x6823             LDR      R3,[R4, #+0]
+   \       0x70   0x4798             BLX      R3
+    706          			si4463->Deselect();
+   \       0x72   0x6920             LDR      R0,[R4, #+16]
+   \       0x74   0x4780             BLX      R0
+    707          
+    708          			/* Copy RX buffer data to out exlcude dummy byte */
+    709          			memcpy(msg, &cmdBuf[1], msgLen);
+   \       0x76   0x46A8             MOV      R8,R5
+   \       0x78   0xFA1F 0xF888      UXTH     R8,R8
+   \       0x7C   0xF50D 0x797F      ADD      R9,SP,#+1020
+   \       0x80   0xF119 0x090D      ADDS     R9,R9,#+13
+   \       0x84   0xF8DD 0xA810      LDR      R10,[SP, #+2064]
+   \       0x88   0x4642             MOV      R2,R8
+   \       0x8A   0x4649             MOV      R1,R9
+   \       0x8C   0x4650             MOV      R0,R10
+   \       0x8E   0x.... 0x....      BL       __aeabi_memcpy
+    710          
+    711          			/* Everything is OK and we can return OK code */
+    712          			result = SI4463_OK;
+   \       0x92   0x2000             MOVS     R0,#+0
+   \       0x94   0x0006             MOVS     R6,R0
+    713          			break;
+   \       0x96   0xE007             B.N      ??SI4463_ReadRxFifo_1
+    714          		}
+    715          		else
+    716          		{
+    717          			/* CTS is no clear. We wait 5 times to try send again */
+    718          			/* Try to get CTS clear by done NOP operation */
+    719          			si4463->DelayMs(SI4463_DELAY_TRIES);
+   \                     ??SI4463_ReadRxFifo_2: (+1)
+   \       0x98   0x2001             MOVS     R0,#+1
+   \       0x9A   0x6961             LDR      R1,[R4, #+20]
+   \       0x9C   0x4788             BLX      R1
+    720          			--tryCount;
+   \       0x9E   0x1E7F             SUBS     R7,R7,#+1
+    721          			result = SI4463_ERR_NO_HW_CTS;
+   \       0xA0   0xF07F 0x001D      MVNS     R0,#+29
+   \       0xA4   0x0006             MOVS     R6,R0
+   \       0xA6   0xE7D3             B.N      ??SI4463_ReadRxFifo_0
+    722          		}
+    723          	}
+    724          
+    725          	return result;
+   \                     ??SI4463_ReadRxFifo_1: (+1)
+   \       0xA8   0x0030             MOVS     R0,R6
+   \       0xAA   0xB240             SXTB     R0,R0
+   \       0xAC   0xF50D 0x6D00      ADD      SP,SP,#+2048
+   \       0xB0   0xB005             ADD      SP,SP,#+20
+   \       0xB2   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+    726          }
+    727          
+
+   \                                 In section .text, align 2, keep-with-next
+    728          uint8_t SI4463_GetTxFifoRemainBytes(const si4463_t * si4463)
+    729          {
+   \                     SI4463_GetTxFifoRemainBytes: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0xB086             SUB      SP,SP,#+24
+   \        0x6   0x0004             MOVS     R4,R0
+    730          	int8_t commResult = SI4463_OK;
+   \        0x8   0x2600             MOVS     R6,#+0
+    731          	uint8_t result = 0;
+   \        0xA   0x2500             MOVS     R5,#+0
+    732          	uint8_t answer[SI4463_CMD_BUF_LEN];
+    733          	memset(answer, 0x00, SI4463_CMD_BUF_LEN);
+   \        0xC   0x2711             MOVS     R7,#+17
+   \        0xE   0xF05F 0x0800      MOVS     R8,#+0
+   \       0x12   0xF10D 0x0904      ADD      R9,SP,#+4
+   \       0x16   0x4642             MOV      R2,R8
+   \       0x18   0x0039             MOVS     R1,R7
+   \       0x1A   0x4648             MOV      R0,R9
+   \       0x1C   0x.... 0x....      BL       __aeabi_memset
+    734          	uint8_t cmdChain[2] = {SI4463_CMD_FIFO_INFO,
+    735          								0x00};
+   \       0x20   0x....             LDR.N    R0,??DataTable17_12
+   \       0x22   0x8800             LDRH     R0,[R0, #+0]
+   \       0x24   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+    736          
+    737          	commResult += SI4463_SendCommand(si4463, cmdChain, sizeof(cmdChain));
+   \       0x28   0x2202             MOVS     R2,#+2
+   \       0x2A   0x4669             MOV      R1,SP
+   \       0x2C   0x0020             MOVS     R0,R4
+   \       0x2E   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x32   0x4681             MOV      R9,R0
+   \       0x34   0xEB19 0x0906      ADDS     R9,R9,R6
+    738          	commResult += SI4463_ReadCommandBuffer(si4463, answer, SI4463_MAX_ANSWER_LEN);
+   \       0x38   0x2210             MOVS     R2,#+16
+   \       0x3A   0xA901             ADD      R1,SP,#+4
+   \       0x3C   0x0020             MOVS     R0,R4
+   \       0x3E   0x.... 0x....      BL       SI4463_ReadCommandBuffer
+   \       0x42   0x0001             MOVS     R1,R0
+   \       0x44   0xEB11 0x0109      ADDS     R1,R1,R9
+    739          
+    740          	if(commResult == SI4463_OK)
+   \       0x48   0x0008             MOVS     R0,R1
+   \       0x4A   0xB240             SXTB     R0,R0
+   \       0x4C   0x2800             CMP      R0,#+0
+   \       0x4E   0xD102             BNE.N    ??SI4463_GetTxFifoRemainBytes_0
+    741          	{
+    742          		result = answer[3];
+   \       0x50   0xF89D 0x0007      LDRB     R0,[SP, #+7]
+   \       0x54   0xE000             B.N      ??SI4463_GetTxFifoRemainBytes_1
+    743          	}
+    744          	else
+    745          	{
+    746          		result = SI4463_VALUE_ERR;
+   \                     ??SI4463_GetTxFifoRemainBytes_0: (+1)
+   \       0x56   0x20FF             MOVS     R0,#+255
+    747          	}
+    748          	return result;
+   \                     ??SI4463_GetTxFifoRemainBytes_1: (+1)
+   \       0x58   0xB2C0             UXTB     R0,R0
+   \       0x5A   0xB007             ADD      SP,SP,#+28
+   \       0x5C   0xE8BD 0x83F0      POP      {R4-R9,PC}
+    749          }
+    750          
+
+   \                                 In section .text, align 2, keep-with-next
+    751          uint8_t SI4463_GetRxFifoReceivedBytes(const si4463_t * si4463)
+    752          {
+   \                     SI4463_GetRxFifoReceivedBytes: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \        0x4   0xB086             SUB      SP,SP,#+24
+   \        0x6   0x0004             MOVS     R4,R0
+    753          	uint8_t commResult = SI4463_OK;
+   \        0x8   0x2600             MOVS     R6,#+0
+    754          	uint8_t result = 0;
+   \        0xA   0x2500             MOVS     R5,#+0
+    755          	uint8_t answer[SI4463_CMD_BUF_LEN];
+    756          	memset(answer, 0x00, SI4463_CMD_BUF_LEN);
+   \        0xC   0x2711             MOVS     R7,#+17
+   \        0xE   0xF05F 0x0800      MOVS     R8,#+0
+   \       0x12   0xF10D 0x0904      ADD      R9,SP,#+4
+   \       0x16   0x4642             MOV      R2,R8
+   \       0x18   0x0039             MOVS     R1,R7
+   \       0x1A   0x4648             MOV      R0,R9
+   \       0x1C   0x.... 0x....      BL       __aeabi_memset
+    757          	uint8_t cmdChain[2] = {SI4463_CMD_FIFO_INFO,
+    758          								0x00};
+   \       0x20   0x....             LDR.N    R0,??DataTable17_13
+   \       0x22   0x8800             LDRH     R0,[R0, #+0]
+   \       0x24   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+    759          
+    760          	commResult += SI4463_SendCommand(si4463, cmdChain, sizeof(cmdChain));
+   \       0x28   0x2202             MOVS     R2,#+2
+   \       0x2A   0x4669             MOV      R1,SP
+   \       0x2C   0x0020             MOVS     R0,R4
+   \       0x2E   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x32   0x4681             MOV      R9,R0
+   \       0x34   0xEB19 0x0906      ADDS     R9,R9,R6
+    761          	commResult += SI4463_ReadCommandBuffer(si4463, answer, SI4463_MAX_ANSWER_LEN);
+   \       0x38   0x2210             MOVS     R2,#+16
+   \       0x3A   0xA901             ADD      R1,SP,#+4
+   \       0x3C   0x0020             MOVS     R0,R4
+   \       0x3E   0x.... 0x....      BL       SI4463_ReadCommandBuffer
+   \       0x42   0x0001             MOVS     R1,R0
+   \       0x44   0xEB11 0x0109      ADDS     R1,R1,R9
+    762          
+    763          	if(commResult == SI4463_OK)
+   \       0x48   0x0008             MOVS     R0,R1
+   \       0x4A   0xB2C0             UXTB     R0,R0
+   \       0x4C   0x2800             CMP      R0,#+0
+   \       0x4E   0xD102             BNE.N    ??SI4463_GetRxFifoReceivedBytes_0
+    764          	{
+    765          		result = answer[2];
+   \       0x50   0xF89D 0x0006      LDRB     R0,[SP, #+6]
+   \       0x54   0xE000             B.N      ??SI4463_GetRxFifoReceivedBytes_1
+    766          	}
+    767          	else
+    768          	{
+    769          		result = SI4463_VALUE_ERR;
+   \                     ??SI4463_GetRxFifoReceivedBytes_0: (+1)
+   \       0x56   0x20FF             MOVS     R0,#+255
+    770          	}
+    771          	return result;
+   \                     ??SI4463_GetRxFifoReceivedBytes_1: (+1)
+   \       0x58   0xB2C0             UXTB     R0,R0
+   \       0x5A   0xB007             ADD      SP,SP,#+28
+   \       0x5C   0xE8BD 0x83F0      POP      {R4-R9,PC}
+    772          }
+    773          
+
+   \                                 In section .text, align 2, keep-with-next
+    774          int8_t SI4463_ClearRxFifo(const si4463_t * si4463)
+    775          {
+   \                     SI4463_ClearRxFifo: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    776          	int8_t result = SI4463_OK;
+   \        0x4   0x2500             MOVS     R5,#+0
+    777          	uint8_t cmdChain[2] = {SI4463_CMD_FIFO_INFO,
+    778          							0x02};
+   \        0x6   0x....             LDR.N    R0,??DataTable17_14
+   \        0x8   0x8800             LDRH     R0,[R0, #+0]
+   \        0xA   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+    779          
+    780          	result += SI4463_SendCommand(si4463, cmdChain, 2);
+   \        0xE   0x2202             MOVS     R2,#+2
+   \       0x10   0x4669             MOV      R1,SP
+   \       0x12   0x0020             MOVS     R0,R4
+   \       0x14   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x18   0x1940             ADDS     R0,R0,R5
+    781          
+    782          	return result;
+   \       0x1A   0xB240             SXTB     R0,R0
+   \       0x1C   0xBD32             POP      {R1,R4,R5,PC}
+    783          }
+    784          
+
+   \                                 In section .text, align 2, keep-with-next
+    785          int8_t SI4463_ClearTxFifo(const si4463_t * si4463)
+    786          {
+   \                     SI4463_ClearTxFifo: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    787          	int8_t result = SI4463_OK;
+   \        0x4   0x2500             MOVS     R5,#+0
+    788          	uint8_t cmdChain[2] = {SI4463_CMD_FIFO_INFO,
+    789          								0x01};
+   \        0x6   0x....             LDR.N    R0,??DataTable17_15
+   \        0x8   0x8800             LDRH     R0,[R0, #+0]
+   \        0xA   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+    790          
+    791          	result += SI4463_SendCommand(si4463, cmdChain, 2);
+   \        0xE   0x2202             MOVS     R2,#+2
+   \       0x10   0x4669             MOV      R1,SP
+   \       0x12   0x0020             MOVS     R0,R4
+   \       0x14   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x18   0x1940             ADDS     R0,R0,R5
+    792          
+    793          	return result;
+   \       0x1A   0xB240             SXTB     R0,R0
+   \       0x1C   0xBD32             POP      {R1,R4,R5,PC}
+    794          }
+    795          
+
+   \                                 In section .text, align 2, keep-with-next
+    796          int8_t SI4463_ClearSharedFifo(const si4463_t * si4463)
+    797          {
+   \                     SI4463_ClearSharedFifo: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    798          	int8_t result = SI4463_OK;
+   \        0x4   0x2500             MOVS     R5,#+0
+    799          	uint8_t cmdChain[2] = {SI4463_CMD_FIFO_INFO,
+    800          								0x01 | 0x02};
+   \        0x6   0x....             LDR.N    R0,??DataTable17_16
+   \        0x8   0x8800             LDRH     R0,[R0, #+0]
+   \        0xA   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+    801          
+    802          	result += SI4463_SendCommand(si4463, cmdChain, 2);
+   \        0xE   0x2202             MOVS     R2,#+2
+   \       0x10   0x4669             MOV      R1,SP
+   \       0x12   0x0020             MOVS     R0,R4
+   \       0x14   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x18   0x1940             ADDS     R0,R0,R5
+    803          
+    804          	return result;
+   \       0x1A   0xB240             SXTB     R0,R0
+   \       0x1C   0xBD32             POP      {R1,R4,R5,PC}
+    805          }
+    806          
+
+   \                                 In section .text, align 2, keep-with-next
+    807          int8_t SI4463_Transmit(const si4463_t * si4463, const uint8_t * packet, const uint8_t len)
+    808          {
+   \                     SI4463_Transmit: (+1)
+   \        0x0   0xE92D 0x47F0      PUSH     {R4-R10,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+   \        0x6   0x000D             MOVS     R5,R1
+   \        0x8   0x0016             MOVS     R6,R2
+    809          	int8_t result = SI4463_OK;
+   \        0xA   0xF05F 0x0900      MOVS     R9,#+0
+    810          	uint8_t remainBytes = 0;
+   \        0xE   0xF05F 0x0A00      MOVS     R10,#+0
+    811          
+    812          	result += SI4463_ClearAllInterrupts(si4463);
+   \       0x12   0x0020             MOVS     R0,R4
+   \       0x14   0x.... 0x....      BL       SI4463_ClearAllInterrupts
+   \       0x18   0x0007             MOVS     R7,R0
+   \       0x1A   0xEB17 0x0709      ADDS     R7,R7,R9
+    813          
+    814          	/* Check what FIFO has enought empty bytes and what it value is valid */
+    815          	remainBytes = SI4463_GetTxFifoRemainBytes(si4463);
+   \       0x1E   0x0020             MOVS     R0,R4
+   \       0x20   0x.... 0x....      BL       SI4463_GetTxFifoRemainBytes
+   \       0x24   0x4680             MOV      R8,R0
+    816          	if((remainBytes >= len) && (remainBytes != SI4463_VALUE_ERR))
+   \       0x26   0x4640             MOV      R0,R8
+   \       0x28   0x0031             MOVS     R1,R6
+   \       0x2A   0xB2C0             UXTB     R0,R0
+   \       0x2C   0xB2C9             UXTB     R1,R1
+   \       0x2E   0x4288             CMP      R0,R1
+   \       0x30   0xD317             BCC.N    ??SI4463_Transmit_0
+   \       0x32   0x4640             MOV      R0,R8
+   \       0x34   0xB2C0             UXTB     R0,R0
+   \       0x36   0x28FF             CMP      R0,#+255
+   \       0x38   0xD013             BEQ.N    ??SI4463_Transmit_0
+    817          	{
+    818          		result += SI4463_WriteTxFifo(si4463, packet, len);
+   \       0x3A   0x0032             MOVS     R2,R6
+   \       0x3C   0xB2D2             UXTB     R2,R2
+   \       0x3E   0xB292             UXTH     R2,R2
+   \       0x40   0x0029             MOVS     R1,R5
+   \       0x42   0x0020             MOVS     R0,R4
+   \       0x44   0x.... 0x....      BL       SI4463_WriteTxFifo
+   \       0x48   0x4681             MOV      R9,R0
+   \       0x4A   0xEB19 0x0907      ADDS     R9,R9,R7
+    819          		result += SI4463_StartTx(si4463, len, false);
+   \       0x4E   0x2200             MOVS     R2,#+0
+   \       0x50   0x0031             MOVS     R1,R6
+   \       0x52   0xB2C9             UXTB     R1,R1
+   \       0x54   0xB289             UXTH     R1,R1
+   \       0x56   0x0020             MOVS     R0,R4
+   \       0x58   0x.... 0x....      BL       SI4463_StartTx
+   \       0x5C   0xEB10 0x0009      ADDS     R0,R0,R9
+   \       0x60   0xE001             B.N      ??SI4463_Transmit_1
+    820          	}
+    821          	else
+    822          	{
+    823          		result += SI4463_ERR_OVER_TX_FIFO;
+   \                     ??SI4463_Transmit_0: (+1)
+   \       0x62   0xF1B7 0x0032      SUBS     R0,R7,#+50
+    824          	}
+    825          
+    826          	return result;
+   \                     ??SI4463_Transmit_1: (+1)
+   \       0x66   0xB240             SXTB     R0,R0
+   \       0x68   0xE8BD 0x87F0      POP      {R4-R10,PC}
+    827          }
+    828          
+    829          /***************************************************
+    830           * Properties section
+    831           ***************************************************/
+    832          
+
+   \                                 In section .text, align 2, keep-with-next
+    833          int8_t SI4463_GetProperty(const si4463_t * si4463, const uint8_t group, const uint8_t numProps, const uint8_t startProp, uint8_t * data)
+    834          {
+   \                     SI4463_GetProperty: (+1)
+   \        0x0   0xE92D 0x4FFB      PUSH     {R0,R1,R3-R11,LR}
+   \        0x4   0xB08A             SUB      SP,SP,#+40
+   \        0x6   0x0004             MOVS     R4,R0
+   \        0x8   0x0015             MOVS     R5,R2
+    835          	int8_t result = SI4463_OK;
+   \        0xA   0x2000             MOVS     R0,#+0
+   \        0xC   0xF88D 0x0000      STRB     R0,[SP, #+0]
+    836          	uint8_t cmdChain[4];
+    837          	memset(cmdChain, 0, 4);
+   \       0x10   0x2004             MOVS     R0,#+4
+   \       0x12   0x9004             STR      R0,[SP, #+16]
+   \       0x14   0x2000             MOVS     R0,#+0
+   \       0x16   0x9003             STR      R0,[SP, #+12]
+   \       0x18   0xAE01             ADD      R6,SP,#+4
+   \       0x1A   0x9A03             LDR      R2,[SP, #+12]
+   \       0x1C   0x9904             LDR      R1,[SP, #+16]
+   \       0x1E   0x0030             MOVS     R0,R6
+   \       0x20   0x.... 0x....      BL       __aeabi_memset
+    838          	uint8_t answer[SI4463_CMD_BUF_LEN];
+    839          	memset(answer, 0, SI4463_CMD_BUF_LEN);
+   \       0x24   0x2011             MOVS     R0,#+17
+   \       0x26   0x9002             STR      R0,[SP, #+8]
+   \       0x28   0x2600             MOVS     R6,#+0
+   \       0x2A   0xAF05             ADD      R7,SP,#+20
+   \       0x2C   0x0032             MOVS     R2,R6
+   \       0x2E   0x9902             LDR      R1,[SP, #+8]
+   \       0x30   0x0038             MOVS     R0,R7
+   \       0x32   0x.... 0x....      BL       __aeabi_memset
+    840          
+    841          	/* Adding corresponding bytes to cmdChain */
+    842          	cmdChain[0] = SI4463_CMD_GET_PROPERTY;
+   \       0x36   0x2012             MOVS     R0,#+18
+   \       0x38   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    843          	cmdChain[1] = group;
+   \       0x3C   0xA801             ADD      R0,SP,#+4
+   \       0x3E   0xF89D 0x102C      LDRB     R1,[SP, #+44]
+   \       0x42   0x7041             STRB     R1,[R0, #+1]
+    844          	cmdChain[2] = numProps;
+   \       0x44   0x7085             STRB     R5,[R0, #+2]
+    845          	cmdChain[3] = startProp;
+   \       0x46   0xF89D 0x0030      LDRB     R0,[SP, #+48]
+   \       0x4A   0xF88D 0x0007      STRB     R0,[SP, #+7]
+    846          
+    847          	result += SI4463_SendCommand(si4463, cmdChain, 4);
+   \       0x4E   0xF89D 0x7000      LDRB     R7,[SP, #+0]
+   \       0x52   0x2204             MOVS     R2,#+4
+   \       0x54   0xA901             ADD      R1,SP,#+4
+   \       0x56   0x0020             MOVS     R0,R4
+   \       0x58   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x5C   0x19C7             ADDS     R7,R0,R7
+    848          	result += SI4463_ReadCommandBuffer(si4463, answer, SI4463_MAX_ANSWER_LEN);
+   \       0x5E   0x2210             MOVS     R2,#+16
+   \       0x60   0xA905             ADD      R1,SP,#+20
+   \       0x62   0x0020             MOVS     R0,R4
+   \       0x64   0x.... 0x....      BL       SI4463_ReadCommandBuffer
+   \       0x68   0x4680             MOV      R8,R0
+   \       0x6A   0xEB18 0x0807      ADDS     R8,R8,R7
+    849          
+    850          	/* Copy answer from third byte because
+    851          	 * - first byte is 0x00 dummy byte
+    852          	 * - second byte is CTS - 0xFF in case of successful exchange
+    853          	 * - third byte - first data byte*/
+    854          	memcpy(data, answer + 2, numProps);
+   \       0x6E   0x46A9             MOV      R9,R5
+   \       0x70   0xFA5F 0xF989      UXTB     R9,R9
+   \       0x74   0xF10D 0x0A16      ADD      R10,SP,#+22
+   \       0x78   0xF8DD 0xB058      LDR      R11,[SP, #+88]
+   \       0x7C   0x464A             MOV      R2,R9
+   \       0x7E   0x4651             MOV      R1,R10
+   \       0x80   0x4658             MOV      R0,R11
+   \       0x82   0x.... 0x....      BL       __aeabi_memcpy
+    855          
+    856          	/* Check what data is correctly sended*/
+    857          	if(!(answer[1] == SI4463_BYTE_CTS))
+   \       0x86   0xF89D 0x0015      LDRB     R0,[SP, #+21]
+   \       0x8A   0x28FF             CMP      R0,#+255
+   \       0x8C   0xD001             BEQ.N    ??SI4463_GetProperty_0
+    858          	{
+    859          		result += SI4463_ERR_NO_SW_CTS;
+   \       0x8E   0xF1B8 0x0828      SUBS     R8,R8,#+40
+    860          	}
+    861          
+    862          	return result;
+   \                     ??SI4463_GetProperty_0: (+1)
+   \       0x92   0x4640             MOV      R0,R8
+   \       0x94   0xB240             SXTB     R0,R0
+   \       0x96   0xB00D             ADD      SP,SP,#+52
+   \       0x98   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+    863          }
+    864          
+
+   \                                 In section .text, align 2, keep-with-next
+    865          int8_t SI4463_SetProperty(const si4463_t * si4463, const uint8_t group, const uint8_t numProps, const uint8_t startProp, const uint8_t * data)
+    866          {
+   \                     SI4463_SetProperty: (+1)
+   \        0x0   0xE92D 0x47FA      PUSH     {R1,R3-R10,LR}
+   \        0x4   0xF5AD 0x6D81      SUB      SP,SP,#+1032
+   \        0x8   0x0004             MOVS     R4,R0
+   \        0xA   0x0015             MOVS     R5,R2
+    867          	int8_t result = SI4463_OK;
+   \        0xC   0x2600             MOVS     R6,#+0
+    868          	uint8_t cmdChain[4 + 1024];
+    869          	memset(cmdChain, 0, 4 + numProps);
+   \        0xE   0x002F             MOVS     R7,R5
+   \       0x10   0xB2FF             UXTB     R7,R7
+   \       0x12   0x1D3F             ADDS     R7,R7,#+4
+   \       0x14   0xF05F 0x0800      MOVS     R8,#+0
+   \       0x18   0xF10D 0x0904      ADD      R9,SP,#+4
+   \       0x1C   0x4642             MOV      R2,R8
+   \       0x1E   0x0039             MOVS     R1,R7
+   \       0x20   0x4648             MOV      R0,R9
+   \       0x22   0x.... 0x....      BL       __aeabi_memset
+    870          
+    871          	/* Adding corresponding bytes to cmdChain */
+    872          	cmdChain[0] = SI4463_CMD_SET_PROPERTY;
+   \       0x26   0x2011             MOVS     R0,#+17
+   \       0x28   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    873          	cmdChain[1] = group;
+   \       0x2C   0xF89D 0x0408      LDRB     R0,[SP, #+1032]
+   \       0x30   0xF88D 0x0005      STRB     R0,[SP, #+5]
+    874          	cmdChain[2] = numProps;
+   \       0x34   0xF88D 0x5006      STRB     R5,[SP, #+6]
+    875          	cmdChain[3] = startProp;
+   \       0x38   0xF89D 0x040C      LDRB     R0,[SP, #+1036]
+   \       0x3C   0xF88D 0x0007      STRB     R0,[SP, #+7]
+    876          	memcpy(&cmdChain[4], data, numProps);
+   \       0x40   0x46A9             MOV      R9,R5
+   \       0x42   0xFA5F 0xF989      UXTB     R9,R9
+   \       0x46   0xF8DD 0x0430      LDR      R0,[SP, #+1072]
+   \       0x4A   0x9000             STR      R0,[SP, #+0]
+   \       0x4C   0xF10D 0x0A08      ADD      R10,SP,#+8
+   \       0x50   0x464A             MOV      R2,R9
+   \       0x52   0x9900             LDR      R1,[SP, #+0]
+   \       0x54   0x4650             MOV      R0,R10
+   \       0x56   0x.... 0x....      BL       __aeabi_memcpy
+    877          
+    878          	/* Set property */
+    879          	result += SI4463_SendCommand(si4463, cmdChain, 4 + numProps);
+   \       0x5A   0x002A             MOVS     R2,R5
+   \       0x5C   0xB2D2             UXTB     R2,R2
+   \       0x5E   0x1D12             ADDS     R2,R2,#+4
+   \       0x60   0xB292             UXTH     R2,R2
+   \       0x62   0xA901             ADD      R1,SP,#+4
+   \       0x64   0x0020             MOVS     R0,R4
+   \       0x66   0x.... 0x....      BL       SI4463_SendCommand
+   \       0x6A   0x4682             MOV      R10,R0
+   \       0x6C   0xEB1A 0x0A06      ADDS     R10,R10,R6
+    880          
+    881          	/* Check what data is correctly sended*/
+    882          	if(!(SI4463_GetSwCts(si4463) == SI4463_BYTE_CTS))
+   \       0x70   0x0020             MOVS     R0,R4
+   \       0x72   0x.... 0x....      BL       SI4463_GetSwCts
+   \       0x76   0x28FF             CMP      R0,#+255
+   \       0x78   0xD001             BEQ.N    ??SI4463_SetProperty_0
+    883          	{
+    884          		result += SI4463_ERR_NO_SW_CTS;
+   \       0x7A   0xF1BA 0x0A28      SUBS     R10,R10,#+40
+    885          	}
+    886          
+    887          	return result;
+   \                     ??SI4463_SetProperty_0: (+1)
+   \       0x7E   0x4650             MOV      R0,R10
+   \       0x80   0xB240             SXTB     R0,R0
+   \       0x82   0xF50D 0x6D82      ADD      SP,SP,#+1040
+   \       0x86   0xE8BD 0x87F0      POP      {R4-R10,PC}
+    888          }
+    889          
+
+   \                                 In section .text, align 2, keep-with-next
+    890          int8_t SI4463_SetSplitFifo(const si4463_t * si4463)
+    891          {
+   \                     SI4463_SetSplitFifo: (+1)
+   \        0x0   0xE92D 0x41FC      PUSH     {R2-R8,LR}
+   \        0x4   0x0004             MOVS     R4,R0
+    892          	int8_t result = SI4463_OK;
+   \        0x6   0x2500             MOVS     R5,#+0
+   \        0x8   0x2101             MOVS     R1,#+1
+   \        0xA   0x2200             MOVS     R2,#+0
+   \        0xC   0xAE01             ADD      R6,SP,#+4
+   \        0xE   0x0030             MOVS     R0,R6
+   \       0x10   0x.... 0x....      BL       __aeabi_memset
+   \       0x14   0x2101             MOVS     R1,#+1
+   \       0x16   0x2200             MOVS     R2,#+0
+   \       0x18   0xF10D 0x0605      ADD      R6,SP,#+5
+   \       0x1C   0x0030             MOVS     R0,R6
+   \       0x1E   0x.... 0x....      BL       __aeabi_memset
+    893          	uint8_t buffer[1] = {0x00};
+    894          	uint8_t answer[1] = {0x00};
+    895          
+    896          	/* Get current value of property for non-intrusive setup of buffer */
+    897          	result += SI4463_GetProperty(si4463, 0x00, 0x01, 0x03, buffer);
+   \       0x22   0xA801             ADD      R0,SP,#+4
+   \       0x24   0x9000             STR      R0,[SP, #+0]
+   \       0x26   0x2303             MOVS     R3,#+3
+   \       0x28   0x2201             MOVS     R2,#+1
+   \       0x2A   0x2100             MOVS     R1,#+0
+   \       0x2C   0x0020             MOVS     R0,R4
+   \       0x2E   0x.... 0x....      BL       SI4463_GetProperty
+   \       0x32   0x0006             MOVS     R6,R0
+   \       0x34   0x1976             ADDS     R6,R6,R5
+    898          	/* Set FIFO_MODE to 1 for half-duplex fifo - 129 byte size buffer */
+    899          	buffer[0] &= ~0x10;
+   \       0x36   0xF89D 0x0004      LDRB     R0,[SP, #+4]
+   \       0x3A   0xF010 0x00EF      ANDS     R0,R0,#0xEF
+   \       0x3E   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    900          	/* Set RESERVED bit to 1 (according to datasheet) */
+    901          	buffer[0] |= 0x40;
+   \       0x42   0xF89D 0x0004      LDRB     R0,[SP, #+4]
+   \       0x46   0xF050 0x0040      ORRS     R0,R0,#0x40
+   \       0x4A   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    902          	/* Set new property value */
+    903          	result += SI4463_SetProperty(si4463, 0x00, 0x01, 0x03, buffer);
+   \       0x4E   0xA801             ADD      R0,SP,#+4
+   \       0x50   0x9000             STR      R0,[SP, #+0]
+   \       0x52   0x2303             MOVS     R3,#+3
+   \       0x54   0x2201             MOVS     R2,#+1
+   \       0x56   0x2100             MOVS     R1,#+0
+   \       0x58   0x0020             MOVS     R0,R4
+   \       0x5A   0x.... 0x....      BL       SI4463_SetProperty
+   \       0x5E   0x4680             MOV      R8,R0
+   \       0x60   0xEB18 0x0806      ADDS     R8,R8,R6
+    904          
+    905          	/* Verify what property is set */
+    906          	result += SI4463_GetProperty(si4463, 0x00, 0x01, 0x03, answer);
+   \       0x64   0xF10D 0x0005      ADD      R0,SP,#+5
+   \       0x68   0x9000             STR      R0,[SP, #+0]
+   \       0x6A   0x2303             MOVS     R3,#+3
+   \       0x6C   0x2201             MOVS     R2,#+1
+   \       0x6E   0x2100             MOVS     R1,#+0
+   \       0x70   0x0020             MOVS     R0,R4
+   \       0x72   0x.... 0x....      BL       SI4463_GetProperty
+   \       0x76   0x0007             MOVS     R7,R0
+   \       0x78   0xEB17 0x0708      ADDS     R7,R7,R8
+    907          
+    908          	if(((buffer[0] & 0x10) != (answer[0] & 0x10)) && (result != SI4463_OK))
+   \       0x7C   0xF89D 0x0004      LDRB     R0,[SP, #+4]
+   \       0x80   0xF010 0x0010      ANDS     R0,R0,#0x10
+   \       0x84   0xF89D 0x1005      LDRB     R1,[SP, #+5]
+   \       0x88   0xF011 0x0110      ANDS     R1,R1,#0x10
+   \       0x8C   0x4288             CMP      R0,R1
+   \       0x8E   0xD004             BEQ.N    ??SI4463_SetSplitFifo_0
+   \       0x90   0x0038             MOVS     R0,R7
+   \       0x92   0xB240             SXTB     R0,R0
+   \       0x94   0x2800             CMP      R0,#+0
+   \       0x96   0xD000             BEQ.N    ??SI4463_SetSplitFifo_0
+    909          	{
+    910          		result += SI4463_NG;
+   \       0x98   0x1E7F             SUBS     R7,R7,#+1
+    911          	}
+    912          
+    913          	/* There is some interesting moment.
+    914          	 * For activate FIFO splitting or merging need to clear FIFOs (TX and RX) after set this
+    915          	 * See more:
+    916          	 * http://community.silabs.com/t5/Interface-Knowledge-Base/Shared-FIFO-on-the-Si446x/ta-p/126802
+    917          	 */
+    918          	result += SI4463_ClearSharedFifo(si4463);
+   \                     ??SI4463_SetSplitFifo_0: (+1)
+   \       0x9A   0x0020             MOVS     R0,R4
+   \       0x9C   0x.... 0x....      BL       SI4463_ClearSharedFifo
+   \       0xA0   0x19C0             ADDS     R0,R0,R7
+    919          
+    920          	return result;
+   \       0xA2   0xB240             SXTB     R0,R0
+   \       0xA4   0xE8BD 0x81F6      POP      {R1,R2,R4-R8,PC}
+    921          }
+    922          
+
+   \                                 In section .text, align 2, keep-with-next
+    923          int8_t SI4463_SetHalfDuplexFifo(const si4463_t * si4463)
+    924          {
+   \                     SI4463_SetHalfDuplexFifo: (+1)
+   \        0x0   0xB5FE             PUSH     {R1-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+    925          	int8_t result = SI4463_OK;
+   \        0x4   0x2500             MOVS     R5,#+0
+   \        0x6   0x2101             MOVS     R1,#+1
+   \        0x8   0x2200             MOVS     R2,#+0
+   \        0xA   0xAE01             ADD      R6,SP,#+4
+   \        0xC   0x0030             MOVS     R0,R6
+   \        0xE   0x.... 0x....      BL       __aeabi_memset
+   \       0x12   0x2101             MOVS     R1,#+1
+   \       0x14   0x2200             MOVS     R2,#+0
+   \       0x16   0xF10D 0x0605      ADD      R6,SP,#+5
+   \       0x1A   0x0030             MOVS     R0,R6
+   \       0x1C   0x.... 0x....      BL       __aeabi_memset
+    926          	uint8_t buffer[1] = {0x00};
+    927          	uint8_t answer[1] = {0x00};
+    928          
+    929          	/* Get current value of property for non-intrusive setup of buffer */
+    930          	result += SI4463_GetProperty(si4463, 0x00, 0x01, 0x03, buffer);
+   \       0x20   0xA801             ADD      R0,SP,#+4
+   \       0x22   0x9000             STR      R0,[SP, #+0]
+   \       0x24   0x2303             MOVS     R3,#+3
+   \       0x26   0x2201             MOVS     R2,#+1
+   \       0x28   0x2100             MOVS     R1,#+0
+   \       0x2A   0x0020             MOVS     R0,R4
+   \       0x2C   0x.... 0x....      BL       SI4463_GetProperty
+   \       0x30   0x0006             MOVS     R6,R0
+   \       0x32   0x1976             ADDS     R6,R6,R5
+    931          	/* Set FIFO_MODE to 1 for half-duplex fifo - 129 byte size buffer */
+    932          	buffer[0] |= 0x10;
+   \       0x34   0xF89D 0x0004      LDRB     R0,[SP, #+4]
+   \       0x38   0xF050 0x0010      ORRS     R0,R0,#0x10
+   \       0x3C   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    933          	/* Set RESERVED bit to 1 (according to datasheet) */
+    934          	buffer[0] |= 0x40;
+   \       0x40   0xF89D 0x0004      LDRB     R0,[SP, #+4]
+   \       0x44   0xF050 0x0040      ORRS     R0,R0,#0x40
+   \       0x48   0xF88D 0x0004      STRB     R0,[SP, #+4]
+    935          	/* Set new property value */
+    936          	result += SI4463_SetProperty(si4463, 0x00, 0x01, 0x03, buffer);
+   \       0x4C   0xA801             ADD      R0,SP,#+4
+   \       0x4E   0x9000             STR      R0,[SP, #+0]
+   \       0x50   0x2303             MOVS     R3,#+3
+   \       0x52   0x2201             MOVS     R2,#+1
+   \       0x54   0x2100             MOVS     R1,#+0
+   \       0x56   0x0020             MOVS     R0,R4
+   \       0x58   0x.... 0x....      BL       SI4463_SetProperty
+   \       0x5C   0x0007             MOVS     R7,R0
+   \       0x5E   0x19BF             ADDS     R7,R7,R6
+    937          
+    938          	/* Verify what property is set */
+    939          	SI4463_GetProperty(si4463, 0x00, 0x01, 0x03, answer);
+   \       0x60   0xF10D 0x0005      ADD      R0,SP,#+5
+   \       0x64   0x9000             STR      R0,[SP, #+0]
+   \       0x66   0x2303             MOVS     R3,#+3
+   \       0x68   0x2201             MOVS     R2,#+1
+   \       0x6A   0x2100             MOVS     R1,#+0
+   \       0x6C   0x0020             MOVS     R0,R4
+   \       0x6E   0x.... 0x....      BL       SI4463_GetProperty
+    940          	if(((buffer[0] & 0x10) != (answer[0] & 0x10)) || (result != SI4463_OK))
+   \       0x72   0xF89D 0x0004      LDRB     R0,[SP, #+4]
+   \       0x76   0xF010 0x0010      ANDS     R0,R0,#0x10
+   \       0x7A   0xF89D 0x1005      LDRB     R1,[SP, #+5]
+   \       0x7E   0xF011 0x0110      ANDS     R1,R1,#0x10
+   \       0x82   0x4288             CMP      R0,R1
+   \       0x84   0xD103             BNE.N    ??SI4463_SetHalfDuplexFifo_0
+   \       0x86   0x0038             MOVS     R0,R7
+   \       0x88   0xB240             SXTB     R0,R0
+   \       0x8A   0x2800             CMP      R0,#+0
+   \       0x8C   0xD000             BEQ.N    ??SI4463_SetHalfDuplexFifo_1
+    941          	{
+    942          		result += SI4463_NG;
+   \                     ??SI4463_SetHalfDuplexFifo_0: (+1)
+   \       0x8E   0x1E7F             SUBS     R7,R7,#+1
+    943          	}
+    944          
+    945          	/* There is some interesting moment.
+    946          	 * For activate FIFO splittng or merging need to clear FIFOs (TX and RX) after set this
+    947          	 * See more:
+    948          	 * http://community.silabs.com/t5/Interface-Knowledge-Base/Shared-FIFO-on-the-Si446x/ta-p/126802
+    949          	 */
+    950          	result += SI4463_ClearSharedFifo(si4463);
+   \                     ??SI4463_SetHalfDuplexFifo_1: (+1)
+   \       0x90   0x0020             MOVS     R0,R4
+   \       0x92   0x.... 0x....      BL       SI4463_ClearSharedFifo
+   \       0x96   0x19C0             ADDS     R0,R0,R7
+    951          
+    952          	return result;
+   \       0x98   0xB240             SXTB     R0,R0
+   \       0x9A   0xBDFE             POP      {R1-R7,PC}
+    953          }
+    954          
+
+   \                                 In section .text, align 2, keep-with-next
+    955          uint32_t SI4463_GetBytePosition(uint8_t neededByte, uint8_t * array, uint32_t arrayLen)
+    956          {
+   \                     SI4463_GetBytePosition: (+1)
+   \        0x0   0x0003             MOVS     R3,R0
+    957          	uint32_t result = ~0L;
+   \        0x2   0xF05F 0x30FF      MOVS     R0,#+4294967295
+    958          
+    959          	return result;
+   \        0x6   0x4770             BX       LR
+    960          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17:
+   \        0x0   0x....'....        DC32     ?_0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_1:
+   \        0x0   0x....'....        DC32     ?_1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_2:
+   \        0x0   0x....'....        DC32     ?_2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_3:
+   \        0x0   0x....'....        DC32     ?_3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_4:
+   \        0x0   0x....'....        DC32     ?_4
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_5:
+   \        0x0   0x....'....        DC32     ?_5
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_6:
+   \        0x0   0x....'....        DC32     ?_6
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_7:
+   \        0x0   0x....'....        DC32     ?_7
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_8:
+   \        0x0   0x....'....        DC32     ?_8
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_9:
+   \        0x0   0x....'....        DC32     ?_14
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_10:
+   \        0x0   0x....'....        DC32     ?_15
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_11:
+   \        0x0   0x....'....        DC32     ?_16
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_12:
+   \        0x0   0x....'....        DC32     ?_9
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_13:
+   \        0x0   0x....'....        DC32     ?_10
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_14:
+   \        0x0   0x....'....        DC32     ?_11
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_15:
+   \        0x0   0x....'....        DC32     ?_12
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable17_16:
+   \        0x0   0x....'....        DC32     ?_13
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \        0x0   0x08 0x04          DC8 8, 4, 33, 113, 75, 0, 0, 220, 149, 8, 5, 166, 34, 33, 240, 65, 91
+
+   \              0x21 0x71    
+
+   \              0x4B 0x00    
+
+   \              0x00 0xDC    
+
+   \              0x95 0x08    
+
+   \              0x05 0xA6    
+
+   \              0x22 0x21    
+
+   \              0xF0 0x41    
+
+   \              0x5B
+   \       0x11   0x26 0x08          DC8 38, 8, 226, 47, 28, 187, 10, 168, 148, 40, 8, 5, 135, 103, 226, 88
+
+   \              0xE2 0x2F    
+
+   \              0x1C 0xBB    
+
+   \              0x0A 0xA8    
+
+   \              0x94 0x28    
+
+   \              0x08 0x05    
+
+   \              0x87 0x67    
+
+   \              0xE2 0x58
+   \       0x21   0x1A 0x07          DC8 26, 7, 91, 8, 225, 208, 114, 216, 138, 184, 91, 125, 8, 5, 17, 236
+
+   \              0x5B 0x08    
+
+   \              0xE1 0xD0    
+
+   \              0x72 0xD8    
+
+   \              0x8A 0xB8    
+
+   \              0x5B 0x7D    
+
+   \              0x08 0x05    
+
+   \              0x11 0xEC
+   \       0x31   0x9E 0x28          DC8 158, 40, 35, 27, 109, 8, 226, 79, 138, 178, 169, 41, 20, 19, 8, 5
+
+   \              0x23 0x1B    
+
+   \              0x6D 0x08    
+
+   \              0xE2 0x4F    
+
+   \              0x8A 0xB2    
+
+   \              0xA9 0x29    
+
+   \              0x14 0x13    
+
+   \              0x08 0x05
+   \       0x41   0xD1 0x2E          DC8 209, 46, 113, 106, 81, 76, 44, 8, 229, 128, 39, 66, 164, 105, 176
+
+   \              0x71 0x6A    
+
+   \              0x51 0x4C    
+
+   \              0x2C 0x08    
+
+   \              0xE5 0x80    
+
+   \              0x27 0x42    
+
+   \              0xA4 0x69    
+
+   \              0xB0
+   \       0x50   0x7F 0x08          DC8 127, 8, 5, 170, 129, 42, 189, 69, 232, 168, 8, 234, 228, 240, 36
+
+   \              0x05 0xAA    
+
+   \              0x81 0x2A    
+
+   \              0xBD 0x45    
+
+   \              0xE8 0xA8    
+
+   \              0x08 0xEA    
+
+   \              0xE4 0xF0    
+
+   \              0x24
+   \       0x5F   0xC9 0x9F          DC8 201, 159, 204, 60, 8, 5, 8, 245, 5, 4, 39, 98, 152, 8, 234, 107, 98
+
+   \              0xCC 0x3C    
+
+   \              0x08 0x05    
+
+   \              0x08 0xF5    
+
+   \              0x05 0x04    
+
+   \              0x27 0x62    
+
+   \              0x98 0x08    
+
+   \              0xEA 0x6B    
+
+   \              0x62
+   \       0x70   0x84 0xA1          DC8 132, 161, 249, 74, 226, 8, 5, 233, 119, 5, 79, 132, 238, 53, 8, 226
+
+   \              0xF9 0x4A    
+
+   \              0xE2 0x08    
+
+   \              0x05 0xE9    
+
+   \              0x77 0x05    
+
+   \              0x4F 0x84    
+
+   \              0xEE 0x35    
+
+   \              0x08 0xE2
+   \       0x80   0x43 0xC3          DC8 67, 195, 141, 251, 173, 84, 37, 8, 5, 20, 6, 94, 57, 54, 47, 69, 8
+
+   \              0x8D 0xFB    
+
+   \              0xAD 0x54    
+
+   \              0x25 0x08    
+
+   \              0x05 0x14    
+
+   \              0x06 0x5E    
+
+   \              0x39 0x36    
+
+   \              0x2F 0x45    
+
+   \              0x08
+   \       0x91   0xEA 0x0C          DC8 234, 12, 28, 116, 208, 17, 252, 50, 8, 5, 218, 56, 186, 14, 60, 231
+
+   \              0x1C 0x74    
+
+   \              0xD0 0x11    
+
+   \              0xFC 0x32    
+
+   \              0x08 0x05    
+
+   \              0xDA 0x38    
+
+   \              0xBA 0x0E    
+
+   \              0x3C 0xE7
+   \       0xA1   0x8B 0x08          DC8 139, 8, 234, 176, 9, 230, 255, 148, 187, 169, 8, 5, 215, 17, 41
+
+   \              0xEA 0xB0    
+
+   \              0x09 0xE6    
+
+   \              0xFF 0x94    
+
+   \              0xBB 0xA9    
+
+   \              0x08 0x05    
+
+   \              0xD7 0x11    
+
+   \              0x29
+   \       0xB0   0xFE 0xDC          DC8 254, 220, 113, 213, 8, 234, 127, 131, 167, 96, 144, 98, 24, 8, 5
+
+   \              0x71 0xD5    
+
+   \              0x08 0xEA    
+
+   \              0x7F 0x83    
+
+   \              0xA7 0x60    
+
+   \              0x90 0x62    
+
+   \              0x18 0x08    
+
+   \              0x05
+   \       0xBF   0x84 0x7F          DC8 132, 127, 106, 209, 145, 198, 82, 8, 234, 42, 216, 123, 142, 74
+
+   \              0x6A 0xD1    
+
+   \              0x91 0xC6    
+
+   \              0x52 0x08    
+
+   \              0xEA 0x2A    
+
+   \              0xD8 0x7B    
+
+   \              0x8E 0x4A
+   \       0xCD   0x9F 0x91          DC8 159, 145, 8, 5, 189, 170, 157, 22, 24, 6, 21, 8, 226, 85, 173, 45
+
+   \              0x08 0x05    
+
+   \              0xBD 0xAA    
+
+   \              0x9D 0x16    
+
+   \              0x18 0x06    
+
+   \              0x15 0x08    
+
+   \              0xE2 0x55    
+
+   \              0xAD 0x2D
+   \       0xDD   0x0A 0x14          DC8 10, 20, 31, 93, 8, 5, 211, 224, 124, 57, 207, 1, 240, 8, 239, 58
+
+   \              0x1F 0x5D    
+
+   \              0x08 0x05    
+
+   \              0xD3 0xE0    
+
+   \              0x7C 0x39    
+
+   \              0xCF 0x01    
+
+   \              0xF0 0x08    
+
+   \              0xEF 0x3A
+   \       0xED   0x91 0x72          DC8 145, 114, 106, 3, 187, 150, 8, 231, 131, 109, 164, 146, 252, 19
+
+   \              0x6A 0x03    
+
+   \              0xBB 0x96    
+
+   \              0x08 0xE7    
+
+   \              0x83 0x6D    
+
+   \              0xA4 0x92    
+
+   \              0xFC 0x13
+   \       0xFB   0xA7 0x08          DC8 167, 8, 239, 248, 253, 207, 98, 7, 111, 30, 8, 231, 76, 234, 74
+
+   \              0xEF 0xF8    
+
+   \              0xFD 0xCF    
+
+   \              0x62 0x07    
+
+   \              0x6F 0x1E    
+
+   \              0x08 0xE7    
+
+   \              0x4C 0xEA    
+
+   \              0x4A
+   \      0x10A   0x75 0x4F          DC8 117, 79, 214, 207, 8, 226, 246, 17, 228, 38, 13, 77, 198, 8, 5, 251
+
+   \              0xD6 0xCF    
+
+   \              0x08 0xE2    
+
+   \              0xF6 0x11    
+
+   \              0xE4 0x26    
+
+   \              0x0D 0x4D    
+
+   \              0xC6 0x08    
+
+   \              0x05 0xFB
+   \      0x11A   0xBF 0xE8          DC8 191, 232, 7, 137, 195, 81, 8, 239, 130, 39, 4, 63, 150, 168, 88, 8
+
+   \              0x07 0x89    
+
+   \              0xC3 0x51    
+
+   \              0x08 0xEF    
+
+   \              0x82 0x27    
+
+   \              0x04 0x3F    
+
+   \              0x96 0xA8    
+
+   \              0x58 0x08
+   \      0x12A   0xE7 0x41          DC8 231, 65, 41, 60, 117, 42, 3, 28, 8, 239, 175, 89, 152, 54, 170, 15
+
+   \              0x29 0x3C    
+
+   \              0x75 0x2A    
+
+   \              0x03 0x1C    
+
+   \              0x08 0xEF    
+
+   \              0xAF 0x59    
+
+   \              0x98 0x36    
+
+   \              0xAA 0x0F
+   \      0x13A   0x06 0x08          DC8 6, 8, 230, 246, 147, 65, 45, 236, 14, 153, 8, 5, 41, 25, 144, 229
+
+   \              0xE6 0xF6    
+
+   \              0x93 0x41    
+
+   \              0x2D 0xEC    
+
+   \              0x0E 0x99    
+
+   \              0x08 0x05    
+
+   \              0x29 0x19    
+
+   \              0x90 0xE5
+   \      0x14A   0xAA 0x36          DC8 170, 54, 64, 8, 231, 251, 104, 16, 125, 119, 93, 192, 8, 231, 203
+
+   \              0x40 0x08    
+
+   \              0xE7 0xFB    
+
+   \              0x68 0x10    
+
+   \              0x7D 0x77    
+
+   \              0x5D 0xC0    
+
+   \              0x08 0xE7    
+
+   \              0xCB
+   \      0x159   0xB4 0xDD          DC8 180, 221, 206, 144, 84, 190, 8, 231, 114, 138, 214, 2, 244, 221
+
+   \              0xCE 0x90    
+
+   \              0x54 0xBE    
+
+   \              0x08 0xE7    
+
+   \              0x72 0x8A    
+
+   \              0xD6 0x02    
+
+   \              0xF4 0xDD
+   \      0x167   0xCC 0x08          DC8 204, 8, 231, 106, 33, 11, 2, 134, 236, 21, 8, 231, 123, 124, 61
+
+   \              0xE7 0x6A    
+
+   \              0x21 0x0B    
+
+   \              0x02 0x86    
+
+   \              0xEC 0x15    
+
+   \              0x08 0xE7    
+
+   \              0x7B 0x7C    
+
+   \              0x3D
+   \      0x176   0x6B 0x81          DC8 107, 129, 3, 208, 8, 239, 125, 97, 54, 148, 124, 160, 223, 8, 239
+
+   \              0x03 0xD0    
+
+   \              0x08 0xEF    
+
+   \              0x7D 0x61    
+
+   \              0x36 0x94    
+
+   \              0x7C 0xA0    
+
+   \              0xDF 0x08    
+
+   \              0xEF
+   \      0x185   0xCC 0x85          DC8 204, 133, 59, 218, 224, 92, 28, 8, 231, 227, 117, 187, 57, 34, 75
+
+   \              0x3B 0xDA    
+
+   \              0xE0 0x5C    
+
+   \              0x1C 0x08    
+
+   \              0xE7 0xE3    
+
+   \              0x75 0xBB    
+
+   \              0x39 0x22    
+
+   \              0x4B
+   \      0x194   0xA8 0x08          DC8 168, 8, 239, 249, 206, 224, 94, 235, 29, 203, 8, 231, 189, 226, 112
+
+   \              0xEF 0xF9    
+
+   \              0xCE 0xE0    
+
+   \              0x5E 0xEB    
+
+   \              0x1D 0xCB    
+
+   \              0x08 0xE7    
+
+   \              0xBD 0xE2    
+
+   \              0x70
+   \      0x1A3   0xD5 0xAB          DC8 213, 171, 78, 63, 8, 231, 183, 141, 32, 104, 107, 9, 82, 8, 239
+
+   \              0x4E 0x3F    
+
+   \              0x08 0xE7    
+
+   \              0xB7 0x8D    
+
+   \              0x20 0x68    
+
+   \              0x6B 0x09    
+
+   \              0x52 0x08    
+
+   \              0xEF
+   \      0x1B2   0xA1 0x1B          DC8 161, 27, 144, 205, 152, 0, 99, 8, 239, 84, 103, 93, 156, 17, 252
+
+   \              0x90 0xCD    
+
+   \              0x98 0x00    
+
+   \              0x63 0x08    
+
+   \              0xEF 0x54    
+
+   \              0x67 0x5D    
+
+   \              0x9C 0x11    
+
+   \              0xFC
+   \      0x1C1   0x45 0x08          DC8 69, 8, 231, 212, 155, 200, 151, 190, 138, 7, 8, 239, 82, 141, 144
+
+   \              0xE7 0xD4    
+
+   \              0x9B 0xC8    
+
+   \              0x97 0xBE    
+
+   \              0x8A 0x07    
+
+   \              0x08 0xEF    
+
+   \              0x52 0x8D    
+
+   \              0x90
+   \      0x1D0   0x63 0x73          DC8 99, 115, 213, 42, 8, 239, 3, 188, 110, 28, 118, 190, 74, 8, 231
+
+   \              0xD5 0x2A    
+
+   \              0x08 0xEF    
+
+   \              0x03 0xBC    
+
+   \              0x6E 0x1C    
+
+   \              0x76 0xBE    
+
+   \              0x4A 0x08    
+
+   \              0xE7
+   \      0x1DF   0xC2 0xED          DC8 194, 237, 103, 186, 94, 102, 33, 8, 239, 231, 63, 135, 190, 224
+
+   \              0x67 0xBA    
+
+   \              0x5E 0x66    
+
+   \              0x21 0x08    
+
+   \              0xEF 0xE7    
+
+   \              0x3F 0x87    
+
+   \              0xBE 0xE0
+   \      0x1ED   0x7A 0x6D          DC8 122, 109, 8, 231, 201, 112, 147, 29, 100, 245, 108, 8, 239, 245, 40
+
+   \              0x08 0xE7    
+
+   \              0xC9 0x70    
+
+   \              0x93 0x1D    
+
+   \              0x64 0xF5    
+
+   \              0x6C 0x08    
+
+   \              0xEF 0xF5    
+
+   \              0x28
+   \      0x1FC   0x08 0x34          DC8 8, 52, 179, 182, 44, 8, 239, 58, 10, 236, 15, 219, 86, 202, 8, 239
+
+   \              0xB3 0xB6    
+
+   \              0x2C 0x08    
+
+   \              0xEF 0x3A    
+
+   \              0x0A 0xEC    
+
+   \              0x0F 0xDB    
+
+   \              0x56 0xCA    
+
+   \              0x08 0xEF
+   \      0x20C   0x39 0xA0          DC8 57, 160, 110, 237, 121, 208, 36, 8, 231, 108, 11, 175, 169, 78, 64
+
+   \              0x6E 0xED    
+
+   \              0x79 0xD0    
+
+   \              0x24 0x08    
+
+   \              0xE7 0x6C    
+
+   \              0x0B 0xAF    
+
+   \              0xA9 0x4E    
+
+   \              0x40
+   \      0x21B   0xB5 0x08          DC8 181, 8, 233, 185, 175, 191, 37, 80, 209, 55, 8, 5, 158, 219, 222
+
+   \              0xE9 0xB9    
+
+   \              0xAF 0xBF    
+
+   \              0x25 0x50    
+
+   \              0xD1 0x37    
+
+   \              0x08 0x05    
+
+   \              0x9E 0xDB    
+
+   \              0xDE
+   \      0x22A   0x3F 0x94          DC8 63, 148, 233, 107, 8, 236, 197, 5, 170, 87, 220, 138, 94, 8, 5, 112
+
+   \              0xE9 0x6B    
+
+   \              0x08 0xEC    
+
+   \              0xC5 0x05    
+
+   \              0xAA 0x57    
+
+   \              0xDC 0x8A    
+
+   \              0x5E 0x08    
+
+   \              0x05 0x70
+   \      0x23A   0xDA 0x84          DC8 218, 132, 132, 221, 202, 144, 7, 2, 129, 1, 1, 201, 195, 128, 8, 19
+
+   \              0x84 0xDD    
+
+   \              0xCA 0x90    
+
+   \              0x07 0x02    
+
+   \              0x81 0x01    
+
+   \              0x01 0xC9    
+
+   \              0xC3 0x80    
+
+   \              0x08 0x13
+   \      0x24A   0x00 0x1B          DC8 0, 27, 33, 32, 0, 0, 0, 6, 17, 0, 2, 0, 0, 0, 5, 17, 0, 1, 3, 34, 8
+
+   \              0x21 0x20    
+
+   \              0x00 0x00    
+
+   \              0x00 0x06    
+
+   \              0x11 0x00    
+
+   \              0x02 0x00    
+
+   \              0x00 0x00    
+
+   \              0x05 0x11    
+
+   \              0x00 0x01    
+
+   \              0x03 0x22    
+
+   \              0x08
+   \      0x25F   0x11 0x01          DC8 17, 1, 4, 0, 7, 60, 1, 8, 8, 17, 2, 4, 0, 7, 10, 0, 0, 13, 17, 16
+
+   \              0x04 0x00    
+
+   \              0x07 0x3C    
+
+   \              0x01 0x08    
+
+   \              0x08 0x11    
+
+   \              0x02 0x04    
+
+   \              0x00 0x07    
+
+   \              0x0A 0x00    
+
+   \              0x00 0x0D    
+
+   \              0x11 0x10
+   \      0x273   0x09 0x00          DC8 9, 0, 8, 20, 0, 15, 18, 0, 0, 0, 0, 10, 17, 17, 6, 0, 1, 9, 114, 0
+
+   \              0x08 0x14    
+
+   \              0x00 0x0F    
+
+   \              0x12 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x0A    
+
+   \              0x11 0x11    
+
+   \              0x06 0x00    
+
+   \              0x01 0x09    
+
+   \              0x72 0x00
+   \      0x287   0x00 0x00          DC8 0, 0, 6, 17, 18, 2, 0, 87, 1, 6, 17, 18, 2, 1, 1, 8, 10, 17, 18, 6
+
+   \              0x06 0x11    
+
+   \              0x12 0x02    
+
+   \              0x00 0x57    
+
+   \              0x01 0x06    
+
+   \              0x11 0x12    
+
+   \              0x02 0x01    
+
+   \              0x01 0x08    
+
+   \              0x0A 0x11    
+
+   \              0x12 0x06
+   \      0x29B   0x02 0x08          DC8 2, 8, 1, 15, 7, 131, 128, 16, 17, 18, 12, 7, 64, 58, 1, 0, 64, 64
+
+   \              0x01 0x0F    
+
+   \              0x07 0x83    
+
+   \              0x80 0x10    
+
+   \              0x11 0x12    
+
+   \              0x0C 0x07    
+
+   \              0x40 0x3A    
+
+   \              0x01 0x00    
+
+   \              0x40 0x40
+   \      0x2AD   0x00 0x02          DC8 0, 2, 6, 192, 0, 62, 16, 17, 18, 12, 19, 2, 17, 0, 0, 0, 0, 0, 0, 0
+
+   \              0x06 0xC0    
+
+   \              0x00 0x3E    
+
+   \              0x10 0x11    
+
+   \              0x12 0x0C    
+
+   \              0x13 0x02    
+
+   \              0x11 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00
+   \      0x2C1   0x00 0x00          DC8 0, 0, 0, 16, 17, 18, 12, 31, 0, 0, 0, 2, 6, 192, 7, 255, 0, 0, 0, 0
+
+   \              0x00 0x10    
+
+   \              0x11 0x12    
+
+   \              0x0C 0x1F    
+
+   \              0x00 0x00    
+
+   \              0x00 0x02    
+
+   \              0x06 0xC0    
+
+   \              0x07 0xFF    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00
+   \      0x2D5   0x0E 0x11          DC8 14, 17, 18, 10, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 17, 18, 4, 54
+
+   \              0x12 0x0A    
+
+   \              0x2B 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x08    
+
+   \              0x11 0x12    
+
+   \              0x04 0x36
+   \      0x2E9   0x00 0x00          DC8 0, 0, 0, 0, 16, 17, 32, 12, 0, 3, 0, 7, 61, 9, 0, 9, 201, 195, 128
+
+   \              0x00 0x00    
+
+   \              0x10 0x11    
+
+   \              0x20 0x0C    
+
+   \              0x00 0x03    
+
+   \              0x00 0x07    
+
+   \              0x3D 0x09    
+
+   \              0x00 0x09    
+
+   \              0xC9 0xC3    
+
+   \              0x80
+   \      0x2FC   0x00 0x06          DC8 0, 6, 5, 17, 32, 1, 12, 212, 16, 17, 32, 12, 24, 1, 0, 8, 3, 192, 0
+
+   \              0x05 0x11    
+
+   \              0x20 0x01    
+
+   \              0x0C 0xD4    
+
+   \              0x10 0x11    
+
+   \              0x20 0x0C    
+
+   \              0x18 0x01    
+
+   \              0x00 0x08    
+
+   \              0x03 0xC0    
+
+   \              0x00
+   \      0x30F   0x00 0x20          DC8 0, 32, 0, 232, 0, 75, 16, 17, 32, 12, 36, 6, 211, 160, 7, 255, 2, 0
+
+   \              0x00 0xE8    
+
+   \              0x00 0x4B    
+
+   \              0x10 0x11    
+
+   \              0x20 0x0C    
+
+   \              0x24 0x06    
+
+   \              0xD3 0xA0    
+
+   \              0x07 0xFF    
+
+   \              0x02 0x00
+   \      0x321   0x00 0x00          DC8 0, 0, 35, 134, 212, 7, 17, 32, 3, 48, 0, 169, 160, 5, 17, 32, 1, 53
+
+   \              0x23 0x86    
+
+   \              0xD4 0x07    
+
+   \              0x11 0x20    
+
+   \              0x03 0x30    
+
+   \              0x00 0xA9    
+
+   \              0xA0 0x05    
+
+   \              0x11 0x20    
+
+   \              0x01 0x35
+   \      0x333   0xE0 0x10          DC8 224, 16, 17, 32, 12, 56, 17, 16, 16, 128, 26, 32, 0, 0, 40, 12, 164
+
+   \              0x11 0x20    
+
+   \              0x0C 0x38    
+
+   \              0x11 0x10    
+
+   \              0x10 0x80    
+
+   \              0x1A 0x20    
+
+   \              0x00 0x00    
+
+   \              0x28 0x0C    
+
+   \              0xA4
+   \      0x344   0x23 0x0E          DC8 35, 14, 17, 32, 10, 69, 3, 0, 138, 1, 0, 160, 6, 33, 24, 64, 6, 17
+
+   \              0x11 0x20    
+
+   \              0x0A 0x45    
+
+   \              0x03 0x00    
+
+   \              0x8A 0x01    
+
+   \              0x00 0xA0    
+
+   \              0x06 0x21    
+
+   \              0x18 0x40    
+
+   \              0x06 0x11
+   \      0x356   0x20 0x02          DC8 32, 2, 80, 132, 8, 6, 17, 32, 2, 84, 3, 7, 5, 17, 32, 1, 87, 0, 9
+
+   \              0x50 0x84    
+
+   \              0x08 0x06    
+
+   \              0x11 0x20    
+
+   \              0x02 0x54    
+
+   \              0x03 0x07    
+
+   \              0x05 0x11    
+
+   \              0x20 0x01    
+
+   \              0x57 0x00    
+
+   \              0x09
+   \      0x369   0x11 0x20          DC8 17, 32, 5, 91, 64, 4, 4, 120, 32, 16, 17, 33, 12, 0, 162, 129, 38
+
+   \              0x05 0x5B    
+
+   \              0x40 0x04    
+
+   \              0x04 0x78    
+
+   \              0x20 0x10    
+
+   \              0x11 0x21    
+
+   \              0x0C 0x00    
+
+   \              0xA2 0x81    
+
+   \              0x26
+   \      0x37A   0xAF 0x3F          DC8 175, 63, 238, 200, 199, 219, 242, 2, 8, 16, 17, 33, 12, 12, 7, 3
+
+   \              0xEE 0xC8    
+
+   \              0xC7 0xDB    
+
+   \              0xF2 0x02    
+
+   \              0x08 0x10    
+
+   \              0x11 0x21    
+
+   \              0x0C 0x0C    
+
+   \              0x07 0x03
+   \      0x38A   0x15 0xFC          DC8 21, 252, 15, 0, 162, 129, 38, 175, 63, 238, 16, 17, 33, 12, 24, 200
+
+   \              0x0F 0x00    
+
+   \              0xA2 0x81    
+
+   \              0x26 0xAF    
+
+   \              0x3F 0xEE    
+
+   \              0x10 0x11    
+
+   \              0x21 0x0C    
+
+   \              0x18 0xC8
+   \      0x39A   0xC7 0xDB          DC8 199, 219, 242, 2, 8, 7, 3, 21, 252, 15, 0, 8, 17, 34, 4, 0, 8, 127
+
+   \              0xF2 0x02    
+
+   \              0x08 0x07    
+
+   \              0x03 0x15    
+
+   \              0xFC 0x0F    
+
+   \              0x00 0x08    
+
+   \              0x11 0x22    
+
+   \              0x04 0x00    
+
+   \              0x08 0x7F
+   \      0x3AC   0x00 0x3D          DC8 0, 61, 11, 17, 35, 7, 0, 1, 5, 11, 5, 2, 0, 3, 16, 17, 48, 12, 0, 0
+
+   \              0x0B 0x11    
+
+   \              0x23 0x07    
+
+   \              0x00 0x01    
+
+   \              0x05 0x0B    
+
+   \              0x05 0x02    
+
+   \              0x00 0x03    
+
+   \              0x10 0x11    
+
+   \              0x30 0x0C    
+
+   \              0x00 0x00
+   \      0x3C0   0x00 0x00          DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 17, 64, 8, 0, 60, 8, 0, 0, 34
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x00    
+
+   \              0x00 0x0C    
+
+   \              0x11 0x40    
+
+   \              0x08 0x00    
+
+   \              0x3C 0x08    
+
+   \              0x00 0x00    
+
+   \              0x22
+   \      0x3D5   0x22 0x20          DC8 34, 32, 255, 0
+
+   \              0xFF 0x00
+   \      0x3D9                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_1:
+   \        0x0   0x02 0x00          DC8 2, 0, 0, 1, 201, 195, 128
+
+   \              0x00 0x01    
+
+   \              0xC9 0xC3    
+
+   \              0x80
+   \        0x7                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_2:
+   \        0x0   0x20 0xFF          DC8 32, 255, 255, 255
+
+   \              0xFF 0xFF
+
+   \                                 In section .rodata, align 4
+   \                     ?_3:
+   \        0x0   0x20 0x00          DC8 32, 0, 0, 0
+
+   \              0x00 0x00
+
+   \                                 In section .rodata, align 1
+   \                     ?_4:
+   \        0x0   0x01               DC8 1
+
+   \                                 In section .rodata, align 1
+   \                     ?_5:
+   \        0x0   0x10               DC8 16
+
+   \                                 In section .rodata, align 2
+   \                     ?_6:
+   \        0x0   0x23 0x7F          DC8 35, 127
+
+   \                                 In section .rodata, align 2
+   \                     ?_7:
+   \        0x0   0x23 0x00          DC8 35, 0
+
+   \                                 In section .rodata, align 1
+   \                     ?_8:
+   \        0x0   0x33               DC8 51
+
+   \                                 In section .rodata, align 2
+   \                     ?_9:
+   \        0x0   0x15 0x00          DC8 21, 0
+
+   \                                 In section .rodata, align 2
+   \                     ?_10:
+   \        0x0   0x15 0x00          DC8 21, 0
+
+   \                                 In section .rodata, align 2
+   \                     ?_11:
+   \        0x0   0x15 0x02          DC8 21, 2
+
+   \                                 In section .rodata, align 2
+   \                     ?_12:
+   \        0x0   0x15 0x01          DC8 21, 1
+
+   \                                 In section .rodata, align 2
+   \                     ?_13:
+   \        0x0   0x15 0x03          DC8 21, 3
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      16   SI4463_ClearAllInterrupts
+        16   -> SI4463_ClearChipStatus
+        16   -> SI4463_ClearInterrupts
+      48   SI4463_ClearChipStatus
+        48   -> SI4463_ReadCommandBuffer
+        48   -> SI4463_SendCommand
+        48   -> __aeabi_memset
+      48   SI4463_ClearInterrupts
+        48   -> SI4463_ReadCommandBuffer
+        48   -> SI4463_SendCommand
+        48   -> __aeabi_memset
+      16   SI4463_ClearRxFifo
+        16   -> SI4463_SendCommand
+      16   SI4463_ClearSharedFifo
+        16   -> SI4463_SendCommand
+      16   SI4463_ClearTxFifo
+        16   -> SI4463_SendCommand
+       0   SI4463_GetBytePosition
+      48   SI4463_GetChipStatus
+        48   -> SI4463_ReadCommandBuffer
+        48   -> SI4463_SendCommand
+        48   -> __aeabi_memset
+      56   SI4463_GetCurrentState
+        56   -> SI4463_ReadCommandBuffer
+        56   -> SI4463_SendCommand
+        56   -> __aeabi_memset
+      24   SI4463_GetFuncInfo
+        24   -> SI4463_ReadCommandBuffer
+        24   -> SI4463_SendCommand
+      64   SI4463_GetInterrupts
+        64   -> SI4463_ReadCommandBuffer
+        64   -> SI4463_SendCommand
+        64   -> __aeabi_memset
+      24   SI4463_GetPartInfo
+        24   -> SI4463_ReadCommandBuffer
+        24   -> SI4463_SendCommand
+      88   SI4463_GetProperty
+        88   -> SI4463_ReadCommandBuffer
+        88   -> SI4463_SendCommand
+        88   -> __aeabi_memcpy
+        88   -> __aeabi_memset
+      56   SI4463_GetRxFifoReceivedBytes
+        56   -> SI4463_ReadCommandBuffer
+        56   -> SI4463_SendCommand
+        56   -> __aeabi_memset
+      48   SI4463_GetSwCts
+        48   -> SI4463_ReadCommandBuffer
+        48   -> __aeabi_memset
+      56   SI4463_GetTxFifoRemainBytes
+        56   -> SI4463_ReadCommandBuffer
+        56   -> SI4463_SendCommand
+        56   -> __aeabi_memset
+    2056   SI4463_Init
+      2056   -> SI4463_GetSwCts
+      2056   -> SI4463_Reset
+      2056   -> SI4463_SendCommand
+      2056   -> __aeabi_memcpy
+      2056   -> __aeabi_memcpy4
+      2056   -> __aeabi_memset
+      56   SI4463_PowerUp
+        56   -- Indirect call
+        56   -> SI4463_SendCommand
+        56   -> __aeabi_memset
+    1064   SI4463_ReadCommandBuffer
+      1064   -- Indirect call
+      1064   -> SI4463_WaitCTS
+      1064   -> __aeabi_memset
+    2104   SI4463_ReadRxFifo
+      2104   -- Indirect call
+      2104   -> __aeabi_memcpy
+      2104   -> __aeabi_memset
+       8   SI4463_Reset
+         8   -- Indirect call
+         8   -> SI4463_SendNop
+         8   -> SI4463_WaitCTS
+    1056   SI4463_SendCommand
+      1056   -- Indirect call
+      1056   -> SI4463_WaitCTS
+      1056   -> __aeabi_memset
+      16   SI4463_SendNop
+        16   -- Indirect call
+        16   -> __aeabi_memset
+      32   SI4463_SetCurrentState
+        32   -> SI4463_GetCurrentState
+        32   -> SI4463_GetSwCts
+        32   -> SI4463_SendCommand
+      32   SI4463_SetHalfDuplexFifo
+        32   -> SI4463_ClearSharedFifo
+        32   -> SI4463_GetProperty
+        32   -> SI4463_SetProperty
+        32   -> __aeabi_memset
+    1072   SI4463_SetProperty
+      1072   -> SI4463_GetSwCts
+      1072   -> SI4463_SendCommand
+      1072   -> __aeabi_memcpy
+      1072   -> __aeabi_memset
+      32   SI4463_SetSplitFifo
+        32   -> SI4463_ClearSharedFifo
+        32   -> SI4463_GetProperty
+        32   -> SI4463_SetProperty
+        32   -> __aeabi_memset
+      48   SI4463_StartRx
+        48   -> SI4463_SendCommand
+      40   SI4463_StartTx
+        40   -> SI4463_SendCommand
+        40   -> SI4463_WaitCTS
+        40   -> SI4463_WaitSwCTS
+      32   SI4463_Transmit
+        32   -> SI4463_ClearAllInterrupts
+        32   -> SI4463_GetTxFifoRemainBytes
+        32   -> SI4463_StartTx
+        32   -> SI4463_WriteTxFifo
+     296   SI4463_VerifyInit
+       296   -> SI4463_GetProperty
+       296   -> __aeabi_memset
+      24   SI4463_WaitCTS
+        24   -- Indirect call
+        24   -> SI4463_SendNop
+      24   SI4463_WaitSwCTS
+        24   -- Indirect call
+    1072   SI4463_WriteTxFifo
+      1072   -> SI4463_SendCommand
+      1072   -> __aeabi_memcpy
+      1072   -> __aeabi_memset
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable17
+       4  ??DataTable17_1
+       4  ??DataTable17_10
+       4  ??DataTable17_11
+       4  ??DataTable17_12
+       4  ??DataTable17_13
+       4  ??DataTable17_14
+       4  ??DataTable17_15
+       4  ??DataTable17_16
+       4  ??DataTable17_2
+       4  ??DataTable17_3
+       4  ??DataTable17_4
+       4  ??DataTable17_5
+       4  ??DataTable17_6
+       4  ??DataTable17_7
+       4  ??DataTable17_8
+       4  ??DataTable17_9
+     988  ?_0
+       8  ?_1
+       2  ?_10
+       2  ?_11
+       2  ?_12
+       2  ?_13
+       2  ?_14
+       8  ?_15
+       8  ?_16
+       4  ?_2
+       4  ?_3
+       1  ?_4
+       1  ?_5
+       2  ?_6
+       2  ?_7
+       1  ?_8
+       2  ?_9
+      28  SI4463_ClearAllInterrupts
+      96  SI4463_ClearChipStatus
+      96  SI4463_ClearInterrupts
+      30  SI4463_ClearRxFifo
+      30  SI4463_ClearSharedFifo
+      30  SI4463_ClearTxFifo
+       8  SI4463_GetBytePosition
+     124  SI4463_GetChipStatus
+     106  SI4463_GetCurrentState
+      48  SI4463_GetFuncInfo
+     380  SI4463_GetInterrupts
+      48  SI4463_GetPartInfo
+     156  SI4463_GetProperty
+      96  SI4463_GetRxFifoReceivedBytes
+      66  SI4463_GetSwCts
+      96  SI4463_GetTxFifoRemainBytes
+     154  SI4463_Init
+      72  SI4463_PowerUp
+     102  SI4463_ReadCommandBuffer
+     182  SI4463_ReadRxFifo
+      46  SI4463_Reset
+      90  SI4463_SendCommand
+      52  SI4463_SendNop
+      86  SI4463_SetCurrentState
+     156  SI4463_SetHalfDuplexFifo
+     138  SI4463_SetProperty
+     168  SI4463_SetSplitFifo
+     126  SI4463_StartRx
+     128  SI4463_StartTx
+     108  SI4463_Transmit
+   1'124  SI4463_VerifyInit
+      68  SI4463_WaitCTS
+      54  SI4463_WaitSwCTS
+      98  SI4463_WriteTxFifo
+
+ 
+ 1'039 bytes in section .rodata
+ 4'458 bytes in section .text
+ 
+ 4'458 bytes of CODE  memory
+ 1'039 bytes of CONST memory
+
+Errors: none
+Warnings: 1

@@ -26,23 +26,23 @@
 
 typedef struct ver_info{
 // Version
-    WORD	ver_main;			//	0
-    WORD	ver_sub;			//	2
-    WORD	ver_det;			//	4
-    WORD	ver_build;			//	6
+	UINT16	ver_main;			//	0
+    UINT16	ver_sub;			//	2
+    UINT16	ver_det;			//	4
+    UINT16	ver_build;			//	6
 
 // Compile Time
-    WORD	year;				//	8
-    BYTE	month;				//	10
-    BYTE	day;				//	11
+    UINT16	year;				//	8
+    UINT8	month;				//	10
+    UINT8	day;				//	11
 
-    BYTE	hour;				//	12
-    BYTE	min;				//	13
-    BYTE	sec;				//	14
+    UINT8	hour;				//	12
+    UINT8	min;				//	13
+    UINT8	sec;				//	14
 
-    BYTE	ver_id;				//	15	-	해당 모듈의 ID 아래 참고
+    UINT8	ver_id;				//	15	-	해당 모듈의 ID 아래 참고
 
-	DWORD	fileSize;			//	16
+    U32	fileSize;			//	16
 
 	// Line Kimhae / Shinbundang / Maglev
     char_t	line[	12	];		//	20

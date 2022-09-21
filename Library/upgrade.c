@@ -14,6 +14,15 @@
 //========================================================================
 // Header
 
+#include <stdio.h>			//	printf()
+
+#include <stdint.h>			//	uint32_t
+
+#include <string.h>			//	memset()
+
+#include "typedef.h"			//	uint32_t, ...
+#include "compiler_defs.h"		//	U8,
+
 #include "upgrade.h"
 
 #include "rfm.h"				//	g_idxTrainSet
@@ -27,28 +36,28 @@
 //========================================================================
 // Define
 
-static int s_bUpgrRetry = 0;		//	Upgrade Retry
+static uint16_t s_bUpgrRetry = 0;		//	Upgrade Retry
 
 //========================================================================
 // Function
 
 //========================================================================
-void SetUpgrReTry( int _bUpgrRetry )
+void SetUpgrReTry( uint16_t _bUpgrRetry )
 //========================================================================
 {
 	s_bUpgrRetry = _bUpgrRetry;
 }
 
 //========================================================================
-int GetUpgrReTry( void )
+uint16_t GetUpgrReTry( void )
 //========================================================================
 {
-	return s_bUpgrRetry;
+	return (uint16_t)s_bUpgrRetry;
 }
 
 
 //========================================================================
-int UpgrSendImage		( uint32_t nAddrBase, uint32_t nSizeImage )
+uint32_t UpgrSendImage		( uint32_t nAddrBase, uint32_t nSizeImage )
 //========================================================================
 {
 	//	송신기 Upgrade 명령.
@@ -57,7 +66,7 @@ int UpgrSendImage		( uint32_t nAddrBase, uint32_t nSizeImage )
 	uint32_t	nAddrTarget;
 
 	uint8_t		sBuf[100];
-	int			nSize;
+	uint32_t	nSize;
 
 	//========================================================================
 	//	0x0800 0000 ~ 0x0807 FFFF	:	Bootloader + Application
@@ -66,9 +75,9 @@ int UpgrSendImage		( uint32_t nAddrBase, uint32_t nSizeImage )
 	//========================================================================
 	nAddrTarget		=	nAddrBase + 0x80000;// + SIZE_FLASH_BOOTAPP;
 
-	int i, j;
+	uint32_t i, j;
 //	int nTotPkt = ( ( nSizeImage + 49 ) / 50 );
-	int nTotPkt = ( ( nSizeImage + (PktUpgrDataSize - 1) ) / PktUpgrDataSize );
+	uint32_t nTotPkt = (uint32_t)( ( (uint32_t)nSizeImage + ((uint32_t)PktUpgrDataSize - 1) ) / (uint32_t)PktUpgrDataSize );
 
 	char	sLCD[100];
 
@@ -79,8 +88,9 @@ int UpgrSendImage		( uint32_t nAddrBase, uint32_t nSizeImage )
 		//	Flash Data 전송.
 //		memcpy( sBuf, (__IO uint8_t*)(nAddrBase + (i * 50)), 50 );
 //		SendUpgrData( nAddrTarget, nTotPkt, i, sBuf, 50 );
-		memcpy( sBuf, (__IO uint8_t*)(nAddrBase + (i * PktUpgrDataSize)), PktUpgrDataSize );
-		SendUpgrData( nAddrTarget, nTotPkt, i, sBuf, PktUpgrDataSize );
+		memcpy( &sBuf[0], ( uint8_t *)(nAddrBase + (i * PktUpgrDataSize)),(uint32_t) PktUpgrDataSize );
+        
+		SendUpgrData( nAddrTarget, (uint16_t)nTotPkt, (uint16_t)i, &sBuf[0], (uint8_t)PktUpgrDataSize );
 
 		//========================================================================
 		if ( i == 0 && GetUpgrReTry() == 0 )
@@ -93,7 +103,7 @@ int UpgrSendImage		( uint32_t nAddrBase, uint32_t nSizeImage )
 //			HAL_Delay( 3000 );		//	sleep 3 sec
 			for( j = 0; j < 7; j++ )	//	sleep 7 sec
 			{
-				HAL_Delay( 1000 );
+				HAL_Delay( (uint32_t)1000 );
 				__HAL_IWDG_RELOAD_COUNTER(&hiwdg);	//	Watchdog Re-Flash
 			}
 		}
@@ -111,7 +121,7 @@ int UpgrSendImage		( uint32_t nAddrBase, uint32_t nSizeImage )
 
 //		HAL_Delay( 4 );	//	4 msec Delay
 //		HAL_Delay( 3 );	//	2 msec Delay
-		HAL_Delay( 2 );	//	2 msec Delay
+		HAL_Delay( (uint32_t)2 );	//	2 msec Delay
 
 		//========================================================================
 		//	Watchdog Reload
@@ -129,7 +139,7 @@ int UpgrSendImage		( uint32_t nAddrBase, uint32_t nSizeImage )
 
 
 //========================================================================
-int UpgrSendImageBoot	( void )
+uint32_t UpgrSendImageBoot	( void )
 //========================================================================
 {
 	//	송신기 Upgrade 명령. - Bootloader
@@ -137,7 +147,7 @@ int UpgrSendImageBoot	( void )
 }
 
 //========================================================================
-int UpgrSendImageApp	( void )
+uint32_t UpgrSendImageApp	( void )
 //========================================================================
 {
 	//	송신기 Upgrade 명령. - Application
@@ -145,7 +155,7 @@ int UpgrSendImageApp	( void )
 }
 
 //========================================================================
-int cmd_upgrade	( int argc, char * argv[] )
+uint8_t cmd_upgrade	( uint8_t argc, char * argv[] )
 //========================================================================
 {
 	//========================================================================
@@ -188,14 +198,14 @@ int cmd_upgrade	( int argc, char * argv[] )
 
 		//========================================================================
 		//	Upgrade Mode
-		SetRFMMode( RFMModeUpgr );		//	Upgrade Mode 설정. ( 상태정보 전송 X )
+		SetRFMMode( (uint8_t)RFMModeUpgr );		//	Upgrade Mode 설정. ( 상태정보 전송 X )
 		//========================================================================
 	}
 	else if ( nVal == 0 )
 	{
 		//========================================================================
 		//	Normal Mode
-		SetRFMMode( RFMModeNormal );	//	Normal Mode 로 변경
+		SetRFMMode( (uint8_t)RFMModeNormal );	//	Normal Mode 로 변경
 		//========================================================================
 
 		//  RF 수신 Start

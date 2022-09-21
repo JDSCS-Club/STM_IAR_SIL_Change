@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  23:37:24
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:25
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                     =  thumb
@@ -109,21 +109,6 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\diag.c
      47          
      48          #include "typedef.h"			//	ip_addr
 
-  typedef unsigned char       BYTE;
-                              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",73  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-
-  typedef unsigned short      WORD;
-                              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",77  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-
-  typedef unsigned char 		BIT;
-                        		^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",83  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-
   typedef unsigned char 		U8;
                         		^
 "C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",84  Warning[Pe301]: typedef
@@ -156,171 +141,175 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\diag.c
      49          
      50          #include "serial.h"
      51          
-     52          #include "radio.h"				//	RF-IC WDS
+     52          #include "radio_si4463.h"		//	RF-IC
      53          
-     54          #include "si446x_api_lib.h"		//	Pro2Cmd
+     54          #include "radio.h"				//	RF-IC WDS
      55          
-     56          #include "radio_comm.h"			//	g_bEnableDbgRadioComm
+     56          #include "si446x_api_lib.h"		//	Pro2Cmd
      57          
-     58          //=============================================================================
-     59          #endif
+     58          #include "radio_comm.h"			//	g_bEnableDbgRadioComm
+     59          
      60          //=============================================================================
-     61          
-     62          #include "audio.h"		//	Audio Diag
+     61          #endif
+     62          //=============================================================================
+     63          
+     64          #include "audio.h"		//	Audio Diag
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",304  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",293  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",322  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",311  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",468  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",419  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",506  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",457  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",511  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",462  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",533  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",484  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",559  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",510  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",567  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",518  Warning[Pe040]: 
           expected an identifier
-     63          #include "cli.h"
-     64          #include "diag.h"
-     65          
-     66          #define		CLEAR_VT_SCREEN()	printf("\033[2J")
-     67          #define		GOTO_VT_XY()		printf("\033[1;1H")
-     68          #define		BUFSIZE	512
+     65          #include "cli.h"
+     66          #include "diag.h"
+     67          
+     68          #include "si4463.h"
      69          
+     70          #define		CLEAR_VT_SCREEN()	printf("\033[2J")
+     71          #define		GOTO_VT_XY()		printf("\033[1;1H")
+     72          #define		BUFSIZE	512
+     73          
 
    \                                 In section .bss, align 4
-     70          unsigned char *	mem_addr;
+     74          unsigned char *	mem_addr;
    \                     mem_addr:
    \        0x0                      DS8 4
 
    \                                 In section .data, align 4
-     71          int				dumpsize = 0x100;	//, data_option = 2;
+     75          int				dumpsize = 0x100;	//, data_option = 2;
    \                     dumpsize:
    \        0x0   0x0000'0100        DC32 256
 
    \                                 In section .bss, align 4
-     72          int				debug_level = 0;
+     76          int				debug_level = 0;
    \                     debug_level:
    \        0x0                      DS8 4
-     73          
-     74          extern char	sLineInput[BUFSIZE];		// Prompt Line Input
-     75          
-     76          /*
-     77           * diag main menu를 display
-     78           */
-     79          //========================================================================
+     77          
+     78          extern char	sLineInput[BUFSIZE];		// Prompt Line Input
+     79          
+     80          /*
+     81           * diag main menu를 display
+     82           */
+     83          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-     80          void display_diag_menu( void )
-     81          //========================================================================
-     82          {
+     84          void display_diag_menu( void )
+     85          //========================================================================
+     86          {
    \                     display_diag_menu: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
-     83          	CLEAR_VT_SCREEN();
-   \        0x2   0x.... 0x....      LDR.W    R0,??DataTable26_3
+     87          	CLEAR_VT_SCREEN();
+   \        0x2   0x.... 0x....      LDR.W    R0,??DataTable33_3
    \        0x6   0x.... 0x....      BL       printf
-     84          	GOTO_VT_XY();
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable26_4
+     88          	GOTO_VT_XY();
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable33_4
    \        0xE   0x.... 0x....      BL       printf
-     85          
-     86          	printf( "\n" );
+     89          
+     90          	printf( "\n" );
    \       0x12   0x....             ADR.N    R4,??DataTable4
    \       0x14   0x0020             MOVS     R0,R4
    \       0x16   0x.... 0x....      BL       printf
-     87          	printf( "\n" );
+     91          	printf( "\n" );
    \       0x1A   0x0020             MOVS     R0,R4
    \       0x1C   0x.... 0x....      BL       printf
-     88          	printf( "\n" );
+     92          	printf( "\n" );
    \       0x20   0x0020             MOVS     R0,R4
    \       0x22   0x.... 0x....      BL       printf
-     89          	printf( "\n" );
+     93          	printf( "\n" );
    \       0x26   0x0020             MOVS     R0,R4
    \       0x28   0x.... 0x....      BL       printf
-     90          
-     91          	printf( "       **************************************************************\n" );
-   \       0x2C   0x.... 0x....      LDR.W    R5,??DataTable26_5
+     94          
+     95          	printf( "       **************************************************************\n" );
+   \       0x2C   0x.... 0x....      LDR.W    R5,??DataTable33_5
    \       0x30   0x0028             MOVS     R0,R5
    \       0x32   0x.... 0x....      BL       printf
-     92          	printf( "       *                       Board Test V1.0                      *\n" );
-   \       0x36   0x.... 0x....      LDR.W    R0,??DataTable26_6
+     96          	printf( "       *                       Board Test V1.0                      *\n" );
+   \       0x36   0x.... 0x....      LDR.W    R0,??DataTable33_6
    \       0x3A   0x.... 0x....      BL       printf
-     93          	printf( "       *                                                            *\n" );
-   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable26_7
+     97          	printf( "       *                                                            *\n" );
+   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable33_7
    \       0x42   0x.... 0x....      BL       printf
-     94          	printf( "       *  1 : Audio Test.                                           *\n" );
-   \       0x46   0x.... 0x....      LDR.W    R0,??DataTable26_8
+     98          	printf( "       *  1 : Audio Test.                                           *\n" );
+   \       0x46   0x.... 0x....      LDR.W    R0,??DataTable33_8
    \       0x4A   0x.... 0x....      BL       printf
-     95          	printf( "       *  2 : RF test.                                              *\n" );
-   \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable26_9
+     99          	printf( "       *  2 : RF test.                                              *\n" );
+   \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable33_9
    \       0x52   0x.... 0x....      BL       printf
-     96          	printf( "       **************************************************************\n" );
+    100          	printf( "       **************************************************************\n" );
    \       0x56   0x0028             MOVS     R0,R5
    \       0x58   0x.... 0x....      BL       printf
-     97          	printf( "       *  4 : spi test.                                             *\n" );
-   \       0x5C   0x.... 0x....      LDR.W    R0,??DataTable26_10
+    101          	printf( "       *  4 : spi test.                                             *\n" );
+   \       0x5C   0x.... 0x....      LDR.W    R0,??DataTable33_10
    \       0x60   0x.... 0x....      BL       printf
-     98          	printf( "       *  5 : External Flash Memory Test.(Write/Read/Compare)       *\n" );
-   \       0x64   0x.... 0x....      LDR.W    R0,??DataTable26_11
+    102          	printf( "       *  5 : External Flash Memory Test.(Write/Read/Compare)       *\n" );
+   \       0x64   0x.... 0x....      LDR.W    R0,??DataTable33_11
    \       0x68   0x.... 0x....      BL       printf
-     99          	printf( "       **************************************************************\n" );
+    103          	printf( "       **************************************************************\n" );
    \       0x6C   0x0028             MOVS     R0,R5
    \       0x6E   0x.... 0x....      BL       printf
-    100          	printf( "       *  e : print log.                                            *\n" );
-   \       0x72   0x.... 0x....      LDR.W    R0,??DataTable26_12
+    104          	printf( "       *  e : print log.                                            *\n" );
+   \       0x72   0x.... 0x....      LDR.W    R0,??DataTable33_12
    \       0x76   0x.... 0x....      BL       printf
-    101          	printf( "       **************************************************************\n" );
+    105          	printf( "       **************************************************************\n" );
    \       0x7A   0x0028             MOVS     R0,R5
    \       0x7C   0x.... 0x....      BL       printf
-    102          	printf( "\n" );
+    106          	printf( "\n" );
    \       0x80   0x0020             MOVS     R0,R4
    \       0x82   0x.... 0x....      BL       printf
-    103          	printf( "           Please select number[to quit, push 'q', 'Q']:" );
-   \       0x86   0x.... 0x....      LDR.W    R0,??DataTable26_13
+    107          	printf( "           Please select number[to quit, push 'q', 'Q']:" );
+   \       0x86   0x.... 0x....      LDR.W    R0,??DataTable33_13
    \       0x8A   0x.... 0x....      BL       printf
-    104          }
+    108          }
    \       0x8E   0xBD31             POP      {R0,R4,R5,PC}
-    105          
-    106          //========================================================================
+    109          
+    110          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    107          int cmd_diag_proc( char *cmd )
-    108          //========================================================================
-    109          {
+    111          uint8_t cmd_diag_proc( char *cmd )
+    112          //========================================================================
+    113          {
    \                     cmd_diag_proc: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    110          //	sel = ibuf[0];
-    111          	char sel = cmd[0];
+    114          //	sel = ibuf[0];
+    115          	char sel = cmd[0];
    \        0x4   0x7825             LDRB     R5,[R4, #+0]
-    112          
-    113          	switch ( sel )
+    116          
+    117          	switch ( sel )
    \        0x6   0x0028             MOVS     R0,R5
    \        0x8   0xB2C0             UXTB     R0,R0
    \        0xA   0x2831             CMP      R0,#+49
@@ -332,1503 +321,1868 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\diag.c
    \       0x16   0x2871             CMP      R0,#+113
    \       0x18   0xD00A             BEQ.N    ??cmd_diag_proc_2
    \       0x1A   0xE013             B.N      ??cmd_diag_proc_3
-    114          	{
-    115          	case '1':	cmd_diag_Audio( 0, 0 );		break;
+    118          	{
+    119          	case '1':	cmd_diag_Audio( 0, 0 );		break;
    \                     ??cmd_diag_proc_0: (+1)
    \       0x1C   0x2100             MOVS     R1,#+0
    \       0x1E   0x2000             MOVS     R0,#+0
    \       0x20   0x.... 0x....      BL       cmd_diag_Audio
    \       0x24   0xE00E             B.N      ??cmd_diag_proc_4
-    116          	case '2':	cmd_diag_RF( 0, 0 );		break;
-                 	         	^
-Warning[Pe223]: function "cmd_diag_RF" declared implicitly
+    120          	case '2':	cmd_diag_RF( 0, 0 );		break;
    \                     ??cmd_diag_proc_1: (+1)
    \       0x26   0x2100             MOVS     R1,#+0
    \       0x28   0x2000             MOVS     R0,#+0
    \       0x2A   0x.... 0x....      BL       cmd_diag_RF
    \       0x2E   0xE009             B.N      ??cmd_diag_proc_4
-    117          	case 'q':
-    118          	case 'Q':
-    119          #if defined(USE_FREERTOS)
-    120          #else
-    121          		SetCLIPrompt( CLIPrompt );
+    121          		//		case '2':	cmd_test2( 0, 0 );			break;
+    122          		//		case '3':	cmd_test3( 0, 0 );			break;
+    123          		//		case '4':	cmd_test4( 0, 0 );			break;
+    124          		//		case '5':	cmd_test5( 0, 0 );			break;
+    125          	case 'q':
+    126          	case 'Q':
+    127          #if defined(USE_FREERTOS)
+    128          #else
+    129          		SetCLIPrompt( CLIPrompt );
    \                     ??cmd_diag_proc_2: (+1)
-   \       0x30   0x.... 0x....      LDR.W    R0,??DataTable26_14
+   \       0x30   0x.... 0x....      LDR.W    R0,??DataTable33_14
    \       0x34   0x.... 0x....      BL       SetCLIPrompt
-    122          		SetCLIProc( ProcessCommand );
-   \       0x38   0x.... 0x....      LDR.W    R0,??DataTable26_15
+    130          		SetCLIProc( ProcessCommand );
+   \       0x38   0x.... 0x....      LDR.W    R0,??DataTable33_15
    \       0x3C   0x.... 0x....      BL       SetCLIProc
-    123          #endif
-    124          		return 0;
+    131          #endif
+    132          		return 0;
    \       0x40   0x2000             MOVS     R0,#+0
    \       0x42   0xE000             B.N      ??cmd_diag_proc_5
-    125          	default:
-    126          		break;
-    127          	}
-    128          
-    129          	return 1;
+    133          	default:
+    134          		break;
+    135          	}
+    136          
+    137          	return 1;
    \                     ??cmd_diag_proc_3: (+1)
    \                     ??cmd_diag_proc_4: (+1)
    \       0x44   0x2001             MOVS     R0,#+1
    \                     ??cmd_diag_proc_5: (+1)
    \       0x46   0xBD32             POP      {R1,R4,R5,PC}
-    130          }
-    131          
-    132          //========================================================================
-    133          //					diag main command function
-    134          //========================================================================
+    138          }
+    139          
+    140          //========================================================================
+    141          //					diag main command function
+    142          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    135          int cmd_diag( int argc, char *argv[] )
-    136          //========================================================================
-    137          {
+    143          uint8_t cmd_diag( uint8_t argc, char *argv[] )
+    144          //========================================================================
+    145          {
    \                     cmd_diag: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    138          #if defined(USE_FREERTOS)
-    139          
-    140          	char	ibuf[80];
-    141          	int		v, sel;
-    142          
-    143          	while ( 1 )
-    144          	{
-    145          		display_diag_menu();
-    146          
-    147          		v = readline( ibuf );
-    148          
-    149          		if ( v <= 0 )
-    150          		{
-    151          			continue;
-    152          		}
-    153          
-    154          		if ( cmd_diag_proc( ibuf ) == 0 )
-    155          		{
-    156          			return 0;
-    157          		}
-    158          
-    159          		printf( "Press ENTER key to continue. " );
-    160          		readline( ibuf );
+    146          #if defined(USE_FREERTOS)
+    147          
+    148          	char	ibuf[80];
+    149          	int		v, sel;
+    150          
+    151          	while ( 1 )
+    152          	{
+    153          		display_diag_menu();
+    154          
+    155          		v = readline( ibuf );
+    156          
+    157          		if ( v <= 0 )
+    158          		{
+    159          			continue;
+    160          		}
     161          
-    162          		taskYIELD();
-    163          	}
-    164          #else
-    165          //	HAL_Delay( 0 );
-    166          	SetCLIPrompt( display_diag_menu );
-   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable26_16
+    162          		if ( cmd_diag_proc( ibuf ) == 0 )
+    163          		{
+    164          			return 0;
+    165          		}
+    166          
+    167          		printf( "Press ENTER key to continue. " );
+    168          		readline( ibuf );
+    169          
+    170          		taskYIELD();
+    171          	}
+    172          #else
+    173          //	HAL_Delay( 0 );
+    174          	SetCLIPrompt( display_diag_menu );
+   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable33_16
    \        0xA   0x.... 0x....      BL       SetCLIPrompt
-    167          	SetCLIProc( cmd_diag_proc );
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_17
+    175          	SetCLIProc( cmd_diag_proc );
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_17
    \       0x12   0x.... 0x....      BL       SetCLIProc
-    168          
-    169          #endif
-    170          
-    171          	/* NOTREACHED */
-    172          
-    173          	return 0;
+    176          
+    177          #endif
+    178          
+    179          	/* NOTREACHED */
+    180          
+    181          	return 0;
    \       0x16   0x2000             MOVS     R0,#+0
    \       0x18   0xBD32             POP      {R1,R4,R5,PC}
-    174          }
-    175          
-    176          
-    177          //========================================================================
+    182          }
+    183          
+    184          
+    185          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    178          void display_diag_Audio( void )
-    179          //========================================================================
-    180          {
+    186          void display_diag_Audio( void )
+    187          //========================================================================
+    188          {
    \                     display_diag_Audio: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
-    181          	CLEAR_VT_SCREEN();
-   \        0x2   0x.... 0x....      LDR.W    R0,??DataTable26_3
+    189          	CLEAR_VT_SCREEN();
+   \        0x2   0x.... 0x....      LDR.W    R0,??DataTable33_3
    \        0x6   0x.... 0x....      BL       printf
-    182          	GOTO_VT_XY();
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable26_4
+    190          	GOTO_VT_XY();
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable33_4
    \        0xE   0x.... 0x....      BL       printf
-    183          
-    184          	printf( "\n" );
+    191          
+    192          	printf( "\n" );
    \       0x12   0x....             ADR.N    R4,??DataTable4
    \       0x14   0x0020             MOVS     R0,R4
    \       0x16   0x.... 0x....      BL       printf
-    185          	printf( "\n" );
+    193          	printf( "\n" );
    \       0x1A   0x0020             MOVS     R0,R4
    \       0x1C   0x.... 0x....      BL       printf
-    186          	printf( "\n" );
+    194          	printf( "\n" );
    \       0x20   0x0020             MOVS     R0,R4
    \       0x22   0x.... 0x....      BL       printf
-    187          	printf( "\n" );
+    195          	printf( "\n" );
    \       0x26   0x0020             MOVS     R0,R4
    \       0x28   0x.... 0x....      BL       printf
-    188          
-    189          	printf( "       **************************************************************\n" );
-   \       0x2C   0x.... 0x....      LDR.W    R5,??DataTable26_5
+    196          
+    197          	printf( "       **************************************************************\n" );
+   \       0x2C   0x.... 0x....      LDR.W    R5,??DataTable33_5
    \       0x30   0x0028             MOVS     R0,R5
    \       0x32   0x.... 0x....      BL       printf
-    190          	printf( "       *                      Audio Test.                           *\n" );
-   \       0x36   0x.... 0x....      LDR.W    R0,??DataTable26_18
+    198          	printf( "       *                      Audio Test.                           *\n" );
+   \       0x36   0x.... 0x....      LDR.W    R0,??DataTable33_18
    \       0x3A   0x.... 0x....      BL       printf
-    191          	printf( "       *                                                            *\n" );
-   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable26_7
+    199          	printf( "       *                                                            *\n" );
+   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable33_7
    \       0x42   0x.... 0x....      BL       printf
-    192          	printf( "       *  1 : audio tx sine.                                        *\n" );
-   \       0x46   0x.... 0x....      LDR.W    R0,??DataTable26_19
+    200          	printf( "       *  1 : audio tx sine.                                        *\n" );
+   \       0x46   0x.... 0x....      LDR.W    R0,??DataTable33_19
    \       0x4A   0x.... 0x....      BL       printf
-    193          	printf( "       *  2 : audio tx null.                                        *\n" );
-   \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable26_20
+    201          	printf( "       *  2 : audio tx null.                                        *\n" );
+   \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable33_20
    \       0x52   0x.... 0x....      BL       printf
-    194          	printf( "       *  3 : audio tx stop.                                        *\n" );
-   \       0x56   0x.... 0x....      LDR.W    R0,??DataTable26_21
+    202          	printf( "       *  3 : audio tx stop.                                        *\n" );
+   \       0x56   0x.... 0x....      LDR.W    R0,??DataTable33_21
    \       0x5A   0x.... 0x....      BL       printf
-    195          	printf( "       *  4 : Audio Loopback. ( Internal Codec )                    *\n" );
-   \       0x5E   0x.... 0x....      LDR.W    R0,??DataTable26_22
+    203          	printf( "       *  4 : Audio Loopback. ( Internal Codec )                    *\n" );
+   \       0x5E   0x.... 0x....      LDR.W    R0,??DataTable33_22
    \       0x62   0x.... 0x....      BL       printf
-    196          	printf( "       *  5 : Audio Loopback. ( DMA )                               *\n" );
-   \       0x66   0x.... 0x....      LDR.W    R0,??DataTable26_23
+    204          	printf( "       *  5 : Audio Loopback. ( DMA )                               *\n" );
+   \       0x66   0x.... 0x....      LDR.W    R0,??DataTable33_23
    \       0x6A   0x.... 0x....      BL       printf
-    197          	printf( "       *  6 : Audio RF Tx/Rx. ( DMA )                               *\n" );
-   \       0x6E   0x.... 0x....      LDR.W    R0,??DataTable26_24
+    205          	printf( "       *  6 : Audio RF Tx/Rx. ( DMA )                               *\n" );
+   \       0x6E   0x.... 0x....      LDR.W    R0,??DataTable33_24
    \       0x72   0x.... 0x....      BL       printf
-    198          	printf( "       *  7 : Audio Loopback. ( DMA - speex )                       *\n" );
-   \       0x76   0x.... 0x....      LDR.W    R0,??DataTable26_25
+    206          	printf( "       *  7 : Audio Loopback. ( DMA - speex )                       *\n" );
+   \       0x76   0x.... 0x....      LDR.W    R0,??DataTable33_25
    \       0x7A   0x.... 0x....      BL       printf
-    199          	printf( "       *  8 : Audio RF Tx. ( DMA )                                  *\n" );
-   \       0x7E   0x.... 0x....      LDR.W    R0,??DataTable26_26
+    207          	printf( "       *  8 : Audio RF Tx. ( DMA )                                  *\n" );
+   \       0x7E   0x.... 0x....      LDR.W    R0,??DataTable33_26
    \       0x82   0x.... 0x....      BL       printf
-    200          	printf( "       *  9 : Audio RF Rx. ( DMA )                                  *\n" );
-   \       0x86   0x.... 0x....      LDR.W    R0,??DataTable26_27
+    208          	printf( "       *  9 : Audio RF Rx. ( DMA )                                  *\n" );
+   \       0x86   0x.... 0x....      LDR.W    R0,??DataTable33_27
    \       0x8A   0x.... 0x....      BL       printf
-    201          	printf( "       *  a : Audio Sampling ( 8 KHz )                              *\n" );
-   \       0x8E   0x.... 0x....      LDR.W    R0,??DataTable26_28
+    209          	printf( "       *  a : Audio Sampling ( 8 KHz )                              *\n" );
+   \       0x8E   0x.... 0x....      LDR.W    R0,??DataTable33_28
    \       0x92   0x.... 0x....      BL       printf
-    202          	printf( "       *  b : Audio Sampling ( 4 KHz )                              *\n" );
-   \       0x96   0x.... 0x....      LDR.W    R0,??DataTable26_29
+    210          	printf( "       *  b : Audio Sampling ( 4 KHz )                              *\n" );
+   \       0x96   0x.... 0x....      LDR.W    R0,??DataTable33_29
    \       0x9A   0x.... 0x....      BL       printf
-    203          	printf( "       *  c : Audio Sampling ( 2 KHz )                              *\n" );
-   \       0x9E   0x.... 0x....      LDR.W    R0,??DataTable26_30
+    211          	printf( "       *  c : Audio Sampling ( 2 KHz )                              *\n" );
+   \       0x9E   0x.... 0x....      LDR.W    R0,??DataTable33_30
    \       0xA2   0x.... 0x....      BL       printf
-    204          	printf( "       *  d : Audio Sampling ( 1 KHz )                              *\n" );
-   \       0xA6   0x.... 0x....      LDR.W    R0,??DataTable26_31
+    212          	printf( "       *  d : Audio Sampling ( 1 KHz )                              *\n" );
+   \       0xA6   0x.... 0x....      LDR.W    R0,??DataTable33_31
    \       0xAA   0x.... 0x....      BL       printf
-    205          	printf( "       *  i : audio Init                                            *\n" );
-   \       0xAE   0x.... 0x....      LDR.W    R0,??DataTable26_32
+    213          	printf( "       *  i : audio Init                                            *\n" );
+   \       0xAE   0x.... 0x....      LDR.W    R0,??DataTable33_32
    \       0xB2   0x.... 0x....      BL       printf
-    206          	printf( "       *  e : Enable Debug SPI                                      *\n" );
-   \       0xB6   0x.... 0x....      LDR.W    R0,??DataTable26_33
+    214          	printf( "       *  e : Enable Debug SPI                                      *\n" );
+   \       0xB6   0x.... 0x....      LDR.W    R0,??DataTable33_33
    \       0xBA   0x.... 0x....      BL       printf
-    207          	printf( "       **************************************************************\n" );
+    215          	printf( "       **************************************************************\n" );
    \       0xBE   0x0028             MOVS     R0,R5
    \       0xC0   0x.... 0x....      BL       printf
-    208          	printf( "\n" );
+    216          	printf( "\n" );
    \       0xC4   0x0020             MOVS     R0,R4
    \       0xC6   0x.... 0x....      BL       printf
-    209          	printf( "           Please select number[to quit, push 'q', 'Q']:" );
-   \       0xCA   0x.... 0x....      LDR.W    R0,??DataTable26_13
+    217          	printf( "           Please select number[to quit, push 'q', 'Q']:" );
+   \       0xCA   0x.... 0x....      LDR.W    R0,??DataTable33_13
    \       0xCE   0x.... 0x....      BL       printf
-    210          }
+    218          }
    \       0xD2   0xBD31             POP      {R0,R4,R5,PC}
-    211          
-    212          
-    213          //========================================================================
+    219          
+    220          
+    221          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    214          int cmd_diag_proc_Audio( char *cmd )
-    215          //========================================================================
-    216          {
+    222          uint8_t cmd_diag_proc_Audio( char *cmd )
+    223          //========================================================================
+    224          {
    \                     cmd_diag_proc_Audio: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    217          //	sel = ibuf[0];
-    218          	char sel = cmd[0];
+    225          //	sel = ibuf[0];
+    226          	char sel = cmd[0];
    \        0x4   0x7825             LDRB     R5,[R4, #+0]
-    219          
-    220          	switch ( sel )
+    227          
+    228          	switch ( sel )
    \        0x6   0x0028             MOVS     R0,R5
    \        0x8   0xB2C0             UXTB     R0,R0
    \        0xA   0x2851             CMP      R0,#+81
    \        0xC   0xD001             BEQ.N    ??cmd_diag_proc_Audio_0
    \        0xE   0x2871             CMP      R0,#+113
    \       0x10   0xD105             BNE.N    ??cmd_diag_proc_Audio_1
-    221          	{
-    222          #if 0
-    223          		case '1':	AudioSine();							break;
-    224          		case '2':	AudioTxNull();							break;
-    225          		case '3':	AudioTxStop();							break;
-    226          		case '4':	AudioLoopback();						break;
-    227          		case '5':	AudioLoopbackDMA();						break;
-    228          		case '6':	AudioRFRxTx();							break;
-    229          		case '7':	AudioLoopbackDMASpeex();				break;
-    230          		case '8':	AudioRFTx();							break;
-    231          		case '9':	AudioRFRx();							break;
-    232          		case 'a':	SetAudioLoopSampling( eASample8KHz );	break;
-    233          		case 'b':	SetAudioLoopSampling( eASample4KHz );	break;
-    234          		case 'c':	SetAudioLoopSampling( eASample2KHz );	break;
-    235          		case 'd':	SetAudioLoopSampling( eASample1KHz );	break;
-    236          		case 'i':	InitCodecXE3005();							break;
-    237          		case 'e':	AudioDebugEnable();						break;
-    238          #endif
-    239          	case 'q':
-    240          	case 'Q':
-    241          #if defined(USE_FREERTOS)
-    242          #else
-    243          		cmd_diag(0, 0);
+    229          	{
+    230          #if 0
+    231          		case '1':	AudioSine();							break;
+    232          		case '2':	AudioTxNull();							break;
+    233          		case '3':	AudioTxStop();							break;
+    234          		case '4':	AudioLoopback();						break;
+    235          		case '5':	AudioLoopbackDMA();						break;
+    236          		case '6':	AudioRFRxTx();							break;
+    237          		case '7':	AudioLoopbackDMASpeex();				break;
+    238          		case '8':	AudioRFTx();							break;
+    239          		case '9':	AudioRFRx();							break;
+    240          		case 'a':	SetAudioLoopSampling( eASample8KHz );	break;
+    241          		case 'b':	SetAudioLoopSampling( eASample4KHz );	break;
+    242          		case 'c':	SetAudioLoopSampling( eASample2KHz );	break;
+    243          		case 'd':	SetAudioLoopSampling( eASample1KHz );	break;
+    244          		case 'i':	InitCodecXE3005();							break;
+    245          		case 'e':	AudioDebugEnable();						break;
+    246          #endif
+    247          	case 'q':
+    248          	case 'Q':
+    249          #if defined(USE_FREERTOS)
+    250          #else
+    251          		cmd_diag(0, 0);
    \                     ??cmd_diag_proc_Audio_0: (+1)
    \       0x12   0x2100             MOVS     R1,#+0
    \       0x14   0x2000             MOVS     R0,#+0
    \       0x16   0x.... 0x....      BL       cmd_diag
-    244          #endif
-    245          		return 0;
+    252          #endif
+    253          		return 0;
    \       0x1A   0x2000             MOVS     R0,#+0
    \       0x1C   0xE000             B.N      ??cmd_diag_proc_Audio_2
-    246          	default:
-    247          		break;
-    248          	}
-    249          
-    250          	return 1;
+    254          	default:
+    255          		break;
+    256          	}
+    257          
+    258          	return 1;
    \                     ??cmd_diag_proc_Audio_1: (+1)
    \       0x1E   0x2001             MOVS     R0,#+1
    \                     ??cmd_diag_proc_Audio_2: (+1)
    \       0x20   0xBD32             POP      {R1,R4,R5,PC}
-    251          }
-    252          
-    253          //========================================================================
+    259          }
+    260          
+    261          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    254          int cmd_diag_Audio( int argc, char *argv[] )
-    255          //========================================================================
-    256          {
+    262          int cmd_diag_Audio( int argc, char *argv[] )
+    263          //========================================================================
+    264          {
    \                     cmd_diag_Audio: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    257          #if defined(USE_FREERTOS)
-    258          
-    259          	char	ibuf[80];
-    260          	int		v, sel;
-    261          
-    262          	while ( 1 )
-    263          	{
-    264          		display_diag_Audio();
-    265          
-    266          		memset( ibuf, 0, sizeof( ibuf ) );
-    267          		v = readline( ibuf );
-    268          
-    269          		if ( v <= 0 )
-    270          		{
-    271          			continue;
-    272          		}
+    265          #if defined(USE_FREERTOS)
+    266          
+    267          	char	ibuf[80];
+    268          	int		v, sel;
+    269          
+    270          	while ( 1 )
+    271          	{
+    272          		display_diag_Audio();
     273          
-    274          		if ( cmd_diag_proc_Audio( ibuf ) == 0 )
-    275          		{
-    276          			break;
-    277          		}
-    278          
-    279          		printf( "Press ENTER key to continue. " );
-    280          		readline( ibuf );
+    274          		memset( ibuf, 0, sizeof( ibuf ) );
+    275          		v = readline( ibuf );
+    276          
+    277          		if ( v <= 0 )
+    278          		{
+    279          			continue;
+    280          		}
     281          
-    282          		taskYIELD();
-    283          	}
-    284          
-    285          #else
-    286          	//	HAL_Delay( 0 );
-    287          	SetCLIPrompt( display_diag_Audio );
-   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable26_34
-   \        0xA   0x.... 0x....      BL       SetCLIPrompt
-    288          	SetCLIProc( cmd_diag_proc_Audio );
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_35
-   \       0x12   0x.... 0x....      BL       SetCLIProc
+    282          		if ( cmd_diag_proc_Audio( ibuf ) == 0 )
+    283          		{
+    284          			break;
+    285          		}
+    286          
+    287          		printf( "Press ENTER key to continue. " );
+    288          		readline( ibuf );
     289          
-    290          #endif
-    291          
-    292          	return 0;
+    290          		taskYIELD();
+    291          	}
+    292          
+    293          #else
+    294          	//	HAL_Delay( 0 );
+    295          	SetCLIPrompt( display_diag_Audio );
+   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable33_34
+   \        0xA   0x.... 0x....      BL       SetCLIPrompt
+    296          	SetCLIProc( cmd_diag_proc_Audio );
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_35
+   \       0x12   0x.... 0x....      BL       SetCLIProc
+    297          
+    298          #endif
+    299          
+    300          	return 0;
    \       0x16   0x2000             MOVS     R0,#+0
    \       0x18   0xBD32             POP      {R1,R4,R5,PC}
-    293          }
-    294          
-    295          
-    296          
-    297          //========================================================================
+    301          }
+    302          
+    303          
+    304          
+    305          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    298          void display_diag_RF( void )
-    299          //========================================================================
-    300          {
+    306          void display_diag_RF( void )
+    307          //========================================================================
+    308          {
    \                     display_diag_RF: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
-    301          	CLEAR_VT_SCREEN();
-   \        0x2   0x.... 0x....      LDR.W    R0,??DataTable26_3
+    309          	CLEAR_VT_SCREEN();
+   \        0x2   0x.... 0x....      LDR.W    R0,??DataTable33_3
    \        0x6   0x.... 0x....      BL       printf
-    302          	GOTO_VT_XY();
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable26_4
+    310          	GOTO_VT_XY();
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable33_4
    \        0xE   0x.... 0x....      BL       printf
-    303          
-    304          	printf( "\n" );
-   \       0x12   0x....             ADR.N    R4,??DataTable16
+    311          
+    312          	printf( "\n" );
+   \       0x12   0x....             ADR.N    R4,??DataTable14
    \       0x14   0x0020             MOVS     R0,R4
    \       0x16   0x.... 0x....      BL       printf
-    305          	printf( "\n" );
+    313          	printf( "\n" );
    \       0x1A   0x0020             MOVS     R0,R4
    \       0x1C   0x.... 0x....      BL       printf
-    306          	printf( "\n" );
+    314          	printf( "\n" );
    \       0x20   0x0020             MOVS     R0,R4
    \       0x22   0x.... 0x....      BL       printf
-    307          	printf( "\n" );
+    315          	printf( "\n" );
    \       0x26   0x0020             MOVS     R0,R4
    \       0x28   0x.... 0x....      BL       printf
-    308          
-    309          	printf( "       **************************************************************\n" );
-   \       0x2C   0x.... 0x....      LDR.W    R5,??DataTable26_5
+    316          
+    317          	printf( "       **************************************************************\n" );
+   \       0x2C   0x.... 0x....      LDR.W    R5,??DataTable33_5
    \       0x30   0x0028             MOVS     R0,R5
    \       0x32   0x.... 0x....      BL       printf
-    310          	printf( "       *                         RF Test.                           *\n" );
-   \       0x36   0x.... 0x....      LDR.W    R0,??DataTable26_36
+    318          	printf( "       *                         RF Test.                           *\n" );
+   \       0x36   0x.... 0x....      LDR.W    R0,??DataTable33_36
    \       0x3A   0x.... 0x....      BL       printf
-    311          	printf( "       *                                                            *\n" );
-   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable26_7
+    319          	printf( "       *                                                            *\n" );
+   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable33_7
    \       0x42   0x.... 0x....      BL       printf
-    312          	printf( "       *  0 : RF-IC Info                                            *\n" );
-   \       0x46   0x.... 0x....      LDR.W    R0,??DataTable26_37
+    320          	printf( "       *  0 : RF-IC Info                                            *\n" );
+   \       0x46   0x.... 0x....      LDR.W    R0,??DataTable33_37
    \       0x4A   0x.... 0x....      BL       printf
-    313          	printf( "       *  1 : RF Tx.                                                *\n" );
-   \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable26_38
+    321          	printf( "       *  1 : RF Tx.                                                *\n" );
+   \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable33_38
    \       0x52   0x.... 0x....      BL       printf
-    314          	printf( "       *  2 : RF Rx.                                                *\n" );
-   \       0x56   0x.... 0x....      LDR.W    R0,??DataTable26_39
+    322          	printf( "       *  2 : RF Rx.                                                *\n" );
+   \       0x56   0x.... 0x....      LDR.W    R0,??DataTable33_39
    \       0x5A   0x.... 0x....      BL       printf
-    315          	printf( "       *  3 : RF Tx->Rx Loopback                                    *\n" );
-   \       0x5E   0x.... 0x....      LDR.W    R0,??DataTable26_40
+    323          	printf( "       *  3 : RF Tx->Rx Loopback                                    *\n" );
+   \       0x5E   0x.... 0x....      LDR.W    R0,??DataTable33_40
    \       0x62   0x.... 0x....      BL       printf
-    316          	printf( "       *  i : RF-Init                                               *\n" );
-   \       0x66   0x.... 0x....      LDR.W    R0,??DataTable26_41
+    324          	printf( "       *  i : RF-Init                                               *\n" );
+   \       0x66   0x.... 0x....      LDR.W    R0,??DataTable33_41
    \       0x6A   0x.... 0x....      BL       printf
-    317          	printf( "       *  v : Verify RF-Init                                        *\n" );
-   \       0x6E   0x.... 0x....      LDR.W    R0,??DataTable26_42
+    325          	printf( "       *  v : Verify RF-Init                                        *\n" );
+   \       0x6E   0x.... 0x....      LDR.W    R0,??DataTable33_42
    \       0x72   0x.... 0x....      BL       printf
-    318          	printf( "       *  d : Enable Debug SPI                                      *\n" );
-   \       0x76   0x.... 0x....      LDR.W    R0,??DataTable26_43
+    326          	printf( "       *  d : Enable Debug SPI                                      *\n" );
+   \       0x76   0x.... 0x....      LDR.W    R0,??DataTable33_43
    \       0x7A   0x.... 0x....      BL       printf
-    319          	printf( "       **************************************************************\n" );
+    327          	printf( "       **************************************************************\n" );
    \       0x7E   0x0028             MOVS     R0,R5
    \       0x80   0x.... 0x....      BL       printf
-    320          	printf( "\n" );
+    328          	printf( "\n" );
    \       0x84   0x0020             MOVS     R0,R4
    \       0x86   0x.... 0x....      BL       printf
-    321          	printf( "           Please select number[to quit, push 'q', 'Q']:" );
-   \       0x8A   0x.... 0x....      LDR.W    R0,??DataTable26_13
+    329          	printf( "           Please select number[to quit, push 'q', 'Q']:" );
+   \       0x8A   0x.... 0x....      LDR.W    R0,??DataTable33_13
    \       0x8E   0x.... 0x....      BL       printf
-    322          }
+    330          }
    \       0x92   0xBD31             POP      {R0,R4,R5,PC}
-    323          
-    324          
-    325          //========================================================================
+    331          
+    332          
+    333          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    326          int cmd_diag_proc_RF( char *cmd )
-    327          //========================================================================
-    328          {
+    334          uint8_t cmd_diag_proc_RF( char *cmd )
+    335          //========================================================================
+    336          {
    \                     cmd_diag_proc_RF: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    329          //	sel = ibuf[0];
-    330          	char sel = cmd[0];
+    337          //	sel = ibuf[0];
+    338          	char sel = cmd[0];
    \        0x4   0x7825             LDRB     R5,[R4, #+0]
-    331          
-    332          	switch ( sel )
+    339          
+    340          	switch ( sel )
    \        0x6   0x0028             MOVS     R0,R5
    \        0x8   0xB2C0             UXTB     R0,R0
-   \        0xA   0x2851             CMP      R0,#+81
-   \        0xC   0xD009             BEQ.N    ??cmd_diag_proc_RF_0
-   \        0xE   0x2869             CMP      R0,#+105
-   \       0x10   0xD002             BEQ.N    ??cmd_diag_proc_RF_1
-   \       0x12   0x2871             CMP      R0,#+113
-   \       0x14   0xD005             BEQ.N    ??cmd_diag_proc_RF_0
-   \       0x16   0xE00A             B.N      ??cmd_diag_proc_RF_2
-    333          	{
-    334          #if defined(_WIN32)
-    335          #else
-    336          		case 'i':	cmd_rfwds_init( 0, 0 );	break;
-   \                     ??cmd_diag_proc_RF_1: (+1)
-   \       0x18   0x2100             MOVS     R1,#+0
-   \       0x1A   0x2000             MOVS     R0,#+0
-   \       0x1C   0x.... 0x....      BL       cmd_rfwds_init
-   \       0x20   0xE005             B.N      ??cmd_diag_proc_RF_3
-    337          #endif
-    338          	case 'q':
-    339          	case 'Q':
-    340          #if defined(USE_FREERTOS)
-    341          #else
-    342          		cmd_diag(0, 0);
+   \        0xA   0x2830             CMP      R0,#+48
+   \        0xC   0xD010             BEQ.N    ??cmd_diag_proc_RF_0
+   \        0xE   0x2831             CMP      R0,#+49
+   \       0x10   0xD011             BEQ.N    ??cmd_diag_proc_RF_1
+   \       0x12   0x2832             CMP      R0,#+50
+   \       0x14   0xD014             BEQ.N    ??cmd_diag_proc_RF_2
+   \       0x16   0x2833             CMP      R0,#+51
+   \       0x18   0xD017             BEQ.N    ??cmd_diag_proc_RF_3
+   \       0x1A   0x2851             CMP      R0,#+81
+   \       0x1C   0xD029             BEQ.N    ??cmd_diag_proc_RF_4
+   \       0x1E   0x2864             CMP      R0,#+100
+   \       0x20   0xD022             BEQ.N    ??cmd_diag_proc_RF_5
+   \       0x22   0x2869             CMP      R0,#+105
+   \       0x24   0xD016             BEQ.N    ??cmd_diag_proc_RF_6
+   \       0x26   0x2871             CMP      R0,#+113
+   \       0x28   0xD023             BEQ.N    ??cmd_diag_proc_RF_4
+   \       0x2A   0x2876             CMP      R0,#+118
+   \       0x2C   0xD017             BEQ.N    ??cmd_diag_proc_RF_7
+   \       0x2E   0xE026             B.N      ??cmd_diag_proc_RF_8
+    341          	{
+    342          #if defined(_WIN32)
+    343          #else
+    344          		case '0':	RF_Info();					break;
    \                     ??cmd_diag_proc_RF_0: (+1)
-   \       0x22   0x2100             MOVS     R1,#+0
-   \       0x24   0x2000             MOVS     R0,#+0
-   \       0x26   0x.... 0x....      BL       cmd_diag
-    343          #endif
-    344          		return 0;
-   \       0x2A   0x2000             MOVS     R0,#+0
-   \       0x2C   0xE000             B.N      ??cmd_diag_proc_RF_4
-    345          	default:
-    346          		break;
-    347          	}
-    348          
-    349          	return 1;
+   \       0x30   0x.... 0x....      BL       RF_Info
+   \       0x34   0xE023             B.N      ??cmd_diag_proc_RF_9
+    345          		case '1':	cmd_test_rf1( 0, 0 );		break;
+   \                     ??cmd_diag_proc_RF_1: (+1)
+   \       0x36   0x2100             MOVS     R1,#+0
+   \       0x38   0x2000             MOVS     R0,#+0
+   \       0x3A   0x.... 0x....      BL       cmd_test_rf1
+   \       0x3E   0xE01E             B.N      ??cmd_diag_proc_RF_9
+    346          		case '2':	cmd_test_rf2( 0, 0 );		break;
    \                     ??cmd_diag_proc_RF_2: (+1)
+   \       0x40   0x2100             MOVS     R1,#+0
+   \       0x42   0x2000             MOVS     R0,#+0
+   \       0x44   0x.... 0x....      BL       cmd_test_rf2
+   \       0x48   0xE019             B.N      ??cmd_diag_proc_RF_9
+    347          		case '3':	cmd_test_rf3( 0, 0 );		break;
    \                     ??cmd_diag_proc_RF_3: (+1)
-   \       0x2E   0x2001             MOVS     R0,#+1
+   \       0x4A   0x2100             MOVS     R1,#+0
+   \       0x4C   0x2000             MOVS     R0,#+0
+   \       0x4E   0x.... 0x....      BL       cmd_test_rf3
+   \       0x52   0xE014             B.N      ??cmd_diag_proc_RF_9
+    348          		case 'i':	cmd_test_rf_init( 0, 0 );	break;
+   \                     ??cmd_diag_proc_RF_6: (+1)
+   \       0x54   0x2100             MOVS     R1,#+0
+   \       0x56   0x2000             MOVS     R0,#+0
+   \       0x58   0x.... 0x....      BL       cmd_test_rf_init
+   \       0x5C   0xE00F             B.N      ??cmd_diag_proc_RF_9
+    349          		case 'v':	cmd_test_rf_vinit( 0, 0 );	break;
+   \                     ??cmd_diag_proc_RF_7: (+1)
+   \       0x5E   0x2100             MOVS     R1,#+0
+   \       0x60   0x2000             MOVS     R0,#+0
+   \       0x62   0x.... 0x....      BL       cmd_test_rf_vinit
+   \       0x66   0xE00A             B.N      ??cmd_diag_proc_RF_9
+    350          		case 'd':	cmd_test_rf_debug( 0, 0 );	break;
+   \                     ??cmd_diag_proc_RF_5: (+1)
+   \       0x68   0x2100             MOVS     R1,#+0
+   \       0x6A   0x2000             MOVS     R0,#+0
+   \       0x6C   0x.... 0x....      BL       cmd_test_rf_debug
+   \       0x70   0xE005             B.N      ??cmd_diag_proc_RF_9
+    351          #endif
+    352          	case 'q':
+    353          	case 'Q':
+    354          #if defined(USE_FREERTOS)
+    355          #else
+    356          		cmd_diag(0, 0);
    \                     ??cmd_diag_proc_RF_4: (+1)
-   \       0x30   0xBD32             POP      {R1,R4,R5,PC}
-    350          }
-    351          
-    352          //========================================================================
+   \       0x72   0x2100             MOVS     R1,#+0
+   \       0x74   0x2000             MOVS     R0,#+0
+   \       0x76   0x.... 0x....      BL       cmd_diag
+    357          #endif
+    358          		return 0;
+   \       0x7A   0x2000             MOVS     R0,#+0
+   \       0x7C   0xE000             B.N      ??cmd_diag_proc_RF_10
+    359          	default:
+    360          		break;
+    361          	}
+    362          
+    363          	return 1;
+   \                     ??cmd_diag_proc_RF_8: (+1)
+   \                     ??cmd_diag_proc_RF_9: (+1)
+   \       0x7E   0x2001             MOVS     R0,#+1
+   \                     ??cmd_diag_proc_RF_10: (+1)
+   \       0x80   0xBD32             POP      {R1,R4,R5,PC}
+    364          }
+    365          
+    366          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    353          int cmd_diag_RF( int argc, char *argv[] )
-    354          //========================================================================
-    355          {
+    367          int cmd_diag_RF( int argc, char *argv[] )
+    368          //========================================================================
+    369          {
    \                     cmd_diag_RF: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    356          #if defined(USE_FREERTOS)
-    357          
-    358          	char	ibuf[80];
-    359          	int		v, sel;
-    360          
-    361          	while ( 1 )
-    362          	{
-    363          		display_diag_RF();
-    364          
-    365          		v = readline( ibuf );
-    366          
-    367          		if ( v <= 0 )
-    368          		{
-    369          			continue;
-    370          		}
+    370          #if defined(USE_FREERTOS)
     371          
-    372          		if ( cmd_diag_proc_Audio( ibuf ) == 0 )
-    373          		{
-    374          			break;
-    375          		}
-    376          
-    377          		printf( "Press ENTER key to continue. " );
-    378          		readline( ibuf );
-    379          
-    380          		taskYIELD();
-    381          	}
-    382          
-    383          #else
-    384          	//	HAL_Delay( 0 );
-    385          	SetCLIPrompt( display_diag_RF );
-   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable26_44
+    372          	char	ibuf[80];
+    373          	int		v, sel;
+    374          
+    375          	while ( 1 )
+    376          	{
+    377          		display_diag_RF();
+    378          
+    379          		v = readline( ibuf );
+    380          
+    381          		if ( v <= 0 )
+    382          		{
+    383          			continue;
+    384          		}
+    385          
+    386          		if ( cmd_diag_proc_Audio( ibuf ) == 0 )
+    387          		{
+    388          			break;
+    389          		}
+    390          
+    391          		printf( "Press ENTER key to continue. " );
+    392          		readline( ibuf );
+    393          
+    394          		taskYIELD();
+    395          	}
+    396          
+    397          #else
+    398          	//	HAL_Delay( 0 );
+    399          	SetCLIPrompt( display_diag_RF );
+   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable33_44
    \        0xA   0x.... 0x....      BL       SetCLIPrompt
-    386          	SetCLIProc( cmd_diag_proc_RF );
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_45
+    400          	SetCLIProc( cmd_diag_proc_RF );
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_45
    \       0x12   0x.... 0x....      BL       SetCLIProc
-    387          
-    388          #endif
-    389          
-    390          	/* NOTREACHED */
-    391          
-    392          	return 0;
+    401          
+    402          #endif
+    403          
+    404          	/* NOTREACHED */
+    405          
+    406          	return 0;
    \       0x16   0x2000             MOVS     R0,#+0
    \       0x18   0xBD32             POP      {R1,R4,R5,PC}
-    393          }
-    394          
-    395          
-    396          //========================================================================
+    407          }
+    408          
+    409          
+    410          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    397          int	cmd_test1(int argc, char *argv[])
-    398          //========================================================================
-    399          {
+    411          int	cmd_test1(int argc, char *argv[])
+    412          //========================================================================
+    413          {
    \                     cmd_test1: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    400          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF44F 0x72C8      MOV      R2,#+400
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable26_46
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_47
+    414          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF44F 0x72CF      MOV      R2,#+414
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_46
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
    \       0x12   0x.... 0x....      BL       printf
-    401          
-    402          #if defined(_WIN32)
-    403          #else
-    404          
-    405          	AudioLoopback();		//	Audio Loopback Test
+    415          
+    416          #if defined(_WIN32)
+    417          #else
+    418          
+    419          	AudioLoopback();		//	Audio Loopback Test
                  	^
 Warning[Pe223]: function "AudioLoopback" declared implicitly
    \       0x16   0x.... 0x....      BL       AudioLoopback
-    406          
-    407          #endif
-    408          
-    409          	return 0;
+    420          
+    421          #endif
+    422          
+    423          	return 0;
    \       0x1A   0x2000             MOVS     R0,#+0
    \       0x1C   0xBD32             POP      {R1,R4,R5,PC}
-    410          }
-    411          
-    412          //========================================================================
+    424          }
+    425          
+    426          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    413          int	cmd_test2(int argc, char *argv[])
-    414          //========================================================================
-    415          {
+    427          int	cmd_test2(int argc, char *argv[])
+    428          //========================================================================
+    429          {
    \                     cmd_test2: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    416          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF44F 0x72D0      MOV      R2,#+416
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable26_48
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_47
+    430          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF44F 0x72D7      MOV      R2,#+430
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_48
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
    \       0x12   0x.... 0x....      BL       printf
-    417          
-    418          	printf( "spi test\n" );
-   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable26_49
+    431          
+    432          	printf( "spi test\n" );
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable33_49
    \       0x1A   0x.... 0x....      BL       printf
-    419          
-    420          #if defined(_WIN32)
-    421          #else
-    422          
-    423          	spi_test();
+    433          
+    434          #if defined(_WIN32)
+    435          #else
+    436          
+    437          	spi_test();
                  	^
 Warning[Pe223]: function "spi_test" declared implicitly
    \       0x1E   0x.... 0x....      BL       spi_test
-    424          
-    425          #endif
-    426          
-    427          	return 0;
+    438          
+    439          #endif
+    440          
+    441          	return 0;
    \       0x22   0x2000             MOVS     R0,#+0
    \       0x24   0xBD32             POP      {R1,R4,R5,PC}
-    428          }
-    429          
-    430          //========================================================================
+    442          }
+    443          
+    444          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    431          int	cmd_test3( int argc, char *argv[] )
-    432          //========================================================================
-    433          {
+    445          int	cmd_test3( int argc, char *argv[] )
+    446          //========================================================================
+    447          {
    \                     cmd_test3: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    434          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF44F 0x72D9      MOV      R2,#+434
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable26_50
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_47
+    448          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF44F 0x72E0      MOV      R2,#+448
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_50
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
    \       0x12   0x.... 0x....      BL       printf
-    435          
-    436          #if defined(_WIN32)
-    437          #else
-    438          
-    439          	InitCodecXE3005();	//	Audio Codec Init
+    449          
+    450          #if defined(_WIN32)
+    451          #else
+    452          
+    453          	InitCodecXE3005();	//	Audio Codec Init
                  	^
 Warning[Pe223]: function "InitCodecXE3005" declared implicitly
    \       0x16   0x.... 0x....      BL       InitCodecXE3005
-    440          
-    441          #endif
-    442          
-    443          	return 0;
+    454          
+    455          #endif
+    456          
+    457          	return 0;
    \       0x1A   0x2000             MOVS     R0,#+0
    \       0x1C   0xBD32             POP      {R1,R4,R5,PC}
-    444          }
-    445          
-    446          //========================================================================
+    458          }
+    459          
+    460          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    447          int	cmd_test4( int argc, char *argv[] )
-    448          //========================================================================
-    449          {
+    461          int	cmd_test4( int argc, char *argv[] )
+    462          //========================================================================
+    463          {
    \                     cmd_test4: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    450          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF44F 0x72E1      MOV      R2,#+450
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable26_51
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_47
+    464          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF44F 0x72E8      MOV      R2,#+464
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_51
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
    \       0x12   0x.... 0x....      BL       printf
-    451          	printf( "audio tx sine.\n" );
-   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable26_52
+    465          	printf( "audio tx sine.\n" );
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable33_52
    \       0x1A   0x.... 0x....      BL       printf
-    452          
-    453          #if defined(_WIN32)
-    454          #else
-    455          
-    456          	AudioSine();
+    466          
+    467          #if defined(_WIN32)
+    468          #else
+    469          
+    470          	AudioSine();
                  	^
 Warning[Pe223]: function "AudioSine" declared implicitly
    \       0x1E   0x.... 0x....      BL       AudioSine
-    457          
-    458          #endif
-    459          
-    460          	return 0;
+    471          
+    472          #endif
+    473          
+    474          	return 0;
    \       0x22   0x2000             MOVS     R0,#+0
    \       0x24   0xBD32             POP      {R1,R4,R5,PC}
-    461          }
-    462          
-    463          //========================================================================
+    475          }
+    476          
+    477          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    464          int	cmd_test5( int argc, char *argv[] )
-    465          //========================================================================
-    466          {
+    478          int	cmd_test5( int argc, char *argv[] )
+    479          //========================================================================
+    480          {
    \                     cmd_test5: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    467          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF240 0x12D3      MOVW     R2,#+467
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable26_53
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_47
+    481          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF240 0x12E1      MOVW     R2,#+481
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_53
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
    \       0x12   0x.... 0x....      BL       printf
-    468          	printf( "audio tx null.\n" );
-   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable26_54
+    482          	printf( "audio tx null.\n" );
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable33_54
    \       0x1A   0x.... 0x....      BL       printf
-    469          
-    470          #if defined(_WIN32)
-    471          #else
-    472          
-    473          //	AudioTxNull();
-    474          	AudioTxStop();
+    483          
+    484          #if defined(_WIN32)
+    485          #else
+    486          
+    487          //	AudioTxNull();
+    488          	AudioTxStop();
                  	^
 Warning[Pe223]: function "AudioTxStop" declared implicitly
    \       0x1E   0x.... 0x....      BL       AudioTxStop
-    475          
-    476          #endif
-    477          
-    478          	return 0;
+    489          
+    490          #endif
+    491          
+    492          	return 0;
    \       0x22   0x2000             MOVS     R0,#+0
    \       0x24   0xBD32             POP      {R1,R4,R5,PC}
-    479          }
-    480          
-    481          
-    482          //========================================================================
+    493          }
+    494          
+    495          
+    496          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    483          int		cmd_rfwds_info	( int argc, char *argv[] )
-    484          //========================================================================
-    485          {
+    497          int	cmd_test_rf1( int argc, char *argv[] )
+    498          //========================================================================
+    499          {
+   \                     cmd_test_rf1: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    500          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF44F 0x72FA      MOV      R2,#+500
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_55
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
+   \       0x12   0x.... 0x....      BL       printf
+    501          
+    502          	printf( "*  1 : RF Tx test.*\n" );
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable33_56
+   \       0x1A   0x.... 0x....      BL       printf
+    503          
+    504          #if defined(_WIN32)
+    505          #else
+    506          
+    507          	//	Select Tx Mode
+    508          	RF_Tx();
+   \       0x1E   0x.... 0x....      BL       RF_Tx
+    509          
+    510          	SI4463_Test();		//	RF-Test
+   \       0x22   0x.... 0x....      BL       SI4463_Test
+    511          
+    512          #endif
+    513          
+    514          	return 0;
+   \       0x26   0x2000             MOVS     R0,#+0
+   \       0x28   0xBD32             POP      {R1,R4,R5,PC}
+    515          }
+    516          
+    517          
+    518          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    519          int	cmd_test_rf2( int argc, char *argv[] )
+    520          //========================================================================
+    521          {
+   \                     cmd_test_rf2: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    522          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF240 0x220A      MOVW     R2,#+522
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_57
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
+   \       0x12   0x.... 0x....      BL       printf
+    523          
+    524          	printf( "*  1 : RF Rx test.*\n" );
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable33_58
+   \       0x1A   0x.... 0x....      BL       printf
+    525          
+    526          #if defined(_WIN32)
+    527          #else
+    528          
+    529          	//	Select Rx Mode
+    530          	RF_Rx();
+   \       0x1E   0x.... 0x....      BL       RF_Rx
+    531          
+    532          	SI4463_Test();		//	RF-Test
+   \       0x22   0x.... 0x....      BL       SI4463_Test
+    533          
+    534          #endif
+    535          
+    536          	return 0;
+   \       0x26   0x2000             MOVS     R0,#+0
+   \       0x28   0xBD32             POP      {R1,R4,R5,PC}
+    537          }
+    538          
+    539          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    540          int	cmd_test_rf3( int argc, char *argv[] )
+    541          //========================================================================
+    542          {
+   \                     cmd_test_rf3: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    543          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF240 0x221F      MOVW     R2,#+543
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_59
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
+   \       0x12   0x.... 0x....      BL       printf
+    544          
+    545          	printf( "*  1 : RF Loopback ( Tx -> Rx ) test.*\n" );
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable33_60
+   \       0x1A   0x.... 0x....      BL       printf
+    546          
+    547          #if defined(_WIN32)
+    548          #else
+    549          
+    550          	//	Select Rx Mode
+    551          	RF_Loopback();
+   \       0x1E   0x.... 0x....      BL       RF_Loopback
+    552          
+    553          	SI4463_Test();		//	RF-Test
+   \       0x22   0x.... 0x....      BL       SI4463_Test
+    554          
+    555          #endif
+    556          
+    557          	return 0;
+   \       0x26   0x2000             MOVS     R0,#+0
+   \       0x28   0xBD32             POP      {R1,R4,R5,PC}
+    558          }
+    559          
+    560          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    561          int	cmd_test_rf_init( int argc, char *argv[] )
+    562          //========================================================================
+    563          {
+   \                     cmd_test_rf_init: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    564          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF44F 0x720D      MOV      R2,#+564
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_61
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
+   \       0x12   0x.... 0x....      BL       printf
+    565          
+    566          //	int8_t ret;
+    567          //	ret = SI4463_Init( &si4463 );
+    568          
+    569          #if defined(_WIN32)
+    570          #else
+    571          
+    572          	RF_Init();
+   \       0x16   0x.... 0x....      BL       RF_Init
+    573          
+    574          #endif
+    575          
+    576          //	printf( "%s(%d) - ret(%d)\n", __func__, __LINE__, ret );
+    577          
+    578          	return 0;
+   \       0x1A   0x2000             MOVS     R0,#+0
+   \       0x1C   0xBD32             POP      {R1,R4,R5,PC}
+    579          }
+    580          
+    581          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    582          int	cmd_test_rf_vinit( int argc, char *argv[] )
+    583          //========================================================================
+    584          {
+   \                     cmd_test_rf_vinit: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    585          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0x.... 0x....      LDR.W    R7,??DataTable33_62
+   \        0xA   0xF240 0x2249      MOVW     R2,#+585
+   \        0xE   0x0039             MOVS     R1,R7
+   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable33_47
+   \       0x14   0x.... 0x....      BL       printf
+    586          
+    587          #if defined(_WIN32)
+    588          #else
+    589          
+    590          	int8_t ret;
+    591          	ret = SI4463_VerifyInit( &si4463 );
+   \       0x18   0x.... 0x....      LDR.W    R0,??DataTable33_63
+   \       0x1C   0x.... 0x....      BL       SI4463_VerifyInit
+   \       0x20   0x0006             MOVS     R6,R0
+    592          
+    593          	printf( "%s(%d) - ret(%d)\n", __func__, __LINE__, ret );
+   \       0x22   0x0033             MOVS     R3,R6
+   \       0x24   0xB25B             SXTB     R3,R3
+   \       0x26   0xF240 0x2251      MOVW     R2,#+593
+   \       0x2A   0x0039             MOVS     R1,R7
+   \       0x2C   0x.... 0x....      LDR.W    R0,??DataTable33_64
+   \       0x30   0x.... 0x....      BL       printf
+    594          
+    595          #endif
+    596          
+    597          	return 0;
+   \       0x34   0x2000             MOVS     R0,#+0
+   \       0x36   0xBDF2             POP      {R1,R4-R7,PC}
+    598          }
+    599          
+    600          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    601          int	cmd_test_rf_debug( int argc, char *argv[] )
+    602          //========================================================================
+    603          {
+   \                     cmd_test_rf_debug: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    604          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF44F 0x7217      MOV      R2,#+604
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_65
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
+   \       0x12   0x.... 0x....      BL       printf
+    605          
+    606          #if defined(_WIN32)
+    607          #else
+    608          
+    609          	static int s_bEnableDebug = 0;
+    610          
+    611          	if ( s_bEnableDebug )
+   \       0x16   0x.... 0x....      LDR.W    R1,??DataTable33_66
+   \       0x1A   0x6808             LDR      R0,[R1, #+0]
+   \       0x1C   0x2800             CMP      R0,#+0
+   \       0x1E   0xD009             BEQ.N    ??cmd_test_rf_debug_0
+    612          	{
+    613          		s_bEnableDebug = 0;
+   \       0x20   0x2000             MOVS     R0,#+0
+   \       0x22   0x6008             STR      R0,[R1, #+0]
+    614          		printf( "Disable Debug\n" );
+   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable33_67
+   \       0x28   0x.... 0x....      BL       printf
+    615          
+    616          		SI4463_Debug( 0 );
+   \       0x2C   0x2000             MOVS     R0,#+0
+   \       0x2E   0x.... 0x....      BL       SI4463_Debug
+   \       0x32   0xE008             B.N      ??cmd_test_rf_debug_1
+    617          	}
+    618          	else
+    619          	{
+    620          		s_bEnableDebug = 1;
+   \                     ??cmd_test_rf_debug_0: (+1)
+   \       0x34   0x2001             MOVS     R0,#+1
+   \       0x36   0x6008             STR      R0,[R1, #+0]
+    621          		printf( "Enable Debug\n" );
+   \       0x38   0x.... 0x....      LDR.W    R0,??DataTable33_68
+   \       0x3C   0x.... 0x....      BL       printf
+    622          
+    623          		SI4463_Debug( 1 );
+   \       0x40   0x2001             MOVS     R0,#+1
+   \       0x42   0x.... 0x....      BL       SI4463_Debug
+    624          	}
+    625          	
+    626          #endif
+    627          
+    628          	return 0;
+   \                     ??cmd_test_rf_debug_1: (+1)
+   \       0x46   0x2000             MOVS     R0,#+0
+   \       0x48   0xBD32             POP      {R1,R4,R5,PC}
+    629          }
+
+   \                                 In section .bss, align 4
+   \                     `cmd_test_rf_debug::s_bEnableDebug`:
+   \        0x0                      DS8 4
+    630          
+    631          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    632          int		cmd_rfwds_info	( int argc, char *argv[] )
+    633          //========================================================================
+    634          {
    \                     cmd_rfwds_info: (+1)
    \        0x0   0xB570             PUSH     {R4-R6,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    486          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF44F 0x72F3      MOV      R2,#+486
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable26_55
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_47
+    635          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF240 0x227B      MOVW     R2,#+635
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_69
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
    \       0x12   0x.... 0x....      BL       printf
-    487          
-    488          #if defined(_WIN32)
-    489          #else
-    490          
-    491          	uint8_t i;
-    492          
-    493          	si446x_part_info();
+    636          
+    637          #if defined(_WIN32)
+    638          #else
+    639          
+    640          	uint8_t i;
+    641          
+    642          	si446x_part_info();
    \       0x16   0x.... 0x....      BL       si446x_part_info
-    494          
-    495          	printf( "[" );
-   \       0x1A   0x....             ADR.N    R0,??DataTable22
+    643          
+    644          	printf( "[" );
+   \       0x1A   0x....             ADR.N    R0,??DataTable29
    \       0x1C   0x.... 0x....      BL       printf
-    496          	for ( i = 0; i < 6; i++ )
+    645          	for ( i = 0; i < 6; i++ )
    \       0x20   0x2600             MOVS     R6,#+0
    \                     ??cmd_rfwds_info_0: (+1)
    \       0x22   0x0030             MOVS     R0,R6
    \       0x24   0xB2C0             UXTB     R0,R0
    \       0x26   0x2806             CMP      R0,#+6
    \       0x28   0xDA0A             BGE.N    ??cmd_rfwds_info_1
-    497          	{
-    498          		printf( "%02X:", Pro2Cmd[i] );
-   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable26_56
+    646          	{
+    647          		printf( "%02X:", Pro2Cmd[i] );
+   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable33_70
    \       0x2E   0x0031             MOVS     R1,R6
    \       0x30   0xB2C9             UXTB     R1,R1
    \       0x32   0x5C41             LDRB     R1,[R0, R1]
-   \       0x34   0x.... 0x....      LDR.W    R0,??DataTable26_57
+   \       0x34   0x.... 0x....      LDR.W    R0,??DataTable33_71
    \       0x38   0x.... 0x....      BL       printf
-    499          	}
+    648          	}
    \       0x3C   0x1C76             ADDS     R6,R6,#+1
    \       0x3E   0xE7F0             B.N      ??cmd_rfwds_info_0
-    500          	printf( "%02X]\r\n", Pro2Cmd[i] );
+    649          	printf( "%02X]\r\n", Pro2Cmd[i] );
    \                     ??cmd_rfwds_info_1: (+1)
-   \       0x40   0x.... 0x....      LDR.W    R0,??DataTable26_56
+   \       0x40   0x.... 0x....      LDR.W    R0,??DataTable33_70
    \       0x44   0x0031             MOVS     R1,R6
    \       0x46   0xB2C9             UXTB     R1,R1
    \       0x48   0x5C41             LDRB     R1,[R0, R1]
-   \       0x4A   0x.... 0x....      LDR.W    R0,??DataTable26_58
+   \       0x4A   0x.... 0x....      LDR.W    R0,??DataTable33_72
    \       0x4E   0x.... 0x....      BL       printf
-    501          
-    502          #endif
-    503          
-    504          	return 0;
+    650          
+    651          #endif
+    652          
+    653          	return 0;
    \       0x52   0x2000             MOVS     R0,#+0
    \       0x54   0xBD70             POP      {R4-R6,PC}
-    505          }
-    506          
-    507          //========================================================================
+    654          }
+    655          
+    656          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    508          int		cmd_rfwds1		( int argc, char *argv[] )
-    509          //========================================================================
-    510          {
+    657          int		cmd_rfwds1		( int argc, char *argv[] )
+    658          //========================================================================
+    659          {
    \                     cmd_rfwds1: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    511          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF240 0x12FF      MOVW     R2,#+511
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable26_59
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_47
+    660          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF44F 0x7225      MOV      R2,#+660
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_73
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
    \       0x12   0x.... 0x....      BL       printf
-    512          
-    513          	return 0;
+    661          
+    662          	return 0;
    \       0x16   0x2000             MOVS     R0,#+0
    \       0x18   0xBD32             POP      {R1,R4,R5,PC}
-    514          }
-    515          
-    516          //========================================================================
+    663          }
+    664          
+    665          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    517          int		cmd_rfwds2		( int argc, char *argv[] )
-    518          //========================================================================
-    519          {
+    666          int		cmd_rfwds2		( int argc, char *argv[] )
+    667          //========================================================================
+    668          {
    \                     cmd_rfwds2: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    520          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF44F 0x7202      MOV      R2,#+520
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable26_60
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_47
+    669          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF240 0x229D      MOVW     R2,#+669
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_74
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
    \       0x12   0x.... 0x....      BL       printf
-    521          
-    522          	return 0;
+    670          
+    671          	return 0;
    \       0x16   0x2000             MOVS     R0,#+0
    \       0x18   0xBD32             POP      {R1,R4,R5,PC}
-    523          }
-    524          
-    525          //========================================================================
+    672          }
+    673          
+    674          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    526          int		cmd_rfwds3		( int argc, char *argv[] )
-    527          //========================================================================
-    528          {
+    675          int		cmd_rfwds3		( int argc, char *argv[] )
+    676          //========================================================================
+    677          {
    \                     cmd_rfwds3: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    529          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF240 0x2211      MOVW     R2,#+529
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable26_61
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_47
+    678          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF240 0x22A6      MOVW     R2,#+678
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_75
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
    \       0x12   0x.... 0x....      BL       printf
-    530          
-    531          	return 0;
+    679          
+    680          	return 0;
    \       0x16   0x2000             MOVS     R0,#+0
    \       0x18   0xBD32             POP      {R1,R4,R5,PC}
-    532          }
-    533          
-    534          //========================================================================
+    681          }
+    682          
+    683          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    535          int		cmd_rfwds_init	( int argc, char *argv[] )
-    536          //========================================================================
-    537          {
+    684          int		cmd_rfwds_init	( int argc, char *argv[] )
+    685          //========================================================================
+    686          {
    \                     cmd_rfwds_init: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    538          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF240 0x221A      MOVW     R2,#+538
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable26_62
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_47
+    687          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF240 0x22AF      MOVW     R2,#+687
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_76
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
    \       0x12   0x.... 0x....      BL       printf
-    539          
-    540          #if defined(_WIN32)
-    541          #else
-    542          
-    543          	vRadio_Init();
+    688          
+    689          #if defined(_WIN32)
+    690          #else
+    691          
+    692          	vRadio_Init();
    \       0x16   0x.... 0x....      BL       vRadio_Init
-    544          
-    545          #endif
-    546          
-    547          	return 0;
+    693          
+    694          #endif
+    695          
+    696          	return 0;
    \       0x1A   0x2000             MOVS     R0,#+0
    \       0x1C   0xBD32             POP      {R1,R4,R5,PC}
-    548          }
-    549          
-    550          //========================================================================
+    697          }
+    698          
+    699          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    551          int		cmd_rfwds_debug	( int argc, char *argv[] )
-    552          //========================================================================
-    553          {
+    700          int		cmd_rfwds_vinit	( int argc, char *argv[] )
+    701          //========================================================================
+    702          {
+   \                     cmd_rfwds_vinit: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    703          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF240 0x22BF      MOVW     R2,#+703
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_77
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
+   \       0x12   0x.... 0x....      BL       printf
+    704          
+    705          	return 0;
+   \       0x16   0x2000             MOVS     R0,#+0
+   \       0x18   0xBD32             POP      {R1,R4,R5,PC}
+    706          }
+    707          
+    708          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    709          int		cmd_rfwds_debug	( int argc, char *argv[] )
+    710          //========================================================================
+    711          {
    \                     cmd_rfwds_debug: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    554          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF240 0x222A      MOVW     R2,#+554
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable26_63
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable26_47
+    712          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF44F 0x7232      MOV      R2,#+712
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable33_78
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable33_47
    \       0x12   0x.... 0x....      BL       printf
-    555          
-    556          	/*
-    557          #if defined(_WIN32)
-    558          #else
-    559          
-    560          	if ( g_bEnableDbgRadioComm )
-    561          	{
-    562          		g_bEnableDbgRadioComm = 0;
-    563          		printf( "Disable Debug\n" );
-    564          	}
-    565          	else
-    566          	{
-    567          		g_bEnableDbgRadioComm = 1;
-    568          		printf( "Enable Debug\n" );
-    569          	}
-    570          
-    571          #endif
-    572          
-    573          	*/
-    574          	
-    575          	return 0;
+    713          
+    714          	/*
+    715          #if defined(_WIN32)
+    716          #else
+    717          
+    718          	if ( g_bEnableDbgRadioComm )
+    719          	{
+    720          		g_bEnableDbgRadioComm = 0;
+    721          		printf( "Disable Debug\n" );
+    722          	}
+    723          	else
+    724          	{
+    725          		g_bEnableDbgRadioComm = 1;
+    726          		printf( "Enable Debug\n" );
+    727          	}
+    728          
+    729          #endif
+    730          
+    731          	*/
+    732          	
+    733          	return 0;
    \       0x16   0x2000             MOVS     R0,#+0
    \       0x18   0xBD32             POP      {R1,R4,R5,PC}
-    576          }
-    577          
-    578          
-    579          //========================================================================
+    734          }
+    735          
+    736          
+    737          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    580          int GetDbg( void )
-    581          // 레벨을 정리.
-    582          // 1. x > 0  --> x == 1
-    583          // 2. x == 2  는 Dump 기능.
-    584          // 3. x == 3  는 RFMProtocol 함수 디버깅.
-    585          // 4. adc / radio 함수 디버깅.
-    586          // 5. JDS 디버깅
-    587          //========================================================================
-    588          {
-    589          	return debug_level;
+    738          int GetDbg( void )
+    739          //========================================================================
+    740          {
+    741          	return debug_level;
    \                     GetDbg: (+1)
-   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable26_64
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable33_79
    \        0x4   0x6800             LDR      R0,[R0, #+0]
    \        0x6   0x4770             BX       LR
-    590          }
-    591          
-    592          //========================================================================
+    742          }
+    743          
+    744          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    593          void memory_modify(void *mem_addr, int unit)
-    594          //========================================================================
-    595          {
+    745          void memory_modify(void *mem_addr, int unit)
+    746          //========================================================================
+    747          {
    \                     memory_modify: (+1)
    \        0x0   0xE92D 0x4FF0      PUSH     {R4-R11,LR}
    \        0x4   0xB0A1             SUB      SP,SP,#+132
    \        0x6   0x0005             MOVS     R5,R0
    \        0x8   0x000E             MOVS     R6,R1
-    596          	unsigned char	v1;
-    597          	unsigned short	v2;
-    598          	unsigned int	v4;
-    599          	unsigned char	*addrp1 = (unsigned char *)mem_addr;
+    748          	unsigned char	v1;
+    749          	unsigned short	v2;
+    750          	unsigned int	v4;
+    751          	unsigned char	*addrp1 = (unsigned char *)mem_addr;
    \        0xA   0x46A8             MOV      R8,R5
-    600          	unsigned short	*addrp2 = (unsigned short *)mem_addr;
+    752          	unsigned short	*addrp2 = (unsigned short *)mem_addr;
    \        0xC   0x46A9             MOV      R9,R5
-    601          	unsigned int	*addrp4 = (unsigned int *)mem_addr;
+    753          	unsigned int	*addrp4 = (unsigned int *)mem_addr;
    \        0xE   0x46AA             MOV      R10,R5
-    602          	char			inbuf[0x80];
-    603          
-    604          	if (unit == 1)
+    754          	char			inbuf[0x80];
+    755          
+    756          	if (unit == 1)
    \       0x10   0x2E01             CMP      R6,#+1
    \       0x12   0xD121             BNE.N    ??memory_modify_0
-    605          	{
-    606          		while (1)
-    607          		{
-    608          			v1 = *addrp1;
+    757          	{
+    758          		while (1)
+    759          		{
+    760          			v1 = *addrp1;
    \                     ??memory_modify_1: (+1)
    \       0x14   0xF898 0xB000      LDRB     R11,[R8, #+0]
-    609          			printf("%08p - %02x ", addrp1, v1);
+    761          			printf("%08p - %02x ", addrp1, v1);
    \       0x18   0x465A             MOV      R2,R11
    \       0x1A   0xB2D2             UXTB     R2,R2
    \       0x1C   0x4641             MOV      R1,R8
-   \       0x1E   0x.... 0x....      LDR.W    R0,??DataTable26_65
+   \       0x1E   0x.... 0x....      LDR.W    R0,??DataTable33_80
    \       0x22   0x.... 0x....      BL       printf
-    610          			v1 = readline(inbuf);
+    762          			v1 = readline(inbuf);
+                 			              ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
    \       0x26   0xA801             ADD      R0,SP,#+4
    \       0x28   0x.... 0x....      BL       readline
    \       0x2C   0xF88D 0x0000      STRB     R0,[SP, #+0]
-    611          			if (0 < v1)
+    763          			if (0 < v1)
    \       0x30   0xF89D 0x0000      LDRB     R0,[SP, #+0]
    \       0x34   0x2800             CMP      R0,#+0
    \       0x36   0xD00C             BEQ.N    ??memory_modify_2
-    612          			{
-    613          				if (inbuf[0] == '.')
+    764          			{
+    765          				if (inbuf[0] == '.')
    \       0x38   0xF89D 0x0004      LDRB     R0,[SP, #+4]
    \       0x3C   0x282E             CMP      R0,#+46
    \       0x3E   0xD048             BEQ.N    ??memory_modify_3
-    614          				{
-    615          					break;
-    616          				}
-    617          				v1 = a2hex(inbuf);
+    766          				{
+    767          					break;
+    768          				}
+    769          				v1 = a2hex(inbuf);
+                 				           ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
    \                     ??memory_modify_4: (+1)
    \       0x40   0xA801             ADD      R0,SP,#+4
    \       0x42   0x.... 0x....      BL       a2hex
    \       0x46   0xF88D 0x0000      STRB     R0,[SP, #+0]
-    618          				*addrp1 = v1;
+    770          				*addrp1 = v1;
    \       0x4A   0xF89D 0x0000      LDRB     R0,[SP, #+0]
    \       0x4E   0xF888 0x0000      STRB     R0,[R8, #+0]
-    619          			}
-    620          			addrp1++;
+    771          			}
+    772          			addrp1++;
    \                     ??memory_modify_2: (+1)
    \       0x52   0xF118 0x0801      ADDS     R8,R8,#+1
    \       0x56   0xE7DD             B.N      ??memory_modify_1
-    621          		}
-    622          	}
-    623          	else if (unit == 2)
+    773          		}
+    774          	}
+    775          	else if (unit == 2)
    \                     ??memory_modify_0: (+1)
    \       0x58   0x2E02             CMP      R6,#+2
    \       0x5A   0xD11D             BNE.N    ??memory_modify_5
-    624          	{
-    625          		while (1)
-    626          		{
-    627          			v2 = *addrp2;
+    776          	{
+    777          		while (1)
+    778          		{
+    779          			v2 = *addrp2;
    \                     ??memory_modify_6: (+1)
    \       0x5C   0xF8B9 0xB000      LDRH     R11,[R9, #+0]
-    628          			printf("%08p - %04x ", addrp2, v2);
+    780          			printf("%08p - %04x ", addrp2, v2);
    \       0x60   0x465A             MOV      R2,R11
    \       0x62   0xB292             UXTH     R2,R2
    \       0x64   0x4649             MOV      R1,R9
-   \       0x66   0x.... 0x....      LDR.W    R0,??DataTable26_66
+   \       0x66   0x.... 0x....      LDR.W    R0,??DataTable33_81
    \       0x6A   0x.... 0x....      BL       printf
-    629          			v2 = readline(inbuf);
+    781          			v2 = readline(inbuf);
+                 			              ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
    \       0x6E   0xA801             ADD      R0,SP,#+4
    \       0x70   0x.... 0x....      BL       readline
    \       0x74   0x0007             MOVS     R7,R0
-    630          			if (0 < v2)
+    782          			if (0 < v2)
    \       0x76   0x0038             MOVS     R0,R7
    \       0x78   0xB280             UXTH     R0,R0
    \       0x7A   0x2800             CMP      R0,#+0
    \       0x7C   0xD009             BEQ.N    ??memory_modify_7
-    631          			{
-    632          				if (inbuf[0] == '.')
+    783          			{
+    784          				if (inbuf[0] == '.')
    \       0x7E   0xF89D 0x0004      LDRB     R0,[SP, #+4]
    \       0x82   0x282E             CMP      R0,#+46
    \       0x84   0xD025             BEQ.N    ??memory_modify_3
-    633          				{
-    634          					break;
-    635          				}
-    636          				v2 = a2hex(inbuf);
+    785          				{
+    786          					break;
+    787          				}
+    788          				v2 = a2hex(inbuf);
+                 				           ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
    \                     ??memory_modify_8: (+1)
    \       0x86   0xA801             ADD      R0,SP,#+4
    \       0x88   0x.... 0x....      BL       a2hex
    \       0x8C   0x0007             MOVS     R7,R0
-    637          				*addrp2 = v2;
+    789          				*addrp2 = v2;
    \       0x8E   0xF8A9 0x7000      STRH     R7,[R9, #+0]
-    638          			}
-    639          			addrp2++;
+    790          			}
+    791          			addrp2++;
    \                     ??memory_modify_7: (+1)
    \       0x92   0xF119 0x0902      ADDS     R9,R9,#+2
    \       0x96   0xE7E1             B.N      ??memory_modify_6
-    640          		}
-    641          	}
-    642          	else if (unit == 4)
+    792          		}
+    793          	}
+    794          	else if (unit == 4)
    \                     ??memory_modify_5: (+1)
    \       0x98   0x2E04             CMP      R6,#+4
    \       0x9A   0xD11A             BNE.N    ??memory_modify_3
-    643          	{
-    644          		while (1)
-    645          		{
-    646          			v4 = *addrp4;
+    795          	{
+    796          		while (1)
+    797          		{
+    798          			v4 = *addrp4;
    \                     ??memory_modify_9: (+1)
    \       0x9C   0xF8DA 0xB000      LDR      R11,[R10, #+0]
-    647          			printf("%08p - %08x ", addrp4, v4);
+    799          			printf("%08p - %08x ", addrp4, v4);
    \       0xA0   0x465A             MOV      R2,R11
    \       0xA2   0x4651             MOV      R1,R10
-   \       0xA4   0x.... 0x....      LDR.W    R0,??DataTable26_67
+   \       0xA4   0x.... 0x....      LDR.W    R0,??DataTable33_82
    \       0xA8   0x.... 0x....      BL       printf
-    648          			v4 = readline(inbuf);
+    800          			v4 = readline(inbuf);
+                 			              ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
    \       0xAC   0xA801             ADD      R0,SP,#+4
    \       0xAE   0x.... 0x....      BL       readline
    \       0xB2   0x0004             MOVS     R4,R0
-    649          			if (0 < v4)
+    801          			if (0 < v4)
    \       0xB4   0x2C00             CMP      R4,#+0
    \       0xB6   0xD009             BEQ.N    ??memory_modify_10
-    650          			{
-    651          				if (inbuf[0] == '.')
+    802          			{
+    803          				if (inbuf[0] == '.')
    \       0xB8   0xF89D 0x0004      LDRB     R0,[SP, #+4]
    \       0xBC   0x282E             CMP      R0,#+46
    \       0xBE   0xD008             BEQ.N    ??memory_modify_3
-    652          				{
-    653          					break;
-    654          				}
-    655          				v4 = a2hex(inbuf);
+    804          				{
+    805          					break;
+    806          				}
+    807          				v4 = a2hex(inbuf);
+                 				           ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
    \                     ??memory_modify_11: (+1)
    \       0xC0   0xA801             ADD      R0,SP,#+4
    \       0xC2   0x.... 0x....      BL       a2hex
    \       0xC6   0x0004             MOVS     R4,R0
-    656          				*addrp4 = v4;
+    808          				*addrp4 = v4;
    \       0xC8   0xF8CA 0x4000      STR      R4,[R10, #+0]
-    657          			}
-    658          			addrp4++;
+    809          			}
+    810          			addrp4++;
    \                     ??memory_modify_10: (+1)
    \       0xCC   0xF11A 0x0A04      ADDS     R10,R10,#+4
    \       0xD0   0xE7E4             B.N      ??memory_modify_9
-    659          		}
-    660          	} 
-    661          }
+    811          		}
+    812          	} 
+    813          }
    \                     ??memory_modify_3: (+1)
    \       0xD2   0xB021             ADD      SP,SP,#+132
    \       0xD4   0xE8BD 0x8FF0      POP      {R4-R11,PC}
-    662          
-    663          //========================================================================
+    814          
+    815          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    664          int cmd_md( int argc, char *argv[] )
-    665          //========================================================================
-    666          {
+    816          int cmd_md( int argc, char *argv[] )
+    817          //========================================================================
+    818          {
    \                     cmd_md: (+1)
    \        0x0   0xB5F8             PUSH     {R3-R7,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    667          	if ( 1 < argc )
+    819          	if ( 1 < argc )
    \        0x6   0x2C02             CMP      R4,#+2
-   \        0x8   0xDB04             BLT.N    ??cmd_md_0
-    668          	{
-    669          		mem_addr = (unsigned char *)a2hex( argv[1] );
+   \        0x8   0xDB05             BLT.N    ??cmd_md_0
+    820          	{
+    821          		mem_addr = (unsigned char *)a2hex( argv[1] );
+                 		                                   ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
    \        0xA   0x6868             LDR      R0,[R5, #+4]
    \        0xC   0x.... 0x....      BL       a2hex
-   \       0x10   0x....             LDR.N    R1,??DataTable26_68
-   \       0x12   0x6008             STR      R0,[R1, #+0]
-    670          	}
-    671          	if ( 2 < argc )
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable33_83
+   \       0x14   0x6008             STR      R0,[R1, #+0]
+    822          	}
+    823          	if ( 2 < argc )
    \                     ??cmd_md_0: (+1)
-   \       0x14   0x2C03             CMP      R4,#+3
-   \       0x16   0xDB04             BLT.N    ??cmd_md_1
-    672          	{
-    673          		dumpsize = a2hex( argv[2] );
-   \       0x18   0x68A8             LDR      R0,[R5, #+8]
-   \       0x1A   0x.... 0x....      BL       a2hex
-   \       0x1E   0x....             LDR.N    R1,??DataTable26_69
-   \       0x20   0x6008             STR      R0,[R1, #+0]
-    674          	}
-    675          	if ( mem_addr == 0 )
+   \       0x16   0x2C03             CMP      R4,#+3
+   \       0x18   0xDB04             BLT.N    ??cmd_md_1
+    824          	{
+    825          		dumpsize = a2hex( argv[2] );
+                 		                  ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
+   \       0x1A   0x68A8             LDR      R0,[R5, #+8]
+   \       0x1C   0x.... 0x....      BL       a2hex
+   \       0x20   0x....             LDR.N    R1,??DataTable33_84
+   \       0x22   0x6008             STR      R0,[R1, #+0]
+    826          	}
+    827          	if ( mem_addr == 0 )
    \                     ??cmd_md_1: (+1)
-   \       0x22   0x....             LDR.N    R6,??DataTable26_68
-   \       0x24   0x6830             LDR      R0,[R6, #+0]
-   \       0x26   0x2800             CMP      R0,#+0
-   \       0x28   0xD102             BNE.N    ??cmd_md_2
-    676          	{
-    677          		return -1;
-   \       0x2A   0xF05F 0x30FF      MOVS     R0,#+4294967295
-   \       0x2E   0xE00B             B.N      ??cmd_md_3
-    678          	}
-    679          
-    680          	dump( (unsigned char *)mem_addr, dumpsize, data_option );
+   \       0x24   0x....             LDR.N    R6,??DataTable33_83
+   \       0x26   0x6830             LDR      R0,[R6, #+0]
+   \       0x28   0x2800             CMP      R0,#+0
+   \       0x2A   0xD102             BNE.N    ??cmd_md_2
+    828          	{
+    829          		return -1;
+   \       0x2C   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x30   0xE00B             B.N      ??cmd_md_3
+    830          	}
+    831          
+    832          	dump( (unsigned char *)mem_addr, dumpsize, data_option );
+                 	^
+Warning[Pe223]: function "dump" declared implicitly
    \                     ??cmd_md_2: (+1)
-   \       0x30   0x....             LDR.N    R7,??DataTable26_69
-   \       0x32   0x....             LDR.N    R0,??DataTable26_70
-   \       0x34   0x6802             LDR      R2,[R0, #+0]
-   \       0x36   0x6839             LDR      R1,[R7, #+0]
-   \       0x38   0x6830             LDR      R0,[R6, #+0]
-   \       0x3A   0x.... 0x....      BL       dump
-    681          	mem_addr += dumpsize;
-   \       0x3E   0x6830             LDR      R0,[R6, #+0]
-   \       0x40   0x6839             LDR      R1,[R7, #+0]
-   \       0x42   0x4408             ADD      R0,R0,R1
-   \       0x44   0x6030             STR      R0,[R6, #+0]
-    682          
-    683          	return 0;
-   \       0x46   0x2000             MOVS     R0,#+0
+   \       0x32   0x....             LDR.N    R7,??DataTable33_84
+   \       0x34   0x....             LDR.N    R0,??DataTable33_85
+   \       0x36   0x6802             LDR      R2,[R0, #+0]
+   \       0x38   0x6839             LDR      R1,[R7, #+0]
+   \       0x3A   0x6830             LDR      R0,[R6, #+0]
+   \       0x3C   0x.... 0x....      BL       dump
+    833          	mem_addr += dumpsize;
+   \       0x40   0x6830             LDR      R0,[R6, #+0]
+   \       0x42   0x6839             LDR      R1,[R7, #+0]
+   \       0x44   0x4408             ADD      R0,R0,R1
+   \       0x46   0x6030             STR      R0,[R6, #+0]
+    834          
+    835          	return 0;
+   \       0x48   0x2000             MOVS     R0,#+0
    \                     ??cmd_md_3: (+1)
-   \       0x48   0xBDF2             POP      {R1,R4-R7,PC}
-    684          }
-    685          
-    686          //========================================================================
+   \       0x4A   0xBDF2             POP      {R1,R4-R7,PC}
+    836          }
+    837          
+    838          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    687          int cmd_mm( int argc, char *argv[] )
-    688          //========================================================================
-    689          {
+    839          int cmd_mm( int argc, char *argv[] )
+    840          //========================================================================
+    841          {
    \                     cmd_mm: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    690          	if ( 1 < argc )
+    842          	if ( 1 < argc )
    \        0x6   0x2C02             CMP      R4,#+2
    \        0x8   0xDB04             BLT.N    ??cmd_mm_0
-    691          	{
-    692          		mem_addr = (unsigned char *)a2hex( argv[1] );
+    843          	{
+    844          		mem_addr = (unsigned char *)a2hex( argv[1] );
+                 		                                   ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
    \        0xA   0x6868             LDR      R0,[R5, #+4]
    \        0xC   0x.... 0x....      BL       a2hex
-   \       0x10   0x....             LDR.N    R1,??DataTable26_68
+   \       0x10   0x....             LDR.N    R1,??DataTable33_83
    \       0x12   0x6008             STR      R0,[R1, #+0]
-    693          	}
-    694          	if ( mem_addr == 0 )
+    845          	}
+    846          	if ( mem_addr == 0 )
    \                     ??cmd_mm_0: (+1)
-   \       0x14   0x....             LDR.N    R2,??DataTable26_68
+   \       0x14   0x....             LDR.N    R2,??DataTable33_83
    \       0x16   0x6810             LDR      R0,[R2, #+0]
    \       0x18   0x2800             CMP      R0,#+0
    \       0x1A   0xD102             BNE.N    ??cmd_mm_1
-    695          	{
-    696          		return -1;
+    847          	{
+    848          		return -1;
    \       0x1C   0xF05F 0x30FF      MOVS     R0,#+4294967295
    \       0x20   0xE005             B.N      ??cmd_mm_2
-    697          	}
-    698          
-    699          	memory_modify( (void *)mem_addr, data_option );
+    849          	}
+    850          
+    851          	memory_modify( (void *)mem_addr, data_option );
    \                     ??cmd_mm_1: (+1)
-   \       0x22   0x....             LDR.N    R0,??DataTable26_70
+   \       0x22   0x....             LDR.N    R0,??DataTable33_85
    \       0x24   0x6801             LDR      R1,[R0, #+0]
    \       0x26   0x6810             LDR      R0,[R2, #+0]
    \       0x28   0x.... 0x....      BL       memory_modify
-    700          
-    701          	return 0;
+    852          
+    853          	return 0;
    \       0x2C   0x2000             MOVS     R0,#+0
    \                     ??cmd_mm_2: (+1)
    \       0x2E   0xBD32             POP      {R1,R4,R5,PC}
-    702          }
-    703          
-    704          //========================================================================
+    854          }
+    855          
+    856          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    705          int cmd_debug(int argc, char *argv[])
-    706          //========================================================================
-    707          {
+    857          uint8_t cmd_debug(uint8_t argc, char *argv[])
+    858          //========================================================================
+    859          {
    \                     cmd_debug: (+1)
    \        0x0   0xB570             PUSH     {R4-R6,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    708          	if (argc == 1)
-   \        0x6   0x2C01             CMP      R4,#+1
-   \        0x8   0xD105             BNE.N    ??cmd_debug_0
-    709          	{
-    710          		printf("current debug level = 0x%x\n", debug_level);
-   \        0xA   0x....             LDR.N    R0,??DataTable26_64
-   \        0xC   0x6801             LDR      R1,[R0, #+0]
-   \        0xE   0x....             LDR.N    R0,??DataTable26_71
-   \       0x10   0x.... 0x....      BL       printf
-   \       0x14   0xE008             B.N      ??cmd_debug_1
-    711          	}
-    712          	else
-    713          	{
-    714          		debug_level = a2hex(argv[1]);
+    860          	if (argc == 1)
+   \        0x6   0x0020             MOVS     R0,R4
+   \        0x8   0xB2C0             UXTB     R0,R0
+   \        0xA   0x2801             CMP      R0,#+1
+   \        0xC   0xD105             BNE.N    ??cmd_debug_0
+    861          	{
+    862          		printf("current debug level = 0x%x\n", debug_level);
+   \        0xE   0x....             LDR.N    R0,??DataTable33_79
+   \       0x10   0x6801             LDR      R1,[R0, #+0]
+   \       0x12   0x....             LDR.N    R0,??DataTable33_86
+   \       0x14   0x.... 0x....      BL       printf
+   \       0x18   0xE008             B.N      ??cmd_debug_1
+    863          	}
+    864          	else
+    865          	{
+    866          		debug_level = a2hex(argv[1]);
+                 		                    ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
    \                     ??cmd_debug_0: (+1)
-   \       0x16   0x....             LDR.N    R6,??DataTable26_64
-   \       0x18   0x6868             LDR      R0,[R5, #+4]
-   \       0x1A   0x.... 0x....      BL       a2hex
-   \       0x1E   0x6030             STR      R0,[R6, #+0]
-    715          		printf("debug level = 0x%x\n", debug_level);
-   \       0x20   0x6831             LDR      R1,[R6, #+0]
-   \       0x22   0x....             LDR.N    R0,??DataTable26_72
-   \       0x24   0x.... 0x....      BL       printf
-    716          	}
-    717          
-    718          	return 0;
+   \       0x1A   0x....             LDR.N    R6,??DataTable33_79
+   \       0x1C   0x6868             LDR      R0,[R5, #+4]
+   \       0x1E   0x.... 0x....      BL       a2hex
+   \       0x22   0x6030             STR      R0,[R6, #+0]
+    867          		printf("debug level = 0x%x\n", debug_level);
+   \       0x24   0x6831             LDR      R1,[R6, #+0]
+   \       0x26   0x....             LDR.N    R0,??DataTable33_87
+   \       0x28   0x.... 0x....      BL       printf
+    868          	}
+    869          
+    870          	return 0;
    \                     ??cmd_debug_1: (+1)
-   \       0x28   0x2000             MOVS     R0,#+0
-   \       0x2A   0xBD70             POP      {R4-R6,PC}
-    719          }
-    720          
-    721          //========================================================================
+   \       0x2C   0x2000             MOVS     R0,#+0
+   \       0x2E   0xBD70             POP      {R4-R6,PC}
+    871          }
+    872          
+    873          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    722          int cmd_wr( int argc, char *argv[] )
-    723          //========================================================================
-    724          {
+    874          uint8_t cmd_wr( uint8_t argc, char *argv[] )
+    875          //========================================================================
+    876          {
    \                     cmd_wr: (+1)
    \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
    \        0x4   0x0004             MOVS     R4,R0
    \        0x6   0x000D             MOVS     R5,R1
-    725          	unsigned int	addr = 0;
+    877          	unsigned int	addr = 0;
    \        0x8   0x2600             MOVS     R6,#+0
-    726          	unsigned int	v;
-    727          
-    728          	int	index = 1;
-   \        0xA   0xF05F 0x0801      MOVS     R8,#+1
-    729          	int	option_loop = 0;
-   \        0xE   0x2700             MOVS     R7,#+0
-    730          
-    731          	if ( (index <= argc) && (strcmp( argv[index], "-l" ) == 0) )
-   \       0x10   0x4544             CMP      R4,R8
-   \       0x12   0xDB0A             BLT.N    ??cmd_wr_0
-   \       0x14   0x....             ADR.N    R1,??DataTable26
-   \       0x16   0xF855 0x0028      LDR      R0,[R5, R8, LSL #+2]
-   \       0x1A   0x.... 0x....      BL       strcmp
-   \       0x1E   0x2800             CMP      R0,#+0
-   \       0x20   0xD103             BNE.N    ??cmd_wr_0
-    732          	{
-    733          		option_loop = 1;
-   \       0x22   0x2001             MOVS     R0,#+1
-   \       0x24   0x0007             MOVS     R7,R0
-    734          		index++;
-   \       0x26   0xEA5F 0x0848      LSLS     R8,R8,#+1
-    735          	}
-    736          	if ( index < argc )
+    878          	unsigned int	v;
+    879          
+    880          	int	index = 1;
+   \        0xA   0x2701             MOVS     R7,#+1
+    881          	int	option_loop = 0;
+   \        0xC   0xF05F 0x0800      MOVS     R8,#+0
+    882          
+    883          	if ( (index <= argc) && (strcmp( argv[index], "-l" ) == 0) )
+   \       0x10   0x0020             MOVS     R0,R4
+   \       0x12   0xB2C0             UXTB     R0,R0
+   \       0x14   0x42B8             CMP      R0,R7
+   \       0x16   0xDB09             BLT.N    ??cmd_wr_0
+   \       0x18   0x....             ADR.N    R1,??DataTable33
+   \       0x1A   0xF855 0x0027      LDR      R0,[R5, R7, LSL #+2]
+   \       0x1E   0x.... 0x....      BL       strcmp
+   \       0x22   0x2800             CMP      R0,#+0
+   \       0x24   0xD102             BNE.N    ??cmd_wr_0
+    884          	{
+    885          		option_loop = 1;
+   \       0x26   0x2001             MOVS     R0,#+1
+   \       0x28   0x4680             MOV      R8,R0
+    886          		index++;
+   \       0x2A   0x007F             LSLS     R7,R7,#+1
+    887          	}
+    888          	if ( index < argc )
    \                     ??cmd_wr_0: (+1)
-   \       0x2A   0x45A0             CMP      R8,R4
-   \       0x2C   0xDA06             BGE.N    ??cmd_wr_1
-    737          	{
-    738          		addr = a2hex( argv[index] );
-   \       0x2E   0xF855 0x0028      LDR      R0,[R5, R8, LSL #+2]
-   \       0x32   0x.... 0x....      BL       a2hex
-   \       0x36   0x0006             MOVS     R6,R0
-    739          		index++;
-   \       0x38   0xF118 0x0801      ADDS     R8,R8,#+1
-    740          	}
-    741          	if ( index < argc )
+   \       0x2C   0x0020             MOVS     R0,R4
+   \       0x2E   0xB2C0             UXTB     R0,R0
+   \       0x30   0x4287             CMP      R7,R0
+   \       0x32   0xDA05             BGE.N    ??cmd_wr_1
+    889          	{
+    890          		addr = a2hex( argv[index] );
+                 		              ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
+   \       0x34   0xF855 0x0027      LDR      R0,[R5, R7, LSL #+2]
+   \       0x38   0x.... 0x....      BL       a2hex
+   \       0x3C   0x0006             MOVS     R6,R0
+    891          		index++;
+   \       0x3E   0x1C7F             ADDS     R7,R7,#+1
+    892          	}
+    893          	if ( index < argc )
    \                     ??cmd_wr_1: (+1)
-   \       0x3C   0x45A0             CMP      R8,R4
-   \       0x3E   0xDA05             BGE.N    ??cmd_wr_2
-    742          	{
-    743          		v = a2hex( argv[index] );
-   \       0x40   0xF855 0x0028      LDR      R0,[R5, R8, LSL #+2]
-   \       0x44   0x.... 0x....      BL       a2hex
-   \       0x48   0x4681             MOV      R9,R0
-   \       0x4A   0xE002             B.N      ??cmd_wr_3
-    744          	}
-    745          	else
-    746          	{
-    747          		return -1;
+   \       0x40   0x0020             MOVS     R0,R4
+   \       0x42   0xB2C0             UXTB     R0,R0
+   \       0x44   0x4287             CMP      R7,R0
+   \       0x46   0xDA05             BGE.N    ??cmd_wr_2
+    894          	{
+    895          		v = a2hex( argv[index] );
+                 		           ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
+   \       0x48   0xF855 0x0027      LDR      R0,[R5, R7, LSL #+2]
+   \       0x4C   0x.... 0x....      BL       a2hex
+   \       0x50   0x4681             MOV      R9,R0
+   \       0x52   0xE001             B.N      ??cmd_wr_3
+    896          	}
+    897          	else
+    898          	{
+    899          		return -1;
    \                     ??cmd_wr_2: (+1)
-   \       0x4C   0xF05F 0x30FF      MOVS     R0,#+4294967295
-   \       0x50   0xE01E             B.N      ??cmd_wr_4
-    748          	}
-    749          	do
-    750          	{
-    751          		if ( data_option == 1 )
+   \       0x54   0x20FF             MOVS     R0,#+255
+   \       0x56   0xE01F             B.N      ??cmd_wr_4
+    900          	}
+    901          	do
+    902          	{
+    903          		if ( data_option == 1 )
    \                     ??cmd_wr_3: (+1)
-   \       0x52   0x....             LDR.N    R0,??DataTable26_70
-   \       0x54   0x6801             LDR      R1,[R0, #+0]
-   \       0x56   0x2901             CMP      R1,#+1
-   \       0x58   0xD102             BNE.N    ??cmd_wr_5
-    752          		{
-    753          			*(unsigned char *)addr	=	(unsigned char)v;
-   \       0x5A   0xF886 0x9000      STRB     R9,[R6, #+0]
-   \       0x5E   0xE00A             B.N      ??cmd_wr_6
-    754          		}
-    755          		else if ( data_option == 2 )
+   \       0x58   0x....             LDR.N    R0,??DataTable33_85
+   \       0x5A   0x6801             LDR      R1,[R0, #+0]
+   \       0x5C   0x2901             CMP      R1,#+1
+   \       0x5E   0xD102             BNE.N    ??cmd_wr_5
+    904          		{
+    905          			*(unsigned char *)addr	=	(unsigned char)v;
+   \       0x60   0xF886 0x9000      STRB     R9,[R6, #+0]
+   \       0x64   0xE00A             B.N      ??cmd_wr_6
+    906          		}
+    907          		else if ( data_option == 2 )
    \                     ??cmd_wr_5: (+1)
-   \       0x60   0x6801             LDR      R1,[R0, #+0]
-   \       0x62   0x2902             CMP      R1,#+2
-   \       0x64   0xD102             BNE.N    ??cmd_wr_7
-    756          		{
-    757          			*(unsigned short *)addr	=	(unsigned short)v;
-   \       0x66   0xF8A6 0x9000      STRH     R9,[R6, #+0]
-   \       0x6A   0xE004             B.N      ??cmd_wr_6
-    758          		}
-    759          		else if ( data_option == 4 )
+   \       0x66   0x6801             LDR      R1,[R0, #+0]
+   \       0x68   0x2902             CMP      R1,#+2
+   \       0x6A   0xD102             BNE.N    ??cmd_wr_7
+    908          		{
+    909          			*(unsigned short *)addr	=	(unsigned short)v;
+   \       0x6C   0xF8A6 0x9000      STRH     R9,[R6, #+0]
+   \       0x70   0xE004             B.N      ??cmd_wr_6
+    910          		}
+    911          		else if ( data_option == 4 )
    \                     ??cmd_wr_7: (+1)
-   \       0x6C   0x6800             LDR      R0,[R0, #+0]
-   \       0x6E   0x2804             CMP      R0,#+4
-   \       0x70   0xD101             BNE.N    ??cmd_wr_6
-    760          		{
-    761          			*(unsigned int *)addr	=	(unsigned int)v;
-   \       0x72   0xF8C6 0x9000      STR      R9,[R6, #+0]
-    762          		}
-    763          
-    764          #if defined(USE_FREERTOS)
-    765          		vTaskDelay( 100 / portTICK_RATE_MS );
-    766          #else
-    767          		HAL_Delay( 0 );
+   \       0x72   0x6800             LDR      R0,[R0, #+0]
+   \       0x74   0x2804             CMP      R0,#+4
+   \       0x76   0xD101             BNE.N    ??cmd_wr_6
+    912          		{
+    913          			*(unsigned int *)addr	=	(unsigned int)v;
+   \       0x78   0xF8C6 0x9000      STR      R9,[R6, #+0]
+    914          		}
+    915          
+    916          #if defined(USE_FREERTOS)
+    917          		vTaskDelay( 100 / portTICK_RATE_MS );
+    918          #else
+    919          		HAL_Delay( (uint32_t)0 );
    \                     ??cmd_wr_6: (+1)
-   \       0x76   0x2000             MOVS     R0,#+0
-   \       0x78   0x.... 0x....      BL       HAL_Delay
-    768          #endif
-    769          
-    770          	} while ( option_loop == 1 && input_check() == 0 );
-   \       0x7C   0x2F01             CMP      R7,#+1
-   \       0x7E   0xD103             BNE.N    ??cmd_wr_8
-   \       0x80   0x.... 0x....      BL       input_check
-   \       0x84   0x2800             CMP      R0,#+0
-   \       0x86   0xD0E4             BEQ.N    ??cmd_wr_3
-    771          
-    772          	printf( "\n" );
+   \       0x7C   0x2000             MOVS     R0,#+0
+   \       0x7E   0x.... 0x....      BL       HAL_Delay
+    920          #endif
+    921          
+    922          	} while ( option_loop == 1 && input_check() == 0 );
+   \       0x82   0xF1B8 0x0F01      CMP      R8,#+1
+   \       0x86   0xD103             BNE.N    ??cmd_wr_8
+   \       0x88   0x.... 0x....      BL       input_check
+   \       0x8C   0x2800             CMP      R0,#+0
+   \       0x8E   0xD0E3             BEQ.N    ??cmd_wr_3
+    923          
+    924          	printf( "\n" );
    \                     ??cmd_wr_8: (+1)
-   \       0x88   0x....             ADR.N    R0,??DataTable26_1
-   \       0x8A   0x.... 0x....      BL       printf
-    773          
-    774          	return 0;
-   \       0x8E   0x2000             MOVS     R0,#+0
+   \       0x90   0x....             ADR.N    R0,??DataTable33_1
+   \       0x92   0x.... 0x....      BL       printf
+    925          
+    926          	return 0;
+   \       0x96   0x2000             MOVS     R0,#+0
    \                     ??cmd_wr_4: (+1)
-   \       0x90   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}
-    775          }
-    776          
-    777          //========================================================================
+   \       0x98   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}
+    927          }
+    928          
+    929          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    778          int cmd_rd( int argc, char *argv[] )
-    779          //========================================================================
-    780          {
+    930          int cmd_rd( int argc, char *argv[] )
+    931          //========================================================================
+    932          {
    \                     cmd_rd: (+1)
    \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
    \        0x4   0x0004             MOVS     R4,R0
    \        0x6   0x000D             MOVS     R5,R1
-    781          	unsigned int	addr;
-    782          	unsigned int	v;
-    783          
-    784          	int		index = 1;
+    933          	unsigned int	addr;
+    934          	unsigned int	v;
+    935          
+    936          	int		index = 1;
    \        0x8   0xF05F 0x0801      MOVS     R8,#+1
-    785          	int		option_loop = 0;
+    937          	int		option_loop = 0;
    \        0xC   0x2700             MOVS     R7,#+0
-    786          
-    787          	if ( (index <= argc) && (strcmp( argv[index], "-l" ) == 0) )
+    938          
+    939          	if ( (index <= argc) && (strcmp( argv[index], "-l" ) == 0) )
    \        0xE   0x4544             CMP      R4,R8
    \       0x10   0xDB0A             BLT.N    ??cmd_rd_0
-   \       0x12   0x....             ADR.N    R1,??DataTable26
+   \       0x12   0x....             ADR.N    R1,??DataTable33
    \       0x14   0xF855 0x0028      LDR      R0,[R5, R8, LSL #+2]
    \       0x18   0x.... 0x....      BL       strcmp
    \       0x1C   0x2800             CMP      R0,#+0
    \       0x1E   0xD103             BNE.N    ??cmd_rd_0
-    788          	{
-    789          		option_loop = 1;
+    940          	{
+    941          		option_loop = 1;
    \       0x20   0x2001             MOVS     R0,#+1
    \       0x22   0x0007             MOVS     R7,R0
-    790          		index++;
+    942          		index++;
    \       0x24   0xEA5F 0x0848      LSLS     R8,R8,#+1
-    791          	}
-    792          	if ( index < argc )
+    943          	}
+    944          	if ( index < argc )
    \                     ??cmd_rd_0: (+1)
    \       0x28   0x45A0             CMP      R8,R4
    \       0x2A   0xDA05             BGE.N    ??cmd_rd_1
-    793          	{
-    794          		addr = a2hex( argv[index] );
+    945          	{
+    946          		addr = a2hex( argv[index] );
+                 		              ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "S8 *"
    \       0x2C   0xF855 0x0028      LDR      R0,[R5, R8, LSL #+2]
    \       0x30   0x.... 0x....      BL       a2hex
    \       0x34   0x4681             MOV      R9,R0
    \       0x36   0xE002             B.N      ??cmd_rd_2
-    795          	}
-    796          	else
-    797          	{
-    798          		return -1;
+    947          	}
+    948          	else
+    949          	{
+    950          		return -1;
    \                     ??cmd_rd_1: (+1)
    \       0x38   0xF05F 0x30FF      MOVS     R0,#+4294967295
    \       0x3C   0xE030             B.N      ??cmd_rd_3
-    799          	}
-    800          
-    801          	do
-    802          	{
-    803          		if ( data_option == 1 )
+    951          	}
+    952          
+    953          	do
+    954          	{
+    955          		if ( data_option == 1 )
    \                     ??cmd_rd_2: (+1)
-   \       0x3E   0x....             LDR.N    R0,??DataTable26_70
+   \       0x3E   0x....             LDR.N    R0,??DataTable33_85
    \       0x40   0x6801             LDR      R1,[R0, #+0]
    \       0x42   0x2901             CMP      R1,#+1
    \       0x44   0xD108             BNE.N    ??cmd_rd_4
-    804          		{
-    805          			v = *(unsigned char *)addr;
+    956          		{
+    957          			v = *(unsigned char *)addr;
    \       0x46   0xF899 0x0000      LDRB     R0,[R9, #+0]
    \       0x4A   0x0006             MOVS     R6,R0
-    806          			printf( "addr 0x%08x, value 0x%02x\r", addr, v );
+    958          			printf( "addr 0x%08x, value 0x%02x\r", addr, v );
    \       0x4C   0x0032             MOVS     R2,R6
    \       0x4E   0x4649             MOV      R1,R9
-   \       0x50   0x....             LDR.N    R0,??DataTable26_73
+   \       0x50   0x....             LDR.N    R0,??DataTable33_88
    \       0x52   0x.... 0x....      BL       printf
    \       0x56   0xE016             B.N      ??cmd_rd_5
-    807          		}
-    808          		else if ( data_option == 2 )
+    959          		}
+    960          		else if ( data_option == 2 )
    \                     ??cmd_rd_4: (+1)
    \       0x58   0x6801             LDR      R1,[R0, #+0]
    \       0x5A   0x2902             CMP      R1,#+2
    \       0x5C   0xD108             BNE.N    ??cmd_rd_6
-    809          		{
-    810          			v = *(unsigned short *)addr;
+    961          		{
+    962          			v = *(unsigned short *)addr;
    \       0x5E   0xF8B9 0x0000      LDRH     R0,[R9, #+0]
    \       0x62   0x0006             MOVS     R6,R0
-    811          			printf( "addr 0x%08x, value 0x%04x\r", addr, v );
+    963          			printf( "addr 0x%08x, value 0x%04x\r", addr, v );
    \       0x64   0x0032             MOVS     R2,R6
    \       0x66   0x4649             MOV      R1,R9
-   \       0x68   0x....             LDR.N    R0,??DataTable26_74
+   \       0x68   0x....             LDR.N    R0,??DataTable33_89
    \       0x6A   0x.... 0x....      BL       printf
    \       0x6E   0xE00A             B.N      ??cmd_rd_5
-    812          		}
-    813          		else if ( data_option == 4 )
+    964          		}
+    965          		else if ( data_option == 4 )
    \                     ??cmd_rd_6: (+1)
    \       0x70   0x6800             LDR      R0,[R0, #+0]
    \       0x72   0x2804             CMP      R0,#+4
    \       0x74   0xD107             BNE.N    ??cmd_rd_5
-    814          		{
-    815          			v = *(unsigned int *)addr;
+    966          		{
+    967          			v = *(unsigned int *)addr;
    \       0x76   0xF8D9 0x0000      LDR      R0,[R9, #+0]
    \       0x7A   0x0006             MOVS     R6,R0
-    816          			printf( "addr 0x%08x, value 0x%08x\r", addr, v );
+    968          			printf( "addr 0x%08x, value 0x%08x\r", addr, v );
    \       0x7C   0x0032             MOVS     R2,R6
    \       0x7E   0x4649             MOV      R1,R9
-   \       0x80   0x....             LDR.N    R0,??DataTable26_75
+   \       0x80   0x....             LDR.N    R0,??DataTable33_90
    \       0x82   0x.... 0x....      BL       printf
-    817          		}
-    818          
-    819          #if defined(USE_FREERTOS)
-    820          		vTaskDelay( 10 / portTICK_RATE_MS );
-    821          #else
-    822          		HAL_Delay( 0 );
+    969          		}
+    970          
+    971          #if defined(USE_FREERTOS)
+    972          		vTaskDelay( 10 / portTICK_RATE_MS );
+    973          #else
+    974          		HAL_Delay( (uint32_t)0 );
    \                     ??cmd_rd_5: (+1)
    \       0x86   0x2000             MOVS     R0,#+0
    \       0x88   0x.... 0x....      BL       HAL_Delay
-    823          #endif
-    824          
-    825          	} while ( option_loop == 1 && input_check() == 0 );
+    975          #endif
+    976          
+    977          	} while ( option_loop == 1 && input_check() == 0 );
    \       0x8C   0x2F01             CMP      R7,#+1
    \       0x8E   0xD103             BNE.N    ??cmd_rd_7
    \       0x90   0x.... 0x....      BL       input_check
    \       0x94   0x2800             CMP      R0,#+0
    \       0x96   0xD0D2             BEQ.N    ??cmd_rd_2
-    826          
-    827          	printf( "\n" );
+    978          
+    979          	printf( "\n" );
    \                     ??cmd_rd_7: (+1)
-   \       0x98   0x....             ADR.N    R0,??DataTable26_1
+   \       0x98   0x....             ADR.N    R0,??DataTable33_1
    \       0x9A   0x.... 0x....      BL       printf
-    828          
-    829          	return 0;
+    980          
+    981          	return 0;
    \       0x9E   0x2000             MOVS     R0,#+0
    \                     ??cmd_rd_3: (+1)
    \       0xA0   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}
-    830          }
-    831          
-    832          //========================================================================
+    982          }
+    983          
+    984          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    833          int cmd_do(int argc, char *argv[])
-    834          //========================================================================
-    835          {
+    985          int cmd_do(int argc, char *argv[])
+    986          //========================================================================
+    987          {
    \                     cmd_do: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    836          	int	val = 0;
+    988          	int	val = 0;
    \        0x6   0x2000             MOVS     R0,#+0
    \        0x8   0x9000             STR      R0,[SP, #+0]
-    837          	extern	void	gpio_write(int val);
-    838          
-    839          	if (2 <= argc)
+    989          	extern	void	gpio_write(int val);
+    990          
+    991          	if (2 <= argc)
    \        0xA   0x2C02             CMP      R4,#+2
    \        0xC   0xDB04             BLT.N    ??cmd_do_0
-    840          	{
-    841          		sscanf(argv[1], "%x", &val);
+    992          	{
+    993          		sscanf(argv[1], "%x", &val);
    \        0xE   0x466A             MOV      R2,SP
-   \       0x10   0x....             ADR.N    R1,??DataTable26_2
+   \       0x10   0x....             ADR.N    R1,??DataTable33_2
    \       0x12   0x6868             LDR      R0,[R5, #+4]
    \       0x14   0x.... 0x....      BL       sscanf
-    842          	}
-    843          	//gpio_write(val);
-    844          
-    845          	return 0;
+    994          	}
+    995          	//gpio_write(val);
+    996          
+    997          	return 0;
    \                     ??cmd_do_0: (+1)
    \       0x18   0x2000             MOVS     R0,#+0
    \       0x1A   0xBD32             POP      {R1,R4,R5,PC}
-    846          }
-    847          
-    848          //========================================================================
+    998          }
+    999          
+   1000          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    849          int cmd_test( int argc, char * argv[] )
-    850          //========================================================================
-    851          {
+   1001          int cmd_test( int argc, char * argv[] )
+   1002          //========================================================================
+   1003          {
    \                     cmd_test: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    852          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0xF44F 0x7255      MOV      R2,#+852
-   \        0xA   0x....             LDR.N    R1,??DataTable26_76
-   \        0xC   0x....             LDR.N    R0,??DataTable26_47
+   1004          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x6   0xF44F 0x727B      MOV      R2,#+1004
+   \        0xA   0x....             LDR.N    R1,??DataTable33_91
+   \        0xC   0x....             LDR.N    R0,??DataTable33_47
    \        0xE   0x.... 0x....      BL       printf
-    853          }
+   1005          }
                  ^
 Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
    \       0x12   0xBD32             POP      {R1,R4,R5,PC}
@@ -1840,329 +2194,389 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
    \              0x00 0x00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable16:
+   \                     ??DataTable14:
    \        0x0   0x0A 0x00          DC8      "\n",0x0,0x0   
 
    \              0x00 0x00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable22:
+   \                     ??DataTable29:
    \        0x0   0x5B 0x00          DC8      "[",0x0,0x0    
 
    \              0x00 0x00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26:
+   \                     ??DataTable33:
    \        0x0   0x2D 0x6C          DC8      0x2D, 0x6C, 0x00, 0x00
 
    \              0x00 0x00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_1:
+   \                     ??DataTable33_1:
    \        0x0   0x0A 0x00          DC8      "\n",0x0,0x0   
 
    \              0x00 0x00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_2:
+   \                     ??DataTable33_2:
    \        0x0   0x25 0x78          DC8      0x25, 0x78, 0x00, 0x00
 
    \              0x00 0x00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_3:
+   \                     ??DataTable33_3:
    \        0x0   0x....'....        DC32     ?_0
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_4:
+   \                     ??DataTable33_4:
    \        0x0   0x....'....        DC32     ?_1
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_5:
+   \                     ??DataTable33_5:
    \        0x0   0x....'....        DC32     ?_3
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_6:
+   \                     ??DataTable33_6:
    \        0x0   0x....'....        DC32     ?_4
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_7:
+   \                     ??DataTable33_7:
    \        0x0   0x....'....        DC32     ?_5
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_8:
+   \                     ??DataTable33_8:
    \        0x0   0x....'....        DC32     ?_6
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_9:
+   \                     ??DataTable33_9:
    \        0x0   0x....'....        DC32     ?_7
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_10:
+   \                     ??DataTable33_10:
    \        0x0   0x....'....        DC32     ?_8
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_11:
+   \                     ??DataTable33_11:
    \        0x0   0x....'....        DC32     ?_9
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_12:
+   \                     ??DataTable33_12:
    \        0x0   0x....'....        DC32     ?_10
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_13:
+   \                     ??DataTable33_13:
    \        0x0   0x....'....        DC32     ?_11
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_14:
+   \                     ??DataTable33_14:
    \        0x0   0x....'....        DC32     CLIPrompt
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_15:
+   \                     ??DataTable33_15:
    \        0x0   0x....'....        DC32     ProcessCommand
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_16:
+   \                     ??DataTable33_16:
    \        0x0   0x....'....        DC32     display_diag_menu
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_17:
+   \                     ??DataTable33_17:
    \        0x0   0x....'....        DC32     cmd_diag_proc
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_18:
+   \                     ??DataTable33_18:
    \        0x0   0x....'....        DC32     ?_12
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_19:
+   \                     ??DataTable33_19:
    \        0x0   0x....'....        DC32     ?_13
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_20:
+   \                     ??DataTable33_20:
    \        0x0   0x....'....        DC32     ?_14
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_21:
+   \                     ??DataTable33_21:
    \        0x0   0x....'....        DC32     ?_15
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_22:
+   \                     ??DataTable33_22:
    \        0x0   0x....'....        DC32     ?_16
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_23:
+   \                     ??DataTable33_23:
    \        0x0   0x....'....        DC32     ?_17
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_24:
+   \                     ??DataTable33_24:
    \        0x0   0x....'....        DC32     ?_18
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_25:
+   \                     ??DataTable33_25:
    \        0x0   0x....'....        DC32     ?_19
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_26:
+   \                     ??DataTable33_26:
    \        0x0   0x....'....        DC32     ?_20
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_27:
+   \                     ??DataTable33_27:
    \        0x0   0x....'....        DC32     ?_21
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_28:
+   \                     ??DataTable33_28:
    \        0x0   0x....'....        DC32     ?_22
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_29:
+   \                     ??DataTable33_29:
    \        0x0   0x....'....        DC32     ?_23
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_30:
+   \                     ??DataTable33_30:
    \        0x0   0x....'....        DC32     ?_24
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_31:
+   \                     ??DataTable33_31:
    \        0x0   0x....'....        DC32     ?_25
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_32:
+   \                     ??DataTable33_32:
    \        0x0   0x....'....        DC32     ?_26
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_33:
+   \                     ??DataTable33_33:
    \        0x0   0x....'....        DC32     ?_27
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_34:
+   \                     ??DataTable33_34:
    \        0x0   0x....'....        DC32     display_diag_Audio
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_35:
+   \                     ??DataTable33_35:
    \        0x0   0x....'....        DC32     cmd_diag_proc_Audio
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_36:
+   \                     ??DataTable33_36:
    \        0x0   0x....'....        DC32     ?_28
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_37:
+   \                     ??DataTable33_37:
    \        0x0   0x....'....        DC32     ?_29
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_38:
+   \                     ??DataTable33_38:
    \        0x0   0x....'....        DC32     ?_30
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_39:
+   \                     ??DataTable33_39:
    \        0x0   0x....'....        DC32     ?_31
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_40:
+   \                     ??DataTable33_40:
    \        0x0   0x....'....        DC32     ?_32
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_41:
+   \                     ??DataTable33_41:
    \        0x0   0x....'....        DC32     ?_33
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_42:
+   \                     ??DataTable33_42:
    \        0x0   0x....'....        DC32     ?_34
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_43:
+   \                     ??DataTable33_43:
    \        0x0   0x....'....        DC32     ?_35
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_44:
+   \                     ??DataTable33_44:
    \        0x0   0x....'....        DC32     display_diag_RF
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_45:
+   \                     ??DataTable33_45:
    \        0x0   0x....'....        DC32     cmd_diag_proc_RF
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_46:
+   \                     ??DataTable33_46:
    \        0x0   0x....'....        DC32     `cmd_test1::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_47:
+   \                     ??DataTable33_47:
    \        0x0   0x....'....        DC32     ?_36
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_48:
+   \                     ??DataTable33_48:
    \        0x0   0x....'....        DC32     `cmd_test2::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_49:
+   \                     ??DataTable33_49:
    \        0x0   0x....'....        DC32     ?_37
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_50:
+   \                     ??DataTable33_50:
    \        0x0   0x....'....        DC32     `cmd_test3::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_51:
+   \                     ??DataTable33_51:
    \        0x0   0x....'....        DC32     `cmd_test4::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_52:
+   \                     ??DataTable33_52:
    \        0x0   0x....'....        DC32     ?_38
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_53:
+   \                     ??DataTable33_53:
    \        0x0   0x....'....        DC32     `cmd_test5::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_54:
+   \                     ??DataTable33_54:
    \        0x0   0x....'....        DC32     ?_39
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_55:
-   \        0x0   0x....'....        DC32     `cmd_rfwds_info::__func__`
+   \                     ??DataTable33_55:
+   \        0x0   0x....'....        DC32     `cmd_test_rf1::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_56:
-   \        0x0   0x....'....        DC32     Pro2Cmd
+   \                     ??DataTable33_56:
+   \        0x0   0x....'....        DC32     ?_40
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_57:
+   \                     ??DataTable33_57:
+   \        0x0   0x....'....        DC32     `cmd_test_rf2::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_58:
    \        0x0   0x....'....        DC32     ?_41
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_58:
+   \                     ??DataTable33_59:
+   \        0x0   0x....'....        DC32     `cmd_test_rf3::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_60:
    \        0x0   0x....'....        DC32     ?_42
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_59:
-   \        0x0   0x....'....        DC32     `cmd_rfwds1::__func__`
+   \                     ??DataTable33_61:
+   \        0x0   0x....'....        DC32     `cmd_test_rf_init::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_60:
-   \        0x0   0x....'....        DC32     `cmd_rfwds2::__func__`
+   \                     ??DataTable33_62:
+   \        0x0   0x....'....        DC32     `cmd_test_rf_vinit::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_61:
-   \        0x0   0x....'....        DC32     `cmd_rfwds3::__func__`
+   \                     ??DataTable33_63:
+   \        0x0   0x....'....        DC32     si4463
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_62:
-   \        0x0   0x....'....        DC32     `cmd_rfwds_init::__func__`
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_63:
-   \        0x0   0x....'....        DC32     `cmd_rfwds_debug::__func__`
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_64:
-   \        0x0   0x....'....        DC32     debug_level
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_65:
+   \                     ??DataTable33_64:
    \        0x0   0x....'....        DC32     ?_43
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_66:
+   \                     ??DataTable33_65:
+   \        0x0   0x....'....        DC32     `cmd_test_rf_debug::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_66:
+   \        0x0   0x....'....        DC32     `cmd_test_rf_debug::s_bEnableDebug`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_67:
    \        0x0   0x....'....        DC32     ?_44
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_67:
+   \                     ??DataTable33_68:
    \        0x0   0x....'....        DC32     ?_45
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_68:
-   \        0x0   0x....'....        DC32     mem_addr
+   \                     ??DataTable33_69:
+   \        0x0   0x....'....        DC32     `cmd_rfwds_info::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_69:
-   \        0x0   0x....'....        DC32     dumpsize
+   \                     ??DataTable33_70:
+   \        0x0   0x....'....        DC32     Pro2Cmd
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_70:
-   \        0x0   0x....'....        DC32     data_option
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_71:
-   \        0x0   0x....'....        DC32     ?_46
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_72:
+   \                     ??DataTable33_71:
    \        0x0   0x....'....        DC32     ?_47
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_73:
+   \                     ??DataTable33_72:
+   \        0x0   0x....'....        DC32     ?_48
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_73:
+   \        0x0   0x....'....        DC32     `cmd_rfwds1::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_74:
+   \        0x0   0x....'....        DC32     `cmd_rfwds2::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_75:
+   \        0x0   0x....'....        DC32     `cmd_rfwds3::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_76:
+   \        0x0   0x....'....        DC32     `cmd_rfwds_init::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_77:
+   \        0x0   0x....'....        DC32     `cmd_rfwds_vinit::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_78:
+   \        0x0   0x....'....        DC32     `cmd_rfwds_debug::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_79:
+   \        0x0   0x....'....        DC32     debug_level
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_80:
    \        0x0   0x....'....        DC32     ?_49
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_74:
+   \                     ??DataTable33_81:
    \        0x0   0x....'....        DC32     ?_50
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_75:
+   \                     ??DataTable33_82:
    \        0x0   0x....'....        DC32     ?_51
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable26_76:
+   \                     ??DataTable33_83:
+   \        0x0   0x....'....        DC32     mem_addr
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_84:
+   \        0x0   0x....'....        DC32     dumpsize
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_85:
+   \        0x0   0x....'....        DC32     data_option
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_86:
+   \        0x0   0x....'....        DC32     ?_52
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_87:
+   \        0x0   0x....'....        DC32     ?_53
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_88:
+   \        0x0   0x....'....        DC32     ?_55
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_89:
+   \        0x0   0x....'....        DC32     ?_56
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_90:
+   \        0x0   0x....'....        DC32     ?_57
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable33_91:
    \        0x0   0x....'....        DC32     `cmd_test::__func__`
 
    \                                 In section .rodata, align 4
@@ -4445,11 +4859,160 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
 
    \              0x0A 0x00
 
+   \                                 In section .rodata, align 4
+   \                     ?_40:
+   \        0x0   0x2A 0x20          DC8 "*  1 : RF Tx test.*\012"
+
+   \              0x20 0x31    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x52    
+
+   \              0x46 0x20    
+
+   \              0x54 0x78    
+
+   \              0x20 0x74    
+
+   \              0x65 0x73    
+
+   \              0x74 0x2E    
+
+   \              0x2A 0x0A    
+
+   \              0x00
+   \       0x15                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_41:
+   \        0x0   0x2A 0x20          DC8 "*  1 : RF Rx test.*\012"
+
+   \              0x20 0x31    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x52    
+
+   \              0x46 0x20    
+
+   \              0x52 0x78    
+
+   \              0x20 0x74    
+
+   \              0x65 0x73    
+
+   \              0x74 0x2E    
+
+   \              0x2A 0x0A    
+
+   \              0x00
+   \       0x15                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_42:
+   \        0x0   0x2A 0x20          DC8 "*  1 : RF Loopback ( Tx -> Rx ) test.*\012"
+
+   \              0x20 0x31    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x52    
+
+   \              0x46 0x20    
+
+   \              0x4C 0x6F    
+
+   \              0x6F 0x70    
+
+   \              0x62 0x61    
+
+   \              0x63 0x6B    
+
+   \              0x20 0x28    
+
+   \              0x20 0x54    
+
+   \              0x78 0x20    
+
+   \              0x2D 0x3E    
+
+   \              0x20 0x52    
+
+   \              0x78 0x20    
+
+   \              0x29 0x20    
+
+   \              0x74 0x65    
+
+   \              0x73 0x74    
+
+   \              0x2E 0x2A    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_43:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - ret(%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x72    
+
+   \              0x65 0x74    
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x0A 0x00
+   \       0x12                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_44:
+   \        0x0   0x44 0x69          DC8 "Disable Debug\012"
+
+   \              0x73 0x61    
+
+   \              0x62 0x6C    
+
+   \              0x65 0x20    
+
+   \              0x44 0x65    
+
+   \              0x62 0x75    
+
+   \              0x67 0x0A    
+
+   \              0x00
+   \        0xF                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_45:
+   \        0x0   0x45 0x6E          DC8 "Enable Debug\012"
+
+   \              0x61 0x62    
+
+   \              0x6C 0x65    
+
+   \              0x20 0x44    
+
+   \              0x65 0x62    
+
+   \              0x75 0x67    
+
+   \              0x0A 0x00
+   \        0xE                      DS8 2
+
    \                                 In section .rodata, align 2
    \        0x0   0x5B 0x00          DC8 "["
 
    \                                 In section .rodata, align 4
-   \                     ?_41:
+   \                     ?_47:
    \        0x0   0x25 0x30          DC8 "%02X:"
 
    \              0x32 0x58    
@@ -4458,7 +5021,7 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
    \        0x6                      DS8 2
 
    \                                 In section .rodata, align 4
-   \                     ?_42:
+   \                     ?_48:
    \        0x0   0x25 0x30          DC8 "%02X]\015\012"
 
    \              0x32 0x58    
@@ -4468,7 +5031,7 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
    \              0x0A 0x00
 
    \                                 In section .rodata, align 4
-   \                     ?_43:
+   \                     ?_49:
    \        0x0   0x25 0x30          DC8 "%08p - %02x "
 
    \              0x38 0x70    
@@ -4485,7 +5048,7 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
    \        0xD                      DS8 3
 
    \                                 In section .rodata, align 4
-   \                     ?_44:
+   \                     ?_50:
    \        0x0   0x25 0x30          DC8 "%08p - %04x "
 
    \              0x38 0x70    
@@ -4502,7 +5065,7 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
    \        0xD                      DS8 3
 
    \                                 In section .rodata, align 4
-   \                     ?_45:
+   \                     ?_51:
    \        0x0   0x25 0x30          DC8 "%08p - %08x "
 
    \              0x38 0x70    
@@ -4519,7 +5082,7 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
    \        0xD                      DS8 3
 
    \                                 In section .rodata, align 4
-   \                     ?_46:
+   \                     ?_52:
    \        0x0   0x63 0x75          DC8 "current debug level = 0x%x\012"
 
    \              0x72 0x72    
@@ -4549,7 +5112,7 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
    \              0x0A 0x00
 
    \                                 In section .rodata, align 4
-   \                     ?_47:
+   \                     ?_53:
    \        0x0   0x64 0x65          DC8 "debug level = 0x%x\012"
 
    \              0x62 0x75    
@@ -4577,7 +5140,7 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
    \        0x3                      DS8 1
 
    \                                 In section .rodata, align 4
-   \                     ?_49:
+   \                     ?_55:
    \        0x0   0x61 0x64          DC8 "addr 0x%08x, value 0x%02x\015"
 
    \              0x64 0x72    
@@ -4608,7 +5171,7 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
    \       0x1B                      DS8 1
 
    \                                 In section .rodata, align 4
-   \                     ?_50:
+   \                     ?_56:
    \        0x0   0x61 0x64          DC8 "addr 0x%08x, value 0x%04x\015"
 
    \              0x64 0x72    
@@ -4639,7 +5202,7 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
    \       0x1B                      DS8 1
 
    \                                 In section .rodata, align 4
-   \                     ?_51:
+   \                     ?_57:
    \        0x0   0x61 0x64          DC8 "addr 0x%08x, value 0x%08x\015"
 
    \              0x64 0x72    
@@ -4700,8 +5263,14 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
       16   cmd_diag_proc_Audio
         16   -> cmd_diag
       16   cmd_diag_proc_RF
+        16   -> RF_Info
         16   -> cmd_diag
-        16   -> cmd_rfwds_init
+        16   -> cmd_test_rf1
+        16   -> cmd_test_rf2
+        16   -> cmd_test_rf3
+        16   -> cmd_test_rf_debug
+        16   -> cmd_test_rf_init
+        16   -> cmd_test_rf_vinit
       16   cmd_do
         16   -> sscanf
       24   cmd_md
@@ -4730,6 +5299,8 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
       16   cmd_rfwds_init
         16   -> printf
         16   -> vRadio_Init
+      16   cmd_rfwds_vinit
+        16   -> printf
       16   cmd_test
         16   -> printf
       16   cmd_test1
@@ -4747,6 +5318,27 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
       16   cmd_test5
         16   -> AudioTxStop
         16   -> printf
+      16   cmd_test_rf1
+        16   -> RF_Tx
+        16   -> SI4463_Test
+        16   -> printf
+      16   cmd_test_rf2
+        16   -> RF_Rx
+        16   -> SI4463_Test
+        16   -> printf
+      16   cmd_test_rf3
+        16   -> RF_Loopback
+        16   -> SI4463_Test
+        16   -> printf
+      16   cmd_test_rf_debug
+        16   -> SI4463_Debug
+        16   -> printf
+      16   cmd_test_rf_init
+        16   -> RF_Init
+        16   -> printf
+      24   cmd_test_rf_vinit
+        24   -> SI4463_VerifyInit
+        24   -> printf
       32   cmd_wr
         32   -> HAL_Delay
         32   -> a2hex
@@ -4769,85 +5361,100 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
 
    Bytes  Function/Label
    -----  --------------
-       4  ??DataTable16
-       4  ??DataTable22
-       4  ??DataTable26
-       4  ??DataTable26_1
-       4  ??DataTable26_10
-       4  ??DataTable26_11
-       4  ??DataTable26_12
-       4  ??DataTable26_13
-       4  ??DataTable26_14
-       4  ??DataTable26_15
-       4  ??DataTable26_16
-       4  ??DataTable26_17
-       4  ??DataTable26_18
-       4  ??DataTable26_19
-       4  ??DataTable26_2
-       4  ??DataTable26_20
-       4  ??DataTable26_21
-       4  ??DataTable26_22
-       4  ??DataTable26_23
-       4  ??DataTable26_24
-       4  ??DataTable26_25
-       4  ??DataTable26_26
-       4  ??DataTable26_27
-       4  ??DataTable26_28
-       4  ??DataTable26_29
-       4  ??DataTable26_3
-       4  ??DataTable26_30
-       4  ??DataTable26_31
-       4  ??DataTable26_32
-       4  ??DataTable26_33
-       4  ??DataTable26_34
-       4  ??DataTable26_35
-       4  ??DataTable26_36
-       4  ??DataTable26_37
-       4  ??DataTable26_38
-       4  ??DataTable26_39
-       4  ??DataTable26_4
-       4  ??DataTable26_40
-       4  ??DataTable26_41
-       4  ??DataTable26_42
-       4  ??DataTable26_43
-       4  ??DataTable26_44
-       4  ??DataTable26_45
-       4  ??DataTable26_46
-       4  ??DataTable26_47
-       4  ??DataTable26_48
-       4  ??DataTable26_49
-       4  ??DataTable26_5
-       4  ??DataTable26_50
-       4  ??DataTable26_51
-       4  ??DataTable26_52
-       4  ??DataTable26_53
-       4  ??DataTable26_54
-       4  ??DataTable26_55
-       4  ??DataTable26_56
-       4  ??DataTable26_57
-       4  ??DataTable26_58
-       4  ??DataTable26_59
-       4  ??DataTable26_6
-       4  ??DataTable26_60
-       4  ??DataTable26_61
-       4  ??DataTable26_62
-       4  ??DataTable26_63
-       4  ??DataTable26_64
-       4  ??DataTable26_65
-       4  ??DataTable26_66
-       4  ??DataTable26_67
-       4  ??DataTable26_68
-       4  ??DataTable26_69
-       4  ??DataTable26_7
-       4  ??DataTable26_70
-       4  ??DataTable26_71
-       4  ??DataTable26_72
-       4  ??DataTable26_73
-       4  ??DataTable26_74
-       4  ??DataTable26_75
-       4  ??DataTable26_76
-       4  ??DataTable26_8
-       4  ??DataTable26_9
+       4  ??DataTable14
+       4  ??DataTable29
+       4  ??DataTable33
+       4  ??DataTable33_1
+       4  ??DataTable33_10
+       4  ??DataTable33_11
+       4  ??DataTable33_12
+       4  ??DataTable33_13
+       4  ??DataTable33_14
+       4  ??DataTable33_15
+       4  ??DataTable33_16
+       4  ??DataTable33_17
+       4  ??DataTable33_18
+       4  ??DataTable33_19
+       4  ??DataTable33_2
+       4  ??DataTable33_20
+       4  ??DataTable33_21
+       4  ??DataTable33_22
+       4  ??DataTable33_23
+       4  ??DataTable33_24
+       4  ??DataTable33_25
+       4  ??DataTable33_26
+       4  ??DataTable33_27
+       4  ??DataTable33_28
+       4  ??DataTable33_29
+       4  ??DataTable33_3
+       4  ??DataTable33_30
+       4  ??DataTable33_31
+       4  ??DataTable33_32
+       4  ??DataTable33_33
+       4  ??DataTable33_34
+       4  ??DataTable33_35
+       4  ??DataTable33_36
+       4  ??DataTable33_37
+       4  ??DataTable33_38
+       4  ??DataTable33_39
+       4  ??DataTable33_4
+       4  ??DataTable33_40
+       4  ??DataTable33_41
+       4  ??DataTable33_42
+       4  ??DataTable33_43
+       4  ??DataTable33_44
+       4  ??DataTable33_45
+       4  ??DataTable33_46
+       4  ??DataTable33_47
+       4  ??DataTable33_48
+       4  ??DataTable33_49
+       4  ??DataTable33_5
+       4  ??DataTable33_50
+       4  ??DataTable33_51
+       4  ??DataTable33_52
+       4  ??DataTable33_53
+       4  ??DataTable33_54
+       4  ??DataTable33_55
+       4  ??DataTable33_56
+       4  ??DataTable33_57
+       4  ??DataTable33_58
+       4  ??DataTable33_59
+       4  ??DataTable33_6
+       4  ??DataTable33_60
+       4  ??DataTable33_61
+       4  ??DataTable33_62
+       4  ??DataTable33_63
+       4  ??DataTable33_64
+       4  ??DataTable33_65
+       4  ??DataTable33_66
+       4  ??DataTable33_67
+       4  ??DataTable33_68
+       4  ??DataTable33_69
+       4  ??DataTable33_7
+       4  ??DataTable33_70
+       4  ??DataTable33_71
+       4  ??DataTable33_72
+       4  ??DataTable33_73
+       4  ??DataTable33_74
+       4  ??DataTable33_75
+       4  ??DataTable33_76
+       4  ??DataTable33_77
+       4  ??DataTable33_78
+       4  ??DataTable33_79
+       4  ??DataTable33_8
+       4  ??DataTable33_80
+       4  ??DataTable33_81
+       4  ??DataTable33_82
+       4  ??DataTable33_83
+       4  ??DataTable33_84
+       4  ??DataTable33_85
+       4  ??DataTable33_86
+       4  ??DataTable33_87
+       4  ??DataTable33_88
+       4  ??DataTable33_89
+       4  ??DataTable33_9
+       4  ??DataTable33_90
+       4  ??DataTable33_91
        4  ??DataTable4
        8  ?_0
        8  ?_1
@@ -4884,34 +5491,40 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
       16  ?_38
       16  ?_39
       72  ?_4
-       2  ?_40
-       8  ?_41
-       8  ?_42
-      16  ?_43
+      24  ?_40
+      24  ?_41
+      40  ?_42
+      20  ?_43
       16  ?_44
       16  ?_45
-      28  ?_46
-      20  ?_47
-       4  ?_48
-      28  ?_49
+       2  ?_46
+       8  ?_47
+       8  ?_48
+      16  ?_49
       72  ?_5
-      28  ?_50
-      28  ?_51
-       4  ?_52
+      16  ?_50
+      16  ?_51
+      28  ?_52
+      20  ?_53
+       4  ?_54
+      28  ?_55
+      28  ?_56
+      28  ?_57
+       4  ?_58
       72  ?_6
       72  ?_7
       72  ?_8
       72  ?_9
        8  GetDbg
-      44  cmd_debug
+      48  cmd_debug
       26  cmd_diag
       26  cmd_diag_Audio
       26  cmd_diag_RF
       72  cmd_diag_proc
       34  cmd_diag_proc_Audio
-      50  cmd_diag_proc_RF
+     130  cmd_diag_proc_RF
       28  cmd_do
-      74  cmd_md
+      76  cmd_md
       48  cmd_mm
      164  cmd_rd
       26  cmd_rfwds1
@@ -4920,13 +5533,20 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
       26  cmd_rfwds_debug
       86  cmd_rfwds_info
       30  cmd_rfwds_init
+      26  cmd_rfwds_vinit
       20  cmd_test
       30  cmd_test1
       38  cmd_test2
       30  cmd_test3
       38  cmd_test4
       38  cmd_test5
-     148  cmd_wr
+      42  cmd_test_rf1
+      42  cmd_test_rf2
+      42  cmd_test_rf3
+      74  cmd_test_rf_debug
+      30  cmd_test_rf_init
+      56  cmd_test_rf_vinit
+     156  cmd_wr
        4  debug_level
      212  display_diag_Audio
      148  display_diag_RF
@@ -4934,17 +5554,18 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_test"
        4  dumpsize
        4  mem_addr
      216  memory_modify
-     156  -- Other
+       4  s_bEnableDebug
+     280  -- Other
 
  
-     8 bytes in section .bss
+    12 bytes in section .bss
      4 bytes in section .data
- 2'796 bytes in section .rodata
- 2'202 bytes in section .text
+ 3'060 bytes in section .rodata
+ 2'668 bytes in section .text
  
- 2'202 bytes of CODE  memory
- 2'796 bytes of CONST memory
-    12 bytes of DATA  memory
+ 2'668 bytes of CODE  memory
+ 3'060 bytes of CONST memory
+    16 bytes of DATA  memory
 
 Errors: none
-Warnings: 25
+Warnings: 35

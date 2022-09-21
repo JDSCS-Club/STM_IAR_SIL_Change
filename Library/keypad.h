@@ -29,9 +29,9 @@ enum eKeypad
 	eKeyPwrOnOff	=	8,
 };
 
-int		GetKey			( int eKey );
+uint8_t		GetKey			( uint8_t eKey );
 
-void	GetKeyStat		( int *btnStat );
+void	GetKeyStat		( uint8_t *btnStat );
 
 void	LoopProcKey 	( uint32_t tickCurr );
 
@@ -39,27 +39,29 @@ void	LoopProcKey 	( uint32_t tickCurr );
 //		KeyPad ( Dome Button )
 //========================================================================
 
-void	KeyMenu			( int bValue );
-void	KeyUp			( int bValue );
-void	KeyOK			( int bValue );
+void	KeyMenu			( uint8_t bValue );
+void	KeyUp			( uint8_t bValue );
+void	KeyOK			( uint8_t bValue );
 
-void	KeyLight		( int bValue );
-void	KeyDown			( int bValue );
-void	KeyVol			( int bValue );
-
-//========================================================================
-//		Side Button
-//========================================================================
-
-void	KeyPtt			( int bValue );
-void	KeySos			( int bValue );
+void	KeyLight		( uint8_t bValue );
+void	KeyDown			( uint8_t bValue );
+void	KeyVol			( uint8_t bValue );
 
 //========================================================================
 //		Side Button
 //========================================================================
 
-void	KeyPwrOnOff		( int bValue );
+void	KeyPtt			( uint8_t bValue );
+void	KeySos			( uint8_t bValue );
 
+//========================================================================
+//		Side Button
+//========================================================================
+
+void	KeyPwrOnOff		( uint8_t bValue );
+
+
+void	KeyTestLoopback( uint8_t bValue );
 //========================================================================
 #endif
 //========================================================================

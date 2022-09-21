@@ -51,9 +51,11 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\BrowseInfo\Library\eeprom.pbi: \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\string.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\DLib_Product_string.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\stdio.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\radio\compiler_defs.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\Library\eeprom.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Core\Inc\main.h \
-  C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\radio\compiler_defs.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\radio\Si446x\si446x_defs.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\radio\Si446x\si446x_cmd.h \
-  C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\radio\Si446x\si446x_prop.h
+  C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\radio\Si446x\si446x_prop.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\Adafruit_SSD1306.h

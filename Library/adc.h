@@ -27,9 +27,7 @@
 
 void	Adc_Power		( void );
 
-int		GetAdcPow		( void );
-
-void	LoopProcAdc		( int nTick );
+void	LoopProcAdc		( uint16_t nTick );
 
 //========================================================================
 #endif

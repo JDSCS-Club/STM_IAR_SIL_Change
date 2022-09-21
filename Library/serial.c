@@ -7,9 +7,21 @@
 #include <stdarg.h>
 #include <stdint.h>
 
+
+#include <stdio.h>			//	printf()
+
+#include <stdint.h>			//	uint32_t
+
+#include <string.h>			//	memset()
+
+#include "typedef.h"			//	uint32_t, ...
+#include "compiler_defs.h"		//	U8,
+
 /* USER CODE BEGIN 1 */
 
 #include "serial.h"
+
+#include "Adafruit_SSD1306.h"
 
 //=============================================================================
 #if defined(_WIN32)
@@ -226,7 +238,7 @@ void SerialInit( UART_HandleTypeDef *_phuart1, UART_HandleTypeDef *_phuart2 )
 }
 
 //===========================================================================
-int input_check( void )
+uint8_t input_check( void )
 //===========================================================================
 {
 	return qcount( &g_qDebug );

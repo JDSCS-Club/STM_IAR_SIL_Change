@@ -19,52 +19,54 @@
 #include "RFMProtocol.h"	//	RFMPkt
 
 //========================================================================
-extern int nTxPkt;		//	Tx Packet Count
-extern int nRxPkt;		//	Rx Packet Count
-extern int nHopPkt;		//	Hopping Packet Count
-extern int nDropPkt;	//	Drop Packet Count
-extern int nDropPkt_2;
-//========================================================================
-extern int nRxErr;
-extern int nCrcErr;
+extern uint8_t nTxPkt;		//	Tx Packet Count
+extern uint8_t nRxPkt;		//	Rx Packet Count
+extern uint8_t nHopPkt;		//	Hopping Packet Count
+extern uint8_t nDropPkt;	//	Drop Packet Count
 
 //========================================================================
+extern uint8_t nRxErr;
+extern uint8_t nCrcErr;
 
-extern int nTxStamp;	//	Tx Tick Stamp
-extern int nRxStamp;	//	Rx Tick Stamp
+//========================================================================
+
+extern uint32_t nTxStamp;	//	Tx Tick Stamp
+extern uint32_t nRxStamp;	//	Rx Tick Stamp
 
 
-extern int			g_bSetRspIDManual;	//  RspID Flag 수동설정. ( 디버깅용 )
+extern uint8_t			g_bSetRspIDManual;	//  RspID Flag 수동설정. ( 디버깅용 )
 extern uint16_t	 	g_flagRspID;		//  범위 안의 Device ID Flag ( 0 ~ 15 bit )
 extern uint8_t	 	g_nPktSeq;			//  Packet Sequence
-extern uint8_t	 	g_nPktSeq_2;			//  Packet Sequence
 
 //========================================================================
 //	Dump Function
 
-void	Dump				( const char *sTitle, const char *sBuf, int nSize );
+void	Dump				( const S8 *sTitle, const S8 *sBuf, uint8_t nSize );
 
 //========================================================================
 //	Packet Procedure
-int		InitProcPkt 		( void );
+uint8_t		InitProcPkt 		( void );
 
-void	LoopProcPkt			( int nTick );
+void	LoopProcPkt			( uint16_t nTick );
 
-int		SendPacket			( const char *sBuf, int nSize );
+uint8_t		SendPacket			( const S8 *sBuf, uint8_t nSize );
 
-int		SendPktCh			( int nCh, const char *sBuf, int nSize );
+uint8_t		SendPktCh			( uint8_t nCh, const U8 *sBuf, uint8_t nSize );
 
-int 	ProcPktHdr1			( const RFMPkt *pRFPkt, int nSize  );
-int 	ProcPktHdr2			( const RFMPkt *pRFPkt, int nSize  );
+uint8_t 	ProcPktHdr1			( const RFMPkt *pRFPkt, uint8_t nSize  );
+uint8_t 	ProcPktHdr2			( const RFMPkt *pRFPkt, uint8_t nSize  );
 //int 	ProcPktHdr			( const RFMPkt *pRFPkt, int nSize  );
 
-void 	CallbackRecvPacket	( const char *pData, int nSize );
+void 	CallbackRecvPacket	( const S8 *pData, uint8_t nSize );
+
+
+uint8_t _ChkDropPktSeq( uint8_t _nRxSeq, uint8_t _currSeq );
 
 //========================================================================
 //	Demo Example
 void	TestProcPkt	( void );
 
-int 	cmd_pktmon	( int argc, char * argv[] );
+uint8_t 	cmd_pktmon	( uint8_t argc, char * argv[] );
 
 //========================================================================
 #endif

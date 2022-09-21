@@ -1,0 +1,2797 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:22
+# Copyright 1999-2022 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\Si446x\radio_si4463.c
+#    Command line                 =
+#        -f
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\radio\Si446x\radio_si4463.o.rsp
+#        (C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\Si446x\radio_si4463.c
+#        -D USE_HAL_DRIVER -D STM32F407xx -lC
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\List\Drivers\radio\Si446x -o
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\radio\Si446x
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C:\Program Files\IAR
+#        Systems\Embedded Workbench 9.1\arm\inc\c\DLib_Config_Full.h" -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/App\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../USB_DEVICE/Target\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Core/Inc\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc\
+#        -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy\
+#        -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Core/Inc\
+#        -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc\
+#        -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/CMSIS/Device/ST/STM32F4xx/Include\
+#        -I C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/CMSIS/Include\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/radio\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/radio/Si446x\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Drivers/display\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM/../Library\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\display\fonts\ -I
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\STM32F4xx_HAL_Driver\Src\
+#        -On --use_c++_inline -I "C:\Program Files\IAR Systems\Embedded
+#        Workbench 9.1\arm\CMSIS\Core\Include\\") --dependencies=n
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\radio\Si446x\radio_si4463.o.d
+#    Locale                       =  C
+#    List file                    =
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\List\Drivers\radio\Si446x\radio_si4463.lst
+#    Object file                  =
+#        C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\Obj\Drivers\radio\Si446x\radio_si4463.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#      __iar_require _Printf      =  flags,widths
+#
+###############################################################################
+
+C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\Si446x\radio_si4463.c
+      1          /*------------------------------------------------------------------------------------------
+      2          	Project			: RFM - Radio
+      3          	Description		: 
+      4          
+      5          	Writer			: $Author: zlkit $
+      6          	Revision		: $Rev: 1891 $
+      7          	Date			: 2019. 10.
+      8          	Copyright		: Piranti Corp.	( sw@piranti.co.kr )
+      9          	 
+     10          	Revision History 
+     11          	1. 2019. 10.	: Created
+     12          -------------------------------------------------------------------------------------------*/
+     13          
+     14          //========================================================================
+     15          // Header
+     16          
+     17          //=============================================================================
+     18          #if defined(_WIN32)
+     19          //=============================================================================
+     20          
+     21          #include "x86_hal_driver.h"
+     22          
+     23          //=============================================================================
+     24          #else	//	stm32f207
+     25          //=============================================================================
+     26          
+     27          #if defined(STM32F407xx)
+     28          #include "stm32f4xx_hal.h"
+     29          #elif defined(STM32F207xx)
+     30          #include "stm32f2xx_hal.h"
+     31          #endif
+     32          
+     33          //=============================================================================
+     34          #endif
+     35          //=============================================================================
+     36          
+     37          #if defined(USE_FREERTOS)
+     38          #include "cmsis_os.h"	//	osDelay
+     39          #endif
+     40          
+     41          #include <stdio.h>		//	printf
+     42          
+     43          #include "main.h"		//	hspi1
+
+  # warning unrecognized compiler
+    ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",744  Warning[Pa183]: 
+          #warning directive: unrecognized compiler
+     44          
+     45          #include "radio_si4463.h"
+
+  typedef unsigned char       BYTE;
+                              ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Inc\typedef.h",73  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned short      WORD;
+                              ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Inc\typedef.h",77  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		BIT;
+                        		^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Inc\typedef.h",83  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned char 		U8;
+                        		^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Inc\typedef.h",84  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned int 		U16;
+                       		^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Inc\typedef.h",85  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef unsigned long 		U32;
+                        		^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Inc\typedef.h",86  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed char 		S8;
+                      		^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Inc\typedef.h",88  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed int 			S16;
+                     			^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Inc\typedef.h",89  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef signed long 		S32;
+                      		^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Inc\typedef.h",90  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+     46          
+     47          #include "si4463.h"
+     48          
+     49          //#include "serial.h"		//	input_check()
+     50          //#include "audio.h"		//	qBufPut()
+     51          
+     52          #include <stdlib.h>
+     53          
+     54          //========================================================================
+     55          // Define
+     56          
+     57          //#define		SHOW_RF_DATA	1
+     58          
+     59          
+
+   \                                 In section .bss, align 4
+     60          si4463_t si4463;
+   \                     si4463:
+   \        0x0                      DS8 52
+
+   \                                 In section .bss, align 4
+     61          uint8_t incomingBuffer[APP_PACKET_LEN];
+   \                     incomingBuffer:
+   \        0x0                      DS8 64
+
+   \                                 In section .bss, align 4
+     62          uint8_t outgoingBuffer[APP_PACKET_LEN];
+   \                     outgoingBuffer:
+   \        0x0                      DS8 64
+     63          
+
+   \                                 In section .bss, align 1
+     64          static uint8_t	s_nDbgLevel = 0;
+   \                     s_nDbgLevel:
+   \        0x0                      DS8 1
+     65          
+     66          //*
+     67          #define			DBG( arg ... )
+     68          /*/
+     69          #define			DBG		printf
+     70          //	*/
+     71          
+     72          //========================================================================
+     73          // Function
+     74          
+
+   \                                 In section .bss, align 4
+     75          static int s_bInit = false;
+   \                     s_bInit:
+   \        0x0                      DS8 4
+     76          
+     77          //========================================================================
+
+   \                                 In section .bss, align 4
+     78          static int s_cntRFTx = 0;
+   \                     s_cntRFTx:
+   \        0x0                      DS8 4
+
+   \                                 In section .bss, align 4
+     79          static int s_cntRFRx = 0;
+   \                     s_cntRFRx:
+   \        0x0                      DS8 4
+     80          //========================================================================
+     81          
+     82          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     83          int			RF_IsInit				( void )
+     84          //========================================================================
+     85          {
+     86          	return s_bInit;
+   \                     RF_IsInit: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable19
+   \        0x4   0x6800             LDR      R0,[R0, #+0]
+   \        0x6   0x4770             BX       LR
+     87          }
+     88          
+     89          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     90          int			nonDelay				( int nMSec )
+     91          //========================================================================
+     92          {
+   \                     nonDelay: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+     93          	return 0;
+   \        0x2   0x2000             MOVS     R0,#+0
+   \        0x4   0x4770             BX       LR
+     94          }
+     95          
+     96          
+     97          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+     98          void	RF_Init	( void )
+     99          //========================================================================
+    100          {
+   \                     RF_Init: (+1)
+   \        0x0   0xB57C             PUSH     {R2-R6,LR}
+    101          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x2   0x.... 0x....      LDR.W    R4,??DataTable19_1
+   \        0x6   0x2265             MOVS     R2,#+101
+   \        0x8   0x0021             MOVS     R1,R4
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable19_2
+   \        0xE   0x.... 0x....      BL       printf
+    102          
+    103          	/* Assign functions */
+    104          	si4463.IsClearToSend	=	SI4463_IsCTS;
+   \       0x12   0x.... 0x....      LDR.W    R5,??DataTable19_3
+   \       0x16   0x.... 0x....      ADR.W    R0,SI4463_IsCTS
+   \       0x1A   0x61A8             STR      R0,[R5, #+24]
+    105          	si4463.WriteRead		=	SI4463_WriteRead;
+   \       0x1C   0x.... 0x....      ADR.W    R0,SI4463_WriteRead
+   \       0x20   0x6028             STR      R0,[R5, #+0]
+    106          	si4463.Select			=	SI4463_Select;
+   \       0x22   0x.... 0x....      ADR.W    R0,SI4463_Select
+   \       0x26   0x60E8             STR      R0,[R5, #+12]
+    107          	si4463.Deselect			=	SI4463_Deselect;
+   \       0x28   0x.... 0x....      ADR.W    R0,SI4463_Deselect
+   \       0x2C   0x6128             STR      R0,[R5, #+16]
+    108          	si4463.SetShutdown		=	SI4463_SetShutdown;
+   \       0x2E   0x.... 0x....      ADR.W    R0,SI4463_SetShutdown
+   \       0x32   0x6068             STR      R0,[R5, #+4]
+    109          	si4463.ClearShutdown	=	SI4463_ClearShutdown;
+   \       0x34   0x.... 0x....      ADR.W    R0,SI4463_ClearShutdown
+   \       0x38   0x60A8             STR      R0,[R5, #+8]
+    110          //DEL	si4463.DelayMs = osDelay;
+    111          //DEL	si4463.DelayMs = vTaskDelay;	//	tick
+    112          	si4463.DelayMs			=	HAL_Delay;		//	Ok - 동작하지만 DMA에 영향.
+   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable19_4
+   \       0x3E   0x6168             STR      R0,[R5, #+20]
+    113          //DEL	si4463.DelayMs = nonDelay;		//	Non-Delay - 동작안함. / DMA에 영향을 끼치지 않음.
+    114          
+    115          	/* Disable interrupt pin for init Si4463 */
+    116          	HAL_NVIC_DisableIRQ( EXTI0_IRQn );
+   \       0x40   0x2006             MOVS     R0,#+6
+   \       0x42   0x.... 0x....      BL       HAL_NVIC_DisableIRQ
+    117          
+    118          	/* Init Si4463 with structure */
+    119          
+    120          	int8_t ret;
+    121          
+    122          	ret = SI4463_Init( &si4463 );
+   \       0x46   0x0028             MOVS     R0,R5
+   \       0x48   0x.... 0x....      BL       SI4463_Init
+   \       0x4C   0x0006             MOVS     R6,R0
+    123          
+    124          	printf( "%s(%d) - ret(%d)\n", __func__, __LINE__, ret );
+   \       0x4E   0x0033             MOVS     R3,R6
+   \       0x50   0xB25B             SXTB     R3,R3
+   \       0x52   0x227C             MOVS     R2,#+124
+   \       0x54   0x0021             MOVS     R1,R4
+   \       0x56   0x.... 0x....      LDR.W    R0,??DataTable19_5
+   \       0x5A   0x.... 0x....      BL       printf
+    125          
+    126          	/* Clear RX FIFO before starting RX packets */
+    127          	SI4463_ClearRxFifo( &si4463 );
+   \       0x5E   0x0028             MOVS     R0,R5
+   \       0x60   0x.... 0x....      BL       SI4463_ClearRxFifo
+    128          	/* Start RX mode.
+    129          	 * SI4463_StartRx() put a chip in non-armed mode in cases:
+    130          	 * - successfully receive a packet;
+    131          	 * - invoked RX_TIMEOUT;
+    132          	 * - invalid receive.
+    133          	 * For receiveing next packet you have to invoke SI4463_StartRx() again!*/
+    134          //	SI4463_StartRx( &si4463, 32, false, false, false );
+    135          	SI4463_StartRx( &si4463, 64, false, false, false );
+   \       0x64   0x2000             MOVS     R0,#+0
+   \       0x66   0x9000             STR      R0,[SP, #+0]
+   \       0x68   0x2300             MOVS     R3,#+0
+   \       0x6A   0x2200             MOVS     R2,#+0
+   \       0x6C   0x2140             MOVS     R1,#+64
+   \       0x6E   0x0028             MOVS     R0,R5
+   \       0x70   0x.... 0x....      BL       SI4463_StartRx
+    136          
+    137          #ifdef DEMOFEST
+    138          	/* Debug message on UART */
+    139          	//HAL_UART_Transmit(&huart1, "INIT\n", 5, 10);
+    140          #endif
+    141          
+    142            /* Enable interrupt pin and */
+    143          	HAL_NVIC_EnableIRQ( EXTI0_IRQn );
+   \       0x74   0x2006             MOVS     R0,#+6
+   \       0x76   0x.... 0x....      BL       HAL_NVIC_EnableIRQ
+    144          	/* Clear interrupts after enabling interrupt pin.
+    145          	 * Without it may be situation when interrupt is asserted but pin not cleared.*/
+    146          	SI4463_ClearInterrupts( &si4463 );
+   \       0x7A   0x0028             MOVS     R0,R5
+   \       0x7C   0x.... 0x....      BL       SI4463_ClearInterrupts
+    147          
+    148          	//========================================================================
+    149          	s_bInit = true;
+   \       0x80   0x2001             MOVS     R0,#+1
+   \       0x82   0x.... 0x....      LDR.W    R1,??DataTable19
+   \       0x86   0x6008             STR      R0,[R1, #+0]
+    150          	//========================================================================
+    151          }
+   \       0x88   0xBD73             POP      {R0,R1,R4-R6,PC}
+    152          
+    153          
+    154          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    155          void RF_PartInfo( void )
+    156          //========================================================================
+    157          {
+   \                     RF_PartInfo: (+1)
+   \        0x0   0xB57F             PUSH     {R0-R6,LR}
+    158          	char nBuf[10];
+    159          	int i;
+                 	    ^
+Warning[Pe177]: variable "i" was declared but never referenced
+    160          	int ret;
+    161          
+    162          	memset( nBuf, 0, sizeof( nBuf ) );
+   \        0x2   0x250A             MOVS     R5,#+10
+   \        0x4   0x2600             MOVS     R6,#+0
+   \        0x6   0x466C             MOV      R4,SP
+   \        0x8   0x0032             MOVS     R2,R6
+   \        0xA   0x0029             MOVS     R1,R5
+   \        0xC   0x0020             MOVS     R0,R4
+   \        0xE   0x.... 0x....      BL       __aeabi_memset
+    163          
+    164          	ret = SI4463_GetPartInfo( &si4463, (uint8_t *)nBuf );
+   \       0x12   0x4669             MOV      R1,SP
+   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable19_3
+   \       0x18   0x.... 0x....      BL       SI4463_GetPartInfo
+   \       0x1C   0x0004             MOVS     R4,R0
+    165          
+    166          	printf( "%s(%d) - ret(%d)\n", __func__, __LINE__, ret );
+   \       0x1E   0x0023             MOVS     R3,R4
+   \       0x20   0x22A6             MOVS     R2,#+166
+   \       0x22   0x.... 0x....      LDR.W    R1,??DataTable19_6
+   \       0x26   0x.... 0x....      LDR.W    R0,??DataTable19_5
+   \       0x2A   0x.... 0x....      BL       printf
+    167          
+    168          	printf( " - CMD_COMP    : %02X\n", nBuf[1] );
+   \       0x2E   0xF89D 0x1001      LDRB     R1,[SP, #+1]
+   \       0x32   0x.... 0x....      LDR.W    R0,??DataTable19_7
+   \       0x36   0x.... 0x....      BL       printf
+    169          	printf( " - CHIPREV     : %02X\n", nBuf[2] );
+   \       0x3A   0xF89D 0x1002      LDRB     R1,[SP, #+2]
+   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable19_8
+   \       0x42   0x.... 0x....      BL       printf
+    170          	printf( " - PART[15:8]  : %02X\n", nBuf[3] );
+   \       0x46   0xF89D 0x1003      LDRB     R1,[SP, #+3]
+   \       0x4A   0x.... 0x....      LDR.W    R0,??DataTable19_9
+   \       0x4E   0x.... 0x....      BL       printf
+    171          	printf( " - PART[7:0]   : %02X\n", nBuf[4] );
+   \       0x52   0xF89D 0x1004      LDRB     R1,[SP, #+4]
+   \       0x56   0x.... 0x....      LDR.W    R0,??DataTable19_10
+   \       0x5A   0x.... 0x....      BL       printf
+    172          	printf( " - PBUILD      : %02X\n", nBuf[5] );
+   \       0x5E   0xF89D 0x1005      LDRB     R1,[SP, #+5]
+   \       0x62   0x.... 0x....      LDR.W    R0,??DataTable19_11
+   \       0x66   0x.... 0x....      BL       printf
+    173          	printf( " - ID[15:8]    : %02X\n", nBuf[6] );
+   \       0x6A   0xF89D 0x1006      LDRB     R1,[SP, #+6]
+   \       0x6E   0x.... 0x....      LDR.W    R0,??DataTable19_12
+   \       0x72   0x.... 0x....      BL       printf
+    174          	printf( " - ID[7:0]     : %02X\n", nBuf[7] );
+   \       0x76   0xF89D 0x1007      LDRB     R1,[SP, #+7]
+   \       0x7A   0x.... 0x....      LDR.W    R0,??DataTable19_13
+   \       0x7E   0x.... 0x....      BL       printf
+    175          	printf( " - CUSTOMER    : %02X\n", nBuf[8] );
+   \       0x82   0xF89D 0x1008      LDRB     R1,[SP, #+8]
+   \       0x86   0x.... 0x....      LDR.W    R0,??DataTable19_14
+   \       0x8A   0x.... 0x....      BL       printf
+    176          	printf( " - ROMID       : %02X\n", nBuf[9] );
+   \       0x8E   0xF89D 0x1009      LDRB     R1,[SP, #+9]
+   \       0x92   0x.... 0x....      LDR.W    R0,??DataTable19_15
+   \       0x96   0x.... 0x....      BL       printf
+    177          
+    178          }
+   \       0x9A   0xBD7F             POP      {R0-R6,PC}
+    179          
+    180          
+    181          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    182          void RF_FuncInfo( void )
+    183          //========================================================================
+    184          {
+   \                     RF_FuncInfo: (+1)
+   \        0x0   0xB57F             PUSH     {R0-R6,LR}
+    185          	char nBuf[10];
+    186          	int i;
+                 	    ^
+Warning[Pe177]: variable "i" was declared but never referenced
+    187          	int ret;
+    188          
+    189          	memset( nBuf, 0, sizeof( nBuf ) );
+   \        0x2   0x250A             MOVS     R5,#+10
+   \        0x4   0x2600             MOVS     R6,#+0
+   \        0x6   0x466C             MOV      R4,SP
+   \        0x8   0x0032             MOVS     R2,R6
+   \        0xA   0x0029             MOVS     R1,R5
+   \        0xC   0x0020             MOVS     R0,R4
+   \        0xE   0x.... 0x....      BL       __aeabi_memset
+    190          
+    191          	ret = SI4463_GetFuncInfo( &si4463, (uint8_t *)nBuf );
+   \       0x12   0x4669             MOV      R1,SP
+   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable19_3
+   \       0x18   0x.... 0x....      BL       SI4463_GetFuncInfo
+   \       0x1C   0x0004             MOVS     R4,R0
+    192          
+    193          	printf( "%s(%d) - ret(%d)\n", __func__, __LINE__, ret );
+   \       0x1E   0x0023             MOVS     R3,R4
+   \       0x20   0x22C1             MOVS     R2,#+193
+   \       0x22   0x.... 0x....      LDR.W    R1,??DataTable19_16
+   \       0x26   0x.... 0x....      LDR.W    R0,??DataTable19_5
+   \       0x2A   0x.... 0x....      BL       printf
+    194          
+    195          	printf( " - CMD_COMP    : %02X\n", nBuf[1] );
+   \       0x2E   0xF89D 0x1001      LDRB     R1,[SP, #+1]
+   \       0x32   0x.... 0x....      LDR.W    R0,??DataTable19_7
+   \       0x36   0x.... 0x....      BL       printf
+    196          	printf( " - REVEXT      : %02X\n", nBuf[2] );
+   \       0x3A   0xF89D 0x1002      LDRB     R1,[SP, #+2]
+   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable19_17
+   \       0x42   0x.... 0x....      BL       printf
+    197          	printf( " - REVBRANCH   : %02X\n", nBuf[3] );
+   \       0x46   0xF89D 0x1003      LDRB     R1,[SP, #+3]
+   \       0x4A   0x.... 0x....      LDR.W    R0,??DataTable19_18
+   \       0x4E   0x.... 0x....      BL       printf
+    198          	printf( " - REVINT      : %02X\n", nBuf[4] );
+   \       0x52   0xF89D 0x1004      LDRB     R1,[SP, #+4]
+   \       0x56   0x.... 0x....      LDR.W    R0,??DataTable19_19
+   \       0x5A   0x.... 0x....      BL       printf
+    199          	printf( " - PATCH[15:8] : %02X\n", nBuf[5] );
+   \       0x5E   0xF89D 0x1005      LDRB     R1,[SP, #+5]
+   \       0x62   0x.... 0x....      LDR.W    R0,??DataTable19_20
+   \       0x66   0x.... 0x....      BL       printf
+    200          	printf( " - PATCH[7:0]  : %02X\n", nBuf[6] );
+   \       0x6A   0xF89D 0x1006      LDRB     R1,[SP, #+6]
+   \       0x6E   0x.... 0x....      LDR.W    R0,??DataTable19_21
+   \       0x72   0x.... 0x....      BL       printf
+    201          	printf( " - FUNC        : %02X\n", nBuf[7] );
+   \       0x76   0xF89D 0x1007      LDRB     R1,[SP, #+7]
+   \       0x7A   0x.... 0x....      LDR.W    R0,??DataTable19_22
+   \       0x7E   0x.... 0x....      BL       printf
+    202          }
+   \       0x82   0xBD7F             POP      {R0-R6,PC}
+    203          
+    204          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    205          void RF_Info( void )
+    206          //========================================================================
+    207          {
+   \                     RF_Info: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    208          	RF_PartInfo();
+   \        0x2   0x.... 0x....      BL       RF_PartInfo
+    209          
+    210          	RF_FuncInfo();
+   \        0x6   0x.... 0x....      BL       RF_FuncInfo
+    211          
+    212          	//while ( 1 )
+    213          	//{
+    214          	//	HAL_Delay( 200 );
+    215          
+    216          	//	if ( input_check() != 0 )
+    217          	//	{
+    218          	//		//	키입력 받는 경우 break;
+    219          	//		break;
+    220          	//	}
+    221          	//}
+    222          }
+   \        0xA   0xBD01             POP      {R0,PC}
+    223          
+
+   \                                 In section .bss, align 4
+    224          static int s_bIsTxMode = 0;
+   \                     s_bIsTxMode:
+   \        0x0                      DS8 4
+    225          
+    226          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    227          void RF_Tx( void )
+    228          //========================================================================
+    229          {
+    230          	RF_TX_GPIO_Port->ODR |= RF_TX_Pin;	//	Tx High
+   \                     RF_Tx: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable19_23
+   \        0x4   0x6801             LDR      R1,[R0, #+0]
+   \        0x6   0xF051 0x0102      ORRS     R1,R1,#0x2
+   \        0xA   0x6001             STR      R1,[R0, #+0]
+    231          	RF_RX_GPIO_Port->ODR &= ~RF_RX_Pin;	//	Rx Low
+   \        0xC   0x6801             LDR      R1,[R0, #+0]
+   \        0xE   0xF031 0x0104      BICS     R1,R1,#0x4
+   \       0x12   0x6001             STR      R1,[R0, #+0]
+    232          
+    233          	RX_EN_GPIO_Port->ODR &= ~RX_EN_Pin;	//	Rx Disable
+   \       0x14   0x6801             LDR      R1,[R0, #+0]
+   \       0x16   0x0849             LSRS     R1,R1,#+1
+   \       0x18   0x0049             LSLS     R1,R1,#+1
+   \       0x1A   0x6001             STR      R1,[R0, #+0]
+    234          
+    235          	s_bIsTxMode = 1;
+   \       0x1C   0x2001             MOVS     R0,#+1
+   \       0x1E   0x.... 0x....      LDR.W    R1,??DataTable19_24
+   \       0x22   0x6008             STR      R0,[R1, #+0]
+    236          }
+   \       0x24   0x4770             BX       LR
+    237          
+    238          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    239          void RF_Rx( void )
+    240          //========================================================================
+    241          {
+    242          	RF_RX_GPIO_Port->ODR |= RF_RX_Pin;	//	Rx High
+   \                     RF_Rx: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable19_23
+   \        0x4   0x6801             LDR      R1,[R0, #+0]
+   \        0x6   0xF051 0x0104      ORRS     R1,R1,#0x4
+   \        0xA   0x6001             STR      R1,[R0, #+0]
+    243          	RF_TX_GPIO_Port->ODR &= ~RF_TX_Pin;	//	Tx Low
+   \        0xC   0x6801             LDR      R1,[R0, #+0]
+   \        0xE   0xF031 0x0102      BICS     R1,R1,#0x2
+   \       0x12   0x6001             STR      R1,[R0, #+0]
+    244          
+    245          	RX_EN_GPIO_Port->ODR |= RX_EN_Pin;	//	Rx Enable
+   \       0x14   0x6801             LDR      R1,[R0, #+0]
+   \       0x16   0xF051 0x0101      ORRS     R1,R1,#0x1
+   \       0x1A   0x6001             STR      R1,[R0, #+0]
+    246          
+    247          	s_bIsTxMode = 0;
+   \       0x1C   0x2000             MOVS     R0,#+0
+   \       0x1E   0x.... 0x....      LDR.W    R1,??DataTable19_24
+   \       0x22   0x6008             STR      R0,[R1, #+0]
+    248          }
+   \       0x24   0x4770             BX       LR
+    249          
+    250          
+    251          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    252          void RF_TxRx( void )
+    253          //========================================================================
+    254          {
+    255          	RF_RX_GPIO_Port->ODR |= RF_RX_Pin;	//	Rx High
+   \                     RF_TxRx: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable19_23
+   \        0x4   0x6801             LDR      R1,[R0, #+0]
+   \        0x6   0xF051 0x0104      ORRS     R1,R1,#0x4
+   \        0xA   0x6001             STR      R1,[R0, #+0]
+    256          	RF_TX_GPIO_Port->ODR &= ~RF_TX_Pin;	//	Tx Low
+   \        0xC   0x6801             LDR      R1,[R0, #+0]
+   \        0xE   0xF031 0x0102      BICS     R1,R1,#0x2
+   \       0x12   0x6001             STR      R1,[R0, #+0]
+    257          
+    258          	RX_EN_GPIO_Port->ODR |= RX_EN_Pin;	//	Rx Enable
+   \       0x14   0x6801             LDR      R1,[R0, #+0]
+   \       0x16   0xF051 0x0101      ORRS     R1,R1,#0x1
+   \       0x1A   0x6001             STR      R1,[R0, #+0]
+    259          
+    260          	s_bIsTxMode = 0;
+   \       0x1C   0x2000             MOVS     R0,#+0
+   \       0x1E   0x.... 0x....      LDR.W    R1,??DataTable19_24
+   \       0x22   0x6008             STR      R0,[R1, #+0]
+    261          }
+   \       0x24   0x4770             BX       LR
+    262          
+    263          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    264          void RF_Loopback( void )
+    265          //========================================================================
+    266          {
+    267          	RF_TX_GPIO_Port->ODR |= RF_TX_Pin;	//	Tx High
+   \                     RF_Loopback: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable19_23
+   \        0x4   0x6801             LDR      R1,[R0, #+0]
+   \        0x6   0xF051 0x0102      ORRS     R1,R1,#0x2
+   \        0xA   0x6001             STR      R1,[R0, #+0]
+    268          	RF_RX_GPIO_Port->ODR |= RF_RX_Pin;	//	Rx Low
+   \        0xC   0x6801             LDR      R1,[R0, #+0]
+   \        0xE   0xF051 0x0104      ORRS     R1,R1,#0x4
+   \       0x12   0x6001             STR      R1,[R0, #+0]
+    269          
+    270          	RX_EN_GPIO_Port->ODR |= RX_EN_Pin;	//	Rx Disable
+   \       0x14   0x6801             LDR      R1,[R0, #+0]
+   \       0x16   0xF051 0x0101      ORRS     R1,R1,#0x1
+   \       0x1A   0x6001             STR      R1,[R0, #+0]
+    271          
+    272          	s_bIsTxMode = 1;
+   \       0x1C   0x2001             MOVS     R0,#+1
+   \       0x1E   0x.... 0x....      LDR.W    R1,??DataTable19_24
+   \       0x22   0x6008             STR      R0,[R1, #+0]
+    273          }
+   \       0x24   0x4770             BX       LR
+    274          
+    275          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    276          void		RF_SendData				( char *sBuf, int nSize )
+    277          //========================================================================
+    278          {
+   \                     RF_SendData: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+    279          	if ( s_bInit == false ) return;
+   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable19
+   \        0xA   0x6800             LDR      R0,[R0, #+0]
+   \        0xC   0x2800             CMP      R0,#+0
+   \        0xE   0xD00B             BEQ.N    ??RF_SendData_0
+    280          
+    281          	if ( nSize > APP_PACKET_LEN ) nSize = APP_PACKET_LEN;
+   \                     ??RF_SendData_1: (+1)
+   \       0x10   0x2D3F             CMP      R5,#+63
+   \       0x12   0xDB01             BLT.N    ??RF_SendData_2
+   \       0x14   0x203E             MOVS     R0,#+62
+   \       0x16   0x0005             MOVS     R5,R0
+    282          
+    283          	SI4463_Transmit( &si4463, (uint8_t *)sBuf, nSize );
+   \                     ??RF_SendData_2: (+1)
+   \       0x18   0x0028             MOVS     R0,R5
+   \       0x1A   0x0002             MOVS     R2,R0
+   \       0x1C   0xB2D2             UXTB     R2,R2
+   \       0x1E   0x0021             MOVS     R1,R4
+   \       0x20   0x.... 0x....      LDR.W    R0,??DataTable19_3
+   \       0x24   0x.... 0x....      BL       SI4463_Transmit
+    284          }
+   \                     ??RF_SendData_0: (+1)
+   \       0x28   0xBD31             POP      {R0,R4,R5,PC}
+    285          
+    286          
+    287          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    288          void		RF_RecvData				( char *sBuf, int nSize )
+    289          //========================================================================
+    290          {
+    291          	//========================================================================
+    292          	//	Callback Func
+    293          	if ( nSize > APP_PACKET_LEN ) nSize = APP_PACKET_LEN;
+   \                     RF_RecvData: (+1)
+   \        0x0   0x293F             CMP      R1,#+63
+   \        0x2   0xDB01             BLT.N    ??RF_RecvData_0
+   \        0x4   0x223E             MOVS     R2,#+62
+   \        0x6   0x0011             MOVS     R1,R2
+    294          
+    295          //	SI4463_Transmit( &si4463, sBuf, nSize );
+    296          }
+   \                     ??RF_RecvData_0: (+1)
+   \        0x8   0x4770             BX       LR
+    297          
+    298          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    299          void	SI4463_Debug	( int nDbgLevel )
+    300          //========================================================================
+    301          {
+    302          	//	0 : Disable / 1 : Print Data / 2 : Detail
+    303          	s_nDbgLevel = nDbgLevel;
+   \                     SI4463_Debug: (+1)
+   \        0x0   0x.... 0x....      LDR.W    R1,??DataTable19_25
+   \        0x4   0x7008             STRB     R0,[R1, #+0]
+    304          }
+   \        0x6   0x4770             BX       LR
+    305          
+    306          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    307          void	SI4463_Test		( void )
+    308          //========================================================================
+    309          {
+   \                     SI4463_Test: (+1)
+   \        0x0   0xE92D 0x4FF8      PUSH     {R3-R11,LR}
+   \        0x4   0xB084             SUB      SP,SP,#+16
+    310          	int idx;
+    311          	int nCnt = 0;
+   \        0x6   0x2700             MOVS     R7,#+0
+    312          	int i;
+    313          
+    314          	char arrBuf[2][7] = {
+    315          		{0x44, 0x47, 0x57, 0x5E, 0x22, 0xCD, 0x65},
+    316          		{0xE0, 0xB3, 0x53, 0xAA, 0x7E, 0xF9, 0x21},
+    317          	};
+   \        0x8   0x4668             MOV      R0,SP
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable19_26
+   \        0xE   0x2210             MOVS     R2,#+16
+   \       0x10   0x.... 0x....      BL       __aeabi_memcpy4
+    318          	int	idxArr = 0;
+   \       0x14   0xF05F 0x0800      MOVS     R8,#+0
+    319          
+    320          	int currTime, oldTime, dtTime;
+    321          
+    322          	int dataBps;
+    323          
+    324          	oldTime = HAL_GetTick();	// xTaskGetTickCount();
+   \       0x18   0x.... 0x....      BL       HAL_GetTick
+   \       0x1C   0x0006             MOVS     R6,R0
+    325          
+    326          	while ( 1 )
+    327          	{
+    328          		LoopRFInt();			//	Loop Interrupt
+   \                     ??SI4463_Test_0: (+1)
+   \       0x1E   0x.... 0x....      BL       LoopRFInt
+    329          
+    330          		/* Send test packet */
+    331          		currTime = HAL_GetTick();	// xTaskGetTickCount();
+   \       0x22   0x.... 0x....      BL       HAL_GetTick
+   \       0x26   0x0004             MOVS     R4,R0
+    332          
+    333          		if( currTime - oldTime < 1000 )
+   \       0x28   0x1BA0             SUBS     R0,R4,R6
+   \       0x2A   0xF5B0 0x7F7A      CMP      R0,#+1000
+   \       0x2E   0xDBF6             BLT.N    ??SI4463_Test_0
+    334          		{
+    335          			continue;
+    336          		}
+    337          		else
+    338          		{
+    339          			oldTime = currTime;
+   \                     ??SI4463_Test_1: (+1)
+   \       0x30   0x0026             MOVS     R6,R4
+    340          		}
+    341          
+    342          		printf( "\n" );
+   \       0x32   0x....             ADR.N    R0,??SI4463_Interrupt_0
+   \       0x34   0x.... 0x....      BL       printf
+    343          		printf( "[%d][%03d] ", nCnt++, currTime );
+   \       0x38   0x0022             MOVS     R2,R4
+   \       0x3A   0x0039             MOVS     R1,R7
+   \       0x3C   0x.... 0x....      LDR.W    R0,??DataTable19_27
+   \       0x40   0x.... 0x....      BL       printf
+   \       0x44   0x1C7F             ADDS     R7,R7,#+1
+    344          
+    345          //		printf( "." );
+    346          
+    347          		if ( s_bIsTxMode )
+   \       0x46   0x.... 0x....      LDR.W    R0,??DataTable19_24
+   \       0x4A   0x6800             LDR      R0,[R0, #+0]
+   \       0x4C   0x2800             CMP      R0,#+0
+   \       0x4E   0xD02E             BEQ.N    ??SI4463_Test_2
+    348          		{
+    349          			dtTime = currTime - oldTime;
+   \       0x50   0x2000             MOVS     R0,#+0
+   \       0x52   0x0005             MOVS     R5,R0
+    350          
+    351          			oldTime = currTime;
+   \       0x54   0x0026             MOVS     R6,R4
+    352          
+    353          			if ( dtTime != 0 )
+    354          			{
+    355          				printf( "Speed : %d bps\n", 6400000 / dtTime );
+    356          			}
+    357          
+    358          			/*
+    359          			outgoingBuffer[0] = rand() & 0xFF;
+    360          			outgoingBuffer[1] = rand() & 0xFF;
+    361          			outgoingBuffer[2] = rand() & 0xFF;
+    362          			outgoingBuffer[3] = rand() & 0xFF;
+    363          			outgoingBuffer[4] = rand() & 0xFF;
+    364          			outgoingBuffer[5] = rand() & 0xFF;
+    365          			outgoingBuffer[6] = rand() & 0xFF;
+    366          			/*/
+                 			^
+Warning[Pe009]: nested comment is not allowed
+    367          
+    368          //			idxArr = ( idxArr + 1 ) % 2;
+    369          			idxArr++;
+   \       0x56   0xF118 0x0801      ADDS     R8,R8,#+1
+    370          			/*
+    371          			memset( outgoingBuffer, 0x00, APP_PACKET_LEN );
+    372          			/*/
+                 			^
+Warning[Pe009]: nested comment is not allowed
+
+  	int i;
+  	    ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\Si446x\radio_si4463.c",312  Warning[Pe177]: 
+          variable "i" was declared but never referenced
+
+  	char arrBuf[2][7] = {
+  	     ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\Si446x\radio_si4463.c",314  Warning[Pe177]: 
+          variable "arrBuf" was declared but never referenced
+
+  	int dataBps;
+  	    ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\Si446x\radio_si4463.c",322  Warning[Pe177]: 
+          variable "dataBps" was declared but never referenced
+    373          			for ( idx = 0; idx < APP_PACKET_LEN; idx++ )
+   \       0x5A   0xF05F 0x0A00      MOVS     R10,#+0
+   \                     ??SI4463_Test_3: (+1)
+   \       0x5E   0xF1BA 0x0F3E      CMP      R10,#+62
+   \       0x62   0xDA08             BGE.N    ??SI4463_Test_4
+    374          			{
+    375          				outgoingBuffer[idx] = idxArr + idx;
+   \       0x64   0xEB1A 0x0008      ADDS     R0,R10,R8
+   \       0x68   0x.... 0x....      LDR.W    R1,??DataTable19_28
+   \       0x6C   0xF801 0x000A      STRB     R0,[R1, R10]
+    376          			}
+   \       0x70   0xF11A 0x0A01      ADDS     R10,R10,#+1
+   \       0x74   0xE7F3             B.N      ??SI4463_Test_3
+    377          			//	*/
+    378          
+    379          //			outgoingBuffer[0] = 0xE0;
+    380          //			outgoingBuffer[1] = 0xB3;
+    381          //			outgoingBuffer[2] = 0x53;
+    382          //			outgoingBuffer[3] = 0xAA;
+    383          //			outgoingBuffer[4] = 0x7E;
+    384          //			outgoingBuffer[5] = 0xF9;
+    385          //			outgoingBuffer[6] = 0x21;
+    386          			//	*/
+    387          
+    388          //				[046] !
+    389          //				Tx:44 47 57 5E 22 CD 65 !
+    390          //
+    391          //				[047] !
+    392          //				Tx : E0 B3 53 AA 7E F9 21 !
+    393          
+    394          			//	E0 B3 53 AA 7E F9 21
+    395          
+    396          //			for ( i = 0; i < 100; i++ )
+    397          			{
+    398          //				HAL_Delay( 10 );
+    399          				SI4463_Transmit( &si4463, outgoingBuffer, APP_PACKET_LEN );
+   \                     ??SI4463_Test_4: (+1)
+   \       0x76   0x.... 0x....      LDR.W    R11,??DataTable19_28
+   \       0x7A   0x223E             MOVS     R2,#+62
+   \       0x7C   0x4659             MOV      R1,R11
+   \       0x7E   0x....             LDR.N    R0,??DataTable19_3
+   \       0x80   0x.... 0x....      BL       SI4463_Transmit
+    400          
+    401          				for ( idx = 0; idx < APP_PACKET_LEN; idx++ )
+   \       0x84   0xF05F 0x0900      MOVS     R9,#+0
+   \                     ??SI4463_Test_5: (+1)
+   \       0x88   0xF1B9 0x0F3E      CMP      R9,#+62
+   \       0x8C   0xDA07             BGE.N    ??SI4463_Test_6
+    402          				{
+    403          					outgoingBuffer[idx]++;
+   \       0x8E   0xF81B 0x0009      LDRB     R0,[R11, R9]
+   \       0x92   0x1C40             ADDS     R0,R0,#+1
+   \       0x94   0xF80B 0x0009      STRB     R0,[R11, R9]
+    404          				}
+   \       0x98   0xF119 0x0901      ADDS     R9,R9,#+1
+   \       0x9C   0xE7F4             B.N      ??SI4463_Test_5
+    405          			}
+    406          
+    407          			printf( "Tx Cnt: %d\n", s_cntRFTx );
+   \                     ??SI4463_Test_6: (+1)
+   \       0x9E   0x.... 0x....      LDR.W    R0,??DataTable19_29
+   \       0xA2   0x6801             LDR      R1,[R0, #+0]
+   \       0xA4   0x.... 0x....      LDR.W    R0,??DataTable19_30
+   \       0xA8   0x.... 0x....      BL       printf
+   \       0xAC   0xE7B7             B.N      ??SI4463_Test_0
+    408          
+    409          			/*
+    410          			printf( "Tx:" );
+    411          			for ( idx = 0; idx < APP_PACKET_LEN; idx++ )
+    412          			{
+    413          				printf( "%02X ", outgoingBuffer[idx] );
+    414          			}
+    415          			//	*/
+    416          
+    417          //			for ( idx = 0; idx < 100; idx++ )
+    418          //			{
+    419          //				HAL_Delay( 10 );
+    420          //			}
+    421          //			
+    422          //			HAL_Delay( 500 );
+    423          			//			uint32_t newDelay = 500 + ( ( rand() & 0xF ) * 100 );
+    424          //			HAL_Delay( newDelay );
+    425          
+    426          			/*
+    427          			SI4463_GetChipStatus( &si4463 );
+    428          			SI4463_GetInterrupts( &si4463 );
+    429          
+    430          //			HAL_Delay( 200 );
+    431          
+    432          			if ( si4463.interrupts.packetSent )
+    433          			{
+    434          				printf( "[Send Comp.] " );
+    435          			}
+    436          			*/
+    437          		}
+    438          		else
+    439          		{
+    440          //			SI4463_ClearRxFifo( &si4463 );
+    441          //			SI4463_StartRx( &si4463, 32, false, false, false );
+    442          
+    443          			HAL_Delay( 1000 );
+   \                     ??SI4463_Test_2: (+1)
+   \       0xAE   0xF44F 0x707A      MOV      R0,#+1000
+   \       0xB2   0x.... 0x....      BL       HAL_Delay
+    444          
+    445          //			SI4463_GetChipStatus( &si4463 );
+    446          //			SI4463_GetInterrupts( &si4463 );
+    447          //
+    448          //			if ( si4463.interrupts.packetRx )
+    449          //			{
+    450          //				printf( "Rx: %d\n", s_cntRFRx );
+    451          //			}
+    452          
+    453          			printf( "Rx Cnt: %d\n", s_cntRFRx );
+   \       0xB6   0x.... 0x....      LDR.W    R0,??DataTable19_31
+   \       0xBA   0x6801             LDR      R1,[R0, #+0]
+   \       0xBC   0x.... 0x....      LDR.W    R0,??DataTable19_32
+   \       0xC0   0x.... 0x....      BL       printf
+   \       0xC4   0xE7AB             B.N      ??SI4463_Test_0
+    454          		}
+    455          
+    456          
+    457          //		if ( input_check() != 0 )
+    458          //		{
+    459          //			//	키입력 받는 경우 break;
+    460          //			printf( "TxBuf: " );
+    461          //			for ( idx = 0; idx < APP_PACKET_LEN; idx++ )
+    462          //			{
+    463          //				printf( "%02X ", outgoingBuffer[idx] );
+    464          //			}
+    465          //			printf( "\n" );
+    466          //			printf( "RxBuf: " );
+    467          //			for ( idx = 0; idx < APP_PACKET_LEN; idx++ )
+    468          //			{
+    469          //				printf( "%02X ", incomingBuffer[idx] );
+    470          //			}
+    471          //			printf( "\n" );
+    472          //
+    473          //			break;
+    474          //		}
+    475          
+    476          		/* End of send of test packet */
+    477          	}
+    478          }
+    479          
+    480          
+    481          //========================================================================
+
+   \                                 In section .text, align 4, keep-with-next
+    482          uint8_t	SI4463_IsCTS	( void )
+    483          //========================================================================
+    484          {
+   \                     SI4463_IsCTS: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    485          //DEL	return 1;	//	CTS Signal Not connected
+    486          
+    487          	if ( HAL_GPIO_ReadPin( CTS_GPIO_Port, CTS_Pin ) == GPIO_PIN_SET )
+   \        0x2   0x2140             MOVS     R1,#+64
+   \        0x4   0x.... 0x....      LDR.W    R0,??DataTable19_33
+   \        0x8   0x.... 0x....      BL       HAL_GPIO_ReadPin
+   \        0xC   0x2801             CMP      R0,#+1
+   \        0xE   0xD101             BNE.N    ??SI4463_IsCTS_0
+    488          	{
+    489          //		printf( "%s(%d) - SET\n", __func__, __LINE__ );
+    490          		return 1;
+   \       0x10   0x2001             MOVS     R0,#+1
+   \       0x12   0xE000             B.N      ??SI4463_IsCTS_1
+    491          	}
+    492          	else
+    493          	{
+    494          //		printf( "%s(%d) - Clear\n", __func__, __LINE__ );
+    495          		return 0;
+   \                     ??SI4463_IsCTS_0: (+1)
+   \       0x14   0x2000             MOVS     R0,#+0
+   \                     ??SI4463_IsCTS_1: (+1)
+   \       0x16   0xBD02             POP      {R1,PC}
+    496          	}
+    497          }
+    498          
+    499          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    500          void LoopRFInt( void )
+    501          //========================================================================
+    502          {
+   \                     LoopRFInt: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    503          
+    504          #if defined(USE_FREERTOS)
+    505                  osDelay( 0 );
+    506          #else
+    507                  HAL_Delay( 0 );
+   \        0x2   0x2000             MOVS     R0,#+0
+   \        0x4   0x.... 0x....      BL       HAL_Delay
+    508          #endif
+    509          
+    510          #if defined(USE_SI4464_INT_FLAG)
+    511          
+    512                  //    RF Interrupt Proc.
+    513                  while ( SI4463_GetIntFlag() )
+   \                     ??LoopRFInt_0: (+1)
+   \        0x8   0x.... 0x....      BL       SI4463_GetIntFlag
+   \        0xC   0x2800             CMP      R0,#+0
+   \        0xE   0xD005             BEQ.N    ??LoopRFInt_1
+    514                  {
+    515                      //  Interrupt Proc Routin.
+    516                      //      Interrupt Delay
+    517                      //      Interrupt Callback -> Set Flag -> Task Proc.
+    518                      SI4463_SetIntFlag( 0 );
+   \       0x10   0x2000             MOVS     R0,#+0
+   \       0x12   0x.... 0x....      BL       SI4463_SetIntFlag
+    519          
+    520                      SI4463_Interrupt();
+   \       0x16   0x.... 0x....      BL       SI4463_Interrupt
+   \       0x1A   0xE7F5             B.N      ??LoopRFInt_0
+    521          
+    522                  }
+    523          #endif
+    524          
+    525          }
+   \                     ??LoopRFInt_1: (+1)
+   \       0x1C   0xBD01             POP      {R0,PC}
+    526          
+    527          
+    528          #if defined(USE_SI4464_DMA_SPI)
+    529          
+    530          int s_bSI4464_DMA_Cplt;
+    531          
+    532          //========================================================================
+    533          void HAL_SPI_TxRxCpltCallback( SPI_HandleTypeDef *hspi )
+    534          //========================================================================
+    535          {
+    536          	/* Deselect when Tx Complete */
+    537          	if (hspi->Instance == SPI1)
+    538          	{
+    539          		//      Select Pin 제어.
+    540          		//              SPI_Deselect();
+    541          		HAL_GPIO_WritePin( nSEL_GPIO_Port, nSEL_Pin, GPIO_PIN_SET);
+    542          
+    543          		s_bSI4464_DMA_Cplt = 0;
+    544          	}
+    545          }
+    546          
+    547          #endif
+    548          
+    549          
+    550          //========================================================================
+
+   \                                 In section .text, align 4, keep-with-next
+    551          void	SI4463_WriteRead( const uint8_t * pTxData, uint8_t * pRxData, const uint16_t sizeTxData )
+    552          //========================================================================
+    553          {
+   \                     SI4463_WriteRead: (+1)
+   \        0x0   0xB57C             PUSH     {R2-R6,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+   \        0x4   0x000D             MOVS     R5,R1
+   \        0x6   0x0016             MOVS     R6,R2
+    554          	//	int i;
+    555          	//
+    556          	//	if ( s_nDbgLevel >= 2 )
+    557          	//	{
+    558          	//		printf( "Tx : " );
+    559          	//		for ( i = 0; i < sizeTxData; i++ )
+    560          	//		{
+    561          	//			printf( "%02X ", pTxData[i] );
+    562          	//		}
+    563          	//		printf( "\n" );
+    564          	//	}
+    565          
+    566          	//	SPI1_NSS_GPIO_Port->ODR &= ~SPI1_NSS_Pin;	//	NSS Low
+    567          
+    568          #if defined(USE_SI4464_DMA_SPI)
+    569          
+    570          	s_bSI4464_DMA_Cplt = 1;
+    571          
+    572          	//	DMA사용.
+    573          	HAL_SPI_TransmitReceive_DMA( &hspi1, pTxData, pRxData, sizeTxData );
+    574          
+    575          	while ( s_bSI4464_DMA_Cplt )
+    576          	{
+    577          		//	DMA완료시까지 Blocking
+    578          #if defined(USE_FREERTOS)
+    579          		osDelay( 0 );
+    580          #else
+    581          		HAL_Delay( 0 );
+    582          #endif
+    583          	}
+    584          
+    585          #else	//	defined(USE_SI4464_DMA_SPI)
+    586          
+    587          	//	
+    588          	HAL_SPI_TransmitReceive( &hspi1, (uint8_t *)pTxData, (uint8_t *)pRxData, sizeTxData, 100 );
+   \        0x8   0x2064             MOVS     R0,#+100
+   \        0xA   0x9000             STR      R0,[SP, #+0]
+   \        0xC   0x0033             MOVS     R3,R6
+   \        0xE   0xB29B             UXTH     R3,R3
+   \       0x10   0x002A             MOVS     R2,R5
+   \       0x12   0x0021             MOVS     R1,R4
+   \       0x14   0x....             LDR.N    R0,??DataTable19_34
+   \       0x16   0x.... 0x....      BL       HAL_SPI_TransmitReceive
+    589          
+    590          #endif
+    591          
+    592          
+    593          //	SPI1_NSS_GPIO_Port->ODR |= SPI1_NSS_Pin;	//	NSS High
+    594          
+    595          
+    596          //	if ( s_nDbgLevel >= 2 )
+    597          //	{
+    598          //
+    599          //		printf( "Rx : " );
+    600          //		for ( i = 0; i < sizeTxData; i++ )
+    601          //		{
+    602          //			printf( "%02X ", pRxData[i] );
+    603          //		}
+    604          //		printf( "\n" );
+    605          //	}
+    606          
+    607          }
+   \       0x1A   0xBD73             POP      {R0,R1,R4-R6,PC}
+    608          
+    609          //========================================================================
+
+   \                                 In section .text, align 4, keep-with-next
+    610          void	SI4463_SetShutdown( void )
+    611          //========================================================================
+    612          {
+   \                     SI4463_SetShutdown: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    613          	printf( "[%d] Pin_SDN(1)\n", HAL_GetTick() );	// xTaskGetTickCount() );
+   \        0x2   0x.... 0x....      BL       HAL_GetTick
+   \        0x6   0x0001             MOVS     R1,R0
+   \        0x8   0x....             LDR.N    R0,??DataTable19_35
+   \        0xA   0x.... 0x....      BL       printf
+    614          
+    615          	//	Power On
+    616          	HAL_GPIO_WritePin( PWR_RF_GPIO_Port, PWR_RF_Pin, GPIO_PIN_SET );
+   \        0xE   0x2201             MOVS     R2,#+1
+   \       0x10   0x2104             MOVS     R1,#+4
+   \       0x12   0x....             LDR.N    R0,??DataTable19_33
+   \       0x14   0x.... 0x....      BL       HAL_GPIO_WritePin
+    617          
+    618            HAL_Delay(10);
+   \       0x18   0x200A             MOVS     R0,#+10
+   \       0x1A   0x.... 0x....      BL       HAL_Delay
+    619          
+    620          	HAL_GPIO_WritePin( SHUTDOWN_GPIO_Port, SHUTDOWN_Pin, GPIO_PIN_SET );
+   \       0x1E   0x2201             MOVS     R2,#+1
+   \       0x20   0x2120             MOVS     R1,#+32
+   \       0x22   0x....             LDR.N    R0,??DataTable19_36
+   \       0x24   0x.... 0x....      BL       HAL_GPIO_WritePin
+    621          
+    622          //	printf( "%s(%d)\n", __func__, __LINE__ );
+    623          }
+   \       0x28   0xBD01             POP      {R0,PC}
+    624          
+    625          //========================================================================
+
+   \                                 In section .text, align 4, keep-with-next
+    626          void	SI4463_ClearShutdown( void )
+    627          //========================================================================
+    628          {
+   \                     SI4463_ClearShutdown: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    629          	printf( "[%d] Pin_SDN(0)\n", HAL_GetTick() );	// xTaskGetTickCount() );
+   \        0x2   0x.... 0x....      BL       HAL_GetTick
+   \        0x6   0x0001             MOVS     R1,R0
+   \        0x8   0x....             LDR.N    R0,??DataTable19_37
+   \        0xA   0x.... 0x....      BL       printf
+    630          
+    631          	HAL_GPIO_WritePin( SHUTDOWN_GPIO_Port, SHUTDOWN_Pin, GPIO_PIN_RESET );
+   \        0xE   0x2200             MOVS     R2,#+0
+   \       0x10   0x2120             MOVS     R1,#+32
+   \       0x12   0x....             LDR.N    R0,??DataTable19_36
+   \       0x14   0x.... 0x....      BL       HAL_GPIO_WritePin
+    632          
+    633          
+    634          //	printf( "%s(%d)\n", __func__, __LINE__ );
+    635          }
+   \       0x18   0xBD01             POP      {R0,PC}
+    636          
+    637          //========================================================================
+
+   \                                 In section .text, align 4, keep-with-next
+    638          void	SI4463_Select( void )
+    639          //========================================================================
+    640          {
+   \                     SI4463_Select: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    641          	HAL_GPIO_WritePin( nSEL_GPIO_Port, nSEL_Pin, GPIO_PIN_RESET );
+   \        0x2   0x2200             MOVS     R2,#+0
+   \        0x4   0x2110             MOVS     R1,#+16
+   \        0x6   0x....             LDR.N    R0,??DataTable19_38
+   \        0x8   0x.... 0x....      BL       HAL_GPIO_WritePin
+    642          
+    643          //	printf( "%s(%d)\n", __func__, __LINE__ );
+    644          }
+   \        0xC   0xBD01             POP      {R0,PC}
+    645          
+    646          //========================================================================
+
+   \                                 In section .text, align 4, keep-with-next
+    647          void	SI4463_Deselect( void )
+    648          //========================================================================
+    649          {
+   \                     SI4463_Deselect: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    650          
+    651          #if defined(USE_SI4464_DMA_SPI)
+    652          
+    653          	//	DMA모드에서는 Complate Interrupt에서 처리.
+    654          
+    655          #else
+    656          
+    657          	HAL_GPIO_WritePin( nSEL_GPIO_Port, nSEL_Pin, GPIO_PIN_SET );
+   \        0x2   0x2201             MOVS     R2,#+1
+   \        0x4   0x2110             MOVS     R1,#+16
+   \        0x6   0x....             LDR.N    R0,??DataTable19_38
+   \        0x8   0x.... 0x....      BL       HAL_GPIO_WritePin
+    658          
+    659          #endif
+    660          
+    661          //	printf( "%s(%d)\n", __func__, __LINE__ );
+    662          }
+   \        0xC   0xBD01             POP      {R0,PC}
+    663          
+    664          #if defined(USE_SI4464_INT_FLAG)
+    665          
+
+   \                                 In section .bss, align 4
+    666          static int	s_bIntFlag = 0;				//	Interrupt Flag 발생상태.
+   \                     s_bIntFlag:
+   \        0x0                      DS8 4
+    667          
+    668          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    669          int		SI4463_GetIntFlag()
+    670          //========================================================================
+    671          {
+    672          	return s_bIntFlag;
+   \                     SI4463_GetIntFlag: (+1)
+   \        0x0   0x....             LDR.N    R0,??DataTable19_39
+   \        0x2   0x6800             LDR      R0,[R0, #+0]
+   \        0x4   0x4770             BX       LR
+    673          }
+    674          
+    675          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    676          void	SI4463_SetIntFlag( int bIntFlag )
+    677          //========================================================================
+    678          {
+    679          	s_bIntFlag = bIntFlag;
+   \                     SI4463_SetIntFlag: (+1)
+   \        0x0   0x....             LDR.N    R1,??DataTable19_39
+   \        0x2   0x6008             STR      R0,[R1, #+0]
+    680          }
+   \        0x4   0x4770             BX       LR
+    681          
+    682          #endif	//	defined(USE_SI4464_INT_FLAG)
+    683          
+    684          
+    685          
+    686          #if 0		//	main.c 로 이동.
+    687          //========================================================================
+    688          void HAL_GPIO_EXTI_Callback( uint16_t GPIO_Pin )
+    689          //========================================================================
+    690          #else
+    691          void SI4463_INT_Callback( uint16_t GPIO_Pin )
+    692          #endif
+    693          {
+    694          	/* Prevent unused argument(s) compilation warning */
+    695          	UNUSED( GPIO_Pin );
+    696          
+    697          #if defined(USE_SI4464_INT_FLAG)
+    698          
+    699          	SI4463_SetIntFlag( 1 );
+    700          
+    701          #else
+    702          
+    703          	//========================================================================
+    704          	//	Interrupt Delay사용.
+    705          	//	HAL_Delay()
+    706          	//		Interrupt에서 HAL_Delay()사용시 DMA에 영향을 받아 DMA가 Block됨.
+    707          	//	osDelay()
+    708          	//		Interrupt에서 osDelay()사용시 프로그램 멈춤.
+    709          	//========================================================================
+    710          
+    711          	//	Interrupt
+    712          	SI4463_Interrupt();
+    713          
+    714          #endif // defined(USE_SI4464_INT_FLAG)
+    715          }
+    716          
+    717          
+    718          //========================================================================
+
+   \                                 In section .text, align 4, keep-with-next
+    719          void	SI4463_Interrupt( void )
+    720          //========================================================================
+    721          {
+   \                     SI4463_Interrupt: (+1)
+   \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+    722          	int idx;
+    723          
+    724          	/* Get interrupts and work with it */
+    725          	SI4463_GetInterrupts( &si4463 );
+   \        0x4   0x....             LDR.N    R4,??DataTable19_3
+   \        0x6   0x0020             MOVS     R0,R4
+   \        0x8   0x.... 0x....      BL       SI4463_GetInterrupts
+    726          
+    727          	/* Handling PH interrupts */
+    728          	if ( si4463.interrupts.filterMatch )
+   \        0xC   0x7F20             LDRB     R0,[R4, #+28]
+   \        0xE   0x2800             CMP      R0,#+0
+   \       0x10   0xD001             BEQ.N    ??SI4463_Interrupt_1
+    729          	{
+    730          		/* Handling this interrupt here */
+    731          		/* Following instruction only for add breakpoints. May be deleted */
+    732          		si4463.interrupts.filterMatch = false;
+   \       0x12   0x2000             MOVS     R0,#+0
+   \       0x14   0x7720             STRB     R0,[R4, #+28]
+    733          
+    734          		DBG( "<%d>filterMatch\n", __LINE__ );
+    735          	}
+    736          	if ( si4463.interrupts.filterMiss )
+   \                     ??SI4463_Interrupt_1: (+1)
+   \       0x16   0x7F60             LDRB     R0,[R4, #+29]
+   \       0x18   0x2800             CMP      R0,#+0
+   \       0x1A   0xD001             BEQ.N    ??SI4463_Interrupt_2
+    737          	{
+    738          		/* Handling this interrupt here */
+    739          		/* Following instruction only for add breakpoints. May be deleted */
+    740          		si4463.interrupts.filterMiss = false;
+   \       0x1C   0x2000             MOVS     R0,#+0
+   \       0x1E   0x7760             STRB     R0,[R4, #+29]
+    741          
+    742          		DBG( "<%d>filterMiss\n", __LINE__ );
+    743          	}
+    744          	if ( si4463.interrupts.packetSent )
+   \                     ??SI4463_Interrupt_2: (+1)
+   \       0x20   0x7FA0             LDRB     R0,[R4, #+30]
+   \       0x22   0x2800             CMP      R0,#+0
+   \       0x24   0xD025             BEQ.N    ??SI4463_Interrupt_3
+    745          	{
+    746          		//========================================================================
+    747          		/* Handling this interrupt here */
+    748          		/* Clear TX FIFO */
+    749          		SI4463_ClearTxFifo( &si4463 );
+   \       0x26   0x0020             MOVS     R0,R4
+   \       0x28   0x.... 0x....      BL       SI4463_ClearTxFifo
+    750          
+    751          		if ( s_nDbgLevel >= 1 )
+   \       0x2C   0x....             LDR.N    R0,??DataTable19_25
+   \       0x2E   0x7800             LDRB     R0,[R0, #+0]
+   \       0x30   0x2800             CMP      R0,#+0
+   \       0x32   0xD010             BEQ.N    ??SI4463_Interrupt_4
+    752          		{
+    753          			printf( "[Sent]Tx: " );
+   \       0x34   0x....             LDR.N    R0,??DataTable19_40
+   \       0x36   0x.... 0x....      BL       printf
+    754          			for ( idx = 0; idx < APP_PACKET_LEN; idx++ )
+   \       0x3A   0x2000             MOVS     R0,#+0
+   \       0x3C   0x0005             MOVS     R5,R0
+   \                     ??SI4463_Interrupt_5: (+1)
+   \       0x3E   0x2D3E             CMP      R5,#+62
+   \       0x40   0xDA06             BGE.N    ??SI4463_Interrupt_6
+    755          			{
+    756          				printf( "%02X ", outgoingBuffer[idx] );
+   \       0x42   0x....             LDR.N    R0,??DataTable19_28
+   \       0x44   0x5D41             LDRB     R1,[R0, R5]
+   \       0x46   0x....             LDR.N    R0,??DataTable19_41
+   \       0x48   0x.... 0x....      BL       printf
+    757          			}
+   \       0x4C   0x1C6D             ADDS     R5,R5,#+1
+   \       0x4E   0xE7F6             B.N      ??SI4463_Interrupt_5
+    758          			printf( "\n" );
+   \                     ??SI4463_Interrupt_6: (+1)
+   \       0x50   0xA01E             ADR.N    R0,??SI4463_Interrupt_0
+   \       0x52   0x.... 0x....      BL       printf
+    759          		}
+    760          
+    761          		/* Re-arm StartRX */
+    762          		SI4463_StartRx( &si4463, APP_PACKET_LEN, false, false, false );
+   \                     ??SI4463_Interrupt_4: (+1)
+   \       0x56   0x2000             MOVS     R0,#+0
+   \       0x58   0x9000             STR      R0,[SP, #+0]
+   \       0x5A   0x2300             MOVS     R3,#+0
+   \       0x5C   0x2200             MOVS     R2,#+0
+   \       0x5E   0x213E             MOVS     R1,#+62
+   \       0x60   0x0020             MOVS     R0,R4
+   \       0x62   0x.... 0x....      BL       SI4463_StartRx
+    763          
+    764          		/*Toggle led for indication*/
+    765          //		HAL_GPIO_TogglePin( LED_ONBOARD_GPIO_Port, LED_ONBOARD_Pin );
+    766          		/* Following instruction only for add breakpoints. May be deleted */
+    767          		si4463.interrupts.packetSent = false;
+   \       0x66   0x2000             MOVS     R0,#+0
+   \       0x68   0x77A0             STRB     R0,[R4, #+30]
+    768          
+    769          		s_cntRFTx++;			//	RF Tx Count
+   \       0x6A   0x....             LDR.N    R0,??DataTable19_29
+   \       0x6C   0x6801             LDR      R1,[R0, #+0]
+   \       0x6E   0x1C49             ADDS     R1,R1,#+1
+   \       0x70   0x6001             STR      R1,[R0, #+0]
+    770          
+    771          		DBG( "[Sent]\n" );
+    772          		//========================================================================
+    773          	}
+    774          	if ( si4463.interrupts.packetRx )
+   \                     ??SI4463_Interrupt_3: (+1)
+   \       0x72   0x7FE0             LDRB     R0,[R4, #+31]
+   \       0x74   0x2800             CMP      R0,#+0
+   \       0x76   0xD03E             BEQ.N    ??SI4463_Interrupt_7
+    775          	{
+    776          		//========================================================================
+    777          		/* Handling this interrupt here */
+    778          
+    779          		/* Clear incoming buffer */
+    780          		memset( incomingBuffer, 0x00, APP_PACKET_LEN );
+   \       0x78   0x273E             MOVS     R7,#+62
+   \       0x7A   0xF05F 0x0800      MOVS     R8,#+0
+   \       0x7E   0x....             LDR.N    R6,??DataTable19_42
+   \       0x80   0x46B1             MOV      R9,R6
+   \       0x82   0x4642             MOV      R2,R8
+   \       0x84   0x0039             MOVS     R1,R7
+   \       0x86   0x4648             MOV      R0,R9
+   \       0x88   0x.... 0x....      BL       __aeabi_memset
+    781          
+    782          		/* Get FIFO data */
+    783          		SI4463_ReadRxFifo( &si4463, incomingBuffer, APP_PACKET_LEN );
+   \       0x8C   0x223E             MOVS     R2,#+62
+   \       0x8E   0x0031             MOVS     R1,R6
+   \       0x90   0x0020             MOVS     R0,R4
+   \       0x92   0x.... 0x....      BL       SI4463_ReadRxFifo
+    784          
+    785          		RF_RecvData( (char *)incomingBuffer, APP_PACKET_LEN );
+   \       0x96   0x213E             MOVS     R1,#+62
+   \       0x98   0x0030             MOVS     R0,R6
+   \       0x9A   0x.... 0x....      BL       RF_RecvData
+    786          
+    787          		if ( s_nDbgLevel >= 1 )
+   \       0x9E   0x....             LDR.N    R0,??DataTable19_25
+   \       0xA0   0x7800             LDRB     R0,[R0, #+0]
+   \       0xA2   0x2800             CMP      R0,#+0
+   \       0xA4   0xD016             BEQ.N    ??SI4463_Interrupt_8
+    788          		{
+    789          			printf( "[%d]Rx: ", HAL_GetTick() );	//	xTaskGetTickCount() );
+   \       0xA6   0x.... 0x....      BL       HAL_GetTick
+   \       0xAA   0x0001             MOVS     R1,R0
+   \       0xAC   0x....             LDR.N    R0,??DataTable19_43
+   \       0xAE   0x.... 0x....      BL       printf
+    790          			for ( idx = 0; idx < APP_PACKET_LEN; idx++ )
+   \       0xB2   0x2000             MOVS     R0,#+0
+   \       0xB4   0x0005             MOVS     R5,R0
+   \                     ??SI4463_Interrupt_9: (+1)
+   \       0xB6   0x2D3E             CMP      R5,#+62
+   \       0xB8   0xDA05             BGE.N    ??SI4463_Interrupt_10
+    791          			{
+    792          				printf( "%02X ", incomingBuffer[idx] );
+   \       0xBA   0x5D71             LDRB     R1,[R6, R5]
+   \       0xBC   0x....             LDR.N    R0,??DataTable19_41
+   \       0xBE   0x.... 0x....      BL       printf
+    793          			}
+   \       0xC2   0x1C6D             ADDS     R5,R5,#+1
+   \       0xC4   0xE7F7             B.N      ??SI4463_Interrupt_9
+    794          			printf( "\n" );
+   \                     ??SI4463_Interrupt_10: (+1)
+   \       0xC6   0xA001             ADR.N    R0,??SI4463_Interrupt_0
+   \       0xC8   0xE002             B.N      ??SI4463_Interrupt_11
+   \       0xCA   0xBF00             Nop
+   \                     ??SI4463_Interrupt_0:
+   \       0xCC   0x0A 0x00          DC8      "\n",0x0,0x0   
+
+   \              0x00 0x00
+   \                     ??SI4463_Interrupt_11: (+1)
+   \       0xD0   0x.... 0x....      BL       printf
+    795          		}
+    796          
+    797          		/* Clear RX FIFO */
+    798          		SI4463_ClearRxFifo( &si4463 );
+   \                     ??SI4463_Interrupt_8: (+1)
+   \       0xD4   0x0020             MOVS     R0,R4
+   \       0xD6   0x.... 0x....      BL       SI4463_ClearRxFifo
+    799          
+    800          		/* Start RX again.
+    801          		 * It need because after successful receive a packet the chip change
+    802          		 * state to READY.
+    803          		 * There is re-armed mode for StartRx but it not correctly working */
+    804          		SI4463_StartRx( &si4463, APP_PACKET_LEN, false, false, false );
+   \       0xDA   0x2000             MOVS     R0,#+0
+   \       0xDC   0x9000             STR      R0,[SP, #+0]
+   \       0xDE   0x2300             MOVS     R3,#+0
+   \       0xE0   0x2200             MOVS     R2,#+0
+   \       0xE2   0x213E             MOVS     R1,#+62
+   \       0xE4   0x0020             MOVS     R0,R4
+   \       0xE6   0x.... 0x....      BL       SI4463_StartRx
+    805          
+    806          		/*Toggle led for indication*/
+    807          //		HAL_GPIO_TogglePin( LED_ONBOARD_GPIO_Port, LED_ONBOARD_Pin );
+    808          
+    809          		/* Following instruction only for add breakpoints. May be deleted */
+    810          		si4463.interrupts.packetRx = false;
+   \       0xEA   0x2000             MOVS     R0,#+0
+   \       0xEC   0x77E0             STRB     R0,[R4, #+31]
+    811          
+    812          		s_cntRFRx++;			//	RF Rx Count
+   \       0xEE   0x....             LDR.N    R0,??DataTable19_31
+   \       0xF0   0x6801             LDR      R1,[R0, #+0]
+   \       0xF2   0x1C49             ADDS     R1,R1,#+1
+   \       0xF4   0x6001             STR      R1,[R0, #+0]
+    813          
+    814          		DBG( "[Recv]\n" );
+    815          
+    816          		//========================================================================
+    817          	}
+    818          	if ( si4463.interrupts.crcError )
+   \                     ??SI4463_Interrupt_7: (+1)
+   \       0xF6   0xF894 0x0020      LDRB     R0,[R4, #+32]
+   \       0xFA   0x2800             CMP      R0,#+0
+   \       0xFC   0xD002             BEQ.N    ??SI4463_Interrupt_12
+    819          	{
+    820          		/* Handling this interrupt here */
+    821          
+    822          		/* Following instruction only for add breakpoints. May be deleted */
+    823          		si4463.interrupts.crcError = false;
+   \       0xFE   0x2000             MOVS     R0,#+0
+   \      0x100   0xF884 0x0020      STRB     R0,[R4, #+32]
+    824          		DBG( "<%d>crcError\n", __LINE__ );
+    825          	}
+    826          	if ( si4463.interrupts.txFifoAlmostEmpty )
+   \                     ??SI4463_Interrupt_12: (+1)
+   \      0x104   0xF894 0x0021      LDRB     R0,[R4, #+33]
+   \      0x108   0x2800             CMP      R0,#+0
+   \      0x10A   0xD002             BEQ.N    ??SI4463_Interrupt_13
+    827          	{
+    828          		/* Handling this interrupt here */
+    829          
+    830          		/* Following instruction only for add breakpoints. May be deleted */
+    831          		si4463.interrupts.txFifoAlmostEmpty = false;
+   \      0x10C   0x2000             MOVS     R0,#+0
+   \      0x10E   0xF884 0x0021      STRB     R0,[R4, #+33]
+    832          		DBG( "<%d>txFifoAlmostEmpty\n", __LINE__ );
+    833          	}
+    834          	if ( si4463.interrupts.rxFifoAlmostFull )
+   \                     ??SI4463_Interrupt_13: (+1)
+   \      0x112   0xF894 0x0022      LDRB     R0,[R4, #+34]
+   \      0x116   0x2800             CMP      R0,#+0
+   \      0x118   0xD002             BEQ.N    ??SI4463_Interrupt_14
+    835          	{
+    836          		/* Handling this interrupt here */
+    837          
+    838          		/* Following instruction only for add breakpoints. May be deleted */
+    839          		si4463.interrupts.rxFifoAlmostFull = false;
+   \      0x11A   0x2000             MOVS     R0,#+0
+   \      0x11C   0xF884 0x0022      STRB     R0,[R4, #+34]
+    840          		DBG( "<%d>rxFifoAlmostFull\n", __LINE__ );
+    841          	}
+    842          
+    843          	/* Handling Modem interrupts */
+    844          	if ( si4463.interrupts.postambleDetect )
+   \                     ??SI4463_Interrupt_14: (+1)
+   \      0x120   0xF894 0x0023      LDRB     R0,[R4, #+35]
+   \      0x124   0x2800             CMP      R0,#+0
+   \      0x126   0xD002             BEQ.N    ??SI4463_Interrupt_15
+    845          	{
+    846          		/* Handling this interrupt here */
+    847          
+    848          		/* Following instruction only for add breakpoints. May be deleted */
+    849          		si4463.interrupts.postambleDetect = false;
+   \      0x128   0x2000             MOVS     R0,#+0
+   \      0x12A   0xF884 0x0023      STRB     R0,[R4, #+35]
+    850          		DBG( "<%d>postambleDetect\n", __LINE__ );
+    851          	}
+    852          	if ( si4463.interrupts.invalidSync )
+   \                     ??SI4463_Interrupt_15: (+1)
+   \      0x12E   0xF894 0x0024      LDRB     R0,[R4, #+36]
+   \      0x132   0x2800             CMP      R0,#+0
+   \      0x134   0xD002             BEQ.N    ??SI4463_Interrupt_16
+    853          	{
+    854          		/* Handling this interrupt here */
+    855          		/* Following instruction only for add breakpoints. May be deleted */
+    856          		si4463.interrupts.invalidSync = false;
+   \      0x136   0x2000             MOVS     R0,#+0
+   \      0x138   0xF884 0x0024      STRB     R0,[R4, #+36]
+    857          		DBG( "<%d>invalidSync\n", __LINE__ );
+    858          	}
+    859          	if ( si4463.interrupts.rssiJump )
+   \                     ??SI4463_Interrupt_16: (+1)
+   \      0x13C   0xF894 0x0025      LDRB     R0,[R4, #+37]
+   \      0x140   0x2800             CMP      R0,#+0
+   \      0x142   0xD002             BEQ.N    ??SI4463_Interrupt_17
+    860          	{
+    861          		/* Handling this interrupt here */
+    862          		/* Following instruction only for add breakpoints. May be deleted */
+    863          		si4463.interrupts.rssiJump = false;
+   \      0x144   0x2000             MOVS     R0,#+0
+   \      0x146   0xF884 0x0025      STRB     R0,[R4, #+37]
+    864          		DBG( "<%d>rssiJump\n", __LINE__ );
+    865          	}
+    866          	if ( si4463.interrupts.rssi )
+   \                     ??SI4463_Interrupt_17: (+1)
+   \      0x14A   0xF894 0x0026      LDRB     R0,[R4, #+38]
+   \      0x14E   0x2800             CMP      R0,#+0
+   \      0x150   0xD002             BEQ.N    ??SI4463_Interrupt_18
+    867          	{
+    868          		/* Handling this interrupt here */
+    869          		/* Following instruction only for add breakpoints. May be deleted */
+    870          		si4463.interrupts.rssi = false;
+   \      0x152   0x2000             MOVS     R0,#+0
+   \      0x154   0xF884 0x0026      STRB     R0,[R4, #+38]
+    871          		DBG( "<%d>rssi\n", __LINE__ );
+    872          	}
+    873          	if ( si4463.interrupts.invalidPreamble )
+   \                     ??SI4463_Interrupt_18: (+1)
+   \      0x158   0xF894 0x0027      LDRB     R0,[R4, #+39]
+   \      0x15C   0x2800             CMP      R0,#+0
+   \      0x15E   0xD002             BEQ.N    ??SI4463_Interrupt_19
+    874          	{
+    875          		/* Handling this interrupt here */
+    876          		/* Following instruction only for add breakpoints. May be deleted */
+    877          		si4463.interrupts.invalidPreamble = false;
+   \      0x160   0x2000             MOVS     R0,#+0
+   \      0x162   0xF884 0x0027      STRB     R0,[R4, #+39]
+    878          		DBG( "<%d>invalidPreamble\n", __LINE__ );
+    879          	}
+    880          	if ( si4463.interrupts.preambleDetect )
+   \                     ??SI4463_Interrupt_19: (+1)
+   \      0x166   0xF894 0x0028      LDRB     R0,[R4, #+40]
+   \      0x16A   0x2800             CMP      R0,#+0
+   \      0x16C   0xD002             BEQ.N    ??SI4463_Interrupt_20
+    881          	{
+    882          		/* Handling this interrupt here */
+    883          		/* Following instruction only for add breakpoints. May be deleted */
+    884          		si4463.interrupts.preambleDetect = false;
+   \      0x16E   0x2000             MOVS     R0,#+0
+   \      0x170   0xF884 0x0028      STRB     R0,[R4, #+40]
+    885          		DBG( "<%d>preambleDetect\n", __LINE__ );
+    886          	}
+    887          	if ( si4463.interrupts.syncDetect )
+   \                     ??SI4463_Interrupt_20: (+1)
+   \      0x174   0xF894 0x0029      LDRB     R0,[R4, #+41]
+   \      0x178   0x2800             CMP      R0,#+0
+   \      0x17A   0xD002             BEQ.N    ??SI4463_Interrupt_21
+    888          	{
+    889          		/* Handling this interrupt here */
+    890          		/* Following instruction only for add breakpoints. May be deleted */
+    891          		si4463.interrupts.syncDetect = false;
+   \      0x17C   0x2000             MOVS     R0,#+0
+   \      0x17E   0xF884 0x0029      STRB     R0,[R4, #+41]
+    892          		DBG( "<%d>syncDetect\n", __LINE__ );
+    893          	}
+    894          
+    895          	/* Handling Chip interrupts */
+    896          	if ( si4463.interrupts.cal )
+   \                     ??SI4463_Interrupt_21: (+1)
+   \      0x182   0xF894 0x002A      LDRB     R0,[R4, #+42]
+   \      0x186   0x2800             CMP      R0,#+0
+   \      0x188   0xD005             BEQ.N    ??SI4463_Interrupt_22
+    897          	{
+    898          		/* Handling this interrupt here */
+    899          		SI4463_GetChipStatus( &si4463 );
+   \      0x18A   0x0020             MOVS     R0,R4
+   \      0x18C   0x.... 0x....      BL       SI4463_GetChipStatus
+    900          		/* Following instruction only for add breakpoints. May be deleted */
+    901          		si4463.interrupts.cal = false;
+   \      0x190   0x2000             MOVS     R0,#+0
+   \      0x192   0xF884 0x002A      STRB     R0,[R4, #+42]
+    902          		DBG( "<%d>\n", __LINE__ );
+    903          	}
+    904          	if ( si4463.interrupts.fifoUnderflowOverflowError )
+   \                     ??SI4463_Interrupt_22: (+1)
+   \      0x196   0xF894 0x002B      LDRB     R0,[R4, #+43]
+   \      0x19A   0x2800             CMP      R0,#+0
+   \      0x19C   0xD008             BEQ.N    ??SI4463_Interrupt_23
+    905          	{
+    906          		/* Handling this interrupt here */
+    907          		/* Clear RX FIFO */
+    908          		SI4463_ClearRxFifo( &si4463 );
+   \      0x19E   0x0020             MOVS     R0,R4
+   \      0x1A0   0x.... 0x....      BL       SI4463_ClearRxFifo
+    909          		/* Claer Chip Status errors if exists */
+    910          		SI4463_GetChipStatus( &si4463 );
+   \      0x1A4   0x0020             MOVS     R0,R4
+   \      0x1A6   0x.... 0x....      BL       SI4463_GetChipStatus
+    911          		/* Following instruction only for add breakpoints. May be deleted */
+    912          		si4463.interrupts.fifoUnderflowOverflowError = false;
+   \      0x1AA   0x2000             MOVS     R0,#+0
+   \      0x1AC   0xF884 0x002B      STRB     R0,[R4, #+43]
+    913          		DBG( "<%d>fifoUnderOverErr\n", __LINE__ );
+    914          	}
+    915          	if ( si4463.interrupts.stateChange )
+   \                     ??SI4463_Interrupt_23: (+1)
+   \      0x1B0   0xF894 0x002C      LDRB     R0,[R4, #+44]
+   \      0x1B4   0x2800             CMP      R0,#+0
+   \      0x1B6   0xD005             BEQ.N    ??SI4463_Interrupt_24
+    916          	{
+    917          		/* Handling this interrupt here */
+    918          		SI4463_GetChipStatus( &si4463 );
+   \      0x1B8   0x0020             MOVS     R0,R4
+   \      0x1BA   0x.... 0x....      BL       SI4463_GetChipStatus
+    919          		/* Following instruction only for add breakpoints. May be deleted */
+    920          		si4463.interrupts.stateChange = false;
+   \      0x1BE   0x2000             MOVS     R0,#+0
+   \      0x1C0   0xF884 0x002C      STRB     R0,[R4, #+44]
+    921          		DBG( "<%d>stateChange\n", __LINE__ );
+    922          	}
+    923          	if ( si4463.interrupts.cmdError )
+   \                     ??SI4463_Interrupt_24: (+1)
+   \      0x1C4   0xF894 0x002D      LDRB     R0,[R4, #+45]
+   \      0x1C8   0x2800             CMP      R0,#+0
+   \      0x1CA   0xD005             BEQ.N    ??SI4463_Interrupt_25
+    924          	{
+    925          		/* Handling this interrupt here */
+    926          		SI4463_GetChipStatus( &si4463 );
+   \      0x1CC   0x0020             MOVS     R0,R4
+   \      0x1CE   0x.... 0x....      BL       SI4463_GetChipStatus
+    927          		/* Following instruction only for add breakpoints. May be deleted */
+    928          		si4463.interrupts.cmdError = false;
+   \      0x1D2   0x2000             MOVS     R0,#+0
+   \      0x1D4   0xF884 0x002D      STRB     R0,[R4, #+45]
+    929          		DBG( "<%d>cmdError\n", __LINE__ );
+    930          	}
+    931          	if ( si4463.interrupts.chipReady )
+   \                     ??SI4463_Interrupt_25: (+1)
+   \      0x1D8   0xF894 0x002E      LDRB     R0,[R4, #+46]
+   \      0x1DC   0x2800             CMP      R0,#+0
+   \      0x1DE   0xD005             BEQ.N    ??SI4463_Interrupt_26
+    932          	{
+    933          		/* Handling this interrupt here */
+    934          		SI4463_GetChipStatus( &si4463 );
+   \      0x1E0   0x0020             MOVS     R0,R4
+   \      0x1E2   0x.... 0x....      BL       SI4463_GetChipStatus
+    935          		/* Following instruction only for add breakpoints. May be deleted */
+    936          		si4463.interrupts.chipReady = false;
+   \      0x1E6   0x2000             MOVS     R0,#+0
+   \      0x1E8   0xF884 0x002E      STRB     R0,[R4, #+46]
+    937          		DBG( "<%d>chipReady\n", __LINE__ );
+    938          	}
+    939          	if ( si4463.interrupts.lowBatt )
+   \                     ??SI4463_Interrupt_26: (+1)
+   \      0x1EC   0xF894 0x002F      LDRB     R0,[R4, #+47]
+   \      0x1F0   0x2800             CMP      R0,#+0
+   \      0x1F2   0xD005             BEQ.N    ??SI4463_Interrupt_27
+    940          	{
+    941          		/* Handling this interrupt here */
+    942          		SI4463_GetChipStatus( &si4463 );
+   \      0x1F4   0x0020             MOVS     R0,R4
+   \      0x1F6   0x.... 0x....      BL       SI4463_GetChipStatus
+    943          		/* Following instruction only for add breakpoints. May be deleted */
+    944          		si4463.interrupts.lowBatt = false;
+   \      0x1FA   0x2000             MOVS     R0,#+0
+   \      0x1FC   0xF884 0x002F      STRB     R0,[R4, #+47]
+    945          		DBG( "<%d>lowBatt\n", __LINE__ );
+    946          	}
+    947          	if ( si4463.interrupts.wut )
+   \                     ??SI4463_Interrupt_27: (+1)
+   \      0x200   0xF894 0x0030      LDRB     R0,[R4, #+48]
+   \      0x204   0x2800             CMP      R0,#+0
+   \      0x206   0xD005             BEQ.N    ??SI4463_Interrupt_28
+    948          	{
+    949          		/* Handling this interrupt here */
+    950          		SI4463_GetChipStatus( &si4463 );
+   \      0x208   0x0020             MOVS     R0,R4
+   \      0x20A   0x.... 0x....      BL       SI4463_GetChipStatus
+    951          		/* Following instruction only for add breakpoints. May be deleted */
+    952          		si4463.interrupts.wut = false;
+   \      0x20E   0x2000             MOVS     R0,#+0
+   \      0x210   0xF884 0x0030      STRB     R0,[R4, #+48]
+    953          		DBG( "<%d>wut\n", __LINE__ );
+    954          	}
+    955          
+    956          	/* Clear All interrupts before exit */
+    957          	SI4463_ClearAllInterrupts( &si4463 );
+   \                     ??SI4463_Interrupt_28: (+1)
+   \      0x214   0x0020             MOVS     R0,R4
+   \      0x216   0x.... 0x....      BL       SI4463_ClearAllInterrupts
+    958          
+    959          	DBG( "!\n" );
+    960          }
+   \      0x21A   0xE8BD 0x83F1      POP      {R0,R4-R9,PC}
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19:
+   \        0x0   0x....'....        DC32     s_bInit
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_1:
+   \        0x0   0x....'....        DC32     `RF_Init::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_2:
+   \        0x0   0x....'....        DC32     ?_0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_3:
+   \        0x0   0x....'....        DC32     si4463
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_4:
+   \        0x0   0x....'....        DC32     HAL_Delay
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_5:
+   \        0x0   0x....'....        DC32     ?_1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_6:
+   \        0x0   0x....'....        DC32     `RF_PartInfo::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_7:
+   \        0x0   0x....'....        DC32     ?_2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_8:
+   \        0x0   0x....'....        DC32     ?_3
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_9:
+   \        0x0   0x....'....        DC32     ?_4
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_10:
+   \        0x0   0x....'....        DC32     ?_5
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_11:
+   \        0x0   0x....'....        DC32     ?_6
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_12:
+   \        0x0   0x....'....        DC32     ?_7
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_13:
+   \        0x0   0x....'....        DC32     ?_8
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_14:
+   \        0x0   0x....'....        DC32     ?_9
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_15:
+   \        0x0   0x....'....        DC32     ?_10
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_16:
+   \        0x0   0x....'....        DC32     `RF_FuncInfo::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_17:
+   \        0x0   0x....'....        DC32     ?_11
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_18:
+   \        0x0   0x....'....        DC32     ?_12
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_19:
+   \        0x0   0x....'....        DC32     ?_13
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_20:
+   \        0x0   0x....'....        DC32     ?_14
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_21:
+   \        0x0   0x....'....        DC32     ?_15
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_22:
+   \        0x0   0x....'....        DC32     ?_16
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_23:
+   \        0x0   0x4002'0414        DC32     0x40020414
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_24:
+   \        0x0   0x....'....        DC32     s_bIsTxMode
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_25:
+   \        0x0   0x....'....        DC32     s_nDbgLevel
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_26:
+   \        0x0   0x....'....        DC32     ?_17
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_27:
+   \        0x0   0x....'....        DC32     ?_19
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_28:
+   \        0x0   0x....'....        DC32     outgoingBuffer
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_29:
+   \        0x0   0x....'....        DC32     s_cntRFTx
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_30:
+   \        0x0   0x....'....        DC32     ?_21
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_31:
+   \        0x0   0x....'....        DC32     s_cntRFRx
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_32:
+   \        0x0   0x....'....        DC32     ?_22
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_33:
+   \        0x0   0x4002'1000        DC32     0x40021000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_34:
+   \        0x0   0x....'....        DC32     hspi1
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_35:
+   \        0x0   0x....'....        DC32     ?_23
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_36:
+   \        0x0   0x4002'0800        DC32     0x40020800
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_37:
+   \        0x0   0x....'....        DC32     ?_24
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_38:
+   \        0x0   0x4002'0000        DC32     0x40020000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_39:
+   \        0x0   0x....'....        DC32     s_bIntFlag
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_40:
+   \        0x0   0x....'....        DC32     ?_25
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_41:
+   \        0x0   0x....'....        DC32     ?_26
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_42:
+   \        0x0   0x....'....        DC32     incomingBuffer
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_43:
+   \        0x0   0x....'....        DC32     ?_27
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \        0x0   0x25 0x73          DC8 "%s(%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_1:
+   \        0x0   0x25 0x73          DC8 "%s(%d) - ret(%d)\012"
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x20 0x2D    
+
+   \              0x20 0x72    
+
+   \              0x65 0x74    
+
+   \              0x28 0x25    
+
+   \              0x64 0x29    
+
+   \              0x0A 0x00
+   \       0x12                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_2:
+   \        0x0   0x20 0x2D          DC8 " - CMD_COMP    : %02X\012"
+
+   \              0x20 0x43    
+
+   \              0x4D 0x44    
+
+   \              0x5F 0x43    
+
+   \              0x4F 0x4D    
+
+   \              0x50 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_3:
+   \        0x0   0x20 0x2D          DC8 " - CHIPREV     : %02X\012"
+
+   \              0x20 0x43    
+
+   \              0x48 0x49    
+
+   \              0x50 0x52    
+
+   \              0x45 0x56    
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_4:
+   \        0x0   0x20 0x2D          DC8 " - PART[15:8]  : %02X\012"
+
+   \              0x20 0x50    
+
+   \              0x41 0x52    
+
+   \              0x54 0x5B    
+
+   \              0x31 0x35    
+
+   \              0x3A 0x38    
+
+   \              0x5D 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_5:
+   \        0x0   0x20 0x2D          DC8 " - PART[7:0]   : %02X\012"
+
+   \              0x20 0x50    
+
+   \              0x41 0x52    
+
+   \              0x54 0x5B    
+
+   \              0x37 0x3A    
+
+   \              0x30 0x5D    
+
+   \              0x20 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_6:
+   \        0x0   0x20 0x2D          DC8 " - PBUILD      : %02X\012"
+
+   \              0x20 0x50    
+
+   \              0x42 0x55    
+
+   \              0x49 0x4C    
+
+   \              0x44 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_7:
+   \        0x0   0x20 0x2D          DC8 " - ID[15:8]    : %02X\012"
+
+   \              0x20 0x49    
+
+   \              0x44 0x5B    
+
+   \              0x31 0x35    
+
+   \              0x3A 0x38    
+
+   \              0x5D 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_8:
+   \        0x0   0x20 0x2D          DC8 " - ID[7:0]     : %02X\012"
+
+   \              0x20 0x49    
+
+   \              0x44 0x5B    
+
+   \              0x37 0x3A    
+
+   \              0x30 0x5D    
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_9:
+   \        0x0   0x20 0x2D          DC8 " - CUSTOMER    : %02X\012"
+
+   \              0x20 0x43    
+
+   \              0x55 0x53    
+
+   \              0x54 0x4F    
+
+   \              0x4D 0x45    
+
+   \              0x52 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_10:
+   \        0x0   0x20 0x2D          DC8 " - ROMID       : %02X\012"
+
+   \              0x20 0x52    
+
+   \              0x4F 0x4D    
+
+   \              0x49 0x44    
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_11:
+   \        0x0   0x20 0x2D          DC8 " - REVEXT      : %02X\012"
+
+   \              0x20 0x52    
+
+   \              0x45 0x56    
+
+   \              0x45 0x58    
+
+   \              0x54 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_12:
+   \        0x0   0x20 0x2D          DC8 " - REVBRANCH   : %02X\012"
+
+   \              0x20 0x52    
+
+   \              0x45 0x56    
+
+   \              0x42 0x52    
+
+   \              0x41 0x4E    
+
+   \              0x43 0x48    
+
+   \              0x20 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_13:
+   \        0x0   0x20 0x2D          DC8 " - REVINT      : %02X\012"
+
+   \              0x20 0x52    
+
+   \              0x45 0x56    
+
+   \              0x49 0x4E    
+
+   \              0x54 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_14:
+   \        0x0   0x20 0x2D          DC8 " - PATCH[15:8] : %02X\012"
+
+   \              0x20 0x50    
+
+   \              0x41 0x54    
+
+   \              0x43 0x48    
+
+   \              0x5B 0x31    
+
+   \              0x35 0x3A    
+
+   \              0x38 0x5D    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_15:
+   \        0x0   0x20 0x2D          DC8 " - PATCH[7:0]  : %02X\012"
+
+   \              0x20 0x50    
+
+   \              0x41 0x54    
+
+   \              0x43 0x48    
+
+   \              0x5B 0x37    
+
+   \              0x3A 0x30    
+
+   \              0x5D 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_16:
+   \        0x0   0x20 0x2D          DC8 " - FUNC        : %02X\012"
+
+   \              0x20 0x46    
+
+   \              0x55 0x4E    
+
+   \              0x43 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x20    
+
+   \              0x20 0x3A    
+
+   \              0x20 0x25    
+
+   \              0x30 0x32    
+
+   \              0x58 0x0A    
+
+   \              0x00
+   \       0x17                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_17:
+   \        0x0   0x44 0x47          DC8 68, 71, 87, 94, 34, 205, 101, 224, 179, 83, 170, 126, 249, 33
+
+   \              0x57 0x5E    
+
+   \              0x22 0xCD    
+
+   \              0x65 0xE0    
+
+   \              0xB3 0x53    
+
+   \              0xAA 0x7E    
+
+   \              0xF9 0x21
+   \        0xE                      DS8 2
+
+   \                                 In section .rodata, align 2
+   \        0x0   0x0A 0x00          DC8 "\012"
+
+   \                                 In section .rodata, align 4
+   \                     ?_19:
+   \        0x0   0x5B 0x25          DC8 "[%d][%03d] "
+
+   \              0x64 0x5D    
+
+   \              0x5B 0x25    
+
+   \              0x30 0x33    
+
+   \              0x64 0x5D    
+
+   \              0x20 0x00
+
+   \                                 In section .rodata, align 4
+   \        0x0   0x53 0x70          DC8 "Speed : %d bps\012"
+
+   \              0x65 0x65    
+
+   \              0x64 0x20    
+
+   \              0x3A 0x20    
+
+   \              0x25 0x64    
+
+   \              0x20 0x62    
+
+   \              0x70 0x73    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_21:
+   \        0x0   0x54 0x78          DC8 "Tx Cnt: %d\012"
+
+   \              0x20 0x43    
+
+   \              0x6E 0x74    
+
+   \              0x3A 0x20    
+
+   \              0x25 0x64    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_22:
+   \        0x0   0x52 0x78          DC8 "Rx Cnt: %d\012"
+
+   \              0x20 0x43    
+
+   \              0x6E 0x74    
+
+   \              0x3A 0x20    
+
+   \              0x25 0x64    
+
+   \              0x0A 0x00
+
+   \                                 In section .rodata, align 4
+   \                     ?_23:
+   \        0x0   0x5B 0x25          DC8 "[%d] Pin_SDN(1)\012"
+
+   \              0x64 0x5D    
+
+   \              0x20 0x50    
+
+   \              0x69 0x6E    
+
+   \              0x5F 0x53    
+
+   \              0x44 0x4E    
+
+   \              0x28 0x31    
+
+   \              0x29 0x0A    
+
+   \              0x00
+   \       0x11                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_24:
+   \        0x0   0x5B 0x25          DC8 "[%d] Pin_SDN(0)\012"
+
+   \              0x64 0x5D    
+
+   \              0x20 0x50    
+
+   \              0x69 0x6E    
+
+   \              0x5F 0x53    
+
+   \              0x44 0x4E    
+
+   \              0x28 0x30    
+
+   \              0x29 0x0A    
+
+   \              0x00
+   \       0x11                      DS8 3
+
+   \                                 In section .rodata, align 4
+   \                     ?_25:
+   \        0x0   0x5B 0x53          DC8 "[Sent]Tx: "
+
+   \              0x65 0x6E    
+
+   \              0x74 0x5D    
+
+   \              0x54 0x78    
+
+   \              0x3A 0x20    
+
+   \              0x00
+   \        0xB                      DS8 1
+
+   \                                 In section .rodata, align 4
+   \                     ?_26:
+   \        0x0   0x25 0x30          DC8 "%02X "
+
+   \              0x32 0x58    
+
+   \              0x20 0x00
+   \        0x6                      DS8 2
+
+   \                                 In section .rodata, align 4
+   \                     ?_27:
+   \        0x0   0x5B 0x25          DC8 "[%d]Rx: "
+
+   \              0x64 0x5D    
+
+   \              0x52 0x78    
+
+   \              0x3A 0x20    
+
+   \              0x00
+   \        0x9                      DS8 3
+    961          
+    962          
+    963          //========================================================================
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   LoopRFInt
+         8   -> HAL_Delay
+         8   -> SI4463_GetIntFlag
+         8   -> SI4463_Interrupt
+         8   -> SI4463_SetIntFlag
+      32   RF_FuncInfo
+        32   -> SI4463_GetFuncInfo
+        32   -> __aeabi_memset
+        32   -> printf
+       8   RF_Info
+         8   -> RF_FuncInfo
+         8   -> RF_PartInfo
+      24   RF_Init
+        24   -> HAL_NVIC_DisableIRQ
+        24   -> HAL_NVIC_EnableIRQ
+        24   -> SI4463_ClearInterrupts
+        24   -> SI4463_ClearRxFifo
+        24   -> SI4463_Init
+        24   -> SI4463_StartRx
+        24   -> printf
+       0   RF_IsInit
+       0   RF_Loopback
+      32   RF_PartInfo
+        32   -> SI4463_GetPartInfo
+        32   -> __aeabi_memset
+        32   -> printf
+       0   RF_RecvData
+       0   RF_Rx
+      16   RF_SendData
+        16   -> SI4463_Transmit
+       0   RF_Tx
+       0   RF_TxRx
+       8   SI4463_ClearShutdown
+         8   -> HAL_GPIO_WritePin
+         8   -> HAL_GetTick
+         8   -> printf
+       0   SI4463_Debug
+       8   SI4463_Deselect
+         8   -> HAL_GPIO_WritePin
+       0   SI4463_GetIntFlag
+      32   SI4463_Interrupt
+        32   -> HAL_GetTick
+        32   -> RF_RecvData
+        32   -> SI4463_ClearAllInterrupts
+        32   -> SI4463_ClearRxFifo
+        32   -> SI4463_ClearTxFifo
+        32   -> SI4463_GetChipStatus
+        32   -> SI4463_GetInterrupts
+        32   -> SI4463_ReadRxFifo
+        32   -> SI4463_StartRx
+        32   -> __aeabi_memset
+        32   -> printf
+       8   SI4463_IsCTS
+         8   -> HAL_GPIO_ReadPin
+       8   SI4463_Select
+         8   -> HAL_GPIO_WritePin
+       0   SI4463_SetIntFlag
+       8   SI4463_SetShutdown
+         8   -> HAL_Delay
+         8   -> HAL_GPIO_WritePin
+         8   -> HAL_GetTick
+         8   -> printf
+      56   SI4463_Test
+        56   -> HAL_Delay
+        56   -> HAL_GetTick
+        56   -> LoopRFInt
+        56   -> SI4463_Transmit
+        56   -> __aeabi_memcpy4
+        56   -> printf
+      24   SI4463_WriteRead
+        24   -> HAL_SPI_TransmitReceive
+       0   nonDelay
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable19
+       4  ??DataTable19_1
+       4  ??DataTable19_10
+       4  ??DataTable19_11
+       4  ??DataTable19_12
+       4  ??DataTable19_13
+       4  ??DataTable19_14
+       4  ??DataTable19_15
+       4  ??DataTable19_16
+       4  ??DataTable19_17
+       4  ??DataTable19_18
+       4  ??DataTable19_19
+       4  ??DataTable19_2
+       4  ??DataTable19_20
+       4  ??DataTable19_21
+       4  ??DataTable19_22
+       4  ??DataTable19_23
+       4  ??DataTable19_24
+       4  ??DataTable19_25
+       4  ??DataTable19_26
+       4  ??DataTable19_27
+       4  ??DataTable19_28
+       4  ??DataTable19_29
+       4  ??DataTable19_3
+       4  ??DataTable19_30
+       4  ??DataTable19_31
+       4  ??DataTable19_32
+       4  ??DataTable19_33
+       4  ??DataTable19_34
+       4  ??DataTable19_35
+       4  ??DataTable19_36
+       4  ??DataTable19_37
+       4  ??DataTable19_38
+       4  ??DataTable19_39
+       4  ??DataTable19_4
+       4  ??DataTable19_40
+       4  ??DataTable19_41
+       4  ??DataTable19_42
+       4  ??DataTable19_43
+       4  ??DataTable19_5
+       4  ??DataTable19_6
+       4  ??DataTable19_7
+       4  ??DataTable19_8
+       4  ??DataTable19_9
+       8  ?_0
+      20  ?_1
+      24  ?_10
+      24  ?_11
+      24  ?_12
+      24  ?_13
+      24  ?_14
+      24  ?_15
+      24  ?_16
+      16  ?_17
+       2  ?_18
+      12  ?_19
+      24  ?_2
+      16  ?_20
+      12  ?_21
+      12  ?_22
+      20  ?_23
+      20  ?_24
+      12  ?_25
+       8  ?_26
+      12  ?_27
+      24  ?_3
+      24  ?_4
+      24  ?_5
+      24  ?_6
+      24  ?_7
+      24  ?_8
+      24  ?_9
+      30  LoopRFInt
+     132  RF_FuncInfo
+      12  RF_Info
+     138  RF_Init
+       8  RF_IsInit
+      38  RF_Loopback
+     156  RF_PartInfo
+      10  RF_RecvData
+      38  RF_Rx
+      42  RF_SendData
+      38  RF_Tx
+      38  RF_TxRx
+      26  SI4463_ClearShutdown
+       8  SI4463_Debug
+      14  SI4463_Deselect
+       6  SI4463_GetIntFlag
+     542  SI4463_Interrupt
+      24  SI4463_IsCTS
+      14  SI4463_Select
+       6  SI4463_SetIntFlag
+      42  SI4463_SetShutdown
+     198  SI4463_Test
+      28  SI4463_WriteRead
+      64  incomingBuffer
+       6  nonDelay
+      64  outgoingBuffer
+       4  s_bInit
+       4  s_bIntFlag
+       4  s_bIsTxMode
+       4  s_cntRFRx
+       4  s_cntRFTx
+       1  s_nDbgLevel
+      52  si4463
+      32  -- Other
+
+ 
+   201 bytes in section .bss
+   562 bytes in section .rodata
+ 1'770 bytes in section .text
+ 
+ 1'770 bytes of CODE  memory
+   562 bytes of CONST memory
+   201 bytes of DATA  memory
+
+Errors: none
+Warnings: 17

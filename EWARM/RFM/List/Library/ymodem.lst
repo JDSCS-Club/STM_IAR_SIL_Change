@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  23:37:25
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:26
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -1223,7 +1223,7 @@ Warning[Pe223]: function "printf" declared implicitly
     585                                  //  External Flash Erase Timing 최대 10초.
     586                                  //     bootloader> [0x43][0x43][0x01]extern flash 0x00020000 erase
     587                                  //      Flash Erase Time[10375]
-    588                                  if ( 15000 < ( tickEnd - tickStart ) )   HAL_Delay( 2000 );
+    588                                  if ( 15000 < ( tickEnd - tickStart ) )   HAL_Delay( (uint32_t)2000 );
    \      0x1CC   0x9803             LDR      R0,[SP, #+12]
    \      0x1CE   0x1A28             SUBS     R0,R5,R0
    \      0x1D0   0xF643 0x2199      MOVW     R1,#+15001
@@ -1232,7 +1232,7 @@ Warning[Pe223]: function "printf" declared implicitly
    \      0x1D8   0xF44F 0x60FA      MOV      R0,#+2000
    \      0x1DC   0x.... 0x....      BL       HAL_Delay
    \      0x1E0   0xE006             B.N      ??Ymodem_Receive_20
-    589                                  else HAL_Delay( 15000 - ( tickEnd - tickStart ) );
+    589                                  else HAL_Delay( (uint32_t)(15000 - ( tickEnd - tickStart )) );
    \                     ??Ymodem_Receive_21: (+1)
    \      0x1E2   0xF643 0x2098      MOVW     R0,#+15000
    \      0x1E6   0x1B40             SUBS     R0,R0,R5
@@ -1582,7 +1582,7 @@ Warning[Pe223]: function "printf" declared implicitly
    \       0x98   0x2818             CMP      R0,#+24
    \       0x9A   0xD109             BNE.N    ??Ymodem_Transmit_4
     751                  {
-    752                    HAL_Delay( 2 );
+    752                    HAL_Delay( (uint32_t)2 );
    \       0x9C   0x2002             MOVS     R0,#+2
    \       0x9E   0x.... 0x....      BL       HAL_Delay
     753                    __HAL_UART_FLUSH_DRREGISTER(&huart2);
@@ -1838,7 +1838,7 @@ Warning[Pe223]: function "printf" declared implicitly
    \      0x1E8   0x2818             CMP      R0,#+24
    \      0x1EA   0xD10A             BNE.N    ??Ymodem_Transmit_18
     859                  {
-    860                    HAL_Delay( 2 );
+    860                    HAL_Delay( (uint32_t)2 );
    \      0x1EC   0x2002             MOVS     R0,#+2
    \      0x1EE   0x.... 0x....      BL       HAL_Delay
     861                    __HAL_UART_FLUSH_DRREGISTER(&huart2);
@@ -1950,7 +1950,7 @@ Warning[Pe223]: function "printf" declared implicitly
    \      0x28C   0x2818             CMP      R0,#+24
    \      0x28E   0xD107             BNE.N    ??Ymodem_Transmit_19
     909                {
-    910                    HAL_Delay( 2 );
+    910                    HAL_Delay( (uint32_t)2 );
    \      0x290   0x2002             MOVS     R0,#+2
    \      0x292   0x.... 0x....      BL       HAL_Delay
     911                    __HAL_UART_FLUSH_DRREGISTER(&huart2);

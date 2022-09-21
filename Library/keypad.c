@@ -13,6 +13,17 @@
 
 //========================================================================
 // Header
+
+//#include <stdarg.h>
+#include <stdio.h>			//	printf()
+
+#include <stdint.h>			//	uint32_t
+
+#include <string.h>			//	memset()
+
+#include "typedef.h"			//	uint32_t, ...
+#include "compiler_defs.h"		//	U8,
+
 #include <stdio.h>
 
 #include "main.h"				//	DOME_GPIO_Port, ...
@@ -25,7 +36,9 @@
 
 #include "menu.h"				//	g_bEnMenuMaint
 
-#include "audio.h"				//	Audio Function	g_qBufAudioTx
+#include "audio.h"
+
+//#include "audio.h"				//	Audio Function
 
 //========================================================================
 // Define
@@ -34,32 +47,67 @@
 //========================================================================
 // Function
 
-static int s_btnStat[9] = { 0, };	//	Default ( 1 - pull-up )
+static uint8_t s_btnStat[9] = { 0, };	//	Default ( 1 - pull-up )
 
 //========================================================================
-int	GetKey( int eKey )
+uint8_t	GetKey( uint8_t eKey )
 //========================================================================
 {
-	return (s_btnStat[eKey]);
+	return (uint8_t)(s_btnStat[eKey]);
 }
 
 
 //========================================================================
-void GetKeyStat( int *btnStat )
+void GetKeyStat( uint8_t *btnStat )
 //========================================================================
 {
 	//	Pull-Up ( Active Low )
-	btnStat[0] = !( HAL_GPIO_ReadPin( DOME1_GPIO_Port, DOME1_Pin ) );	//	Menu
-	btnStat[1] = !( HAL_GPIO_ReadPin( DOME2_GPIO_Port, DOME2_Pin ) );	//	Up
-	btnStat[2] = !( HAL_GPIO_ReadPin( DOME3_GPIO_Port, DOME3_Pin ) );	//	OK
-	btnStat[3] = !( HAL_GPIO_ReadPin( DOME4_GPIO_Port, DOME4_Pin ) );	//	Light
-	btnStat[4] = !( HAL_GPIO_ReadPin( DOME5_GPIO_Port, DOME5_Pin ) );	//	Down
-	btnStat[5] = !( HAL_GPIO_ReadPin( DOME6_GPIO_Port, DOME6_Pin ) );	//	Vol
-	btnStat[6] = !( HAL_GPIO_ReadPin( PTT_KEY_GPIO_Port, PTT_KEY_Pin ) );
-	btnStat[7] = !( HAL_GPIO_ReadPin( SOS_KEY_GPIO_Port, SOS_KEY_Pin ) );
 
-	//	Pull-Down ( Active High )
+	if(( HAL_GPIO_ReadPin( DOME1_GPIO_Port, DOME1_Pin ) == 0 ))
+	{
+		btnStat[0] = 1;;	//	Menu
+	}
+
+	if(( HAL_GPIO_ReadPin( DOME2_GPIO_Port, DOME2_Pin ) == 0 ))
+	{
+		btnStat[1] = 1 ;	//	Up
+	}
+
+	if(( HAL_GPIO_ReadPin( DOME3_GPIO_Port, DOME3_Pin )== 0 ))
+	{
+		btnStat[2] = 1;	//	OK
+	}
+
+	if(( HAL_GPIO_ReadPin( DOME4_GPIO_Port, DOME4_Pin )== 0 ))
+	{
+		btnStat[3] = 1;	//	Light
+	}
+
+	if(( HAL_GPIO_ReadPin( DOME5_GPIO_Port, DOME5_Pin )== 0 ))
+	{
+		btnStat[4] = 1;	//	Down
+	}
+
+	if(( HAL_GPIO_ReadPin( DOME6_GPIO_Port, DOME6_Pin )== 0 ))
+	{
+		btnStat[5] = 1;	//	Vol
+	}
+
+	if(( HAL_GPIO_ReadPin( PTT_KEY_GPIO_Port, PTT_KEY_Pin )== 0 ))
+	{
+		btnStat[6] = 1;
+	}
+
+	if(( HAL_GPIO_ReadPin( SOS_KEY_GPIO_Port, SOS_KEY_Pin )== 0 ))
+	{
+		btnStat[7] = 1;
+	}
+
+
+		//	Pull-Down ( Active High )
 	btnStat[8] = ( HAL_GPIO_ReadPin( ON_OFF_KEY_GPIO_Port, ON_OFF_KEY_Pin ) );
+
+
 }
 
 #include <string.h>		//	memcmp()
@@ -70,7 +118,7 @@ void LoopProcKey ( uint32_t tickCurr )
 {
 	//========================================================================
 	static uint32_t tickBase = 0;
-	int 	btnStat[9];
+	uint8_t 	btnStat[9];
 
 	//    if( ( HAL_GetTick() - tickBase ) >= 1000 )
 	if ( ( tickCurr - tickBase ) >= 100 )
@@ -93,15 +141,43 @@ void LoopProcKey ( uint32_t tickCurr )
 //			for( i = 0; i < 9; i++ ) printf("%d ", btnStat[i]);
 //			printf("\n");
 
-			if ( s_btnStat[0] != btnStat[0] )	KeyMenu		( btnStat[0] );	//	DOME1
-			if ( s_btnStat[1] != btnStat[1] )	KeyUp		( btnStat[1] );	//	DOME2
-			if ( s_btnStat[2] != btnStat[2] )	KeyOK		( btnStat[2] );	//	DOME3
-			if ( s_btnStat[3] != btnStat[3] )	KeyLight	( btnStat[3] );	//	DOME4
-			if ( s_btnStat[4] != btnStat[4] )	KeyDown		( btnStat[4] );	//	DOME5
-			if ( s_btnStat[5] != btnStat[5] )	KeyVol		( btnStat[5] );	//	DOME6
-			if ( s_btnStat[6] != btnStat[6] )	KeyPtt		( btnStat[6] );	//	PTT
-			if ( s_btnStat[7] != btnStat[7] )	KeySos		( btnStat[7] );	//	SOS
-			if ( s_btnStat[8] != btnStat[8] )	KeyPwrOnOff	( btnStat[8] );	//	ON/OFF
+			if ( s_btnStat[0] != btnStat[0] )
+			{
+				KeyMenu		( btnStat[0] );	//	DOME1
+			}
+			if ( s_btnStat[1] != btnStat[1] )
+			{
+				KeyUp		( btnStat[1] );	//	DOME2
+			}
+			if ( s_btnStat[2] != btnStat[2] )
+			{
+				KeyOK		( btnStat[2] );	//	DOME3
+			}
+			if ( s_btnStat[3] != btnStat[3] )
+			{
+				KeyLight	( btnStat[3] );	//	DOME4
+			}
+			if ( s_btnStat[4] != btnStat[4] )
+			{
+				KeyDown		( btnStat[4] );	//	DOME5
+			}
+			if ( s_btnStat[5] != btnStat[5] )
+			{
+				KeyVol		( btnStat[5] );	//	DOME6
+
+			}
+			if ( s_btnStat[6] != btnStat[6] )
+			{
+				KeyPtt		( btnStat[6] );	//	PTT
+			}
+			if ( s_btnStat[7] != btnStat[7] )
+			{
+				KeySos		( btnStat[7] );	//	SOS
+			}
+			if ( s_btnStat[8] != btnStat[8] )
+			{
+				KeyPwrOnOff	( btnStat[8] );	//	ON/OFF
+			}
 
 			//	값 저장.
 			memcpy( s_btnStat, btnStat, sizeof( btnStat ) );
@@ -116,11 +192,11 @@ void LoopProcKey ( uint32_t tickCurr )
 
 	static uint32_t tickBase2 = 0;
 
-	if ( ( tickCurr - tickBase2 ) >= 1000 && IsMenuMaint() == 0 )
+	if ( ( tickCurr - tickBase2 ) >= (1000 & IsMenuMaint()) )
 	{
 		//	Period : 1 sec
-		static int s_cntKeyOkMenu = 0;
-		if ( s_btnStat[eKeyOk] && s_btnStat[eKeyMenu] )
+		static uint8_t s_cntKeyOkMenu = 0;
+		if ( (s_btnStat[eKeyOk] != 0) && (s_btnStat[eKeyMenu] != 0) )
 		{
 			s_cntKeyOkMenu++;
 		}
@@ -131,7 +207,7 @@ void LoopProcKey ( uint32_t tickCurr )
 
 		if ( s_cntKeyOkMenu > 3 )	//	3초 이상 누를 경우.
 		{
-			EnableMenuMaint( 1 );
+			EnableMenuMaint((uint8_t) 1 );
 		}
 
 		tickBase2 = tickCurr;
@@ -152,14 +228,14 @@ void LoopProcKey ( uint32_t tickCurr )
 //========================================================================
 
 //========================================================================
-void KeyMenu( int bValue )
+void KeyMenu( uint8_t bValue )
 //========================================================================
 {
 	//========================================================================
 	//	bValue : 0(Up) / 1(Down)
 	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
 
-	if ( bValue )
+	if ( bValue != 0 )
 	{
 //		LCDMenu();
 		ProcBtnMenu();
@@ -167,14 +243,14 @@ void KeyMenu( int bValue )
 }
 
 //========================================================================
-void KeyOK( int bValue )
+void KeyOK( uint8_t bValue )
 //========================================================================
 {
 	//========================================================================
 	//	bValue : 0(Up) / 1(Down)
 	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
 
-	if ( bValue )
+	if ( bValue != 0)
 	{
 		ProcBtnOK();
 	}
@@ -182,7 +258,7 @@ void KeyOK( int bValue )
 
 
 //========================================================================
-void KeyLight( int bValue )
+void KeyLight( uint8_t bValue )
 //========================================================================
 {
 	//========================================================================
@@ -191,11 +267,11 @@ void KeyLight( int bValue )
 
 	//========================================================================
 	//	Light On/Off Toggle
-	static int bOnOff = 0;
+	static uint8_t bOnOff = 0;
 
 	//========================================================================
 	//	GPIO제어.
-	if ( bValue )
+	if ( bValue != 0 )
 	{
 		if ( bOnOff == 0 )
 		{
@@ -217,42 +293,42 @@ void KeyLight( int bValue )
 }
 
 //========================================================================
-void KeyUp( int bValue )
+void KeyUp( uint8_t bValue )
 //========================================================================
 {
 	//========================================================================
 	//	bValue : 0(Up) / 1(Down)
 	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
 
-	if( bValue )
+	if( bValue != 0)
 	{
 		ProcBtnUp();
 	}
 }
 
 //========================================================================
-void KeyDown( int bValue )
+void KeyDown( uint8_t bValue )
 //========================================================================
 {
 	//========================================================================
 	//	bValue : 0(Up) / 1(Down)
 	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
 
-	if( bValue )
+	if( bValue != 0)
 	{
 		ProcBtnDown();
 	}
 }
 
 //========================================================================
-void KeyVol( int bValue )
+void KeyVol( uint8_t bValue )
 //========================================================================
 {
 	//========================================================================
 	//	bValue : 0(Up) / 1(Down)
 	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
 
-	if( bValue )
+	if( bValue != 0 )
 	{
 
 		g_nSpkLevel = ( g_nSpkLevel + 1 ) % 4;  //  0, 1, 2, 3
@@ -261,13 +337,13 @@ void KeyVol( int bValue )
 		SetSpkVol( g_nSpkLevel );
 		//========================================================================
 
-		if ( g_nSpkLevel )
+		if ( g_nSpkLevel != 0 )
 		{
 			//	RFM SPK On
 //				HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
 			//	RFM SPK Off
 //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
-			RFM_Spk(0);
+			RFM_Spk((uint8_t)0);
 
 			LCDSpeaker( g_nSpkLevel );
 		}
@@ -275,9 +351,9 @@ void KeyVol( int bValue )
 		{
 			//	RFM SPK Off
 //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
-			RFM_Spk(0);
+			RFM_Spk((uint8_t)0);
 
-			LCDSpeaker( 0 );
+			LCDSpeaker( (uint8_t)0 );
 		}
 	}
 }
@@ -288,7 +364,7 @@ void KeyVol( int bValue )
 
 
 //========================================================================
-void KeyPtt( int bValue )
+void KeyPtt( uint8_t bValue )
 //========================================================================
 {
 	//========================================================================
@@ -307,17 +383,12 @@ void KeyPtt( int bValue )
 
 	//	송신기 -> 수신기	:	방송
 
-	if ( bValue )
+	if ( bValue != 0)
 	{
 #if defined(USE_CH_ISO_DEV)
 		SetChPA( GetChNearRFM() );		//	가장 가까운 수신기 설정.
 
-		SetChPARFT( GetChNearRFT( 190 ) );	//	가까운 송신기 설정.
-#endif
-
-#if defined( USE_AUDIO_ADPCM )	//	ADPCM 사용. - 1/4 압축
-		ADPCM_ClearEncodeBuf();			//	인코딩 버퍼 Clear
-		qBufClear( &g_qBufAudioTx );	//	Tx Buffer Clear
+		SetChPARFT( GetChNearRFT() );	//	가까운 송신기 설정.
 #endif
 
 		LCDSetCursor( 20, 13 );
@@ -325,8 +396,8 @@ void KeyPtt( int bValue )
 		if ( IsMenuMaint() )
 		{
 			//	Maint Mode : 송신채널 표시.
-			char sBuf[20];
-			sprintf( sBuf, "방송중(%d/%d)", GetCh2Car(GetChPA()), GetChPA() );	//	Channel -> Car
+			S8 sBuf[20];
+			sprintf( sBuf, "방송중...(%d)", GetChPA() );
 			LCDPrintf( sBuf );
 		}
 		else
@@ -334,13 +405,13 @@ void KeyPtt( int bValue )
 			LCDPrintf( "방송중..." );
 		}
 
-		SetRFMMode( RFMModeTx );
+		SetRFMMode( (uint8_t)RFMModeTx );
 
 		//  Green LED On
 		HAL_GPIO_WritePin ( LED_ON_A_GPIO_Port, LED_ON_A_Pin, GPIO_PIN_SET ); //  Green LED
 
 		//	방송 - 시작
-		SendPA( 1 );		//	SendRF - Send PA ( 송신기 -> 수신기 )
+		SendPA((uint8_t) 1 );		//	SendRF - Send PA ( 송신기 -> 수신기 )
 	}
 	else
 	{
@@ -348,25 +419,25 @@ void KeyPtt( int bValue )
 		//  편성 : XXX
 		UpdateLCDMain();
 
-		SetRFMMode( RFMModeNormal );
+		SetRFMMode( (uint8_t)RFMModeNormal );
 
 #if defined(USE_CH_ISO_DEV)
 		SetChPA( GetChNearRFM() );		//	가장 가까운 수신기 설정.
 
-		SetChPARFT( GetChNearRFT( 190 ) );	//	가까운 송신기 설정.
+		SetChPARFT( GetChNearRFT() );	//	가까운 송신기 설정.
 #endif
 
 		//  Green LED Off
 		HAL_GPIO_WritePin ( LED_ON_A_GPIO_Port, LED_ON_A_Pin, GPIO_PIN_RESET ); //  Green LED
 
 		//	방송 - 종료
-		SendPA( 0 );		//	SendRF - Send PA ( 송신기 -> 수신기 )
+		SendPA((uint8_t) 0 );		//	SendRF - Send PA ( 송신기 -> 수신기 )
 	}
 }
 
 
 //========================================================================
-void KeySos( int bValue )
+void KeySos( uint8_t bValue )
 //========================================================================
 {
 	//	bValue : 0(Up) / 1(Down)
@@ -374,42 +445,27 @@ void KeySos( int bValue )
 
 	//	송신기 -> 송신기	:	통화
 
-	if ( bValue )
+	if ( bValue != 0 )
 	{
 #if defined(USE_CH_ISO_DEV)
-		SetChPARFT( GetChNearRFT( 190 ) );	//	가까운 송신기 설정.
+		SetChPARFT( GetChNearRFT() );	//	가까운 송신기 설정.
 
 		SetChPA( GetChNearRFM() );		//	가장 가까운 수신기 설정.
 #endif
 
-#if defined( USE_AUDIO_ADPCM )	//	ADPCM 사용. - 1/4 압축
-		ADPCM_ClearEncodeBuf();			//	인코딩 버퍼 Clear
-		qBufClear( &g_qBufAudioTx );	//	Tx Buffer Clear
-#endif
-
 		//	송신중
 		LCDSetCursor( 20, 13 );
-		if ( IsMenuMaint() )
-		{
-			//	Maint Mode : 송신채널 표시.
-			char sBuf[20];
-			sprintf( sBuf, "통화중(%d/%d)", GetCh2Car(GetChPA()), GetChPA() );	//	Channel -> Car
-			LCDPrintf( sBuf );
-		}
-		else
-		{
-			LCDPrintf( "통화중..." );
-		}
+		LCDPrintf( "통화중..." );
 
-		SetRFMMode( RFMModeTx );
+		SetRFMMode((uint8_t) RFMModeTx );
 
 		//	통화 - 시작
-		SendCall( CtrlStart );		//	SendRF - Send Call ( 송신기 -> 송신기 )
+		SendCall((uint8_t) CtrlStart );		//	SendRF - Send Call ( 송신기 -> 송신기 )
 	}
 	else
 	{
 #if defined(USE_CH_ISO_DEV)
-		SetChPARFT( GetChNearRFT( 190 ) );	//	가까운 송신기 설정.
+		SetChPARFT( GetChNearRFT() );	//	가까운 송신기 설정.
 
 		SetChPA( GetChNearRFM() );		//	가장 가까운 수신기 설정.
 #endif
@@ -419,10 +475,10 @@ void KeySos( int bValue )
 //		LCDSetCursor( 20, 13 );
 //		LCDPrintf( "편성 : 100" );
 
-		SetRFMMode( RFMModeNormal );
+		SetRFMMode( (uint8_t)RFMModeNormal );
 
 		//	통화 - 종료
-		SendCall( CtrlStop );		//	SendRF - Send Call ( 송신기 -> 송신기 )
+		SendCall( (uint8_t)CtrlStop );		//	SendRF - Send Call ( 송신기 -> 송신기 )
 	}
 }
 
@@ -432,21 +488,21 @@ void KeySos( int bValue )
 //========================================================================
 
 //========================================================================
-void	KeyPwrOnOff		( int bValue )
+void	KeyPwrOnOff		( uint8_t bValue )
 //========================================================================
 {
 	//	bValue : 0(Up) / 1(Down)
 	printf( "%s(%d) - %d\n", __func__, __LINE__, bValue );
 
-	static int bPowerOn = 0;
+	static uint8_t bPowerOn = 0;
 
-	if ( bValue )
+	if ( bValue != 0)
 	{
 		bPowerOn = 1;
 	}
 	else
 	{
-		if( bPowerOn )
+		if( bPowerOn != 0)
 		{
 			//========================================================================
 			//	Power Off
@@ -465,7 +521,7 @@ void	KeyPwrOnOff		( int bValue )
 //========================================================================
 
 
-void	KeyTestLoopback( int bValue )
+void	KeyTestLoopback( uint8_t bValue )
 {
 
 #if 1
@@ -473,7 +529,7 @@ void	KeyTestLoopback( int bValue )
 	//	Speex Loopback Test
 	//	Audio Loopback Proc
 
-	if ( bValue )
+	if ( bValue != 0 )
 	{
 		//	송신중
 		LCDSetCursor( 10, 13 );

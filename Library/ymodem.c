@@ -585,8 +585,8 @@ COM_StatusTypeDef Ymodem_Receive ( uint32_t *p_size )
                         //  External Flash Erase Timing 최대 10초.
                         //     bootloader> [0x43][0x43][0x01]extern flash 0x00020000 erase
                         //      Flash Erase Time[10375]
-                        if ( 15000 < ( tickEnd - tickStart ) )   HAL_Delay( 2000 );
-                        else HAL_Delay( 15000 - ( tickEnd - tickStart ) );
+                        if ( 15000 < ( tickEnd - tickStart ) )   HAL_Delay( (uint32_t)2000 );
+                        else HAL_Delay( (uint32_t)(15000 - ( tickEnd - tickStart )) );
                     }
                     //===========================================================================
 
@@ -749,7 +749,7 @@ COM_StatusTypeDef Ymodem_Transmit (uint8_t *p_buf, const uint8_t *p_file_name, u
       {
         if ((HAL_UART_Receive(&huart2, &a_rx_ctrl[0], 1, NAK_TIMEOUT) == HAL_OK) && (a_rx_ctrl[0] == CA))
         {
-          HAL_Delay( 2 );
+          HAL_Delay( (uint32_t)2 );
           __HAL_UART_FLUSH_DRREGISTER(&huart2);
           result = COM_ABORT;
         }
@@ -857,7 +857,7 @@ COM_StatusTypeDef Ymodem_Transmit (uint8_t *p_buf, const uint8_t *p_file_name, u
       {
         if ((HAL_UART_Receive(&huart2, &a_rx_ctrl[0], 1, NAK_TIMEOUT) == HAL_OK) && (a_rx_ctrl[0] == CA))
         {
-          HAL_Delay( 2 );
+          HAL_Delay( (uint32_t)2 );
           __HAL_UART_FLUSH_DRREGISTER(&huart2);
           result = COM_ABORT;
         }
@@ -907,7 +907,7 @@ COM_StatusTypeDef Ymodem_Transmit (uint8_t *p_buf, const uint8_t *p_file_name, u
     {
       if (a_rx_ctrl[0] == CA)
       {
-          HAL_Delay( 2 );
+          HAL_Delay( (uint32_t)2 );
           __HAL_UART_FLUSH_DRREGISTER(&huart2);
           result = COM_ABORT;
       }

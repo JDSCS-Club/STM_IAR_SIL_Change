@@ -192,9 +192,6 @@ enum ePktID
 
 	PktDevConn		=	0x19,		//	장치 노드 연결. ( Device Node Connection )
 
-	PktRouteReq		=	0x31,		//	Route Req
-	PktRouteRsp		=	0x32,		//	Route Rsp
-
 	//==========================================================================
 	//	Command
 	PktCmd			=	0x20,		//	Command ( nIDFlag(0) / nSeq(0) )
@@ -230,18 +227,17 @@ enum eChannel
 
 	ChResv			=	5,			//	* CH3 ~ 7 : Reserved
 
-	ChGap			=	4,			//	호차별 채널 간격. ( 4 - 1 Mhz )
+	ChTx_1			=	8,			//	* CH8 : 송신기#1 - (Car No : 11)
+	ChTx_2			=	9,			//	* CH9 : 송신기#2 - (Car No : 12)
 
-	_ChTx_1			=	8,					//	* CH8 : 송신기#1 - (Car No : 11) - 915 + 0.25 * 8
-	_ChTx_2			=	(_ChTx_1+ChGap),	//	* CH9 : 송신기#2 - (Car No : 12)
-
-//DEL	ChRFT			=	10,			//	* 송신기 - 917.5 MHz
+	ChRFT			=	10,			//	* 송신기 - 917.5 MHz
 
 //	ChTS1_1
-	ChTS_base		=	11,			//	* CH11 : 수신기 Base 채널.
+	ChTS_base		=	11,			//	* CH11 : 1편성 ( 1호차 )
 
-	_ChTS1_1			=	21,			//	* CH11 : 1편성 ( 1호차 ) - Offset ( + 10 )
+	ChTS1_1			=	21,			//	* CH11 : 1편성 ( 1호차 ) - Offset ( + 10 )
 	
+	ChGap			=	4,			//	호차별 채널 간격.
 
 //	ChTS1_1			=	11,			//	* CH11 : 1편성 ( 1호차 )
 	// ChTS1_2			=	12,			//	* CH12 : 1편성 ( 2호차 )
@@ -252,14 +248,7 @@ enum eChannel
 
 	// ChTS2_1			=	21,			//	* CH21 : 2편성 ( 1호차 )
 	// ChTS2_2			=	22,			//	* CH22 : 2편성 ( 2호차 )
-	ChMax			=	64,			//	Total 64 채널.
 };
-
-//==========================================================================
-extern int ChTx_1;					//	* CH8 : 송신기#1 - (Car No : 11) - 915 + 0.25 * 8
-extern int ChTx_2;					//	* CH9 : 송신기#2 - (Car No : 12)
-extern int ChTS1_1;					//	1호차 수신기 채널
-//==========================================================================
 
 //==========================================================================
 //	Device Status
@@ -302,10 +291,10 @@ typedef struct _RFMPktHdr
 		HdrID1	=	0x0,		//	4 Byte Header
 //		HdrID2	=	0x1,		//
 	};
-	uint16_t	nIDFlag:14;		//	[13:0] Device ID Flag		( 0(Stat) : Hopping X )
-	uint16_t	bHdrID:2;		//	[15:14] 00 : Hdr#1 / 01 : Hdr#2
-	uint8_t		nSeq;			//	Hdr#1 : Pkt Sequence Number ( 0(Stat) : Hopping X / 1 ~ 255 : Hopping)
-	uint8_t		nPktCmd;		//	Command에 따라 Data Length 구분.
+	U16	nIDFlag:14;		//	[13:0] Device ID Flag		( 0(Stat) : Hopping X )
+	S16	bHdrID:2;		//	[15:14] 00 : Hdr#1 / 01 : Hdr#2
+	U8		nSeq;			//	Hdr#1 : Pkt Sequence Number ( 0(Stat) : Hopping X / 1 ~ 255 : Hopping)
+	U8		nPktCmd;		//	Command에 따라 Data Length 구분.
 } RFMPktHdr;
 
 //#define		RFPktExHdrLen		8
@@ -320,13 +309,13 @@ typedef struct _RFMPktHdr2
 //		HdrID1	=	0x0,		//	4 Byte Header
 		HdrID2	=	0x1,		//	채널 분리.
 	};
-	uint8_t		nTS:6;			//	[5:0] TrainSet
-	uint8_t		bHdrID:2;		//	[7:6] 00 : Hdr#1 / 01 : Hdr#2
-	uint8_t		nSrcCh:6;		//	Source Channel ( 0 ~ 63 )
-	uint8_t		bRFT1:1;		//	송신기#1 전송 Flag
-	uint8_t		bRFT2:1;		//	송신기#2 전송 Flag
-	uint8_t		nSeq;		//	Spare
-	uint8_t		nPktCmd;		//	Command에 따라 Data Length 구분.
+	U16		nTS:6;			//	[5:0] TrainSet
+	U16		bHdrID:2;		//	[7:6] 00 : Hdr#1 / 01 : Hdr#2
+	U16		nSrcCh:6;		//	Source Channel ( 0 ~ 64 )
+	U16		bRFT1:1;		//	송신기#1 전송 Flag
+	U16		bRFT2:1;		//	송신기#2 전송 Flag
+	U16		nSpare3;		//	Spare
+	U16		nPktCmd;		//	Command에 따라 Data Length 구분.
 } RFMPktHdr2;
 
 #endif	//	defined(USE_CH_ISO_DEV)		//	장치별 채널분리.
@@ -355,17 +344,11 @@ typedef struct _RFMPktStatReq
 	//	상태정보 요청.
 	//--------------------------------------------------------------------------
 	//	TEXT 0
-	uint8_t		nSrcCh;			//	0	Source Channel
-	uint8_t		nSpare1[3];		//	1	Spare
+	uint8_t		nSrcCh;			//	Source Channel
+	uint8_t		nSpare1[3];		//	Spare
 
-	uint8_t		nTrainNo;		//	4	편성번호.
-	uint8_t		nCarNo;			//	5	열차번호.
-	uint8_t		nSpare6[2];		//	6	Spare
-
-#if defined(USE_ROUTE_NEAREST_RFM)
-	uint8_t		nNearCh;		//	8	가장가까운 송/수신기 채널.
-	uint8_t		nSpare9[3];		//	9	Spare
-#endif	//	defined(USE_ROUTE_NEAREST_RFM)
+	uint8_t		nTrainNo;		//	편성번호.
+	uint8_t		nCarNo;			//	열차번호.
 
 } RFMPktStatReq;
 
@@ -402,7 +385,7 @@ typedef struct _RFMPktStat
 	//	TEXT 20
 	uint16_t	rspID;			//	응답 ID
 	uint8_t		nManHop;		//	Manual Hopping 설정. ( 0:Default / 1:On / 2: Off )
-	uint8_t		nRFMode;		//	RF Mode ( 1: One-to-One / 2: MODE_CH_GRP )
+	uint8_t		nSpare23[1];	//	Spare
 	//--------------------------------------------------------------------------
 	//	TEXT 24
 	uint8_t		nDevFlag;		//	Device Flag ( DevFlagLight )
@@ -416,41 +399,9 @@ typedef struct _RFMDevStat
 {
 	//--------------------------------------------------------------------------
 	RFMPktStat	stat;
-	int			stampRx;		//	상태정보 수신 Timestamp
-	int			nRSSI;			//	RSSI 값.
-	int			nNearCh;		//	송신기 입장에서 가까운 수신기(RFM)채널.
+	uint8_t			stampRx;	//	상태정보 수신 Timestamp
+	uint8_t			nRSSI;		//	RSSI 값.
 } RFMDevStat;
-
-
-//==========================================================================
-//	RFM Packet - Route Request / Response
-typedef struct _RFMPktRoute
-{
-	//--------------------------------------------------------------------------
-	//	Route 정보 요청/응답
-	//		1. 인접한 호차에 Route 요청. ( 2회 Retry )
-	//		2. 응답없을시 그다음 인접한 호차에 Route요청.
-	//--------------------------------------------------------------------------
-
-	//	TEXT 0
-	uint8_t		nSrcCh;			//	Source Channel
-	uint8_t		nSrcDev;		//	Source Device ( DevRF900M / DevRF900T )
-	uint8_t		nSpare1[3];		//	Spare
-
-	uint8_t		nTrainNo;		//	편성번호.
-	uint8_t		nCarNo;			//	열차번호.
-
-} RFMPktRoute;
-
-//==========================================================================
-//	RFM Packet - Route Data
-typedef struct _RFMDevRoute
-{
-	//--------------------------------------------------------------------------
-	RFMPktRoute	stat;
-	int			stampRx;	//	상태정보 수신 Timestamp
-	int			nRSSI;		//	RSSI 값.
-} RFMDevRoute;
 
 
 //==========================================================================
@@ -491,7 +442,7 @@ typedef struct _RFMPktCmd
 	int8_t		nRSSIOver;		//	0 	| RSSI값 확인 후 해당 범위 내에 있는 경우 명령 동작.
 	int8_t		nRsp;			//	1	| 0:None / 1:처리결과 송신.
 	int8_t		nSpare[2];		//	2	| Spare
-	char		sCmd[50];		//	10	| CLI String Command
+	S8		sCmd[50];		//	10	| CLI String Command
 } RFMPktCmd;
 
 //==========================================================================
@@ -515,7 +466,7 @@ typedef struct _RFMPktUpgr
 	uint8_t		nSize;			//	8	| Data Size ( 0 ~ 50 )
 //	int8_t		nSpare;			//	9	| Spare
 	uint8_t		bFlag;			//	9	| Retry ( 1 - Retry )
-	char		data[PktUpgrDataSize];	//	48];		//	10	| Binary Data
+	S8		data[PktUpgrDataSize];	//	48];		//	10	| Binary Data
 #if ( 50 - PktUpgrDataSize )
 	uint8_t		nSpare2[ 50 - PktUpgrDataSize ];	//	| Spare
 #endif
@@ -601,9 +552,6 @@ typedef struct _RFMPkt
 		RFMPktDevConn		devConn;				//	Device Node Connection
 		RFMPktUpgr			upgr;					//	Upgrade Binary Data
 		RFMPktUpgrStat		upgrStat;				//	Upgrade Status
-
-		RFMPktRoute			routeReq;				//	Route Req
-		RFMPktRoute			routeRsp;				//	Route Rsp
 	} dat;
 
 	//	Tail : Src Channel ( 1 Byte )
@@ -646,73 +594,62 @@ extern "C" {
 
 //==========================================================================
 
-void	SetStatus			( int nStat );
-int		GetStatus			( void );
+void	SetStatus			( uint8_t nStat );
+uint8_t		GetStatus			( void );
 
-void	_MakePktHdr			( RFMPkt *pPkt, int addrSrc, int addrDest, int nLen, int nPktCmd );
+void	_MakePktHdr			( RFMPkt *pPkt, uint8_t addrSrc, uint8_t addrDest, uint8_t nLen, uint8_t nPktCmd );
 
 #if defined(USE_CH_ISO_DEV)		//	장치별 채널분리.
-void	_MakePktHdr2		( RFMPkt *pPkt, int nPktCmd );
+void	_MakePktHdr2		( RFMPkt *pPkt, uint8_t nPktCmd );
 #endif	//	defined(USE_CH_ISO_DEV)		//	장치별 채널분리.
+
+
+void _MakeRFCmd( RFMPkt	*pPkt, S8 *sCmd, uint8_t nRSSI );
+
+
+
 
 //==========================================================================
 
-void 	SendStatReq			( int nDestCh );
-void	SendStat			( int nDestCh );
+void	SendStat			( uint8_t nDestCh );
+void 	SendStatReq			( uint8_t nDestCh );
 
-void 	SendRouteReq		( int nDestCh );
-void 	SendRouteRsp		( int nDestCh );
+void	SendPA				( uint8_t nStartStop );
+void	SendCall			( uint8_t nStartStop );
+void 	SendOCCPA			( uint8_t nStartStop );
 
-
-void	SendPA				( int nStartStop );
-void	SendCall			( int nStartStop );
-void 	SendOCCPA			( int nStartStop );
-
-void	SendLight			( int nOnOff );
+void	SendLight			( uint8_t nOnOff );
 void	SendLightOn			( void );		//	조명제어 조명 On
 void	SendLightOff		( void );		//	조명제어 조명 Off
 
-void	SendRFCmd			( char *sCmd, int nRSSI );	//	원격 Command 명령 전송.
+void	SendRFCmd			( char *sCmd, uint8_t nRSSI );	//	원격 Command 명령 전송.
 void	SendRFCmdReset		( void );		//	Reset 명령 전송.
 void	SendRFCmdDFUMode	( void );		//	DFU Mode 명령 전송.
+void	SendRFCmdUpgrade	( uint16_t bRetry );		//	Upgrade 명령 전송.
 
-void 	SendRFCmdCar		( int nCar );
-void 	SendRFCmdTS			( int nIdx );
-void 	SendRFCmdRFMode		( int nRFMode );
-
-void	SendRFCmdUpgrade	( int bRetry );		//	Upgrade 명령 전송.
-
-void	SendUpgrData		( uint32_t nAddrTarget, int nPktTot, int nPktIdx, uint8_t *sBuf, int nSize );	//	Send Upgrade Data
-void	SendUpgrStat		( int nUpgrResult );	//	Send Upgrade Data
+void	SendUpgrData		( uint32_t nAddrTarget, uint16_t nPktTot, uint16_t nPktIdx, uint8_t *sBuf, uint8_t nSize );	//	Send Upgrade Data
+void	SendUpgrStat		( uint8_t nUpgrResult );	//	Send Upgrade Data
 
 //==========================================================================
 
-int		ProcPktStatReq		( const RFMPkt *pRFPkt );
-int		ProcPktStat			( const RFMPkt *pRFPkt );
+uint8_t		ProcPktStat			( const RFMPkt *pRFPkt );
+uint8_t		ProcPktStatReq		( const RFMPkt *pRFPkt );
 
-int		ProcPktRouteReq		( const RFMPkt *pRFPkt );
-int		ProcPktRouteRsp		( const RFMPkt *pRFPkt );
+uint8_t		ProcPktPA			( const RFMPkt *pRFPkt );
+uint8_t		ProcPktCall			( const RFMPkt *pRFPkt );
+uint8_t		ProcPktOccPa		( const RFMPkt *pRFPkt );
 
-int		ProcPktPA			( const RFMPkt *pRFPkt );
-int		ProcPktCall			( const RFMPkt *pRFPkt );
-int		ProcPktOccPa		( const RFMPkt *pRFPkt );
+uint8_t		ProcPktCtrlPaCall	( const RFMPkt *pRFPkt );
+uint8_t		ProcPktDevConn		( const RFMPkt *pRFPkt );
+uint8_t		ProcPktLight		( const RFMPkt *pRFPkt );
 
-int		ProcPktCtrlPaCall	( const RFMPkt *pRFPkt );
-int		ProcPktDevConn		( const RFMPkt *pRFPkt );
-int		ProcPktLight		( const RFMPkt *pRFPkt );
-
-int		ProcPktCmd			( const RFMPkt *pRFPkt );
-int		ProcPktCmdRsp		( const RFMPkt *pRFPkt );
-int		ProcPktUpgr			( const RFMPkt *pRFPkt );
-int		ProcPktUpgrStat		( const RFMPkt *pRFPkt );
+uint8_t		ProcPktCmd			( const RFMPkt *pRFPkt );
+uint8_t		ProcPktCmdRsp		( const RFMPkt *pRFPkt );
+uint8_t		ProcPktUpgr			( const RFMPkt *pRFPkt );
+uint8_t		ProcPktUpgrStat		( const RFMPkt *pRFPkt );
 
 
-extern int m_lightReSendCnt;
-extern int m_lightTxSentCnt;
-extern int m_RouteReq_OK;
-extern int m_light_Val;
-
-extern int m_RouteRunFlag;
+void SendRFCmdCh( uint8_t nCh, char *sCmd, uint8_t nRSSI );
 
 //==========================================================================
 #ifdef __cplusplus

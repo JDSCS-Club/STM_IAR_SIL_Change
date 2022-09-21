@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  23:37:23
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:25
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                 =  thumb
@@ -90,25 +90,15 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\audio.c
      34          #endif
      35          //=============================================================================
      36          
-     37          #include <stdio.h>			//	printf()
-     38          
-     39          #include <stdint.h>			//	uint32_t
-     40          
-     41          #include <string.h>			//	memset()
-     42          
-     43          #include "typedef.h"		//	ip_addr
-
-  typedef unsigned char       BYTE;
-                              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",73  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-
-  typedef unsigned short      WORD;
-                              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",77  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-     44          
-     45          #include "main.h"
+     37          
+     38          #include <stdio.h>			//	printf()
+     39          
+     40          #include <stdint.h>			//	uint32_t
+     41          
+     42          #include <string.h>			//	memset()
+     43          
+     44          #include "typedef.h"			//	uint32_t, ...
+     45          #include "compiler_defs.h"		//	U8,
 
   # warning unrecognized compiler
     ^
@@ -144,102 +134,114 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\audio.c
                       ^
 "C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",794  Warning[Pe301]: 
           typedef name has already been declared (with same type)
-
-  typedef bit BIT;
-              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\compiler_defs.h",820  Warning[Pe301]: 
-          typedef name has already been declared (with same type)
      46          
-     47          #include "audio.h"
-
-  	};
-  	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",304  Warning[Pe040]: 
-          expected an identifier
-
-  	};
-  	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",322  Warning[Pe040]: 
-          expected an identifier
-
-  	};
-  	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",468  Warning[Pe040]: 
-          expected an identifier
-
-  	};
-  	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",506  Warning[Pe040]: 
-          expected an identifier
-
-  	};
-  	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",511  Warning[Pe040]: 
-          expected an identifier
-
-  	};
-  	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",533  Warning[Pe040]: 
-          expected an identifier
-
-  	};
-  	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",559  Warning[Pe040]: 
-          expected an identifier
-
-  	};
-  	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",567  Warning[Pe040]: 
-          expected an identifier
+     47          
      48          
-     49          #define FRAME_SIZE 160
+     49          #include "main.h"
      50          
-     51          //========================================================================
-     52          // Define
-     53          
-     54          #if 0
-     55          uint16_t sine_table[256] = {
-     56          
-     57             0x0000, 0x0324, 0x0647, 0x096a, 0x0c8b, 0x0fab, 0x12c8, 0x15e2,
-     58             0x18f8, 0x1c0b, 0x1f19, 0x2223, 0x2528, 0x2826, 0x2b1f, 0x2e11,
-     59             0x30fb, 0x33de, 0x36ba, 0x398c, 0x3c56, 0x3f17, 0x41ce, 0x447a,
-     60             0x471c, 0x49b4, 0x4c3f, 0x4ebf, 0x5133, 0x539b, 0x55f5, 0x5842,
-     61             0x5a82, 0x5cb4, 0x5ed7, 0x60ec, 0x62f2, 0x64e8, 0x66cf, 0x68a6,
-     62             0x6a6d, 0x6c24, 0x6dca, 0x6f5f, 0x70e2, 0x7255, 0x73b5, 0x7504,
-     63             0x7641, 0x776c, 0x7884, 0x798a, 0x7a7d, 0x7b5d, 0x7c29, 0x7ce3,
-     64             0x7d8a, 0x7e1d, 0x7e9d, 0x7f09, 0x7f62, 0x7fa7, 0x7fd8, 0x7ff6,
-     65             0x7fff, 0x7ff6, 0x7fd8, 0x7fa7, 0x7f62, 0x7f09, 0x7e9d, 0x7e1d,
-     66             0x7d8a, 0x7ce3, 0x7c29, 0x7b5d, 0x7a7d, 0x798a, 0x7884, 0x776c,
-     67             0x7641, 0x7504, 0x73b5, 0x7255, 0x70e2, 0x6f5f, 0x6dca, 0x6c24,
-     68             0x6a6d, 0x68a6, 0x66cf, 0x64e8, 0x62f2, 0x60ec, 0x5ed7, 0x5cb4,
-     69             0x5a82, 0x5842, 0x55f5, 0x539b, 0x5133, 0x4ebf, 0x4c3f, 0x49b4,
-     70             0x471c, 0x447a, 0x41ce, 0x3f17, 0x3c56, 0x398c, 0x36ba, 0x33de,
-     71             0x30fb, 0x2e11, 0x2b1f, 0x2826, 0x2528, 0x2223, 0x1f19, 0x1c0b,
-     72             0x18f8, 0x15e2, 0x12c8, 0x0fab, 0x0c8b, 0x096a, 0x0647, 0x0324,
-     73             0x0000, 0xfcdc, 0xf9b9, 0xf696, 0xf375, 0xf055, 0xed38, 0xea1e,
-     74             0xe708, 0xe3f5, 0xe0e7, 0xdddd, 0xdad8, 0xd7da, 0xd4e1, 0xd1ef,
-     75             0xcf05, 0xcc22, 0xc946, 0xc674, 0xc3aa, 0xc0e9, 0xbe32, 0xbb86,
-     76             0xb8e4, 0xb64c, 0xb3c1, 0xb141, 0xaecd, 0xac65, 0xaa0b, 0xa7be,
-     77             0xa57e, 0xa34c, 0xa129, 0x9f14, 0x9d0e, 0x9b18, 0x9931, 0x975a,
-     78             0x9593, 0x93dc, 0x9236, 0x90a1, 0x8f1e, 0x8dab, 0x8c4b, 0x8afc,
-     79             0x89bf, 0x8894, 0x877c, 0x8676, 0x8583, 0x84a3, 0x83d7, 0x831d,
-     80             0x8276, 0x81e3, 0x8163, 0x80f7, 0x809e, 0x8059, 0x8028, 0x800a,
-     81             0x8000, 0x800a, 0x8028, 0x8059, 0x809e, 0x80f7, 0x8163, 0x81e3,
-     82             0x8276, 0x831d, 0x83d7, 0x84a3, 0x8583, 0x8676, 0x877c, 0x8894,
-     83             0x89bf, 0x8afc, 0x8c4b, 0x8dab, 0x8f1e, 0x90a1, 0x9236, 0x93dc,
-     84             0x9593, 0x975a, 0x9931, 0x9b18, 0x9d0e, 0x9f14, 0xa129, 0xa34c,
-     85             0xa57e, 0xa7be, 0xaa0b, 0xac65, 0xaecd, 0xb141, 0xb3c1, 0xb64c,
-     86             0xb8e4, 0xbb86, 0xbe32, 0xc0e9, 0xc3aa, 0xc674, 0xc946, 0xcc22,
-     87             0xcf05, 0xd1ef, 0xd4e1, 0xd7da, 0xdad8, 0xdddd, 0xe0e7, 0xe3f5,
-     88             0xe708, 0xea1e, 0xed38, 0xf055, 0xf375, 0xf696, 0xf9b9, 0xfcdc,
-     89          };
-     90          
-     91          #else
-     92          //	Sine Wave
-     93          //	Numbers Per Row	: 16
+     51          #include "audio.h"
+
+  	};
+  	 ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",293  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",311  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",419  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",457  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",462  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",484  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",510  Warning[Pe040]: 
+          expected an identifier
+
+  	};
+  	 ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",518  Warning[Pe040]: 
+          expected an identifier
+     52          
+     53          #if defined(USE_AUDIO_SPEEX_CODEC)
+     54          
+     55          #include "codec.h"
+     56          //#ifdef HAVE_CONFIG_H
+     57          //#include "config.h"
+     58          //#endif
+     59          
+     60          #include <speex/speex.h>
+     61          
+     62          #else	//	defined(USE_AUDIO_SPEEX_CODEC)
+     63          
+     64          #define FRAME_SIZE 160
+     65          
+     66          #endif
+     67          
+     68          //========================================================================
+     69          // Define
+     70          
+     71          #if 0
+     72          uint16_t sine_table[256] = {
+     73          
+     74             0x0000, 0x0324, 0x0647, 0x096a, 0x0c8b, 0x0fab, 0x12c8, 0x15e2,
+     75             0x18f8, 0x1c0b, 0x1f19, 0x2223, 0x2528, 0x2826, 0x2b1f, 0x2e11,
+     76             0x30fb, 0x33de, 0x36ba, 0x398c, 0x3c56, 0x3f17, 0x41ce, 0x447a,
+     77             0x471c, 0x49b4, 0x4c3f, 0x4ebf, 0x5133, 0x539b, 0x55f5, 0x5842,
+     78             0x5a82, 0x5cb4, 0x5ed7, 0x60ec, 0x62f2, 0x64e8, 0x66cf, 0x68a6,
+     79             0x6a6d, 0x6c24, 0x6dca, 0x6f5f, 0x70e2, 0x7255, 0x73b5, 0x7504,
+     80             0x7641, 0x776c, 0x7884, 0x798a, 0x7a7d, 0x7b5d, 0x7c29, 0x7ce3,
+     81             0x7d8a, 0x7e1d, 0x7e9d, 0x7f09, 0x7f62, 0x7fa7, 0x7fd8, 0x7ff6,
+     82             0x7fff, 0x7ff6, 0x7fd8, 0x7fa7, 0x7f62, 0x7f09, 0x7e9d, 0x7e1d,
+     83             0x7d8a, 0x7ce3, 0x7c29, 0x7b5d, 0x7a7d, 0x798a, 0x7884, 0x776c,
+     84             0x7641, 0x7504, 0x73b5, 0x7255, 0x70e2, 0x6f5f, 0x6dca, 0x6c24,
+     85             0x6a6d, 0x68a6, 0x66cf, 0x64e8, 0x62f2, 0x60ec, 0x5ed7, 0x5cb4,
+     86             0x5a82, 0x5842, 0x55f5, 0x539b, 0x5133, 0x4ebf, 0x4c3f, 0x49b4,
+     87             0x471c, 0x447a, 0x41ce, 0x3f17, 0x3c56, 0x398c, 0x36ba, 0x33de,
+     88             0x30fb, 0x2e11, 0x2b1f, 0x2826, 0x2528, 0x2223, 0x1f19, 0x1c0b,
+     89             0x18f8, 0x15e2, 0x12c8, 0x0fab, 0x0c8b, 0x096a, 0x0647, 0x0324,
+     90             0x0000, 0xfcdc, 0xf9b9, 0xf696, 0xf375, 0xf055, 0xed38, 0xea1e,
+     91             0xe708, 0xe3f5, 0xe0e7, 0xdddd, 0xdad8, 0xd7da, 0xd4e1, 0xd1ef,
+     92             0xcf05, 0xcc22, 0xc946, 0xc674, 0xc3aa, 0xc0e9, 0xbe32, 0xbb86,
+     93             0xb8e4, 0xb64c, 0xb3c1, 0xb141, 0xaecd, 0xac65, 0xaa0b, 0xa7be,
+     94             0xa57e, 0xa34c, 0xa129, 0x9f14, 0x9d0e, 0x9b18, 0x9931, 0x975a,
+     95             0x9593, 0x93dc, 0x9236, 0x90a1, 0x8f1e, 0x8dab, 0x8c4b, 0x8afc,
+     96             0x89bf, 0x8894, 0x877c, 0x8676, 0x8583, 0x84a3, 0x83d7, 0x831d,
+     97             0x8276, 0x81e3, 0x8163, 0x80f7, 0x809e, 0x8059, 0x8028, 0x800a,
+     98             0x8000, 0x800a, 0x8028, 0x8059, 0x809e, 0x80f7, 0x8163, 0x81e3,
+     99             0x8276, 0x831d, 0x83d7, 0x84a3, 0x8583, 0x8676, 0x877c, 0x8894,
+    100             0x89bf, 0x8afc, 0x8c4b, 0x8dab, 0x8f1e, 0x90a1, 0x9236, 0x93dc,
+    101             0x9593, 0x975a, 0x9931, 0x9b18, 0x9d0e, 0x9f14, 0xa129, 0xa34c,
+    102             0xa57e, 0xa7be, 0xaa0b, 0xac65, 0xaecd, 0xb141, 0xb3c1, 0xb64c,
+    103             0xb8e4, 0xbb86, 0xbe32, 0xc0e9, 0xc3aa, 0xc674, 0xc946, 0xcc22,
+    104             0xcf05, 0xd1ef, 0xd4e1, 0xd7da, 0xdad8, 0xdddd, 0xe0e7, 0xe3f5,
+    105             0xe708, 0xea1e, 0xed38, 0xf055, 0xf375, 0xf696, 0xf9b9, 0xfcdc,
+    106          };
+    107          
+    108          #else
+    109          //	Sine Wave
+    110          //	Numbers Per Row	: 16
 
    \                                 In section .data, align 4
-     94          int16_t sine_table[160] = {
+    111          int16_t sine_table[160] = {
    \                     sine_table:
    \        0x0   0xFFFF 0x186C      DC16 -1, 6'252, 12'803, 18'323, 23'170, 27'165, 30'381, 32'165, 32'767
 
@@ -409,245 +411,273 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\audio.c
    \              D 0xB86C 0xD0
 
    \              0D 0xE793
-     95          	-1, 6252, 12803, 18323, 23170, 27165, 30381, 32165, 32767, 32165, 30162, 27165, 23170, 18323, 12274, 6252, 0, -6253, -12804, -18324, -23171, -27166, -30382, -32166, -32768, -32166, -30163, -27166, -23171, -18324, -12275, -6253,
-     96          	-1, 6252, 12803, 18323, 23170, 27165, 30381, 32165, 32767, 32165, 30162, 27165, 23170, 18323, 12274, 6252, 0, -6253, -12804, -18324, -23171, -27166, -30382, -32166, -32768, -32166, -30163, -27166, -23171, -18324, -12275, -6253,
-     97          	-1, 6252, 12803, 18323, 23170, 27165, 30381, 32165, 32767, 32165, 30162, 27165, 23170, 18323, 12274, 6252, 0, -6253, -12804, -18324, -23171, -27166, -30382, -32166, -32768, -32166, -30163, -27166, -23171, -18324, -12275, -6253,
-     98          	-1, 6252, 12803, 18323, 23170, 27165, 30381, 32165, 32767, 32165, 30162, 27165, 23170, 18323, 12274, 6252, 0, -6253, -12804, -18324, -23171, -27166, -30382, -32166, -32768, -32166, -30163, -27166, -23171, -18324, -12275, -6253,
-     99          	-1, 6252, 12803, 18323, 23170, 27165, 30381, 32165, 32767, 32165, 30162, 27165, 23170, 18323, 12274, 6252, 0, -6253, -12804, -18324, -23171, -27166, -30382, -32166, -32768, -32166, -30163, -27166, -23171, -18324, -12275, -6253,
-    100          };
-    101          
-    102          #endif
-    103          
+    112          	-1, 6252, 12803, 18323, 23170, 27165, 30381, 32165, 32767, 32165, 30162, 27165, 23170, 18323, 12274, 6252, 0, -6253, -12804, -18324, -23171, -27166, -30382, -32166, -32768, -32166, -30163, -27166, -23171, -18324, -12275, -6253,
+    113          	-1, 6252, 12803, 18323, 23170, 27165, 30381, 32165, 32767, 32165, 30162, 27165, 23170, 18323, 12274, 6252, 0, -6253, -12804, -18324, -23171, -27166, -30382, -32166, -32768, -32166, -30163, -27166, -23171, -18324, -12275, -6253,
+    114          	-1, 6252, 12803, 18323, 23170, 27165, 30381, 32165, 32767, 32165, 30162, 27165, 23170, 18323, 12274, 6252, 0, -6253, -12804, -18324, -23171, -27166, -30382, -32166, -32768, -32166, -30163, -27166, -23171, -18324, -12275, -6253,
+    115          	-1, 6252, 12803, 18323, 23170, 27165, 30381, 32165, 32767, 32165, 30162, 27165, 23170, 18323, 12274, 6252, 0, -6253, -12804, -18324, -23171, -27166, -30382, -32166, -32768, -32166, -30163, -27166, -23171, -18324, -12275, -6253,
+    116          	-1, 6252, 12803, 18323, 23170, 27165, 30381, 32165, 32767, 32165, 30162, 27165, 23170, 18323, 12274, 6252, 0, -6253, -12804, -18324, -23171, -27166, -30382, -32166, -32768, -32166, -30163, -27166, -23171, -18324, -12275, -6253,
+    117          };
+    118          
+    119          #endif
+    120          
 
    \                                 In section .bss, align 4
-    104          uint16_t speex_sine_table[160]; 	//	256 * 5 = 160 * 8
+    121          int16_t speex_sine_table[160]; 	//	256 * 5 = 160 * 8
    \                     speex_sine_table:
    \        0x0                      DS8 320
-    105          
+    122          
 
    \                                 In section .bss, align 4
-    106          uint16_t null_table[256] = { 0, };
+    123          uint16_t null_table[256] = { 0, };
    \                     null_table:
    \        0x0                      DS8 512
-    107          
-    108          //uint16_t bufAudio[I2S_DMA_LOOP_SIZE * I2S_DMA_LOOP_QCNT] = { 0, };	//	512
-    109          	//	[ Frame1 | Frame2 ]
+    124          
+    125          //uint16_t bufAudio[I2S_DMA_LOOP_SIZE * I2S_DMA_LOOP_QCNT] = { 0, };	//	512
+    126          	//	[ Frame1 | Frame2 ]
 
    \                                 In section .bss, align 4
-    110          volatile uint16_t bufAudio[FRAME_SIZE * 2] = { 0, };	//	512
+    127          volatile uint16_t bufAudio[FRAME_SIZE * 2] = { 0, };	//	512
    \                     bufAudio:
    \        0x0                      DS8 640
-    111          
+    128          
 
    \                                 In section .bss, align 4
-    112          volatile uint16_t bufAudioCodec[FRAME_SIZE * 2] = { 0, };	//	512
+    129          volatile uint16_t bufAudioCodec[FRAME_SIZE * 2] = { 0, };	//	512
    \                     bufAudioCodec:
    \        0x0                      DS8 640
-    113          
-    114          //========================================================================
-    115          //	Audio Buffer ( PCM )
+    130          
+    131          //========================================================================
+    132          //	Audio Buffer ( PCM )
 
    \                                 In section .bss, align 4
-    116          QBuf_t		g_qBufAudioRx;		//	Audio Queue Buffer	( RF Rx Buffer )
+    133          QBuf_t		g_qBufAudioRx;		//	Audio Queue Buffer	( RF Rx Buffer )
    \                     g_qBufAudioRx:
-   \        0x0                      DS8 16
+   \        0x0                      DS8 12
 
    \                                 In section .bss, align 4
-    117          uint16_t	g_bufAudioRx[I2S_DMA_LOOP_SIZE * I2S_DMA_LOOP_QCNT] = { 0, };	//	512
+    134          uint16_t	g_bufAudioRx[I2S_DMA_LOOP_SIZE * I2S_DMA_LOOP_QCNT] = { 0, };	//	512
    \                     g_bufAudioRx:
    \        0x0                      DS8 480
-    118          
+    135          
 
    \                                 In section .bss, align 4
-    119          QBuf_t		g_qBufAudioTx;		//	Audio Queue Buffer	( RF Tx Buffer )
+    136          QBuf_t		g_qBufAudioTx;		//	Audio Queue Buffer	( RF Tx Buffer )
    \                     g_qBufAudioTx:
-   \        0x0                      DS8 16
+   \        0x0                      DS8 12
 
    \                                 In section .bss, align 4
-    120          uint16_t	g_bufAudioTx[I2S_DMA_LOOP_SIZE * I2S_DMA_LOOP_QCNT] = { 0, };	//	512
+    137          uint16_t	g_bufAudioTx[I2S_DMA_LOOP_SIZE * I2S_DMA_LOOP_QCNT] = { 0, };	//	512
    \                     g_bufAudioTx:
    \        0x0                      DS8 480
-    121          
+    138          
 
    \                                 In section .bss, align 4
-    122          int16_t		t_audio_buff[I2S_DMA_LOOP_SIZE * 2];
+    139          int16_t		t_audio_buff[I2S_DMA_LOOP_SIZE * 2];
    \                     t_audio_buff:
    \        0x0                      DS8 120
 
    \                                 In section .bss, align 4
-    123          int16_t		r_audio_buff[I2S_DMA_LOOP_SIZE * 2];
+    140          int16_t		r_audio_buff[I2S_DMA_LOOP_SIZE * 2];
    \                     r_audio_buff:
    \        0x0                      DS8 120
-    124          
-    125          //========================================================================
-    126          
-    127          //========================================================================
-    128          // Function
-    129          
-    130          //========================================================================
+    141          
+    142          //========================================================================
+    143          
+    144          //========================================================================
+    145          // Function
+    146          
+    147          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    131          void AudioInit( void )
-    132          //========================================================================
-    133          {
+    148          void AudioInit( void )
+    149          //========================================================================
+    150          {
    \                     AudioInit: (+1)
    \        0x0   0xE92D 0x41FC      PUSH     {R2-R8,LR}
-    134          //DEL	printf( "%s(%d)\n", __func__, __LINE__ );
-    135          
-    136          	//	pAudioTable = sine_table;
-    137          	//========================================================================
-    138          	//	Init RF Audio Rx Buffer
-    139          	qBufInit( &g_qBufAudioRx, (uint8_t *)g_bufAudioRx, ( I2S_DMA_LOOP_SIZE * 2 ) * I2S_DMA_LOOP_QCNT );
+    151          //DEL	printf( "%s(%d)\n", __func__, __LINE__ );
+    152          
+    153          	//	pAudioTable = sine_table;
+    154          	//========================================================================
+    155          	//	Init RF Audio Rx Buffer
+    156          	qBufInit( &g_qBufAudioRx, (uint8_t *)g_bufAudioRx, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) * I2S_DMA_LOOP_QCNT );
    \        0x4   0xF44F 0x72F0      MOV      R2,#+480
-   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable18_4
-   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable18_5
+   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable19_3
+   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable19_4
    \       0x10   0x.... 0x....      BL       qBufInit
-    140          	qBufInit( &g_qBufAudioTx, (uint8_t *)g_bufAudioTx, ( I2S_DMA_LOOP_SIZE * 2 ) * I2S_DMA_LOOP_QCNT );
+    157          	qBufInit( &g_qBufAudioTx, (uint8_t *)g_bufAudioTx, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) * I2S_DMA_LOOP_QCNT );
    \       0x14   0xF44F 0x72F0      MOV      R2,#+480
-   \       0x18   0x.... 0x....      LDR.W    R1,??DataTable18_6
-   \       0x1C   0x.... 0x....      LDR.W    R0,??DataTable18_7
+   \       0x18   0x.... 0x....      LDR.W    R1,??DataTable19_5
+   \       0x1C   0x.... 0x....      LDR.W    R0,??DataTable19_6
    \       0x20   0x.... 0x....      BL       qBufInit
-    141          
-    142          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)sine_table, (uint16_t*)bufAudio, 256 );
-   \       0x24   0x.... 0x....      LDR.W    R7,??DataTable18_8
+    158          
+    159          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)sine_table, (uint16_t*)bufAudio, (uint16_t)256U );
+   \       0x24   0x.... 0x....      LDR.W    R7,??DataTable19_7
    \       0x28   0xF44F 0x7380      MOV      R3,#+256
-   \       0x2C   0x.... 0x....      LDR.W    R2,??DataTable18_9
+   \       0x2C   0x.... 0x....      LDR.W    R2,??DataTable19_8
    \       0x30   0x0039             MOVS     R1,R7
-   \       0x32   0x.... 0x....      LDR.W    R0,??DataTable18_10
+   \       0x32   0x.... 0x....      LDR.W    R0,??DataTable19_9
    \       0x36   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
-    143          
-    144          	int i;
-                 	    ^
+    160          
+    161          	//========================================================================
+    162          	//	Speex Codec
+    163          #if defined(USE_AUDIO_SPEEX_CODEC)
+    164          	Speex_Init();
+    165          #endif	//	defined(USE_AUDIO_SPEEX_CODEC)
+    166          
+    167          	//========================================================================
+    168          	//	Speex Encoding -> Decoding
+    169          
+    170          	uint32_t i;
+                 	         ^
 Warning[Pe177]: variable "i" was declared but never referenced
-    145          	int index;
-                 	    ^
+    171          	uint32_t index;
+                 	         ^
 Warning[Pe550]: variable "index" was set but never used
-    146          
-    147          	index = 0;
+    172          
+    173          	index = 0;
    \       0x3A   0x2400             MOVS     R4,#+0
-    148          
-    149          	//	sine table copy
-    150          	memcpy( speex_sine_table, sine_table, 160 * 2 );
+    174          
+    175          	//	sine table copy
+    176          	memcpy( (int16_t* )&speex_sine_table[0], (int16_t* )&sine_table[0], (uint32_t)(160 * 2) );
    \       0x3C   0xF44F 0x78A0      MOV      R8,#+320
-   \       0x40   0x.... 0x....      LDR.W    R5,??DataTable18_11
+   \       0x40   0x.... 0x....      LDR.W    R5,??DataTable19_10
    \       0x44   0x4642             MOV      R2,R8
    \       0x46   0x0039             MOVS     R1,R7
    \       0x48   0x0028             MOVS     R0,R5
    \       0x4A   0x.... 0x....      BL       __aeabi_memcpy
-    151          
-    152          	int tick_start, tick_end;
-    153          
-    154          	tick_start = HAL_GetTick();
+    177          
+    178          	uint32_t tick_start, tick_end;
+    179          
+    180          	tick_start = HAL_GetTick();
    \       0x4E   0x.... 0x....      BL       HAL_GetTick
    \       0x52   0x0005             MOVS     R5,R0
-    155          
-    156          	tick_end = HAL_GetTick();
+    181          
+    182          #if defined(USE_AUDIO_SPEEX_CODEC)
+    183          	//========================================================================
+    184          	//	Encoding
+    185          
+    186              speex_bits_reset(&bits);
+    187          
+    188          	/* Encode the frame */
+    189          	speex_encode_int(enc_state, &speex_sine_table[0], &bits);
+    190          	/* Copy the bits to an array of char that can be decoded */
+    191          	speex_bits_write(&bits, (char *)out_bytes, ENCODED_FRAME_SIZE);
+    192          
+    193          	//========================================================================
+    194          	//	Decoding
+    195          	/* Copy the encoded data into the bit-stream struct */
+    196          	speex_bits_read_from(&bits, (char *)out_bytes, ENCODED_FRAME_SIZE);
+    197          	/* Decode the data */
+    198          	speex_decode_int(dec_state, &bits, &speex_sine_table[0] );
+    199          #endif	//	defined(USE_AUDIO_SPEEX_CODEC)
+    200          
+    201          	tick_end = HAL_GetTick();
    \       0x54   0x.... 0x....      BL       HAL_GetTick
    \       0x58   0x0006             MOVS     R6,R0
-    157          
-    158          	printf("%s : [%d] %d / %d\n", __func__, tick_end - tick_start, tick_start, tick_end);
+    202          
+    203          	printf("%s : [%d] %d / %d\n", __func__, tick_end - tick_start, tick_start, tick_end);
    \       0x5A   0x9600             STR      R6,[SP, #+0]
    \       0x5C   0x002B             MOVS     R3,R5
    \       0x5E   0x1B72             SUBS     R2,R6,R5
-   \       0x60   0x.... 0x....      LDR.W    R1,??DataTable18_12
-   \       0x64   0x.... 0x....      LDR.W    R0,??DataTable18_13
+   \       0x60   0x.... 0x....      LDR.W    R1,??DataTable19_11
+   \       0x64   0x.... 0x....      LDR.W    R0,??DataTable19_12
    \       0x68   0x.... 0x....      BL       printf
-    159          
-    160          	//========================================================================
-    161          }
+    204          
+    205          	//========================================================================
+    206          }
    \       0x6C   0xE8BD 0x81F3      POP      {R0,R1,R4-R8,PC}
-    162          
-    163          ////========================================================================
-    164          //void AudioSine( void )
-    165          ////========================================================================
-    166          //{
-    167          //	SetCallbackI2STxRxCplt( AudioSine_I2SEx_TxRxCpltCallback );
-    168          //	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], FRAME_SIZE );
-    169          //}
-    170          
-    171          
-    172          //========================================================================
+    207          
+    208          ////========================================================================
+    209          //void AudioSine( void )
+    210          ////========================================================================
+    211          //{
+    212          //	SetCallbackI2STxRxCplt( AudioSine_I2SEx_TxRxCpltCallback );
+    213          //	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], FRAME_SIZE );
+    214          //}
+    215          
+    216          
+    217          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    173          void AudioStop( void )
-    174          //========================================================================
-    175          {
+    218          void AudioStop( void )
+    219          //========================================================================
+    220          {
    \                     AudioStop: (+1)
    \        0x0   0xB580             PUSH     {R7,LR}
-    176          	SetCallbackI2STxRxCplt( NULL );
+    221          	SetCallbackI2STxRxCplt( NULL );
    \        0x2   0x2000             MOVS     R0,#+0
    \        0x4   0x.... 0x....      BL       SetCallbackI2STxRxCplt
-    177          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)null_table, (uint16_t*)bufAudio, 256 );
+    222          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)null_table, (uint16_t*)bufAudio,(uint16_t)256 );
    \        0x8   0xF44F 0x7380      MOV      R3,#+256
-   \        0xC   0x.... 0x....      LDR.W    R2,??DataTable18_9
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable18_14
-   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable18_10
+   \        0xC   0x.... 0x....      LDR.W    R2,??DataTable19_8
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable19_13
+   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable19_9
    \       0x18   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
-    178          }
+    223          }
    \       0x1C   0xBD01             POP      {R0,PC}
-    179          
+    224          
 
    \                                 In section .bss, align 4
-    180          void ( *pCallback_I2SEx_TxRxCpltCallback )( I2S_HandleTypeDef *hi2s ) = NULL;
+    225          void ( *pCallback_I2SEx_TxRxCpltCallback )( I2S_HandleTypeDef *hi2s ) = NULL;
    \                     pCallback_I2SEx_TxRxCpltCallback:
    \        0x0                      DS8 4
-    181          
-    182          
-    183          //========================================================================
+    226          
+    227          
+    228          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    184          void	SetCallbackI2STxRxCplt	( void ( *pCallbackTxRxCplt )( I2S_HandleTypeDef *hi2s ) )
-    185          //========================================================================
-    186          {
-    187          	pCallback_I2SEx_TxRxCpltCallback = pCallbackTxRxCplt;
+    229          void	SetCallbackI2STxRxCplt	( void ( *pCallbackTxRxCplt )( I2S_HandleTypeDef *hi2s ) )
+    230          //========================================================================
+    231          {
+    232          	pCallback_I2SEx_TxRxCpltCallback = pCallbackTxRxCplt;
    \                     SetCallbackI2STxRxCplt: (+1)
-   \        0x0   0x.... 0x....      LDR.W    R1,??DataTable18_15
+   \        0x0   0x.... 0x....      LDR.W    R1,??DataTable19_14
    \        0x4   0x6008             STR      R0,[R1, #+0]
-    188          }
+    233          }
    \        0x6   0x4770             BX       LR
-    189          
-    190          /**
-    191            * @brief Rx Transfer completed callbacks
-    192            * @param  hi2s: pointer to a I2S_HandleTypeDef structure that contains
-    193            *         the configuration information for I2S module
-    194            * @retval None
-    195            */
-    196          //========================================================================
+    234          
+    235          /**
+    236            * @brief Rx Transfer completed callbacks
+    237            * @param  hi2s: pointer to a I2S_HandleTypeDef structure that contains
+    238            *         the configuration information for I2S module
+    239            * @retval None
+    240            */
+    241          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    197          void HAL_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
-    198          //========================================================================
-    199          {
+    242          void HAL_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
+    243          //========================================================================
+    244          {
    \                     HAL_I2SEx_TxRxCpltCallback: (+1)
    \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
    \        0x4   0x0004             MOVS     R4,R0
-    200          	/* Prevent unused argument(s) compilation warning */
-    201          	/* NOTE : This function Should not be modified, when the callback is needed,
-    202          			  the HAL_I2S_RxCpltCallback could be implemented in the user file
-    203          	 */
-    204          
-    205          //	printf( "%s(%d)\n", __func__, __LINE__ );
-    206          
-    207          	if ( pCallback_I2SEx_TxRxCpltCallback )
-   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable18_15
+    245          	/* Prevent unused argument(s) compilation warning */
+    246          	/* NOTE : This function Should not be modified, when the callback is needed,
+    247          			  the HAL_I2S_RxCpltCallback could be implemented in the user file
+    248          	 */
+    249          
+    250          //	printf( "%s(%d)\n", __func__, __LINE__ );
+    251          
+    252          	if ( pCallback_I2SEx_TxRxCpltCallback != 0 )
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable19_14
    \        0xA   0x6808             LDR      R0,[R1, #+0]
    \        0xC   0x2800             CMP      R0,#+0
    \        0xE   0xD003             BEQ.N    ??HAL_I2SEx_TxRxCpltCallback_0
-    208          	{
-    209          		pCallback_I2SEx_TxRxCpltCallback( hi2s );
+    253          	{
+    254          		pCallback_I2SEx_TxRxCpltCallback( hi2s );
    \       0x10   0x0020             MOVS     R0,R4
    \       0x12   0x6809             LDR      R1,[R1, #+0]
    \       0x14   0x4788             BLX      R1
    \       0x16   0xE012             B.N      ??HAL_I2SEx_TxRxCpltCallback_1
-    210          	}
-    211          	else
-    212          	{
-    213          		//	Default Loopback
-    214          		//	pAudioTable = sine_table;
-    215          		memcpy( (uint8_t *) &bufAudio[0], (uint8_t *)&bufAudio[I2S_DMA_LOOP_SIZE], I2S_DMA_LOOP_SIZE * 2 );
+    255          	}
+    256          	else
+    257          	{
+    258          		//	Default Loopback
+    259          		//	pAudioTable = sine_table;
+    260          		memcpy((uint8_t *)&bufAudio[0], (uint8_t *)&bufAudio[I2S_DMA_LOOP_SIZE], (uint32_t)(I2S_DMA_LOOP_SIZE * 2) );
    \                     ??HAL_I2SEx_TxRxCpltCallback_0: (+1)
    \       0x18   0x253C             MOVS     R5,#+60
-   \       0x1A   0x.... 0x....      LDR.W    R6,??DataTable18_9
+   \       0x1A   0x.... 0x....      LDR.W    R6,??DataTable19_8
    \       0x1E   0xF116 0x073C      ADDS     R7,R6,#+60
    \       0x22   0x46B8             MOV      R8,R7
    \       0x24   0x46B1             MOV      R9,R6
@@ -655,87 +685,90 @@ Warning[Pe550]: variable "index" was set but never used
    \       0x28   0x4641             MOV      R1,R8
    \       0x2A   0x4648             MOV      R0,R9
    \       0x2C   0x.... 0x....      BL       __aeabi_memcpy
-    216          		HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[I2S_DMA_LOOP_SIZE], I2S_DMA_LOOP_SIZE );
+    261          		HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[I2S_DMA_LOOP_SIZE],(uint16_t) I2S_DMA_LOOP_SIZE );
    \       0x30   0x231E             MOVS     R3,#+30
    \       0x32   0x003A             MOVS     R2,R7
    \       0x34   0x0031             MOVS     R1,R6
-   \       0x36   0x.... 0x....      LDR.W    R0,??DataTable18_10
+   \       0x36   0x.... 0x....      LDR.W    R0,??DataTable19_9
    \       0x3A   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
-    217          	}
-    218          }
+    262          	}
+    263          }
    \                     ??HAL_I2SEx_TxRxCpltCallback_1: (+1)
    \       0x3E   0xE8BD 0x83F1      POP      {R0,R4-R9,PC}
-    219          
-    220          //========================================================================
-    221          //
-    222          //		Audio Chip ( XE3005 / MAX9860 )
-    223          //
-    224          //========================================================================
-    225          
+    264          
+    265          //========================================================================
+    266          //
+    267          //		Audio Chip ( XE3005 / MAX9860 )
+    268          //
+    269          //========================================================================
+    270          
 
-   \                                 In section .bss, align 4
-    226          int		g_nAudioIC = AudioNone;
+   \                                 In section .bss, align 1
+    271          uint8_t		g_nAudioIC = AudioNone;
    \                     g_nAudioIC:
-   \        0x0                      DS8 4
-    227          
-    228          //========================================================================
+   \        0x0                      DS8 1
+    272          
+    273          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    229          void SetAudioIC( int nAudioIC )
-    230          //========================================================================
-    231          {
-    232          	g_nAudioIC = nAudioIC;
+    274          void SetAudioIC( uint8_t nAudioIC )
+    275          //========================================================================
+    276          {
+    277          	g_nAudioIC = nAudioIC;
    \                     SetAudioIC: (+1)
-   \        0x0   0x.... 0x....      LDR.W    R1,??DataTable18_16
-   \        0x4   0x6008             STR      R0,[R1, #+0]
-    233          }
+   \        0x0   0x.... 0x....      LDR.W    R1,??DataTable19_15
+   \        0x4   0x7008             STRB     R0,[R1, #+0]
+    278          }
    \        0x6   0x4770             BX       LR
-    234          
-    235          //========================================================================
+    279          
+    280          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    236          int GetAudioIC( void )
-    237          //========================================================================
-    238          {
-    239          	return g_nAudioIC;
+    281          uint8_t GetAudioIC( void )
+    282          //========================================================================
+    283          {
+    284          	return g_nAudioIC;
    \                     GetAudioIC: (+1)
-   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable18_16
-   \        0x4   0x6800             LDR      R0,[R0, #+0]
+   \        0x0   0x.... 0x....      LDR.W    R0,??DataTable19_15
+   \        0x4   0x7800             LDRB     R0,[R0, #+0]
    \        0x6   0x4770             BX       LR
-    240          }
-    241          
-    242          //========================================================================
-    243          //
-    244          //		Codec ( MAX9860 )
-    245          //
-    246          //========================================================================
-    247          
-    248          //========================================================================
+    285          }
+    286          
+    287          //========================================================================
+    288          //
+    289          //		Codec ( MAX9860 )
+    290          //
+    291          //========================================================================
+    292          
+    293          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    249          int WriteI2CCodec( uint8_t addr, uint8_t data )
-    250          //========================================================================
-    251          {
+    294          uint8_t WriteI2CCodec( uint8_t addr, uint8_t data )
+    295          //========================================================================
+    296          {
    \                     WriteI2CCodec: (+1)
    \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
    \        0x4   0xB086             SUB      SP,SP,#+24
    \        0x6   0x0004             MOVS     R4,R0
    \        0x8   0x000D             MOVS     R5,R1
-    252          	if ( GetAudioIC() != AudioMAX9860 )	return 0;
+    297          	if ( GetAudioIC() != AudioMAX9860 )
    \        0xA   0x.... 0x....      BL       GetAudioIC
    \        0xE   0x2801             CMP      R0,#+1
    \       0x10   0xD001             BEQ.N    ??WriteI2CCodec_0
+    298          	{
+    299          		return (uint8_t)0;
    \       0x12   0x2000             MOVS     R0,#+0
-   \       0x14   0xE027             B.N      ??WriteI2CCodec_1
-    253          
-    254          	int cntRetry;
-    255          
-    256          	cntRetry = 0;
+   \       0x14   0xE02D             B.N      ??WriteI2CCodec_1
+    300          	}
+    301          
+    302          	uint8_t cntRetry;
+    303          
+    304          	cntRetry = 0;
    \                     ??WriteI2CCodec_0: (+1)
    \       0x16   0x2600             MOVS     R6,#+0
-    257          
-    258          	char buf[10];
-    259          	memset( buf, 0, sizeof( buf ) );
+    305          
+    306          	S8 buf[10];
+    307          	memset( buf, 0, sizeof( buf ) );
    \       0x18   0x270A             MOVS     R7,#+10
    \       0x1A   0xF05F 0x0800      MOVS     R8,#+0
    \       0x1E   0xF10D 0x090C      ADD      R9,SP,#+12
@@ -743,205 +776,225 @@ Warning[Pe550]: variable "index" was set but never used
    \       0x24   0x0039             MOVS     R1,R7
    \       0x26   0x4648             MOV      R0,R9
    \       0x28   0x.... 0x....      BL       __aeabi_memset
-    260          	buf[0] = data;
-   \       0x2C   0xF88D 0x500C      STRB     R5,[SP, #+12]
-    261          
-    262          	while ( HAL_I2C_Mem_Write( &hi2c1, (uint16_t)( 0x10 << 1 ), (uint16_t)addr, I2C_MEMADD_SIZE_8BIT, buf, (uint16_t)1, 1000 ) != HAL_OK && cntRetry < 10 ) cntRetry++;
-                 	                                                                                                  ^
-Warning[Pe167]: argument of type "char *" is incompatible with parameter of
-          type "uint8_t *"
+    308          	buf[0] = (S8)data;
+   \       0x2C   0x0028             MOVS     R0,R5
+   \       0x2E   0xB240             SXTB     R0,R0
+   \       0x30   0xF88D 0x000C      STRB     R0,[SP, #+12]
+    309          
+    310          	while ( (HAL_I2C_Mem_Write( &hi2c1,
+    311          			                   (uint16_t)( 0x10 << 1 ),
+    312          							   (uint16_t)addr,
+    313          							   (uint16_t)I2C_MEMADD_SIZE_8BIT,
+    314          							   (uint8_t *)buf,
+    315          							   (uint16_t)1,
+    316          							   (uint32_t)1000 )
+    317          			!= HAL_OK) &&( cntRetry < 10) )
    \                     ??WriteI2CCodec_2: (+1)
-   \       0x30   0xF44F 0x707A      MOV      R0,#+1000
-   \       0x34   0x9002             STR      R0,[SP, #+8]
-   \       0x36   0x2001             MOVS     R0,#+1
-   \       0x38   0x9001             STR      R0,[SP, #+4]
-   \       0x3A   0xA803             ADD      R0,SP,#+12
-   \       0x3C   0x9000             STR      R0,[SP, #+0]
-   \       0x3E   0x2301             MOVS     R3,#+1
-   \       0x40   0x0022             MOVS     R2,R4
-   \       0x42   0xB2D2             UXTB     R2,R2
-   \       0x44   0xB292             UXTH     R2,R2
-   \       0x46   0x2120             MOVS     R1,#+32
-   \       0x48   0x.... 0x....      LDR.W    R0,??DataTable18_17
-   \       0x4C   0x.... 0x....      BL       HAL_I2C_Mem_Write
-   \       0x50   0x2800             CMP      R0,#+0
-   \       0x52   0xD003             BEQ.N    ??WriteI2CCodec_3
-   \       0x54   0x2E0A             CMP      R6,#+10
-   \       0x56   0xDA01             BGE.N    ??WriteI2CCodec_3
-   \       0x58   0x1C76             ADDS     R6,R6,#+1
-   \       0x5A   0xE7E9             B.N      ??WriteI2CCodec_2
-    263          
-    264          	if ( cntRetry == 10 )   return 0;
+   \       0x34   0xF44F 0x707A      MOV      R0,#+1000
+   \       0x38   0x9002             STR      R0,[SP, #+8]
+   \       0x3A   0x2001             MOVS     R0,#+1
+   \       0x3C   0x9001             STR      R0,[SP, #+4]
+   \       0x3E   0xA803             ADD      R0,SP,#+12
+   \       0x40   0x9000             STR      R0,[SP, #+0]
+   \       0x42   0x2301             MOVS     R3,#+1
+   \       0x44   0x0022             MOVS     R2,R4
+   \       0x46   0xB2D2             UXTB     R2,R2
+   \       0x48   0xB292             UXTH     R2,R2
+   \       0x4A   0x2120             MOVS     R1,#+32
+   \       0x4C   0x.... 0x....      LDR.W    R0,??DataTable19_16
+   \       0x50   0x.... 0x....      BL       HAL_I2C_Mem_Write
+   \       0x54   0x2800             CMP      R0,#+0
+   \       0x56   0xD005             BEQ.N    ??WriteI2CCodec_3
+   \       0x58   0x0030             MOVS     R0,R6
+   \       0x5A   0xB2C0             UXTB     R0,R0
+   \       0x5C   0x280A             CMP      R0,#+10
+   \       0x5E   0xDA01             BGE.N    ??WriteI2CCodec_3
+    318          	{
+    319          		cntRetry++;
+   \       0x60   0x1C76             ADDS     R6,R6,#+1
+   \       0x62   0xE7E7             B.N      ??WriteI2CCodec_2
+    320          	}
+    321          
+    322          	if ( cntRetry == 10 )
    \                     ??WriteI2CCodec_3: (+1)
-   \       0x5C   0x2E0A             CMP      R6,#+10
-   \       0x5E   0xD101             BNE.N    ??WriteI2CCodec_4
-   \       0x60   0x2000             MOVS     R0,#+0
-   \       0x62   0xE000             B.N      ??WriteI2CCodec_1
-    265          	else					return 1;
+   \       0x64   0x0030             MOVS     R0,R6
+   \       0x66   0xB2C0             UXTB     R0,R0
+   \       0x68   0x280A             CMP      R0,#+10
+   \       0x6A   0xD101             BNE.N    ??WriteI2CCodec_4
+    323          	{
+    324          		return (uint8_t)0;
+   \       0x6C   0x2000             MOVS     R0,#+0
+   \       0x6E   0xE000             B.N      ??WriteI2CCodec_1
+    325          	}
+    326          	else
+    327          	{
+    328          		return (uint8_t)1;
    \                     ??WriteI2CCodec_4: (+1)
-   \       0x64   0x2001             MOVS     R0,#+1
+   \       0x70   0x2001             MOVS     R0,#+1
    \                     ??WriteI2CCodec_1: (+1)
-   \       0x66   0xB007             ADD      SP,SP,#+28
-   \       0x68   0xE8BD 0x83F0      POP      {R4-R9,PC}
-    266          }
-    267          
-    268          //========================================================================
+   \       0x72   0xB007             ADD      SP,SP,#+28
+   \       0x74   0xE8BD 0x83F0      POP      {R4-R9,PC}
+    329          	}
+    330          }
+    331          
+    332          #define MCLOCK_FREQUENCY	12000000	//	Codec Master Clock ( 12 MHz )
+    333          
+    334          #define AUDIO_FREQ			8000 		//	Audio Freq : 8 KHz
+    335          
+    336          #define MAX9860 0						//	unsure of address
+    337          
+    338          #define N (( 65536 * 96 * AUDIO_FREQ ) / MCLOCK_FREQUENCY )		//	N = (65536*96*F_lrclk)/F_pclk
+    339          #define NHI (N>>8)						//	high 7 bits of N
+    340          
+    341          	//#define NLO (N&0b000000011111111)		//	NLO is lower 8 bits of N
+    342          #define NLO (N&0xFF)		//	NLO is lower 8 bits of N
+    343          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    269          void InitCodecMAX9860   ( void )
-    270          //========================================================================
-    271          {
+    344          void InitCodecMAX9860   ( void )
+    345          //========================================================================
+    346          {
    \                     InitCodecMAX9860: (+1)
    \        0x0   0xB580             PUSH     {R7,LR}
-    272          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x2   0xF44F 0x7288      MOV      R2,#+272
-   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable18_18
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable18_19
+    347          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x2   0xF240 0x125B      MOVW     R2,#+347
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable19_17
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable19_18
    \        0xE   0x.... 0x....      BL       printf
-    273          
-    274          	SetAudioIC( AudioMAX9860 );
+    348          
+    349          	SetAudioIC((uint8_t) AudioMAX9860 );
    \       0x12   0x2001             MOVS     R0,#+1
    \       0x14   0x.... 0x....      BL       SetAudioIC
-    275          
-    276          #define MCLOCK_FREQUENCY	12000000	//	Codec Master Clock ( 12 MHz )
-    277          
-    278          #define AUDIO_FREQ			8000 		//	Audio Freq : 8 KHz
-    279          
-    280          #define MAX9860 0						//	unsure of address
-    281          
-    282          #define N (( 65536 * 96 * AUDIO_FREQ ) / MCLOCK_FREQUENCY )		//	N = (65536*96*F_lrclk)/F_pclk
-    283          #define NHI (N>>8)						//	high 7 bits of N
-    284          
-    285          	//#define NLO (N&0b000000011111111)		//	NLO is lower 8 bits of N
-    286          #define NLO (N&0xFF)		//	NLO is lower 8 bits of N
-    287          
-    288          	//========================================================================
-    289          	//  Audio Master Clock 13 MHz 설정.
-    290          
-    291          	//========================================================================
-    292          	//  Codec 초기화. ( MAX9860ETG+ )
-    293          
-    294          	/*	Initialize the MAX9860 by setting registers	*/
-    295          	//	registers at 0x03, 0x04, and 0x05 are clock control registers
-    296          	WriteI2CCodec( 0X03, 0X12 );	//	PSCLK = 01, FREQ = 10(12MHz), 8KHz = 0 (LRCLK = 8KHz)
+    350          
+    351          
+    352          
+    353          	//========================================================================
+    354          	//  Audio Master Clock 13 MHz 설정.
+    355          
+    356          	//========================================================================
+    357          	//  Codec 초기화. ( MAX9860ETG+ )
+    358          
+    359          	/*	Initialize the MAX9860 by setting registers	*/
+    360          	//	registers at 0x03, 0x04, and 0x05 are clock control registers
+    361          	WriteI2CCodec( (uint8_t)0X03, (uint8_t)0X12 );	//	PSCLK = 01, FREQ = 10(12MHz), 8KHz = 0 (LRCLK = 8KHz)
    \       0x18   0x2112             MOVS     R1,#+18
    \       0x1A   0x2003             MOVS     R0,#+3
    \       0x1C   0x.... 0x....      BL       WriteI2CCodec
-    297          
-    298          	WriteI2CCodec( 0X04, NHI );	//	PLL =0,
-                 	                     ^
+    362          
+    363          	WriteI2CCodec( (uint8_t)0X04, (uint8_t)NHI );	//	PLL =0,
+                 	                                       ^
 Warning[Pe061]: integer operation result is out of range
    \       0x20   0x21FF             MOVS     R1,#+255
    \       0x22   0x2004             MOVS     R0,#+4
    \       0x24   0x.... 0x....      BL       WriteI2CCodec
-    299          	WriteI2CCodec( 0X05, NLO );
-                 	                     ^
+    364          	WriteI2CCodec( (uint8_t)0X05, (uint8_t)NLO );
+                 	                                       ^
 Warning[Pe061]: integer operation result is out of range
    \       0x28   0x219C             MOVS     R1,#+156
    \       0x2A   0x2005             MOVS     R0,#+5
    \       0x2C   0x.... 0x....      BL       WriteI2CCodec
-    300          
-    301          	//	WriteI2CCodec( 0X06, 0x2C );	//	MAS = 0, WCI = 0 (really not sure), DBCI = 1( Falling Edge SDIN ), DDLY = 0, HIZ = 1, TDM = 1, 
-    302          	//	WriteI2CCodec( 0X06, 0x24 );	//	MAS = 0, WCI = 0 (really not sure), DBCI = 1( Falling Edge SDIN ), DDLY = 0, HIZ = 0, TDM = 1, 
-    303          		//	Rising Edge
-    304          	WriteI2CCodec( 0X06, 0x04 );	//	MAS = 0, WCI = 0 (really not sure), DBCI = 0( Rising Edge SDIN ), DDLY = 0, HIZ = 0, TDM = 1, 
+    365          
+    366          	//	WriteI2CCodec( 0X06, 0x2C );	//	MAS = 0, WCI = 0 (really not sure), DBCI = 1( Falling Edge SDIN ), DDLY = 0, HIZ = 1, TDM = 1, 
+    367          	//	WriteI2CCodec( 0X06, 0x24 );	//	MAS = 0, WCI = 0 (really not sure), DBCI = 1( Falling Edge SDIN ), DDLY = 0, HIZ = 0, TDM = 1, 
+    368          		//	Rising Edge
+    369          	WriteI2CCodec( (uint8_t)0X06, (uint8_t)0x04 );	//	MAS = 0, WCI = 0 (really not sure), DBCI = 0( Rising Edge SDIN ), DDLY = 0, HIZ = 0, TDM = 1,
    \       0x30   0x2104             MOVS     R1,#+4
    \       0x32   0x2006             MOVS     R0,#+6
    \       0x34   0x.... 0x....      BL       WriteI2CCodec
-    305          
-    306          //sendTwoBytes(MAX9860, 0X07, 0x00);	//	ABCI = 0, ADLY = 0, ST = 0, BSEL = 000
-    307          
-    308          //	WriteI2CCodec( 0X07, 0x20 );	//	ABCI = 1 ( Falling Edge SDOUT ), ADLY = 0, ST = 0, BSEL = 000
-    309          
-    310          	//	Rising Edge
-    311          	WriteI2CCodec( 0X07, 0x00 );	//	ABCI = 0 ( Rising Edge SDOUT ), ADLY = 0, ST = 0, BSEL = 000
+    370          
+    371          //sendTwoBytes(MAX9860, 0X07, 0x00);	//	ABCI = 0, ADLY = 0, ST = 0, BSEL = 000
+    372          
+    373          //	WriteI2CCodec( 0X07, 0x20 );	//	ABCI = 1 ( Falling Edge SDOUT ), ADLY = 0, ST = 0, BSEL = 000
+    374          
+    375          	//	Rising Edge
+    376          	WriteI2CCodec( (uint8_t)0X07, (uint8_t)0x00 );	//	ABCI = 0 ( Rising Edge SDOUT ), ADLY = 0, ST = 0, BSEL = 000
    \       0x38   0x2100             MOVS     R1,#+0
    \       0x3A   0x2007             MOVS     R0,#+7
    \       0x3C   0x.... 0x....      BL       WriteI2CCodec
-    312          
-    313          	//	Digital filters
-    314          	WriteI2CCodec( 0x08, 0x00 );	//AVFLT = 0, DVFLT = 0 (not sure which filter would be best for this, choosing no filter)
+    377          
+    378          	//	Digital filters
+    379          	WriteI2CCodec( (uint8_t)0x08, (uint8_t)0x00 );	//AVFLT = 0, DVFLT = 0 (not sure which filter would be best for this, choosing no filter)
    \       0x40   0x2100             MOVS     R1,#+0
    \       0x42   0x2008             MOVS     R0,#+8
    \       0x44   0x.... 0x....      BL       WriteI2CCodec
-    315          
-    316          	//	Digital level control registers
-    317          	//		Spk. Vol
-    318          	WriteI2CCodec( 0x09, 0x06 );	//0 DAC adjustment, this would require testing and/or a better understanding of the overall system
+    380          
+    381          	//	Digital level control registers
+    382          	//		Spk. Vol
+    383          	WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x06 );	//0 DAC adjustment, this would require testing and/or a better understanding of the overall system
    \       0x48   0x2106             MOVS     R1,#+6
    \       0x4A   0x2009             MOVS     R0,#+9
    \       0x4C   0x.... 0x....      BL       WriteI2CCodec
-    319          	WriteI2CCodec( 0x0A, 0x33 );	//both ADC's set to 0 adjustment, same reason as above AND mic not supported yet
+    384          	WriteI2CCodec( (uint8_t)0x0A, (uint8_t)0x33 );	//both ADC's set to 0 adjustment, same reason as above AND mic not supported yet
    \       0x50   0x2133             MOVS     R1,#+51
    \       0x52   0x200A             MOVS     R0,#+10
    \       0x54   0x.... 0x....      BL       WriteI2CCodec
-    320          	WriteI2CCodec( 0x0B, 0x00 );	//no gain on DAC, unsure of DVST bits safer to disable
+    385          	WriteI2CCodec( (uint8_t)0x0B, (uint8_t)0x00 );	//no gain on DAC, unsure of DVST bits safer to disable
    \       0x58   0x2100             MOVS     R1,#+0
    \       0x5A   0x200B             MOVS     R0,#+11
    \       0x5C   0x.... 0x....      BL       WriteI2CCodec
-    321          //	WriteI2CCodec( 0x0B, 0x61 );	// DAC - DVG 11(+18) / DVST 0x01(0)
-    322          //	WriteI2CCodec( 0x0B, 0x01 );	// DAC - DVG 00(+0) / DVST 0x01(0)
-    323          
-    324          	//	microphone input register
-    325          //	WriteI2CCodec( 0x0c, 0x00 );	//I haven't set this up to allow microphones (make MAX9860 master, ARM slave)
-    326          //	WriteI2CCodec( 0x0c, 0x4A );	// PAM = 10(+20) / PGAM = 0x0A(+10)
-    327          
-    328          	WriteI2CCodec( 0x0c, 0x2A );	// PAM = 01(+0) / PGAM = 0x0A(+10)
+    386          //	WriteI2CCodec( 0x0B, 0x61 );	// DAC - DVG 11(+18) / DVST 0x01(0)
+    387          //	WriteI2CCodec( 0x0B, 0x01 );	// DAC - DVG 00(+0) / DVST 0x01(0)
+    388          
+    389          	//	microphone input register
+    390          //	WriteI2CCodec( 0x0c, 0x00 );	//I haven't set this up to allow microphones (make MAX9860 master, ARM slave)
+    391          //	WriteI2CCodec( 0x0c, 0x4A );	// PAM = 10(+20) / PGAM = 0x0A(+10)
+    392          
+    393          	WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x2A );	// PAM = 01(+0) / PGAM = 0x0A(+10)
    \       0x60   0x212A             MOVS     R1,#+42
    \       0x62   0x200C             MOVS     R0,#+12
    \       0x64   0x.... 0x....      BL       WriteI2CCodec
-    329          
-    330          //	WriteI2CCodec( 0x0c, 0x34 );	// PAM = 01(+0) / PGAM = 0x14(+0)
-    331          
-    332          	//	AGC and Noise gate registers
-    333          //	WriteI2CCodec( 0x0E, 0x80 );	//sum of left & right noise gates for AGC & noise gate, AGCRLS shortest time, but AGC disabled since I am unsure of its need
-    334          	WriteI2CCodec( 0x0E, 0x00 );	//  Disable AGC
+    394          
+    395          //	WriteI2CCodec( 0x0c, 0x34 );	// PAM = 01(+0) / PGAM = 0x14(+0)
+    396          
+    397          	//	AGC and Noise gate registers
+    398          //	WriteI2CCodec( 0x0E, 0x80 );	//sum of left & right noise gates for AGC & noise gate, AGCRLS shortest time, but AGC disabled since I am unsure of its need
+    399          	WriteI2CCodec( (uint8_t)0x0E, (uint8_t)0x00 );	//  Disable AGC
    \       0x68   0x2100             MOVS     R1,#+0
    \       0x6A   0x200E             MOVS     R0,#+14
    \       0x6C   0x.... 0x....      BL       WriteI2CCodec
-    335          	WriteI2CCodec( 0x0F, 0x00 );	//Noise gate threshhold disabled, AGC signal threshhold -3bBFS
+    400          	WriteI2CCodec((uint8_t)0x0F, (uint8_t)0x00 );	//Noise gate threshhold disabled, AGC signal threshhold -3bBFS
    \       0x70   0x2100             MOVS     R1,#+0
    \       0x72   0x200F             MOVS     R0,#+15
    \       0x74   0x.... 0x....      BL       WriteI2CCodec
-    336          
-    337          	//	power management register
-    338          //	WriteI2CCodec( 0x10, 0x88 );	//powered on, DAC on, both ADC's off (since this is not set up for microphone input)
-    339          	WriteI2CCodec( 0x10, 0x8A );	//powered on, DAC on, both ADC(Left) Enable
+    401          
+    402          	//	power management register
+    403          //	WriteI2CCodec( 0x10, 0x88 );	//powered on, DAC on, both ADC's off (since this is not set up for microphone input)
+    404          	WriteI2CCodec( (uint8_t)0x10, (uint8_t)0x8A );	//powered on, DAC on, both ADC(Left) Enable
    \       0x78   0x218A             MOVS     R1,#+138
    \       0x7A   0x2010             MOVS     R0,#+16
    \       0x7C   0x.... 0x....      BL       WriteI2CCodec
-    340          
-    341          	//========================================================================
-    342          	//	Set Speaker Volume
-    343          //	WriteI2CCodec( 0x09, 0x0C );	//  0x0C ( -3 )
-    344          //	WriteI2CCodec( 0x09, 0x1E );	//  0x0C ( -12 )
-    345          //	WriteI2CCodec( 0x09, 0x2A );	//  0x0C ( -18 )
-    346          //	WriteI2CCodec( 0x09, 0x30 );	//  0x0C ( -21 )
-    347          
-    348          //	//	sine 파 출력 검사. ( I2S Data 영역 검사 )
-    349          //	WriteI2CCodec( 0x09, 0x36 );	//  0x0C ( -24 )
-    350          
-    351          //	WriteI2CCodec( 0x09, 0x3E );	//  0x0C ( -28 )
-    352          //	WriteI2CCodec( 0x0B, 0x20 );	//  01 ( +6 dB )
-    353          }
+    405          
+    406          	//========================================================================
+    407          	//	Set Speaker Volume
+    408          //    WriteI2CCodec( 0x09, 0x0C );	//  0x0C ( -3 )
+    409          //    WriteI2CCodec( 0x09, 0x1E );	//  0x0C ( -12 )
+    410          //    WriteI2CCodec( 0x09, 0x2A );	//  0x0C ( -18 )
+    411          //    WriteI2CCodec( 0x09, 0x30 );	//  0x0C ( -21 )
+    412          
+    413          //	//	sine 파 출력 검사. ( I2S Data 영역 검사 )
+    414          //	WriteI2CCodec( 0x09, 0x36 );	//  0x0C ( -24 )
+    415          
+    416          //    WriteI2CCodec( 0x09, 0x3E );	//  0x0C ( -28 )
+    417          //            WriteI2CCodec( 0x0B, 0x20 );	//  01 ( +6 dB )
+    418          }
    \       0x80   0xBD01             POP      {R0,PC}
-    354          
-    355          //========================================================================
+    419          
+    420          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    356          void Default_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
-    357          //========================================================================
-    358          {
+    421          void Default_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
+    422          //========================================================================
+    423          {
    \                     Default_I2SEx_TxRxCpltCallback: (+1)
    \        0x0   0xE92D 0x43F8      PUSH     {R3-R9,LR}
    \        0x4   0x0004             MOVS     R4,R0
-    359          	//	printf( "%s(%d)\n", __func__, __LINE__ );
-    360          
-    361          	//========================================================================
-    362          	//	Loopback
-    363          	memcpy( (uint8_t *)&bufAudio[0], (uint8_t *)&bufAudio[I2S_DMA_LOOP_SIZE], I2S_DMA_LOOP_SIZE * 2 );
+    424          	//	printf( "%s(%d)\n", __func__, __LINE__ );
+    425          
+    426          	//========================================================================
+    427          	//	Loopback
+    428          	memcpy( (uint8_t *)&bufAudio[0], (uint8_t *)&bufAudio[I2S_DMA_LOOP_SIZE], (uint32_t)(I2S_DMA_LOOP_SIZE * 2) );
    \        0x6   0x253C             MOVS     R5,#+60
-   \        0x8   0x.... 0x....      LDR.W    R6,??DataTable18_9
+   \        0x8   0x.... 0x....      LDR.W    R6,??DataTable19_8
    \        0xC   0xF116 0x073C      ADDS     R7,R6,#+60
    \       0x10   0x46B8             MOV      R8,R7
    \       0x12   0x46B1             MOV      R9,R6
@@ -949,1126 +1002,1270 @@ Warning[Pe061]: integer operation result is out of range
    \       0x16   0x4641             MOV      R1,R8
    \       0x18   0x4648             MOV      R0,R9
    \       0x1A   0x.... 0x....      BL       __aeabi_memcpy
-    364          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[I2S_DMA_LOOP_SIZE], I2S_DMA_LOOP_SIZE );
+    429          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[I2S_DMA_LOOP_SIZE], (uint16_t)I2S_DMA_LOOP_SIZE );
    \       0x1E   0x231E             MOVS     R3,#+30
    \       0x20   0x003A             MOVS     R2,R7
    \       0x22   0x0031             MOVS     R1,R6
-   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable18_10
+   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable19_9
    \       0x28   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
-    365          }
+    430          }
    \       0x2C   0xE8BD 0x83F1      POP      {R0,R4-R9,PC}
-    366          
-    367          //========================================================================
+    431          
+    432          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    368          int	AudioDMALoopback( void )
-    369          //========================================================================
-    370          {
+    433          uint8_t	AudioDMALoopback( void )
+    434          //========================================================================
+    435          {
    \                     AudioDMALoopback: (+1)
    \        0x0   0xB580             PUSH     {R7,LR}
-    371          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x2   0xF240 0x1273      MOVW     R2,#+371
-   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable18_20
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable18_19
+    436          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x2   0xF44F 0x72DA      MOV      R2,#+436
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable19_19
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable19_18
    \        0xE   0x.... 0x....      BL       printf
-    372          
-    373          	SetCallbackI2STxRxCplt( Default_I2SEx_TxRxCpltCallback );
-   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable18_21
+    437          
+    438          	SetCallbackI2STxRxCplt( &Default_I2SEx_TxRxCpltCallback );
+   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable19_20
    \       0x16   0x.... 0x....      BL       SetCallbackI2STxRxCplt
-    374          
-    375          	//	Speex ( 1 frame ) : 160 sample ( 320 bytes ) / 20 msec
-    376          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], I2S_DMA_LOOP_SIZE );
-   \       0x1A   0x.... 0x....      LDR.W    R1,??DataTable18_9
+    439          
+    440          	//	Speex ( 1 frame ) : 160 sample ( 320 bytes ) / 20 msec
+    441          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], (uint16_t)I2S_DMA_LOOP_SIZE );
+   \       0x1A   0x.... 0x....      LDR.W    R1,??DataTable19_8
    \       0x1E   0x231E             MOVS     R3,#+30
    \       0x20   0xF511 0x72A0      ADDS     R2,R1,#+320
-   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable18_10
+   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable19_9
    \       0x28   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
-    377          
-    378          	return 0;
+    442          
+    443          	return (uint8_t)0;
    \       0x2C   0x2000             MOVS     R0,#+0
    \       0x2E   0xBD02             POP      {R1,PC}
-    379          }
-    380          
-    381          void 	RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s );	//	rfm.c
-    382          
-    383          //========================================================================
+    444          }
+    445          
+    446          void 	RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s );	//	rfm.c
+    447          
+    448          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    384          int	AudioDMARFM( void )
-    385          //========================================================================
-    386          {
+    449          uint8_t	AudioDMARFM( void )
+    450          //========================================================================
+    451          {
    \                     AudioDMARFM: (+1)
    \        0x0   0xB580             PUSH     {R7,LR}
-    387          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x2   0xF240 0x1283      MOVW     R2,#+387
-   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable18_22
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable18_19
+    452          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x2   0xF44F 0x72E2      MOV      R2,#+452
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable19_21
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable19_18
    \        0xE   0x.... 0x....      BL       printf
-    388          
-    389          	SetCallbackI2STxRxCplt( RFM_I2SEx_TxRxCpltCallback );
-   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable18_23
+    453          
+    454          	SetCallbackI2STxRxCplt( &RFM_I2SEx_TxRxCpltCallback );
+   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable19_22
    \       0x16   0x.... 0x....      BL       SetCallbackI2STxRxCplt
-    390          
-    391          	//	Speex ( 1 frame ) : 160 sample ( 320 bytes ) / 20 msec
-    392          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], I2S_DMA_LOOP_SIZE );
-   \       0x1A   0x.... 0x....      LDR.W    R1,??DataTable18_9
+    455          
+    456          	//	Speex ( 1 frame ) : 160 sample ( 320 bytes ) / 20 msec
+    457          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], (uint16_t)I2S_DMA_LOOP_SIZE );
+   \       0x1A   0x.... 0x....      LDR.W    R1,??DataTable19_8
    \       0x1E   0x231E             MOVS     R3,#+30
    \       0x20   0xF511 0x72A0      ADDS     R2,R1,#+320
-   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable18_10
+   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable19_9
    \       0x28   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
-    393          
-    394          	return 0;
+    458          
+    459          	return (uint8_t)0;
    \       0x2C   0x2000             MOVS     R0,#+0
    \       0x2E   0xBD02             POP      {R1,PC}
-    395          }
-    396          
-    397          
-    398          //========================================================================
+    460          }
+    461          
+    462          
+    463          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    399          void AudioSpeex_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
-    400          //========================================================================
-    401          {
+    464          void AudioSpeex_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
+    465          //========================================================================
+    466          {
    \                     AudioSpeex_I2SEx_TxRxCpltCallback: (+1)
    \        0x0   0xB570             PUSH     {R4-R6,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    402          	//	printf( "%s(%d)\n", __func__, __LINE__ );
-    403          
-    404          	//========================================================================
-    405          	//	Speex Loopback
-    406          	//	pAudioTable = sine_table;
-    407          //	memcpy( &bufAudio[0], &bufAudio[FRAME_SIZE], FRAME_SIZE );
-    408          
-    409          	//	Audio Buffer Put
-    410          	qBufPut( &g_qBufAudioRx, (uint8_t *)&bufAudio[FRAME_SIZE], FRAME_SIZE );
-   \        0x4   0x.... 0x....      LDR.W    R5,??DataTable18_9
+    467          	//	printf( "%s(%d)\n", __func__, __LINE__ );
+    468          
+    469          	//========================================================================
+    470          	//	Speex Loopback
+    471          	//	pAudioTable = sine_table;
+    472          //	memcpy( &bufAudio[0], &bufAudio[FRAME_SIZE], FRAME_SIZE );
+    473          
+    474          	//	Audio Buffer Put
+    475          	qBufPut( &g_qBufAudioRx, (uint8_t *)&bufAudio[FRAME_SIZE], (uint16_t)FRAME_SIZE );
+   \        0x4   0x.... 0x....      LDR.W    R5,??DataTable19_8
    \        0x8   0xF515 0x76A0      ADDS     R6,R5,#+320
    \        0xC   0x22A0             MOVS     R2,#+160
    \        0xE   0x0031             MOVS     R1,R6
-   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable18_5
+   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable19_4
    \       0x14   0x.... 0x....      BL       qBufPut
-    411          	qBufGet( &g_qBufAudioTx, (uint8_t *)&bufAudio[0], FRAME_SIZE );
+    476          	qBufGet( &g_qBufAudioTx, (uint8_t *)&bufAudio[0], (uint16_t)FRAME_SIZE );
    \       0x18   0x22A0             MOVS     R2,#+160
    \       0x1A   0x0029             MOVS     R1,R5
-   \       0x1C   0x.... 0x....      LDR.W    R0,??DataTable18_7
+   \       0x1C   0x.... 0x....      LDR.W    R0,??DataTable19_6
    \       0x20   0x.... 0x....      BL       qBufGet
-    412          
-    413          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], FRAME_SIZE );
+    477          
+    478          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], (uint16_t)FRAME_SIZE );
    \       0x24   0x23A0             MOVS     R3,#+160
    \       0x26   0x0032             MOVS     R2,R6
    \       0x28   0x0029             MOVS     R1,R5
-   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable18_10
+   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable19_9
    \       0x2E   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
-    414          }
+    479          }
    \       0x32   0xBD70             POP      {R4-R6,PC}
-    415          
-    416          //========================================================================
+    480          
+    481          //	interpolation compress ( 보간압축 )
+    482          #define	AUDIO_COMPR_RATE	8	//	Audio 압축율.
+    483          //#define	AUDIO_COMPR_RATE	4	//	Audio 압축율.
+    484          //#define	AUDIO_COMPR_RATE	2	//	Audio 압축율.
+    485          //#define	AUDIO_COMPR_RATE	1	//	Audio 압축율.
+    486          
+    487          #define	FRAME_ENC_SIZE		(I2S_DMA_LOOP_SIZE / AUDIO_COMPR_RATE)
+    488          
+    489          
+    490          
+    491          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    417          void AudioSine_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
-    418          //========================================================================
-    419          {
+    492          void AudioLoopback_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
+    493          //========================================================================
+    494          {
+    495           /*
+    496          	static int16_t	bufAudioEnc[(int16_t)FRAME_ENC_SIZE];
+    497          	static int16_t	bufAudioDec[(int16_t)FRAME_ENC_SIZE];
+    498          
+    499          	//	printf( "%s(%d)\n", __func__, __LINE__ );
+    500          
+    501          	//	Loopback Encoding / Decoding
+    502          
+    503          	//	Audio Buffer Put
+    504          //	qBufPut( &g_qBufAudioRx, (uint8_t *)&bufAudio[FRAME_SIZE], FRAME_SIZE );
+    505          //	qBufGet( &g_qBufAudioTx, (uint8_t *)&bufAudio[0], FRAME_SIZE );
+    506          
+    507          	int16_t	*inBuf = (uint8_t *)&bufAudio[I2S_DMA_LOOP_SIZE];
+    508          	int16_t	*outBuf = (uint8_t *)&bufAudio[0];
+    509          
+    510          	//	Encoding : 8 KHz -> 2 KHz
+    511          	int16_t i;
+    512          	for( i = 0; i < FRAME_ENC_SIZE; i++ )
+    513          	{
+    514          		bufAudioEnc[i] = inBuf[ i * AUDIO_COMPR_RATE];
+    515          	}
+    516          
+    517          	memcpy( bufAudioDec, bufAudioEnc, (uint32_t)(FRAME_ENC_SIZE * 2) );
+    518          
+    519          	int16_t dtVal;	//	sample 보간.
+    520          
+    521          	//	Decoding : 2 KHz -> 8 KHz
+    522          	for( i = 0; i < I2S_DMA_LOOP_SIZE; i++ )
+    523          	{
+    524          		if ( (i % AUDIO_COMPR_RATE) == 0 )
+    525          		{
+    526          			outBuf[ i ] = bufAudioDec[i / AUDIO_COMPR_RATE];
+    527          			if( i == ( I2S_DMA_LOOP_SIZE - 1) )
+    528          			{
+    529          				dtVal = 0;
+    530          			}
+    531          			else
+    532          			{
+    533          				dtVal = (bufAudioDec[(i / AUDIO_COMPR_RATE) + 1] - outBuf[ i ]) / AUDIO_COMPR_RATE;
+    534          			}
+    535          		}
+    536          		else
+    537          		{
+    538          			//	sample간 보간.
+    539          			outBuf[ i ] = outBuf[ i - 1 ] + dtVal;
+    540          		}
+    541          //		outBuf[ i ] = bufAudioDec[i / AUDIO_COMPR_RATE];
+    542          	}
+    543          
+    544          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)outBuf, (uint16_t*)inBuf, (uint16_t)FRAME_SIZE );
+    545          */
+    546          }
+   \                     AudioLoopback_I2SEx_TxRxCpltCallback: (+1)
+   \        0x0   0x4770             BX       LR
+    547          
+    548          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    549          void AudioSine_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
+    550          //========================================================================
+    551          {
    \                     AudioSine_I2SEx_TxRxCpltCallback: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    420          	//	printf( "%s(%d)\n", __func__, __LINE__ );
-    421          
-    422          	//========================================================================
-    423          	//	Speex Loopback
-    424          	//	pAudioTable = sine_table;
-    425          //	memcpy( &bufAudio[0], &bufAudio[FRAME_SIZE], FRAME_SIZE );
-    426          
-    427          #if 0
-    428          
-    429          	//	Speex Sine
-    430          	static int idx = 0;
-    431          
-    432          	HAL_I2SEx_TransmitReceive_DMA( 	&hi2s3,
-    433          									(uint16_t*)&speex_sine_table[idx*160],			//	Audio Tx
-    434          									(uint16_t*)&bufAudio[FRAME_SIZE],
-    435          									FRAME_SIZE
-    436          									);
-    437          
-    438          //	idx = (idx + 1) % 8;
-    439          
-    440          #else
-    441          
-    442          	HAL_I2SEx_TransmitReceive_DMA( 	&hi2s3,
-    443          									(uint16_t*)&sine_table[0],			//	Audio Tx
-    444          									(uint16_t*)&bufAudio[FRAME_SIZE],
-    445          									FRAME_SIZE
-    446          									);
+    552          	//	printf( "%s(%d)\n", __func__, __LINE__ );
+    553          
+    554          	//========================================================================
+    555          	//	Speex Loopback
+    556          	//	pAudioTable = sine_table;
+    557          //	memcpy( &bufAudio[0], &bufAudio[FRAME_SIZE], FRAME_SIZE );
+    558          
+    559          #if 0
+    560          
+    561          	//	Speex Sine
+    562          	static int idx = 0;
+    563          
+    564          	HAL_I2SEx_TransmitReceive_DMA( 	&hi2s3,
+    565          									(uint16_t*)&speex_sine_table[idx*160],			//	Audio Tx
+    566          									(uint16_t*)&bufAudio[FRAME_SIZE],
+    567          									FRAME_SIZE
+    568          									);
+    569          
+    570          //	idx = (idx + 1) % 8;
+    571          
+    572          #else
+    573          
+    574          	HAL_I2SEx_TransmitReceive_DMA( 	&hi2s3,
+    575          									(uint16_t*)&sine_table[0],			//	Audio Tx
+    576          									(uint16_t*)&bufAudio[FRAME_SIZE],
+    577          									(uint16_t)FRAME_SIZE
+    578          									);
    \        0x4   0x23A0             MOVS     R3,#+160
-   \        0x6   0x.... 0x....      LDR.W    R2,??DataTable18_24
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable18_8
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable18_10
+   \        0x6   0x.... 0x....      LDR.W    R2,??DataTable19_23
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable19_7
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable19_9
    \       0x12   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
-    447          
-    448          #endif
-    449          }
+    579          
+    580          #endif
+    581          }
    \       0x16   0xBD10             POP      {R4,PC}
-    450          
-    451          //========================================================================
+    582          
+    583          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    452          int		AudioLoopbackDMASpeex( void )
-    453          //========================================================================
-    454          {
+    584          uint8_t		AudioLoopbackDMACompress( void )
+    585          //========================================================================
+    586          {
+   \                     AudioLoopbackDMACompress: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    587          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x2   0xF240 0x224B      MOVW     R2,#+587
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable19_24
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable19_18
+   \        0xE   0x.... 0x....      BL       printf
+    588          
+    589          	SetCallbackI2STxRxCplt( &AudioLoopback_I2SEx_TxRxCpltCallback );
+   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable19_25
+   \       0x16   0x.... 0x....      BL       SetCallbackI2STxRxCplt
+    590          
+    591          	//	Speex ( 1 frame ) : 160 sample ( 320 bytes ) / 20 msec
+    592          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], (uint16_t)FRAME_SIZE );
+   \       0x1A   0x.... 0x....      LDR.W    R1,??DataTable19_8
+   \       0x1E   0x23A0             MOVS     R3,#+160
+   \       0x20   0xF511 0x72A0      ADDS     R2,R1,#+320
+   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable19_9
+   \       0x28   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
+    593          
+    594          	return (uint8_t)0;
+   \       0x2C   0x2000             MOVS     R0,#+0
+   \       0x2E   0xBD02             POP      {R1,PC}
+    595          }
+    596          
+    597          //========================================================================
+
+   \                                 In section .text, align 2, keep-with-next
+    598          uint8_t		AudioLoopbackDMASpeex( void )
+    599          //========================================================================
+    600          {
    \                     AudioLoopbackDMASpeex: (+1)
    \        0x0   0xB580             PUSH     {R7,LR}
-    455          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x2   0xF240 0x12C7      MOVW     R2,#+455
-   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable18_25
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable18_19
+    601          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x2   0xF240 0x2259      MOVW     R2,#+601
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable19_26
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable19_18
    \        0xE   0x.... 0x....      BL       printf
-    456          
-    457          	SetCallbackI2STxRxCplt( AudioSpeex_I2SEx_TxRxCpltCallback );
-   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable18_26
+    602          
+    603          	SetCallbackI2STxRxCplt( &AudioSpeex_I2SEx_TxRxCpltCallback );
+   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable19_27
    \       0x16   0x.... 0x....      BL       SetCallbackI2STxRxCplt
-    458          
-    459          	//	Speex ( 1 frame ) : 160 sample ( 320 bytes ) / 20 msec
-    460          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], FRAME_SIZE );
-   \       0x1A   0x.... 0x....      LDR.W    R1,??DataTable18_9
+    604          
+    605          	//	Speex ( 1 frame ) : 160 sample ( 320 bytes ) / 20 msec
+    606          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], (uint16_t)FRAME_SIZE );
+   \       0x1A   0x.... 0x....      LDR.W    R1,??DataTable19_8
    \       0x1E   0x23A0             MOVS     R3,#+160
    \       0x20   0xF511 0x72A0      ADDS     R2,R1,#+320
-   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable18_10
+   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable19_9
    \       0x28   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
-    461          
-    462          	return 0;
+    607          
+    608          	return (uint8_t)0;
    \       0x2C   0x2000             MOVS     R0,#+0
    \       0x2E   0xBD02             POP      {R1,PC}
-    463          }
-    464          
-    465          //========================================================================
+    609          }
+    610          
+    611          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    466          int		AudioPlayDMASine( void )
-    467          //========================================================================
-    468          {
+    612          uint8_t		AudioPlayDMASine( void )
+    613          //========================================================================
+    614          {
    \                     AudioPlayDMASine: (+1)
    \        0x0   0xB580             PUSH     {R7,LR}
-    469          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x2   0xF240 0x12D5      MOVW     R2,#+469
-   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable18_27
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable18_19
+    615          	printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0x2   0xF240 0x2267      MOVW     R2,#+615
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable19_28
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable19_18
    \        0xE   0x.... 0x....      BL       printf
-    470          
-    471          	SetCallbackI2STxRxCplt( AudioSine_I2SEx_TxRxCpltCallback );
-   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable18_28
+    616          
+    617          	SetCallbackI2STxRxCplt( &AudioSine_I2SEx_TxRxCpltCallback );
+   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable19_29
    \       0x16   0x.... 0x....      BL       SetCallbackI2STxRxCplt
-    472          
-    473          	//	Speex ( 1 frame ) : 160 sample ( 320 bytes ) / 20 msec
-    474          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], FRAME_SIZE );
-   \       0x1A   0x.... 0x....      LDR.W    R1,??DataTable18_9
+    618          
+    619          	//	Speex ( 1 frame ) : 160 sample ( 320 bytes ) / 20 msec
+    620          	HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)bufAudio, (uint16_t*)&bufAudio[FRAME_SIZE], (uint16_t)FRAME_SIZE );
+   \       0x1A   0x.... 0x....      LDR.W    R1,??DataTable19_8
    \       0x1E   0x23A0             MOVS     R3,#+160
    \       0x20   0xF511 0x72A0      ADDS     R2,R1,#+320
-   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable18_10
+   \       0x24   0x.... 0x....      LDR.W    R0,??DataTable19_9
    \       0x28   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
-    475          
-    476          	return 0;
+    621          
+    622          	return (uint8_t)0;
    \       0x2C   0x2000             MOVS     R0,#+0
    \       0x2E   0xBD02             POP      {R1,PC}
-    477          }
-    478          
-    479          //========================================================================
+    623          }
+    624          
+    625          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    480          void	AudioSpkVol	    ( int nSpkVol )
-    481          //========================================================================
-    482          {
+    626          void	AudioSpkVol	    ( uint8_t nSpkVol )
+    627          //========================================================================
+    628          {
    \                     AudioSpkVol: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    483              //========================================================================
-    484              //	Codec MAX9860ETG+
-    485              if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x10 << 1 ), 2, 2 ) )
+    629              //========================================================================
+    630              //	Codec MAX9860ETG+
+    631              if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x10 << 1 ),(uint32_t) 2, (uint32_t)2 ) )
    \        0x4   0x2302             MOVS     R3,#+2
    \        0x6   0x2202             MOVS     R2,#+2
    \        0x8   0x2120             MOVS     R1,#+32
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable18_17
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable19_16
    \        0xE   0x.... 0x....      BL       HAL_I2C_IsDeviceReady
    \       0x12   0x2800             CMP      R0,#+0
-   \       0x14   0xD11A             BNE.N    ??AudioSpkVol_0
-    486              {
-    487                  // Power DAC / ADC Disable
-    488          //        WriteI2CCodec( 0x10, 0x00 );	//powered on, DAC on, both ADC(Left) Enable
-    489          
-    490              	switch ( nSpkVol )
-   \       0x16   0x2C00             CMP      R4,#+0
-   \       0x18   0xD005             BEQ.N    ??AudioSpkVol_1
-   \       0x1A   0x2C02             CMP      R4,#+2
-   \       0x1C   0xD00D             BEQ.N    ??AudioSpkVol_2
-   \       0x1E   0xD307             BCC.N    ??AudioSpkVol_3
-   \       0x20   0x2C03             CMP      R4,#+3
-   \       0x22   0xD00F             BEQ.N    ??AudioSpkVol_4
-   \       0x24   0xE012             B.N      ??AudioSpkVol_0
-    491                  {
-    492                  case 0:		WriteI2CCodec( 0x09, 0xBA );	break;	//  Mute ( 0xBC )
+   \       0x14   0xD11C             BNE.N    ??AudioSpkVol_0
+    632              {
+    633                  // Power DAC / ADC Disable
+    634          //        WriteI2CCodec( 0x10, 0x00 );	//powered on, DAC on, both ADC(Left) Enable
+    635                  switch ( nSpkVol )
+   \       0x16   0x0020             MOVS     R0,R4
+   \       0x18   0xB2C0             UXTB     R0,R0
+   \       0x1A   0x2800             CMP      R0,#+0
+   \       0x1C   0xD005             BEQ.N    ??AudioSpkVol_1
+   \       0x1E   0x2802             CMP      R0,#+2
+   \       0x20   0xD00D             BEQ.N    ??AudioSpkVol_2
+   \       0x22   0xD307             BCC.N    ??AudioSpkVol_3
+   \       0x24   0x2803             CMP      R0,#+3
+   \       0x26   0xD00F             BEQ.N    ??AudioSpkVol_4
+   \       0x28   0xE012             B.N      ??AudioSpkVol_0
+    636                  {
+    637                  case 0:
+    638                      WriteI2CCodec( (uint8_t)0x09, (uint8_t)0xBA );	//  Mute ( 0xBC )
    \                     ??AudioSpkVol_1: (+1)
-   \       0x26   0x21BA             MOVS     R1,#+186
-   \       0x28   0x2009             MOVS     R0,#+9
-   \       0x2A   0x.... 0x....      BL       WriteI2CCodec
-   \       0x2E   0xE00D             B.N      ??AudioSpkVol_0
-    493                  case 1:		WriteI2CCodec( 0x09, 0x0C );	break;	//  0x0C ( -3 )
+   \       0x2A   0x21BA             MOVS     R1,#+186
+   \       0x2C   0x2009             MOVS     R0,#+9
+   \       0x2E   0x.... 0x....      BL       WriteI2CCodec
+    639          //            WriteI2CCodec( 0x0B, 0x00 );	//  00 ( 0 dB )
+    640                      break;
+   \       0x32   0xE00D             B.N      ??AudioSpkVol_0
+    641                  case 1:
+    642                      WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x0C );	//  0x0C ( -3 )
    \                     ??AudioSpkVol_3: (+1)
-   \       0x30   0x210C             MOVS     R1,#+12
-   \       0x32   0x2009             MOVS     R0,#+9
-   \       0x34   0x.... 0x....      BL       WriteI2CCodec
-   \       0x38   0xE008             B.N      ??AudioSpkVol_0
-    494                  case 2:		WriteI2CCodec( 0x09, 0x06 );	break;	//  0x02 ( 0 dB ) DAC adjustment, this would require testing and/or a better understanding of the overall system
+   \       0x34   0x210C             MOVS     R1,#+12
+   \       0x36   0x2009             MOVS     R0,#+9
+   \       0x38   0x.... 0x....      BL       WriteI2CCodec
+    643          //            WriteI2CCodec( 0x0B, 0x20 );	//  01 ( +6 dB )
+    644                      break;
+   \       0x3C   0xE008             B.N      ??AudioSpkVol_0
+    645                  case 2:
+    646                      WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x06 );	//  0x02 ( 0 dB ) DAC adjustment, this would require testing and/or a better understanding of the overall system
    \                     ??AudioSpkVol_2: (+1)
-   \       0x3A   0x2106             MOVS     R1,#+6
-   \       0x3C   0x2009             MOVS     R0,#+9
-   \       0x3E   0x.... 0x....      BL       WriteI2CCodec
-   \       0x42   0xE003             B.N      ??AudioSpkVol_0
-    495                  case 3:		WriteI2CCodec( 0x09, 0x00 );	break;	//  0x02 ( +3 )
+   \       0x3E   0x2106             MOVS     R1,#+6
+   \       0x40   0x2009             MOVS     R0,#+9
+   \       0x42   0x.... 0x....      BL       WriteI2CCodec
+    647          //            WriteI2CCodec( 0x0B, 0x40 );	//  10 ( +12 dB )
+    648                      break;
+   \       0x46   0xE003             B.N      ??AudioSpkVol_0
+    649                  case 3:
+    650                      WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x00 );	//  0x02 ( +3 )
    \                     ??AudioSpkVol_4: (+1)
-   \       0x44   0x2100             MOVS     R1,#+0
-   \       0x46   0x2009             MOVS     R0,#+9
-   \       0x48   0x.... 0x....      BL       WriteI2CCodec
-    496                  }
-    497          
-    498                  // Power DAC / ADC Enable
-    499          //        WriteI2CCodec( 0x10, 0x8A );	//powered on, DAC on, both ADC(Left) Enable
-    500              }
-    501          }
+   \       0x48   0x2100             MOVS     R1,#+0
+   \       0x4A   0x2009             MOVS     R0,#+9
+   \       0x4C   0x.... 0x....      BL       WriteI2CCodec
+    651          //            WriteI2CCodec( 0x0B, 0x60 );	//  10 ( +18 dB )
+    652                      break;
+    653                  }
+    654          
+    655                  // Power DAC / ADC Enable
+    656          //        WriteI2CCodec( 0x10, 0x8A );	//powered on, DAC on, both ADC(Left) Enable
+    657              }
+    658          }
    \                     ??AudioSpkVol_0: (+1)
-   \       0x4C   0xBD10             POP      {R4,PC}
-    502          
-    503          
-    504          //========================================================================
+   \       0x50   0xBD10             POP      {R4,PC}
+    659          
+    660          
+    661          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    505          void	AudioMicVol	    ( int nMicVol )
-    506          //========================================================================
-    507          {
+    662          void	AudioMicVol	    ( uint8_t nMicVol )
+    663          //========================================================================
+    664          {
    \                     AudioMicVol: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    508              //========================================================================
-    509              //	Codec MAX9860ETG+
-    510              if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x10 << 1 ), 2, 2 ) )
+    665              //========================================================================
+    666              //	Codec MAX9860ETG+
+    667              if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x10 << 1 ), (uint32_t)2,(uint32_t) 2 ) )
    \        0x4   0x2302             MOVS     R3,#+2
    \        0x6   0x2202             MOVS     R2,#+2
    \        0x8   0x2120             MOVS     R1,#+32
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable18_17
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable19_16
    \        0xE   0x.... 0x....      BL       HAL_I2C_IsDeviceReady
    \       0x12   0x2800             CMP      R0,#+0
-   \       0x14   0xD144             BNE.N    ??AudioMicVol_0
-    511              {
-    512                  // Power DAC / ADC Disable
-    513          //        WriteI2CCodec( 0x10, 0x00 );	//powered on, DAC on, both ADC(Left) Enable
-    514                  switch ( nMicVol )
+   \       0x14   0xD145             BNE.N    ??AudioMicVol_0
+    668              {
+    669                  // Power DAC / ADC Disable
+    670          //        WriteI2CCodec( 0x10, 0x00 );	//powered on, DAC on, both ADC(Left) Enable
+    671                  switch ( nMicVol )
    \       0x16   0x0020             MOVS     R0,R4
-   \       0x18   0x2800             CMP      R0,#+0
-   \       0x1A   0xD010             BEQ.N    ??AudioMicVol_1
-   \       0x1C   0x2801             CMP      R0,#+1
-   \       0x1E   0xD013             BEQ.N    ??AudioMicVol_2
-   \       0x20   0x2802             CMP      R0,#+2
-   \       0x22   0xD016             BEQ.N    ??AudioMicVol_3
-   \       0x24   0x2803             CMP      R0,#+3
-   \       0x26   0xD019             BEQ.N    ??AudioMicVol_4
-   \       0x28   0x2804             CMP      R0,#+4
-   \       0x2A   0xD01C             BEQ.N    ??AudioMicVol_5
-   \       0x2C   0x2806             CMP      R0,#+6
-   \       0x2E   0xD024             BEQ.N    ??AudioMicVol_6
-   \       0x30   0x2807             CMP      R0,#+7
-   \       0x32   0xD027             BEQ.N    ??AudioMicVol_7
-   \       0x34   0x2808             CMP      R0,#+8
-   \       0x36   0xD02A             BEQ.N    ??AudioMicVol_8
-   \       0x38   0x2809             CMP      R0,#+9
-   \       0x3A   0xD02D             BEQ.N    ??AudioMicVol_9
-   \       0x3C   0xE018             B.N      ??AudioMicVol_10
-    515          		{
-    516          		case 0:		WriteI2CCodec( 0x0c, 0x34 );	break;	// ( 0 dB ) PAM = 01(+0) / PGAM = 0x14(+0)
+   \       0x18   0xB2C0             UXTB     R0,R0
+   \       0x1A   0x2800             CMP      R0,#+0
+   \       0x1C   0xD010             BEQ.N    ??AudioMicVol_1
+   \       0x1E   0x2801             CMP      R0,#+1
+   \       0x20   0xD013             BEQ.N    ??AudioMicVol_2
+   \       0x22   0x2802             CMP      R0,#+2
+   \       0x24   0xD016             BEQ.N    ??AudioMicVol_3
+   \       0x26   0x2803             CMP      R0,#+3
+   \       0x28   0xD019             BEQ.N    ??AudioMicVol_4
+   \       0x2A   0x2804             CMP      R0,#+4
+   \       0x2C   0xD01C             BEQ.N    ??AudioMicVol_5
+   \       0x2E   0x2806             CMP      R0,#+6
+   \       0x30   0xD024             BEQ.N    ??AudioMicVol_6
+   \       0x32   0x2807             CMP      R0,#+7
+   \       0x34   0xD027             BEQ.N    ??AudioMicVol_7
+   \       0x36   0x2808             CMP      R0,#+8
+   \       0x38   0xD02A             BEQ.N    ??AudioMicVol_8
+   \       0x3A   0x2809             CMP      R0,#+9
+   \       0x3C   0xD02D             BEQ.N    ??AudioMicVol_9
+   \       0x3E   0xE018             B.N      ??AudioMicVol_10
+    672          		{
+    673          		case 0:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x34 );	break;	// ( 0 dB ) PAM = 01(+0) / PGAM = 0x14(+0)
    \                     ??AudioMicVol_1: (+1)
-   \       0x3E   0x2134             MOVS     R1,#+52
-   \       0x40   0x200C             MOVS     R0,#+12
-   \       0x42   0x.... 0x....      BL       WriteI2CCodec
-   \       0x46   0xE02B             B.N      ??AudioMicVol_0
-    517          		case 1:		WriteI2CCodec( 0x0c, 0x32 );	break;	// ( 2 dB ) PAM = 01(+0) / PGAM = 0x12(+2)
+   \       0x40   0x2134             MOVS     R1,#+52
+   \       0x42   0x200C             MOVS     R0,#+12
+   \       0x44   0x.... 0x....      BL       WriteI2CCodec
+   \       0x48   0xE02B             B.N      ??AudioMicVol_0
+    674          		case 1:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x32 );	break;	// ( 2 dB ) PAM = 01(+0) / PGAM = 0x12(+2)
    \                     ??AudioMicVol_2: (+1)
-   \       0x48   0x2132             MOVS     R1,#+50
-   \       0x4A   0x200C             MOVS     R0,#+12
-   \       0x4C   0x.... 0x....      BL       WriteI2CCodec
-   \       0x50   0xE026             B.N      ??AudioMicVol_0
-    518          		case 2:		WriteI2CCodec( 0x0c, 0x30 );	break;	// ( 4 dB ) PAM = 01(+0) / PGAM = 0x10(+4)
+   \       0x4A   0x2132             MOVS     R1,#+50
+   \       0x4C   0x200C             MOVS     R0,#+12
+   \       0x4E   0x.... 0x....      BL       WriteI2CCodec
+   \       0x52   0xE026             B.N      ??AudioMicVol_0
+    675          		case 2:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x30 );	break;	// ( 4 dB ) PAM = 01(+0) / PGAM = 0x10(+4)
    \                     ??AudioMicVol_3: (+1)
-   \       0x52   0x2130             MOVS     R1,#+48
-   \       0x54   0x200C             MOVS     R0,#+12
-   \       0x56   0x.... 0x....      BL       WriteI2CCodec
-   \       0x5A   0xE021             B.N      ??AudioMicVol_0
-    519          		case 3:		WriteI2CCodec( 0x0c, 0x2E );	break;	// ( 6 dB ) PAM = 01(+0) / PGAM = 0x0E(+6)
+   \       0x54   0x2130             MOVS     R1,#+48
+   \       0x56   0x200C             MOVS     R0,#+12
+   \       0x58   0x.... 0x....      BL       WriteI2CCodec
+   \       0x5C   0xE021             B.N      ??AudioMicVol_0
+    676          		case 3:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x2E );	break;	// ( 6 dB ) PAM = 01(+0) / PGAM = 0x0E(+6)
    \                     ??AudioMicVol_4: (+1)
-   \       0x5C   0x212E             MOVS     R1,#+46
-   \       0x5E   0x200C             MOVS     R0,#+12
-   \       0x60   0x.... 0x....      BL       WriteI2CCodec
-   \       0x64   0xE01C             B.N      ??AudioMicVol_0
-    520          		case 4:		WriteI2CCodec( 0x0c, 0x2C );	break;	// ( 8 dB ) PAM = 01(+0) / PGAM = 0x0C(+8)
+   \       0x5E   0x212E             MOVS     R1,#+46
+   \       0x60   0x200C             MOVS     R0,#+12
+   \       0x62   0x.... 0x....      BL       WriteI2CCodec
+   \       0x66   0xE01C             B.N      ??AudioMicVol_0
+    677          		case 4:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x2C );	break;	// ( 8 dB ) PAM = 01(+0) / PGAM = 0x0C(+8)
    \                     ??AudioMicVol_5: (+1)
-   \       0x66   0x212C             MOVS     R1,#+44
-   \       0x68   0x200C             MOVS     R0,#+12
-   \       0x6A   0x.... 0x....      BL       WriteI2CCodec
-   \       0x6E   0xE017             B.N      ??AudioMicVol_0
-    521          		default:	//	Default ( 5 )
-    522          		case 5:		WriteI2CCodec( 0x0c, 0x2A );	break;	// ( 10 dB ) PAM = 01(+0) / PGAM = 0x0A(+10) - Default
+   \       0x68   0x212C             MOVS     R1,#+44
+   \       0x6A   0x200C             MOVS     R0,#+12
+   \       0x6C   0x.... 0x....      BL       WriteI2CCodec
+   \       0x70   0xE017             B.N      ??AudioMicVol_0
+    678          		default:	//	Default ( 5 )
+    679          		case 5:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x2A );	break;	// ( 10 dB ) PAM = 01(+0) / PGAM = 0x0A(+10) - Default
    \                     ??AudioMicVol_10: (+1)
-   \       0x70   0x212A             MOVS     R1,#+42
-   \       0x72   0x200C             MOVS     R0,#+12
-   \       0x74   0x.... 0x....      BL       WriteI2CCodec
-   \       0x78   0xE012             B.N      ??AudioMicVol_0
-    523          		case 6:		WriteI2CCodec( 0x0c, 0x28 );	break;	// ( 12 dB ) PAM = 01(+0) / PGAM = 0x08(+12)
+   \       0x72   0x212A             MOVS     R1,#+42
+   \       0x74   0x200C             MOVS     R0,#+12
+   \       0x76   0x.... 0x....      BL       WriteI2CCodec
+   \       0x7A   0xE012             B.N      ??AudioMicVol_0
+    680          		case 6:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x28 );	break;	// ( 12 dB ) PAM = 01(+0) / PGAM = 0x08(+12)
    \                     ??AudioMicVol_6: (+1)
-   \       0x7A   0x2128             MOVS     R1,#+40
-   \       0x7C   0x200C             MOVS     R0,#+12
-   \       0x7E   0x.... 0x....      BL       WriteI2CCodec
-   \       0x82   0xE00D             B.N      ??AudioMicVol_0
-    524          		case 7:		WriteI2CCodec( 0x0c, 0x26 );	break;	// ( 14 dB ) PAM = 01(+0) / PGAM = 0x06(+14)
+   \       0x7C   0x2128             MOVS     R1,#+40
+   \       0x7E   0x200C             MOVS     R0,#+12
+   \       0x80   0x.... 0x....      BL       WriteI2CCodec
+   \       0x84   0xE00D             B.N      ??AudioMicVol_0
+    681          		case 7:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x26 );	break;	// ( 14 dB ) PAM = 01(+0) / PGAM = 0x06(+14)
    \                     ??AudioMicVol_7: (+1)
-   \       0x84   0x2126             MOVS     R1,#+38
-   \       0x86   0x200C             MOVS     R0,#+12
-   \       0x88   0x.... 0x....      BL       WriteI2CCodec
-   \       0x8C   0xE008             B.N      ??AudioMicVol_0
-    525          		case 8:		WriteI2CCodec( 0x0c, 0x24 );	break;	// ( 16 dB ) PAM = 01(+0) / PGAM = 0x04(+16)
+   \       0x86   0x2126             MOVS     R1,#+38
+   \       0x88   0x200C             MOVS     R0,#+12
+   \       0x8A   0x.... 0x....      BL       WriteI2CCodec
+   \       0x8E   0xE008             B.N      ??AudioMicVol_0
+    682          		case 8:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x24 );	break;	// ( 16 dB ) PAM = 01(+0) / PGAM = 0x04(+16)
    \                     ??AudioMicVol_8: (+1)
-   \       0x8E   0x2124             MOVS     R1,#+36
-   \       0x90   0x200C             MOVS     R0,#+12
-   \       0x92   0x.... 0x....      BL       WriteI2CCodec
-   \       0x96   0xE003             B.N      ??AudioMicVol_0
-    526          		case 9:		WriteI2CCodec( 0x0c, 0x22 );	break;	// ( 18 dB ) PAM = 01(+0) / PGAM = 0x02(+18)
+   \       0x90   0x2124             MOVS     R1,#+36
+   \       0x92   0x200C             MOVS     R0,#+12
+   \       0x94   0x.... 0x....      BL       WriteI2CCodec
+   \       0x98   0xE003             B.N      ??AudioMicVol_0
+    683          		case 9:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x22 );	break;	// ( 18 dB ) PAM = 01(+0) / PGAM = 0x02(+18)
    \                     ??AudioMicVol_9: (+1)
-   \       0x98   0x2122             MOVS     R1,#+34
-   \       0x9A   0x200C             MOVS     R0,#+12
-   \       0x9C   0x.... 0x....      BL       WriteI2CCodec
-    527          		}
-    528          
-    529                  // Power DAC / ADC Enable
-    530          //        WriteI2CCodec( 0x10, 0x8A );	//powered on, DAC on, both ADC(Left) Enable
-    531              }
-    532          }
+   \       0x9A   0x2122             MOVS     R1,#+34
+   \       0x9C   0x200C             MOVS     R0,#+12
+   \       0x9E   0x.... 0x....      BL       WriteI2CCodec
+    684          		}
+    685          
+    686                  // Power DAC / ADC Enable
+    687          //        WriteI2CCodec( 0x10, 0x8A );	//powered on, DAC on, both ADC(Left) Enable
+    688              }
+    689          }
    \                     ??AudioMicVol_0: (+1)
-   \       0xA0   0xBD10             POP      {R4,PC}
-    533          
-    534          //========================================================================
+   \       0xA2   0xBD10             POP      {R4,PC}
+    690          
+    691          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    535          int cmd_audio( int argc, char *argv[] )
-    536          //========================================================================
-    537          {
+    692          uint8_t cmd_audio( uint8_t argc, char *argv[] )
+    693          //========================================================================
+    694          {
    \                     cmd_audio: (+1)
    \        0x0   0xB57C             PUSH     {R2-R6,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    538          	//	audio [ loop / null / sine / spk / mute / vol ] [0/1 - spk relay]
-    539          	if ( argc < 2 )
-   \        0x6   0x2C02             CMP      R4,#+2
-   \        0x8   0xDA09             BGE.N    ??cmd_audio_0
-    540          	{
-    541          		printf( "%s(%d) - return\n", __func__, __LINE__ );
-   \        0xA   0xF240 0x221D      MOVW     R2,#+541
-   \        0xE   0x.... 0x....      LDR.W    R1,??DataTable18_29
-   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable18_30
-   \       0x16   0x.... 0x....      BL       printf
-    542          		return 0;
-   \       0x1A   0x2000             MOVS     R0,#+0
-   \       0x1C   0xE110             B.N      ??cmd_audio_1
-    543          	}
-    544          
-    545          	char	*sCmd;
-                 	    	 ^
-Warning[Pe550]: variable "sCmd" was set but never used
-    546          	int		nVal;
-    547          
-    548          	switch ( argc )
+    695          	//	audio [ loop / null / sine / spk / mute / vol ] [0/1 - spk relay]
+    696          	if ( argc < 2 )
+   \        0x6   0x0020             MOVS     R0,R4
+   \        0x8   0xB2C0             UXTB     R0,R0
+   \        0xA   0x2802             CMP      R0,#+2
+   \        0xC   0xDA09             BGE.N    ??cmd_audio_0
+    697          	{
+    698          		printf( "%s(%d) - return\n", __func__, __LINE__ );
+   \        0xE   0xF240 0x22BA      MOVW     R2,#+698
+   \       0x12   0x.... 0x....      LDR.W    R1,??DataTable19_30
+   \       0x16   0x.... 0x....      LDR.W    R0,??DataTable19_31
+   \       0x1A   0x.... 0x....      BL       printf
+    699          		return (uint8_t)0;
+   \       0x1E   0x2000             MOVS     R0,#+0
+   \       0x20   0xE115             B.N      ??cmd_audio_1
+    700          	}
+    701          
+    702          	S8	*sCmd;
+    703          	uint8_t		nVal;
+    704          
+    705          	switch ( argc )
    \                     ??cmd_audio_0: (+1)
-   \       0x1E   0x0020             MOVS     R0,R4
-   \       0x20   0x2802             CMP      R0,#+2
-   \       0x22   0xD006             BEQ.N    ??cmd_audio_2
-   \       0x24   0x2803             CMP      R0,#+3
-   \       0x26   0xD106             BNE.N    ??cmd_audio_3
-    549          	{
-    550          	case 3:		sscanf( argv[2], "%d", &nVal );		//	Value
+   \       0x22   0x0020             MOVS     R0,R4
+   \       0x24   0xB2C0             UXTB     R0,R0
+   \       0x26   0x2802             CMP      R0,#+2
+   \       0x28   0xD006             BEQ.N    ??cmd_audio_2
+   \       0x2A   0x2803             CMP      R0,#+3
+   \       0x2C   0xD106             BNE.N    ??cmd_audio_3
+    706          	{
+    707          	case 3:		sscanf( argv[2], "%d", &nVal );		//	Value
+                 	       		                       ^
+Warning[Pe181]: argument is incompatible with corresponding format string
+          conversion
    \                     ??cmd_audio_4: (+1)
-   \       0x28   0x466A             MOV      R2,SP
-   \       0x2A   0x....             ADR.N    R1,??DataTable17
-   \       0x2C   0x68A8             LDR      R0,[R5, #+8]
-   \       0x2E   0x.... 0x....      BL       sscanf
-    551          	case 2:		sCmd = argv[1];						//	Command
+   \       0x2E   0x466A             MOV      R2,SP
+   \       0x30   0x....             ADR.N    R1,??DataTable18
+   \       0x32   0x68A8             LDR      R0,[R5, #+8]
+   \       0x34   0x.... 0x....      BL       sscanf
+    708          	case 2:		sCmd = argv[1];						//	Command
+                 	       		     ^
+Warning[Pe513]: a value of type "char *" cannot be assigned to an entity of
+          type "S8 *"
+
+  	S8	*sCmd;
+  	  	 ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\audio.c",702  Warning[Pe550]: variable
+          "sCmd" was set but never used
    \                     ??cmd_audio_2: (+1)
-   \       0x32   0x6868             LDR      R0,[R5, #+4]
-   \       0x34   0x0006             MOVS     R6,R0
-    552          //	case 2:		sText = argv[1];					//	sscanf( argv[1], "%s", sText );		//	cmd [Text]
-    553          		break;
-    554          	}
-    555          
-    556          	if ( strcmp( argv[1], "spk" ) == 0 )
-   \                     ??cmd_audio_3: (+1)
-   \       0x36   0x....             ADR.N    R1,??DataTable17_1
    \       0x38   0x6868             LDR      R0,[R5, #+4]
-   \       0x3A   0x.... 0x....      BL       strcmp
-   \       0x3E   0x2800             CMP      R0,#+0
-   \       0x40   0xD120             BNE.N    ??cmd_audio_5
-    557          	{
-    558          		if ( nVal == 1 )	//	strcmp( argv[2], "1" ) == 0 )
-   \       0x42   0x9800             LDR      R0,[SP, #+0]
-   \       0x44   0x2801             CMP      R0,#+1
-   \       0x46   0xD10E             BNE.N    ??cmd_audio_6
-    559          		{
-    560          			//	Spk On
-    561          			printf( "%s(%d) - Spk Relay : On\n", __func__, __LINE__ );
-   \       0x48   0xF240 0x2231      MOVW     R2,#+561
-   \       0x4C   0x.... 0x....      LDR.W    R1,??DataTable18_29
-   \       0x50   0x.... 0x....      LDR.W    R0,??DataTable18_31
-   \       0x54   0x.... 0x....      BL       printf
-    562          			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
-   \       0x58   0x2201             MOVS     R2,#+1
-   \       0x5A   0x2120             MOVS     R1,#+32
-   \       0x5C   0x.... 0x....      LDR.W    R0,??DataTable18_32
-   \       0x60   0x.... 0x....      BL       HAL_GPIO_WritePin
-   \       0x64   0xE0EB             B.N      ??cmd_audio_7
-    563          		}
-    564          		else	//	if ( strcmp( argv[2], "0" ) == 0 )
-    565          		{
-    566          			//	Spk On
-    567          			printf( "%s(%d) - Spk Relay : Off\n", __func__, __LINE__ );
+   \       0x3A   0x0006             MOVS     R6,R0
+    709          //	case 2:		sText = argv[1];					//	sscanf( argv[1], "%s", sText );		//	cmd [Text]
+    710          		break;
+    711          	}
+    712          
+    713          	if ( strcmp( argv[1], "spk" ) == 0 )
+   \                     ??cmd_audio_3: (+1)
+   \       0x3C   0x....             ADR.N    R1,??DataTable18_1
+   \       0x3E   0x6868             LDR      R0,[R5, #+4]
+   \       0x40   0x.... 0x....      BL       strcmp
+   \       0x44   0x2800             CMP      R0,#+0
+   \       0x46   0xD121             BNE.N    ??cmd_audio_5
+    714          	{
+    715          		if ( nVal == 1 )	//	strcmp( argv[2], "1" ) == 0 )
+   \       0x48   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \       0x4C   0x2801             CMP      R0,#+1
+   \       0x4E   0xD10E             BNE.N    ??cmd_audio_6
+    716          		{
+    717          			//	Spk On
+    718          			printf( "%s(%d) - Spk Relay : On\n", __func__, __LINE__ );
+   \       0x50   0xF240 0x22CE      MOVW     R2,#+718
+   \       0x54   0x.... 0x....      LDR.W    R1,??DataTable19_30
+   \       0x58   0x.... 0x....      LDR.W    R0,??DataTable19_32
+   \       0x5C   0x.... 0x....      BL       printf
+    719          			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
+   \       0x60   0x2201             MOVS     R2,#+1
+   \       0x62   0x2120             MOVS     R1,#+32
+   \       0x64   0x.... 0x....      LDR.W    R0,??DataTable19_33
+   \       0x68   0x.... 0x....      BL       HAL_GPIO_WritePin
+   \       0x6C   0xE0EE             B.N      ??cmd_audio_7
+    720          		}
+    721          		else	//	if ( strcmp( argv[2], "0" ) == 0 )
+    722          		{
+    723          			//	Spk On
+    724          			printf( "%s(%d) - Spk Relay : Off\n", __func__, __LINE__ );
    \                     ??cmd_audio_6: (+1)
-   \       0x66   0xF240 0x2237      MOVW     R2,#+567
-   \       0x6A   0x.... 0x....      LDR.W    R1,??DataTable18_29
-   \       0x6E   0x.... 0x....      LDR.W    R0,??DataTable18_33
-   \       0x72   0x.... 0x....      BL       printf
-    568          			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
-   \       0x76   0x2200             MOVS     R2,#+0
-   \       0x78   0x2120             MOVS     R1,#+32
-   \       0x7A   0x.... 0x....      LDR.W    R0,??DataTable18_32
-   \       0x7E   0x.... 0x....      BL       HAL_GPIO_WritePin
-   \       0x82   0xE0DC             B.N      ??cmd_audio_7
-    569          		}
-    570          	}
-    571          	else if ( strcmp( argv[1], "loop" ) == 0 )
+   \       0x6E   0xF44F 0x7235      MOV      R2,#+724
+   \       0x72   0x.... 0x....      LDR.W    R1,??DataTable19_30
+   \       0x76   0x.... 0x....      LDR.W    R0,??DataTable19_34
+   \       0x7A   0x.... 0x....      BL       printf
+    725          			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
+   \       0x7E   0x2200             MOVS     R2,#+0
+   \       0x80   0x2120             MOVS     R1,#+32
+   \       0x82   0x.... 0x....      LDR.W    R0,??DataTable19_33
+   \       0x86   0x.... 0x....      BL       HAL_GPIO_WritePin
+   \       0x8A   0xE0DF             B.N      ??cmd_audio_7
+    726          		}
+    727          	}
+    728          	else if ( strcmp( argv[1], "loop" ) == 0 )
    \                     ??cmd_audio_5: (+1)
-   \       0x84   0x.... 0x....      LDR.W    R1,??DataTable18_34
-   \       0x88   0x6868             LDR      R0,[R5, #+4]
-   \       0x8A   0x.... 0x....      BL       strcmp
-   \       0x8E   0x2800             CMP      R0,#+0
-   \       0x90   0xD10D             BNE.N    ??cmd_audio_8
-    572          	{
-    573          		//	Audio Loop Test
-    574          		printf( "%s(%d) - loop\n", __func__, __LINE__ );
-   \       0x92   0xF240 0x223E      MOVW     R2,#+574
-   \       0x96   0x....             LDR.N    R1,??DataTable18_29
-   \       0x98   0x....             LDR.N    R0,??DataTable18_35
-   \       0x9A   0x.... 0x....      BL       printf
-    575          
-    576          		AudioDMALoopback();
-   \       0x9E   0x.... 0x....      BL       AudioDMALoopback
-    577          
-    578          		//	Spk On
-    579          		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
-   \       0xA2   0x2201             MOVS     R2,#+1
-   \       0xA4   0x2120             MOVS     R1,#+32
-   \       0xA6   0x....             LDR.N    R0,??DataTable18_32
-   \       0xA8   0x.... 0x....      BL       HAL_GPIO_WritePin
-   \       0xAC   0xE0C7             B.N      ??cmd_audio_7
-    580          	}
-    581          	else if ( strcmp( argv[1], "sine" ) == 0 )
+   \       0x8C   0x.... 0x....      LDR.W    R1,??DataTable19_35
+   \       0x90   0x6868             LDR      R0,[R5, #+4]
+   \       0x92   0x.... 0x....      BL       strcmp
+   \       0x96   0x2800             CMP      R0,#+0
+   \       0x98   0xD10E             BNE.N    ??cmd_audio_8
+    729          	{
+    730          		//	Audio Loop Test
+    731          		printf( "%s(%d) - loop\n", __func__, __LINE__ );
+   \       0x9A   0xF240 0x22DB      MOVW     R2,#+731
+   \       0x9E   0x....             LDR.N    R1,??DataTable19_30
+   \       0xA0   0x.... 0x....      LDR.W    R0,??DataTable19_36
+   \       0xA4   0x.... 0x....      BL       printf
+    732          
+    733          		AudioDMALoopback();
+   \       0xA8   0x.... 0x....      BL       AudioDMALoopback
+    734          
+    735          		//	Spk On
+    736          		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
+   \       0xAC   0x2201             MOVS     R2,#+1
+   \       0xAE   0x2120             MOVS     R1,#+32
+   \       0xB0   0x....             LDR.N    R0,??DataTable19_33
+   \       0xB2   0x.... 0x....      BL       HAL_GPIO_WritePin
+   \       0xB6   0xE0C9             B.N      ??cmd_audio_7
+    737          	}
+    738          	else if ( strcmp( argv[1], "sine" ) == 0 )
    \                     ??cmd_audio_8: (+1)
-   \       0xAE   0x....             LDR.N    R1,??DataTable18_36
-   \       0xB0   0x6868             LDR      R0,[R5, #+4]
-   \       0xB2   0x.... 0x....      BL       strcmp
-   \       0xB6   0x2800             CMP      R0,#+0
-   \       0xB8   0xD108             BNE.N    ??cmd_audio_9
-    582          	{
-    583          		//	Audio Output Sine Wave
-    584          		printf( "%s(%d) - sine\n", __func__, __LINE__ );
-   \       0xBA   0xF44F 0x7212      MOV      R2,#+584
-   \       0xBE   0x....             LDR.N    R1,??DataTable18_29
-   \       0xC0   0x....             LDR.N    R0,??DataTable18_37
-   \       0xC2   0x.... 0x....      BL       printf
-    585          		AudioPlayDMASine();
-   \       0xC6   0x.... 0x....      BL       AudioPlayDMASine
-   \       0xCA   0xE0B8             B.N      ??cmd_audio_7
-    586          
-    587          //		//	Spk On
-    588          //		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
-    589          	}
-    590          	else if ( strcmp( argv[1], "stop" ) == 0 )
+   \       0xB8   0x....             LDR.N    R1,??DataTable19_37
+   \       0xBA   0x6868             LDR      R0,[R5, #+4]
+   \       0xBC   0x.... 0x....      BL       strcmp
+   \       0xC0   0x2800             CMP      R0,#+0
+   \       0xC2   0xD108             BNE.N    ??cmd_audio_9
+    739          	{
+    740          		//	Audio Output Sine Wave
+    741          		printf( "%s(%d) - sine\n", __func__, __LINE__ );
+   \       0xC4   0xF240 0x22E5      MOVW     R2,#+741
+   \       0xC8   0x....             LDR.N    R1,??DataTable19_30
+   \       0xCA   0x....             LDR.N    R0,??DataTable19_38
+   \       0xCC   0x.... 0x....      BL       printf
+    742          		AudioPlayDMASine();
+   \       0xD0   0x.... 0x....      BL       AudioPlayDMASine
+   \       0xD4   0xE0BA             B.N      ??cmd_audio_7
+    743          
+    744          //		//	Spk On
+    745          //		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
+    746          	}
+    747          	else if ( strcmp( argv[1], "stop" ) == 0 )
    \                     ??cmd_audio_9: (+1)
-   \       0xCC   0x....             LDR.N    R1,??DataTable18_38
-   \       0xCE   0x6868             LDR      R0,[R5, #+4]
-   \       0xD0   0x.... 0x....      BL       strcmp
-   \       0xD4   0x2800             CMP      R0,#+0
-   \       0xD6   0xD109             BNE.N    ??cmd_audio_10
-    591          	{
-    592          		//	Audio Loop Test
-    593          		printf( "%s(%d) - %s\n", __func__, __LINE__, argv[1] );
-   \       0xD8   0x686B             LDR      R3,[R5, #+4]
-   \       0xDA   0xF240 0x2251      MOVW     R2,#+593
-   \       0xDE   0x....             LDR.N    R1,??DataTable18_29
-   \       0xE0   0x....             LDR.N    R0,??DataTable18_39
-   \       0xE2   0x.... 0x....      BL       printf
-    594          
-    595          //		//	Spk Off
-    596          //		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
-    597          
-    598          		AudioStop();
-   \       0xE6   0x.... 0x....      BL       AudioStop
-   \       0xEA   0xE0A8             B.N      ??cmd_audio_7
-    599          	}
-    600          	else if ( strcmp( argv[1], "vol" ) == 0 )
+   \       0xD6   0x....             LDR.N    R1,??DataTable19_39
+   \       0xD8   0x6868             LDR      R0,[R5, #+4]
+   \       0xDA   0x.... 0x....      BL       strcmp
+   \       0xDE   0x2800             CMP      R0,#+0
+   \       0xE0   0xD109             BNE.N    ??cmd_audio_10
+    748          	{
+    749          		//	Audio Loop Test
+    750          		printf( "%s(%d) - %s\n", __func__, __LINE__, argv[1] );
+   \       0xE2   0x686B             LDR      R3,[R5, #+4]
+   \       0xE4   0xF240 0x22EE      MOVW     R2,#+750
+   \       0xE8   0x....             LDR.N    R1,??DataTable19_30
+   \       0xEA   0x....             LDR.N    R0,??DataTable19_40
+   \       0xEC   0x.... 0x....      BL       printf
+    751          
+    752          //		//	Spk Off
+    753          //		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
+    754          
+    755          		AudioStop();
+   \       0xF0   0x.... 0x....      BL       AudioStop
+   \       0xF4   0xE0AA             B.N      ??cmd_audio_7
+    756          	}
+    757          	else if ( strcmp( argv[1], "vol" ) == 0 )
    \                     ??cmd_audio_10: (+1)
-   \       0xEC   0x....             ADR.N    R1,??DataTable18
-   \       0xEE   0x6868             LDR      R0,[R5, #+4]
-   \       0xF0   0x.... 0x....      BL       strcmp
-   \       0xF4   0x2800             CMP      R0,#+0
-   \       0xF6   0xD14A             BNE.N    ??cmd_audio_11
-    601          	{
-    602          		switch( nVal )
-   \       0xF8   0x9800             LDR      R0,[SP, #+0]
-   \       0xFA   0x2800             CMP      R0,#+0
-   \       0xFC   0xD00E             BEQ.N    ??cmd_audio_12
-   \       0xFE   0x2802             CMP      R0,#+2
-   \      0x100   0xD016             BEQ.N    ??cmd_audio_13
-   \      0x102   0xD310             BCC.N    ??cmd_audio_14
-   \      0x104   0x2804             CMP      R0,#+4
-   \      0x106   0xD01D             BEQ.N    ??cmd_audio_15
-   \      0x108   0xD317             BCC.N    ??cmd_audio_16
-   \      0x10A   0x2806             CMP      R0,#+6
-   \      0x10C   0xD024             BEQ.N    ??cmd_audio_17
-   \      0x10E   0xD31E             BCC.N    ??cmd_audio_18
-   \      0x110   0x2808             CMP      R0,#+8
-   \      0x112   0xD02B             BEQ.N    ??cmd_audio_19
-   \      0x114   0xD325             BCC.N    ??cmd_audio_20
-   \      0x116   0x2809             CMP      R0,#+9
-   \      0x118   0xD02D             BEQ.N    ??cmd_audio_21
-   \      0x11A   0xE031             B.N      ??cmd_audio_22
-    603          		{
-    604          	    case 0:		WriteI2CCodec( 0x09, 0xBA );	break;	//  Mute ( 0xBC )
+   \       0xF6   0x....             ADR.N    R1,??DataTable18_2
+   \       0xF8   0x6868             LDR      R0,[R5, #+4]
+   \       0xFA   0x.... 0x....      BL       strcmp
+   \       0xFE   0x2800             CMP      R0,#+0
+   \      0x100   0xD14B             BNE.N    ??cmd_audio_11
+    758          	{
+    759          		switch( nVal )
+   \      0x102   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \      0x106   0x2800             CMP      R0,#+0
+   \      0x108   0xD00E             BEQ.N    ??cmd_audio_12
+   \      0x10A   0x2802             CMP      R0,#+2
+   \      0x10C   0xD016             BEQ.N    ??cmd_audio_13
+   \      0x10E   0xD310             BCC.N    ??cmd_audio_14
+   \      0x110   0x2804             CMP      R0,#+4
+   \      0x112   0xD01D             BEQ.N    ??cmd_audio_15
+   \      0x114   0xD317             BCC.N    ??cmd_audio_16
+   \      0x116   0x2806             CMP      R0,#+6
+   \      0x118   0xD024             BEQ.N    ??cmd_audio_17
+   \      0x11A   0xD31E             BCC.N    ??cmd_audio_18
+   \      0x11C   0x2808             CMP      R0,#+8
+   \      0x11E   0xD02B             BEQ.N    ??cmd_audio_19
+   \      0x120   0xD325             BCC.N    ??cmd_audio_20
+   \      0x122   0x2809             CMP      R0,#+9
+   \      0x124   0xD02D             BEQ.N    ??cmd_audio_21
+   \      0x126   0xE031             B.N      ??cmd_audio_22
+    760          		{
+    761          	    case 0:		WriteI2CCodec( (uint8_t)0x09, (uint8_t)0xBA );	break;	//  Mute ( 0xBC )
    \                     ??cmd_audio_12: (+1)
-   \      0x11C   0x21BA             MOVS     R1,#+186
-   \      0x11E   0x2009             MOVS     R0,#+9
-   \      0x120   0x.... 0x....      BL       WriteI2CCodec
-   \      0x124   0xE08B             B.N      ??cmd_audio_7
-    605          	    case 1:		WriteI2CCodec( 0x09, 0x36 );	break;	// ( -24 )
+   \      0x128   0x21BA             MOVS     R1,#+186
+   \      0x12A   0x2009             MOVS     R0,#+9
+   \      0x12C   0x.... 0x....      BL       WriteI2CCodec
+   \      0x130   0xE08C             B.N      ??cmd_audio_7
+    762          	    case 1:		WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x36 );	break;	// ( -24 )
    \                     ??cmd_audio_14: (+1)
-   \      0x126   0x2136             MOVS     R1,#+54
-   \      0x128   0x2009             MOVS     R0,#+9
-   \      0x12A   0x.... 0x....      BL       WriteI2CCodec
-   \      0x12E   0xE086             B.N      ??cmd_audio_7
-    606          	    case 2:		WriteI2CCodec( 0x09, 0x30 );	break;	// ( -21 )
+   \      0x132   0x2136             MOVS     R1,#+54
+   \      0x134   0x2009             MOVS     R0,#+9
+   \      0x136   0x.... 0x....      BL       WriteI2CCodec
+   \      0x13A   0xE087             B.N      ??cmd_audio_7
+    763          	    case 2:		WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x30 );	break;	// ( -21 )
    \                     ??cmd_audio_13: (+1)
-   \      0x130   0x2130             MOVS     R1,#+48
-   \      0x132   0x2009             MOVS     R0,#+9
-   \      0x134   0x.... 0x....      BL       WriteI2CCodec
-   \      0x138   0xE081             B.N      ??cmd_audio_7
-    607          	    case 3:		WriteI2CCodec( 0x09, 0x2A );	break;	// ( -18 )
+   \      0x13C   0x2130             MOVS     R1,#+48
+   \      0x13E   0x2009             MOVS     R0,#+9
+   \      0x140   0x.... 0x....      BL       WriteI2CCodec
+   \      0x144   0xE082             B.N      ??cmd_audio_7
+    764          	    case 3:		WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x2A );	break;	// ( -18 )
    \                     ??cmd_audio_16: (+1)
-   \      0x13A   0x212A             MOVS     R1,#+42
-   \      0x13C   0x2009             MOVS     R0,#+9
-   \      0x13E   0x.... 0x....      BL       WriteI2CCodec
-   \      0x142   0xE07C             B.N      ??cmd_audio_7
-    608          	    case 4:		WriteI2CCodec( 0x09, 0x1E );	break;	// ( -12 )
+   \      0x146   0x212A             MOVS     R1,#+42
+   \      0x148   0x2009             MOVS     R0,#+9
+   \      0x14A   0x.... 0x....      BL       WriteI2CCodec
+   \      0x14E   0xE07D             B.N      ??cmd_audio_7
+    765          	    case 4:		WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x1E );	break;	// ( -12 )
    \                     ??cmd_audio_15: (+1)
-   \      0x144   0x211E             MOVS     R1,#+30
-   \      0x146   0x2009             MOVS     R0,#+9
-   \      0x148   0x.... 0x....      BL       WriteI2CCodec
-   \      0x14C   0xE077             B.N      ??cmd_audio_7
-    609          	    case 5:		WriteI2CCodec( 0x09, 0x18 );	break;	// ( -9 )
+   \      0x150   0x211E             MOVS     R1,#+30
+   \      0x152   0x2009             MOVS     R0,#+9
+   \      0x154   0x.... 0x....      BL       WriteI2CCodec
+   \      0x158   0xE078             B.N      ??cmd_audio_7
+    766          	    case 5:		WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x18 );	break;	// ( -9 )
    \                     ??cmd_audio_18: (+1)
-   \      0x14E   0x2118             MOVS     R1,#+24
-   \      0x150   0x2009             MOVS     R0,#+9
-   \      0x152   0x.... 0x....      BL       WriteI2CCodec
-   \      0x156   0xE072             B.N      ??cmd_audio_7
-    610          	    case 6:		WriteI2CCodec( 0x09, 0x12 );	break;	// ( -6 )
+   \      0x15A   0x2118             MOVS     R1,#+24
+   \      0x15C   0x2009             MOVS     R0,#+9
+   \      0x15E   0x.... 0x....      BL       WriteI2CCodec
+   \      0x162   0xE073             B.N      ??cmd_audio_7
+    767          	    case 6:		WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x12 );	break;	// ( -6 )
    \                     ??cmd_audio_17: (+1)
-   \      0x158   0x2112             MOVS     R1,#+18
-   \      0x15A   0x2009             MOVS     R0,#+9
-   \      0x15C   0x.... 0x....      BL       WriteI2CCodec
-   \      0x160   0xE06D             B.N      ??cmd_audio_7
-    611          	    case 7:		WriteI2CCodec( 0x09, 0x0C );	break;	// ( -3 )
+   \      0x164   0x2112             MOVS     R1,#+18
+   \      0x166   0x2009             MOVS     R0,#+9
+   \      0x168   0x.... 0x....      BL       WriteI2CCodec
+   \      0x16C   0xE06E             B.N      ??cmd_audio_7
+    768          	    case 7:		WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x0C );	break;	// ( -3 )
    \                     ??cmd_audio_20: (+1)
-   \      0x162   0x210C             MOVS     R1,#+12
-   \      0x164   0x2009             MOVS     R0,#+9
-   \      0x166   0x.... 0x....      BL       WriteI2CCodec
-   \      0x16A   0xE068             B.N      ??cmd_audio_7
-    612                  case 8:		WriteI2CCodec( 0x09, 0x06 );	break;	// ( 0 dB ) DAC adjustment, this would require testing and/or a better understanding of the overall system
+   \      0x16E   0x210C             MOVS     R1,#+12
+   \      0x170   0x2009             MOVS     R0,#+9
+   \      0x172   0x.... 0x....      BL       WriteI2CCodec
+   \      0x176   0xE069             B.N      ??cmd_audio_7
+    769                  case 8:		WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x06 );	break;	// ( 0 dB ) DAC adjustment, this would require testing and/or a better understanding of the overall system
    \                     ??cmd_audio_19: (+1)
-   \      0x16C   0x2106             MOVS     R1,#+6
-   \      0x16E   0x2009             MOVS     R0,#+9
-   \      0x170   0x.... 0x....      BL       WriteI2CCodec
-   \      0x174   0xE063             B.N      ??cmd_audio_7
-    613                  case 9:		WriteI2CCodec( 0x09, 0x00 );	break;	// ( +3 )
+   \      0x178   0x2106             MOVS     R1,#+6
+   \      0x17A   0x2009             MOVS     R0,#+9
+   \      0x17C   0x.... 0x....      BL       WriteI2CCodec
+   \      0x180   0xE064             B.N      ??cmd_audio_7
+    770                  case 9:		WriteI2CCodec( (uint8_t)0x09, (uint8_t)0x00 );	break;	// ( +3 )
    \                     ??cmd_audio_21: (+1)
-   \      0x176   0x2100             MOVS     R1,#+0
-   \      0x178   0x2009             MOVS     R0,#+9
-   \      0x17A   0x.... 0x....      BL       WriteI2CCodec
-   \      0x17E   0xE05E             B.N      ??cmd_audio_7
-    614                  default:	printf( "%s(%d) - invalid\n", __func__, __LINE__ );	break;
+   \      0x182   0x2100             MOVS     R1,#+0
+   \      0x184   0x2009             MOVS     R0,#+9
+   \      0x186   0x.... 0x....      BL       WriteI2CCodec
+   \      0x18A   0xE05F             B.N      ??cmd_audio_7
+    771                  default:	printf( "%s(%d) - invalid\n", __func__, __LINE__ );	break;
    \                     ??cmd_audio_22: (+1)
-   \      0x180   0xF240 0x2266      MOVW     R2,#+614
-   \      0x184   0x....             LDR.N    R1,??DataTable18_29
-   \      0x186   0x....             LDR.N    R0,??DataTable18_40
-   \      0x188   0x.... 0x....      BL       printf
-   \      0x18C   0xE057             B.N      ??cmd_audio_7
-    615          		}
-    616          	}
-    617          	else if ( strcmp( argv[1], "mic" ) == 0 )
+   \      0x18C   0xF240 0x3203      MOVW     R2,#+771
+   \      0x190   0x....             LDR.N    R1,??DataTable19_30
+   \      0x192   0x....             LDR.N    R0,??DataTable19_41
+   \      0x194   0x.... 0x....      BL       printf
+   \      0x198   0xE058             B.N      ??cmd_audio_7
+    772          		}
+    773          	}
+    774          	else if ( strcmp( argv[1], "mic" ) == 0 )
    \                     ??cmd_audio_11: (+1)
-   \      0x18E   0x....             ADR.N    R1,??DataTable18_1
-   \      0x190   0x6868             LDR      R0,[R5, #+4]
-   \      0x192   0x.... 0x....      BL       strcmp
-   \      0x196   0x2800             CMP      R0,#+0
-   \      0x198   0xD14A             BNE.N    ??cmd_audio_23
-    618          	{
-    619          		switch( nVal )
-   \      0x19A   0x9800             LDR      R0,[SP, #+0]
-   \      0x19C   0x2800             CMP      R0,#+0
-   \      0x19E   0xD00E             BEQ.N    ??cmd_audio_24
-   \      0x1A0   0x2802             CMP      R0,#+2
-   \      0x1A2   0xD016             BEQ.N    ??cmd_audio_25
-   \      0x1A4   0xD310             BCC.N    ??cmd_audio_26
-   \      0x1A6   0x2804             CMP      R0,#+4
-   \      0x1A8   0xD01D             BEQ.N    ??cmd_audio_27
-   \      0x1AA   0xD317             BCC.N    ??cmd_audio_28
-   \      0x1AC   0x2806             CMP      R0,#+6
-   \      0x1AE   0xD024             BEQ.N    ??cmd_audio_29
-   \      0x1B0   0xD31E             BCC.N    ??cmd_audio_30
-   \      0x1B2   0x2808             CMP      R0,#+8
-   \      0x1B4   0xD02B             BEQ.N    ??cmd_audio_31
-   \      0x1B6   0xD325             BCC.N    ??cmd_audio_32
-   \      0x1B8   0x2809             CMP      R0,#+9
-   \      0x1BA   0xD02D             BEQ.N    ??cmd_audio_33
-   \      0x1BC   0xE031             B.N      ??cmd_audio_34
-    620          		{
-    621          		case 0:		WriteI2CCodec( 0x0c, 0x34 );	break;	// ( 0 dB ) PAM = 01(+0) / PGAM = 0x14(+0)
+   \      0x19A   0x....             ADR.N    R1,??DataTable19
+   \      0x19C   0x6868             LDR      R0,[R5, #+4]
+   \      0x19E   0x.... 0x....      BL       strcmp
+   \      0x1A2   0x2800             CMP      R0,#+0
+   \      0x1A4   0xD14B             BNE.N    ??cmd_audio_23
+    775          	{
+    776          		switch( nVal )
+   \      0x1A6   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \      0x1AA   0x2800             CMP      R0,#+0
+   \      0x1AC   0xD00E             BEQ.N    ??cmd_audio_24
+   \      0x1AE   0x2802             CMP      R0,#+2
+   \      0x1B0   0xD016             BEQ.N    ??cmd_audio_25
+   \      0x1B2   0xD310             BCC.N    ??cmd_audio_26
+   \      0x1B4   0x2804             CMP      R0,#+4
+   \      0x1B6   0xD01D             BEQ.N    ??cmd_audio_27
+   \      0x1B8   0xD317             BCC.N    ??cmd_audio_28
+   \      0x1BA   0x2806             CMP      R0,#+6
+   \      0x1BC   0xD024             BEQ.N    ??cmd_audio_29
+   \      0x1BE   0xD31E             BCC.N    ??cmd_audio_30
+   \      0x1C0   0x2808             CMP      R0,#+8
+   \      0x1C2   0xD02B             BEQ.N    ??cmd_audio_31
+   \      0x1C4   0xD325             BCC.N    ??cmd_audio_32
+   \      0x1C6   0x2809             CMP      R0,#+9
+   \      0x1C8   0xD02D             BEQ.N    ??cmd_audio_33
+   \      0x1CA   0xE031             B.N      ??cmd_audio_34
+    777          		{
+    778          		case 0:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x34 );	break;	// ( 0 dB ) PAM = 01(+0) / PGAM = 0x14(+0)
    \                     ??cmd_audio_24: (+1)
-   \      0x1BE   0x2134             MOVS     R1,#+52
-   \      0x1C0   0x200C             MOVS     R0,#+12
-   \      0x1C2   0x.... 0x....      BL       WriteI2CCodec
-   \      0x1C6   0xE03A             B.N      ??cmd_audio_7
-    622          		case 1:		WriteI2CCodec( 0x0c, 0x32 );	break;	// ( 2 dB ) PAM = 01(+0) / PGAM = 0x12(+2)
+   \      0x1CC   0x2134             MOVS     R1,#+52
+   \      0x1CE   0x200C             MOVS     R0,#+12
+   \      0x1D0   0x.... 0x....      BL       WriteI2CCodec
+   \      0x1D4   0xE03A             B.N      ??cmd_audio_7
+    779          		case 1:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x32 );	break;	// ( 2 dB ) PAM = 01(+0) / PGAM = 0x12(+2)
    \                     ??cmd_audio_26: (+1)
-   \      0x1C8   0x2132             MOVS     R1,#+50
-   \      0x1CA   0x200C             MOVS     R0,#+12
-   \      0x1CC   0x.... 0x....      BL       WriteI2CCodec
-   \      0x1D0   0xE035             B.N      ??cmd_audio_7
-    623          		case 2:		WriteI2CCodec( 0x0c, 0x30 );	break;	// ( 4 dB ) PAM = 01(+0) / PGAM = 0x10(+4)
+   \      0x1D6   0x2132             MOVS     R1,#+50
+   \      0x1D8   0x200C             MOVS     R0,#+12
+   \      0x1DA   0x.... 0x....      BL       WriteI2CCodec
+   \      0x1DE   0xE035             B.N      ??cmd_audio_7
+    780          		case 2:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x30 );	break;	// ( 4 dB ) PAM = 01(+0) / PGAM = 0x10(+4)
    \                     ??cmd_audio_25: (+1)
-   \      0x1D2   0x2130             MOVS     R1,#+48
-   \      0x1D4   0x200C             MOVS     R0,#+12
-   \      0x1D6   0x.... 0x....      BL       WriteI2CCodec
-   \      0x1DA   0xE030             B.N      ??cmd_audio_7
-    624          		case 3:		WriteI2CCodec( 0x0c, 0x2E );	break;	// ( 6 dB ) PAM = 01(+0) / PGAM = 0x0E(+6)
+   \      0x1E0   0x2130             MOVS     R1,#+48
+   \      0x1E2   0x200C             MOVS     R0,#+12
+   \      0x1E4   0x.... 0x....      BL       WriteI2CCodec
+   \      0x1E8   0xE030             B.N      ??cmd_audio_7
+    781          		case 3:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x2E );	break;	// ( 6 dB ) PAM = 01(+0) / PGAM = 0x0E(+6)
    \                     ??cmd_audio_28: (+1)
-   \      0x1DC   0x212E             MOVS     R1,#+46
-   \      0x1DE   0x200C             MOVS     R0,#+12
-   \      0x1E0   0x.... 0x....      BL       WriteI2CCodec
-   \      0x1E4   0xE02B             B.N      ??cmd_audio_7
-    625          		case 4:		WriteI2CCodec( 0x0c, 0x2C );	break;	// ( 8 dB ) PAM = 01(+0) / PGAM = 0x0C(+8)
+   \      0x1EA   0x212E             MOVS     R1,#+46
+   \      0x1EC   0x200C             MOVS     R0,#+12
+   \      0x1EE   0x.... 0x....      BL       WriteI2CCodec
+   \      0x1F2   0xE02B             B.N      ??cmd_audio_7
+    782          		case 4:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x2C );	break;	// ( 8 dB ) PAM = 01(+0) / PGAM = 0x0C(+8)
    \                     ??cmd_audio_27: (+1)
-   \      0x1E6   0x212C             MOVS     R1,#+44
-   \      0x1E8   0x200C             MOVS     R0,#+12
-   \      0x1EA   0x.... 0x....      BL       WriteI2CCodec
-   \      0x1EE   0xE026             B.N      ??cmd_audio_7
-    626          		case 5:		WriteI2CCodec( 0x0c, 0x2A );	break;	// ( 10 dB ) PAM = 01(+0) / PGAM = 0x0A(+10) - Default
+   \      0x1F4   0x212C             MOVS     R1,#+44
+   \      0x1F6   0x200C             MOVS     R0,#+12
+   \      0x1F8   0x.... 0x....      BL       WriteI2CCodec
+   \      0x1FC   0xE026             B.N      ??cmd_audio_7
+    783          		case 5:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x2A );	break;	// ( 10 dB ) PAM = 01(+0) / PGAM = 0x0A(+10) - Default
    \                     ??cmd_audio_30: (+1)
-   \      0x1F0   0x212A             MOVS     R1,#+42
-   \      0x1F2   0x200C             MOVS     R0,#+12
-   \      0x1F4   0x.... 0x....      BL       WriteI2CCodec
-   \      0x1F8   0xE021             B.N      ??cmd_audio_7
-    627          		case 6:		WriteI2CCodec( 0x0c, 0x28 );	break;	// ( 12 dB ) PAM = 01(+0) / PGAM = 0x08(+12)
+   \      0x1FE   0x212A             MOVS     R1,#+42
+   \      0x200   0x200C             MOVS     R0,#+12
+   \      0x202   0x.... 0x....      BL       WriteI2CCodec
+   \      0x206   0xE021             B.N      ??cmd_audio_7
+    784          		case 6:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x28 );	break;	// ( 12 dB ) PAM = 01(+0) / PGAM = 0x08(+12)
    \                     ??cmd_audio_29: (+1)
-   \      0x1FA   0x2128             MOVS     R1,#+40
-   \      0x1FC   0x200C             MOVS     R0,#+12
-   \      0x1FE   0x.... 0x....      BL       WriteI2CCodec
-   \      0x202   0xE01C             B.N      ??cmd_audio_7
-    628          		case 7:		WriteI2CCodec( 0x0c, 0x26 );	break;	// ( 14 dB ) PAM = 01(+0) / PGAM = 0x06(+14)
+   \      0x208   0x2128             MOVS     R1,#+40
+   \      0x20A   0x200C             MOVS     R0,#+12
+   \      0x20C   0x.... 0x....      BL       WriteI2CCodec
+   \      0x210   0xE01C             B.N      ??cmd_audio_7
+    785          		case 7:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x26 );	break;	// ( 14 dB ) PAM = 01(+0) / PGAM = 0x06(+14)
    \                     ??cmd_audio_32: (+1)
-   \      0x204   0x2126             MOVS     R1,#+38
-   \      0x206   0x200C             MOVS     R0,#+12
-   \      0x208   0x.... 0x....      BL       WriteI2CCodec
-   \      0x20C   0xE017             B.N      ??cmd_audio_7
-    629          		case 8:		WriteI2CCodec( 0x0c, 0x24 );	break;	// ( 16 dB ) PAM = 01(+0) / PGAM = 0x04(+16)
+   \      0x212   0x2126             MOVS     R1,#+38
+   \      0x214   0x200C             MOVS     R0,#+12
+   \      0x216   0x.... 0x....      BL       WriteI2CCodec
+   \      0x21A   0xE017             B.N      ??cmd_audio_7
+    786          		case 8:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x24 );	break;	// ( 16 dB ) PAM = 01(+0) / PGAM = 0x04(+16)
    \                     ??cmd_audio_31: (+1)
-   \      0x20E   0x2124             MOVS     R1,#+36
-   \      0x210   0x200C             MOVS     R0,#+12
-   \      0x212   0x.... 0x....      BL       WriteI2CCodec
-   \      0x216   0xE012             B.N      ??cmd_audio_7
-    630          		case 9:		WriteI2CCodec( 0x0c, 0x22 );	break;	// ( 18 dB ) PAM = 01(+0) / PGAM = 0x02(+18)
+   \      0x21C   0x2124             MOVS     R1,#+36
+   \      0x21E   0x200C             MOVS     R0,#+12
+   \      0x220   0x.... 0x....      BL       WriteI2CCodec
+   \      0x224   0xE012             B.N      ??cmd_audio_7
+    787          		case 9:		WriteI2CCodec( (uint8_t)0x0c, (uint8_t)0x22 );	break;	// ( 18 dB ) PAM = 01(+0) / PGAM = 0x02(+18)
    \                     ??cmd_audio_33: (+1)
-   \      0x218   0x2122             MOVS     R1,#+34
-   \      0x21A   0x200C             MOVS     R0,#+12
-   \      0x21C   0x.... 0x....      BL       WriteI2CCodec
-   \      0x220   0xE00D             B.N      ??cmd_audio_7
-    631                  default:	printf( "%s(%d) - invalid\n", __func__, __LINE__ );	break;
+   \      0x226   0x2122             MOVS     R1,#+34
+   \      0x228   0x200C             MOVS     R0,#+12
+   \      0x22A   0x.... 0x....      BL       WriteI2CCodec
+   \      0x22E   0xE00D             B.N      ??cmd_audio_7
+    788                  default:	printf( "%s(%d) - invalid\n", __func__, __LINE__ );	break;
    \                     ??cmd_audio_34: (+1)
-   \      0x222   0xF240 0x2277      MOVW     R2,#+631
-   \      0x226   0x....             LDR.N    R1,??DataTable18_29
-   \      0x228   0x....             LDR.N    R0,??DataTable18_40
-   \      0x22A   0x.... 0x....      BL       printf
-   \      0x22E   0xE006             B.N      ??cmd_audio_7
-    632          		}
-    633          	}
-    634          	else
-    635          	{
-    636          		printf( "%s(%d) - Invalid Cmd : %s\n", __func__, __LINE__, argv[1] );
+   \      0x230   0xF44F 0x7245      MOV      R2,#+788
+   \      0x234   0x....             LDR.N    R1,??DataTable19_30
+   \      0x236   0x....             LDR.N    R0,??DataTable19_41
+   \      0x238   0x.... 0x....      BL       printf
+   \      0x23C   0xE006             B.N      ??cmd_audio_7
+    789          		}
+    790          	}
+    791          	else
+    792          	{
+    793          		printf( "%s(%d) - Invalid Cmd : %s\n", __func__, __LINE__, argv[1] );
    \                     ??cmd_audio_23: (+1)
-   \      0x230   0x686B             LDR      R3,[R5, #+4]
-   \      0x232   0xF44F 0x721F      MOV      R2,#+636
-   \      0x236   0x....             LDR.N    R1,??DataTable18_29
-   \      0x238   0x....             LDR.N    R0,??DataTable18_41
-   \      0x23A   0x.... 0x....      BL       printf
-    637          	}
-    638          
-    639          	return 1;
+   \      0x23E   0x686B             LDR      R3,[R5, #+4]
+   \      0x240   0xF240 0x3219      MOVW     R2,#+793
+   \      0x244   0x....             LDR.N    R1,??DataTable19_30
+   \      0x246   0x....             LDR.N    R0,??DataTable19_42
+   \      0x248   0x.... 0x....      BL       printf
+    794          	}
+    795          
+    796          	return (uint8_t)1;
    \                     ??cmd_audio_7: (+1)
-   \      0x23E   0x2001             MOVS     R0,#+1
+   \      0x24C   0x2001             MOVS     R0,#+1
    \                     ??cmd_audio_1: (+1)
-   \      0x240   0xBD76             POP      {R1,R2,R4-R6,PC}
-    640          }
-    641          
-    642          
-    643          //========================================================================
+   \      0x24E   0xBD76             POP      {R1,R2,R4-R6,PC}
+    797          }
+    798          
+    799          
+    800          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    644          int cmd_codec( int argc, char *argv[] )
-    645          //========================================================================
-    646          {
+    801          uint8_t cmd_codec( uint8_t argc, char *argv[] )
+    802          //========================================================================
+    803          {
    \                     cmd_codec: (+1)
    \        0x0   0xB57C             PUSH     {R2-R6,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    647          	//	audio [ loop / null / sine / spk / mute ] [0/1 - spk relay]
-    648          	if ( argc < 2 )
-   \        0x6   0x2C02             CMP      R4,#+2
-   \        0x8   0xDA07             BGE.N    ??cmd_codec_0
-    649          	{
-    650          		printf( "%s(%d) - return\n", __func__, __LINE__ );
-   \        0xA   0xF240 0x228A      MOVW     R2,#+650
-   \        0xE   0x....             LDR.N    R1,??DataTable18_42
-   \       0x10   0x....             LDR.N    R0,??DataTable18_30
-   \       0x12   0x.... 0x....      BL       printf
-    651          		return 0;
-   \       0x16   0x2000             MOVS     R0,#+0
-   \       0x18   0xE048             B.N      ??cmd_codec_1
-    652          	}
-    653          
-    654          	int bOnOff = 0;
+    804          	//	audio [ loop / null / sine / spk / mute ] [0/1 - spk relay]
+    805          	if ( argc < 2 )
+   \        0x6   0x0020             MOVS     R0,R4
+   \        0x8   0xB2C0             UXTB     R0,R0
+   \        0xA   0x2802             CMP      R0,#+2
+   \        0xC   0xDA07             BGE.N    ??cmd_codec_0
+    806          	{
+    807          		printf( "%s(%d) - return\n", __func__, __LINE__ );
+   \        0xE   0xF240 0x3227      MOVW     R2,#+807
+   \       0x12   0x....             LDR.N    R1,??DataTable19_43
+   \       0x14   0x....             LDR.N    R0,??DataTable19_31
+   \       0x16   0x.... 0x....      BL       printf
+    808          		return (uint8_t)0;
+   \       0x1A   0x2000             MOVS     R0,#+0
+   \       0x1C   0xE04E             B.N      ??cmd_codec_1
+    809          	}
+    810          
+    811          	uint8_t bOnOff = 0;
    \                     ??cmd_codec_0: (+1)
-   \       0x1A   0x2600             MOVS     R6,#+0
-    655          
-    656          	if ( argc >= 3 )
-   \       0x1C   0x2C03             CMP      R4,#+3
-   \       0x1E   0xDB10             BLT.N    ??cmd_codec_2
-    657          	{
-    658          		if ( strcmp( argv[2], "1" ) == 0 )
-   \       0x20   0x....             ADR.N    R1,??DataTable18_2
-   \       0x22   0x68A8             LDR      R0,[R5, #+8]
-   \       0x24   0x.... 0x....      BL       strcmp
-   \       0x28   0x2800             CMP      R0,#+0
-   \       0x2A   0xD102             BNE.N    ??cmd_codec_3
-    659          		{
-    660          			bOnOff = 1;
-   \       0x2C   0x2001             MOVS     R0,#+1
-   \       0x2E   0x0006             MOVS     R6,R0
-   \       0x30   0xE007             B.N      ??cmd_codec_2
-    661          		}
-    662          		else if ( strcmp( argv[2], "0" ) == 0 )
+   \       0x1E   0x2600             MOVS     R6,#+0
+    812          
+    813          	if ( argc >= 3 )
+   \       0x20   0x0020             MOVS     R0,R4
+   \       0x22   0xB2C0             UXTB     R0,R0
+   \       0x24   0x2803             CMP      R0,#+3
+   \       0x26   0xDB10             BLT.N    ??cmd_codec_2
+    814          	{
+    815          		if ( strcmp( argv[2], "1" ) == 0 )
+   \       0x28   0x....             ADR.N    R1,??DataTable19_1
+   \       0x2A   0x68A8             LDR      R0,[R5, #+8]
+   \       0x2C   0x.... 0x....      BL       strcmp
+   \       0x30   0x2800             CMP      R0,#+0
+   \       0x32   0xD102             BNE.N    ??cmd_codec_3
+    816          		{
+    817          			bOnOff = 1;
+   \       0x34   0x2001             MOVS     R0,#+1
+   \       0x36   0x0006             MOVS     R6,R0
+   \       0x38   0xE007             B.N      ??cmd_codec_2
+    818          		}
+    819          		else if ( strcmp( argv[2], "0" ) == 0 )
    \                     ??cmd_codec_3: (+1)
-   \       0x32   0x....             ADR.N    R1,??DataTable18_3
-   \       0x34   0x68A8             LDR      R0,[R5, #+8]
-   \       0x36   0x.... 0x....      BL       strcmp
-   \       0x3A   0x2800             CMP      R0,#+0
-   \       0x3C   0xD101             BNE.N    ??cmd_codec_2
-    663          		{
-    664          			bOnOff = 0;
-   \       0x3E   0x2000             MOVS     R0,#+0
-   \       0x40   0x0006             MOVS     R6,R0
-    665          		}
-    666          	}
-    667          
-    668          	if ( strcmp( argv[1], "init" ) == 0 )
+   \       0x3A   0x....             ADR.N    R1,??DataTable19_2
+   \       0x3C   0x68A8             LDR      R0,[R5, #+8]
+   \       0x3E   0x.... 0x....      BL       strcmp
+   \       0x42   0x2800             CMP      R0,#+0
+   \       0x44   0xD101             BNE.N    ??cmd_codec_2
+    820          		{
+    821          			bOnOff = 0;
+   \       0x46   0x2000             MOVS     R0,#+0
+   \       0x48   0x0006             MOVS     R6,R0
+    822          		}
+    823          	}
+    824          
+    825          	if ( strcmp( argv[1], "init" ) == 0 )
    \                     ??cmd_codec_2: (+1)
-   \       0x42   0x....             LDR.N    R1,??DataTable18_43
-   \       0x44   0x6868             LDR      R0,[R5, #+4]
-   \       0x46   0x.... 0x....      BL       strcmp
-   \       0x4A   0x2800             CMP      R0,#+0
-   \       0x4C   0xD108             BNE.N    ??cmd_codec_4
-    669          	{
-    670          		//	Audio Init
-    671          		printf( "%s(%d) - init\n", __func__, __LINE__ );
-   \       0x4E   0xF240 0x229F      MOVW     R2,#+671
-   \       0x52   0x....             LDR.N    R1,??DataTable18_42
-   \       0x54   0x....             LDR.N    R0,??DataTable18_44
-   \       0x56   0x.... 0x....      BL       printf
-    672          
-    673          		AudioInit();
-   \       0x5A   0x.... 0x....      BL       AudioInit
-   \       0x5E   0xE024             B.N      ??cmd_codec_5
-    674          	}
-    675          	else if ( strcmp( argv[1], "mute" ) == 0 )
+   \       0x4A   0x....             LDR.N    R1,??DataTable19_44
+   \       0x4C   0x6868             LDR      R0,[R5, #+4]
+   \       0x4E   0x.... 0x....      BL       strcmp
+   \       0x52   0x2800             CMP      R0,#+0
+   \       0x54   0xD108             BNE.N    ??cmd_codec_4
+    826          	{
+    827          		//	Audio Init
+    828          		printf( "%s(%d) - init\n", __func__, __LINE__ );
+   \       0x56   0xF44F 0x724F      MOV      R2,#+828
+   \       0x5A   0x....             LDR.N    R1,??DataTable19_43
+   \       0x5C   0x....             LDR.N    R0,??DataTable19_45
+   \       0x5E   0x.... 0x....      BL       printf
+    829          
+    830          		AudioInit();
+   \       0x62   0x.... 0x....      BL       AudioInit
+   \       0x66   0xE028             B.N      ??cmd_codec_5
+    831          	}
+    832          	else if ( strcmp( argv[1], "mute" ) == 0 )
    \                     ??cmd_codec_4: (+1)
-   \       0x60   0x....             LDR.N    R1,??DataTable18_45
-   \       0x62   0x6868             LDR      R0,[R5, #+4]
-   \       0x64   0x.... 0x....      BL       strcmp
-   \       0x68   0x2800             CMP      R0,#+0
-   \       0x6A   0xD108             BNE.N    ??cmd_codec_6
-    676          	{
-    677          		//	Audio Output Sine Wave
-    678          		printf( "%s(%d) - %s(%d)\n", __func__, __LINE__, argv[1], bOnOff );
-   \       0x6C   0x9600             STR      R6,[SP, #+0]
-   \       0x6E   0x686B             LDR      R3,[R5, #+4]
-   \       0x70   0xF240 0x22A6      MOVW     R2,#+678
-   \       0x74   0x....             LDR.N    R1,??DataTable18_42
-   \       0x76   0x....             LDR.N    R0,??DataTable18_46
-   \       0x78   0x.... 0x....      BL       printf
-   \       0x7C   0xE015             B.N      ??cmd_codec_5
-    679          
-    680          //		CodecMuteDAC( bOnOff );
-    681          	}
-    682          	else if ( strcmp( argv[1], "loop" ) == 0 )
+   \       0x68   0x....             LDR.N    R1,??DataTable19_46
+   \       0x6A   0x6868             LDR      R0,[R5, #+4]
+   \       0x6C   0x.... 0x....      BL       strcmp
+   \       0x70   0x2800             CMP      R0,#+0
+   \       0x72   0xD10A             BNE.N    ??cmd_codec_6
+    833          	{
+    834          		//	Audio Output Sine Wave
+    835          		printf( "%s(%d) - %s(%d)\n", __func__, __LINE__, argv[1], bOnOff );
+   \       0x74   0x0030             MOVS     R0,R6
+   \       0x76   0xB2C0             UXTB     R0,R0
+   \       0x78   0x9000             STR      R0,[SP, #+0]
+   \       0x7A   0x686B             LDR      R3,[R5, #+4]
+   \       0x7C   0xF240 0x3243      MOVW     R2,#+835
+   \       0x80   0x....             LDR.N    R1,??DataTable19_43
+   \       0x82   0x....             LDR.N    R0,??DataTable19_47
+   \       0x84   0x.... 0x....      BL       printf
+   \       0x88   0xE017             B.N      ??cmd_codec_5
+    836          
+    837          //		CodecMuteDAC( bOnOff );
+    838          	}
+    839          	else if ( strcmp( argv[1], "loop" ) == 0 )
    \                     ??cmd_codec_6: (+1)
-   \       0x7E   0x....             LDR.N    R1,??DataTable18_34
-   \       0x80   0x6868             LDR      R0,[R5, #+4]
-   \       0x82   0x.... 0x....      BL       strcmp
-   \       0x86   0x2800             CMP      R0,#+0
-   \       0x88   0xD108             BNE.N    ??cmd_codec_7
-    683          	{
-    684          		//	Audio Codec Loopback
-    685          		printf( "%s(%d) - %s(%d)\n", __func__, __LINE__, argv[1], bOnOff );
-   \       0x8A   0x9600             STR      R6,[SP, #+0]
-   \       0x8C   0x686B             LDR      R3,[R5, #+4]
-   \       0x8E   0xF240 0x22AD      MOVW     R2,#+685
-   \       0x92   0x....             LDR.N    R1,??DataTable18_42
-   \       0x94   0x....             LDR.N    R0,??DataTable18_46
-   \       0x96   0x.... 0x....      BL       printf
-   \       0x9A   0xE006             B.N      ??cmd_codec_5
-    686          
-    687          //		CodecLoopback( bOnOff );
-    688          	}
-    689          	else
-    690          	{
-    691          		printf( "%s(%d) - Invalid Cmd : %s\n", __func__, __LINE__, argv[1] );
-   \                     ??cmd_codec_7: (+1)
+   \       0x8A   0x....             LDR.N    R1,??DataTable19_35
+   \       0x8C   0x6868             LDR      R0,[R5, #+4]
+   \       0x8E   0x.... 0x....      BL       strcmp
+   \       0x92   0x2800             CMP      R0,#+0
+   \       0x94   0xD10A             BNE.N    ??cmd_codec_7
+    840          	{
+    841          		//	Audio Codec Loopback
+    842          		printf( "%s(%d) - %s(%d)\n", __func__, __LINE__, argv[1], bOnOff );
+   \       0x96   0x0030             MOVS     R0,R6
+   \       0x98   0xB2C0             UXTB     R0,R0
+   \       0x9A   0x9000             STR      R0,[SP, #+0]
    \       0x9C   0x686B             LDR      R3,[R5, #+4]
-   \       0x9E   0xF240 0x22B3      MOVW     R2,#+691
-   \       0xA2   0x....             LDR.N    R1,??DataTable18_42
-   \       0xA4   0x....             LDR.N    R0,??DataTable18_41
+   \       0x9E   0xF240 0x324A      MOVW     R2,#+842
+   \       0xA2   0x....             LDR.N    R1,??DataTable19_43
+   \       0xA4   0x....             LDR.N    R0,??DataTable19_47
    \       0xA6   0x.... 0x....      BL       printf
-    692          	}
-    693          
-    694          	return 1;
+   \       0xAA   0xE006             B.N      ??cmd_codec_5
+    843          
+    844          //		CodecLoopback( bOnOff );
+    845          	}
+    846          	else
+    847          	{
+    848          		printf( "%s(%d) - Invalid Cmd : %s\n", __func__, __LINE__, argv[1] );
+   \                     ??cmd_codec_7: (+1)
+   \       0xAC   0x686B             LDR      R3,[R5, #+4]
+   \       0xAE   0xF44F 0x7254      MOV      R2,#+848
+   \       0xB2   0x....             LDR.N    R1,??DataTable19_43
+   \       0xB4   0x....             LDR.N    R0,??DataTable19_42
+   \       0xB6   0x.... 0x....      BL       printf
+    849          	}
+    850          
+    851          	return (uint8_t)1;
    \                     ??cmd_codec_5: (+1)
-   \       0xAA   0x2001             MOVS     R0,#+1
+   \       0xBA   0x2001             MOVS     R0,#+1
    \                     ??cmd_codec_1: (+1)
-   \       0xAC   0xBD76             POP      {R1,R2,R4-R6,PC}
-    695          }
+   \       0xBC   0xBD76             POP      {R1,R2,R4-R6,PC}
+    852          }
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable17:
+   \                     ??DataTable18:
    \        0x0   0x25 0x64          DC8      0x25, 0x64, 0x00, 0x00
 
    \              0x00 0x00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable17_1:
+   \                     ??DataTable18_1:
    \        0x0   0x73 0x70          DC8      "spk"          
 
    \              0x6B 0x00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18:
+   \                     ??DataTable18_2:
    \        0x0   0x76 0x6F          DC8      "vol"          
 
    \              0x6C 0x00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_1:
+   \                     ??DataTable19:
    \        0x0   0x6D 0x69          DC8      "mic"          
 
    \              0x63 0x00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_2:
+   \                     ??DataTable19_1:
    \        0x0   0x31 0x00          DC8      "1",0x0,0x0    
 
    \              0x00 0x00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_3:
+   \                     ??DataTable19_2:
    \        0x0   0x30 0x00          DC8      "0",0x0,0x0    
 
    \              0x00 0x00
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_4:
+   \                     ??DataTable19_3:
    \        0x0   0x....'....        DC32     g_bufAudioRx
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_5:
+   \                     ??DataTable19_4:
    \        0x0   0x....'....        DC32     g_qBufAudioRx
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_6:
+   \                     ??DataTable19_5:
    \        0x0   0x....'....        DC32     g_bufAudioTx
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_7:
+   \                     ??DataTable19_6:
    \        0x0   0x....'....        DC32     g_qBufAudioTx
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_8:
+   \                     ??DataTable19_7:
    \        0x0   0x....'....        DC32     sine_table
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_9:
+   \                     ??DataTable19_8:
    \        0x0   0x....'....        DC32     bufAudio
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_10:
+   \                     ??DataTable19_9:
    \        0x0   0x....'....        DC32     hi2s3
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_11:
+   \                     ??DataTable19_10:
    \        0x0   0x....'....        DC32     speex_sine_table
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_12:
+   \                     ??DataTable19_11:
    \        0x0   0x....'....        DC32     `AudioInit::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_13:
+   \                     ??DataTable19_12:
    \        0x0   0x....'....        DC32     ?_0
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_14:
+   \                     ??DataTable19_13:
    \        0x0   0x....'....        DC32     null_table
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_15:
+   \                     ??DataTable19_14:
    \        0x0   0x....'....        DC32     pCallback_I2SEx_TxRxCpltCallback
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_16:
+   \                     ??DataTable19_15:
    \        0x0   0x....'....        DC32     g_nAudioIC
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_17:
+   \                     ??DataTable19_16:
    \        0x0   0x....'....        DC32     hi2c1
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_18:
+   \                     ??DataTable19_17:
    \        0x0   0x....'....        DC32     `InitCodecMAX9860::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_19:
+   \                     ??DataTable19_18:
    \        0x0   0x....'....        DC32     ?_1
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_20:
+   \                     ??DataTable19_19:
    \        0x0   0x....'....        DC32     `AudioDMALoopback::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_21:
+   \                     ??DataTable19_20:
    \        0x0   0x....'....        DC32     Default_I2SEx_TxRxCpltCallback
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_22:
+   \                     ??DataTable19_21:
    \        0x0   0x....'....        DC32     `AudioDMARFM::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_23:
+   \                     ??DataTable19_22:
    \        0x0   0x....'....        DC32     RFM_I2SEx_TxRxCpltCallback
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_24:
+   \                     ??DataTable19_23:
    \        0x0   0x....'....        DC32     bufAudio+0x140
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_25:
+   \                     ??DataTable19_24:
+   \        0x0   0x....'....        DC32     `AudioLoopbackDMACompress::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_25:
+   \        0x0   0x....'....        DC32     AudioLoopback_I2SEx_TxRxCpltCallback
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable19_26:
    \        0x0   0x....'....        DC32     `AudioLoopbackDMASpeex::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_26:
+   \                     ??DataTable19_27:
    \        0x0   0x....'....        DC32     AudioSpeex_I2SEx_TxRxCpltCallback
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_27:
+   \                     ??DataTable19_28:
    \        0x0   0x....'....        DC32     `AudioPlayDMASine::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_28:
+   \                     ??DataTable19_29:
    \        0x0   0x....'....        DC32     AudioSine_I2SEx_TxRxCpltCallback
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_29:
+   \                     ??DataTable19_30:
    \        0x0   0x....'....        DC32     `cmd_audio::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_30:
+   \                     ??DataTable19_31:
    \        0x0   0x....'....        DC32     ?_2
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_31:
+   \                     ??DataTable19_32:
    \        0x0   0x....'....        DC32     ?_5
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_32:
+   \                     ??DataTable19_33:
    \        0x0   0x4002'1000        DC32     0x40021000
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_33:
+   \                     ??DataTable19_34:
    \        0x0   0x....'....        DC32     ?_6
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_34:
+   \                     ??DataTable19_35:
    \        0x0   0x....'....        DC32     ?_7
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_35:
+   \                     ??DataTable19_36:
    \        0x0   0x....'....        DC32     ?_8
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_36:
+   \                     ??DataTable19_37:
    \        0x0   0x....'....        DC32     ?_9
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_37:
+   \                     ??DataTable19_38:
    \        0x0   0x....'....        DC32     ?_10
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_38:
+   \                     ??DataTable19_39:
    \        0x0   0x....'....        DC32     ?_11
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_39:
+   \                     ??DataTable19_40:
    \        0x0   0x....'....        DC32     ?_12
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_40:
+   \                     ??DataTable19_41:
    \        0x0   0x....'....        DC32     ?_14
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_41:
+   \                     ??DataTable19_42:
    \        0x0   0x....'....        DC32     ?_16
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_42:
+   \                     ??DataTable19_43:
    \        0x0   0x....'....        DC32     `cmd_codec::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_43:
+   \                     ??DataTable19_44:
    \        0x0   0x....'....        DC32     ?_19
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_44:
+   \                     ??DataTable19_45:
    \        0x0   0x....'....        DC32     ?_20
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_45:
+   \                     ??DataTable19_46:
    \        0x0   0x....'....        DC32     ?_21
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable18_46:
+   \                     ??DataTable19_47:
    \        0x0   0x....'....        DC32     ?_22
 
    \                                 In section .rodata, align 4
@@ -2401,8 +2598,8 @@ Warning[Pe550]: variable "sCmd" was set but never used
 
    \              0x00
    \       0x11                      DS8 3
-    696          
-    697          
+    853          
+    854          
 
    Maximum stack usage in bytes:
 
@@ -2422,10 +2619,15 @@ Warning[Pe550]: variable "sCmd" was set but never used
         32   -> __aeabi_memcpy
         32   -> printf
         32   -> qBufInit
+       8   AudioLoopbackDMACompress
+         8   -> HAL_I2SEx_TransmitReceive_DMA
+         8   -> SetCallbackI2STxRxCplt
+         8   -> printf
        8   AudioLoopbackDMASpeex
          8   -> HAL_I2SEx_TransmitReceive_DMA
          8   -> SetCallbackI2STxRxCplt
          8   -> printf
+       0   AudioLoopback_I2SEx_TxRxCpltCallback
        8   AudioMicVol
          8   -> HAL_I2C_IsDeviceReady
          8   -> WriteI2CCodec
@@ -2482,55 +2684,57 @@ Warning[Pe550]: variable "sCmd" was set but never used
 
    Bytes  Function/Label
    -----  --------------
-       4  ??DataTable17
-       4  ??DataTable17_1
        4  ??DataTable18
        4  ??DataTable18_1
-       4  ??DataTable18_10
-       4  ??DataTable18_11
-       4  ??DataTable18_12
-       4  ??DataTable18_13
-       4  ??DataTable18_14
-       4  ??DataTable18_15
-       4  ??DataTable18_16
-       4  ??DataTable18_17
-       4  ??DataTable18_18
-       4  ??DataTable18_19
        4  ??DataTable18_2
-       4  ??DataTable18_20
-       4  ??DataTable18_21
-       4  ??DataTable18_22
-       4  ??DataTable18_23
-       4  ??DataTable18_24
-       4  ??DataTable18_25
-       4  ??DataTable18_26
-       4  ??DataTable18_27
-       4  ??DataTable18_28
-       4  ??DataTable18_29
-       4  ??DataTable18_3
-       4  ??DataTable18_30
-       4  ??DataTable18_31
-       4  ??DataTable18_32
-       4  ??DataTable18_33
-       4  ??DataTable18_34
-       4  ??DataTable18_35
-       4  ??DataTable18_36
-       4  ??DataTable18_37
-       4  ??DataTable18_38
-       4  ??DataTable18_39
-       4  ??DataTable18_4
-       4  ??DataTable18_40
-       4  ??DataTable18_41
-       4  ??DataTable18_42
-       4  ??DataTable18_43
-       4  ??DataTable18_44
-       4  ??DataTable18_45
-       4  ??DataTable18_46
-       4  ??DataTable18_5
-       4  ??DataTable18_6
-       4  ??DataTable18_7
-       4  ??DataTable18_8
-       4  ??DataTable18_9
+       4  ??DataTable19
+       4  ??DataTable19_1
+       4  ??DataTable19_10
+       4  ??DataTable19_11
+       4  ??DataTable19_12
+       4  ??DataTable19_13
+       4  ??DataTable19_14
+       4  ??DataTable19_15
+       4  ??DataTable19_16
+       4  ??DataTable19_17
+       4  ??DataTable19_18
+       4  ??DataTable19_19
+       4  ??DataTable19_2
+       4  ??DataTable19_20
+       4  ??DataTable19_21
+       4  ??DataTable19_22
+       4  ??DataTable19_23
+       4  ??DataTable19_24
+       4  ??DataTable19_25
+       4  ??DataTable19_26
+       4  ??DataTable19_27
+       4  ??DataTable19_28
+       4  ??DataTable19_29
+       4  ??DataTable19_3
+       4  ??DataTable19_30
+       4  ??DataTable19_31
+       4  ??DataTable19_32
+       4  ??DataTable19_33
+       4  ??DataTable19_34
+       4  ??DataTable19_35
+       4  ??DataTable19_36
+       4  ??DataTable19_37
+       4  ??DataTable19_38
+       4  ??DataTable19_39
+       4  ??DataTable19_4
+       4  ??DataTable19_40
+       4  ??DataTable19_41
+       4  ??DataTable19_42
+       4  ??DataTable19_43
+       4  ??DataTable19_44
+       4  ??DataTable19_45
+       4  ??DataTable19_46
+       4  ??DataTable19_47
+       4  ??DataTable19_5
+       4  ??DataTable19_6
+       4  ??DataTable19_7
+       4  ??DataTable19_8
+       4  ??DataTable19_9
       20  ?_0
        8  ?_1
       16  ?_10
@@ -2557,12 +2761,14 @@ Warning[Pe550]: variable "sCmd" was set but never used
       48  AudioDMALoopback
       48  AudioDMARFM
      112  AudioInit
+      48  AudioLoopbackDMACompress
       48  AudioLoopbackDMASpeex
-     162  AudioMicVol
+       2  AudioLoopback_I2SEx_TxRxCpltCallback
+     164  AudioMicVol
       48  AudioPlayDMASine
       24  AudioSine_I2SEx_TxRxCpltCallback
       52  AudioSpeex_I2SEx_TxRxCpltCallback
-      78  AudioSpkVol
+      82  AudioSpkVol
       30  AudioStop
       48  Default_I2SEx_TxRxCpltCallback
        8  GetAudioIC
@@ -2570,33 +2776,33 @@ Warning[Pe550]: variable "sCmd" was set but never used
      130  InitCodecMAX9860
        8  SetAudioIC
        8  SetCallbackI2STxRxCplt
-     108  WriteI2CCodec
+     120  WriteI2CCodec
      640  bufAudio
      640  bufAudioCodec
-     578  cmd_audio
-     174  cmd_codec
+     592  cmd_audio
+     190  cmd_codec
      480  g_bufAudioRx
      480  g_bufAudioTx
-       4  g_nAudioIC
-      16  g_qBufAudioRx
-      16  g_qBufAudioTx
+       1  g_nAudioIC
+      12  g_qBufAudioRx
+      12  g_qBufAudioTx
      512  null_table
        4  pCallback_I2SEx_TxRxCpltCallback
      120  r_audio_buff
      320  sine_table
      320  speex_sine_table
      120  t_audio_buff
-     132  -- Other
+     160  -- Other
 
  
- 3'352 bytes in section .bss
+ 3'341 bytes in section .bss
    320 bytes in section .data
-   428 bytes in section .rodata
- 1'974 bytes in section .text
+   456 bytes in section .rodata
+ 2'080 bytes in section .text
  
- 1'974 bytes of CODE  memory
-   428 bytes of CONST memory
- 3'672 bytes of DATA  memory
+ 2'080 bytes of CODE  memory
+   456 bytes of CONST memory
+ 3'661 bytes of DATA  memory
 
 Errors: none
-Warnings: 24
+Warnings: 22

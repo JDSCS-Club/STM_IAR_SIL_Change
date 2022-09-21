@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  23:37:21
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:22
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -126,42 +126,42 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\radio\radio.c
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",304  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",293  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",322  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",311  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",468  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",419  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",506  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",457  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",511  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",462  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",533  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",484  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",559  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",510  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",567  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",518  Warning[Pe040]: 
           expected an identifier
      22          
      23          #include "rfm.h"				//	g_nRSSI
@@ -1343,7 +1343,7 @@ Warning[Pe177]: variable "wDelay" was declared but never referenced
    \        0x4   0x....             LDR.N    R0,??DataTable3_1
    \        0x6   0x7800             LDRB     R0,[R0, #+0]
    \        0x8   0x2800             CMP      R0,#+0
-   \        0xA   0xD15A             BNE.N    ??bRadio_Check_Tx_RX_0
+   \        0xA   0xD158             BNE.N    ??bRadio_Check_Tx_RX_0
     124          	{
     125          		//	  printf("!\n");
     126          		/* Read ITs, clear pending ones */
@@ -1378,9 +1378,9 @@ Warning[Pe223]: function "si446x_fifo_info" declared implicitly
     139          
     140          			nRxErr++;
    \       0x2A   0x....             LDR.N    R0,??DataTable3_3
-   \       0x2C   0x6801             LDR      R1,[R0, #+0]
+   \       0x2C   0x7801             LDRB     R1,[R0, #+0]
    \       0x2E   0x1C49             ADDS     R1,R1,#+1
-   \       0x30   0x6001             STR      R1,[R0, #+0]
+   \       0x30   0x7001             STRB     R1,[R0, #+0]
     141          
     142          			ret |= SI446X_CMD_GET_CHIP_STATUS_REP_CHIP_PEND_CMD_ERROR_PEND_BIT;
    \       0x32   0xF054 0x0408      ORRS     R4,R4,#0x8
@@ -1401,9 +1401,9 @@ Warning[Pe223]: function "si446x_fifo_info" declared implicitly
     149          
     150          			nCrcErr++;
    \       0x42   0x....             LDR.N    R0,??DataTable3_4
-   \       0x44   0x6801             LDR      R1,[R0, #+0]
+   \       0x44   0x7801             LDRB     R1,[R0, #+0]
    \       0x46   0x1C49             ADDS     R1,R1,#+1
-   \       0x48   0x6001             STR      R1,[R0, #+0]
+   \       0x48   0x7001             STRB     R1,[R0, #+0]
     151          
     152          			ret |= SI446X_CMD_GET_INT_STATUS_REP_PH_STATUS_CRC_ERROR_BIT;
    \       0x4A   0xF054 0x0408      ORRS     R4,R4,#0x8
@@ -1413,7 +1413,7 @@ Warning[Pe223]: function "si446x_fifo_info" declared implicitly
    \                     ??bRadio_Check_Tx_RX_2: (+1)
    \       0x4E   0x78A8             LDRB     R0,[R5, #+2]
    \       0x50   0x0680             LSLS     R0,R0,#+26
-   \       0x52   0xD509             BPL.N    ??bRadio_Check_Tx_RX_3
+   \       0x52   0xD508             BPL.N    ??bRadio_Check_Tx_RX_3
     156          		{
     157          			//        printf("tx\n");
     158          			//        printf("\n[tx]");
@@ -1427,19 +1427,18 @@ Warning[Pe223]: function "si446x_fifo_info" declared implicitly
    \       0x56   0x6800             LDR      R0,[R0, #+0]
    \       0x58   0x7941             LDRB     R1,[R0, #+5]
    \       0x5A   0x....             LDR.N    R0,??DataTable3_5
-   \       0x5C   0x6800             LDR      R0,[R0, #+0]
-   \       0x5E   0xB2C0             UXTB     R0,R0
-   \       0x60   0x.... 0x....      BL       vRadio_StartRX
+   \       0x5C   0x7800             LDRB     R0,[R0, #+0]
+   \       0x5E   0x.... 0x....      BL       vRadio_StartRX
     165          
     166          			ret |= SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_SENT_PEND_BIT;
-   \       0x64   0xF054 0x0420      ORRS     R4,R4,#0x20
+   \       0x62   0xF054 0x0420      ORRS     R4,R4,#0x20
     167          		}
     168          
     169          		if(Si446xCmd.GET_INT_STATUS.PH_PEND & SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_RX_PEND_BIT)
    \                     ??bRadio_Check_Tx_RX_3: (+1)
-   \       0x68   0x78A8             LDRB     R0,[R5, #+2]
-   \       0x6A   0x06C0             LSLS     R0,R0,#+27
-   \       0x6C   0xD529             BPL.N    ??bRadio_Check_Tx_RX_0
+   \       0x66   0x78A8             LDRB     R0,[R5, #+2]
+   \       0x68   0x06C0             LSLS     R0,R0,#+27
+   \       0x6A   0xD528             BPL.N    ??bRadio_Check_Tx_RX_0
     170          		{
     171          			/* Packet RX */
     172          
@@ -1447,50 +1446,50 @@ Warning[Pe223]: function "si446x_fifo_info" declared implicitly
     174                      si446x_fifo_info ( 0x00 );
                              ^
 Warning[Pe223]: function "si446x_fifo_info" declared implicitly
-   \       0x6E   0x2000             MOVS     R0,#+0
-   \       0x70   0x.... 0x....      BL       si446x_fifo_info
+   \       0x6C   0x2000             MOVS     R0,#+0
+   \       0x6E   0x.... 0x....      BL       si446x_fifo_info
     175          
     176          //			si446x_read_rx_fifo(Si446xCmd.FIFO_INFO.RX_FIFO_COUNT, &customRadioPacket[0]);
     177                  	s_idxRxPkt = ( s_idxRxPkt + 1 )%2;
-   \       0x74   0x....             LDR.N    R0,??DataTable3_6
-   \       0x76   0x6801             LDR      R1,[R0, #+0]
-   \       0x78   0x1C49             ADDS     R1,R1,#+1
-   \       0x7A   0x2202             MOVS     R2,#+2
-   \       0x7C   0xFB91 0xF3F2      SDIV     R3,R1,R2
-   \       0x80   0xFB02 0x1113      MLS      R1,R2,R3,R1
-   \       0x84   0x6001             STR      R1,[R0, #+0]
+   \       0x72   0x....             LDR.N    R0,??DataTable3_6
+   \       0x74   0x6801             LDR      R1,[R0, #+0]
+   \       0x76   0x1C49             ADDS     R1,R1,#+1
+   \       0x78   0x2202             MOVS     R2,#+2
+   \       0x7A   0xFB91 0xF3F2      SDIV     R3,R1,R2
+   \       0x7E   0xFB02 0x1113      MLS      R1,R2,R3,R1
+   \       0x82   0x6001             STR      R1,[R0, #+0]
     178                  	g_pRadioRxPkt = &g_RadioRxPkt[s_idxRxPkt][0];
-   \       0x86   0x....             LDR.N    R1,??DataTable3_7
-   \       0x88   0x....             LDR.N    R2,??DataTable3_8
-   \       0x8A   0x6800             LDR      R0,[R0, #+0]
-   \       0x8C   0x0180             LSLS     R0,R0,#+6
-   \       0x8E   0x4410             ADD      R0,R2,R0
-   \       0x90   0x6008             STR      R0,[R1, #+0]
+   \       0x84   0x....             LDR.N    R1,??DataTable3_7
+   \       0x86   0x....             LDR.N    R2,??DataTable3_8
+   \       0x88   0x6800             LDR      R0,[R0, #+0]
+   \       0x8A   0x0180             LSLS     R0,R0,#+6
+   \       0x8C   0x4410             ADD      R0,R2,R0
+   \       0x8E   0x6008             STR      R0,[R1, #+0]
     179          			si446x_read_rx_fifo(Si446xCmd.FIFO_INFO.RX_FIFO_COUNT, g_pRadioRxPkt);
                  			^
 Warning[Pe223]: function "si446x_read_rx_fifo" declared implicitly
-   \       0x92   0x6809             LDR      R1,[R1, #+0]
-   \       0x94   0x7828             LDRB     R0,[R5, #+0]
-   \       0x96   0x.... 0x....      BL       si446x_read_rx_fifo
+   \       0x90   0x6809             LDR      R1,[R1, #+0]
+   \       0x92   0x7828             LDRB     R0,[R5, #+0]
+   \       0x94   0x.... 0x....      BL       si446x_read_rx_fifo
     180          
     181          			//========================================================================
     182          			si446x_frr_b_read(1);
                  			^
 Warning[Pe223]: function "si446x_frr_b_read" declared implicitly
-   \       0x9A   0x2001             MOVS     R0,#+1
-   \       0x9C   0x.... 0x....      BL       si446x_frr_b_read
+   \       0x98   0x2001             MOVS     R0,#+1
+   \       0x9A   0x.... 0x....      BL       si446x_frr_b_read
     183          
     184          			g_nRSSI = Si446xCmd.FRR_B_READ.FRR_B_VALUE;		//	RSSI Value
-   \       0xA0   0x7828             LDRB     R0,[R5, #+0]
-   \       0xA2   0x....             LDR.N    R1,??DataTable3_9
-   \       0xA4   0x6008             STR      R0,[R1, #+0]
+   \       0x9E   0x7828             LDRB     R0,[R5, #+0]
+   \       0xA0   0x....             LDR.N    R1,??DataTable3_9
+   \       0xA2   0x7008             STRB     R0,[R1, #+0]
     185          
     186          			if( GetDbg() > 2 )
                  			    ^
 Warning[Pe223]: function "GetDbg" declared implicitly
-   \       0xA6   0x.... 0x....      BL       GetDbg
-   \       0xAA   0x2803             CMP      R0,#+3
-   \       0xAC   0xDB07             BLT.N    ??bRadio_Check_Tx_RX_4
+   \       0xA4   0x.... 0x....      BL       GetDbg
+   \       0xA8   0x2803             CMP      R0,#+3
+   \       0xAA   0xDB06             BLT.N    ??bRadio_Check_Tx_RX_4
     187          				//printf("Latch RSSI : %02d\n",Si446xCmd.FRR_B_READ.FRR_B_VALUE);
     188          			//========================================================================
     189          
@@ -1499,26 +1498,25 @@ Warning[Pe223]: function "GetDbg" declared implicitly
     192          			vRadio_StartRX (
     193          				g_nChRx, //g_idxTrainSet,	//				pRadioConfiguration->Radio_ChannelNumber,
     194          				pRadioConfiguration->Radio_PacketLength );
-   \       0xAE   0x....             LDR.N    R0,??DataTable3
-   \       0xB0   0x6800             LDR      R0,[R0, #+0]
-   \       0xB2   0x7941             LDRB     R1,[R0, #+5]
-   \       0xB4   0x....             LDR.N    R0,??DataTable3_5
-   \       0xB6   0x6800             LDR      R0,[R0, #+0]
-   \       0xB8   0xB2C0             UXTB     R0,R0
-   \       0xBA   0x.... 0x....      BL       vRadio_StartRX
+   \       0xAC   0x....             LDR.N    R0,??DataTable3
+   \       0xAE   0x6800             LDR      R0,[R0, #+0]
+   \       0xB0   0x7941             LDRB     R1,[R0, #+5]
+   \       0xB2   0x....             LDR.N    R0,??DataTable3_5
+   \       0xB4   0x7800             LDRB     R0,[R0, #+0]
+   \       0xB6   0x.... 0x....      BL       vRadio_StartRX
     195          
     196          			ret |= SI446X_CMD_GET_INT_STATUS_REP_PH_PEND_PACKET_RX_PEND_BIT;
    \                     ??bRadio_Check_Tx_RX_4: (+1)
-   \       0xBE   0xF054 0x0410      ORRS     R4,R4,#0x10
+   \       0xBA   0xF054 0x0410      ORRS     R4,R4,#0x10
     197          		}
     198          
     199          	}
     200          
     201          	return ret;
    \                     ??bRadio_Check_Tx_RX_0: (+1)
-   \       0xC2   0x0020             MOVS     R0,R4
-   \       0xC4   0xB2C0             UXTB     R0,R0
-   \       0xC6   0xBD32             POP      {R1,R4,R5,PC}
+   \       0xBE   0x0020             MOVS     R0,R4
+   \       0xC0   0xB2C0             UXTB     R0,R0
+   \       0xC2   0xBD32             POP      {R1,R4,R5,PC}
     202          }
 
    \                                 In section .bss, align 4
@@ -2084,7 +2082,7 @@ Warning[Pe223]: function "si446x_write_tx_fifo" declared implicitly
        4  ??DataTable3_9
       76  RadioConfiguration
      972  Radio_Configuration_Data_Array
-     200  bRadio_Check_Tx_RX
+     196  bRadio_Check_Tx_RX
      192  bRadio_FindProperty
      128  g_RadioRxPkt
        4  g_pRadioRxPkt
@@ -2102,9 +2100,9 @@ Warning[Pe223]: function "si446x_write_tx_fifo" declared implicitly
  136 bytes in section .bss
   80 bytes in section .data
  972 bytes in section .rodata
- 732 bytes in section .text
+ 728 bytes in section .text
  
- 732 bytes of CODE  memory
+ 728 bytes of CODE  memory
  972 bytes of CONST memory
  216 bytes of DATA  memory
 

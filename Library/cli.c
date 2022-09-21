@@ -13,12 +13,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
+//#include <stdarg.h>
 #include <ctype.h>
 #include <string.h>
-#include <stdarg.h>
 
+//#include <stdarg.h>
+#include <stdio.h>			//	printf()
 
+#include <stdint.h>			//	uint32_t
+
+#include <string.h>			//	memset()
+
+#include "typedef.h"			//	uint32_t, ...
+#include "compiler_defs.h"		//	U8,
 //=============================================================================
 #if defined(_WIN32)
 //=============================================================================
@@ -81,7 +88,7 @@
 #define		CLEAR_VT_SCREEN()	printf("\033[2J")
 #define		GOTO_VT_XY()		printf("\033[1;1H")
 
-int			input_check		( void );
+//int			input_check		( void );
 
 char		prompt_string[0x10];
 
@@ -104,7 +111,7 @@ user_command_t	user_command_table[] = {
 		(char *)0,
 		cmd_help,},
 	{"uptime",
-		"uptime	-	display uptime",
+		"uptime		-	display uptime",
 		(char *)0,
 		cmd_uptime,},
 	{"ver",
@@ -127,13 +134,6 @@ user_command_t	user_command_table[] = {
 		cmd_hop},
 #endif	//	 defined(USE_HOP_MANUAL)
 
-#if defined(USE_RF_COMM_MODE)
-	{"rfmod",
-		"rfmod		-	RF Mode",
-		"rfmod -	rfmod [ 1:default / 1: 1Ch Group / 2: Group 2 Ch ]",
-		cmd_rfmod},
-#endif	//	defined(USE_RF_COMM_MODE)
-
 #if defined(_DIAG_H_)
 	{"diag",
 		"diag		-	diagnostic test",
@@ -152,27 +152,27 @@ user_command_t	user_command_table[] = {
 		"ch -	ch [channel:0-9]",
 		cmd_ch},
 	{"ts",
-		"ts		-	Setting Train Set-16,17,18,19,20,34,35,41,42,43,44,45,46,47,48",
-		"ts -	ts [TrainSet:0-9]",
+		"ts		-	Setting Train Set",
+		"ts -	ts [channel:0-9]",
 		cmd_ts},
 	{"car",
-		"car		-	Setting Car No.",
-		"car -	car [Car:1-10]",
+		"car	-	Setting Car No.",
+		"car -	car [channel:0-9]",
 		cmd_car},
 	{"info",
-		"info		-	Display Information",
+		"info	-	Display Information",
 		(char *)0,
 		cmd_info},
 	{"swinfo",
-		"swinfo 	-	Software Information",
+		"swinfo	-	Software Information",
 		(char *)0,
 		cmd_swinfo},
 	{"rfstat",
-		"rfstat 	-	RF Tx / Rx Information",
+		"rfstat	-	RF Tx / Rx Information",
 		(char *)0,
 		cmd_rfstat},
 	{"rspid",
-		"rspid 	-	Manual Set Resp ID",
+		"rspid	-	Manual Set Resp ID",
 		"rspid	-	rspid [id] [set/clear]",
 		cmd_rspid},
 	{"occ",
@@ -188,21 +188,21 @@ user_command_t	user_command_table[] = {
 	{"tx",
 		"tx		-	RF Tx Data",
 		"tx [ch:0~63]",
-		cmd_rftx},
+		&cmd_rftx},
 	#endif
 #endif	//	defined(RFM_H)
 
 #if defined(EEPROM_I2C_H)
 	{"eepw",
-		"eepw		-	write byte to address",
+		"eepw			-	write byte to address",
 		"eepw [addr] [data]",
 		cmd_eepromWrite,},
 	{"eepr",
-		"eepr		-	read byte from address",
+		"eepr			-	read byte from address",
 		"eepr [addr]",
 		cmd_eepromRead,},
 	{"eepdump",
-		"eepdump 	-	eeprom dump",
+		"eepdump		-	eeprom dump",
 		"eepdump [addr] [size]",
 		cmd_eepromDump,},
 #endif	//	defined(EEPROM_I2C_H)
@@ -217,32 +217,32 @@ user_command_t	user_command_table[] = {
 
 #if defined( AUDIO_H )
 	{"audio",
-		"audio 	-	audio command",
+		"audio	-	audio command",
 		"audio [loop/null/sine/spk [0/1] / mute [0/1] ]",
 		cmd_audio},
 	{"codec",
-		"codec 	-	codec command",
+		"codec	-	codec command",
 		"codec [init/loop/mute [0/1] ]",
 		cmd_codec},
 #endif
 
 #if defined( BOOTLOADER_H )
 	{"stboot",
-		"stboot 	-	Enter STM32 Bootloader ( DFU Mode )",
+		"stboot	- Enter STM32 Bootloader ( DFU Mode )",
 		(char *)0,
 		cmd_stboot},
 #endif
 
 #if defined( UPGRADE_H )
 	{"upgrade",
-		"upgrade	-	upgrade command",
+		"upgrade	- upgrade command",
 		(char *)0,
 		cmd_upgrade},
 #endif
 
 #if defined( PROC_PKT_H )
 	{"mon",
-		"mon		-	show packet monitoring",
+		"mon	-	show packet monitoring",
 		"mon [0/1]",
 		cmd_pktmon},
 #endif
@@ -253,39 +253,39 @@ user_command_t	user_command_table[] = {
 	{"test",
 		(char *)0,
 		(char *)0,
-		cmd_test,},
+		&cmd_test,},
 	{"do",
 		"do			-	set do value",
 		(char *)0,
-		cmd_do,},
+		&cmd_do,},
 	{"wr",
 		"wr			-	write byte to address",
 		"wr[.b|w|l] addr data",
-		cmd_wr,},
+		&cmd_wr,},
 	{"rd",
 		"rd			-	read byte from address",
 		"rd[.b|w|l] [-l] addr",
-		cmd_rd,},
+		&cmd_rd,},
 	{"md",
 		"md			-	memory dump",
 		"md[.b|w|l] [address] [count]",
-		cmd_md},
+		&cmd_md},
 	{"i2cdetect",
 		"i2cdetect	-	I2C detect",
 		"i2cdetect -l",
-		cmd_md},
+		&cmd_md},
 	{"i2cset",
 		"i2cset	-	I2C Write",
 		"i2cset	I2CBUS CHIP-ADDRESS DATA-ADDRESS [VALUE]",
-		cmd_md},
+		&cmd_md},
 	{"i2cget",
 		"i2cget	-	I2C Read",
 		"i2cget	I2CBUS CHIP-ADDRESS [DATA-ADDRESS [MODE]]",
-		cmd_md},
+		&cmd_md},
 	{"rftx",
 		"rftx	-	RF Tx Test",
 		"rftx [start/1/stop/0]",
-		cmd_rftx},
+		&cmd_rftx},
 
 #endif
 
@@ -299,7 +299,7 @@ user_command_t	user_command_table[] = {
 	{"spi",
 		"spi -	SPI Read / Write",
 		"spi[.b|w|l] [wr/rd] [dev [data]]",
-		cmd_spi},
+		&cmd_spi},
 #endif 	//	defined( _SPI_H_ )
 
 #endif
@@ -318,15 +318,17 @@ char	old_cmd[MAX_COMMAND_LENGTH];
 //=============================================================================
 
 //========================================================================
-void dump( uint8_t *a, int delta, int width )
+void dump_Cli(  S8 *a, uint8_t delta, uint8_t width )
 //========================================================================
 {
-	int		i, j, k;
+	uint8_t	i, j, k;
 	uint8_t	*b;
 	uint8_t	c;
-	int		disp_unit = 16 / width;
+	uint8_t	disp_unit = 16 ;
 
-	char	*format[] = {
+	disp_unit = disp_unit / (uint8_t)width;
+
+	S8	*format[] = {
 							"",
 							"   ",			/* width 1 */
 							"     ",		/* width 2 */
@@ -338,35 +340,66 @@ void dump( uint8_t *a, int delta, int width )
 	{
 		b = a;
 		j = i;
+
 		printf( "%08p  ", a );
 
-		for ( k = 0; k < disp_unit && i < delta; k++, i += width )
+		for ( k = 0;( k < disp_unit )&& (i < delta); k++, (i += width) )
 		{
-			if ( k == 8 )				printf( " " );
+			if ( k == 8 )
+			{
+				printf( " " );
+			}
 
-			if ( width == 1 )			printf( "%02x ", *a );
-			else if ( width == 2 )		printf( "%04x ", *(uint16_t *)a );
-			else if ( width == 4 )		printf( "%08x ", *(uint32_t *)a );
-			a += width;
+			if ( width == 1 )
+			{
+				printf( "%02x ", *a );
+			}
+			else if ( width == 2 )
+			{
+				printf( "%04x ", *(uint16_t *)a );
+			}
+			else if ( width == 4 )
+			{
+				printf( "%08x ", *(uint32_t *)a );
+			}
+			a = &a[width];
 		}
 		for ( ; k < disp_unit; k++ )
 		{
-			if ( k == 8 )				printf( " " );
+			if ( k == 8 )
+			{
+				printf( " " );
+			}
 
 			printf( format[width] );
 		}
 		printf( "|" );
-		for ( k = 0; k < 16 && j < delta; k++, j++ )
+		for ( k = 0; (k < 16) && (j < delta); k++, j++ )
 		{
-			if ( k == 8 )				printf( " " );
+			if ( k == 8 )
+			{
+				printf( " " );
+			}
 
-			c = *b++ & 0x7f;
-			if ( c < ' ' || c == 0x7f )	printf( "%c", '.' );
-			else						printf( "%c", c );
+			b = &b[k];
+
+			c = *b & 0x7f;
+
+			if ( (c < ' ') || (c == 0x7f) )
+			{
+				printf( "%c", '.' );
+			}
+			else
+			{
+				printf( "%c", c );
+			}
 		}
 		for ( ; k < 16; k++ )
 		{
-			if ( k == 8 )				printf( " " );
+			if ( k == 8 )
+			{
+				printf( " " );
+			}
 
 			printf( " " );
 		}
@@ -375,12 +408,12 @@ void dump( uint8_t *a, int delta, int width )
 }
 
 //========================================================================
-int 	a2hex(char *pv)
+uint8_t 	a2hex(S8 *pv)
 //========================================================================
 {
-	char **pos=NULL;
+	S8 **pos=NULL;
 
-	return strtol(pv, pos, 16 );
+	return (uint8_t)strtol(pv, pos, 16 );
 }
 
 //=============================================================================
@@ -430,41 +463,44 @@ strtok_r ( char *s, const char *delim, char **save_ptr )
 /*
  * parse cmd & argument, return argc
  */
-//========================================================================
-int getarg(char *buffer, char *argv[])
-//========================================================================
-{
-	int		argc;
-	char	*p;
-	char	*sepchr = " \t";
-	char	*saveptr;
 
 #define	MAXP	20
 
-	p = (char *)strtok_r(buffer, sepchr, &saveptr);
+//========================================================================
+uint8_t getarg(S8 *buffer, S8 *argv[])
+//========================================================================
+{
+	uint8_t		argc;
+	S8	*p;
+	S8	*sepchr = " \t";
+	S8	*saveptr;
 
-	for ( argc = 0; argc < MAXP && p != NULL; p = (char *)strtok_r( NULL, sepchr, &saveptr ) )
+
+
+	p = (S8 *)strtok_r(buffer, sepchr, &saveptr);
+
+	for ( argc = 0; (argc < MAXP) && (p != NULL); (p = (S8 *)strtok_r( NULL, sepchr, &saveptr )) )
 	{
 //		printf( "%s(%d) - %s\n", __func__, __LINE__, p );
 		argv[argc++] = p;
 	}
 
-	return argc;
+	return (uint8_t)argc;
 }
 
 //========================================================================
-int ProcessCommand( char *cmd )
+uint8_t ProcessCommand( char *cmd )
 //========================================================================
 {
 	char	*argv[MAXP];
-	int		argc;
+	uint16_t		argc;
 	char	*p;
-	int		v = 0;
-	int		i;
+	uint16_t		v = 0;
+	uint16_t		i;
 	char	temp[80];
 	char	upstr[4] = { 0x1b, '[', 'A', 0 };
 
-	if ( strcmp( "!!", cmd ) == 0 || strcmp( cmd, upstr ) == 0 )
+	if ( (strcmp( "!!", cmd ) == 0) || (strcmp( cmd, upstr ) == 0) )
 	{
 		strcpy( temp, old_cmd );
 		strcpy( cmd, old_cmd );
@@ -478,9 +514,9 @@ int ProcessCommand( char *cmd )
 
 	// ignore after # char
 	p = (char *)strchr( cmd, '#' );
-	if ( p )
+	if ( p != 0 )
 	{
-		*p = (char)NULL;
+		*p = (S8)NULL;
 	}
 
 	// 명령라인을 arg,argv 로 분해
@@ -507,7 +543,7 @@ int ProcessCommand( char *cmd )
 			{
 				data_option = 4;
 			}
-			*p = (char)NULL;
+			*p = (S8)NULL;
 		}
 		else
 		{
@@ -558,37 +594,39 @@ int ProcessCommand( char *cmd )
 		}
 	}
 
-	return 1;
+	return (uint8_t) 1;
 }
 
-static char		command_buf[MAX_COMMAND_LENGTH];
-static int		command_index = 0;
+
+
 
 //========================================================================
-int readline( char *bufp )
+int8_t readline( S8 *bufp )
 //========================================================================
 {
 	//	printf( "%s\n", __func__ );
 
-	char	ch;
-	char	*command_buf = bufp;	//[MAX_COMMAND_LENGTH];
+	static int8_t		command_index = 0;
 
-	int		ret = 0;
+	int8_t	ch;
+	S8	*command_buf = bufp;	//[MAX_COMMAND_LENGTH];
 
-	for ( ;;)
+	int8_t		ret = 0;
+
+	for ( ;; )
 	{
-		ch = getchar();
+		ch =(int8_t) getchar();
 
 #if defined(USE_FREERTOS)
 #else
-		if ( ch == (char)-1 )
+		if ((int8_t) ch == (int8_t)-1 )
 		{
 			//	Input Data가 없는 경우 ( Non-Blocking - OS less )
-			return -1;
+			return (int8_t)-1;
 		}
 #endif
 
-		if ( ch == 0x08 || ch == 0x7F )	// Backspace
+		if ( (ch == 0x08) || (ch == 0x7F) )	// Backspace
 		{
 			if ( command_index > 0 )
 			{
@@ -622,17 +660,17 @@ int readline( char *bufp )
 			printf( "\n\r" );
 			command_buf[command_index] = 0; // Null terminate the input command
 
-			ret = command_index;
+			ret = (int8_t)command_index;
 			command_index = 0;		//	입력후 index 초기화.
 
-			return ret;
+			return (int8_t)ret;
 		}
 		else if ( (0x20 <= ch) && (ch <= 0x7E) )
 		{
 			//	ANSI 입력.
 			if ( command_index < (MAX_COMMAND_LENGTH - 2) )
 			{
-				command_buf[command_index++] = ch;
+				command_buf[command_index++] =(S8) ch;
 			}
 			printf( "%c", ch );    // Echo the character
 //			printf( "[%02X]", ch );    // Echo the character
@@ -642,7 +680,7 @@ int readline( char *bufp )
 			//	한글입력.
 			if ( command_index < ( MAX_COMMAND_LENGTH - 2 ) )
 			{
-				command_buf[command_index++] = ch;
+				command_buf[command_index++] = (S8)ch;
 			}
 			printf( "%c", ch );    // Echo the character
 //			printf( "[%02X]", ch );    // Echo the character
@@ -656,7 +694,7 @@ int readline( char *bufp )
 #endif
 	}
 
-	return 0;
+	//return (uint8_t)0;
 }
 
 //========================================================================
@@ -667,7 +705,7 @@ void	CLIPrompt( void )
 }
 
 void	( *g_fnCLIPrompt )( void ) = CLIPrompt;
-int		( *g_fnCLIProc )( char * ) = ProcessCommand;
+uint8_t		( *g_fnCLIProc )( char * ) = ProcessCommand;
 
 //========================================================================
 void	SetCLIPrompt( void ( *fnPrompt )( void ) )
@@ -677,7 +715,7 @@ void	SetCLIPrompt( void ( *fnPrompt )( void ) )
 }
 
 //========================================================================
-void	SetCLIProc( int ( *fnProc )( char *cmd ) )
+void	SetCLIProc( uint8_t ( *fnProc )( char *cmd ) )
 //========================================================================
 {
 	g_fnCLIProc = fnProc;
@@ -688,11 +726,12 @@ void	SetCLIProc( int ( *fnProc )( char *cmd ) )
 void	LoopProcCLI ( void )
 //========================================================================
 {
-	int len;
+	static S8		command_buf[MAX_COMMAND_LENGTH];
+	int8_t len;
 	if ( input_check() )
 	{
 		len = readline( command_buf );
-		if ( len >= 0 )
+		if ( len != 0 )
 		{
 //			printf( "%s(%d) : %s\n", __func__, __LINE__, command_buf );
 			//	Process Command
@@ -716,7 +755,7 @@ void	vCLITask	( void *pvParameters )
 //========================================================================
 {
 	/* The parameters are not used. */
-	( void ) pvParameters;
+	//( void ) pvParameters;
 
 	/*
 	 * print Logo & version
@@ -733,17 +772,17 @@ void	vCLITask	( void *pvParameters )
 #if defined(USE_FREERTOS)
 		taskYIELD();
 #else
-		HAL_Delay( 0 );
+		HAL_Delay( (uint32_t)0 );
 #endif
 	}
 }
 
 //========================================================================
-int cmd_help( int argc, char *argv[] )
+uint8_t cmd_help( uint8_t argc, char *argv[] )
 //========================================================================
 {
-	int	i;
-	int	ok = 0;
+	uint16_t	i;
+	uint16_t	ok = 0;
 
 //	printf( "%s(%d)\n", __func__, __LINE__ );
 
@@ -777,11 +816,11 @@ int cmd_help( int argc, char *argv[] )
 	{
 		printf( "unknown command %s\n", argv[1] );
 	}
-	return 0;
+	return (uint8_t)0;
 }
 
 //========================================================================
-int cmd_uptime(int argc, char *argv[])
+uint8_t cmd_uptime(uint8_t argc, char *argv[])
 //========================================================================
 {
 
@@ -794,22 +833,22 @@ int cmd_uptime(int argc, char *argv[])
 //=============================================================================
 
 #if defined( USE_FREERTOS )
-	unsigned long	tmp = xTaskGetTickCount() / configTICK_RATE_HZ;
+	uint32_t	tmp = xTaskGetTickCount() / configTICK_RATE_HZ;
 #else
-	unsigned long	tmp = HAL_GetTick() / 1000;
+	uint32_t	tmp = HAL_GetTick() / 1000;
 #endif
 
-	int	sec, min, hour;
-	int	day;
+	uint8_t	sec, min, hour;
+	uint8_t	day;
 
-	day = (tmp / 3600 / 24);
-	tmp = tmp % (3600 * 24);
+	day = (uint8_t)((uint8_t)tmp / 3600 / 24);
+	tmp = (uint8_t)((uint8_t)tmp % (uint8_t)(3600 * 24));
 
-	hour = tmp / 3600;
-	tmp = tmp % 3600;
+	hour = (uint8_t)((uint8_t)tmp / 3600);
+	tmp = (uint8_t)((uint8_t)tmp % 3600);
 
-	min = tmp / 60;
-	sec = tmp % 60;
+	min = (uint8_t)((uint8_t)tmp / 60);
+	sec = (uint8_t)((uint8_t)tmp % 60);
 
 	if (0 < day)
 	{
@@ -824,25 +863,25 @@ int cmd_uptime(int argc, char *argv[])
 #endif
 //=============================================================================
 
-	return 0;
+	return (uint8_t)0;
 }
 
 //========================================================================
-int cmd_ver(int argc, char *argv[])
+uint8_t cmd_ver(uint8_t argc, char *argv[])
 //========================================================================
 {
 	printf("Version = %s(%s)\n", APP_VER, APP_BUILD_DATE );
 
-	return 0;
+	return (uint8_t)0;
 }
 
 
 //========================================================================
-int cmd_reset(int argc, char *argv[])
+uint8_t cmd_reset(uint8_t argc, char *argv[])
 //========================================================================
 {
   	NVIC_SystemReset();
-	return 0;
+	return (uint8_t)0;
 }
 
 /*

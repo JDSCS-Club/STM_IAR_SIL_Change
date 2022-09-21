@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         20/Sep/2022  23:37:23
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:06:25
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                     =  thumb
@@ -95,21 +95,6 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\bootloader.c
      32          
      33          #include "RFMProtocol.h"	//	DevRF900T / DevRF900M
 
-  typedef unsigned char       BYTE;
-                              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",73  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-
-  typedef unsigned short      WORD;
-                              ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",77  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-
-  typedef unsigned char 		BIT;
-                        		^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",83  Warning[Pe301]: typedef
-          name has already been declared (with same type)
-
   typedef unsigned char 		U8;
                         		^
 "C:\D\Git_Hub\STM_IAR_SIL_Change\Library\typedef.h",84  Warning[Pe301]: typedef
@@ -142,42 +127,42 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\bootloader.c
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",304  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",293  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",322  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",311  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",468  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",419  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",506  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",457  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",511  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",462  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",533  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",484  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",559  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",510  Warning[Pe040]: 
           expected an identifier
 
   	};
   	 ^
-"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",567  Warning[Pe040]: 
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\RFMProtocol.h",518  Warning[Pe040]: 
           expected an identifier
      34          
      35          #include "Adafruit_SSD1306.h"       //  I2C LCD
@@ -364,7 +349,7 @@ Warning[Pe301]: typedef name has already been declared (with same type)
     141          {
    \                     DispDFUMode: (+1)
    \        0x0   0xB580             PUSH     {R7,LR}
-    142          	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c3, (uint16_t)( SSD1306_I2C_ADDRESS ), 2, 2 ) )
+    142          	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c3, (uint16_t)( SSD1306_I2C_ADDRESS ), (uint32_t)2, (uint32_t)2 ) )
    \        0x2   0x2302             MOVS     R3,#+2
    \        0x4   0x2202             MOVS     R2,#+2
    \        0x6   0x2178             MOVS     R1,#+120
@@ -412,7 +397,7 @@ Warning[Pe301]: typedef name has already been declared (with same type)
     160          
     161          	//========================================================================
     162          	//	OLED
-    163          	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c3, (uint16_t)( SSD1306_I2C_ADDRESS ), 2, 2 ) )
+    163          	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c3, (uint16_t)( SSD1306_I2C_ADDRESS ), (uint32_t)2, (uint32_t)2 ) )
    \       0x1C   0x2302             MOVS     R3,#+2
    \       0x1E   0x2202             MOVS     R2,#+2
    \       0x20   0x2178             MOVS     R1,#+120
@@ -625,7 +610,7 @@ Warning[Pe223]: function "SerialDownload" declared implicitly
     274          #else
     275          
     276          	char buf[10];
-    277              M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf, 5 );
+    277              M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf,(uint16_t) 5 );
    \                     ??BootLoaderTask_2: (+1)
    \       0x86   0x2005             MOVS     R0,#+5
    \       0x88   0x9000             STR      R0,[SP, #+0]
@@ -969,7 +954,7 @@ Warning[Pe223]: function "SerialDownload" declared implicitly
    \      0x21A   0x4641             MOV      R1,R8
    \      0x21C   0x0020             MOVS     R0,R4
    \      0x21E   0x.... 0x....      BL       __aeabi_memset
-    469          	    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf, 5 );
+    469          	    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf,(uint16_t) 5 );
    \      0x222   0x2005             MOVS     R0,#+5
    \      0x224   0x9000             STR      R0,[SP, #+0]
    \      0x226   0xAB05             ADD      R3,SP,#+20
@@ -1137,7 +1122,7 @@ Warning[Pe223]: function "SerialDownload" declared implicitly
     547          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    548          int cmd_stboot(int argc, char *argv[])
+    548          uint8_t cmd_stboot(uint8_t argc, char *argv[])
     549          //========================================================================
     550          {
    \                     cmd_stboot: (+1)
@@ -1154,7 +1139,7 @@ Warning[Pe223]: function "SerialDownload" declared implicitly
     555          	JumpToSTBootloader();
    \       0x10   0x.... 0x....      BL       JumpToSTBootloader
     556          
-    557          	return 0;
+    557          	return (uint8_t)0;
    \       0x14   0x2000             MOVS     R0,#+0
    \       0x16   0xBD32             POP      {R1,R4,R5,PC}
     558          }
@@ -2087,4 +2072,4 @@ Warning[Pe223]: function "SerialDownload" declared implicitly
     20 bytes of DATA  memory
 
 Errors: none
-Warnings: 25
+Warnings: 22

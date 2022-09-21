@@ -139,7 +139,7 @@ void JumpToSTBootloader(void)
 void	DispDFUMode( void )
 //========================================================================
 {
-	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c3, (uint16_t)( SSD1306_I2C_ADDRESS ), 2, 2 ) )
+	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c3, (uint16_t)( SSD1306_I2C_ADDRESS ), (uint32_t)2, (uint32_t)2 ) )
 	{
 		//  화면 Clear
 		LCDClear();
@@ -160,7 +160,7 @@ int InitBoot( void )
 
 	//========================================================================
 	//	OLED
-	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c3, (uint16_t)( SSD1306_I2C_ADDRESS ), 2, 2 ) )
+	if ( HAL_OK == HAL_I2C_IsDeviceReady( &hi2c3, (uint16_t)( SSD1306_I2C_ADDRESS ), (uint32_t)2, (uint32_t)2 ) )
 	{
 		//========================================================================
 		//	OLED가 연결되어있음.
@@ -274,7 +274,7 @@ void BootLoaderTask(void)
 #else
 
 	char buf[10];
-    M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf, 5 );
+    M24_HAL_ReadBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf,(uint16_t) 5 );
 
 #endif
 
@@ -466,7 +466,7 @@ void BootLoaderTask(void)
 		//========================================================================
 		printf("Erase Upgrade Config\n");
 		memset(buf, 0, sizeof(buf));
-	    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf, 5 );
+	    M24_HAL_WriteBytes( &hi2c1, 0xA0, AddrEEPUpgrMGN1, (uint8_t *)buf,(uint16_t) 5 );
 
 		//========================================================================
 		printf("Erase Upgrade Binary Image\n");
@@ -545,7 +545,7 @@ void BootLoaderTask(void)
 
 
 //========================================================================
-int cmd_stboot(int argc, char *argv[])
+uint8_t cmd_stboot(uint8_t argc, char *argv[])
 //========================================================================
 {
 	printf( "Jump To STM32 Bootloader\n" );
@@ -554,6 +554,6 @@ int cmd_stboot(int argc, char *argv[])
 
 	JumpToSTBootloader();
 
-	return 0;
+	return (uint8_t)0;
 }
 
