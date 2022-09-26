@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:40:14
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         22/Sep/2022  13:40:06
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                 =  thumb
@@ -1898,9 +1898,9 @@ Warning[Pe177]: function "MX_USART1_UART_Init" was declared but never
    \      0x1E8   0x.... 0x....      BL       HAL_GPIO_Init
     936          
     937            /* EXTI interrupt init*/
-    938            HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);
+    938            HAL_NVIC_SetPriority(EXTI4_IRQn, 0xF, 0);
    \      0x1EC   0x2200             MOVS     R2,#+0
-   \      0x1EE   0x2100             MOVS     R1,#+0
+   \      0x1EE   0x210F             MOVS     R1,#+15
    \      0x1F0   0x200A             MOVS     R0,#+10
    \      0x1F2   0x.... 0x....      BL       HAL_NVIC_SetPriority
     939            HAL_NVIC_EnableIRQ(EXTI4_IRQn);

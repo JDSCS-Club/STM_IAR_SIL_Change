@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         21/Sep/2022  13:40:15
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         22/Sep/2022  13:40:08
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode                 =  thumb
@@ -2857,10 +2857,10 @@ Warning[Pe223]: function "GetDbg" declared implicitly
    1210          		//	수신기
    1211          
    1212          		//	가까이 있는 송신기 설정. ( 수신기 -> 송신기 중계시 사용 )
-   1213          		SetChPARFT( GetChNearRFT( 190 ) );	//	RSSI 190 이상인경우 : 수신기 -> 송신기 중계
+   1213          		SetChPARFT( GetChNearRFT( 150 ) );	//	RSSI 190 이상인경우 : 수신기 -> 송신기 중계
                  		^
 Warning[Pe223]: function "SetChPARFT" declared implicitly
-   \       0xB8   0x20BE             MOVS     R0,#+190
+   \       0xB8   0x2096             MOVS     R0,#+150
    \       0xBA   0x.... 0x....      BL       GetChNearRFT
    \       0xBE   0x.... 0x....      BL       SetChPARFT
    1214          	}
