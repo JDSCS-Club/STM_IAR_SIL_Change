@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         22/Sep/2022  13:40:08
+# IAR ANSI C/C++ Compiler V9.30.1.335/W64 for ARM         27/Sep/2022  20:27:00
 # Copyright 1999-2022 IAR Systems AB.
 #
 #    Cpu mode          =  thumb
@@ -3960,26 +3960,27 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    \      0x22E   0x2600             MOVS     R6,#+0
    \                     ??InitRFM_12: (+1)
    \      0x230   0x2E0F             CMP      R6,#+15
-   \      0x232   0xDA0B             BGE.N    ??InitRFM_13
+   \      0x232   0xDA0D             BGE.N    ??InitRFM_13
    1653          		{
    1654          			if(g_idxTrainSet  == sListBuf[i])
-   \      0x234   0x.... 0x....      LDR.W    R0,??DataTable56_14
-   \      0x238   0x6800             LDR      R0,[R0, #+0]
-   \      0x23A   0xA906             ADD      R1,SP,#+24
-   \      0x23C   0xF851 0x1026      LDR      R1,[R1, R6, LSL #+2]
-   \      0x240   0x4288             CMP      R0,R1
-   \      0x242   0xD101             BNE.N    ??InitRFM_14
+   \      0x234   0xA806             ADD      R0,SP,#+24
+   \      0x236   0x.... 0x....      LDR.W    R1,??DataTable56_14
+   \      0x23A   0x6809             LDR      R1,[R1, #+0]
+   \      0x23C   0xF850 0x2026      LDR      R2,[R0, R6, LSL #+2]
+   \      0x240   0x4291             CMP      R1,R2
+   \      0x242   0xD103             BNE.N    ??InitRFM_14
    1655          			{
-   1656          				s_idxTrainSet = i;
-   \      0x244   0x0035             MOVS     R5,R6
+   1656          				s_idxTrainSet = sListBuf[i];
+   \      0x244   0xF850 0x0026      LDR      R0,[R0, R6, LSL #+2]
+   \      0x248   0x0005             MOVS     R5,R0
    1657          				break;
-   \      0x246   0xE001             B.N      ??InitRFM_13
+   \      0x24A   0xE001             B.N      ??InitRFM_13
    1658          			}
    1659          		
    1660          		}
    \                     ??InitRFM_14: (+1)
-   \      0x248   0x1C76             ADDS     R6,R6,#+1
-   \      0x24A   0xE7F1             B.N      ??InitRFM_12
+   \      0x24C   0x1C76             ADDS     R6,R6,#+1
+   \      0x24E   0xE7EF             B.N      ??InitRFM_12
    1661          
    1662          	//========================================================================
    1663          	//	Radio 초기화 이후 채널 설정해줌.
@@ -3988,18 +3989,18 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1666          		//  Radio Channel 설정.
    1667          		pRadioConfiguration->Radio_ChannelNumber = s_idxTrainSet;
    \                     ??InitRFM_13: (+1)
-   \      0x24C   0x.... 0x....      LDR.W    R0,??DataTable56_23
-   \      0x250   0x6801             LDR      R1,[R0, #+0]
-   \      0x252   0x710D             STRB     R5,[R1, #+4]
+   \      0x250   0x.... 0x....      LDR.W    R0,??DataTable56_23
+   \      0x254   0x6801             LDR      R1,[R0, #+0]
+   \      0x256   0x710D             STRB     R5,[R1, #+4]
    1668          		printf("%s(%d) - Radio Ch(%d) / s_idxTrainSet(%d)\n", __func__, __LINE__,
    1669          				pRadioConfiguration->Radio_ChannelNumber, s_idxTrainSet );
-   \      0x254   0x9500             STR      R5,[SP, #+0]
-   \      0x256   0x6800             LDR      R0,[R0, #+0]
-   \      0x258   0x7903             LDRB     R3,[R0, #+4]
-   \      0x25A   0xF240 0x6284      MOVW     R2,#+1668
-   \      0x25E   0x0021             MOVS     R1,R4
-   \      0x260   0x.... 0x....      LDR.W    R0,??DataTable56_24
-   \      0x264   0x.... 0x....      BL       printf
+   \      0x258   0x9500             STR      R5,[SP, #+0]
+   \      0x25A   0x6800             LDR      R0,[R0, #+0]
+   \      0x25C   0x7903             LDRB     R3,[R0, #+4]
+   \      0x25E   0xF240 0x6284      MOVW     R2,#+1668
+   \      0x262   0x0021             MOVS     R1,R4
+   \      0x264   0x.... 0x....      LDR.W    R0,??DataTable56_24
+   \      0x268   0x.... 0x....      BL       printf
    1670          	}
    1671          
    1672          	//========================================================================
@@ -4009,47 +4010,47 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1676          	srand( HAL_GetTick() * 100 + GetTrainSetIdx() * 10 + GetCarNo() );
                  	^
 Warning[Pe223]: function "srand" declared implicitly
-   \      0x268   0x.... 0x....      BL       HAL_GetTick
-   \      0x26C   0x0007             MOVS     R7,R0
-   \      0x26E   0x.... 0x....      BL       GetTrainSetIdx
-   \      0x272   0x4680             MOV      R8,R0
-   \      0x274   0x.... 0x....      BL       GetCarNo
-   \      0x278   0x2264             MOVS     R2,#+100
-   \      0x27A   0x210A             MOVS     R1,#+10
-   \      0x27C   0xFB01 0xF808      MUL      R8,R1,R8
-   \      0x280   0xFB02 0x8707      MLA      R7,R2,R7,R8
-   \      0x284   0x19C7             ADDS     R7,R0,R7
-   \      0x286   0x0038             MOVS     R0,R7
-   \      0x288   0x.... 0x....      BL       srand
+   \      0x26C   0x.... 0x....      BL       HAL_GetTick
+   \      0x270   0x0007             MOVS     R7,R0
+   \      0x272   0x.... 0x....      BL       GetTrainSetIdx
+   \      0x276   0x4680             MOV      R8,R0
+   \      0x278   0x.... 0x....      BL       GetCarNo
+   \      0x27C   0x2264             MOVS     R2,#+100
+   \      0x27E   0x210A             MOVS     R1,#+10
+   \      0x280   0xFB01 0xF808      MUL      R8,R1,R8
+   \      0x284   0xFB02 0x8707      MLA      R7,R2,R7,R8
+   \      0x288   0x19C7             ADDS     R7,R0,R7
+   \      0x28A   0x0038             MOVS     R0,R7
+   \      0x28C   0x.... 0x....      BL       srand
    1677          
    1678          	//	Set Offset
    1679          	g_offsetCA = rand() % 1000;
                  	             ^
 Warning[Pe223]: function "rand" declared implicitly
-   \      0x28C   0x.... 0x....      BL       rand
-   \      0x290   0xF44F 0x717A      MOV      R1,#+1000
-   \      0x294   0x.... 0x....      LDR.W    R7,??DataTable56_25
-   \      0x298   0xFB90 0xF2F1      SDIV     R2,R0,R1
-   \      0x29C   0xFB01 0x0012      MLS      R0,R1,R2,R0
-   \      0x2A0   0x6038             STR      R0,[R7, #+0]
+   \      0x290   0x.... 0x....      BL       rand
+   \      0x294   0xF44F 0x717A      MOV      R1,#+1000
+   \      0x298   0x.... 0x....      LDR.W    R7,??DataTable56_25
+   \      0x29C   0xFB90 0xF2F1      SDIV     R2,R0,R1
+   \      0x2A0   0xFB01 0x0012      MLS      R0,R1,R2,R0
+   \      0x2A4   0x6038             STR      R0,[R7, #+0]
    1680          	printf( "%s(%d) - offsetCA( %d )\n", __func__, __LINE__, g_offsetCA );
-   \      0x2A2   0x683B             LDR      R3,[R7, #+0]
-   \      0x2A4   0xF44F 0x62D2      MOV      R2,#+1680
-   \      0x2A8   0x0021             MOVS     R1,R4
-   \      0x2AA   0x.... 0x....      LDR.W    R0,??DataTable56_26
-   \      0x2AE   0x.... 0x....      BL       printf
+   \      0x2A6   0x683B             LDR      R3,[R7, #+0]
+   \      0x2A8   0xF44F 0x62D2      MOV      R2,#+1680
+   \      0x2AC   0x0021             MOVS     R1,R4
+   \      0x2AE   0x.... 0x....      LDR.W    R0,??DataTable56_26
+   \      0x2B2   0x.... 0x....      BL       printf
    1681          
    1682          	//	초기 시작 Delay
    1683          	HAL_Delay(g_offsetCA);
-   \      0x2B2   0x6838             LDR      R0,[R7, #+0]
-   \      0x2B4   0x.... 0x....      BL       HAL_Delay
+   \      0x2B6   0x6838             LDR      R0,[R7, #+0]
+   \      0x2B8   0x.... 0x....      BL       HAL_Delay
    1684          
    1685          	//========================================================================
    1686          }
                  ^
 Warning[Pe940]: missing return statement at end of non-void function "InitRFM"
-   \      0x2B8   0xB01A             ADD      SP,SP,#+104
-   \      0x2BA   0xE8BD 0x81F0      POP      {R4-R8,PC}
+   \      0x2BC   0xB01A             ADD      SP,SP,#+104
+   \      0x2BE   0xE8BD 0x81F0      POP      {R4-R8,PC}
    1687          
    1688          //========================================================================
 
@@ -6438,11 +6439,11 @@ Warning[Pe223]: function "sprintf" declared implicitly
 
    \                                 In section .rodata, align 4
    \                     ?_17:
-   \        0x0   0x53 0x65          DC8 "Sep 22 2022"
+   \        0x0   0x53 0x65          DC8 "Sep 27 2022"
 
    \              0x70 0x20    
 
-   \              0x32 0x32    
+   \              0x32 0x37    
 
    \              0x20 0x32    
 
@@ -6452,13 +6453,13 @@ Warning[Pe223]: function "sprintf" declared implicitly
 
    \                                 In section .rodata, align 4
    \                     ?_18:
-   \        0x0   0x31 0x33          DC8 "13:40:07"
+   \        0x0   0x32 0x30          DC8 "20:26:59"
 
-   \              0x3A 0x34    
+   \              0x3A 0x32    
 
-   \              0x30 0x3A    
+   \              0x36 0x3A    
 
-   \              0x30 0x37    
+   \              0x35 0x39    
 
    \              0x00
    \        0x9                      DS8 3
@@ -8257,7 +8258,7 @@ Warning[Pe223]: function "sprintf" declared implicitly
       28  GetRFTID
       92  GetSpkVol
       34  GetTrainSetIdx
-     702  InitRFM
+     706  InitRFM
       68  IsNearRFT
      110  LoadCarNo
      148  LoadTrainSetIdx
@@ -8338,9 +8339,9 @@ Warning[Pe223]: function "sprintf" declared implicitly
  1'558 bytes in section .bss
     16 bytes in section .data
  1'682 bytes in section .rodata
- 6'744 bytes in section .text
+ 6'748 bytes in section .text
  
- 6'744 bytes of CODE  memory
+ 6'748 bytes of CODE  memory
  1'682 bytes of CONST memory
  1'574 bytes of DATA  memory
 

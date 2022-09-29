@@ -1653,7 +1653,7 @@ int InitRFM( void )
 		{
 			if(g_idxTrainSet  == sListBuf[i])
 			{
-				s_idxTrainSet = i;
+				s_idxTrainSet = sListBuf[i];
 				break;
 			}
 		

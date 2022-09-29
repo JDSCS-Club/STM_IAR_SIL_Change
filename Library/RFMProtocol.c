@@ -1210,7 +1210,7 @@ int	ProcPktCtrlPaCall	( const RFMPkt *pRFPkt )
 		//	수신기
 
 		//	가까이 있는 송신기 설정. ( 수신기 -> 송신기 중계시 사용 )
-		SetChPARFT( GetChNearRFT( 150 ) );	//	RSSI 190 이상인경우 : 수신기 -> 송신기 중계
+		SetChPARFT( GetChNearRFT( 110 ) );	//	RSSI 190 이상인경우 : 수신기 -> 송신기 중계
 	}
 
 	g_nStampRxPkt = HAL_GetTick();		//	방송/통화 Stamp
