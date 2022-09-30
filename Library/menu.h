@@ -79,7 +79,7 @@ void	ProcDispStat 		( void );
 void    UpdateLCDMain		( void );
 void    UpdateLCDMenu		( void );
 
-void	UpdateLCDMonitor	( uint8_t nTick );		//	LCD : 모니터링 상태 Update
+void	UpdateLCDMonitor	( uint16_t nTick );		//	LCD : 모니터링 상태 Update
 
 //========================================================================
 //	Menu Key Proc

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#                                                         29/Sep/2022  16:58:14
+#                                                         30/Sep/2022  17:12:35
 # IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
@@ -1188,20 +1188,20 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
     451          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    452          void	UpdateLCDMonitor( uint8_t nTick )
+    452          void	UpdateLCDMonitor( uint16_t nTick )
     453          //========================================================================
     454          {
    \                     UpdateLCDMonitor: (+1)
    \        0x0   0xB530             PUSH     {R4,R5,LR}
    \        0x2   0xB099             SUB      SP,SP,#+100
    \        0x4   0x0004             MOVS     R4,R0
-    455          	static uint8_t oldTick = 0;
+    455          	static uint16_t oldTick = 0;
     456          
     457          	if ( (nTick - oldTick) > 1000 )
    \        0x6   0x.... 0x....      LDR.W    R5,??DataTable23_5
    \        0xA   0x0021             MOVS     R1,R4
-   \        0xC   0xB2C9             UXTB     R1,R1
-   \        0xE   0x7828             LDRB     R0,[R5, #+0]
+   \        0xC   0xB289             UXTH     R1,R1
+   \        0xE   0x8828             LDRH     R0,[R5, #+0]
    \       0x10   0x1A09             SUBS     R1,R1,R0
    \       0x12   0xF240 0x30E9      MOVW     R0,#+1001
    \       0x16   0x4281             CMP      R1,R0
@@ -1240,16 +1240,16 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
     467          		}
     468          		oldTick = nTick;
    \                     ??UpdateLCDMonitor_1: (+1)
-   \       0x48   0x702C             STRB     R4,[R5, #+0]
+   \       0x48   0x802C             STRH     R4,[R5, #+0]
     469          	}
     470          }
    \                     ??UpdateLCDMonitor_0: (+1)
    \       0x4A   0xB019             ADD      SP,SP,#+100
    \       0x4C   0xBD30             POP      {R4,R5,PC}
 
-   \                                 In section .bss, align 1
+   \                                 In section .bss, align 2
    \                     `UpdateLCDMonitor::oldTick`:
-   \        0x0                      DS8 1
+   \        0x0                      DS8 2
     471          
     472          
     473          //========================================================================
@@ -4405,18 +4405,18 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
       12  g_MenuVerList
        1  g_bEnMenuMaint
        4  g_pActiveMenu
-       1  oldTick
+       2  oldTick
      100  -- Other
 
  
-     7 bytes in section .bss
+     8 bytes in section .bss
    832 bytes in section .data
  1'292 bytes in section .rodata
  1'834 bytes in section .text
  
  1'834 bytes of CODE  memory
  1'292 bytes of CONST memory
-   839 bytes of DATA  memory
+   840 bytes of DATA  memory
 
 Errors: none
 Warnings: 25

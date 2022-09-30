@@ -570,7 +570,7 @@ uint8_t ProcessCommand( char *cmd )
 					}
 				}
 				// 처리함수를 호출
-				if ( user_command_table[i].func( argc, argv ) < 0 )
+				if ( user_command_table[i].func( argc, argv ) <= 0 )
 				{
 					printf( "%s\n", user_command_table[i].command_help1 );
 					if ( user_command_table[i].command_help2 != NULL )

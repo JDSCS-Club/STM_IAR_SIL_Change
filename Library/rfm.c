@@ -1500,7 +1500,7 @@ uint8_t RFM_main( void )
 
 	InitProcPkt();
 
-	uint8_t nTick;
+	uint16_t nTick;
     uint16_t nTickRe = 0;
 	uint16_t nTickCnt = 10;
     
@@ -1545,7 +1545,7 @@ uint8_t RFM_main( void )
 
 
 //========================================================================
-void LoopProcRFM ( uint8_t nTick )
+void LoopProcRFM ( uint16_t nTick )
 //========================================================================
 {
 	RFMPkt	bufRFTx;

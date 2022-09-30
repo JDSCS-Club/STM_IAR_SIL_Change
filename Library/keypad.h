@@ -33,7 +33,7 @@ uint8_t		GetKey			( uint8_t eKey );
 
 void	GetKeyStat		( uint8_t *btnStat );
 
-void	LoopProcKey 	( uint32_t tickCurr );
+void	LoopProcKey 	( uint16_t tickCurr );
 
 //========================================================================
 //		KeyPad ( Dome Button )

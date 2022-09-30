@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#                                                         29/Sep/2022  16:58:14
+#                                                         30/Sep/2022  17:12:34
 # IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
@@ -333,7 +333,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\keypad.c
     115          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    116          void LoopProcKey ( uint32_t tickCurr )
+    116          void LoopProcKey ( uint16_t tickCurr )
     117          //========================================================================
     118          {
    \                     LoopProcKey: (+1)
@@ -346,10 +346,12 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\keypad.c
     123          	//    if( ( HAL_GetTick() - tickBase ) >= 1000 )
     124          	if ( ( tickCurr - tickBase ) >= 100 )
    \        0x6   0x.... 0x....      LDR.W    R5,??DataTable12_2
-   \        0xA   0x6828             LDR      R0,[R5, #+0]
-   \        0xC   0x1A20             SUBS     R0,R4,R0
-   \        0xE   0x2864             CMP      R0,#+100
-   \       0x10   0xD355             BCC.N    ??LoopProcKey_0
+   \        0xA   0x0021             MOVS     R1,R4
+   \        0xC   0xB289             UXTH     R1,R1
+   \        0xE   0x6828             LDR      R0,[R5, #+0]
+   \       0x10   0x1A09             SUBS     R1,R1,R0
+   \       0x12   0x2964             CMP      R1,#+100
+   \       0x14   0xD357             BCC.N    ??LoopProcKey_0
     125          	{
     126          		//========================================================================
     127          		//  Period : 100 ms
@@ -357,17 +359,17 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\keypad.c
     129          		//========================================================================
     130          		//	Key 값 얻기.
     131          		GetKeyStat( btnStat );
-   \       0x12   0x4668             MOV      R0,SP
-   \       0x14   0x.... 0x....      BL       GetKeyStat
+   \       0x16   0x4668             MOV      R0,SP
+   \       0x18   0x.... 0x....      BL       GetKeyStat
     132          
     133          		if ( memcmp( s_btnStat, btnStat, sizeof( btnStat ) ) != 0 )
-   \       0x18   0x.... 0x....      LDR.W    R6,??DataTable12
-   \       0x1C   0x2209             MOVS     R2,#+9
-   \       0x1E   0x4669             MOV      R1,SP
-   \       0x20   0x0030             MOVS     R0,R6
-   \       0x22   0x.... 0x....      BL       memcmp
-   \       0x26   0x2800             CMP      R0,#+0
-   \       0x28   0xD048             BEQ.N    ??LoopProcKey_1
+   \       0x1C   0x.... 0x....      LDR.W    R6,??DataTable12
+   \       0x20   0x2209             MOVS     R2,#+9
+   \       0x22   0x4669             MOV      R1,SP
+   \       0x24   0x0030             MOVS     R0,R6
+   \       0x26   0x.... 0x....      BL       memcmp
+   \       0x2A   0x2800             CMP      R0,#+0
+   \       0x2C   0xD048             BEQ.N    ??LoopProcKey_1
     134          		{
     135          			//	Key Value Changed.
     136          //			int i;
@@ -379,120 +381,122 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\keypad.c
     142          //			printf("\n");
     143          
     144          			if ( s_btnStat[0] != btnStat[0] )
-   \       0x2A   0x7830             LDRB     R0,[R6, #+0]
-   \       0x2C   0xF89D 0x1000      LDRB     R1,[SP, #+0]
-   \       0x30   0x4288             CMP      R0,R1
-   \       0x32   0xD003             BEQ.N    ??LoopProcKey_2
+   \       0x2E   0x7830             LDRB     R0,[R6, #+0]
+   \       0x30   0xF89D 0x1000      LDRB     R1,[SP, #+0]
+   \       0x34   0x4288             CMP      R0,R1
+   \       0x36   0xD003             BEQ.N    ??LoopProcKey_2
     145          			{
     146          				KeyMenu		( btnStat[0] );	//	DOME1
-   \       0x34   0xF89D 0x0000      LDRB     R0,[SP, #+0]
-   \       0x38   0x.... 0x....      BL       KeyMenu
+   \       0x38   0xF89D 0x0000      LDRB     R0,[SP, #+0]
+   \       0x3C   0x.... 0x....      BL       KeyMenu
     147          			}
     148          			if ( s_btnStat[1] != btnStat[1] )
    \                     ??LoopProcKey_2: (+1)
-   \       0x3C   0x466F             MOV      R7,SP
-   \       0x3E   0x7870             LDRB     R0,[R6, #+1]
-   \       0x40   0x7879             LDRB     R1,[R7, #+1]
-   \       0x42   0x4288             CMP      R0,R1
-   \       0x44   0xD002             BEQ.N    ??LoopProcKey_3
+   \       0x40   0x466F             MOV      R7,SP
+   \       0x42   0x7870             LDRB     R0,[R6, #+1]
+   \       0x44   0x7879             LDRB     R1,[R7, #+1]
+   \       0x46   0x4288             CMP      R0,R1
+   \       0x48   0xD002             BEQ.N    ??LoopProcKey_3
     149          			{
     150          				KeyUp		( btnStat[1] );	//	DOME2
-   \       0x46   0x7878             LDRB     R0,[R7, #+1]
-   \       0x48   0x.... 0x....      BL       KeyUp
+   \       0x4A   0x7878             LDRB     R0,[R7, #+1]
+   \       0x4C   0x.... 0x....      BL       KeyUp
     151          			}
     152          			if ( s_btnStat[2] != btnStat[2] )
    \                     ??LoopProcKey_3: (+1)
-   \       0x4C   0x78B0             LDRB     R0,[R6, #+2]
-   \       0x4E   0x78B9             LDRB     R1,[R7, #+2]
-   \       0x50   0x4288             CMP      R0,R1
-   \       0x52   0xD002             BEQ.N    ??LoopProcKey_4
+   \       0x50   0x78B0             LDRB     R0,[R6, #+2]
+   \       0x52   0x78B9             LDRB     R1,[R7, #+2]
+   \       0x54   0x4288             CMP      R0,R1
+   \       0x56   0xD002             BEQ.N    ??LoopProcKey_4
     153          			{
     154          				KeyOK		( btnStat[2] );	//	DOME3
-   \       0x54   0x78B8             LDRB     R0,[R7, #+2]
-   \       0x56   0x.... 0x....      BL       KeyOK
+   \       0x58   0x78B8             LDRB     R0,[R7, #+2]
+   \       0x5A   0x.... 0x....      BL       KeyOK
     155          			}
     156          			if ( s_btnStat[3] != btnStat[3] )
    \                     ??LoopProcKey_4: (+1)
-   \       0x5A   0x78F0             LDRB     R0,[R6, #+3]
-   \       0x5C   0x78F9             LDRB     R1,[R7, #+3]
-   \       0x5E   0x4288             CMP      R0,R1
-   \       0x60   0xD002             BEQ.N    ??LoopProcKey_5
+   \       0x5E   0x78F0             LDRB     R0,[R6, #+3]
+   \       0x60   0x78F9             LDRB     R1,[R7, #+3]
+   \       0x62   0x4288             CMP      R0,R1
+   \       0x64   0xD002             BEQ.N    ??LoopProcKey_5
     157          			{
     158          				KeyLight	( btnStat[3] );	//	DOME4
-   \       0x62   0x78F8             LDRB     R0,[R7, #+3]
-   \       0x64   0x.... 0x....      BL       KeyLight
+   \       0x66   0x78F8             LDRB     R0,[R7, #+3]
+   \       0x68   0x.... 0x....      BL       KeyLight
     159          			}
     160          			if ( s_btnStat[4] != btnStat[4] )
    \                     ??LoopProcKey_5: (+1)
-   \       0x68   0x7930             LDRB     R0,[R6, #+4]
-   \       0x6A   0x7939             LDRB     R1,[R7, #+4]
-   \       0x6C   0x4288             CMP      R0,R1
-   \       0x6E   0xD002             BEQ.N    ??LoopProcKey_6
+   \       0x6C   0x7930             LDRB     R0,[R6, #+4]
+   \       0x6E   0x7939             LDRB     R1,[R7, #+4]
+   \       0x70   0x4288             CMP      R0,R1
+   \       0x72   0xD002             BEQ.N    ??LoopProcKey_6
     161          			{
     162          				KeyDown		( btnStat[4] );	//	DOME5
-   \       0x70   0x7938             LDRB     R0,[R7, #+4]
-   \       0x72   0x.... 0x....      BL       KeyDown
+   \       0x74   0x7938             LDRB     R0,[R7, #+4]
+   \       0x76   0x.... 0x....      BL       KeyDown
     163          			}
     164          			if ( s_btnStat[5] != btnStat[5] )
    \                     ??LoopProcKey_6: (+1)
-   \       0x76   0x7970             LDRB     R0,[R6, #+5]
-   \       0x78   0x7979             LDRB     R1,[R7, #+5]
-   \       0x7A   0x4288             CMP      R0,R1
-   \       0x7C   0xD002             BEQ.N    ??LoopProcKey_7
+   \       0x7A   0x7970             LDRB     R0,[R6, #+5]
+   \       0x7C   0x7979             LDRB     R1,[R7, #+5]
+   \       0x7E   0x4288             CMP      R0,R1
+   \       0x80   0xD002             BEQ.N    ??LoopProcKey_7
     165          			{
     166          				KeyVol		( btnStat[5] );	//	DOME6
-   \       0x7E   0x7978             LDRB     R0,[R7, #+5]
-   \       0x80   0x.... 0x....      BL       KeyVol
+   \       0x82   0x7978             LDRB     R0,[R7, #+5]
+   \       0x84   0x.... 0x....      BL       KeyVol
     167          
     168          			}
     169          			if ( s_btnStat[6] != btnStat[6] )
    \                     ??LoopProcKey_7: (+1)
-   \       0x84   0x79B0             LDRB     R0,[R6, #+6]
-   \       0x86   0x79B9             LDRB     R1,[R7, #+6]
-   \       0x88   0x4288             CMP      R0,R1
-   \       0x8A   0xD002             BEQ.N    ??LoopProcKey_8
+   \       0x88   0x79B0             LDRB     R0,[R6, #+6]
+   \       0x8A   0x79B9             LDRB     R1,[R7, #+6]
+   \       0x8C   0x4288             CMP      R0,R1
+   \       0x8E   0xD002             BEQ.N    ??LoopProcKey_8
     170          			{
     171          				KeyPtt		( btnStat[6] );	//	PTT
-   \       0x8C   0x79B8             LDRB     R0,[R7, #+6]
-   \       0x8E   0x.... 0x....      BL       KeyPtt
+   \       0x90   0x79B8             LDRB     R0,[R7, #+6]
+   \       0x92   0x.... 0x....      BL       KeyPtt
     172          			}
     173          			if ( s_btnStat[7] != btnStat[7] )
    \                     ??LoopProcKey_8: (+1)
-   \       0x92   0x79F0             LDRB     R0,[R6, #+7]
-   \       0x94   0x79F9             LDRB     R1,[R7, #+7]
-   \       0x96   0x4288             CMP      R0,R1
-   \       0x98   0xD002             BEQ.N    ??LoopProcKey_9
+   \       0x96   0x79F0             LDRB     R0,[R6, #+7]
+   \       0x98   0x79F9             LDRB     R1,[R7, #+7]
+   \       0x9A   0x4288             CMP      R0,R1
+   \       0x9C   0xD002             BEQ.N    ??LoopProcKey_9
     174          			{
     175          				KeySos		( btnStat[7] );	//	SOS
-   \       0x9A   0x79F8             LDRB     R0,[R7, #+7]
-   \       0x9C   0x.... 0x....      BL       KeySos
+   \       0x9E   0x79F8             LDRB     R0,[R7, #+7]
+   \       0xA0   0x.... 0x....      BL       KeySos
     176          			}
     177          			if ( s_btnStat[8] != btnStat[8] )
    \                     ??LoopProcKey_9: (+1)
-   \       0xA0   0x7A30             LDRB     R0,[R6, #+8]
-   \       0xA2   0x7A39             LDRB     R1,[R7, #+8]
-   \       0xA4   0x4288             CMP      R0,R1
-   \       0xA6   0xD002             BEQ.N    ??LoopProcKey_10
+   \       0xA4   0x7A30             LDRB     R0,[R6, #+8]
+   \       0xA6   0x7A39             LDRB     R1,[R7, #+8]
+   \       0xA8   0x4288             CMP      R0,R1
+   \       0xAA   0xD002             BEQ.N    ??LoopProcKey_10
     178          			{
     179          				KeyPwrOnOff	( btnStat[8] );	//	ON/OFF
-   \       0xA8   0x7A38             LDRB     R0,[R7, #+8]
-   \       0xAA   0x.... 0x....      BL       KeyPwrOnOff
+   \       0xAC   0x7A38             LDRB     R0,[R7, #+8]
+   \       0xAE   0x.... 0x....      BL       KeyPwrOnOff
     180          			}
     181          
     182          			//	값 저장.
     183          			memcpy( s_btnStat, btnStat, sizeof( btnStat ) );
    \                     ??LoopProcKey_10: (+1)
-   \       0xAE   0x2709             MOVS     R7,#+9
-   \       0xB0   0x46E8             MOV      R8,SP
-   \       0xB2   0x003A             MOVS     R2,R7
-   \       0xB4   0x4641             MOV      R1,R8
-   \       0xB6   0x0030             MOVS     R0,R6
-   \       0xB8   0x.... 0x....      BL       __aeabi_memcpy
+   \       0xB2   0x2709             MOVS     R7,#+9
+   \       0xB4   0x46E8             MOV      R8,SP
+   \       0xB6   0x003A             MOVS     R2,R7
+   \       0xB8   0x4641             MOV      R1,R8
+   \       0xBA   0x0030             MOVS     R0,R6
+   \       0xBC   0x.... 0x....      BL       __aeabi_memcpy
     184          		}
     185          
     186          		tickBase = tickCurr;
    \                     ??LoopProcKey_1: (+1)
-   \       0xBC   0x602C             STR      R4,[R5, #+0]
+   \       0xC0   0x0020             MOVS     R0,R4
+   \       0xC2   0xB280             UXTH     R0,R0
+   \       0xC4   0x6028             STR      R0,[R5, #+0]
     187          	}
     188          
     189          	//========================================================================
@@ -503,56 +507,60 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\keypad.c
     194          
     195          	if ( ( tickCurr - tickBase2 ) >= (1000 & IsMenuMaint()) )
    \                     ??LoopProcKey_0: (+1)
-   \       0xBE   0x....             LDR.N    R5,??DataTable12_3
-   \       0xC0   0x.... 0x....      BL       IsMenuMaint
-   \       0xC4   0xF410 0x707A      ANDS     R0,R0,#0x3E8
-   \       0xC8   0x6829             LDR      R1,[R5, #+0]
-   \       0xCA   0x1A61             SUBS     R1,R4,R1
-   \       0xCC   0x4281             CMP      R1,R0
-   \       0xCE   0xD316             BCC.N    ??LoopProcKey_11
+   \       0xC6   0x....             LDR.N    R5,??DataTable12_3
+   \       0xC8   0x.... 0x....      BL       IsMenuMaint
+   \       0xCC   0xF410 0x707A      ANDS     R0,R0,#0x3E8
+   \       0xD0   0x0022             MOVS     R2,R4
+   \       0xD2   0xB292             UXTH     R2,R2
+   \       0xD4   0x6829             LDR      R1,[R5, #+0]
+   \       0xD6   0x1A52             SUBS     R2,R2,R1
+   \       0xD8   0x4282             CMP      R2,R0
+   \       0xDA   0xD318             BCC.N    ??LoopProcKey_11
     196          	{
     197          		//	Period : 1 sec
     198          		static uint8_t s_cntKeyOkMenu = 0;
     199          		if ( (s_btnStat[eKeyOk] != 0) && (s_btnStat[eKeyMenu] != 0) )
-   \       0xD0   0x....             LDR.N    R1,??DataTable12
-   \       0xD2   0x7888             LDRB     R0,[R1, #+2]
-   \       0xD4   0x2800             CMP      R0,#+0
-   \       0xD6   0xD007             BEQ.N    ??LoopProcKey_12
-   \       0xD8   0x7808             LDRB     R0,[R1, #+0]
-   \       0xDA   0x2800             CMP      R0,#+0
-   \       0xDC   0xD004             BEQ.N    ??LoopProcKey_12
+   \       0xDC   0x....             LDR.N    R1,??DataTable12
+   \       0xDE   0x7888             LDRB     R0,[R1, #+2]
+   \       0xE0   0x2800             CMP      R0,#+0
+   \       0xE2   0xD007             BEQ.N    ??LoopProcKey_12
+   \       0xE4   0x7808             LDRB     R0,[R1, #+0]
+   \       0xE6   0x2800             CMP      R0,#+0
+   \       0xE8   0xD004             BEQ.N    ??LoopProcKey_12
     200          		{
     201          			s_cntKeyOkMenu++;
-   \       0xDE   0x....             LDR.N    R0,??DataTable12_4
-   \       0xE0   0x7801             LDRB     R1,[R0, #+0]
-   \       0xE2   0x1C49             ADDS     R1,R1,#+1
-   \       0xE4   0x7001             STRB     R1,[R0, #+0]
-   \       0xE6   0xE002             B.N      ??LoopProcKey_13
+   \       0xEA   0x....             LDR.N    R0,??DataTable12_4
+   \       0xEC   0x7801             LDRB     R1,[R0, #+0]
+   \       0xEE   0x1C49             ADDS     R1,R1,#+1
+   \       0xF0   0x7001             STRB     R1,[R0, #+0]
+   \       0xF2   0xE002             B.N      ??LoopProcKey_13
     202          		}
     203          		else
     204          		{
     205          			s_cntKeyOkMenu = 0;
    \                     ??LoopProcKey_12: (+1)
-   \       0xE8   0x2000             MOVS     R0,#+0
-   \       0xEA   0x....             LDR.N    R1,??DataTable12_4
-   \       0xEC   0x7008             STRB     R0,[R1, #+0]
+   \       0xF4   0x2000             MOVS     R0,#+0
+   \       0xF6   0x....             LDR.N    R1,??DataTable12_4
+   \       0xF8   0x7008             STRB     R0,[R1, #+0]
     206          		}
     207          
     208          		if ( s_cntKeyOkMenu > 3 )	//	3초 이상 누를 경우.
    \                     ??LoopProcKey_13: (+1)
-   \       0xEE   0x....             LDR.N    R0,??DataTable12_4
-   \       0xF0   0x7800             LDRB     R0,[R0, #+0]
-   \       0xF2   0x2804             CMP      R0,#+4
-   \       0xF4   0xDB02             BLT.N    ??LoopProcKey_14
+   \       0xFA   0x....             LDR.N    R0,??DataTable12_4
+   \       0xFC   0x7800             LDRB     R0,[R0, #+0]
+   \       0xFE   0x2804             CMP      R0,#+4
+   \      0x100   0xDB02             BLT.N    ??LoopProcKey_14
     209          		{
     210          			EnableMenuMaint((uint8_t) 1 );
-   \       0xF6   0x2001             MOVS     R0,#+1
-   \       0xF8   0x.... 0x....      BL       EnableMenuMaint
+   \      0x102   0x2001             MOVS     R0,#+1
+   \      0x104   0x.... 0x....      BL       EnableMenuMaint
     211          		}
     212          
     213          		tickBase2 = tickCurr;
    \                     ??LoopProcKey_14: (+1)
-   \       0xFC   0x602C             STR      R4,[R5, #+0]
+   \      0x108   0x0020             MOVS     R0,R4
+   \      0x10A   0xB280             UXTH     R0,R0
+   \      0x10C   0x6028             STR      R0,[R5, #+0]
     214          	}
     215          
     216          	//========================================================================
@@ -565,7 +573,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\keypad.c
     223          #endif
     224          }
    \                     ??LoopProcKey_11: (+1)
-   \       0xFE   0xE8BD 0x81FF      POP      {R0-R8,PC}
+   \      0x10E   0xE8BD 0x81FF      POP      {R0-R8,PC}
 
    \                                 In section .bss, align 4
    \                     `LoopProcKey::tickBase`:
@@ -1609,7 +1617,7 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
       62  KeyTestLoopback
       34  KeyUp
       86  KeyVol
-     258  LoopProcKey
+     274  LoopProcKey
        1  bOnOff
        1  bPowerOn
       12  s_btnStat
@@ -1621,9 +1629,9 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
  
     23 bytes in section .bss
    180 bytes in section .rodata
- 1'242 bytes in section .text
+ 1'258 bytes in section .text
  
- 1'242 bytes of CODE  memory
+ 1'258 bytes of CODE  memory
    180 bytes of CONST memory
     23 bytes of DATA  memory
 

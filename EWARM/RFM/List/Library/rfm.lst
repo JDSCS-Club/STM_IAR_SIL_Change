@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#                                                         29/Sep/2022  16:58:17
+#                                                         30/Sep/2022  17:12:36
 # IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
@@ -3523,7 +3523,7 @@ Warning[Pe940]: missing return statement at end of non-void function "InitRFM"
    1501          	InitProcPkt();
    \       0x16   0x.... 0x....      BL       InitProcPkt
    1502          
-   1503          	uint8_t nTick;
+   1503          	uint16_t nTick;
    1504              uint16_t nTickRe = 0;
    \       0x1A   0x2500             MOVS     R5,#+0
    1505          	uint16_t nTickCnt = 10;
@@ -3537,12 +3537,12 @@ Warning[Pe940]: missing return statement at end of non-void function "InitRFM"
    \       0x1E   0x.... 0x....      LDR.W    R1,??DataTable47_44
    \       0x22   0x6808             LDR      R0,[R1, #+0]
    \       0x24   0x2800             CMP      R0,#+0
-   \       0x26   0xD02A             BEQ.N    ??RFM_main_1
+   \       0x26   0xD029             BEQ.N    ??RFM_main_1
    1511          	{
    1512          
    1513          		if((nTick + 10) < nTickRe){nCallTimeCnt = 0;  }
    \       0x28   0x0020             MOVS     R0,R4
-   \       0x2A   0xB2C0             UXTB     R0,R0
+   \       0x2A   0xB280             UXTH     R0,R0
    \       0x2C   0x300A             ADDS     R0,R0,#+10
    \       0x2E   0x002A             MOVS     R2,R5
    \       0x30   0xB292             UXTH     R2,R2
@@ -3566,7 +3566,7 @@ Warning[Pe940]: missing return statement at end of non-void function "InitRFM"
    1521          			//	송신기 - KeyPad 동작.
    1522          			LoopProcKey( nTick );
    \       0x48   0x0020             MOVS     R0,R4
-   \       0x4A   0xB2C0             UXTB     R0,R0
+   \       0x4A   0xB280             UXTH     R0,R0
    \       0x4C   0x.... 0x....      BL       LoopProcKey
    1523          
    1524          			//	ADC Power : Battery
@@ -3574,7 +3574,7 @@ Warning[Pe940]: missing return statement at end of non-void function "InitRFM"
                  			^
 Warning[Pe223]: function "LoopProcAdc" declared implicitly
    \       0x50   0x0020             MOVS     R0,R4
-   \       0x52   0xB2C0             UXTB     R0,R0
+   \       0x52   0xB280             UXTH     R0,R0
    \       0x54   0x.... 0x....      BL       LoopProcAdc
    1526          		}
    1527          
@@ -3582,7 +3582,7 @@ Warning[Pe223]: function "LoopProcAdc" declared implicitly
    1529          		LoopProcRFM( nTick );
    \                     ??RFM_main_3: (+1)
    \       0x58   0x0020             MOVS     R0,R4
-   \       0x5A   0xB2C0             UXTB     R0,R0
+   \       0x5A   0xB280             UXTH     R0,R0
    \       0x5C   0x.... 0x....      BL       LoopProcRFM
    1530          
    1531          		//	Loop Process ( CLI )
@@ -3594,20 +3594,19 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    1534          		//	Loop Proc Packet : RF Packet
    1535          		LoopProcPkt( nTick );
    \       0x64   0x0020             MOVS     R0,R4
-   \       0x66   0xB2C0             UXTB     R0,R0
-   \       0x68   0xB280             UXTH     R0,R0
-   \       0x6A   0x.... 0x....      BL       LoopProcPkt
+   \       0x66   0xB280             UXTH     R0,R0
+   \       0x68   0x.... 0x....      BL       LoopProcPkt
    1536          
    1537          		//	Loop Proc Main Watchdog Count Reload
    1538          		LoopProcMain( nTick );
-   \       0x6E   0x0020             MOVS     R0,R4
-   \       0x70   0xB2C0             UXTB     R0,R0
-   \       0x72   0x.... 0x....      BL       LoopProcMain
+   \       0x6C   0x0020             MOVS     R0,R4
+   \       0x6E   0xB280             UXTH     R0,R0
+   \       0x70   0x.... 0x....      BL       LoopProcMain
    1539          
    1540          		nTickRe = HAL_GetTick();
-   \       0x76   0x.... 0x....      BL       HAL_GetTick
-   \       0x7A   0x0005             MOVS     R5,R0
-   \       0x7C   0xE7CF             B.N      ??RFM_main_0
+   \       0x74   0x.... 0x....      BL       HAL_GetTick
+   \       0x78   0x0005             MOVS     R5,R0
+   \       0x7A   0xE7D0             B.N      ??RFM_main_0
    1541          
    1542          
    1543          	}
@@ -3620,7 +3619,7 @@ Warning[Pe940]: missing return statement at end of non-void function "RFM_main"
 "C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c",1505  Warning[Pe177]: variable
           "nTickCnt" was declared but never referenced
    \                     ??RFM_main_1: (+1)
-   \       0x7E   0xBD70             POP      {R4-R6,PC}
+   \       0x7C   0xBD70             POP      {R4-R6,PC}
 
    \                                 In section .data, align 4
    \                     `RFM_main::nCallTimeCnt`:
@@ -3630,7 +3629,7 @@ Warning[Pe940]: missing return statement at end of non-void function "RFM_main"
    1547          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-   1548          void LoopProcRFM ( uint8_t nTick )
+   1548          void LoopProcRFM ( uint16_t nTick )
    1549          //========================================================================
    1550          {
    \                     LoopProcRFM: (+1)
@@ -3895,7 +3894,7 @@ Warning[Pe940]: missing return statement at end of non-void function "RFM_main"
    1690          		{
    1691          			UpdateLCDMonitor( nTick );		//	LCD : 모니터링 상태 Update
    \      0x120   0x0020             MOVS     R0,R4
-   \      0x122   0xB2C0             UXTB     R0,R0
+   \      0x122   0xB280             UXTH     R0,R0
    \      0x124   0x.... 0x....      BL       UpdateLCDMonitor
    \      0x128   0xE040             B.N      ??LoopProcRFM_13
    1692          		}
@@ -4000,7 +3999,7 @@ Warning[Pe940]: missing return statement at end of non-void function "RFM_main"
    \                     ??LoopProcRFM_13: (+1)
    \      0x1AC   0x.... 0x....      LDR.W    R5,??DataTable47_48
    \      0x1B0   0x0021             MOVS     R1,R4
-   \      0x1B2   0xB2C9             UXTB     R1,R1
+   \      0x1B2   0xB289             UXTH     R1,R1
    \      0x1B4   0x7828             LDRB     R0,[R5, #+0]
    \      0x1B6   0x1A09             SUBS     R1,R1,R0
    \      0x1B8   0xF240 0x30E9      MOVW     R0,#+1001
@@ -4059,7 +4058,7 @@ Warning[Pe940]: missing return statement at end of non-void function "RFM_main"
    \                     ??LoopProcRFM_16: (+1)
    \      0x204   0x....             LDR.N    R6,??DataTable47_49
    \      0x206   0x0021             MOVS     R1,R4
-   \      0x208   0xB2C9             UXTB     R1,R1
+   \      0x208   0xB289             UXTH     R1,R1
    \      0x20A   0x7830             LDRB     R0,[R6, #+0]
    \      0x20C   0x1A09             SUBS     R1,R1,R0
    \      0x20E   0xF5B1 0x7F7A      CMP      R1,#+1000
@@ -4138,7 +4137,7 @@ Warning[Pe940]: missing return statement at end of non-void function "RFM_main"
    \      0x250   0x2801             CMP      R0,#+1
    \      0x252   0xD117             BNE.N    ??LoopProcRFM_22
    \      0x254   0x0021             MOVS     R1,R4
-   \      0x256   0xB2C9             UXTB     R1,R1
+   \      0x256   0xB289             UXTH     R1,R1
    \      0x258   0x7828             LDRB     R0,[R5, #+0]
    \      0x25A   0x1A09             SUBS     R1,R1,R0
    \      0x25C   0x....             LDR.N    R0,??DataTable47_51
@@ -4186,7 +4185,7 @@ Warning[Pe940]: missing return statement at end of non-void function "RFM_main"
    \                     ??LoopProcRFM_22: (+1)
    \      0x284   0x....             LDR.N    R5,??DataTable47_53
    \      0x286   0x0021             MOVS     R1,R4
-   \      0x288   0xB2C9             UXTB     R1,R1
+   \      0x288   0xB289             UXTH     R1,R1
    \      0x28A   0x7828             LDRB     R0,[R5, #+0]
    \      0x28C   0x1A09             SUBS     R1,R1,R0
    \      0x28E   0xF240 0x102D      MOVW     R0,#+301
@@ -5319,11 +5318,11 @@ Warning[Pe940]: missing return statement at end of non-void function "RFM_main"
 
    \                                 In section .rodata, align 4
    \                     ?_17:
-   \        0x0   0x53 0x65          DC8 "Sep 29 2022"
+   \        0x0   0x53 0x65          DC8 "Sep 30 2022"
 
    \              0x70 0x20    
 
-   \              0x32 0x39    
+   \              0x33 0x30    
 
    \              0x20 0x32    
 
@@ -5333,13 +5332,13 @@ Warning[Pe940]: missing return statement at end of non-void function "RFM_main"
 
    \                                 In section .rodata, align 4
    \                     ?_18:
-   \        0x0   0x31 0x36          DC8 "16:58:16"
+   \        0x0   0x31 0x37          DC8 "17:12:35"
 
-   \              0x3A 0x35    
+   \              0x3A 0x31    
 
-   \              0x38 0x3A    
+   \              0x32 0x3A    
 
-   \              0x31 0x36    
+   \              0x33 0x35    
 
    \              0x00
    \        0x9                      DS8 3
@@ -6706,7 +6705,7 @@ Warning[Pe940]: missing return statement at end of non-void function "RFM_main"
       84  PrintVerInfo
      434  RFM_I2SEx_TxRxCpltCallback
       68  RFM_Spk
-     128  RFM_main
+     126  RFM_main
      174  RF_RSSI
       96  ReflashStat
       50  ReloadStampStat
@@ -6764,9 +6763,9 @@ Warning[Pe940]: missing return statement at end of non-void function "RFM_main"
  1'331 bytes in section .bss
      8 bytes in section .data
  1'252 bytes in section .rodata
- 5'718 bytes in section .text
+ 5'716 bytes in section .text
  
- 5'718 bytes of CODE  memory
+ 5'716 bytes of CODE  memory
  1'252 bytes of CONST memory
  1'339 bytes of DATA  memory
 

@@ -113,7 +113,7 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 
-void LoopProcMain( int nTick );
+void LoopProcMain( uint16_t nTick );
 
 void MX_IWDG_Disable( void );
 

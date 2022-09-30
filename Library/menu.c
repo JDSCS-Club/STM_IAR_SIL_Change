@@ -449,10 +449,10 @@ void	UpdateLCDMenu( void )
 }
 
 //========================================================================
-void	UpdateLCDMonitor( uint8_t nTick )
+void	UpdateLCDMonitor( uint16_t nTick )
 //========================================================================
 {
-	static uint8_t oldTick = 0;
+	static uint16_t oldTick = 0;
 
 	if ( (nTick - oldTick) > 1000 )
 	{
@@ -483,7 +483,7 @@ void	ProcBtnUp( void )
 
 	g_pActiveMenu->currIdx--;
 
-	if ( g_pActiveMenu->currIdx < 0 )
+	if ( g_pActiveMenu->currIdx <= 0 )
 	{
 #if defined(USE_RFT_MENU_LOOP)
 

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#                                                         29/Sep/2022  16:58:15
+#                                                         30/Sep/2022  17:12:35
 # IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
@@ -380,7 +380,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Src\main.c
     145          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    146          void LoopProcMain( int nTick )
+    146          void LoopProcMain( uint16_t nTick )
     147          //========================================================================
     148          {
     149          	//	Watchdog Reload
@@ -620,7 +620,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Src\main.c
    \       0x70   0x.... 0x....      LDR.W    R1,??DataTable14_6
    \       0x74   0x6808             LDR      R0,[R1, #+0]
    \       0x76   0x2800             CMP      R0,#+0
-   \       0x78   0xD01D             BEQ.N    ??main_1
+   \       0x78   0xD01E             BEQ.N    ??main_1
     335            {
     336              /* USER CODE END WHILE */
     337          
@@ -640,31 +640,32 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Src\main.c
     343          
     344          	LoopProcKey( nCurrTick );
    \       0x8C   0x0020             MOVS     R0,R4
-   \       0x8E   0x.... 0x....      BL       LoopProcKey
+   \       0x8E   0xB280             UXTH     R0,R0
+   \       0x90   0x.... 0x....      BL       LoopProcKey
     345          
     346          	if ( ( nCurrTick - nLedTick ) >= 1000 )
-   \       0x92   0x.... 0x....      LDR.W    R6,??DataTable14_7
-   \       0x96   0x6830             LDR      R0,[R6, #+0]
-   \       0x98   0x1A20             SUBS     R0,R4,R0
-   \       0x9A   0xF5B0 0x7F7A      CMP      R0,#+1000
-   \       0x9E   0xDB06             BLT.N    ??main_3
+   \       0x94   0x.... 0x....      LDR.W    R6,??DataTable14_7
+   \       0x98   0x6830             LDR      R0,[R6, #+0]
+   \       0x9A   0x1A20             SUBS     R0,R4,R0
+   \       0x9C   0xF5B0 0x7F7A      CMP      R0,#+1000
+   \       0xA0   0xDB06             BLT.N    ??main_3
     347          	{
     348          	    HAL_GPIO_TogglePin( LED_ST_GPIO_Port, LED_ST_Pin );
-   \       0xA0   0xF44F 0x4100      MOV      R1,#+32768
-   \       0xA4   0x.... 0x....      LDR.W    R0,??DataTable14_8
-   \       0xA8   0x.... 0x....      BL       HAL_GPIO_TogglePin
+   \       0xA2   0xF44F 0x4100      MOV      R1,#+32768
+   \       0xA6   0x.... 0x....      LDR.W    R0,??DataTable14_8
+   \       0xAA   0x.... 0x....      BL       HAL_GPIO_TogglePin
     349          
     350          	    //printf( "%s(%d) - Loop(%d)\n", __func__, __LINE__, nCurrTick );
     351          
     352          	    nLedTick = nCurrTick;
-   \       0xAC   0x6034             STR      R4,[R6, #+0]
+   \       0xAE   0x6034             STR      R4,[R6, #+0]
     353          	}
     354          
     355          	nCurrTickRe = HAL_GetTick();
    \                     ??main_3: (+1)
-   \       0xAE   0x.... 0x....      BL       HAL_GetTick
-   \       0xB2   0x0005             MOVS     R5,R0
-   \       0xB4   0xE7DC             B.N      ??main_0
+   \       0xB0   0x.... 0x....      BL       HAL_GetTick
+   \       0xB4   0x0005             MOVS     R5,R0
+   \       0xB6   0xE7DB             B.N      ??main_0
     356          
     357          
     358            }
@@ -675,8 +676,8 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Core\Src\main.c
     363            /* USER CODE END 3 */
     364          }
    \                     ??main_1: (+1)
-   \       0xB6   0x2000             MOVS     R0,#+0
-   \       0xB8   0xBD70             POP      {R4-R6,PC}
+   \       0xB8   0x2000             MOVS     R0,#+0
+   \       0xBA   0xBD70             POP      {R4-R6,PC}
 
    \                                 In section .bss, align 4
    \                     `main::nLedTick`:
@@ -2292,16 +2293,16 @@ Warning[Pe177]: function "MX_USART1_UART_Init" was declared but never
       64  htim3
       64  huart1
       64  huart2
-     186  main
+     188  main
        4  nCallTimeCnt
        4  nLedTick
 
  
  1'145 bytes in section .bss
      4 bytes in section .data
- 1'890 bytes in section .text
+ 1'892 bytes in section .text
  
- 1'890 bytes of CODE memory
+ 1'892 bytes of CODE memory
  1'149 bytes of DATA memory
 
 Errors: none

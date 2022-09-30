@@ -183,7 +183,7 @@ uint8_t		cmd_rftx		( uint8_t argc, char * argv[] );
 
 uint8_t		InitRFM			( void );
 uint8_t		RFM_main		( void );
-void	LoopProcRFM		( uint8_t nTick );
+void	LoopProcRFM		( uint16_t nTick );
 
 //========================================================================
 #endif
