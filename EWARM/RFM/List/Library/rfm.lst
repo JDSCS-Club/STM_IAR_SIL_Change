@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#                                                         22/Sep/2022  08:40:15
+#                                                         29/Sep/2022  16:58:17
 # IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
@@ -920,7 +920,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     374          		//	초기로딩시 I2C에서 Load
     375          		g_idxTrainSet =(uint8_t) LoadTrainSetIdx();
    \        0xC   0x.... 0x....      BL       LoadTrainSetIdx
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable39_6
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable40_7
    \       0x14   0x7008             STRB     R0,[R1, #+0]
     376          		s_bOnce = 1;
    \       0x16   0x2001             MOVS     R0,#+1
@@ -929,7 +929,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     378          
     379          	return g_idxTrainSet;
    \                     ??GetTrainSetIdx_0: (+1)
-   \       0x1A   0x.... 0x....      LDR.W    R0,??DataTable39_6
+   \       0x1A   0x.... 0x....      LDR.W    R0,??DataTable40_7
    \       0x1E   0x7800             LDRB     R0,[R0, #+0]
    \       0x20   0xBD10             POP      {R4,PC}
     380          }
@@ -950,7 +950,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
    \        0x2   0xB081             SUB      SP,SP,#+4
     387          	g_idxTrainSet = idxTrainSet;
    \        0x4   0xF89D 0x0004      LDRB     R0,[SP, #+4]
-   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable39_6
+   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable40_7
    \        0xC   0x7008             STRB     R0,[R1, #+0]
     388          
     389              if ( HAL_OK != HAL_I2C_IsDeviceReady( &hi2c1, (uint16_t)( 0x50 << 1 ),(uint32_t) 2,(uint32_t) 2 ) )
@@ -965,7 +965,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     390              {
     391                  printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
    \       0x22   0xF240 0x1287      MOVW     R2,#+391
-   \       0x26   0x.... 0x....      LDR.W    R1,??DataTable40_7
+   \       0x26   0x.... 0x....      LDR.W    R1,??DataTable40_8
    \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable39_4
    \       0x2E   0x.... 0x....      BL       printf
     392          
@@ -982,7 +982,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     398              	printf( "%s(%d) - %d\n", __func__, __LINE__, idxTrainSet );
    \       0x3C   0xF89D 0x3004      LDRB     R3,[SP, #+4]
    \       0x40   0xF44F 0x72C7      MOV      R2,#+398
-   \       0x44   0x.... 0x....      LDR.W    R1,??DataTable40_7
+   \       0x44   0x.... 0x....      LDR.W    R1,??DataTable40_8
    \       0x48   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x4C   0x.... 0x....      BL       printf
     399              }
@@ -1026,7 +1026,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     413              {
     414                  printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
    \       0x1C   0xF44F 0x72CF      MOV      R2,#+414
-   \       0x20   0x.... 0x....      LDR.W    R1,??DataTable40_8
+   \       0x20   0x.... 0x....      LDR.W    R1,??DataTable40_9
    \       0x24   0x.... 0x....      LDR.W    R0,??DataTable39_4
    \       0x28   0x.... 0x....      BL       printf
     415          
@@ -1070,7 +1070,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     430              	printf( "%s(%d) - %d\n", __func__, __LINE__, nManHop );
    \       0x60   0xF99D 0x3004      LDRSB    R3,[SP, #+4]
    \       0x64   0xF44F 0x72D7      MOV      R2,#+430
-   \       0x68   0x.... 0x....      LDR.W    R1,??DataTable40_8
+   \       0x68   0x.... 0x....      LDR.W    R1,??DataTable40_9
    \       0x6C   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x70   0x.... 0x....      BL       printf
     431              }
@@ -1103,7 +1103,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     441              {
     442                  printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
    \       0x18   0xF44F 0x72DD      MOV      R2,#+442
-   \       0x1C   0x.... 0x....      LDR.W    R1,??DataTable40_9
+   \       0x1C   0x.... 0x....      LDR.W    R1,??DataTable40_10
    \       0x20   0x.... 0x....      LDR.W    R0,??DataTable39_4
    \       0x24   0x.... 0x....      BL       printf
     443          
@@ -1120,7 +1120,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     449              	printf( "%s(%d) - %d\n", __func__, __LINE__, nManHop );
    \       0x32   0xF89D 0x3004      LDRB     R3,[SP, #+4]
    \       0x36   0xF240 0x12C1      MOVW     R2,#+449
-   \       0x3A   0x.... 0x....      LDR.W    R1,??DataTable40_9
+   \       0x3A   0x.... 0x....      LDR.W    R1,??DataTable40_10
    \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x42   0x.... 0x....      BL       printf
     450              }
@@ -1165,7 +1165,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     465              {
     466                  printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
    \       0x1C   0xF44F 0x72E9      MOV      R2,#+466
-   \       0x20   0x.... 0x....      LDR.W    R1,??DataTable40_10
+   \       0x20   0x.... 0x....      LDR.W    R1,??DataTable40_11
    \       0x24   0x.... 0x....      LDR.W    R0,??DataTable39_4
    \       0x28   0x.... 0x....      BL       printf
     467          
@@ -1193,7 +1193,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     476              	printf( "%s(%d) - %d\n", __func__, __LINE__, nCarNo );
    \       0x4A   0xF89D 0x3004      LDRB     R3,[SP, #+4]
    \       0x4E   0xF44F 0x72EE      MOV      R2,#+476
-   \       0x52   0x.... 0x....      LDR.W    R1,??DataTable40_10
+   \       0x52   0x.... 0x....      LDR.W    R1,??DataTable40_11
    \       0x56   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x5A   0x.... 0x....      BL       printf
     477              }
@@ -1222,7 +1222,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     488          	static uint8_t s_bOnce = 0;
     489          
     490          	if ( s_bOnce == 0 )
-   \        0x2   0x.... 0x....      LDR.W    R4,??DataTable40_11
+   \        0x2   0x.... 0x....      LDR.W    R4,??DataTable40_12
    \        0x6   0x7820             LDRB     R0,[R4, #+0]
    \        0x8   0x2800             CMP      R0,#+0
    \        0xA   0xD106             BNE.N    ??GetCarNo_0
@@ -1269,7 +1269,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     505              {
     506                  printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
    \       0x18   0xF44F 0x72FD      MOV      R2,#+506
-   \       0x1C   0x.... 0x....      LDR.W    R1,??DataTable40_12
+   \       0x1C   0x.... 0x....      LDR.W    R1,??DataTable40_13
    \       0x20   0x.... 0x....      LDR.W    R0,??DataTable39_4
    \       0x24   0x.... 0x....      BL       printf
     507          
@@ -1286,7 +1286,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     513              	printf( "%s(%d) - %d\n", __func__, __LINE__, nCarNo );
    \       0x32   0xF89D 0x3004      LDRB     R3,[SP, #+4]
    \       0x36   0xF240 0x2201      MOVW     R2,#+513
-   \       0x3A   0x.... 0x....      LDR.W    R1,??DataTable40_12
+   \       0x3A   0x.... 0x....      LDR.W    R1,??DataTable40_13
    \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x42   0x.... 0x....      BL       printf
     514          	}
@@ -1334,7 +1334,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     529              {
     530                  printf( "%s(%d) - EEPROM Error\n", __func__, __LINE__ );
    \       0x1C   0xF240 0x2212      MOVW     R2,#+530
-   \       0x20   0x.... 0x....      LDR.W    R1,??DataTable40_13
+   \       0x20   0x.... 0x....      LDR.W    R1,??DataTable40_14
    \       0x24   0x.... 0x....      LDR.W    R0,??DataTable39_4
    \       0x28   0x.... 0x....      BL       printf
     531          
@@ -1357,7 +1357,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     538              printf( "%s(%d) - %d\n", __func__, __LINE__, nSpkVol );
    \       0x42   0xF89D 0x3004      LDRB     R3,[SP, #+4]
    \       0x46   0xF240 0x221A      MOVW     R2,#+538
-   \       0x4A   0x.... 0x....      LDR.W    R1,??DataTable40_13
+   \       0x4A   0x.... 0x....      LDR.W    R1,??DataTable40_14
    \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x52   0x.... 0x....      BL       printf
     539          
@@ -1590,7 +1590,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     631                          Si446xCmd.GET_MODEM_STATUS.CURR_RSSI,
     632                          Si446xCmd.GET_MODEM_STATUS.LATCH_RSSI
     633                  );
-   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable43
+   \        0xE   0x.... 0x....      LDR.W    R0,??DataTable42_3
    \       0x12   0x78C1             LDRB     R1,[R0, #+3]
    \       0x14   0x9102             STR      R1,[SP, #+8]
    \       0x16   0x7881             LDRB     R1,[R0, #+2]
@@ -1599,8 +1599,8 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
    \       0x1C   0x9100             STR      R1,[SP, #+0]
    \       0x1E   0x7903             LDRB     R3,[R0, #+4]
    \       0x20   0xF44F 0x721D      MOV      R2,#+628
-   \       0x24   0x.... 0x....      LDR.W    R1,??DataTable42_3
-   \       0x28   0x.... 0x....      LDR.W    R0,??DataTable42_4
+   \       0x24   0x.... 0x....      LDR.W    R1,??DataTable42_4
+   \       0x28   0x.... 0x....      LDR.W    R0,??DataTable42_5
    \       0x2C   0x.... 0x....      BL       printf
     634              }
     635          
@@ -1608,7 +1608,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     637          
     638              rssi = Si446xCmd.GET_MODEM_STATUS.LATCH_RSSI;
    \                     ??RF_RSSI_0: (+1)
-   \       0x30   0x.... 0x....      LDR.W    R0,??DataTable43
+   \       0x30   0x.... 0x....      LDR.W    R0,??DataTable42_3
    \       0x34   0x78C4             LDRB     R4,[R0, #+3]
     639          
     640              if ( rssi > 200 )
@@ -1620,7 +1620,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     642              	LCDRSSI( 5 );  //  RSSI 5
    \       0x3E   0x2005             MOVS     R0,#+5
    \       0x40   0x.... 0x....      BL       LCDRSSI
-   \       0x44   0xE036             B.N      ??RF_RSSI_2
+   \       0x44   0xE032             B.N      ??RF_RSSI_2
     643              }
     644              else if ( 160 < rssi && rssi <= 200 )
    \                     ??RF_RSSI_1: (+1)
@@ -1636,7 +1636,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     646              	LCDRSSI( 4 );  //  RSSI 4
    \       0x56   0x2004             MOVS     R0,#+4
    \       0x58   0x.... 0x....      BL       LCDRSSI
-   \       0x5C   0xE02A             B.N      ??RF_RSSI_2
+   \       0x5C   0xE026             B.N      ??RF_RSSI_2
     647              }
     648              else if ( 130 < rssi && rssi <= 160 )
    \                     ??RF_RSSI_3: (+1)
@@ -1652,7 +1652,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     650              	LCDRSSI( 3 );  //  RSSI 3
    \       0x6E   0x2003             MOVS     R0,#+3
    \       0x70   0x.... 0x....      BL       LCDRSSI
-   \       0x74   0xE01E             B.N      ??RF_RSSI_2
+   \       0x74   0xE01A             B.N      ??RF_RSSI_2
     651              }
     652              else if ( 100 < rssi && rssi <= 130 )
    \                     ??RF_RSSI_4: (+1)
@@ -1668,7 +1668,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     654              	LCDRSSI( 2 );  //  RSSI 2
    \       0x86   0x2002             MOVS     R0,#+2
    \       0x88   0x.... 0x....      BL       LCDRSSI
-   \       0x8C   0xE012             B.N      ??RF_RSSI_2
+   \       0x8C   0xE00E             B.N      ??RF_RSSI_2
     655              }
     656              else if ( 85 < rssi && rssi <= 100 )
    \                     ??RF_RSSI_5: (+1)
@@ -1684,22 +1684,18 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     658              	LCDRSSI( 1 );  //  RSSI 1
    \       0x9E   0x2001             MOVS     R0,#+1
    \       0xA0   0x.... 0x....      BL       LCDRSSI
-   \       0xA4   0xE006             B.N      ??RF_RSSI_2
+   \       0xA4   0xE002             B.N      ??RF_RSSI_2
     659              }
-    660              else if ( rssi <= 85 )
-   \                     ??RF_RSSI_6: (+1)
-   \       0xA6   0x0020             MOVS     R0,R4
-   \       0xA8   0xB280             UXTH     R0,R0
-   \       0xAA   0x2856             CMP      R0,#+86
-   \       0xAC   0xDA02             BGE.N    ??RF_RSSI_2
+    660              else 
     661              {
     662              	LCDRSSI( 0 );  //  RSSI 0
-   \       0xAE   0x2000             MOVS     R0,#+0
-   \       0xB0   0x.... 0x....      BL       LCDRSSI
+   \                     ??RF_RSSI_6: (+1)
+   \       0xA6   0x2000             MOVS     R0,#+0
+   \       0xA8   0x.... 0x....      BL       LCDRSSI
     663              }
     664          }
    \                     ??RF_RSSI_2: (+1)
-   \       0xB4   0xBD1F             POP      {R0-R4,PC}
+   \       0xAC   0xBD1F             POP      {R0-R4,PC}
     665          
     666          //========================================================================
 
@@ -1719,7 +1715,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
    \        0xC   0x0023             MOVS     R3,R4
    \        0xE   0xB2DB             UXTB     R3,R3
    \       0x10   0xF44F 0x7228      MOV      R2,#+672
-   \       0x14   0x.... 0x....      LDR.W    R1,??DataTable42_5
+   \       0x14   0x.... 0x....      LDR.W    R1,??DataTable42_6
    \       0x18   0x.... 0x....      LDR.W    R0,??DataTable40_6
    \       0x1C   0x.... 0x....      BL       printf
     673          	}
@@ -1775,11 +1771,11 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
    \        0xE   0x....             ADR.N    R0,??DataTable36_2
    \       0x10   0x.... 0x....      BL       printf
     697              printf( "Version = %s(%s - %s)\n", APP_VER, __DATE__, __TIME__ );
-   \       0x14   0x.... 0x....      LDR.W    R4,??DataTable42_6
-   \       0x18   0x.... 0x....      LDR.W    R3,??DataTable42_7
-   \       0x1C   0x.... 0x....      LDR.W    R2,??DataTable42_8
+   \       0x14   0x.... 0x....      LDR.W    R4,??DataTable42_7
+   \       0x18   0x.... 0x....      LDR.W    R3,??DataTable42_8
+   \       0x1C   0x.... 0x....      LDR.W    R2,??DataTable42_9
    \       0x20   0x0021             MOVS     R1,R4
-   \       0x22   0x.... 0x....      LDR.W    R0,??DataTable42_9
+   \       0x22   0x.... 0x....      LDR.W    R0,??DataTable42_10
    \       0x26   0x.... 0x....      BL       printf
     698          
     699              //  LCD Display
@@ -1792,7 +1788,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c
     703          
     704                  sprintf( sBuf[0], "RFM v%s", APP_VER );
    \       0x32   0x0022             MOVS     R2,R4
-   \       0x34   0x.... 0x....      LDR.W    R1,??DataTable46
+   \       0x34   0x.... 0x....      LDR.W    R1,??DataTable45_1
    \       0x38   0x4668             MOV      R0,SP
    \       0x3A   0x.... 0x....      BL       sprintf
     705                  //        sprintf( sBuf[1], "%s", __DATE__, __TIME__ );
@@ -1873,8 +1869,8 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    \       0x2C   0xF89D 0x3000      LDRB     R3,[SP, #+0]
    \       0x30   0x3364             ADDS     R3,R3,#+100
    \       0x32   0xF240 0x22E6      MOVW     R2,#+742
-   \       0x36   0x.... 0x....      LDR.W    R1,??DataTable42_10
-   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable46_1
+   \       0x36   0x.... 0x....      LDR.W    R1,??DataTable42_11
+   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable46
    \       0x3E   0x.... 0x....      BL       printf
     743          
     744              SetTrainSetIdx( nTrainSet );
@@ -1941,8 +1937,8 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     770              	printf( "%s(%d) - Channel : %d\n", __func__, __LINE__, nCh );
    \       0x34   0xF89D 0x3000      LDRB     R3,[SP, #+0]
    \       0x38   0xF240 0x3202      MOVW     R2,#+770
-   \       0x3C   0x.... 0x....      LDR.W    R1,??DataTable42_11
-   \       0x40   0x.... 0x....      LDR.W    R0,??DataTable46_2
+   \       0x3C   0x.... 0x....      LDR.W    R1,??DataTable42_12
+   \       0x40   0x.... 0x....      LDR.W    R0,??DataTable46_1
    \       0x44   0x.... 0x....      BL       printf
     771              }
     772          
@@ -2007,8 +2003,8 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    \                     ??cmd_car_1: (+1)
    \       0x2C   0xF89D 0x3000      LDRB     R3,[SP, #+0]
    \       0x30   0xF240 0x321E      MOVW     R2,#+798
-   \       0x34   0x.... 0x....      LDR.W    R1,??DataTable43_1
-   \       0x38   0x.... 0x....      LDR.W    R0,??DataTable47
+   \       0x34   0x.... 0x....      LDR.W    R1,??DataTable42_13
+   \       0x38   0x.... 0x....      LDR.W    R0,??DataTable46_2
    \       0x3C   0x.... 0x....      BL       printf
     799          
     800              SetCarNo( nCar );
@@ -2072,8 +2068,8 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    \                     ??cmd_hop_1: (+1)
    \       0x2C   0xF89D 0x3000      LDRB     R3,[SP, #+0]
    \       0x30   0xF240 0x323A      MOVW     R2,#+826
-   \       0x34   0x.... 0x....      LDR.W    R1,??DataTable43_2
-   \       0x38   0x.... 0x....      LDR.W    R0,??DataTable47_1
+   \       0x34   0x.... 0x....      LDR.W    R1,??DataTable43
+   \       0x38   0x.... 0x....      LDR.W    R0,??DataTable47
    \       0x3C   0x.... 0x....      BL       printf
     827          
     828              SetManHop( nManHop );
@@ -2095,17 +2091,17 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_hop"
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
     835              printf( "[S/W Info]\n" );
-   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable43_3
+   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable43_1
    \        0xA   0x.... 0x....      BL       printf
     836              printf( " - Boot : %d Byte\n", FLASH_If_GetBootSize() );
    \        0xE   0x.... 0x....      BL       FLASH_If_GetBootSize
    \       0x12   0x0001             MOVS     R1,R0
-   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable44
+   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable43_2
    \       0x18   0x.... 0x....      BL       printf
     837              printf( " - App : %d Byte\n", FLASH_If_GetAppSize() );
    \       0x1C   0x.... 0x....      BL       FLASH_If_GetAppSize
    \       0x20   0x0001             MOVS     R1,R0
-   \       0x22   0x.... 0x....      LDR.W    R0,??DataTable47_2
+   \       0x22   0x.... 0x....      LDR.W    R0,??DataTable47_1
    \       0x26   0x.... 0x....      BL       printf
     838          }
                  ^
@@ -2130,26 +2126,26 @@ Warning[Pe940]: missing return statement at end of non-void function
     847              uint16_t	nData;
     848          
     849              printf( "[Setting]\n" );
-   \        0x8   0x.... 0x....      LDR.W    R0,??DataTable44_1
+   \        0x8   0x.... 0x....      LDR.W    R0,??DataTable43_3
    \        0xC   0x.... 0x....      BL       printf
     850              printf( " - Train Set : %d\n", 100 + GetTrainSetIdx() );
    \       0x10   0x.... 0x....      BL       GetTrainSetIdx
    \       0x14   0xB2C0             UXTB     R0,R0
    \       0x16   0x3064             ADDS     R0,R0,#+100
    \       0x18   0x0001             MOVS     R1,R0
-   \       0x1A   0x.... 0x....      LDR.W    R0,??DataTable45_1
+   \       0x1A   0x.... 0x....      LDR.W    R0,??DataTable44
    \       0x1E   0x.... 0x....      BL       printf
     851              printf( " - Car No : %d\n", GetCarNo() );
    \       0x22   0x.... 0x....      BL       GetCarNo
    \       0x26   0xB2C0             UXTB     R0,R0
    \       0x28   0x0001             MOVS     R1,R0
-   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable45_2
+   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable44_1
    \       0x2E   0x.... 0x....      BL       printf
     852              printf( " - RF Channel: %d\n", GetChRx() );
    \       0x32   0x.... 0x....      BL       GetChRx
    \       0x36   0xB2C0             UXTB     R0,R0
    \       0x38   0x0001             MOVS     R1,R0
-   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable45_3
+   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable45_2
    \       0x3E   0x.... 0x....      BL       printf
     853              printf( " - Mode : %s(%d)\n", StrRFMMode( GetRFMMode() ), GetRFMMode()  );	//	Normal / Tx / Rx / Upgrade
    \       0x42   0x.... 0x....      BL       GetRFMMode
@@ -2160,31 +2156,31 @@ Warning[Pe940]: missing return statement at end of non-void function
    \       0x52   0xB2FF             UXTB     R7,R7
    \       0x54   0x003A             MOVS     R2,R7
    \       0x56   0x0001             MOVS     R1,R0
-   \       0x58   0x.... 0x....      LDR.W    R0,??DataTable45_4
+   \       0x58   0x.... 0x....      LDR.W    R0,??DataTable45_3
    \       0x5C   0x.... 0x....      BL       printf
     854              printf( " - GetChNearRFM() : %d\n", GetChNearRFM() );
    \       0x60   0x.... 0x....      BL       GetChNearRFM
    \       0x64   0xB2C0             UXTB     R0,R0
    \       0x66   0x0001             MOVS     R1,R0
-   \       0x68   0x.... 0x....      LDR.W    R0,??DataTable45_5
+   \       0x68   0x.... 0x....      LDR.W    R0,??DataTable45_4
    \       0x6C   0x.... 0x....      BL       printf
     855              printf( " - GetChNearRFT() : %d\n", GetChNearRFT() );
    \       0x70   0x.... 0x....      BL       GetChNearRFT
    \       0x74   0xB2C0             UXTB     R0,R0
    \       0x76   0x0001             MOVS     R1,R0
-   \       0x78   0x.... 0x....      LDR.W    R0,??DataTable45_6
+   \       0x78   0x.... 0x....      LDR.W    R0,??DataTable45_5
    \       0x7C   0x.... 0x....      BL       printf
     856              printf( " - GetChPARFT() : %d\n", GetChPARFT() );
    \       0x80   0x.... 0x....      BL       GetChPARFT
    \       0x84   0xB2C0             UXTB     R0,R0
    \       0x86   0x0001             MOVS     R1,R0
-   \       0x88   0x.... 0x....      LDR.W    R0,??DataTable46_3
+   \       0x88   0x.... 0x....      LDR.W    R0,??DataTable45_6
    \       0x8C   0x.... 0x....      BL       printf
     857              printf( " - GetChPA() : %d\n", GetChPA() );
    \       0x90   0x.... 0x....      BL       GetChPA
    \       0x94   0xB2C0             UXTB     R0,R0
    \       0x96   0x0001             MOVS     R1,R0
-   \       0x98   0x.... 0x....      LDR.W    R0,??DataTable47_3
+   \       0x98   0x.... 0x....      LDR.W    R0,??DataTable47_2
    \       0x9C   0x.... 0x....      BL       printf
     858          }
                  ^
@@ -2219,11 +2215,11 @@ Warning[Pe940]: missing return statement at end of non-void function "cmd_info"
    \        0x4   0x000D             MOVS     R5,R1
     865              //	rfstat - RF Tx / Rx Status
     866              printf( "[RF Info] Tx : %d / Rx : %d\n", nTxPkt, nRxPkt );
-   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable46_4
+   \        0x6   0x.... 0x....      LDR.W    R0,??DataTable46_3
    \        0xA   0x7802             LDRB     R2,[R0, #+0]
-   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable46_5
+   \        0xC   0x.... 0x....      LDR.W    R0,??DataTable46_4
    \       0x10   0x7801             LDRB     R1,[R0, #+0]
-   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable47_4
+   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable47_3
    \       0x16   0x.... 0x....      BL       printf
     867          }
                  ^
@@ -2324,8 +2320,8 @@ Warning[Pe181]: argument is incompatible with corresponding format string
    \                     ??cmd_txpwr_0: (+1)
    \       0x1E   0xF89D 0x3000      LDRB     R3,[SP, #+0]
    \       0x22   0xF240 0x32A9      MOVW     R2,#+937
-   \       0x26   0x.... 0x....      LDR.W    R1,??DataTable47_5
-   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable47_6
+   \       0x26   0x.... 0x....      LDR.W    R1,??DataTable47_4
+   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable47_5
    \       0x2E   0x.... 0x....      BL       printf
     938          
     939              vRadio_Set_TxPower( nPwr );
@@ -2395,8 +2391,8 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     959              {
     960              	printf("%s(%d) - return\n", __func__, __LINE__);
    \       0x3C   0xF44F 0x7270      MOV      R2,#+960
-   \       0x40   0x.... 0x....      LDR.W    R1,??DataTable47_7
-   \       0x44   0x.... 0x....      LDR.W    R0,??DataTable47_8
+   \       0x40   0x.... 0x....      LDR.W    R1,??DataTable47_6
+   \       0x44   0x.... 0x....      LDR.W    R0,??DataTable47_7
    \       0x48   0x.... 0x....      BL       printf
     961              	return 0;
    \       0x4C   0x2000             MOVS     R0,#+0
@@ -2407,7 +2403,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     965              g_bSetRspIDManual = 1;
    \                     ??cmd_rspid_3: (+1)
    \       0x50   0x2001             MOVS     R0,#+1
-   \       0x52   0x.... 0x....      LDR.W    R1,??DataTable47_9
+   \       0x52   0x.... 0x....      LDR.W    R1,??DataTable47_8
    \       0x56   0x7008             STRB     R0,[R1, #+0]
     966          
     967              if ( nSet )
@@ -2417,7 +2413,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     968              {
     969              	//	Set ID Flag
     970              	g_flagRspID |= ( 0x1 << nID );
-   \       0x60   0x.... 0x....      LDR.W    R1,??DataTable47_10
+   \       0x60   0x.... 0x....      LDR.W    R1,??DataTable47_9
    \       0x64   0x880A             LDRH     R2,[R1, #+0]
    \       0x66   0x2301             MOVS     R3,#+1
    \       0x68   0xF99D 0x0000      LDRSB    R0,[SP, #+0]
@@ -2439,7 +2435,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     975              	//	Clear ID Flag
     976              	g_flagRspID &= ~( 0x1 << nID );
    \                     ??cmd_rspid_5: (+1)
-   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable47_10
+   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable47_9
    \       0x8A   0x880A             LDRH     R2,[R1, #+0]
    \       0x8C   0x2301             MOVS     R3,#+1
    \       0x8E   0xF99D 0x0000      LDRSB    R0,[SP, #+0]
@@ -2458,11 +2454,11 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     979          
     980              printf( "%s(%d) - ID Flag : 0x%04X\n", __func__, __LINE__, g_flagRspID );
    \                     ??cmd_rspid_6: (+1)
-   \       0xAA   0x.... 0x....      LDR.W    R0,??DataTable47_10
+   \       0xAA   0x.... 0x....      LDR.W    R0,??DataTable47_9
    \       0xAE   0x8803             LDRH     R3,[R0, #+0]
    \       0xB0   0xF44F 0x7275      MOV      R2,#+980
-   \       0xB4   0x.... 0x....      LDR.W    R1,??DataTable47_7
-   \       0xB8   0x.... 0x....      LDR.W    R0,??DataTable47_11
+   \       0xB4   0x.... 0x....      LDR.W    R1,??DataTable47_6
+   \       0xB8   0x.... 0x....      LDR.W    R0,??DataTable47_10
    \       0xBC   0x.... 0x....      BL       printf
     981          
     982          	return 1;
@@ -2486,10 +2482,10 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     991              //	occ [1(start)/0(stop)]	-	대승객방송
     992          
     993          	printf("%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0x.... 0x....      LDR.W    R6,??DataTable47_12
+   \        0x6   0x.... 0x....      LDR.W    R6,??DataTable47_11
    \        0xA   0xF240 0x32E1      MOVW     R2,#+993
    \        0xE   0x0031             MOVS     R1,R6
-   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable47_13
+   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable47_12
    \       0x14   0x.... 0x....      BL       printf
     994          
     995          	//	대승객방송 시작/종료
@@ -2523,7 +2519,7 @@ Warning[Pe181]: argument is incompatible with corresponding format string
    1006              	printf("%s(%d) - Start\n", __func__, __LINE__ );
    \       0x38   0xF240 0x32EE      MOVW     R2,#+1006
    \       0x3C   0x0031             MOVS     R1,R6
-   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable47_14
+   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable47_13
    \       0x42   0x.... 0x....      BL       printf
    1007          
    1008              	//	OCC Mode
@@ -2540,7 +2536,7 @@ Warning[Pe181]: argument is incompatible with corresponding format string
    1017          
    1018          		// 조명 On
    1019          		HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
-   \       0x4C   0x.... 0x....      LDR.W    R6,??DataTable47_15
+   \       0x4C   0x.... 0x....      LDR.W    R6,??DataTable47_14
    \       0x50   0x2201             MOVS     R2,#+1
    \       0x52   0xF44F 0x7100      MOV      R1,#+512
    \       0x56   0x0030             MOVS     R0,R6
@@ -2567,7 +2563,7 @@ Warning[Pe181]: argument is incompatible with corresponding format string
    \                     ??cmd_OccPa_1: (+1)
    \       0x74   0xF240 0x4205      MOVW     R2,#+1029
    \       0x78   0x0031             MOVS     R1,R6
-   \       0x7A   0x.... 0x....      LDR.W    R0,??DataTable47_16
+   \       0x7A   0x.... 0x....      LDR.W    R0,??DataTable47_15
    \       0x7E   0x.... 0x....      BL       printf
    1030          
    1031              	//	Normal Mode
@@ -2584,7 +2580,7 @@ Warning[Pe181]: argument is incompatible with corresponding format string
    1040          
    1041              	//	Spk Off.
    1042          		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
-   \       0x88   0x.... 0x....      LDR.W    R6,??DataTable47_15
+   \       0x88   0x.... 0x....      LDR.W    R6,??DataTable47_14
    \       0x8C   0x2200             MOVS     R2,#+0
    \       0x8E   0x2120             MOVS     R1,#+32
    \       0x90   0x0030             MOVS     R0,R6
@@ -2660,8 +2656,8 @@ Warning[Pe940]: missing return statement at end of non-void function
    1085          
    1086          		pAudioTx = &bufAudioDec[FRAME_ENC_SIZE * idx];
    \        0x6   0x26F0             MOVS     R6,#+240
-   \        0x8   0x.... 0x....      LDR.W    R9,??DataTable47_17
-   \        0xC   0x.... 0x....      LDR.W    R10,??DataTable47_18
+   \        0x8   0x.... 0x....      LDR.W    R9,??DataTable47_16
+   \        0xC   0x.... 0x....      LDR.W    R10,??DataTable47_17
    \       0x10   0xF899 0x0000      LDRB     R0,[R9, #+0]
    \       0x14   0x4370             MULS     R0,R6,R0
    \       0x16   0xEB0A 0x0700      ADD      R7,R10,R0
@@ -2669,7 +2665,7 @@ Warning[Pe940]: missing return statement at end of non-void function
    \       0x1A   0xF899 0x0000      LDRB     R0,[R9, #+0]
    \       0x1E   0x1C40             ADDS     R0,R0,#+1
    \       0x20   0x2102             MOVS     R1,#+2
-   \       0x22   0x.... 0x....      LDR.W    R5,??DataTable47_19
+   \       0x22   0x.... 0x....      LDR.W    R5,??DataTable47_18
    \       0x26   0xFB90 0xF2F1      SDIV     R2,R0,R1
    \       0x2A   0xFB01 0x0012      MLS      R0,R1,R2,R0
    \       0x2E   0x4370             MULS     R0,R6,R0
@@ -2688,7 +2684,7 @@ Warning[Pe167]: argument of type "int16_t *" is incompatible with parameter of
    \       0x34   0x2378             MOVS     R3,#+120
    \       0x36   0x4642             MOV      R2,R8
    \       0x38   0x0039             MOVS     R1,R7
-   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable47_20
+   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable47_19
    \       0x3E   0x.... 0x....      BL       HAL_I2SEx_TransmitReceive_DMA
    1093          
    1094          		pAudioRx = &bufAudioEnc[FRAME_ENC_SIZE * idx];
@@ -2733,7 +2729,7 @@ Warning[Pe167]: argument of type "int16_t *" is incompatible with parameter of
    1121          		if ( qBufCnt( &g_qBufAudioTx ) < ( ( I2S_DMA_LOOP_SIZE * 2 ) * ( I2S_DMA_LOOP_QCNT - 1 ) ) )
                  		                               ^
 Warning[Pa084]: pointless integer comparison, the result is always true
-   \       0x68   0x.... 0x....      LDR.W    R10,??DataTable47_21
+   \       0x68   0x.... 0x....      LDR.W    R10,??DataTable47_20
    \       0x6C   0x4650             MOV      R0,R10
    \       0x6E   0x.... 0x....      BL       qBufCnt
    1122          		{
@@ -2757,7 +2753,7 @@ Warning[Pa084]: pointless integer comparison, the result is always true
    \       0x7E   0x4648             MOV      R0,R9
    \       0x80   0xB2C0             UXTB     R0,R0
    \       0x82   0xF835 0x0030      LDRH     R0,[R5, R0, LSL #+3]
-   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable47_22
+   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable47_21
    \       0x8A   0x464A             MOV      R2,R9
    \       0x8C   0xB2D2             UXTB     R2,R2
    \       0x8E   0xF821 0x0012      STRH     R0,[R1, R2, LSL #+1]
@@ -2768,7 +2764,7 @@ Warning[Pa084]: pointless integer comparison, the result is always true
    1136          			qBufPut( &g_qBufAudioTx, (uint8_t *)r_audio_buff, ( I2S_DMA_LOOP_SIZE * 2 ) );
    \                     ??RFM_I2SEx_TxRxCpltCallback_1: (+1)
    \       0x98   0x223C             MOVS     R2,#+60
-   \       0x9A   0x.... 0x....      LDR.W    R1,??DataTable47_22
+   \       0x9A   0x.... 0x....      LDR.W    R1,??DataTable47_21
    \       0x9E   0x4650             MOV      R0,R10
    \       0xA0   0x.... 0x....      BL       qBufPut
    1137          
@@ -2806,14 +2802,14 @@ Warning[Pe009]: nested comment is not allowed
    1160          		//  Rx Buffering ( Packet Count : 0 ~ 4 )
    1161          		//  RF-Rx -> t_audio_buff
    1162          		if ( bRxBuffering )
-   \       0xB8   0x.... 0x....      LDR.W    R7,??DataTable47_23
+   \       0xB8   0x.... 0x....      LDR.W    R7,??DataTable47_22
    \       0xBC   0x7838             LDRB     R0,[R7, #+0]
    \       0xBE   0x2800             CMP      R0,#+0
    \       0xC0   0xD00A             BEQ.N    ??RFM_I2SEx_TxRxCpltCallback_2
    1163          		{
    1164          			//  Buffering
    1165          			if ( qBufCnt( &g_qBufAudioRx ) > ( ( I2S_DMA_LOOP_SIZE * 2 ) * 3 ) )
-   \       0xC2   0x.... 0x....      LDR.W    R0,??DataTable47_24
+   \       0xC2   0x.... 0x....      LDR.W    R0,??DataTable47_23
    \       0xC6   0x.... 0x....      BL       qBufCnt
    \       0xCA   0x28B5             CMP      R0,#+181
    \       0xCC   0xDB04             BLT.N    ??RFM_I2SEx_TxRxCpltCallback_2
@@ -2837,7 +2833,7 @@ Warning[Pe009]: nested comment is not allowed
    1175          		{
    1176          			//  Rx Audio Out
    1177          			if ( qBufCnt( &g_qBufAudioRx ) >= ( I2S_DMA_LOOP_SIZE * 2 ) )
-   \       0xDE   0x.... 0x....      LDR.W    R8,??DataTable47_24
+   \       0xDE   0x.... 0x....      LDR.W    R8,??DataTable47_23
    \       0xE2   0x4640             MOV      R0,R8
    \       0xE4   0x.... 0x....      BL       qBufCnt
    \       0xE8   0x283C             CMP      R0,#+60
@@ -2849,7 +2845,7 @@ Warning[Pe009]: nested comment is not allowed
    1182          #if defined( USE_AUDIO_INTERPOL_COMPRESS )	//	보간압축사용.
    1183          
    1184          				qBufGet( &g_qBufAudioRx, (uint8_t*)t_audio_buff, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
-   \       0xEC   0x.... 0x....      LDR.W    R7,??DataTable47_25
+   \       0xEC   0x.... 0x....      LDR.W    R7,??DataTable47_24
    \       0xF0   0x223C             MOVS     R2,#+60
    \       0xF2   0x0039             MOVS     R1,R7
    \       0xF4   0x4640             MOV      R0,R8
@@ -2884,7 +2880,7 @@ Warning[Pe009]: nested comment is not allowed
    \      0x11C   0xD107             BNE.N    ??RFM_I2SEx_TxRxCpltCallback_7
    1196          						{
    1197          							pAudioTx[ i ] = nlastSample;	//	t_audio_buff[i / AUDIO_COMPR_RATE];
-   \      0x11E   0x.... 0x....      LDR.W    R0,??DataTable47_26
+   \      0x11E   0x.... 0x....      LDR.W    R0,??DataTable47_25
    \      0x122   0x8800             LDRH     R0,[R0, #+0]
    \      0x124   0x0013             MOVS     R3,R2
    \      0x126   0xB2DB             UXTB     R3,R3
@@ -2931,7 +2927,7 @@ Warning[Pe009]: nested comment is not allowed
    \      0x176   0x2304             MOVS     R3,#+4
    \      0x178   0xFB90 0xF0F3      SDIV     R0,R0,R3
    \      0x17C   0xF837 0x0010      LDRH     R0,[R7, R0, LSL #+1]
-   \      0x180   0x.... 0x....      LDR.W    R3,??DataTable47_26
+   \      0x180   0x.... 0x....      LDR.W    R3,??DataTable47_25
    \      0x184   0x8018             STRH     R0,[R3, #+0]
    \      0x186   0xE00B             B.N      ??RFM_I2SEx_TxRxCpltCallback_9
    1206          					}
@@ -3003,19 +2999,19 @@ Warning[Pe009]: nested comment is not allowed
    \        0x0   0xE92D 0x47F0      PUSH     {R4-R10,LR}
    \        0x4   0xB086             SUB      SP,SP,#+24
    1242          	printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0x6   0x.... 0x....      LDR.W    R4,??DataTable47_27
+   \        0x6   0x.... 0x....      LDR.W    R4,??DataTable47_26
    \        0xA   0xF240 0x42DA      MOVW     R2,#+1242
    \        0xE   0x0021             MOVS     R1,R4
-   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable47_13
+   \       0x10   0x.... 0x....      LDR.W    R0,??DataTable47_12
    \       0x14   0x.... 0x....      BL       printf
    1243          
    1244          	//========================================================================
    1245          	I2C_BusScan( &hi2c1 );
-   \       0x18   0x.... 0x....      LDR.W    R6,??DataTable47_28
+   \       0x18   0x.... 0x....      LDR.W    R6,??DataTable47_27
    \       0x1C   0x0030             MOVS     R0,R6
    \       0x1E   0x.... 0x....      BL       I2C_BusScan
    1246          	I2C_BusScan( &hi2c3 );
-   \       0x22   0x.... 0x....      LDR.W    R5,??DataTable47_29
+   \       0x22   0x.... 0x....      LDR.W    R5,??DataTable47_28
    \       0x26   0x0028             MOVS     R0,R5
    \       0x28   0x.... 0x....      BL       I2C_BusScan
    1247          
@@ -3023,7 +3019,7 @@ Warning[Pe009]: nested comment is not allowed
    1249          	//	Car Number 설정.
    1250          	g_flagRspID |= (0x1 << GetCarNo());		//	자신의 ID Flag 설정.
    \       0x2C   0x.... 0x....      BL       GetCarNo
-   \       0x30   0x.... 0x....      LDR.W    R1,??DataTable47_10
+   \       0x30   0x.... 0x....      LDR.W    R1,??DataTable47_9
    \       0x34   0x880A             LDRH     R2,[R1, #+0]
    \       0x36   0x2301             MOVS     R3,#+1
    \       0x38   0xFA13 0xF000      LSLS     R0,R3,R0
@@ -3086,7 +3082,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \       0x92   0xF89D 0x300C      LDRB     R3,[SP, #+12]
    \       0x96   0xF240 0x42F1      MOVW     R2,#+1265
    \       0x9A   0x0021             MOVS     R1,R4
-   \       0x9C   0x.... 0x....      LDR.W    R0,??DataTable47_30
+   \       0x9C   0x.... 0x....      LDR.W    R0,??DataTable47_29
    \       0xA0   0x.... 0x....      BL       printf
    1266          
    1267          		//========================================================================
@@ -3102,7 +3098,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    1275          		//========================================================================
    1276          		//	I2S Callback 등록.
    1277          		SetCallbackI2STxRxCplt( RFM_I2SEx_TxRxCpltCallback );
-   \       0xAC   0x.... 0x....      LDR.W    R0,??DataTable47_31
+   \       0xAC   0x.... 0x....      LDR.W    R0,??DataTable47_30
    \       0xB0   0x.... 0x....      BL       SetCallbackI2STxRxCplt
    1278          //		HAL_I2SEx_TransmitReceive_DMA( &hi2s3, (uint16_t*)sine_table, (uint16_t*)bufAudio, 256 );
    1279          
@@ -3124,7 +3120,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    1287          		printf( "%s(%d) - EEPROM OK\n", __func__, __LINE__ );
    \       0xC4   0xF240 0x5207      MOVW     R2,#+1287
    \       0xC8   0x0021             MOVS     R1,R4
-   \       0xCA   0x.... 0x....      LDR.W    R0,??DataTable47_32
+   \       0xCA   0x.... 0x....      LDR.W    R0,??DataTable47_31
    \       0xCE   0x.... 0x....      BL       printf
    1288          		TestEEPROM( &hi2c1 ); //  Test EEPROM
    \       0xD2   0x0030             MOVS     R0,R6
@@ -3157,7 +3153,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1301          
    1302          		g_idxTrainSet = idxTrainSet;
    \                     ??InitRFM_4: (+1)
-   \       0xF2   0x.... 0x....      LDR.W    R0,??DataTable47_33
+   \       0xF2   0x.... 0x....      LDR.W    R0,??DataTable47_32
    \       0xF6   0x7006             STRB     R6,[R0, #+0]
    1303          	}
    1304          
@@ -3241,7 +3237,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1344          
    1345          		g_nSpkLevel = nSpkVol;
    \                     ??InitRFM_6: (+1)
-   \      0x156   0x.... 0x....      LDR.W    R0,??DataTable47_34
+   \      0x156   0x.... 0x....      LDR.W    R0,??DataTable47_33
    \      0x15A   0x7005             STRB     R5,[R0, #+0]
    1346          
    1347          		//  LCD : Spk Icon
@@ -3289,7 +3285,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1370          		//	g_nManHopping;		//	On(1) / Off(2) / Unused(0 : Other)
    1371          		g_nManHopping	=	2;	//	Hopping Diable
    \      0x184   0x2002             MOVS     R0,#+2
-   \      0x186   0x.... 0x....      LDR.W    R1,??DataTable47_35
+   \      0x186   0x.... 0x....      LDR.W    R1,??DataTable47_34
    \      0x18A   0x7008             STRB     R0,[R1, #+0]
    \      0x18C   0xE013             B.N      ??InitRFM_8
    1372          #endif	//	defined(USE_HOP_MANUAL)
@@ -3326,7 +3322,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1397          #if defined(USE_HOP_MANUAL)
    1398          		//	g_nManHopping;		//	On(1) / Off(2) / Unused(0 : Other)
    1399          		g_nManHopping	=	GetManHop();	//	Hopping Diable
-   \      0x19C   0x.... 0x....      LDR.W    R5,??DataTable47_35
+   \      0x19C   0x.... 0x....      LDR.W    R5,??DataTable47_34
    \      0x1A0   0x.... 0x....      BL       GetManHop
    \      0x1A4   0x7028             STRB     R0,[R5, #+0]
    1400          
@@ -3334,7 +3330,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    \      0x1A6   0x782B             LDRB     R3,[R5, #+0]
    \      0x1A8   0xF240 0x5279      MOVW     R2,#+1401
    \      0x1AC   0x0021             MOVS     R1,R4
-   \      0x1AE   0x.... 0x....      LDR.W    R0,??DataTable47_36
+   \      0x1AE   0x.... 0x....      LDR.W    R0,??DataTable47_35
    \      0x1B2   0x.... 0x....      BL       printf
    1402          #endif	//	defined(USE_HOP_MANUAL)
    1403          
@@ -3383,37 +3379,37 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    \      0x1CC   0x.... 0x....      BL       si446x_part_info
    1437          
    1438          	printf ( "=========================\n" );
-   \      0x1D0   0x.... 0x....      LDR.W    R0,??DataTable47_37
+   \      0x1D0   0x.... 0x....      LDR.W    R0,??DataTable47_36
    \      0x1D4   0x.... 0x....      BL       printf
    1439          	printf ( "%08x\n", Si446xCmd.PART_INFO.CHIPREV );
-   \      0x1D8   0x.... 0x....      LDR.W    R5,??DataTable47_38
-   \      0x1DC   0x.... 0x....      LDR.W    R6,??DataTable43
-   \      0x1E0   0x7831             LDRB     R1,[R6, #+0]
-   \      0x1E2   0x0028             MOVS     R0,R5
-   \      0x1E4   0x.... 0x....      BL       printf
+   \      0x1D8   0x.... 0x....      LDR.W    R5,??DataTable47_37
+   \      0x1DC   0x....             LDR.N    R6,??DataTable42_3
+   \      0x1DE   0x7831             LDRB     R1,[R6, #+0]
+   \      0x1E0   0x0028             MOVS     R0,R5
+   \      0x1E2   0x.... 0x....      BL       printf
    1440          	printf ( "%08x\n", Si446xCmd.PART_INFO.PART );
-   \      0x1E8   0x6871             LDR      R1,[R6, #+4]
-   \      0x1EA   0x0028             MOVS     R0,R5
-   \      0x1EC   0x.... 0x....      BL       printf
+   \      0x1E6   0x6871             LDR      R1,[R6, #+4]
+   \      0x1E8   0x0028             MOVS     R0,R5
+   \      0x1EA   0x.... 0x....      BL       printf
    1441          	printf ( "%08x\n", Si446xCmd.PART_INFO.PBUILD );
-   \      0x1F0   0x7A31             LDRB     R1,[R6, #+8]
-   \      0x1F2   0x0028             MOVS     R0,R5
-   \      0x1F4   0x.... 0x....      BL       printf
+   \      0x1EE   0x7A31             LDRB     R1,[R6, #+8]
+   \      0x1F0   0x0028             MOVS     R0,R5
+   \      0x1F2   0x.... 0x....      BL       printf
    1442          	printf ( "%08x\n", Si446xCmd.PART_INFO.ID );
-   \      0x1F8   0x68F1             LDR      R1,[R6, #+12]
-   \      0x1FA   0x0028             MOVS     R0,R5
-   \      0x1FC   0x.... 0x....      BL       printf
+   \      0x1F6   0x68F1             LDR      R1,[R6, #+12]
+   \      0x1F8   0x0028             MOVS     R0,R5
+   \      0x1FA   0x.... 0x....      BL       printf
    1443          	printf ( "%08x\n", Si446xCmd.PART_INFO.CUSTOMER );
-   \      0x200   0x7C31             LDRB     R1,[R6, #+16]
-   \      0x202   0x0028             MOVS     R0,R5
-   \      0x204   0x.... 0x....      BL       printf
+   \      0x1FE   0x7C31             LDRB     R1,[R6, #+16]
+   \      0x200   0x0028             MOVS     R0,R5
+   \      0x202   0x.... 0x....      BL       printf
    1444          	printf ( "%08x\n", Si446xCmd.PART_INFO.ROMID );
-   \      0x208   0x7C71             LDRB     R1,[R6, #+17]
-   \      0x20A   0x0028             MOVS     R0,R5
-   \      0x20C   0x.... 0x....      BL       printf
+   \      0x206   0x7C71             LDRB     R1,[R6, #+17]
+   \      0x208   0x0028             MOVS     R0,R5
+   \      0x20A   0x.... 0x....      BL       printf
    1445          	printf ( "-------------------------\n" );
-   \      0x210   0x.... 0x....      LDR.W    R0,??DataTable47_39
-   \      0x214   0x.... 0x....      BL       printf
+   \      0x20E   0x.... 0x....      LDR.W    R0,??DataTable47_38
+   \      0x212   0x.... 0x....      BL       printf
    1446          
    1447          #endif
    1448          
@@ -3423,21 +3419,21 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1452          		//========================================================================
    1453          		//  Radio Channel 설정.
    1454          		pRadioConfiguration->Radio_ChannelNumber = g_idxTrainSet;
-   \      0x218   0x.... 0x....      LDR.W    R0,??DataTable47_40
-   \      0x21C   0x.... 0x....      LDR.W    R1,??DataTable47_33
-   \      0x220   0x780A             LDRB     R2,[R1, #+0]
-   \      0x222   0x6803             LDR      R3,[R0, #+0]
-   \      0x224   0x711A             STRB     R2,[R3, #+4]
+   \      0x216   0x.... 0x....      LDR.W    R0,??DataTable47_39
+   \      0x21A   0x.... 0x....      LDR.W    R1,??DataTable47_32
+   \      0x21E   0x780A             LDRB     R2,[R1, #+0]
+   \      0x220   0x6803             LDR      R3,[R0, #+0]
+   \      0x222   0x711A             STRB     R2,[R3, #+4]
    1455          		printf("%s(%d) - Radio Ch(%d) / g_idxTrainSet(%d)\n", __func__, __LINE__,
    1456          				pRadioConfiguration->Radio_ChannelNumber, g_idxTrainSet );
-   \      0x226   0x7809             LDRB     R1,[R1, #+0]
-   \      0x228   0x9100             STR      R1,[SP, #+0]
-   \      0x22A   0x6800             LDR      R0,[R0, #+0]
-   \      0x22C   0x7903             LDRB     R3,[R0, #+4]
-   \      0x22E   0xF240 0x52AF      MOVW     R2,#+1455
-   \      0x232   0x0021             MOVS     R1,R4
-   \      0x234   0x.... 0x....      LDR.W    R0,??DataTable47_41
-   \      0x238   0x.... 0x....      BL       printf
+   \      0x224   0x7809             LDRB     R1,[R1, #+0]
+   \      0x226   0x9100             STR      R1,[SP, #+0]
+   \      0x228   0x6800             LDR      R0,[R0, #+0]
+   \      0x22A   0x7903             LDRB     R3,[R0, #+4]
+   \      0x22C   0xF240 0x52AF      MOVW     R2,#+1455
+   \      0x230   0x0021             MOVS     R1,R4
+   \      0x232   0x.... 0x....      LDR.W    R0,??DataTable47_40
+   \      0x236   0x.... 0x....      BL       printf
    1457          	}
    1458          
    1459          	//========================================================================
@@ -3447,47 +3443,47 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    1463          	srand( HAL_GetTick() * 100 + GetTrainSetIdx() * 10 + GetCarNo() );
                  	^
 Warning[Pe223]: function "srand" declared implicitly
-   \      0x23C   0x.... 0x....      BL       HAL_GetTick
-   \      0x240   0x0005             MOVS     R5,R0
-   \      0x242   0x.... 0x....      BL       GetTrainSetIdx
-   \      0x246   0x0006             MOVS     R6,R0
-   \      0x248   0x.... 0x....      BL       GetCarNo
-   \      0x24C   0x2264             MOVS     R2,#+100
-   \      0x24E   0xB2F6             UXTB     R6,R6
-   \      0x250   0x210A             MOVS     R1,#+10
-   \      0x252   0x434E             MULS     R6,R1,R6
-   \      0x254   0xFB02 0x6505      MLA      R5,R2,R5,R6
-   \      0x258   0xFA55 0xF080      UXTAB    R0,R5,R0
-   \      0x25C   0x.... 0x....      BL       srand
+   \      0x23A   0x.... 0x....      BL       HAL_GetTick
+   \      0x23E   0x0005             MOVS     R5,R0
+   \      0x240   0x.... 0x....      BL       GetTrainSetIdx
+   \      0x244   0x0006             MOVS     R6,R0
+   \      0x246   0x.... 0x....      BL       GetCarNo
+   \      0x24A   0x2264             MOVS     R2,#+100
+   \      0x24C   0xB2F6             UXTB     R6,R6
+   \      0x24E   0x210A             MOVS     R1,#+10
+   \      0x250   0x434E             MULS     R6,R1,R6
+   \      0x252   0xFB02 0x6505      MLA      R5,R2,R5,R6
+   \      0x256   0xFA55 0xF080      UXTAB    R0,R5,R0
+   \      0x25A   0x.... 0x....      BL       srand
    1464          
    1465          	//	Set Offset
    1466          	g_offsetCA = rand() % 1000;
                  	             ^
 Warning[Pe223]: function "rand" declared implicitly
-   \      0x260   0x.... 0x....      BL       rand
-   \      0x264   0xF44F 0x717A      MOV      R1,#+1000
-   \      0x268   0x.... 0x....      LDR.W    R5,??DataTable47_42
-   \      0x26C   0xFB90 0xF2F1      SDIV     R2,R0,R1
-   \      0x270   0xFB01 0x0012      MLS      R0,R1,R2,R0
-   \      0x274   0x7028             STRB     R0,[R5, #+0]
+   \      0x25E   0x.... 0x....      BL       rand
+   \      0x262   0xF44F 0x717A      MOV      R1,#+1000
+   \      0x266   0x.... 0x....      LDR.W    R5,??DataTable47_41
+   \      0x26A   0xFB90 0xF2F1      SDIV     R2,R0,R1
+   \      0x26E   0xFB01 0x0012      MLS      R0,R1,R2,R0
+   \      0x272   0x7028             STRB     R0,[R5, #+0]
    1467          	printf( "%s(%d) - offsetCA( %d )\n", __func__, __LINE__, g_offsetCA );
-   \      0x276   0x782B             LDRB     R3,[R5, #+0]
-   \      0x278   0xF240 0x52BB      MOVW     R2,#+1467
-   \      0x27C   0x0021             MOVS     R1,R4
-   \      0x27E   0x.... 0x....      LDR.W    R0,??DataTable47_43
-   \      0x282   0x.... 0x....      BL       printf
+   \      0x274   0x782B             LDRB     R3,[R5, #+0]
+   \      0x276   0xF240 0x52BB      MOVW     R2,#+1467
+   \      0x27A   0x0021             MOVS     R1,R4
+   \      0x27C   0x.... 0x....      LDR.W    R0,??DataTable47_42
+   \      0x280   0x.... 0x....      BL       printf
    1468          
    1469          	//	초기 시작 Delay
    1470          	HAL_Delay((uint32_t)g_offsetCA);
-   \      0x286   0x7828             LDRB     R0,[R5, #+0]
-   \      0x288   0x.... 0x....      BL       HAL_Delay
+   \      0x284   0x7828             LDRB     R0,[R5, #+0]
+   \      0x286   0x.... 0x....      BL       HAL_Delay
    1471          
    1472          	//========================================================================
    1473          }
                  ^
 Warning[Pe940]: missing return statement at end of non-void function "InitRFM"
-   \      0x28C   0xB006             ADD      SP,SP,#+24
-   \      0x28E   0xE8BD 0x87F0      POP      {R4-R10,PC}
+   \      0x28A   0xB006             ADD      SP,SP,#+24
+   \      0x28C   0xE8BD 0x87F0      POP      {R4-R10,PC}
    1474          
    1475          //========================================================================
 
@@ -3496,11 +3492,11 @@ Warning[Pe940]: missing return statement at end of non-void function "InitRFM"
    1477          //========================================================================
    1478          {
    \                     RFM_main: (+1)
-   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x0   0xB570             PUSH     {R4-R6,LR}
    1479          	printf( "%s(%d)\n", __func__, __LINE__ );
    \        0x2   0xF240 0x52C7      MOVW     R2,#+1479
-   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable47_44
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable47_13
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable47_43
+   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable47_12
    \        0xE   0x.... 0x....      BL       printf
    1480          
    1481          	InitRFM();
@@ -3528,90 +3524,134 @@ Warning[Pe940]: missing return statement at end of non-void function "InitRFM"
    \       0x16   0x.... 0x....      BL       InitProcPkt
    1502          
    1503          	uint8_t nTick;
-   1504          
-   1505          	/* Infinite main loop */
-   1506          	while ( 1 )
-   1507          	{
-   1508          		nTick = HAL_GetTick();
+   1504              uint16_t nTickRe = 0;
+   \       0x1A   0x2500             MOVS     R5,#+0
+   1505          	uint16_t nTickCnt = 10;
+   \       0x1C   0x260A             MOVS     R6,#+10
+   1506              
+   1507              static int nCallTimeCnt = 1;
+   1508          
+   1509          /* Infinite main loop */
+   1510          	while ( nCallTimeCnt )
    \                     ??RFM_main_0: (+1)
-   \       0x1A   0x.... 0x....      BL       HAL_GetTick
-   \       0x1E   0x0004             MOVS     R4,R0
-   1509          
-   1510          		if ( GetDevID() == DevRF900T )
-   \       0x20   0x.... 0x....      BL       GetDevID
-   \       0x24   0x2802             CMP      R0,#+2
-   \       0x26   0xD107             BNE.N    ??RFM_main_1
-   1511          		{
-   1512          			//	송신기 - KeyPad 동작.
-   1513          			LoopProcKey( nTick );
+   \       0x1E   0x.... 0x....      LDR.W    R1,??DataTable47_44
+   \       0x22   0x6808             LDR      R0,[R1, #+0]
+   \       0x24   0x2800             CMP      R0,#+0
+   \       0x26   0xD02A             BEQ.N    ??RFM_main_1
+   1511          	{
+   1512          
+   1513          		if((nTick + 10) < nTickRe){nCallTimeCnt = 0;  }
    \       0x28   0x0020             MOVS     R0,R4
    \       0x2A   0xB2C0             UXTB     R0,R0
-   \       0x2C   0x.... 0x....      BL       LoopProcKey
+   \       0x2C   0x300A             ADDS     R0,R0,#+10
+   \       0x2E   0x002A             MOVS     R2,R5
+   \       0x30   0xB292             UXTH     R2,R2
+   \       0x32   0x4290             CMP      R0,R2
+   \       0x34   0xDA01             BGE.N    ??RFM_main_2
+   \       0x36   0x2000             MOVS     R0,#+0
+   \       0x38   0x6008             STR      R0,[R1, #+0]
    1514          
-   1515          			//	ADC Power : Battery
-   1516          			LoopProcAdc( nTick );
+   1515          
+   1516          		nTick = HAL_GetTick();
+   \                     ??RFM_main_2: (+1)
+   \       0x3A   0x.... 0x....      BL       HAL_GetTick
+   \       0x3E   0x0004             MOVS     R4,R0
+   1517          
+   1518          		
+   1519          		if ( GetDevID() == DevRF900T )
+   \       0x40   0x.... 0x....      BL       GetDevID
+   \       0x44   0x2802             CMP      R0,#+2
+   \       0x46   0xD107             BNE.N    ??RFM_main_3
+   1520          		{
+   1521          			//	송신기 - KeyPad 동작.
+   1522          			LoopProcKey( nTick );
+   \       0x48   0x0020             MOVS     R0,R4
+   \       0x4A   0xB2C0             UXTB     R0,R0
+   \       0x4C   0x.... 0x....      BL       LoopProcKey
+   1523          
+   1524          			//	ADC Power : Battery
+   1525          			LoopProcAdc( nTick );
                  			^
 Warning[Pe223]: function "LoopProcAdc" declared implicitly
-   \       0x30   0x0020             MOVS     R0,R4
-   \       0x32   0xB2C0             UXTB     R0,R0
-   \       0x34   0x.... 0x....      BL       LoopProcAdc
-   1517          		}
-   1518          
-   1519          		//	Loop RFM
-   1520          		LoopProcRFM( nTick );
-   \                     ??RFM_main_1: (+1)
-   \       0x38   0x0020             MOVS     R0,R4
-   \       0x3A   0xB2C0             UXTB     R0,R0
-   \       0x3C   0x.... 0x....      BL       LoopProcRFM
-   1521          
-   1522          		//	Loop Process ( CLI )
-   1523          		LoopProcCLI();
+   \       0x50   0x0020             MOVS     R0,R4
+   \       0x52   0xB2C0             UXTB     R0,R0
+   \       0x54   0x.... 0x....      BL       LoopProcAdc
+   1526          		}
+   1527          
+   1528          		//	Loop RFM
+   1529          		LoopProcRFM( nTick );
+   \                     ??RFM_main_3: (+1)
+   \       0x58   0x0020             MOVS     R0,R4
+   \       0x5A   0xB2C0             UXTB     R0,R0
+   \       0x5C   0x.... 0x....      BL       LoopProcRFM
+   1530          
+   1531          		//	Loop Process ( CLI )
+   1532          		LoopProcCLI();
                  		^
 Warning[Pe223]: function "LoopProcCLI" declared implicitly
-   \       0x40   0x.... 0x....      BL       LoopProcCLI
-   1524          
-   1525          		//	Loop Proc Packet : RF Packet
-   1526          		LoopProcPkt( nTick );
-   \       0x44   0x0020             MOVS     R0,R4
-   \       0x46   0xB2C0             UXTB     R0,R0
-   \       0x48   0xB280             UXTH     R0,R0
-   \       0x4A   0x.... 0x....      BL       LoopProcPkt
-   1527          
-   1528          		//	Loop Proc Main Watchdog Count Reload
-   1529          		LoopProcMain( nTick );
-   \       0x4E   0x0020             MOVS     R0,R4
-   \       0x50   0xB2C0             UXTB     R0,R0
-   \       0x52   0x.... 0x....      BL       LoopProcMain
-   \       0x56   0xE7E0             B.N      ??RFM_main_0
-   1530          	}
-   1531          }
-   1532          
+   \       0x60   0x.... 0x....      BL       LoopProcCLI
    1533          
-   1534          //========================================================================
+   1534          		//	Loop Proc Packet : RF Packet
+   1535          		LoopProcPkt( nTick );
+   \       0x64   0x0020             MOVS     R0,R4
+   \       0x66   0xB2C0             UXTB     R0,R0
+   \       0x68   0xB280             UXTH     R0,R0
+   \       0x6A   0x.... 0x....      BL       LoopProcPkt
+   1536          
+   1537          		//	Loop Proc Main Watchdog Count Reload
+   1538          		LoopProcMain( nTick );
+   \       0x6E   0x0020             MOVS     R0,R4
+   \       0x70   0xB2C0             UXTB     R0,R0
+   \       0x72   0x.... 0x....      BL       LoopProcMain
+   1539          
+   1540          		nTickRe = HAL_GetTick();
+   \       0x76   0x.... 0x....      BL       HAL_GetTick
+   \       0x7A   0x0005             MOVS     R5,R0
+   \       0x7C   0xE7CF             B.N      ??RFM_main_0
+   1541          
+   1542          
+   1543          	}
+   1544          }
+                 ^
+Warning[Pe940]: missing return statement at end of non-void function "RFM_main"
+
+  	uint16_t nTickCnt = 10;
+  	         ^
+"C:\D\Git_Hub\STM_IAR_SIL_Change\Library\rfm.c",1505  Warning[Pe177]: variable
+          "nTickCnt" was declared but never referenced
+   \                     ??RFM_main_1: (+1)
+   \       0x7E   0xBD70             POP      {R4-R6,PC}
+
+   \                                 In section .data, align 4
+   \                     `RFM_main::nCallTimeCnt`:
+   \        0x0   0x0000'0001        DC32 1
+   1545          
+   1546          
+   1547          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-   1535          void LoopProcRFM ( uint8_t nTick )
-   1536          //========================================================================
-   1537          {
+   1548          void LoopProcRFM ( uint8_t nTick )
+   1549          //========================================================================
+   1550          {
    \                     LoopProcRFM: (+1)
    \        0x0   0xB5F8             PUSH     {R3-R7,LR}
    \        0x2   0xB092             SUB      SP,SP,#+72
    \        0x4   0x0004             MOVS     R4,R0
-   1538          	RFMPkt	bufRFTx;
-   1539          
-   1540          	//========================================================================
-   1541          	//  Transmit - 송신기
-   1542          	if ( GetDevID() == DevRF900T )
+   1551          	RFMPkt	bufRFTx;
+   1552          
+   1553          	//========================================================================
+   1554          	//  Transmit - 송신기
+   1555          	if ( GetDevID() == DevRF900T )
    \        0x6   0x.... 0x....      BL       GetDevID
    \        0xA   0x2802             CMP      R0,#+2
    \        0xC   0xF040 0x808D      BNE.W    ??LoopProcRFM_0
-   1543          	{
-   1544          		if( GetRFMMode() != RFMModeRx )
+   1556          	{
+   1557          		if( GetRFMMode() != RFMModeRx )
    \       0x10   0x.... 0x....      BL       GetRFMMode
    \       0x14   0x2802             CMP      R0,#+2
    \       0x16   0xD055             BEQ.N    ??LoopProcRFM_1
-   1545          		{
-   1546          			if( GetKey(eKeyPtt) || GetKey(eKeySos) )
+   1558          		{
+   1559          			if( GetKey(eKeyPtt) || GetKey(eKeySos) )
    \       0x18   0x2006             MOVS     R0,#+6
    \       0x1A   0x.... 0x....      BL       GetKey
    \       0x1E   0x2800             CMP      R0,#+0
@@ -3620,301 +3660,301 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x24   0x.... 0x....      BL       GetKey
    \       0x28   0x2800             CMP      R0,#+0
    \       0x2A   0xD04B             BEQ.N    ??LoopProcRFM_1
-   1547          			{
-   1548          				// PTT Key가 눌려있을시 전송.
-   1549          				if( qBufCnt( &g_qBufAudioTx ) >= ( I2S_DMA_LOOP_SIZE * 2 ) )
+   1560          			{
+   1561          				// PTT Key가 눌려있을시 전송.
+   1562          				if( qBufCnt( &g_qBufAudioTx ) >= ( I2S_DMA_LOOP_SIZE * 2 ) )
    \                     ??LoopProcRFM_2: (+1)
-   \       0x2C   0x.... 0x....      LDR.W    R5,??DataTable47_21
+   \       0x2C   0x.... 0x....      LDR.W    R5,??DataTable47_20
    \       0x30   0x0028             MOVS     R0,R5
    \       0x32   0x.... 0x....      BL       qBufCnt
    \       0x36   0x283C             CMP      R0,#+60
    \       0x38   0xDB44             BLT.N    ??LoopProcRFM_1
-   1550          				{
-   1551          					//		printf ( "G" );
-   1552          					qBufGet( &g_qBufAudioTx, (uint8_t*)bufRFTx.dat.data, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
+   1563          				{
+   1564          					//		printf ( "G" );
+   1565          					qBufGet( &g_qBufAudioTx, (uint8_t*)bufRFTx.dat.data, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
    \       0x3A   0x223C             MOVS     R2,#+60
    \       0x3C   0xF10D 0x010A      ADD      R1,SP,#+10
    \       0x40   0x0028             MOVS     R0,R5
    \       0x42   0x.... 0x....      BL       qBufGet
-   1553          
-   1554          #if defined(USE_HOPPING)
-   1555          					//========================================================================
-   1556          					//	Packet Header
-   1557          #if defined( USE_CH_ISO_DEV )
-   1558          					//	Header #2
-   1559          					if( GetKey(eKeyPtt) )
+   1566          
+   1567          #if defined(USE_HOPPING)
+   1568          					//========================================================================
+   1569          					//	Packet Header
+   1570          #if defined( USE_CH_ISO_DEV )
+   1571          					//	Header #2
+   1572          					if( GetKey(eKeyPtt) )
    \       0x46   0x2006             MOVS     R0,#+6
    \       0x48   0x.... 0x....      BL       GetKey
    \       0x4C   0x2800             CMP      R0,#+0
    \       0x4E   0xD004             BEQ.N    ??LoopProcRFM_3
-   1560          					{
-   1561          						_MakePktHdr2( &bufRFTx, (uint8_t)PktPA );
+   1573          					{
+   1574          						_MakePktHdr2( &bufRFTx, (uint8_t)PktPA );
    \       0x50   0x2102             MOVS     R1,#+2
    \       0x52   0x4668             MOV      R0,SP
    \       0x54   0x.... 0x....      BL       _MakePktHdr2
    \       0x58   0xE003             B.N      ??LoopProcRFM_4
-   1562          					}
-   1563          					else
-   1564          					{
-   1565          						_MakePktHdr2( &bufRFTx, (uint8_t) PktCall );
+   1575          					}
+   1576          					else
+   1577          					{
+   1578          						_MakePktHdr2( &bufRFTx, (uint8_t) PktCall );
    \                     ??LoopProcRFM_3: (+1)
    \       0x5A   0x2103             MOVS     R1,#+3
    \       0x5C   0x4668             MOV      R0,SP
    \       0x5E   0x.... 0x....      BL       _MakePktHdr2
-   1566          					}
-   1567          
-   1568          #else
-   1569          					if( GetKey(eKeyPtt) )
-   1570          					{
-   1571          						_MakePktHdr( &bufRFTx, GetDevID(), 0xFF, sizeof( RFMPktCtrlPACall ), PktPA );
-   1572          					}
-   1573          					else
-   1574          					{
-   1575          						_MakePktHdr( &bufRFTx, GetDevID(), 0xFF, sizeof( RFMPktCtrlPACall ), PktCall );
-   1576          					}
-   1577          #endif
-   1578          
-   1579          #else
-   1580          					//  송신기 -> 수신기
-   1581          					bufRFTx.hdr.addrSrc = GetDevID();		//  Src : 송신기 DevRF900T
-   1582          
-   1583          					if( GetKey(eKeyPtt) )	// bPTTOnOff )
-   1584          					{
-   1585          						//  송신기 -> 수신기
-   1586          						bufRFTx.hdr.addrDest	=	DevRF900M;		 //  Dest : 수신기
-   1587          					}
-   1588          					else
-   1589          					{
-   1590          						//  송신기 -> 송신기
-   1591          						bufRFTx.hdr.addrDest	=	DevRF900T;		 //  Dest : 수신기
-   1592          					}
-   1593          
-   1594          					if( GetKey(eKeyPtt) )	bufRFTx.hdr.nPktCmd = PktPA;	//  송신기 -> 수신기
-   1595          					else					bufRFTx.hdr.nPktCmd = PktCall;	//  송신기 -> 송신기
-   1596          #endif
-   1597          
-   1598          #if defined( USE_CH_ISO_DEV )
-   1599          					if( GetKey(eKeyPtt) )
+   1579          					}
+   1580          
+   1581          #else
+   1582          					if( GetKey(eKeyPtt) )
+   1583          					{
+   1584          						_MakePktHdr( &bufRFTx, GetDevID(), 0xFF, sizeof( RFMPktCtrlPACall ), PktPA );
+   1585          					}
+   1586          					else
+   1587          					{
+   1588          						_MakePktHdr( &bufRFTx, GetDevID(), 0xFF, sizeof( RFMPktCtrlPACall ), PktCall );
+   1589          					}
+   1590          #endif
+   1591          
+   1592          #else
+   1593          					//  송신기 -> 수신기
+   1594          					bufRFTx.hdr.addrSrc = GetDevID();		//  Src : 송신기 DevRF900T
+   1595          
+   1596          					if( GetKey(eKeyPtt) )	// bPTTOnOff )
+   1597          					{
+   1598          						//  송신기 -> 수신기
+   1599          						bufRFTx.hdr.addrDest	=	DevRF900M;		 //  Dest : 수신기
+   1600          					}
+   1601          					else
+   1602          					{
+   1603          						//  송신기 -> 송신기
+   1604          						bufRFTx.hdr.addrDest	=	DevRF900T;		 //  Dest : 수신기
+   1605          					}
+   1606          
+   1607          					if( GetKey(eKeyPtt) )	bufRFTx.hdr.nPktCmd = PktPA;	//  송신기 -> 수신기
+   1608          					else					bufRFTx.hdr.nPktCmd = PktCall;	//  송신기 -> 송신기
+   1609          #endif
+   1610          
+   1611          #if defined( USE_CH_ISO_DEV )
+   1612          					if( GetKey(eKeyPtt) )
    \                     ??LoopProcRFM_4: (+1)
    \       0x62   0x2006             MOVS     R0,#+6
    \       0x64   0x.... 0x....      BL       GetKey
    \       0x68   0x2800             CMP      R0,#+0
    \       0x6A   0xD015             BEQ.N    ??LoopProcRFM_5
-   1600          					{
-   1601          						//========================================================================
-   1602          						//	PA
-   1603          
-   1604          						if ( GetChPARFT() != 0 )
+   1613          					{
+   1614          						//========================================================================
+   1615          						//	PA
+   1616          
+   1617          						if ( GetChPARFT() != 0 )
    \       0x6C   0x.... 0x....      BL       GetChPARFT
    \       0x70   0x2800             CMP      R0,#+0
    \       0x72   0xD006             BEQ.N    ??LoopProcRFM_6
-   1605          						{
-   1606          							//	송신기에 전송.
-   1607          							SendPktCh( GetChPARFT(), (U8 *)&bufRFTx,
-   1608          									(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall )) );
+   1618          						{
+   1619          							//	송신기에 전송.
+   1620          							SendPktCh( GetChPARFT(), (U8 *)&bufRFTx,
+   1621          									(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall )) );
    \       0x74   0x.... 0x....      BL       GetChPARFT
    \       0x78   0x2208             MOVS     R2,#+8
    \       0x7A   0x4669             MOV      R1,SP
    \       0x7C   0xB2C0             UXTB     R0,R0
    \       0x7E   0x.... 0x....      BL       SendPktCh
-   1609          						}
-   1610          
-   1611          						SendPktCh( GetChPA(), (U8 *)&bufRFTx,
-   1612          								(uint8_t)(pRadioConfiguration->Radio_PacketLength) );
+   1622          						}
+   1623          
+   1624          						SendPktCh( GetChPA(), (U8 *)&bufRFTx,
+   1625          								(uint8_t)(pRadioConfiguration->Radio_PacketLength) );
    \                     ??LoopProcRFM_6: (+1)
    \       0x82   0x.... 0x....      BL       GetChPA
-   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable47_40
+   \       0x86   0x.... 0x....      LDR.W    R1,??DataTable47_39
    \       0x8A   0x6809             LDR      R1,[R1, #+0]
    \       0x8C   0x794A             LDRB     R2,[R1, #+5]
    \       0x8E   0x4669             MOV      R1,SP
    \       0x90   0xB2C0             UXTB     R0,R0
    \       0x92   0x.... 0x....      BL       SendPktCh
    \       0x96   0xE015             B.N      ??LoopProcRFM_1
-   1613          					}
-   1614          					else
-   1615          					{
-   1616          						//========================================================================
-   1617          						//	Call
-   1618          						if ( GetChPARFT() != 0 )
+   1626          					}
+   1627          					else
+   1628          					{
+   1629          						//========================================================================
+   1630          						//	Call
+   1631          						if ( GetChPARFT() != 0 )
    \                     ??LoopProcRFM_5: (+1)
    \       0x98   0x.... 0x....      BL       GetChPARFT
    \       0x9C   0x2800             CMP      R0,#+0
    \       0x9E   0xD007             BEQ.N    ??LoopProcRFM_7
-   1619          						{
-   1620          							//	송신기에 직접 전송.
-   1621          							SendPktCh( GetChPARFT(), (U8 *)&bufRFTx,
-   1622          									(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall )) );
+   1632          						{
+   1633          							//	송신기에 직접 전송.
+   1634          							SendPktCh( GetChPARFT(), (U8 *)&bufRFTx,
+   1635          									(uint8_t)(sizeof( RFMPktHdr ) + sizeof( RFMPktCtrlPACall )) );
    \       0xA0   0x.... 0x....      BL       GetChPARFT
    \       0xA4   0x2208             MOVS     R2,#+8
    \       0xA6   0x4669             MOV      R1,SP
    \       0xA8   0xB2C0             UXTB     R0,R0
    \       0xAA   0x.... 0x....      BL       SendPktCh
    \       0xAE   0xE009             B.N      ??LoopProcRFM_1
-   1623          						}
-   1624          						else
-   1625          						{
-   1626          							//	수신기를 통해 전송.
-   1627          							SendPktCh( GetChPA(), (U8 *)&bufRFTx,
-   1628          									(uint8_t)(pRadioConfiguration->Radio_PacketLength) );
+   1636          						}
+   1637          						else
+   1638          						{
+   1639          							//	수신기를 통해 전송.
+   1640          							SendPktCh( GetChPA(), (U8 *)&bufRFTx,
+   1641          									(uint8_t)(pRadioConfiguration->Radio_PacketLength) );
    \                     ??LoopProcRFM_7: (+1)
    \       0xB0   0x.... 0x....      BL       GetChPA
-   \       0xB4   0x.... 0x....      LDR.W    R1,??DataTable47_40
+   \       0xB4   0x.... 0x....      LDR.W    R1,??DataTable47_39
    \       0xB8   0x6809             LDR      R1,[R1, #+0]
    \       0xBA   0x794A             LDRB     R2,[R1, #+5]
    \       0xBC   0x4669             MOV      R1,SP
    \       0xBE   0xB2C0             UXTB     R0,R0
    \       0xC0   0x.... 0x....      BL       SendPktCh
-   1629          						}
-   1630          					}
-   1631          
-   1632          #else
-   1633          					SendPacket( (uint8_t *)&bufRFTx,
-   1634          						pRadioConfiguration->Radio_PacketLength );
-   1635          #endif
-   1636          				}
-   1637          			}
-   1638          		}
-   1639          
-   1640          		//========================================================================
-   1641          		static uint8_t nOldRFMMode = 0;
-   1642          
-   1643          		uint8_t nRFMMode = GetRFMMode();
+   1642          						}
+   1643          					}
+   1644          
+   1645          #else
+   1646          					SendPacket( (uint8_t *)&bufRFTx,
+   1647          						pRadioConfiguration->Radio_PacketLength );
+   1648          #endif
+   1649          				}
+   1650          			}
+   1651          		}
+   1652          
+   1653          		//========================================================================
+   1654          		static uint8_t nOldRFMMode = 0;
+   1655          
+   1656          		uint8_t nRFMMode = GetRFMMode();
    \                     ??LoopProcRFM_1: (+1)
    \       0xC4   0x.... 0x....      BL       GetRFMMode
    \       0xC8   0x0005             MOVS     R5,R0
-   1644          		if( nRFMMode != nOldRFMMode )
+   1657          		if( nRFMMode != nOldRFMMode )
    \       0xCA   0x.... 0x....      LDR.W    R6,??DataTable47_45
    \       0xCE   0x0028             MOVS     R0,R5
    \       0xD0   0x7831             LDRB     R1,[R6, #+0]
    \       0xD2   0xB2C0             UXTB     R0,R0
    \       0xD4   0x4288             CMP      R0,R1
    \       0xD6   0xD01F             BEQ.N    ??LoopProcRFM_8
-   1645          		{
-   1646          			switch ( nRFMMode )
+   1658          		{
+   1659          			switch ( nRFMMode )
    \       0xD8   0x0028             MOVS     R0,R5
    \       0xDA   0xB2C0             UXTB     R0,R0
    \       0xDC   0x2800             CMP      R0,#+0
    \       0xDE   0xD00A             BEQ.N    ??LoopProcRFM_9
    \       0xE0   0x2802             CMP      R0,#+2
    \       0xE2   0xD118             BNE.N    ??LoopProcRFM_10
-   1647          			{
-   1648          			case RFMModeRx:
-   1649          				LCDSetCursor( 20, 13 );
+   1660          			{
+   1661          			case RFMModeRx:
+   1662          				LCDSetCursor( 20, 13 );
    \                     ??LoopProcRFM_11: (+1)
    \       0xE4   0x210D             MOVS     R1,#+13
    \       0xE6   0x2014             MOVS     R0,#+20
    \       0xE8   0x.... 0x....      BL       LCDSetCursor
-   1650          				LCDPrintf( "수신중..." );
+   1663          				LCDPrintf( "수신중..." );
    \       0xEC   0x.... 0x....      LDR.W    R0,??DataTable47_46
    \       0xF0   0x.... 0x....      BL       LCDPrintf
-   1651          				break;
+   1664          				break;
    \       0xF4   0xE00F             B.N      ??LoopProcRFM_10
-   1652          
-   1653          			case RFMModeNormal:
-   1654          				//========================================================================
-   1655          				//  편성 : XXX
-   1656          				UpdateLCDMain();
+   1665          
+   1666          			case RFMModeNormal:
+   1667          				//========================================================================
+   1668          				//  편성 : XXX
+   1669          				UpdateLCDMain();
    \                     ??LoopProcRFM_9: (+1)
    \       0xF6   0x.... 0x....      BL       UpdateLCDMain
-   1657          				//	송신기 Speaker Mute
-   1658          #if defined(USE_RFT_ONLY_RX_SPK_ON)
-   1659          				if ( GetDevID() == DevRF900T )
+   1670          				//	송신기 Speaker Mute
+   1671          #if defined(USE_RFT_ONLY_RX_SPK_ON)
+   1672          				if ( GetDevID() == DevRF900T )
    \       0xFA   0x.... 0x....      BL       GetDevID
    \       0xFE   0x2802             CMP      R0,#+2
    \      0x100   0xD109             BNE.N    ??LoopProcRFM_12
-   1660          				{
-   1661          					//  송신기 : 수신중이 아닌경우 SPK OFF
-   1662          					RFM_Spk((uint8_t)0);
+   1673          				{
+   1674          					//  송신기 : 수신중이 아닌경우 SPK OFF
+   1675          					RFM_Spk((uint8_t)0);
    \      0x102   0x2000             MOVS     R0,#+0
    \      0x104   0x.... 0x....      BL       RFM_Spk
-   1663          
-   1664          					//  Red LED Off
-   1665          					HAL_GPIO_WritePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_RESET ); //  RED LED
+   1676          
+   1677          					//  Red LED Off
+   1678          					HAL_GPIO_WritePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_RESET ); //  RED LED
    \      0x108   0x2200             MOVS     R2,#+0
    \      0x10A   0xF44F 0x4180      MOV      R1,#+16384
    \      0x10E   0x.... 0x....      LDR.W    R0,??DataTable47_47
    \      0x112   0x.... 0x....      BL       HAL_GPIO_WritePin
-   1666          				}
-   1667          #endif
-   1668          				break;
-   1669          			}
-   1670          
-   1671          			nOldRFMMode = nRFMMode;
+   1679          				}
+   1680          #endif
+   1681          				break;
+   1682          			}
+   1683          
+   1684          			nOldRFMMode = nRFMMode;
    \                     ??LoopProcRFM_12: (+1)
    \                     ??LoopProcRFM_10: (+1)
    \      0x116   0x7035             STRB     R5,[R6, #+0]
-   1672          		}
-   1673          
-   1674          		//========================================================================
-   1675          		//	상태정보 모니터링중 - 상태정보값 갱신.
-   1676          		if( GetRFMMode() == RFMModeNormal )
+   1685          		}
+   1686          
+   1687          		//========================================================================
+   1688          		//	상태정보 모니터링중 - 상태정보값 갱신.
+   1689          		if( GetRFMMode() == RFMModeNormal )
    \                     ??LoopProcRFM_8: (+1)
    \      0x118   0x.... 0x....      BL       GetRFMMode
    \      0x11C   0x2800             CMP      R0,#+0
    \      0x11E   0xD145             BNE.N    ??LoopProcRFM_13
-   1677          		{
-   1678          			UpdateLCDMonitor( nTick );		//	LCD : 모니터링 상태 Update
+   1690          		{
+   1691          			UpdateLCDMonitor( nTick );		//	LCD : 모니터링 상태 Update
    \      0x120   0x0020             MOVS     R0,R4
    \      0x122   0xB2C0             UXTB     R0,R0
    \      0x124   0x.... 0x....      BL       UpdateLCDMonitor
    \      0x128   0xE040             B.N      ??LoopProcRFM_13
-   1679          		}
-   1680          	}
-   1681          	//========================================================================
-   1682          	//  RFM - 수신기 - 대승객방송
-   1683          	else if ( GetDevID() == DevRF900M )
+   1692          		}
+   1693          	}
+   1694          	//========================================================================
+   1695          	//  RFM - 수신기 - 대승객방송
+   1696          	else if ( GetDevID() == DevRF900M )
    \                     ??LoopProcRFM_0: (+1)
    \      0x12A   0x.... 0x....      BL       GetDevID
    \      0x12E   0x2801             CMP      R0,#+1
    \      0x130   0xD13C             BNE.N    ??LoopProcRFM_13
-   1684          	{
-   1685          		if( GetRFMMode() == RFMModeOcc )
+   1697          	{
+   1698          		if( GetRFMMode() == RFMModeOcc )
    \      0x132   0x.... 0x....      BL       GetRFMMode
    \      0x136   0x2803             CMP      R0,#+3
    \      0x138   0xD138             BNE.N    ??LoopProcRFM_13
-   1686          		{
-   1687          			//	대승객 방송 모드인 경우 대승객 방송 음성 송출.
-   1688          			if( qBufCnt( &g_qBufAudioTx ) >= ( I2S_DMA_LOOP_SIZE * 2 ) )
-   \      0x13A   0x.... 0x....      LDR.W    R5,??DataTable47_21
+   1699          		{
+   1700          			//	대승객 방송 모드인 경우 대승객 방송 음성 송출.
+   1701          			if( qBufCnt( &g_qBufAudioTx ) >= ( I2S_DMA_LOOP_SIZE * 2 ) )
+   \      0x13A   0x.... 0x....      LDR.W    R5,??DataTable47_20
    \      0x13E   0x0028             MOVS     R0,R5
    \      0x140   0x.... 0x....      BL       qBufCnt
    \      0x144   0x283C             CMP      R0,#+60
    \      0x146   0xDB31             BLT.N    ??LoopProcRFM_13
-   1689          			{
-   1690          				//		printf ( "G" );
-   1691          				//========================================================================
-   1692          				//	Audio ( 대승객방송 음성 )
-   1693          				qBufGet( &g_qBufAudioTx, (uint8_t*)bufRFTx.dat.data, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
+   1702          			{
+   1703          				//		printf ( "G" );
+   1704          				//========================================================================
+   1705          				//	Audio ( 대승객방송 음성 )
+   1706          				qBufGet( &g_qBufAudioTx, (uint8_t*)bufRFTx.dat.data, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
    \      0x148   0x223C             MOVS     R2,#+60
    \      0x14A   0xF10D 0x010A      ADD      R1,SP,#+10
    \      0x14E   0x0028             MOVS     R0,R5
    \      0x150   0x.... 0x....      BL       qBufGet
-   1694          				//	Audio Loopback ( 대승객방송 음성 )
-   1695          				qBufPut( &g_qBufAudioRx, (uint8_t*)bufRFTx.dat.data, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
+   1707          				//	Audio Loopback ( 대승객방송 음성 )
+   1708          				qBufPut( &g_qBufAudioRx, (uint8_t*)bufRFTx.dat.data, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
    \      0x154   0x223C             MOVS     R2,#+60
    \      0x156   0xF10D 0x010A      ADD      R1,SP,#+10
-   \      0x15A   0x.... 0x....      LDR.W    R0,??DataTable47_24
+   \      0x15A   0x.... 0x....      LDR.W    R0,??DataTable47_23
    \      0x15E   0x.... 0x....      BL       qBufPut
-   1696          
-   1697          				//========================================================================
-   1698          				//	Packet Header	-	OCC PA 전송
-   1699          
-   1700          				//	Header #2
-   1701          				_MakePktHdr2( &bufRFTx, (uint8_t)PktPA );
+   1709          
+   1710          				//========================================================================
+   1711          				//	Packet Header	-	OCC PA 전송
+   1712          
+   1713          				//	Header #2
+   1714          				_MakePktHdr2( &bufRFTx, (uint8_t)PktPA );
    \      0x162   0x2102             MOVS     R1,#+2
    \      0x164   0x4668             MOV      R0,SP
    \      0x166   0x.... 0x....      BL       _MakePktHdr2
-   1702          
-   1703          				if( GetChRx() == ChTS1_1 )	//	1호차 수신기
+   1715          
+   1716          				if( GetChRx() == ChTS1_1 )	//	1호차 수신기
    \      0x16A   0x.... 0x....      BL       GetChRx
    \      0x16E   0x2815             CMP      R0,#+21
    \      0x170   0xD10B             BNE.N    ??LoopProcRFM_14
-   1704          				{
-   1705          					//	1 -> 2 ... -> 10
-   1706          					SendPktCh( GetChPA() + 1, (U8 *)&bufRFTx,
-   1707          							(uint8_t)(pRadioConfiguration->Radio_PacketLength) );
+   1717          				{
+   1718          					//	1 -> 2 ... -> 10
+   1719          					SendPktCh( GetChPA() + 1, (U8 *)&bufRFTx,
+   1720          							(uint8_t)(pRadioConfiguration->Radio_PacketLength) );
    \      0x172   0x.... 0x....      BL       GetChPA
-   \      0x176   0x.... 0x....      LDR.W    R1,??DataTable47_40
+   \      0x176   0x.... 0x....      LDR.W    R1,??DataTable47_39
    \      0x17A   0x6809             LDR      R1,[R1, #+0]
    \      0x17C   0x794A             LDRB     R2,[R1, #+5]
    \      0x17E   0x4669             MOV      R1,SP
@@ -3922,41 +3962,41 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \      0x182   0xB2C0             UXTB     R0,R0
    \      0x184   0x.... 0x....      BL       SendPktCh
    \      0x188   0xE00A             B.N      ??LoopProcRFM_15
-   1708          				}
-   1709          				else
-   1710          				{
-   1711          					// 10 -> 9 ... -> 1
-   1712          					SendPktCh( GetChPA() - 1, (U8 *)&bufRFTx,
-   1713          							(uint8_t)(pRadioConfiguration->Radio_PacketLength ));
+   1721          				}
+   1722          				else
+   1723          				{
+   1724          					// 10 -> 9 ... -> 1
+   1725          					SendPktCh( GetChPA() - 1, (U8 *)&bufRFTx,
+   1726          							(uint8_t)(pRadioConfiguration->Radio_PacketLength ));
    \                     ??LoopProcRFM_14: (+1)
    \      0x18A   0x.... 0x....      BL       GetChPA
-   \      0x18E   0x.... 0x....      LDR.W    R1,??DataTable47_40
+   \      0x18E   0x.... 0x....      LDR.W    R1,??DataTable47_39
    \      0x192   0x6809             LDR      R1,[R1, #+0]
    \      0x194   0x794A             LDRB     R2,[R1, #+5]
    \      0x196   0x4669             MOV      R1,SP
    \      0x198   0x1E40             SUBS     R0,R0,#+1
    \      0x19A   0xB2C0             UXTB     R0,R0
    \      0x19C   0x.... 0x....      BL       SendPktCh
-   1714          				}
-   1715          
-   1716          				// 조명 On
-   1717          				HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
+   1727          				}
+   1728          
+   1729          				// 조명 On
+   1730          				HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
    \                     ??LoopProcRFM_15: (+1)
    \      0x1A0   0x2201             MOVS     R2,#+1
    \      0x1A2   0xF44F 0x7100      MOV      R1,#+512
    \      0x1A6   0x....             LDR.N    R0,??DataTable45
    \      0x1A8   0x.... 0x....      BL       HAL_GPIO_WritePin
-   1718          				//========================================================================
-   1719          			}
-   1720          		}
-   1721          	}
-   1722          
-   1723          	//========================================================================
-   1724          	//	수신중 해제
-   1725          	if ( (nTick - g_nStampRxPkt) > TIMEOUT_RXSTAT && GetRFMMode() == RFMModeRx
-   1726          			&& ( GetRFMMode() != RFMModeOcc )		//	OCC Mode - Skip
-   1727          			&& ( GetRFMMode() != RFMModeUpgr )		//	Upgrade Mode - Skip
-   1728          		)
+   1731          				//========================================================================
+   1732          			}
+   1733          		}
+   1734          	}
+   1735          
+   1736          	//========================================================================
+   1737          	//	수신중 해제
+   1738          	if ( (nTick - g_nStampRxPkt) > TIMEOUT_RXSTAT && GetRFMMode() == RFMModeRx
+   1739          			&& ( GetRFMMode() != RFMModeOcc )		//	OCC Mode - Skip
+   1740          			&& ( GetRFMMode() != RFMModeUpgr )		//	Upgrade Mode - Skip
+   1741          		)
    \                     ??LoopProcRFM_13: (+1)
    \      0x1AC   0x.... 0x....      LDR.W    R5,??DataTable47_48
    \      0x1B0   0x0021             MOVS     R1,R4
@@ -3975,47 +4015,47 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \      0x1D0   0x.... 0x....      BL       GetRFMMode
    \      0x1D4   0x2804             CMP      R0,#+4
    \      0x1D6   0xD015             BEQ.N    ??LoopProcRFM_16
-   1729          	{
-   1730          		// Rx 패킷이 500 ms 없을 경우 수신모드 해제
-   1731          		SetRFMMode((uint8_t) RFMModeNormal );
+   1742          	{
+   1743          		// Rx 패킷이 500 ms 없을 경우 수신모드 해제
+   1744          		SetRFMMode((uint8_t) RFMModeNormal );
    \      0x1D8   0x2000             MOVS     R0,#+0
    \      0x1DA   0x.... 0x....      BL       SetRFMMode
-   1732          
-   1733          		//  수신기 Spk Relay Off
-   1734          		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_RESET );
+   1745          
+   1746          		//  수신기 Spk Relay Off
+   1747          		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_RESET );
    \      0x1DE   0x2200             MOVS     R2,#+0
    \      0x1E0   0xF44F 0x7180      MOV      R1,#+256
    \      0x1E4   0x....             LDR.N    R0,??DataTable45
    \      0x1E6   0x.... 0x....      BL       HAL_GPIO_WritePin
-   1735          
-   1736          #if defined(USE_RFT_ONLY_RX_SPK_ON)
-   1737          		if ( GetDevID() == DevRF900T )
+   1748          
+   1749          #if defined(USE_RFT_ONLY_RX_SPK_ON)
+   1750          		if ( GetDevID() == DevRF900T )
    \      0x1EA   0x.... 0x....      BL       GetDevID
    \      0x1EE   0x2802             CMP      R0,#+2
    \      0x1F0   0xD102             BNE.N    ??LoopProcRFM_17
-   1738          		{
-   1739          			//  송신기 : 수신중이 아닌경우 SPK OFF
-   1740          //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
-   1741          			RFM_Spk((uint8_t)0);
+   1751          		{
+   1752          			//  송신기 : 수신중이 아닌경우 SPK OFF
+   1753          //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_RESET );
+   1754          			RFM_Spk((uint8_t)0);
    \      0x1F2   0x2000             MOVS     R0,#+0
    \      0x1F4   0x.... 0x....      BL       RFM_Spk
-   1742          		}
-   1743          #endif
-   1744          
-   1745          		//  Red LED Off
-   1746          		HAL_GPIO_WritePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_RESET ); //  RED LED
+   1755          		}
+   1756          #endif
+   1757          
+   1758          		//  Red LED Off
+   1759          		HAL_GPIO_WritePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_RESET ); //  RED LED
    \                     ??LoopProcRFM_17: (+1)
    \      0x1F8   0x2200             MOVS     R2,#+0
    \      0x1FA   0xF44F 0x4180      MOV      R1,#+16384
    \      0x1FE   0x....             LDR.N    R0,??DataTable47_47
    \      0x200   0x.... 0x....      BL       HAL_GPIO_WritePin
-   1747          	}
-   1748          
-   1749          	//========================================================================
-   1750          	//  수신기 Standby GPIO 제어 : 모듈동작시 1초간격 Blink
-   1751          	static uint8_t s_nTickStandby;
-   1752          
-   1753          	if ( nTick - s_nTickStandby >= 1000 )
+   1760          	}
+   1761          
+   1762          	//========================================================================
+   1763          	//  수신기 Standby GPIO 제어 : 모듈동작시 1초간격 Blink
+   1764          	static uint8_t s_nTickStandby;
+   1765          
+   1766          	if ( nTick - s_nTickStandby >= 1000 )
    \                     ??LoopProcRFM_16: (+1)
    \      0x204   0x....             LDR.N    R6,??DataTable47_49
    \      0x206   0x0021             MOVS     R1,R4
@@ -4024,75 +4064,75 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \      0x20C   0x1A09             SUBS     R1,R1,R0
    \      0x20E   0xF5B1 0x7F7A      CMP      R1,#+1000
    \      0x212   0xDB1B             BLT.N    ??LoopProcRFM_18
-   1754          	{
-   1755          		//	Standby GPIO Toggle
-   1756          		if ( GetRFMMode() == RFMModeRx )
+   1767          	{
+   1768          		//	Standby GPIO Toggle
+   1769          		if ( GetRFMMode() == RFMModeRx )
    \      0x214   0x.... 0x....      BL       GetRFMMode
    \      0x218   0x2802             CMP      R0,#+2
    \      0x21A   0xD105             BNE.N    ??LoopProcRFM_19
-   1757          		{
-   1758          			//  수신기:수신중 LED On ( Standby LED On )
-   1759          			HAL_GPIO_WritePin( STANDBY_GPIO_Port, STANDBY_Pin, GPIO_PIN_SET );
+   1770          		{
+   1771          			//  수신기:수신중 LED On ( Standby LED On )
+   1772          			HAL_GPIO_WritePin( STANDBY_GPIO_Port, STANDBY_Pin, GPIO_PIN_SET );
    \      0x21C   0x2201             MOVS     R2,#+1
    \      0x21E   0x2180             MOVS     R1,#+128
    \      0x220   0x....             LDR.N    R0,??DataTable45
    \      0x222   0x.... 0x....      BL       HAL_GPIO_WritePin
    \      0x226   0xE008             B.N      ??LoopProcRFM_20
-   1760          		}
-   1761          		else
-   1762          		{
-   1763          			//  Standby LED Toggle
-   1764          			HAL_GPIO_TogglePin( STANDBY_GPIO_Port, STANDBY_Pin );
+   1773          		}
+   1774          		else
+   1775          		{
+   1776          			//  Standby LED Toggle
+   1777          			HAL_GPIO_TogglePin( STANDBY_GPIO_Port, STANDBY_Pin );
    \                     ??LoopProcRFM_19: (+1)
    \      0x228   0x2180             MOVS     R1,#+128
    \      0x22A   0x....             LDR.N    R0,??DataTable45
    \      0x22C   0x.... 0x....      BL       HAL_GPIO_TogglePin
-   1765          
-   1766          			//	RFM(Board) Status LED
-   1767          			HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
+   1778          
+   1779          			//	RFM(Board) Status LED
+   1780          			HAL_GPIO_TogglePin ( LED_ST_GPIO_Port, LED_ST_Pin );
    \      0x230   0xF44F 0x4100      MOV      R1,#+32768
    \      0x234   0x....             LDR.N    R0,??DataTable47_50
    \      0x236   0x.... 0x....      BL       HAL_GPIO_TogglePin
-   1768          		}
-   1769          
-   1770          		if ( GetRFMMode() == RFMModeNormal )
+   1781          		}
+   1782          
+   1783          		if ( GetRFMMode() == RFMModeNormal )
    \                     ??LoopProcRFM_20: (+1)
    \      0x23A   0x.... 0x....      BL       GetRFMMode
    \      0x23E   0x2800             CMP      R0,#+0
    \      0x240   0xD103             BNE.N    ??LoopProcRFM_21
-   1771          		{
-   1772          			//	Normal 모드인 경우 상태정보 갱신.
-   1773          		    //	Reflash Status
-   1774          		    ReflashStat( nTick );	//	상태정보 갱신.
+   1784          		{
+   1785          			//	Normal 모드인 경우 상태정보 갱신.
+   1786          		    //	Reflash Status
+   1787          		    ReflashStat( nTick );	//	상태정보 갱신.
    \      0x242   0x0020             MOVS     R0,R4
    \      0x244   0xB2C0             UXTB     R0,R0
    \      0x246   0x.... 0x....      BL       ReflashStat
-   1775          		}
-   1776          
-   1777          #if defined(USE_SEND_STATUS)	//	상태 정보 전송.
-   1778          		//========================================================================
-   1779          		if ( GetRFMMode() == RFMModeNormal )
-   1780          		{
-   1781          		    SendStat(0);		//	상태정보전송.
-   1782          
-   1783          		    //	Reflash Status
-   1784          		    ReflashStat( nTick );	//	상태정보 갱신.
-   1785          		}
-   1786          		//========================================================================
-   1787          #endif
-   1788          		s_nTickStandby = nTick;
+   1788          		}
+   1789          
+   1790          #if defined(USE_SEND_STATUS)	//	상태 정보 전송.
+   1791          		//========================================================================
+   1792          		if ( GetRFMMode() == RFMModeNormal )
+   1793          		{
+   1794          		    SendStat(0);		//	상태정보전송.
+   1795          
+   1796          		    //	Reflash Status
+   1797          		    ReflashStat( nTick );	//	상태정보 갱신.
+   1798          		}
+   1799          		//========================================================================
+   1800          #endif
+   1801          		s_nTickStandby = nTick;
    \                     ??LoopProcRFM_21: (+1)
    \      0x24A   0x7034             STRB     R4,[R6, #+0]
-   1789          	}
-   1790          
-   1791          #if defined(TIMEOUT_UPGRADE)
-   1792          
-   1793          	//========================================================================
-   1794          	//	Upgrade Mode 진입후 5분간 Rx가 없는경우 Normal모드로 변경.
-   1795          	if ( ( GetDevID() == DevRF900M )						//	수신기.
-   1796          		&& ( ( nTick - g_nStampRxPkt ) > (TIMEOUT_UPGRADE * 1000) )	//	Timeout
-   1797          		&& ( GetRFMMode() == RFMModeUpgr )
-   1798          		)
+   1802          	}
+   1803          
+   1804          #if defined(TIMEOUT_UPGRADE)
+   1805          
+   1806          	//========================================================================
+   1807          	//	Upgrade Mode 진입후 5분간 Rx가 없는경우 Normal모드로 변경.
+   1808          	if ( ( GetDevID() == DevRF900M )						//	수신기.
+   1809          		&& ( ( nTick - g_nStampRxPkt ) > (TIMEOUT_UPGRADE * 1000) )	//	Timeout
+   1810          		&& ( GetRFMMode() == RFMModeUpgr )
+   1811          		)
    \                     ??LoopProcRFM_18: (+1)
    \      0x24C   0x.... 0x....      BL       GetDevID
    \      0x250   0x2801             CMP      R0,#+1
@@ -4107,42 +4147,42 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \      0x262   0x.... 0x....      BL       GetRFMMode
    \      0x266   0x2804             CMP      R0,#+4
    \      0x268   0xD10C             BNE.N    ??LoopProcRFM_22
-   1799          	{
-   1800          		//========================================================================
-   1801          		//	Normal 모드로 변경.
-   1802          		SetRFMMode( (uint8_t)RFMModeNormal );	//	Normal Mode 로 변경
+   1812          	{
+   1813          		//========================================================================
+   1814          		//	Normal 모드로 변경.
+   1815          		SetRFMMode( (uint8_t)RFMModeNormal );	//	Normal Mode 로 변경
    \      0x26A   0x2000             MOVS     R0,#+0
    \      0x26C   0x.... 0x....      BL       SetRFMMode
-   1803          		//========================================================================
-   1804          
-   1805          		//  RF 수신 Start
-   1806          		g_nChRx = GetChRx();	//	ChTS1_1 + g_idxTrainSet * 2 + ((g_nCarNo+1) % 2);	// 현재 호차 채널
+   1816          		//========================================================================
+   1817          
+   1818          		//  RF 수신 Start
+   1819          		g_nChRx = GetChRx();	//	ChTS1_1 + g_idxTrainSet * 2 + ((g_nCarNo+1) % 2);	// 현재 호차 채널
    \      0x270   0x....             LDR.N    R5,??DataTable47_52
    \      0x272   0x.... 0x....      BL       GetChRx
    \      0x276   0x7028             STRB     R0,[R5, #+0]
-   1807          
-   1808          		vRadio_StartRX(
-   1809          			g_nChRx,	//g_idxTrainSet,	//		pRadioConfiguration->Radio_ChannelNumber,
-   1810          			pRadioConfiguration->Radio_PacketLength );
-   \      0x278   0x....             LDR.N    R0,??DataTable47_40
+   1820          
+   1821          		vRadio_StartRX(
+   1822          			g_nChRx,	//g_idxTrainSet,	//		pRadioConfiguration->Radio_ChannelNumber,
+   1823          			pRadioConfiguration->Radio_PacketLength );
+   \      0x278   0x....             LDR.N    R0,??DataTable47_39
    \      0x27A   0x6800             LDR      R0,[R0, #+0]
    \      0x27C   0x7941             LDRB     R1,[R0, #+5]
    \      0x27E   0x7828             LDRB     R0,[R5, #+0]
    \      0x280   0x.... 0x....      BL       vRadio_StartRX
-   1811          	}
-   1812          
-   1813          #endif
-   1814          
-   1815          #if defined(USE_STAT_REQ)	//	송신기 : 상태 정보 요청 100 msec간격.
-   1816          	//========================================================================
-   1817          	//	송신기 장치 상태정보 요청.
-   1818          	static uint8_t oldTickStatReq = 0;
-   1819          	static uint8_t s_idxCh = 0;
-   1820          
-   1821          	if	( ( (nTick - oldTickStatReq) > TIME_STAT_REQ )	//	주기 : 200 msec
-   1822          			&&	GetDevID() == DevRF900T					//	송신기
-   1823          			&&	GetRFMMode() == RFMModeNormal			//	Normal모드 : 상태정보 요청.
-   1824          		)
+   1824          	}
+   1825          
+   1826          #endif
+   1827          
+   1828          #if defined(USE_STAT_REQ)	//	송신기 : 상태 정보 요청 100 msec간격.
+   1829          	//========================================================================
+   1830          	//	송신기 장치 상태정보 요청.
+   1831          	static uint8_t oldTickStatReq = 0;
+   1832          	static uint8_t s_idxCh = 0;
+   1833          
+   1834          	if	( ( (nTick - oldTickStatReq) > TIME_STAT_REQ )	//	주기 : 200 msec
+   1835          			&&	GetDevID() == DevRF900T					//	송신기
+   1836          			&&	GetRFMMode() == RFMModeNormal			//	Normal모드 : 상태정보 요청.
+   1837          		)
    \                     ??LoopProcRFM_22: (+1)
    \      0x284   0x....             LDR.N    R5,??DataTable47_53
    \      0x286   0x0021             MOVS     R1,R4
@@ -4158,29 +4198,29 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \      0x29E   0x.... 0x....      BL       GetRFMMode
    \      0x2A2   0x2800             CMP      R0,#+0
    \      0x2A4   0xD128             BNE.N    ??LoopProcRFM_23
-   1825          	{
-   1826          		//	상태정보 요청.
-   1827          		if ( s_idxCh < MaxTrainSet )
+   1838          	{
+   1839          		//	상태정보 요청.
+   1840          		if ( s_idxCh < MaxTrainSet )
    \      0x2A6   0x....             LDR.N    R6,??DataTable47_54
    \      0x2A8   0x7830             LDRB     R0,[R6, #+0]
    \      0x2AA   0x280A             CMP      R0,#+10
    \      0x2AC   0xDA06             BGE.N    ??LoopProcRFM_24
-   1828          		{
-   1829          			//========================================================================
-   1830          			//	수신기 상태정보
-   1831          			SendStatReq( ChTS1_1 + (s_idxCh*ChGap) );
+   1841          		{
+   1842          			//========================================================================
+   1843          			//	수신기 상태정보
+   1844          			SendStatReq( ChTS1_1 + (s_idxCh*ChGap) );
    \      0x2AE   0x7830             LDRB     R0,[R6, #+0]
    \      0x2B0   0x0080             LSLS     R0,R0,#+2
    \      0x2B2   0x3015             ADDS     R0,R0,#+21
    \      0x2B4   0xB2C0             UXTB     R0,R0
    \      0x2B6   0x.... 0x....      BL       SendStatReq
    \      0x2BA   0xE014             B.N      ??LoopProcRFM_25
-   1832          		}
-   1833          		else
-   1834          		{
-   1835          			//========================================================================
-   1836          			//	송신기 상태정보
-   1837          			if( ChTx_1 + ( s_idxCh % 2 ) != GetChRx() )
+   1845          		}
+   1846          		else
+   1847          		{
+   1848          			//========================================================================
+   1849          			//	송신기 상태정보
+   1850          			if( ChTx_1 + ( s_idxCh % 2 ) != GetChRx() )
    \                     ??LoopProcRFM_24: (+1)
    \      0x2BC   0x7837             LDRB     R7,[R6, #+0]
    \      0x2BE   0x2002             MOVS     R0,#+2
@@ -4190,9 +4230,9 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \      0x2CA   0x.... 0x....      BL       GetChRx
    \      0x2CE   0x4287             CMP      R7,R0
    \      0x2D0   0xD009             BEQ.N    ??LoopProcRFM_25
-   1838          			{
-   1839          				//	타 송신기에 상태정보 요청.
-   1840          				SendStatReq( ChTx_1 + ( s_idxCh % 2 ) );
+   1851          			{
+   1852          				//	타 송신기에 상태정보 요청.
+   1853          				SendStatReq( ChTx_1 + ( s_idxCh % 2 ) );
    \      0x2D2   0x7830             LDRB     R0,[R6, #+0]
    \      0x2D4   0x2102             MOVS     R1,#+2
    \      0x2D6   0xFB90 0xF2F1      SDIV     R2,R0,R1
@@ -4200,16 +4240,16 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \      0x2DE   0x3008             ADDS     R0,R0,#+8
    \      0x2E0   0xB2C0             UXTB     R0,R0
    \      0x2E2   0x.... 0x....      BL       SendStatReq
-   1841          			}
-   1842          		}
-   1843          
-   1844          //		if ( s_idxCh == 0 )
-   1845          //		{
-   1846          //		    //	Reflash Status
-   1847          //		    ReflashStat( nTick );	//	상태정보 갱신.
-   1848          //		}
-   1849          
-   1850          		s_idxCh = ( s_idxCh + 1 ) % ( MaxTrainSet + 2 );	//	MaxTrainSet : 10 + 2(송신기 2채널)
+   1854          			}
+   1855          		}
+   1856          
+   1857          //		if ( s_idxCh == 0 )
+   1858          //		{
+   1859          //		    //	Reflash Status
+   1860          //		    ReflashStat( nTick );	//	상태정보 갱신.
+   1861          //		}
+   1862          
+   1863          		s_idxCh = ( s_idxCh + 1 ) % ( MaxTrainSet + 2 );	//	MaxTrainSet : 10 + 2(송신기 2채널)
    \                     ??LoopProcRFM_25: (+1)
    \      0x2E6   0x7830             LDRB     R0,[R6, #+0]
    \      0x2E8   0x1C40             ADDS     R0,R0,#+1
@@ -4217,12 +4257,12 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \      0x2EC   0xFB90 0xF2F1      SDIV     R2,R0,R1
    \      0x2F0   0xFB01 0x0012      MLS      R0,R1,R2,R0
    \      0x2F4   0x7030             STRB     R0,[R6, #+0]
-   1851          
-   1852          		oldTickStatReq = nTick;
+   1864          
+   1865          		oldTickStatReq = nTick;
    \      0x2F6   0x702C             STRB     R4,[R5, #+0]
-   1853          	}
-   1854          #endif
-   1855          }
+   1866          	}
+   1867          #endif
+   1868          }
    \                     ??LoopProcRFM_23: (+1)
    \      0x2F8   0xB013             ADD      SP,SP,#+76
    \      0x2FA   0xBDF0             POP      {R4-R7,PC}
@@ -4242,22 +4282,22 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \                                 In section .bss, align 1
    \                     `LoopProcRFM::s_idxCh`:
    \        0x0                      DS8 1
-   1856          
-   1857          //========================================================================
+   1869          
+   1870          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-   1858          void UpdateStat( RFMPktStat *pStat )
-   1859          //========================================================================
-   1860          {
+   1871          void UpdateStat( RFMPktStat *pStat )
+   1872          //========================================================================
+   1873          {
    \                     UpdateStat: (+1)
    \        0x0   0xE92D 0x47FC      PUSH     {R2-R10,LR}
    \        0x4   0x0004             MOVS     R4,R0
-   1861          	//	버전정보 갱신.
-   1862          	if ( pStat == NULL ) return ;
+   1874          	//	버전정보 갱신.
+   1875          	if ( pStat == NULL ) return ;
    \        0x6   0x2C00             CMP      R4,#+0
    \        0x8   0xD032             BEQ.N    ??UpdateStat_0
-   1863          
-   1864          	if ( 0 < pStat->nCarNo && pStat->nCarNo <= MaxCarNo )
+   1876          
+   1877          	if ( 0 < pStat->nCarNo && pStat->nCarNo <= MaxCarNo )
    \                     ??UpdateStat_1: (+1)
    \        0xA   0x7B60             LDRB     R0,[R4, #+13]
    \        0xC   0x2800             CMP      R0,#+0
@@ -4265,13 +4305,13 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x10   0x7B60             LDRB     R0,[R4, #+13]
    \       0x12   0x280E             CMP      R0,#+14
    \       0x14   0xDA2C             BGE.N    ??UpdateStat_2
-   1865          	{
-   1866          		uint8_t idx = pStat->nCarNo;
+   1878          	{
+   1879          		uint8_t idx = pStat->nCarNo;
    \       0x16   0x7B67             LDRB     R7,[R4, #+13]
-   1867          
-   1868          		//========================================================================
-   1869          		//	상태정보 갱신.
-   1870          		memcpy( &g_devStat[idx].stat, pStat, sizeof(RFMPktStat) );
+   1880          
+   1881          		//========================================================================
+   1882          		//	상태정보 갱신.
+   1883          		memcpy( &g_devStat[idx].stat, pStat, sizeof(RFMPktStat) );
    \       0x18   0x2519             MOVS     R5,#+25
    \       0x1A   0x0026             MOVS     R6,R4
    \       0x1C   0xF05F 0x081B      MOVS     R8,#+27
@@ -4284,10 +4324,10 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x32   0x0031             MOVS     R1,R6
    \       0x34   0x4650             MOV      R0,R10
    \       0x36   0x.... 0x....      BL       __aeabi_memcpy
-   1871          
-   1872          		//========================================================================
-   1873          		//	RSSI 갱신
-   1874          		g_devStat[idx].nRSSI = g_nRSSI;
+   1884          
+   1885          		//========================================================================
+   1886          		//	RSSI 갱신
+   1887          		g_devStat[idx].nRSSI = g_nRSSI;
    \       0x3A   0x0038             MOVS     R0,R7
    \       0x3C   0xB2C0             UXTB     R0,R0
    \       0x3E   0xFB08 0xF800      MUL      R8,R8,R0
@@ -4295,15 +4335,15 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x46   0x....             LDR.N    R1,??DataTable47_56
    \       0x48   0x7809             LDRB     R1,[R1, #+0]
    \       0x4A   0x7681             STRB     R1,[R0, #+26]
-   1875          
-   1876          		//========================================================================
-   1877          		//	버전정보 갱신.
-   1878          
-   1879          #if defined(USE_HOP_MANUAL)
-   1880          		sprintf(_sVerList[idx], "%02d:v%d/hop(%d)", idx,
-   1881          				pStat->ver_build,
-   1882          				pStat->nManHop
-   1883          				);
+   1888          
+   1889          		//========================================================================
+   1890          		//	버전정보 갱신.
+   1891          
+   1892          #if defined(USE_HOP_MANUAL)
+   1893          		sprintf(_sVerList[idx], "%02d:v%d/hop(%d)", idx,
+   1894          				pStat->ver_build,
+   1895          				pStat->nManHop
+   1896          				);
    \       0x4C   0x7DA0             LDRB     R0,[R4, #+22]
    \       0x4E   0x9000             STR      R0,[SP, #+0]
    \       0x50   0x8A63             LDRH     R3,[R4, #+18]
@@ -4317,44 +4357,44 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x64   0xFB00 0xFE0E      MUL      LR,R0,LR
    \       0x68   0xEB0C 0x000E      ADD      R0,R12,LR
    \       0x6C   0x.... 0x....      BL       sprintf
-   1884          #else
-   1885          		sprintf(_sVerList[idx], "%02d:v%d.%d.%d.%d", idx,
-   1886          				pStat->ver_main,
-   1887          				pStat->ver_sub,
-   1888          				pStat->ver_det,
-   1889          				pStat->ver_build
-   1890          				);
-   1891          #endif
-   1892          	}
-   1893          }
+   1897          #else
+   1898          		sprintf(_sVerList[idx], "%02d:v%d.%d.%d.%d", idx,
+   1899          				pStat->ver_main,
+   1900          				pStat->ver_sub,
+   1901          				pStat->ver_det,
+   1902          				pStat->ver_build
+   1903          				);
+   1904          #endif
+   1905          	}
+   1906          }
    \                     ??UpdateStat_2: (+1)
    \                     ??UpdateStat_0: (+1)
    \       0x70   0xE8BD 0x87F3      POP      {R0,R1,R4-R10,PC}
-   1894          
-   1895          //========================================================================
+   1907          
+   1908          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-   1896          void SetStat( uint8_t nRspID )
-   1897          //========================================================================
-   1898          {
+   1909          void SetStat( uint8_t nRspID )
+   1910          //========================================================================
+   1911          {
    \                     SetStat: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-   1899          	//	상태정보 저장.
-   1900          	//	상태정보 수신 시간 저장.
-   1901          
-   1902          	//	장치 응답 Flag 설정.
-   1903          	g_flagRspID	|= ( 0x1 << nRspID );
-   \        0x4   0x....             LDR.N    R0,??DataTable47_10
+   1912          	//	상태정보 저장.
+   1913          	//	상태정보 수신 시간 저장.
+   1914          
+   1915          	//	장치 응답 Flag 설정.
+   1916          	g_flagRspID	|= ( 0x1 << nRspID );
+   \        0x4   0x....             LDR.N    R0,??DataTable47_9
    \        0x6   0x8801             LDRH     R1,[R0, #+0]
    \        0x8   0x2201             MOVS     R2,#+1
    \        0xA   0x40A2             LSLS     R2,R2,R4
    \        0xC   0x4311             ORRS     R1,R2,R1
    \        0xE   0x8001             STRH     R1,[R0, #+0]
-   1904          
-   1905          	//	TimeStamp 저장.
-   1906          //DEL	stampStat[nRspID] = HAL_GetTick();
-   1907          	g_devStat[nRspID].stampRx = HAL_GetTick();
+   1917          
+   1918          	//	TimeStamp 저장.
+   1919          //DEL	stampStat[nRspID] = HAL_GetTick();
+   1920          	g_devStat[nRspID].stampRx = HAL_GetTick();
    \       0x10   0x.... 0x....      BL       HAL_GetTick
    \       0x14   0x....             LDR.N    R2,??DataTable47_55
    \       0x16   0x0023             MOVS     R3,R4
@@ -4363,33 +4403,33 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x1C   0x434B             MULS     R3,R1,R3
    \       0x1E   0xEB02 0x0103      ADD      R1,R2,R3
    \       0x22   0x7648             STRB     R0,[R1, #+25]
-   1908          }
+   1921          }
    \       0x24   0xBD10             POP      {R4,PC}
-   1909          
-   1910          //========================================================================
+   1922          
+   1923          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-   1911          void ReflashStat( uint8_t nTick )
-   1912          //========================================================================
-   1913          {
+   1924          void ReflashStat( uint8_t nTick )
+   1925          //========================================================================
+   1926          {
    \                     ReflashStat: (+1)
    \        0x0   0xB570             PUSH     {R4-R6,LR}
    \        0x2   0x0004             MOVS     R4,R0
-   1914          	//	상태정보 갱신.
-   1915          	//	Timeout 초과 상태정보 Disable
-   1916          	if( g_bSetRspIDManual )
-   \        0x4   0x....             LDR.N    R0,??DataTable47_9
+   1927          	//	상태정보 갱신.
+   1928          	//	Timeout 초과 상태정보 Disable
+   1929          	if( g_bSetRspIDManual )
+   \        0x4   0x....             LDR.N    R0,??DataTable47_8
    \        0x6   0x7800             LDRB     R0,[R0, #+0]
    \        0x8   0x2800             CMP      R0,#+0
    \        0xA   0xD128             BNE.N    ??ReflashStat_0
-   1917          	{
-   1918          		//	ID 수동설정모드인 경우 return
-   1919          		return ;
-   1920          	}
-   1921          
-   1922          	uint8_t idx;
-   1923          
-   1924          	for( idx = 0; idx < MaxCarNo; idx++ )
+   1930          	{
+   1931          		//	ID 수동설정모드인 경우 return
+   1932          		return ;
+   1933          	}
+   1934          
+   1935          	uint8_t idx;
+   1936          
+   1937          	for( idx = 0; idx < MaxCarNo; idx++ )
    \                     ??ReflashStat_1: (+1)
    \        0xC   0x2500             MOVS     R5,#+0
    \                     ??ReflashStat_2: (+1)
@@ -4397,19 +4437,19 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x10   0xB2C0             UXTB     R0,R0
    \       0x12   0x280D             CMP      R0,#+13
    \       0x14   0xDA23             BGE.N    ??ReflashStat_3
-   1925          	{
-   1926          		if ( GetCarNo() == idx )
+   1938          	{
+   1939          		if ( GetCarNo() == idx )
    \       0x16   0x.... 0x....      BL       GetCarNo
    \       0x1A   0x0029             MOVS     R1,R5
    \       0x1C   0xB2C9             UXTB     R1,R1
    \       0x1E   0x4288             CMP      R0,R1
    \       0x20   0xD01B             BEQ.N    ??ReflashStat_4
-   1927          		{
-   1928          			//	자신의 ID Skip
-   1929          			continue;
-   1930          		}
-   1931          
-   1932          		if ( ( nTick - g_devStat[idx].stampRx ) > TIMEOUT_RECV_STATUS * 1000 )
+   1940          		{
+   1941          			//	자신의 ID Skip
+   1942          			continue;
+   1943          		}
+   1944          
+   1945          		if ( ( nTick - g_devStat[idx].stampRx ) > TIMEOUT_RECV_STATUS * 1000 )
    \                     ??ReflashStat_5: (+1)
    \       0x22   0x211B             MOVS     R1,#+27
    \       0x24   0x....             LDR.N    R2,??DataTable47_55
@@ -4424,70 +4464,70 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x36   0xF640 0x70A1      MOVW     R0,#+4001
    \       0x3A   0x4283             CMP      R3,R0
    \       0x3C   0xDB0D             BLT.N    ??ReflashStat_4
-   1933          		{
-   1934          			g_flagRspID &= ~( 0x1 << idx );
-   \       0x3E   0x....             LDR.N    R0,??DataTable47_10
+   1946          		{
+   1947          			g_flagRspID &= ~( 0x1 << idx );
+   \       0x3E   0x....             LDR.N    R0,??DataTable47_9
    \       0x40   0x8803             LDRH     R3,[R0, #+0]
    \       0x42   0x2601             MOVS     R6,#+1
    \       0x44   0x40AE             LSLS     R6,R6,R5
    \       0x46   0x43B3             BICS     R3,R3,R6
    \       0x48   0x8003             STRH     R3,[R0, #+0]
-   1935          
-   1936          			//========================================================================
-   1937          			//	Timeout 발생시 RSSI값 초기화.
-   1938          			g_devStat[idx].nRSSI = 0;
+   1948          
+   1949          			//========================================================================
+   1950          			//	Timeout 발생시 RSSI값 초기화.
+   1951          			g_devStat[idx].nRSSI = 0;
    \       0x4A   0x0028             MOVS     R0,R5
    \       0x4C   0xB2C0             UXTB     R0,R0
    \       0x4E   0xFB01 0xF100      MUL      R1,R1,R0
    \       0x52   0xEB02 0x0001      ADD      R0,R2,R1
    \       0x56   0x2100             MOVS     R1,#+0
    \       0x58   0x7681             STRB     R1,[R0, #+26]
-   1939          			//========================================================================
-   1940          		}
-   1941          	}
+   1952          			//========================================================================
+   1953          		}
+   1954          	}
    \                     ??ReflashStat_4: (+1)
    \       0x5A   0x1C6D             ADDS     R5,R5,#+1
    \       0x5C   0xE7D7             B.N      ??ReflashStat_2
-   1942          }
+   1955          }
    \                     ??ReflashStat_3: (+1)
    \                     ??ReflashStat_0: (+1)
    \       0x5E   0xBD70             POP      {R4-R6,PC}
-   1943          
-   1944          
-   1945          //========================================================================
+   1956          
+   1957          
+   1958          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-   1946          void ReloadStampStat( void )
-   1947          //========================================================================
-   1948          {
+   1959          void ReloadStampStat( void )
+   1960          //========================================================================
+   1961          {
    \                     ReloadStampStat: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
-   1949          	//	상태정보 시간 갱신.
-   1950          	//	-> 상태정보 시간 최신값으로 유지.
-   1951          	//	-> 방송/통화 중 상태정보 전송을 하지 않기 때문에 방송통화 이후에 상태정보가 Reset되는 현상 방지.
-   1952          
-   1953          	uint8_t nStamp = HAL_GetTick();
+   1962          	//	상태정보 시간 갱신.
+   1963          	//	-> 상태정보 시간 최신값으로 유지.
+   1964          	//	-> 방송/통화 중 상태정보 전송을 하지 않기 때문에 방송통화 이후에 상태정보가 Reset되는 현상 방지.
+   1965          
+   1966          	uint8_t nStamp = HAL_GetTick();
    \        0x2   0x.... 0x....      BL       HAL_GetTick
-   1954          
-   1955          	uint8_t idx;
-   1956          
-   1957          	for( idx = 0; idx < 16; idx++ )
+   1967          
+   1968          	uint8_t idx;
+   1969          
+   1970          	for( idx = 0; idx < 16; idx++ )
    \        0x6   0x2200             MOVS     R2,#+0
    \                     ??ReloadStampStat_0: (+1)
    \        0x8   0x0011             MOVS     R1,R2
    \        0xA   0xB2C9             UXTB     R1,R1
    \        0xC   0x2910             CMP      R1,#+16
    \        0xE   0xDA0F             BGE.N    ??ReloadStampStat_1
-   1958          	{
-   1959          		if( g_flagRspID & ( 0x1 << idx ) )
-   \       0x10   0x....             LDR.N    R1,??DataTable47_10
+   1971          	{
+   1972          		if( g_flagRspID & ( 0x1 << idx ) )
+   \       0x10   0x....             LDR.N    R1,??DataTable47_9
    \       0x12   0x8809             LDRH     R1,[R1, #+0]
    \       0x14   0x2301             MOVS     R3,#+1
    \       0x16   0x4093             LSLS     R3,R3,R2
    \       0x18   0x4219             TST      R1,R3
    \       0x1A   0xD007             BEQ.N    ??ReloadStampStat_2
-   1960          		{
-   1961          			g_devStat[idx].stampRx = nStamp;
+   1973          		{
+   1974          			g_devStat[idx].stampRx = nStamp;
    \       0x1C   0x....             LDR.N    R3,??DataTable47_55
    \       0x1E   0x0014             MOVS     R4,R2
    \       0x20   0xB2E4             UXTB     R4,R4
@@ -4495,12 +4535,12 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \       0x24   0x434C             MULS     R4,R1,R4
    \       0x26   0xEB03 0x0104      ADD      R1,R3,R4
    \       0x2A   0x7648             STRB     R0,[R1, #+25]
-   1962          		}
-   1963          	}
+   1975          		}
+   1976          	}
    \                     ??ReloadStampStat_2: (+1)
    \       0x2C   0x1C52             ADDS     R2,R2,#+1
    \       0x2E   0xE7EB             B.N      ??ReloadStampStat_0
-   1964          }
+   1977          }
    \                     ??ReloadStampStat_1: (+1)
    \       0x30   0xBD10             POP      {R4,PC}
 
@@ -4605,10 +4645,6 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
    \        0x0   0x....'....        DC32     `GetTrainSetIdx::s_bOnce`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable39_6:
-   \        0x0   0x....'....        DC32     g_idxTrainSet
-
-   \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable40:
    \        0x0   0x....'....        DC32     ?_9
 
@@ -4640,30 +4676,34 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable40_7:
-   \        0x0   0x....'....        DC32     `SetTrainSetIdx::__func__`
+   \        0x0   0x....'....        DC32     g_idxTrainSet
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable40_8:
-   \        0x0   0x....'....        DC32     `GetManHop::__func__`
+   \        0x0   0x....'....        DC32     `SetTrainSetIdx::__func__`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable40_9:
-   \        0x0   0x....'....        DC32     `SetManHop::__func__`
+   \        0x0   0x....'....        DC32     `GetManHop::__func__`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable40_10:
-   \        0x0   0x....'....        DC32     `LoadCarNo::__func__`
+   \        0x0   0x....'....        DC32     `SetManHop::__func__`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable40_11:
-   \        0x0   0x....'....        DC32     `GetCarNo::s_bOnce`
+   \        0x0   0x....'....        DC32     `LoadCarNo::__func__`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable40_12:
-   \        0x0   0x....'....        DC32     `SetCarNo::__func__`
+   \        0x0   0x....'....        DC32     `GetCarNo::s_bOnce`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable40_13:
+   \        0x0   0x....'....        DC32     `SetCarNo::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable40_14:
    \        0x0   0x....'....        DC32     `GetSpkVol::__func__`
 
    \                                 In section .text, align 4, keep-with-next
@@ -4686,63 +4726,71 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable42_3:
-   \        0x0   0x....'....        DC32     `RF_RSSI::__func__`
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable42_4:
-   \        0x0   0x....'....        DC32     ?_12
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable42_5:
-   \        0x0   0x....'....        DC32     `RFM_Spk::__func__`
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable42_6:
-   \        0x0   0x....'....        DC32     ?_16
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable42_7:
-   \        0x0   0x....'....        DC32     ?_18
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable42_8:
-   \        0x0   0x....'....        DC32     ?_17
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable42_9:
-   \        0x0   0x....'....        DC32     ?_15
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable42_10:
-   \        0x0   0x....'....        DC32     `cmd_ts::__func__`
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable42_11:
-   \        0x0   0x....'....        DC32     `cmd_ch::__func__`
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable43:
    \        0x0   0x....'....        DC32     Si446xCmd
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable43_1:
+   \                     ??DataTable42_4:
+   \        0x0   0x....'....        DC32     `RF_RSSI::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_5:
+   \        0x0   0x....'....        DC32     ?_12
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_6:
+   \        0x0   0x....'....        DC32     `RFM_Spk::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_7:
+   \        0x0   0x....'....        DC32     ?_16
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_8:
+   \        0x0   0x....'....        DC32     ?_18
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_9:
+   \        0x0   0x....'....        DC32     ?_17
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_10:
+   \        0x0   0x....'....        DC32     ?_15
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_11:
+   \        0x0   0x....'....        DC32     `cmd_ts::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_12:
+   \        0x0   0x....'....        DC32     `cmd_ch::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_13:
    \        0x0   0x....'....        DC32     `cmd_car::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable43_2:
+   \                     ??DataTable43:
    \        0x0   0x....'....        DC32     `cmd_hop::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable43_3:
+   \                     ??DataTable43_1:
    \        0x0   0x....'....        DC32     ?_25
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable44:
+   \                     ??DataTable43_2:
    \        0x0   0x....'....        DC32     ?_26
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable44_1:
+   \                     ??DataTable43_3:
    \        0x0   0x....'....        DC32     ?_28
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable44:
+   \        0x0   0x....'....        DC32     ?_29
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable44_1:
+   \        0x0   0x....'....        DC32     ?_30
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable45:
@@ -4750,231 +4798,227 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable45_1:
-   \        0x0   0x....'....        DC32     ?_29
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable45_2:
-   \        0x0   0x....'....        DC32     ?_30
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable45_3:
-   \        0x0   0x....'....        DC32     ?_31
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable45_4:
-   \        0x0   0x....'....        DC32     ?_32
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable45_5:
-   \        0x0   0x....'....        DC32     ?_33
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable45_6:
-   \        0x0   0x....'....        DC32     ?_34
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable46:
    \        0x0   0x....'....        DC32     ?_19
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable46_1:
-   \        0x0   0x....'....        DC32     ?_21
+   \                     ??DataTable45_2:
+   \        0x0   0x....'....        DC32     ?_31
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable46_2:
-   \        0x0   0x....'....        DC32     ?_22
+   \                     ??DataTable45_3:
+   \        0x0   0x....'....        DC32     ?_32
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable46_3:
+   \                     ??DataTable45_4:
+   \        0x0   0x....'....        DC32     ?_33
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable45_5:
+   \        0x0   0x....'....        DC32     ?_34
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable45_6:
    \        0x0   0x....'....        DC32     ?_35
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable46_4:
+   \                     ??DataTable46:
+   \        0x0   0x....'....        DC32     ?_21
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable46_1:
+   \        0x0   0x....'....        DC32     ?_22
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable46_2:
+   \        0x0   0x....'....        DC32     ?_23
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable46_3:
    \        0x0   0x....'....        DC32     nRxPkt
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable46_5:
+   \                     ??DataTable46_4:
    \        0x0   0x....'....        DC32     nTxPkt
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable47:
-   \        0x0   0x....'....        DC32     ?_23
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_1:
    \        0x0   0x....'....        DC32     ?_24
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_2:
+   \                     ??DataTable47_1:
    \        0x0   0x....'....        DC32     ?_27
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_3:
+   \                     ??DataTable47_2:
    \        0x0   0x....'....        DC32     ?_36
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_4:
+   \                     ??DataTable47_3:
    \        0x0   0x....'....        DC32     ?_37
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_5:
+   \                     ??DataTable47_4:
    \        0x0   0x....'....        DC32     `cmd_txpwr::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_6:
+   \                     ??DataTable47_5:
    \        0x0   0x....'....        DC32     ?_38
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_7:
+   \                     ??DataTable47_6:
    \        0x0   0x....'....        DC32     `cmd_rspid::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_8:
+   \                     ??DataTable47_7:
    \        0x0   0x....'....        DC32     ?_39
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_9:
+   \                     ??DataTable47_8:
    \        0x0   0x....'....        DC32     g_bSetRspIDManual
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_10:
+   \                     ??DataTable47_9:
    \        0x0   0x....'....        DC32     g_flagRspID
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_11:
+   \                     ??DataTable47_10:
    \        0x0   0x....'....        DC32     ?_40
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_12:
+   \                     ??DataTable47_11:
    \        0x0   0x....'....        DC32     `cmd_OccPa::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_13:
+   \                     ??DataTable47_12:
    \        0x0   0x....'....        DC32     ?_41
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_14:
+   \                     ??DataTable47_13:
    \        0x0   0x....'....        DC32     ?_42
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_15:
+   \                     ??DataTable47_14:
    \        0x0   0x4002'1000        DC32     0x40021000
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_16:
+   \                     ??DataTable47_15:
    \        0x0   0x....'....        DC32     ?_43
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_17:
+   \                     ??DataTable47_16:
    \        0x0   0x....'....        DC32     `RFM_I2SEx_TxRxCpltCallback::idx`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_18:
+   \                     ??DataTable47_17:
    \        0x0   0x....'....        DC32     bufAudioDec
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_19:
+   \                     ??DataTable47_18:
    \        0x0   0x....'....        DC32     bufAudioEnc
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_20:
+   \                     ??DataTable47_19:
    \        0x0   0x....'....        DC32     hi2s3
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_21:
+   \                     ??DataTable47_20:
    \        0x0   0x....'....        DC32     g_qBufAudioTx
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_22:
+   \                     ??DataTable47_21:
    \        0x0   0x....'....        DC32     r_audio_buff
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_23:
+   \                     ??DataTable47_22:
    \        0x0   0x....'....        DC32     bRxBuffering
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_24:
+   \                     ??DataTable47_23:
    \        0x0   0x....'....        DC32     g_qBufAudioRx
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_25:
+   \                     ??DataTable47_24:
    \        0x0   0x....'....        DC32     t_audio_buff
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_26:
+   \                     ??DataTable47_25:
    \        0x0   0x....'....        DC32     `RFM_I2SEx_TxRxCpltCallback{2}{8}{9}{10}{11}::nlastSample`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_27:
+   \                     ??DataTable47_26:
    \        0x0   0x....'....        DC32     `InitRFM::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_28:
+   \                     ??DataTable47_27:
    \        0x0   0x....'....        DC32     hi2c1
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_29:
+   \                     ??DataTable47_28:
    \        0x0   0x....'....        DC32     hi2c3
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_30:
+   \                     ??DataTable47_29:
    \        0x0   0x....'....        DC32     ?_46
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_31:
+   \                     ??DataTable47_30:
    \        0x0   0x....'....        DC32     RFM_I2SEx_TxRxCpltCallback
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_32:
+   \                     ??DataTable47_31:
    \        0x0   0x....'....        DC32     ?_47
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_33:
+   \                     ??DataTable47_32:
    \        0x0   0x....'....        DC32     g_idxTrainSet
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_34:
+   \                     ??DataTable47_33:
    \        0x0   0x....'....        DC32     g_nSpkLevel
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_35:
+   \                     ??DataTable47_34:
    \        0x0   0x....'....        DC32     g_nManHopping
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_36:
+   \                     ??DataTable47_35:
    \        0x0   0x....'....        DC32     ?_48
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_37:
+   \                     ??DataTable47_36:
    \        0x0   0x....'....        DC32     ?_49
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_38:
+   \                     ??DataTable47_37:
    \        0x0   0x....'....        DC32     ?_50
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_39:
+   \                     ??DataTable47_38:
    \        0x0   0x....'....        DC32     ?_51
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_40:
+   \                     ??DataTable47_39:
    \        0x0   0x....'....        DC32     pRadioConfiguration
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_41:
+   \                     ??DataTable47_40:
    \        0x0   0x....'....        DC32     ?_52
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_42:
+   \                     ??DataTable47_41:
    \        0x0   0x....'....        DC32     g_offsetCA
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_43:
+   \                     ??DataTable47_42:
    \        0x0   0x....'....        DC32     ?_53
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable47_44:
+   \                     ??DataTable47_43:
    \        0x0   0x....'....        DC32     `RFM_main::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable47_44:
+   \        0x0   0x....'....        DC32     `RFM_main::nCallTimeCnt`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable47_45:
@@ -5275,11 +5319,11 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
    \                                 In section .rodata, align 4
    \                     ?_17:
-   \        0x0   0x53 0x65          DC8 "Sep 22 2022"
+   \        0x0   0x53 0x65          DC8 "Sep 29 2022"
 
    \              0x70 0x20    
 
-   \              0x32 0x32    
+   \              0x32 0x39    
 
    \              0x20 0x32    
 
@@ -5289,13 +5333,13 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
    \                                 In section .rodata, align 4
    \                     ?_18:
-   \        0x0   0x30 0x38          DC8 "08:40:14"
+   \        0x0   0x31 0x36          DC8 "16:58:16"
 
-   \              0x3A 0x34    
+   \              0x3A 0x35    
 
-   \              0x30 0x3A    
+   \              0x38 0x3A    
 
-   \              0x31 0x34    
+   \              0x31 0x36    
 
    \              0x00
    \        0x9                      DS8 3
@@ -6135,96 +6179,96 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
    \              0x00
    \       0x11                      DS8 3
-   1965          
-   1966          
-   1967          #if defined(USE_ENV_TEST)
-   1968          
-   1969          static uint8_t	s_bEnLoopRFTx = 0;
-   1970          
-   1971          //========================================================================
-   1972          void	SetLoopRFTx		( uint8_t bEnable )	//	RF Data 전송 유지..
-   1973          //========================================================================
-   1974          {
-   1975          	printf( "%s(%d) - Loop RF Tx : %d\n", __func__, __LINE__, bEnable );
-   1976          
-   1977          	if ( bEnable )
-   1978          	{
-   1979          		RF_Tx_Mode();
-   1980          	}
-   1981          	else
-   1982          	{
-   1983          		RF_Rx_Mode();
-   1984          	}
-   1985          
-   1986          	s_bEnLoopRFTx = bEnable;
-   1987          }
-   1988          
+   1978          
+   1979          
+   1980          #if defined(USE_ENV_TEST)
+   1981          
+   1982          static uint8_t	s_bEnLoopRFTx = 0;
+   1983          
+   1984          //========================================================================
+   1985          void	SetLoopRFTx		( uint8_t bEnable )	//	RF Data 전송 유지..
+   1986          //========================================================================
+   1987          {
+   1988          	printf( "%s(%d) - Loop RF Tx : %d\n", __func__, __LINE__, bEnable );
    1989          
-   1990          //========================================================================
-   1991          uint8_t cmd_rftx      ( uint8_t argc, char * argv[] )
-   1992          //========================================================================
-   1993          {
-   1994          	//	bEnable ( 1 / 0 )
-   1995          	uint8_t bEnable = 0;
-   1996          	uint8_t nCh = 0;	//	Channel
-   1997          	uint8_t nPA = 0x7F;	//	Power Amplifier
-   1998          	char *sRFType;
-   1999          
-   2000          	switch ( argc )
-   2001          	{
-   2002          	case 5:		sscanf( argv[4], "%d", &nPA );		//	Power Amplifier
-   2003          	case 4:		sscanf( argv[3], "%d", &nCh );		//	Channel
-   2004          	case 3:		sRFType = argv[2];					//	RF Type [ u (unmodulated) / m(modulated) ]
-   2005          	case 2:		sscanf( argv[1], "%d", &bEnable );	//	cmd [Enable]
-   2006          //	case 2:		sText = argv[1];					//	sscanf( argv[1], "%s", sText );		//	cmd [Text]
-   2007          		break;
-   2008          	}
-   2009          
-   2010          	printf( "%s(%d) - En(%d) / Type(%s) / Ch(%d) / PA(%d)\n", __func__, __LINE__,
-   2011          			bEnable, sRFType, nCh, nPA );
+   1990          	if ( bEnable )
+   1991          	{
+   1992          		RF_Tx_Mode();
+   1993          	}
+   1994          	else
+   1995          	{
+   1996          		RF_Rx_Mode();
+   1997          	}
+   1998          
+   1999          	s_bEnLoopRFTx = bEnable;
+   2000          }
+   2001          
+   2002          
+   2003          //========================================================================
+   2004          uint8_t cmd_rftx      ( uint8_t argc, char * argv[] )
+   2005          //========================================================================
+   2006          {
+   2007          	//	bEnable ( 1 / 0 )
+   2008          	uint8_t bEnable = 0;
+   2009          	uint8_t nCh = 0;	//	Channel
+   2010          	uint8_t nPA = 0x7F;	//	Power Amplifier
+   2011          	char *sRFType;
    2012          
-   2013          	//========================================================================
-   2014          	//	채널 설정.
-   2015          	pRadioConfiguration->Radio_ChannelNumber = nCh;
-   2016          
-   2017          	//========================================================================
-   2018          	//	RF Type
-   2019          	if ( strcmp( sRFType, "u" ) == 0 )
-   2020          	{
-   2021          		SetLoopRFTx( 0 );	//	RF Loop 종료.
-   2022          		//	Continuous Wave ( 무변조방식 )
-   2023          		vRadio_Init_cw();	//	무변조방식 설정.
-   2024          
-   2025          		vRadio_RF_Pwr( nPA );
-   2026          
-   2027          //		vRadio_StartTx( nCh, NULL );
-   2028          		vRadio_StartTx( pRadioConfiguration->Radio_ChannelNumber, NULL );
+   2013          	switch ( argc )
+   2014          	{
+   2015          	case 5:		sscanf( argv[4], "%d", &nPA );		//	Power Amplifier
+   2016          	case 4:		sscanf( argv[3], "%d", &nCh );		//	Channel
+   2017          	case 3:		sRFType = argv[2];					//	RF Type [ u (unmodulated) / m(modulated) ]
+   2018          	case 2:		sscanf( argv[1], "%d", &bEnable );	//	cmd [Enable]
+   2019          //	case 2:		sText = argv[1];					//	sscanf( argv[1], "%s", sText );		//	cmd [Text]
+   2020          		break;
+   2021          	}
+   2022          
+   2023          	printf( "%s(%d) - En(%d) / Type(%s) / Ch(%d) / PA(%d)\n", __func__, __LINE__,
+   2024          			bEnable, sRFType, nCh, nPA );
+   2025          
+   2026          	//========================================================================
+   2027          	//	채널 설정.
+   2028          	pRadioConfiguration->Radio_ChannelNumber = nCh;
    2029          
-   2030          		return 0;
-   2031          	}
-   2032          	else if ( strcmp( sRFType, "m" ) == 0 )
+   2030          	//========================================================================
+   2031          	//	RF Type
+   2032          	if ( strcmp( sRFType, "u" ) == 0 )
    2033          	{
-   2034          		vRadio_Init();	//	변조방식 설정.
-   2035          		//========================================================================
-   2036          		//	RF출력 설정.
-   2037          		vRadio_RF_Pwr( nPA );
-   2038          	}
+   2034          		SetLoopRFTx( 0 );	//	RF Loop 종료.
+   2035          		//	Continuous Wave ( 무변조방식 )
+   2036          		vRadio_Init_cw();	//	무변조방식 설정.
+   2037          
+   2038          		vRadio_RF_Pwr( nPA );
    2039          
-   2040          	if ( argc >= 2 )
-   2041          	{
-   2042          		if ( strcmp( argv[1], "1" ) == 0 )			bEnable = 1;
-   2043          		else if ( strcmp( argv[1], "0" ) == 0 )		bEnable = 0;
+   2040          //		vRadio_StartTx( nCh, NULL );
+   2041          		vRadio_StartTx( pRadioConfiguration->Radio_ChannelNumber, NULL );
+   2042          
+   2043          		return 0;
    2044          	}
-   2045          
-   2046          	printf( "%s(%d) - Loop RF Tx : %d\n", __func__, __LINE__, bEnable );
-   2047          
-   2048          	SetLoopRFTx( bEnable );
-   2049          }
-   2050          
-   2051          #endif	//	defined(USE_ENV_TEST)
+   2045          	else if ( strcmp( sRFType, "m" ) == 0 )
+   2046          	{
+   2047          		vRadio_Init();	//	변조방식 설정.
+   2048          		//========================================================================
+   2049          		//	RF출력 설정.
+   2050          		vRadio_RF_Pwr( nPA );
+   2051          	}
    2052          
-   2053          
-   2054          
+   2053          	if ( argc >= 2 )
+   2054          	{
+   2055          		if ( strcmp( argv[1], "1" ) == 0 )			bEnable = 1;
+   2056          		else if ( strcmp( argv[1], "0" ) == 0 )		bEnable = 0;
+   2057          	}
+   2058          
+   2059          	printf( "%s(%d) - Loop RF Tx : %d\n", __func__, __LINE__, bEnable );
+   2060          
+   2061          	SetLoopRFTx( bEnable );
+   2062          }
+   2063          
+   2064          #endif	//	defined(USE_ENV_TEST)
+   2065          
+   2066          
+   2067          
 
    Maximum stack usage in bytes:
 
@@ -6344,18 +6388,18 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
          8   -> GetDbg
          8   -> HAL_GPIO_WritePin
          8   -> printf
-       8   RFM_main
-         8   -> GetDevID
-         8   -> HAL_GetTick
-         8   -> InitProcPkt
-         8   -> InitRFM
-         8   -> LoopProcAdc
-         8   -> LoopProcCLI
-         8   -> LoopProcKey
-         8   -> LoopProcMain
-         8   -> LoopProcPkt
-         8   -> LoopProcRFM
-         8   -> printf
+      16   RFM_main
+        16   -> GetDevID
+        16   -> HAL_GetTick
+        16   -> InitProcPkt
+        16   -> InitRFM
+        16   -> LoopProcAdc
+        16   -> LoopProcCLI
+        16   -> LoopProcKey
+        16   -> LoopProcMain
+        16   -> LoopProcPkt
+        16   -> LoopProcRFM
+        16   -> printf
       24   RF_RSSI
         24   -> GetDbg
         24   -> LCDRSSI
@@ -6477,13 +6521,13 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
        4  ??DataTable39_3
        4  ??DataTable39_4
        4  ??DataTable39_5
-       4  ??DataTable39_6
        4  ??DataTable40
        4  ??DataTable40_1
        4  ??DataTable40_10
        4  ??DataTable40_11
        4  ??DataTable40_12
        4  ??DataTable40_13
+       4  ??DataTable40_14
        4  ??DataTable40_2
        4  ??DataTable40_3
        4  ??DataTable40_4
@@ -6497,6 +6541,8 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
        4  ??DataTable42_1
        4  ??DataTable42_10
        4  ??DataTable42_11
+       4  ??DataTable42_12
+       4  ??DataTable42_13
        4  ??DataTable42_2
        4  ??DataTable42_3
        4  ??DataTable42_4
@@ -6523,7 +6569,6 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
        4  ??DataTable46_2
        4  ??DataTable46_3
        4  ??DataTable46_4
-       4  ??DataTable46_5
        4  ??DataTable47
        4  ??DataTable47_1
        4  ??DataTable47_10
@@ -6653,7 +6698,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
       28  GetRFTID
       94  GetSpkVol
       34  GetTrainSetIdx
-     658  InitRFM
+     656  InitRFM
       76  IsNearRFT
      112  LoadCarNo
      102  LoadTrainSetIdx
@@ -6661,8 +6706,8 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
       84  PrintVerInfo
      434  RFM_I2SEx_TxRxCpltCallback
       68  RFM_Spk
-      88  RFM_main
-     182  RF_RSSI
+     128  RFM_main
+     174  RF_RSSI
       96  ReflashStat
       50  ReloadStampStat
       98  SetCarNo
@@ -6705,6 +6750,7 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
        1  g_nStampRxPkt
        1  g_offsetCA
        1  idx
+       4  nCallTimeCnt
        1  nOldRFMMode
        2  nlastSample
        1  oldTickStatReq
@@ -6716,13 +6762,13 @@ Warning[Pe223]: function "LoopProcCLI" declared implicitly
 
  
  1'331 bytes in section .bss
-     4 bytes in section .data
+     8 bytes in section .data
  1'252 bytes in section .rodata
- 5'684 bytes in section .text
+ 5'718 bytes in section .text
  
- 5'684 bytes of CODE  memory
+ 5'718 bytes of CODE  memory
  1'252 bytes of CONST memory
- 1'335 bytes of DATA  memory
+ 1'339 bytes of DATA  memory
 
 Errors: none
-Warnings: 51
+Warnings: 53

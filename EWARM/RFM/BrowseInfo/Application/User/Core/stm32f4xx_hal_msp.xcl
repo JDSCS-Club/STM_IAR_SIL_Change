@@ -434,8 +434,8 @@ C:\Program Files\IAR Systems\Embedded Workbench 9.0 EWARM FS 9.20.3\arm\CMSIS\Co
 -D__EDG_INT128_EXTENSIONS_ALLOWED=0
 -DUSE_HAL_DRIVER=1
 -DSTM32F407xx=1
--D_DLIB_CONFIG_FILE_HEADER_NAME="C:\Program Files\IAR Systems\Embedded Workbench 9.0 EWARM FS 9.20.3\arm\inc\c\DLib_Config_Normal.h"
--D_DLIB_CONFIG_FILE_STRING="C:\\Program Files\\IAR Systems\\Embedded Workbench 9.0 EWARM FS 9.20.3\\arm\\inc\\c\\DLib_Config_Normal.h"
+-D_DLIB_CONFIG_FILE_HEADER_NAME="C:\Program Files\IAR Systems\Embedded Workbench 9.0 EWARM FS 9.20.3\arm\inc\c\DLib_Config_Full.h"
+-D_DLIB_CONFIG_FILE_STRING="C:\\Program Files\\IAR Systems\\Embedded Workbench 9.0 EWARM FS 9.20.3\\arm\\inc\\c\\DLib_Config_Full.h"
 -D__VERSION__="IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety"
 -D_VA_DEFINED=
 -D_VA_LIST=struct __va_list

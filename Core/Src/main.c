@@ -324,15 +324,20 @@ int main(void)
 
     
     
-
   int nCurrTick;
+  int nCurrTickRe;
   static int nLedTick = 0;
 
-  while (1)
+  static int nCallTimeCnt = 1;
+
+
+  while (nCallTimeCnt)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+	if((nCurrTick + 10) < nCurrTickRe){nCallTimeCnt = 0;  }
 
 	nCurrTick = HAL_GetTick();
 
@@ -346,6 +351,10 @@ int main(void)
 
 	    nLedTick = nCurrTick;
 	}
+
+	nCurrTickRe = HAL_GetTick();
+
+
   }
 
 #endif

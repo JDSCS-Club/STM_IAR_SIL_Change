@@ -143,27 +143,6 @@ void Dump( const S8 *sTitle, const S8 *sBuf, uint8_t nSize )
 
 
 //========================================================================
-void TestProcPkt(void)
-//========================================================================
-{
-	InitProcPkt();
-
-	static uint32_t s_nTick;
-
-	uint32_t currTick;
-
-	s_nTick = HAL_GetTick();
-
-	while (TRUE)
-	{
-		currTick = HAL_GetTick();
-
-		// Demo Application Poll-Handler function
-		LoopProcPkt( (uint16_t)currTick );
-	}
-}
-
-//========================================================================
 uint8_t	InitProcPkt ( void )
 //========================================================================
 {
@@ -208,18 +187,22 @@ uint8_t _ChkDropPktSeq( uint8_t _nRxSeq, uint8_t _currSeq )
 {
 	//	현재 받은 Packet Sequence가 새로운 패킷인지 확인.
 	//		-> 이전 Packet인 경우 Drop
-
+    
+    uint8_t currSeq = _currSeq;
+    
 	if ( _nRxSeq == _currSeq )		//	Seq가 같은 Packet 수신시 Drop
 	{
 		return (uint8_t)1;	//	Pkt Drop
 	}
 
 	//	Rx Packet이 currPkt보다 1크면 처리.
-	uint8_t currSeq = _currSeq;
-	if ( ++currSeq == 0 )
+	
+	else if ( ++currSeq == 0 )
 	{
 		currSeq++;
 	}
+    
+    
 
 	if ( _nRxSeq == currSeq )		//	Seq가 같은 Packet 수신시 Drop
 	{

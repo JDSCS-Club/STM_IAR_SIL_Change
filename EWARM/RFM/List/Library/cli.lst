@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#                                                         22/Sep/2022  08:40:12
+#                                                         29/Sep/2022  16:58:15
 # IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
@@ -1414,7 +1414,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     605          //========================================================================
     606          {
    \                     readline: (+1)
-   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x0   0xE92D 0x47F0      PUSH     {R4-R10,LR}
    \        0x4   0x0004             MOVS     R4,R0
     607          	//	printf( "%s\n", __func__ );
     608          
@@ -1426,329 +1426,349 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     613          
     614          	int8_t		ret = 0;
    \        0x8   0x2700             MOVS     R7,#+0
-    615          
-    616          	for ( ;; )
-    617          	{
-    618          		ch =(int8_t) getchar();
+    615              
+    616              int8_t sCnt = 0; 
+   \        0xA   0x2000             MOVS     R0,#+0
+    617              int8_t sMax_Len= 0; 
+   \        0xC   0x2100             MOVS     R1,#+0
+    618              
+    619              sMax_Len = sizeof(bufp);
+   \        0xE   0xF05F 0x0804      MOVS     R8,#+4
+    620              
+    621          	for (sCnt = 0 ; sCnt < sMax_Len;sCnt++ )
+   \       0x12   0xF05F 0x0900      MOVS     R9,#+0
    \                     ??readline_0: (+1)
-   \        0xA   0x.... 0x....      BL       getchar
-   \        0xE   0x0005             MOVS     R5,R0
-    619          
-    620          #if defined(USE_FREERTOS)
-    621          #else
-    622          		if ((int8_t) ch == (int8_t)-1 )
-   \       0x10   0x0028             MOVS     R0,R5
-   \       0x12   0xF05F 0x31FF      MOVS     R1,#+4294967295
-   \       0x16   0xB240             SXTB     R0,R0
-   \       0x18   0x4288             CMP      R0,R1
-   \       0x1A   0xD102             BNE.N    ??readline_1
-    623          		{
-    624          			//	Input Data가 없는 경우 ( Non-Blocking - OS less )
-    625          			return (int8_t)-1;
-   \       0x1C   0xF05F 0x30FF      MOVS     R0,#+4294967295
-   \       0x20   0xE09B             B.N      ??readline_2
-    626          		}
-    627          #endif
-    628          
-    629          		if ( (ch == 0x08) || (ch == 0x7F) )	// Backspace
-   \                     ??readline_1: (+1)
-   \       0x22   0x0028             MOVS     R0,R5
-   \       0x24   0xB240             SXTB     R0,R0
-   \       0x26   0x2808             CMP      R0,#+8
-   \       0x28   0xD003             BEQ.N    ??readline_3
+   \       0x16   0x4648             MOV      R0,R9
+   \       0x18   0x4641             MOV      R1,R8
+   \       0x1A   0xB240             SXTB     R0,R0
+   \       0x1C   0xB249             SXTB     R1,R1
+   \       0x1E   0x4288             CMP      R0,R1
+   \       0x20   0xF280 0x80AB      BGE.W    ??readline_1
+    622          	{
+    623          		ch =(int8_t) getchar();
+   \       0x24   0x.... 0x....      BL       getchar
+   \       0x28   0x0005             MOVS     R5,R0
+    624          
+    625          #if defined(USE_FREERTOS)
+    626          #else
+    627          		if ((int8_t) ch == (int8_t)-1 )
    \       0x2A   0x0028             MOVS     R0,R5
-   \       0x2C   0xB240             SXTB     R0,R0
-   \       0x2E   0x287F             CMP      R0,#+127
-   \       0x30   0xD110             BNE.N    ??readline_4
-    630          		{
-    631          			if ( command_index > 0 )
-   \                     ??readline_3: (+1)
-   \       0x32   0x.... 0x....      LDR.W    R8,??DataTable11_17
-   \       0x36   0xF998 0x0000      LDRSB    R0,[R8, #+0]
-   \       0x3A   0x2801             CMP      R0,#+1
-   \       0x3C   0xDBE5             BLT.N    ??readline_0
-    632          			{
-    633          				printf( "%c %c", 8, 8 );
-   \       0x3E   0x2208             MOVS     R2,#+8
-   \       0x40   0x2108             MOVS     R1,#+8
-   \       0x42   0x....             LDR.N    R0,??DataTable11_18
-   \       0x44   0x.... 0x....      BL       printf
-    634          				command_index--;
-   \       0x48   0xF898 0x0000      LDRB     R0,[R8, #+0]
-   \       0x4C   0x1E40             SUBS     R0,R0,#+1
-   \       0x4E   0xF888 0x0000      STRB     R0,[R8, #+0]
-   \       0x52   0xE7DA             B.N      ??readline_0
-    635          			}
-    636          		}
-    637          		else if ( ch == 0x15 )			// control-u, all input clear
-   \                     ??readline_4: (+1)
-   \       0x54   0x0028             MOVS     R0,R5
-   \       0x56   0xB240             SXTB     R0,R0
-   \       0x58   0x2815             CMP      R0,#+21
-   \       0x5A   0xD110             BNE.N    ??readline_5
-    638          		{
-    639          			while ( 0 < command_index )
-   \                     ??readline_6: (+1)
-   \       0x5C   0x.... 0x....      LDR.W    R8,??DataTable11_17
-   \       0x60   0xF998 0x0000      LDRSB    R0,[R8, #+0]
-   \       0x64   0x2801             CMP      R0,#+1
-   \       0x66   0xDBD0             BLT.N    ??readline_0
-    640          			{
-    641          				printf( "%c %c", 8, 8 );
-   \       0x68   0x2208             MOVS     R2,#+8
-   \       0x6A   0x2108             MOVS     R1,#+8
-   \       0x6C   0x....             LDR.N    R0,??DataTable11_18
-   \       0x6E   0x.... 0x....      BL       printf
-    642          				command_index--;
-   \       0x72   0xF898 0x0000      LDRB     R0,[R8, #+0]
-   \       0x76   0x1E40             SUBS     R0,R0,#+1
-   \       0x78   0xF888 0x0000      STRB     R0,[R8, #+0]
-   \       0x7C   0xE7EE             B.N      ??readline_6
-    643          			}
-    644          		}
-    645          		else if ( ch == 0x17 )			// control-w, erase one word
-   \                     ??readline_5: (+1)
-   \       0x7E   0x0028             MOVS     R0,R5
-   \       0x80   0xB240             SXTB     R0,R0
-   \       0x82   0x2817             CMP      R0,#+23
-   \       0x84   0xD129             BNE.N    ??readline_7
-    646          		{
-    647          			/* erase space */
-    648          			while ( (0 < command_index) && (command_buf[command_index] == ' ') ) {
-   \                     ??readline_8: (+1)
-   \       0x86   0x.... 0x....      LDR.W    R8,??DataTable11_17
-   \       0x8A   0xF998 0x0000      LDRSB    R0,[R8, #+0]
-   \       0x8E   0x2801             CMP      R0,#+1
-   \       0x90   0xDB0F             BLT.N    ??readline_9
-   \       0x92   0xF998 0x0000      LDRSB    R0,[R8, #+0]
-   \       0x96   0x5630             LDRSB    R0,[R6, R0]
-   \       0x98   0x2820             CMP      R0,#+32
-   \       0x9A   0xD10A             BNE.N    ??readline_9
-    649          				printf( "%c %c", 8, 8 );
-   \       0x9C   0x2208             MOVS     R2,#+8
-   \       0x9E   0x2108             MOVS     R1,#+8
-   \       0xA0   0x....             LDR.N    R0,??DataTable11_18
-   \       0xA2   0x.... 0x....      BL       printf
-    650          				command_index--;
-   \       0xA6   0xF898 0x0000      LDRB     R0,[R8, #+0]
-   \       0xAA   0x1E40             SUBS     R0,R0,#+1
-   \       0xAC   0xF888 0x0000      STRB     R0,[R8, #+0]
-   \       0xB0   0xE7E9             B.N      ??readline_8
-    651          			}
-    652          			/* erase char not space */
-    653          			while ( (0 < command_index) && (command_buf[command_index] != ' ') ) {
-   \                     ??readline_9: (+1)
-   \       0xB2   0xF998 0x0000      LDRSB    R0,[R8, #+0]
-   \       0xB6   0x2801             CMP      R0,#+1
-   \       0xB8   0xDBA7             BLT.N    ??readline_0
-   \       0xBA   0xF998 0x0000      LDRSB    R0,[R8, #+0]
-   \       0xBE   0x5630             LDRSB    R0,[R6, R0]
-   \       0xC0   0x2820             CMP      R0,#+32
-   \       0xC2   0xD0A2             BEQ.N    ??readline_0
-    654          				printf( "%c %c", 8, 8 );
-   \       0xC4   0x2208             MOVS     R2,#+8
-   \       0xC6   0x2108             MOVS     R1,#+8
-   \       0xC8   0x....             LDR.N    R0,??DataTable11_18
-   \       0xCA   0x.... 0x....      BL       printf
-    655          				command_index--;
-   \       0xCE   0xF898 0x0000      LDRB     R0,[R8, #+0]
-   \       0xD2   0x1E40             SUBS     R0,R0,#+1
-   \       0xD4   0xF888 0x0000      STRB     R0,[R8, #+0]
-   \       0xD8   0xE7EB             B.N      ??readline_9
-    656          			}
-    657          		}
-    658          		else if ( (ch == 0x0D) || (ch == 0x0A) )
-   \                     ??readline_7: (+1)
-   \       0xDA   0x0028             MOVS     R0,R5
-   \       0xDC   0xB240             SXTB     R0,R0
-   \       0xDE   0x280D             CMP      R0,#+13
-   \       0xE0   0xD003             BEQ.N    ??readline_10
-   \       0xE2   0x0028             MOVS     R0,R5
-   \       0xE4   0xB240             SXTB     R0,R0
-   \       0xE6   0x280A             CMP      R0,#+10
-   \       0xE8   0xD10D             BNE.N    ??readline_11
-    659          		{
-    660          			printf( "\n\r" );
-   \                     ??readline_10: (+1)
-   \       0xEA   0x....             ADR.N    R0,??DataTable11
-   \       0xEC   0x.... 0x....      BL       printf
-    661          			command_buf[command_index] = 0; // Null terminate the input command
-   \       0xF0   0x....             LDR.N    R1,??DataTable11_17
-   \       0xF2   0x2000             MOVS     R0,#+0
-   \       0xF4   0xF991 0x2000      LDRSB    R2,[R1, #+0]
-   \       0xF8   0x54B0             STRB     R0,[R6, R2]
-    662          
-    663          			ret = (int8_t)command_index;
-   \       0xFA   0xF991 0x0000      LDRSB    R0,[R1, #+0]
-    664          			command_index = 0;		//	입력후 index 초기화.
-   \       0xFE   0x2200             MOVS     R2,#+0
-   \      0x100   0x700A             STRB     R2,[R1, #+0]
-    665          
-    666          			return (int8_t)ret;
-   \      0x102   0xB240             SXTB     R0,R0
-   \      0x104   0xE029             B.N      ??readline_2
-    667          		}
-    668          		else if ( (0x20 <= ch) && (ch <= 0x7E) )
-   \                     ??readline_11: (+1)
-   \      0x106   0x0028             MOVS     R0,R5
-   \      0x108   0xB240             SXTB     R0,R0
-   \      0x10A   0x2820             CMP      R0,#+32
-   \      0x10C   0xDB14             BLT.N    ??readline_12
-   \      0x10E   0x0028             MOVS     R0,R5
-   \      0x110   0xB240             SXTB     R0,R0
-   \      0x112   0x287F             CMP      R0,#+127
-   \      0x114   0xD010             BEQ.N    ??readline_12
-    669          		{
-    670          			//	ANSI 입력.
-    671          			if ( command_index < (MAX_COMMAND_LENGTH - 2) )
-   \      0x116   0x....             LDR.N    R0,??DataTable11_17
-   \      0x118   0xF990 0x1000      LDRSB    R1,[R0, #+0]
-   \      0x11C   0x293E             CMP      R1,#+62
-   \      0x11E   0xDA05             BGE.N    ??readline_13
-    672          			{
-    673          				command_buf[command_index++] =(S8) ch;
-   \      0x120   0xF990 0x1000      LDRSB    R1,[R0, #+0]
-   \      0x124   0x5475             STRB     R5,[R6, R1]
-   \      0x126   0x7801             LDRB     R1,[R0, #+0]
-   \      0x128   0x1C49             ADDS     R1,R1,#+1
-   \      0x12A   0x7001             STRB     R1,[R0, #+0]
-    674          			}
-    675          			printf( "%c", ch );    // Echo the character
-   \                     ??readline_13: (+1)
-   \      0x12C   0x0029             MOVS     R1,R5
-   \      0x12E   0xB249             SXTB     R1,R1
-   \      0x130   0x....             ADR.N    R0,??DataTable11_1
-   \      0x132   0x.... 0x....      BL       printf
-   \      0x136   0xE768             B.N      ??readline_0
-    676          //			printf( "[%02X]", ch );    // Echo the character
-    677          		}
-    678          		else 
-    679          		{
-    680          			//	한글입력.
-    681          			if ( command_index < ( MAX_COMMAND_LENGTH - 2 ) )
-   \                     ??readline_12: (+1)
-   \      0x138   0x....             LDR.N    R0,??DataTable11_17
-   \      0x13A   0xF990 0x1000      LDRSB    R1,[R0, #+0]
-   \      0x13E   0x293E             CMP      R1,#+62
-   \      0x140   0xDA05             BGE.N    ??readline_14
-    682          			{
-    683          				command_buf[command_index++] = (S8)ch;
-   \      0x142   0xF990 0x1000      LDRSB    R1,[R0, #+0]
-   \      0x146   0x5475             STRB     R5,[R6, R1]
-   \      0x148   0x7801             LDRB     R1,[R0, #+0]
-   \      0x14A   0x1C49             ADDS     R1,R1,#+1
-   \      0x14C   0x7001             STRB     R1,[R0, #+0]
-    684          			}
-    685          			printf( "%c", ch );    // Echo the character
-   \                     ??readline_14: (+1)
-   \      0x14E   0x0029             MOVS     R1,R5
-   \      0x150   0xB249             SXTB     R1,R1
-   \      0x152   0x....             ADR.N    R0,??DataTable11_1
-   \      0x154   0x.... 0x....      BL       printf
-   \      0x158   0xE757             B.N      ??readline_0
-    686          //			printf( "[%02X]", ch );    // Echo the character
-    687          		}
-    688          
-    689          #if defined(USE_FREERTOS)
-    690          		//	FreeRTOS - Task Switching
-    691          		taskYIELD();
-    692          #else
-    693          //		HAL_Delay( 0 );
-    694          #endif
-    695          	}
+   \       0x2C   0xF05F 0x31FF      MOVS     R1,#+4294967295
+   \       0x30   0xB240             SXTB     R0,R0
+   \       0x32   0x4288             CMP      R0,R1
+   \       0x34   0xD102             BNE.N    ??readline_2
+    628          		{
+    629          			//	Input Data가 없는 경우 ( Non-Blocking - OS less )
+    630          			return (int8_t)-1;
+   \       0x36   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x3A   0xE09E             B.N      ??readline_3
+    631          		}
+    632          #endif
+    633          
+    634          		if ( (ch == 0x08) || (ch == 0x7F) )	// Backspace
    \                     ??readline_2: (+1)
-   \      0x15A   0xE8BD 0x81F0      POP      {R4-R8,PC}
-    696          
-    697          	//return (uint8_t)0;
-    698          }
+   \       0x3C   0x0028             MOVS     R0,R5
+   \       0x3E   0xB240             SXTB     R0,R0
+   \       0x40   0x2808             CMP      R0,#+8
+   \       0x42   0xD003             BEQ.N    ??readline_4
+   \       0x44   0x0028             MOVS     R0,R5
+   \       0x46   0xB240             SXTB     R0,R0
+   \       0x48   0x287F             CMP      R0,#+127
+   \       0x4A   0xD111             BNE.N    ??readline_5
+    635          		{
+    636          			if ( command_index > 0 )
+   \                     ??readline_4: (+1)
+   \       0x4C   0x.... 0x....      LDR.W    R10,??DataTable11_17
+   \       0x50   0xF99A 0x0000      LDRSB    R0,[R10, #+0]
+   \       0x54   0x2801             CMP      R0,#+1
+   \       0x56   0xF2C0 0x808D      BLT.W    ??readline_6
+    637          			{
+    638          				printf( "%c %c", 8, 8 );
+   \       0x5A   0x2208             MOVS     R2,#+8
+   \       0x5C   0x2108             MOVS     R1,#+8
+   \       0x5E   0x....             LDR.N    R0,??DataTable11_18
+   \       0x60   0x.... 0x....      BL       printf
+    639          				command_index--;
+   \       0x64   0xF89A 0x0000      LDRB     R0,[R10, #+0]
+   \       0x68   0x1E40             SUBS     R0,R0,#+1
+   \       0x6A   0xF88A 0x0000      STRB     R0,[R10, #+0]
+   \       0x6E   0xE081             B.N      ??readline_6
+    640          			}
+    641          		}
+    642          		else if ( ch == 0x15 )			// control-u, all input clear
+   \                     ??readline_5: (+1)
+   \       0x70   0x0028             MOVS     R0,R5
+   \       0x72   0xB240             SXTB     R0,R0
+   \       0x74   0x2815             CMP      R0,#+21
+   \       0x76   0xD110             BNE.N    ??readline_7
+    643          		{
+    644          			while ( 0 < command_index )
+   \                     ??readline_8: (+1)
+   \       0x78   0x.... 0x....      LDR.W    R10,??DataTable11_17
+   \       0x7C   0xF99A 0x0000      LDRSB    R0,[R10, #+0]
+   \       0x80   0x2801             CMP      R0,#+1
+   \       0x82   0xDB77             BLT.N    ??readline_6
+    645          			{
+    646          				printf( "%c %c", 8, 8 );
+   \       0x84   0x2208             MOVS     R2,#+8
+   \       0x86   0x2108             MOVS     R1,#+8
+   \       0x88   0x....             LDR.N    R0,??DataTable11_18
+   \       0x8A   0x.... 0x....      BL       printf
+    647          				command_index--;
+   \       0x8E   0xF89A 0x0000      LDRB     R0,[R10, #+0]
+   \       0x92   0x1E40             SUBS     R0,R0,#+1
+   \       0x94   0xF88A 0x0000      STRB     R0,[R10, #+0]
+   \       0x98   0xE7EE             B.N      ??readline_8
+    648          			}
+    649          		}
+    650          		else if ( ch == 0x17 )			// control-w, erase one word
+   \                     ??readline_7: (+1)
+   \       0x9A   0x0028             MOVS     R0,R5
+   \       0x9C   0xB240             SXTB     R0,R0
+   \       0x9E   0x2817             CMP      R0,#+23
+   \       0xA0   0xD129             BNE.N    ??readline_9
+    651          		{
+    652          			/* erase space */
+    653          			while ( (0 < command_index) && (command_buf[command_index] == ' ') ) {
+   \                     ??readline_10: (+1)
+   \       0xA2   0x.... 0x....      LDR.W    R10,??DataTable11_17
+   \       0xA6   0xF99A 0x0000      LDRSB    R0,[R10, #+0]
+   \       0xAA   0x2801             CMP      R0,#+1
+   \       0xAC   0xDB0F             BLT.N    ??readline_11
+   \       0xAE   0xF99A 0x0000      LDRSB    R0,[R10, #+0]
+   \       0xB2   0x5630             LDRSB    R0,[R6, R0]
+   \       0xB4   0x2820             CMP      R0,#+32
+   \       0xB6   0xD10A             BNE.N    ??readline_11
+    654          				printf( "%c %c", 8, 8 );
+   \       0xB8   0x2208             MOVS     R2,#+8
+   \       0xBA   0x2108             MOVS     R1,#+8
+   \       0xBC   0x....             LDR.N    R0,??DataTable11_18
+   \       0xBE   0x.... 0x....      BL       printf
+    655          				command_index--;
+   \       0xC2   0xF89A 0x0000      LDRB     R0,[R10, #+0]
+   \       0xC6   0x1E40             SUBS     R0,R0,#+1
+   \       0xC8   0xF88A 0x0000      STRB     R0,[R10, #+0]
+   \       0xCC   0xE7E9             B.N      ??readline_10
+    656          			}
+    657          			/* erase char not space */
+    658          			while ( (0 < command_index) && (command_buf[command_index] != ' ') ) {
+   \                     ??readline_11: (+1)
+   \       0xCE   0xF99A 0x0000      LDRSB    R0,[R10, #+0]
+   \       0xD2   0x2801             CMP      R0,#+1
+   \       0xD4   0xDB4E             BLT.N    ??readline_6
+   \       0xD6   0xF99A 0x0000      LDRSB    R0,[R10, #+0]
+   \       0xDA   0x5630             LDRSB    R0,[R6, R0]
+   \       0xDC   0x2820             CMP      R0,#+32
+   \       0xDE   0xD049             BEQ.N    ??readline_6
+    659          				printf( "%c %c", 8, 8 );
+   \       0xE0   0x2208             MOVS     R2,#+8
+   \       0xE2   0x2108             MOVS     R1,#+8
+   \       0xE4   0x....             LDR.N    R0,??DataTable11_18
+   \       0xE6   0x.... 0x....      BL       printf
+    660          				command_index--;
+   \       0xEA   0xF89A 0x0000      LDRB     R0,[R10, #+0]
+   \       0xEE   0x1E40             SUBS     R0,R0,#+1
+   \       0xF0   0xF88A 0x0000      STRB     R0,[R10, #+0]
+   \       0xF4   0xE7EB             B.N      ??readline_11
+    661          			}
+    662          		}
+    663          		else if ( (ch == 0x0D) || (ch == 0x0A) )
+   \                     ??readline_9: (+1)
+   \       0xF6   0x0028             MOVS     R0,R5
+   \       0xF8   0xB240             SXTB     R0,R0
+   \       0xFA   0x280D             CMP      R0,#+13
+   \       0xFC   0xD003             BEQ.N    ??readline_12
+   \       0xFE   0x0028             MOVS     R0,R5
+   \      0x100   0xB240             SXTB     R0,R0
+   \      0x102   0x280A             CMP      R0,#+10
+   \      0x104   0xD10D             BNE.N    ??readline_13
+    664          		{
+    665          			printf( "\n\r" );
+   \                     ??readline_12: (+1)
+   \      0x106   0x....             ADR.N    R0,??DataTable11
+   \      0x108   0x.... 0x....      BL       printf
+    666          			command_buf[command_index] = 0; // Null terminate the input command
+   \      0x10C   0x....             LDR.N    R1,??DataTable11_17
+   \      0x10E   0x2000             MOVS     R0,#+0
+   \      0x110   0xF991 0x2000      LDRSB    R2,[R1, #+0]
+   \      0x114   0x54B0             STRB     R0,[R6, R2]
+    667          
+    668          			ret = (int8_t)command_index;
+   \      0x116   0xF991 0x0000      LDRSB    R0,[R1, #+0]
+    669          			command_index = 0;		//	입력후 index 초기화.
+   \      0x11A   0x2200             MOVS     R2,#+0
+   \      0x11C   0x700A             STRB     R2,[R1, #+0]
+    670          
+    671          			return (int8_t)ret;
+   \      0x11E   0xB240             SXTB     R0,R0
+   \      0x120   0xE02B             B.N      ??readline_3
+    672          		}
+    673          		else if ( (0x20 <= ch) && (ch <= 0x7E) )
+   \                     ??readline_13: (+1)
+   \      0x122   0x0028             MOVS     R0,R5
+   \      0x124   0xB240             SXTB     R0,R0
+   \      0x126   0x2820             CMP      R0,#+32
+   \      0x128   0xDB14             BLT.N    ??readline_14
+   \      0x12A   0x0028             MOVS     R0,R5
+   \      0x12C   0xB240             SXTB     R0,R0
+   \      0x12E   0x287F             CMP      R0,#+127
+   \      0x130   0xD010             BEQ.N    ??readline_14
+    674          		{
+    675          			//	ANSI 입력.
+    676          			if ( command_index < (MAX_COMMAND_LENGTH - 2) )
+   \      0x132   0x....             LDR.N    R0,??DataTable11_17
+   \      0x134   0xF990 0x1000      LDRSB    R1,[R0, #+0]
+   \      0x138   0x293E             CMP      R1,#+62
+   \      0x13A   0xDA05             BGE.N    ??readline_15
+    677          			{
+    678          				command_buf[command_index++] =(S8) ch;
+   \      0x13C   0xF990 0x1000      LDRSB    R1,[R0, #+0]
+   \      0x140   0x5475             STRB     R5,[R6, R1]
+   \      0x142   0x7801             LDRB     R1,[R0, #+0]
+   \      0x144   0x1C49             ADDS     R1,R1,#+1
+   \      0x146   0x7001             STRB     R1,[R0, #+0]
+    679          			}
+    680          			printf( "%c", ch );    // Echo the character
+   \                     ??readline_15: (+1)
+   \      0x148   0x0029             MOVS     R1,R5
+   \      0x14A   0xB249             SXTB     R1,R1
+   \      0x14C   0x....             ADR.N    R0,??DataTable11_1
+   \      0x14E   0x.... 0x....      BL       printf
+   \      0x152   0xE00F             B.N      ??readline_6
+    681          //			printf( "[%02X]", ch );    // Echo the character
+    682          		}
+    683          		else 
+    684          		{
+    685          			//	한글입력.
+    686          			if ( command_index < ( MAX_COMMAND_LENGTH - 2 ) )
+   \                     ??readline_14: (+1)
+   \      0x154   0x....             LDR.N    R0,??DataTable11_17
+   \      0x156   0xF990 0x1000      LDRSB    R1,[R0, #+0]
+   \      0x15A   0x293E             CMP      R1,#+62
+   \      0x15C   0xDA05             BGE.N    ??readline_16
+    687          			{
+    688          				command_buf[command_index++] = (S8)ch;
+   \      0x15E   0xF990 0x1000      LDRSB    R1,[R0, #+0]
+   \      0x162   0x5475             STRB     R5,[R6, R1]
+   \      0x164   0x7801             LDRB     R1,[R0, #+0]
+   \      0x166   0x1C49             ADDS     R1,R1,#+1
+   \      0x168   0x7001             STRB     R1,[R0, #+0]
+    689          			}
+    690          			printf( "%c", ch );    // Echo the character
+   \                     ??readline_16: (+1)
+   \      0x16A   0x0029             MOVS     R1,R5
+   \      0x16C   0xB249             SXTB     R1,R1
+   \      0x16E   0x....             ADR.N    R0,??DataTable11_1
+   \      0x170   0x.... 0x....      BL       printf
+    691          //			printf( "[%02X]", ch );    // Echo the character
+    692          		}
+    693          
+    694          #if defined(USE_FREERTOS)
+    695          		//	FreeRTOS - Task Switching
+    696          		taskYIELD();
+    697          #else
+    698          //		HAL_Delay( 0 );
+    699          #endif
+    700          	}
+   \                     ??readline_6: (+1)
+   \      0x174   0xF119 0x0901      ADDS     R9,R9,#+1
+   \      0x178   0xE74D             B.N      ??readline_0
+    701          
+    702          	//return (uint8_t)0;
+    703          }
+                 ^
+Warning[Pe940]: missing return statement at end of non-void function "readline"
+   \                     ??readline_1: (+1)
+   \                     ??readline_3: (+1)
+   \      0x17A   0xE8BD 0x87F0      POP      {R4-R10,PC}
 
    \                                 In section .bss, align 1
    \                     `readline::command_index`:
    \        0x0                      DS8 1
-    699          
-    700          //========================================================================
+    704          
+    705          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    701          void	CLIPrompt( void )
-    702          //========================================================================
-    703          {
+    706          void	CLIPrompt( void )
+    707          //========================================================================
+    708          {
    \                     CLIPrompt: (+1)
    \        0x0   0xB580             PUSH     {R7,LR}
-    704          	printf( "%s", PROMPT_STRING );
+    709          	printf( "%s", PROMPT_STRING );
    \        0x2   0x....             LDR.N    R1,??DataTable11_19
    \        0x4   0x....             ADR.N    R0,??DataTable11_2
    \        0x6   0x.... 0x....      BL       printf
-    705          }
+    710          }
    \        0xA   0xBD01             POP      {R0,PC}
-    706          
+    711          
 
    \                                 In section .data, align 4
-    707          void	( *g_fnCLIPrompt )( void ) = CLIPrompt;
+    712          void	( *g_fnCLIPrompt )( void ) = CLIPrompt;
    \                     g_fnCLIPrompt:
    \        0x0   0x....'....        DC32 CLIPrompt
 
    \                                 In section .data, align 4
-    708          uint8_t		( *g_fnCLIProc )( char * ) = ProcessCommand;
+    713          uint8_t		( *g_fnCLIProc )( char * ) = ProcessCommand;
    \                     g_fnCLIProc:
    \        0x0   0x....'....        DC32 ProcessCommand
-    709          
-    710          //========================================================================
+    714          
+    715          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    711          void	SetCLIPrompt( void ( *fnPrompt )( void ) )
-    712          //========================================================================
-    713          {
-    714          	g_fnCLIPrompt = fnPrompt;
+    716          void	SetCLIPrompt( void ( *fnPrompt )( void ) )
+    717          //========================================================================
+    718          {
+    719          	g_fnCLIPrompt = fnPrompt;
    \                     SetCLIPrompt: (+1)
    \        0x0   0x....             LDR.N    R1,??DataTable11_20
    \        0x2   0x6008             STR      R0,[R1, #+0]
-    715          }
+    720          }
    \        0x4   0x4770             BX       LR
-    716          
-    717          //========================================================================
+    721          
+    722          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    718          void	SetCLIProc( uint8_t ( *fnProc )( char *cmd ) )
-    719          //========================================================================
-    720          {
-    721          	g_fnCLIProc = fnProc;
+    723          void	SetCLIProc( uint8_t ( *fnProc )( char *cmd ) )
+    724          //========================================================================
+    725          {
+    726          	g_fnCLIProc = fnProc;
    \                     SetCLIProc: (+1)
    \        0x0   0x....             LDR.N    R1,??DataTable11_21
    \        0x2   0x6008             STR      R0,[R1, #+0]
-    722          }
+    727          }
    \        0x4   0x4770             BX       LR
-    723          
-    724          
-    725          //========================================================================
+    728          
+    729          
+    730          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    726          void	LoopProcCLI ( void )
-    727          //========================================================================
-    728          {
+    731          void	LoopProcCLI ( void )
+    732          //========================================================================
+    733          {
    \                     LoopProcCLI: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
-    729          	static S8		command_buf[MAX_COMMAND_LENGTH];
-    730          	int8_t len;
-    731          	if ( input_check() )
+    734          	static S8		command_buf[MAX_COMMAND_LENGTH];
+    735          	int8_t len;
+    736          	if ( input_check() )
    \        0x2   0x.... 0x....      BL       input_check
    \        0x6   0x2800             CMP      R0,#+0
    \        0x8   0xD00F             BEQ.N    ??LoopProcCLI_0
-    732          	{
-    733          		len = readline( command_buf );
+    737          	{
+    738          		len = readline( command_buf );
    \        0xA   0x....             LDR.N    R5,??DataTable11_22
    \        0xC   0x0028             MOVS     R0,R5
    \        0xE   0x.... 0x....      BL       readline
    \       0x12   0x0004             MOVS     R4,R0
-    734          		if ( len != 0 )
+    739          		if ( len != 0 )
    \       0x14   0x0020             MOVS     R0,R4
    \       0x16   0xB240             SXTB     R0,R0
    \       0x18   0x2800             CMP      R0,#+0
    \       0x1A   0xD006             BEQ.N    ??LoopProcCLI_0
-    735          		{
-    736          //			printf( "%s(%d) : %s\n", __func__, __LINE__, command_buf );
-    737          			//	Process Command
-    738          //			ProcessCommand( command_buf );
-    739          			g_fnCLIProc( command_buf );
+    740          		{
+    741          //			printf( "%s(%d) : %s\n", __func__, __LINE__, command_buf );
+    742          			//	Process Command
+    743          //			ProcessCommand( command_buf );
+    744          			g_fnCLIProc( command_buf );
                  			             ^
 Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
           "char *"
@@ -1756,96 +1776,96 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \       0x1E   0x....             LDR.N    R1,??DataTable11_21
    \       0x20   0x6809             LDR      R1,[R1, #+0]
    \       0x22   0x4788             BLX      R1
-    740          
-    741          			//	Print Prompt
-    742          //			printf( "%s", PROMPT_STRING );
-    743          			g_fnCLIPrompt();
+    745          
+    746          			//	Print Prompt
+    747          //			printf( "%s", PROMPT_STRING );
+    748          			g_fnCLIPrompt();
    \       0x24   0x....             LDR.N    R0,??DataTable11_20
    \       0x26   0x6800             LDR      R0,[R0, #+0]
    \       0x28   0x4780             BLX      R0
-    744          		}
-    745          	}
-    746          }
+    749          		}
+    750          	}
+    751          }
    \                     ??LoopProcCLI_0: (+1)
    \       0x2A   0xBD31             POP      {R0,R4,R5,PC}
 
    \                                 In section .bss, align 4
    \                     `LoopProcCLI::command_buf`:
    \        0x0                      DS8 64
-    747          
-    748          
-    749          //========================================================================
-    750          #if defined(_WIN32)
-    751          DWORD	vCLITask	( void *pvParameters )
-    752          #else	//	RTOS
+    752          
+    753          
+    754          //========================================================================
+    755          #if defined(_WIN32)
+    756          DWORD	vCLITask	( void *pvParameters )
+    757          #else	//	RTOS
 
    \                                 In section .text, align 2, keep-with-next
-    753          void	vCLITask	( void *pvParameters )
-    754          #endif
-    755          //========================================================================
-    756          {
+    758          void	vCLITask	( void *pvParameters )
+    759          #endif
+    760          //========================================================================
+    761          {
    \                     vCLITask: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    757          	/* The parameters are not used. */
-    758          	//( void ) pvParameters;
-    759          
-    760          	/*
-    761          	 * print Logo & version
-    762          	 */
-    763          //	CLEAR_VT_SCREEN();
-    764          //	GOTO_VT_XY();
-    765          
-    766          //	user_commands = NELEMENTS(user_command_table);
-    767          
-    768          	for(;;)
-    769          	{
-    770          		LoopProcCLI();
+    762          	/* The parameters are not used. */
+    763          	//( void ) pvParameters;
+    764          
+    765          	/*
+    766          	 * print Logo & version
+    767          	 */
+    768          //	CLEAR_VT_SCREEN();
+    769          //	GOTO_VT_XY();
+    770          
+    771          //	user_commands = NELEMENTS(user_command_table);
+    772          
+    773          	for(;;)
+    774          	{
+    775          		LoopProcCLI();
    \                     ??vCLITask_0: (+1)
    \        0x4   0x.... 0x....      BL       LoopProcCLI
-    771          
-    772          #if defined(USE_FREERTOS)
-    773          		taskYIELD();
-    774          #else
-    775          		HAL_Delay( (uint32_t)0 );
+    776          
+    777          #if defined(USE_FREERTOS)
+    778          		taskYIELD();
+    779          #else
+    780          		HAL_Delay( (uint32_t)0 );
    \        0x8   0x2000             MOVS     R0,#+0
    \        0xA   0x.... 0x....      BL       HAL_Delay
    \        0xE   0xE7F9             B.N      ??vCLITask_0
-    776          #endif
-    777          	}
-    778          }
-    779          
-    780          //========================================================================
+    781          #endif
+    782          	}
+    783          }
+    784          
+    785          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    781          uint8_t cmd_help( uint8_t argc, char *argv[] )
-    782          //========================================================================
-    783          {
+    786          uint8_t cmd_help( uint8_t argc, char *argv[] )
+    787          //========================================================================
+    788          {
    \                     cmd_help: (+1)
    \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
    \        0x4   0x0004             MOVS     R4,R0
    \        0x6   0x000D             MOVS     R5,R1
-    784          	uint16_t	i;
-    785          	uint16_t	ok = 0;
+    789          	uint16_t	i;
+    790          	uint16_t	ok = 0;
    \        0x8   0x2600             MOVS     R6,#+0
-    786          
-    787          //	printf( "%s(%d)\n", __func__, __LINE__ );
-    788          
-    789          	for ( i = 1; i < NELEMENTS( user_command_table ); i++ )
+    791          
+    792          //	printf( "%s(%d)\n", __func__, __LINE__ );
+    793          
+    794          	for ( i = 1; i < NELEMENTS( user_command_table ); i++ )
    \        0xA   0x2701             MOVS     R7,#+1
    \                     ??cmd_help_0: (+1)
    \        0xC   0x0038             MOVS     R0,R7
    \        0xE   0xB280             UXTH     R0,R0
    \       0x10   0x2818             CMP      R0,#+24
    \       0x12   0xD244             BCS.N    ??cmd_help_1
-    790          	{
-    791          		if ( 1 < argc )
+    795          	{
+    796          		if ( 1 < argc )
    \       0x14   0x0020             MOVS     R0,R4
    \       0x16   0xB2C0             UXTB     R0,R0
    \       0x18   0x2802             CMP      R0,#+2
    \       0x1A   0xDB2C             BLT.N    ??cmd_help_2
-    792          		{
-    793          			if ( strcmp( argv[1], user_command_table[i].command_name ) == 0 )
+    797          		{
+    798          			if ( strcmp( argv[1], user_command_table[i].command_name ) == 0 )
    \       0x1C   0x.... 0x....      LDR.W    R8,??DataTable11_14
    \       0x20   0x0038             MOVS     R0,R7
    \       0x22   0xB280             UXTH     R0,R0
@@ -1855,8 +1875,8 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \       0x2C   0x.... 0x....      BL       strcmp
    \       0x30   0x2800             CMP      R0,#+0
    \       0x32   0xD132             BNE.N    ??cmd_help_3
-    794          			{
-    795          				if ( user_command_table[i].command_help1 != NULL )
+    799          			{
+    800          				if ( user_command_table[i].command_help1 != NULL )
    \       0x34   0x0038             MOVS     R0,R7
    \       0x36   0xB280             UXTH     R0,R0
    \       0x38   0x0100             LSLS     R0,R0,#+4
@@ -1864,8 +1884,8 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \       0x3C   0x6840             LDR      R0,[R0, #+4]
    \       0x3E   0x2800             CMP      R0,#+0
    \       0x40   0xD007             BEQ.N    ??cmd_help_4
-    796          				{
-    797          					printf( "%s\n", user_command_table[i].command_help1 );
+    801          				{
+    802          					printf( "%s\n", user_command_table[i].command_help1 );
    \       0x42   0x0038             MOVS     R0,R7
    \       0x44   0xB280             UXTH     R0,R0
    \       0x46   0x0100             LSLS     R0,R0,#+4
@@ -1873,8 +1893,8 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \       0x4A   0x6841             LDR      R1,[R0, #+4]
    \       0x4C   0x....             ADR.N    R0,??DataTable11_3
    \       0x4E   0x.... 0x....      BL       printf
-    798          				}
-    799          				if ( user_command_table[i].command_help2 != NULL )
+    803          				}
+    804          				if ( user_command_table[i].command_help2 != NULL )
    \                     ??cmd_help_4: (+1)
    \       0x52   0x0038             MOVS     R0,R7
    \       0x54   0xB280             UXTH     R0,R0
@@ -1883,8 +1903,8 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \       0x5A   0x6880             LDR      R0,[R0, #+8]
    \       0x5C   0x2800             CMP      R0,#+0
    \       0x5E   0xD007             BEQ.N    ??cmd_help_5
-    800          				{
-    801          					printf( "%s\n", user_command_table[i].command_help2 );
+    805          				{
+    806          					printf( "%s\n", user_command_table[i].command_help2 );
    \       0x60   0x0038             MOVS     R0,R7
    \       0x62   0xB280             UXTH     R0,R0
    \       0x64   0x0100             LSLS     R0,R0,#+4
@@ -1892,17 +1912,17 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \       0x68   0x6881             LDR      R1,[R0, #+8]
    \       0x6A   0x....             ADR.N    R0,??DataTable11_3
    \       0x6C   0x.... 0x....      BL       printf
-    802          				}
-    803          				ok = 1;
+    807          				}
+    808          				ok = 1;
    \                     ??cmd_help_5: (+1)
    \       0x70   0x2001             MOVS     R0,#+1
    \       0x72   0x0006             MOVS     R6,R0
    \       0x74   0xE011             B.N      ??cmd_help_3
-    804          			}
-    805          		}
-    806          		else
-    807          		{
-    808          			if ( user_command_table[i].command_help1 != NULL )
+    809          			}
+    810          		}
+    811          		else
+    812          		{
+    813          			if ( user_command_table[i].command_help1 != NULL )
    \                     ??cmd_help_2: (+1)
    \       0x76   0x....             LDR.N    R1,??DataTable11_14
    \       0x78   0x0038             MOVS     R0,R7
@@ -1912,8 +1932,8 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \       0x80   0x6840             LDR      R0,[R0, #+4]
    \       0x82   0x2800             CMP      R0,#+0
    \       0x84   0xD007             BEQ.N    ??cmd_help_6
-    809          			{
-    810          				printf( "%s\n", user_command_table[i].command_help1 );
+    814          			{
+    815          				printf( "%s\n", user_command_table[i].command_help1 );
    \       0x86   0x0038             MOVS     R0,R7
    \       0x88   0xB280             UXTH     R0,R0
    \       0x8A   0x0100             LSLS     R0,R0,#+4
@@ -1921,102 +1941,102 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \       0x8E   0x6841             LDR      R1,[R0, #+4]
    \       0x90   0x....             ADR.N    R0,??DataTable11_3
    \       0x92   0x.... 0x....      BL       printf
-    811          			}
-    812          			ok = 1;
+    816          			}
+    817          			ok = 1;
    \                     ??cmd_help_6: (+1)
    \       0x96   0x2001             MOVS     R0,#+1
    \       0x98   0x0006             MOVS     R6,R0
-    813          		}
-    814          	}
+    818          		}
+    819          	}
    \                     ??cmd_help_3: (+1)
    \       0x9A   0x1C7F             ADDS     R7,R7,#+1
    \       0x9C   0xE7B6             B.N      ??cmd_help_0
-    815          	if ( ok == 0 )
+    820          	if ( ok == 0 )
    \                     ??cmd_help_1: (+1)
    \       0x9E   0x0030             MOVS     R0,R6
    \       0xA0   0xB280             UXTH     R0,R0
    \       0xA2   0x2800             CMP      R0,#+0
    \       0xA4   0xD103             BNE.N    ??cmd_help_7
-    816          	{
-    817          		printf( "unknown command %s\n", argv[1] );
+    821          	{
+    822          		printf( "unknown command %s\n", argv[1] );
    \       0xA6   0x6869             LDR      R1,[R5, #+4]
    \       0xA8   0x....             LDR.N    R0,??DataTable11_23
    \       0xAA   0x.... 0x....      BL       printf
-    818          	}
-    819          	return (uint8_t)0;
+    823          	}
+    824          	return (uint8_t)0;
    \                     ??cmd_help_7: (+1)
    \       0xAE   0x2000             MOVS     R0,#+0
    \       0xB0   0xE8BD 0x81F0      POP      {R4-R8,PC}
-    820          }
-    821          
-    822          //========================================================================
+    825          }
+    826          
+    827          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    823          uint8_t cmd_uptime(uint8_t argc, char *argv[])
-    824          //========================================================================
-    825          {
+    828          uint8_t cmd_uptime(uint8_t argc, char *argv[])
+    829          //========================================================================
+    830          {
    \                     cmd_uptime: (+1)
    \        0x0   0xE92D 0x47FC      PUSH     {R2-R10,LR}
    \        0x4   0x0005             MOVS     R5,R0
    \        0x6   0x000E             MOVS     R6,R1
-    826          
-    827          //=============================================================================
-    828          #if defined(_WIN32)
-    829          //=============================================================================
-    830          
-    831          //=============================================================================
-    832          #else	//	stm32f207
-    833          //=============================================================================
-    834          
-    835          #if defined( USE_FREERTOS )
-    836          	uint32_t	tmp = xTaskGetTickCount() / configTICK_RATE_HZ;
-    837          #else
-    838          	uint32_t	tmp = HAL_GetTick() / 1000;
+    831          
+    832          //=============================================================================
+    833          #if defined(_WIN32)
+    834          //=============================================================================
+    835          
+    836          //=============================================================================
+    837          #else	//	stm32f207
+    838          //=============================================================================
+    839          
+    840          #if defined( USE_FREERTOS )
+    841          	uint32_t	tmp = xTaskGetTickCount() / configTICK_RATE_HZ;
+    842          #else
+    843          	uint32_t	tmp = HAL_GetTick() / 1000;
    \        0x8   0x.... 0x....      BL       HAL_GetTick
    \        0xC   0xF44F 0x717A      MOV      R1,#+1000
    \       0x10   0xFBB0 0xF4F1      UDIV     R4,R0,R1
-    839          #endif
-    840          
-    841          	uint8_t	sec, min, hour;
-    842          	uint8_t	day;
-    843          
-    844          	day = (uint8_t)((uint8_t)tmp / 3600 / 24);
+    844          #endif
+    845          
+    846          	uint8_t	sec, min, hour;
+    847          	uint8_t	day;
+    848          
+    849          	day = (uint8_t)((uint8_t)tmp / 3600 / 24);
    \       0x14   0x2700             MOVS     R7,#+0
-    845          	tmp = (uint8_t)((uint8_t)tmp % (uint8_t)(3600 * 24));
+    850          	tmp = (uint8_t)((uint8_t)tmp % (uint8_t)(3600 * 24));
    \       0x16   0xB2E4             UXTB     R4,R4
    \       0x18   0x2080             MOVS     R0,#+128
    \       0x1A   0xFB94 0xF1F0      SDIV     R1,R4,R0
    \       0x1E   0xFB00 0x4411      MLS      R4,R0,R1,R4
    \       0x22   0xB2E4             UXTB     R4,R4
-    846          
-    847          	hour = (uint8_t)((uint8_t)tmp / 3600);
+    851          
+    852          	hour = (uint8_t)((uint8_t)tmp / 3600);
    \       0x24   0xF05F 0x0800      MOVS     R8,#+0
-    848          	tmp = (uint8_t)((uint8_t)tmp % 3600);
+    853          	tmp = (uint8_t)((uint8_t)tmp % 3600);
    \       0x28   0xB2E4             UXTB     R4,R4
    \       0x2A   0xF44F 0x6061      MOV      R0,#+3600
    \       0x2E   0xFB94 0xF1F0      SDIV     R1,R4,R0
    \       0x32   0xFB00 0x4411      MLS      R4,R0,R1,R4
    \       0x36   0xB2E4             UXTB     R4,R4
-    849          
-    850          	min = (uint8_t)((uint8_t)tmp / 60);
+    854          
+    855          	min = (uint8_t)((uint8_t)tmp / 60);
    \       0x38   0x0020             MOVS     R0,R4
    \       0x3A   0xB2C0             UXTB     R0,R0
    \       0x3C   0x213C             MOVS     R1,#+60
    \       0x3E   0xFB90 0xF9F1      SDIV     R9,R0,R1
-    851          	sec = (uint8_t)((uint8_t)tmp % 60);
+    856          	sec = (uint8_t)((uint8_t)tmp % 60);
    \       0x42   0x0021             MOVS     R1,R4
    \       0x44   0xB2C9             UXTB     R1,R1
    \       0x46   0x203C             MOVS     R0,#+60
    \       0x48   0xFB91 0xFAF0      SDIV     R10,R1,R0
    \       0x4C   0xFB00 0x1A1A      MLS      R10,R0,R10,R1
-    852          
-    853          	if (0 < day)
+    857          
+    858          	if (0 < day)
    \       0x50   0x0038             MOVS     R0,R7
    \       0x52   0xB2C0             UXTB     R0,R0
    \       0x54   0x2800             CMP      R0,#+0
    \       0x56   0xD00C             BEQ.N    ??cmd_uptime_0
-    854          	{
-    855          		printf("%d day(s) %d:%02d:%02d up.\n", day, hour, min, sec);
+    859          	{
+    860          		printf("%d day(s) %d:%02d:%02d up.\n", day, hour, min, sec);
    \       0x58   0x4650             MOV      R0,R10
    \       0x5A   0xB2C0             UXTB     R0,R0
    \       0x5C   0x9000             STR      R0,[SP, #+0]
@@ -2029,10 +2049,10 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \       0x6A   0x....             LDR.N    R0,??DataTable11_24
    \       0x6C   0x.... 0x....      BL       printf
    \       0x70   0xE008             B.N      ??cmd_uptime_1
-    856          	}
-    857          	else
-    858          	{
-    859          		printf("%d:%02d:%02d up.\n", hour, min, sec);
+    861          	}
+    862          	else
+    863          	{
+    864          		printf("%d:%02d:%02d up.\n", hour, min, sec);
    \                     ??cmd_uptime_0: (+1)
    \       0x72   0x4653             MOV      R3,R10
    \       0x74   0xB2DB             UXTB     R3,R3
@@ -2042,58 +2062,58 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \       0x7C   0xB2C9             UXTB     R1,R1
    \       0x7E   0x....             LDR.N    R0,??DataTable11_25
    \       0x80   0x.... 0x....      BL       printf
-    860          	}
-    861          
-    862          //=============================================================================
-    863          #endif
-    864          //=============================================================================
-    865          
-    866          	return (uint8_t)0;
+    865          	}
+    866          
+    867          //=============================================================================
+    868          #endif
+    869          //=============================================================================
+    870          
+    871          	return (uint8_t)0;
    \                     ??cmd_uptime_1: (+1)
    \       0x84   0x2000             MOVS     R0,#+0
    \       0x86   0xE8BD 0x87F6      POP      {R1,R2,R4-R10,PC}
-    867          }
-    868          
-    869          //========================================================================
+    872          }
+    873          
+    874          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    870          uint8_t cmd_ver(uint8_t argc, char *argv[])
-    871          //========================================================================
-    872          {
+    875          uint8_t cmd_ver(uint8_t argc, char *argv[])
+    876          //========================================================================
+    877          {
    \                     cmd_ver: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    873          	printf("Version = %s(%s)\n", APP_VER, APP_BUILD_DATE );
+    878          	printf("Version = %s(%s)\n", APP_VER, APP_BUILD_DATE );
    \        0x6   0x....             LDR.N    R2,??DataTable11_26
    \        0x8   0x....             LDR.N    R1,??DataTable11_27
    \        0xA   0x....             LDR.N    R0,??DataTable11_28
    \        0xC   0x.... 0x....      BL       printf
-    874          
-    875          	return (uint8_t)0;
+    879          
+    880          	return (uint8_t)0;
    \       0x10   0x2000             MOVS     R0,#+0
    \       0x12   0xBD32             POP      {R1,R4,R5,PC}
-    876          }
-    877          
-    878          
-    879          //========================================================================
+    881          }
+    882          
+    883          
+    884          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    880          uint8_t cmd_reset(uint8_t argc, char *argv[])
-    881          //========================================================================
-    882          {
+    885          uint8_t cmd_reset(uint8_t argc, char *argv[])
+    886          //========================================================================
+    887          {
    \                     cmd_reset: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
    \        0x4   0x000D             MOVS     R5,R1
-    883            	NVIC_SystemReset();
+    888            	NVIC_SystemReset();
    \        0x6   0x.... 0x....      BL       __NVIC_SystemReset
-    884          	return (uint8_t)0;
+    889          	return (uint8_t)0;
                  	^
 Warning[Pe111]: statement is unreachable
    \        0xA   0x2000             MOVS     R0,#+0
    \        0xC   0xBD32             POP      {R1,R4,R5,PC}
-    885          }
+    890          }
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable2:
@@ -3857,11 +3877,11 @@ Warning[Pe111]: statement is unreachable
 
    \                                 In section .rodata, align 4
    \                     ?_88:
-   \        0x0   0x53 0x65          DC8 "Sep 22 2022, 08:40:11"
+   \        0x0   0x53 0x65          DC8 "Sep 29 2022, 16:58:13"
 
    \              0x70 0x20    
 
-   \              0x32 0x32    
+   \              0x32 0x39    
 
    \              0x20 0x32    
 
@@ -3869,34 +3889,34 @@ Warning[Pe111]: statement is unreachable
 
    \              0x32 0x2C    
 
-   \              0x20 0x30    
+   \              0x20 0x31    
 
-   \              0x38 0x3A    
+   \              0x36 0x3A    
 
-   \              0x34 0x30    
+   \              0x35 0x38    
 
    \              0x3A 0x31    
 
-   \              0x31 0x00
+   \              0x33 0x00
    \       0x16                      DS8 2
-    886          
-    887          /*
-    888          //========================================================================
-    889          int cmd_ts(int argc, char *argv[])
-    890          //========================================================================
-    891          {
-    892          	char	*pbuffer;
-    893          
-    894          	pbuffer = pvPortMalloc( 512 );
-    895          	vTaskList(pbuffer);
-    896          	printf("Name            Status  Pri     StkHigh Task#\n");
-    897          	printf(pbuffer);
-    898          	vPortFree(pbuffer);
-    899          	return 0;
-    900          }
-    901          */
-    902          
-    903          
+    891          
+    892          /*
+    893          //========================================================================
+    894          int cmd_ts(int argc, char *argv[])
+    895          //========================================================================
+    896          {
+    897          	char	*pbuffer;
+    898          
+    899          	pbuffer = pvPortMalloc( 512 );
+    900          	vTaskList(pbuffer);
+    901          	printf("Name            Status  Pri     StkHigh Task#\n");
+    902          	printf(pbuffer);
+    903          	vPortFree(pbuffer);
+    904          	return 0;
+    905          }
+    906          */
+    907          
+    908          
 
    Maximum stack usage in bytes:
 
@@ -3936,9 +3956,9 @@ Warning[Pe111]: statement is unreachable
         64   -> printf
       32   getarg
         32   -> strtok_r
-      24   readline
-        24   -> getchar
-        24   -> printf
+      32   readline
+        32   -> getchar
+        32   -> printf
        8   vCLITask
          8   -> HAL_Delay
          8   -> LoopProcCLI
@@ -4095,7 +4115,7 @@ Warning[Pe111]: statement is unreachable
       70  getarg
       64  old_cmd
       16  prompt_string
-     350  readline
+     382  readline
      384  user_command_table
       16  vCLITask
 
@@ -4103,11 +4123,11 @@ Warning[Pe111]: statement is unreachable
    145 bytes in section .bss
    396 bytes in section .data
  1'489 bytes in section .rodata
- 1'850 bytes in section .text
+ 1'882 bytes in section .text
  
- 1'850 bytes of CODE  memory
+ 1'882 bytes of CODE  memory
  1'489 bytes of CONST memory
    541 bytes of DATA  memory
 
 Errors: none
-Warnings: 29
+Warnings: 30

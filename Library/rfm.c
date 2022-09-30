@@ -657,7 +657,7 @@ void RF_RSSI( void )
     {
     	LCDRSSI( 1 );  //  RSSI 1
     }
-    else if ( rssi <= 85 )
+    else 
     {
     	LCDRSSI( 0 );  //  RSSI 0
     }
@@ -1501,12 +1501,21 @@ uint8_t RFM_main( void )
 	InitProcPkt();
 
 	uint8_t nTick;
+    uint16_t nTickRe = 0;
+	uint16_t nTickCnt = 10;
+    
+    static int nCallTimeCnt = 1;
 
-	/* Infinite main loop */
-	while ( 1 )
+/* Infinite main loop */
+	while ( nCallTimeCnt )
 	{
+
+		if((nTick + 10) < nTickRe){nCallTimeCnt = 0;  }
+
+
 		nTick = HAL_GetTick();
 
+		
 		if ( GetDevID() == DevRF900T )
 		{
 			//	송신기 - KeyPad 동작.
@@ -1527,6 +1536,10 @@ uint8_t RFM_main( void )
 
 		//	Loop Proc Main Watchdog Count Reload
 		LoopProcMain( nTick );
+
+		nTickRe = HAL_GetTick();
+
+
 	}
 }
 

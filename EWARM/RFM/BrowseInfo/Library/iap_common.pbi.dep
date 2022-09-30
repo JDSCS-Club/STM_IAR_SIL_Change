@@ -8,7 +8,7 @@ C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\BrowseInfo\Library\iap_common.pbi: \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\ycheck.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\yvals.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\DLib_Defaults.h \
-  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\DLib_Config_Normal.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\DLib_Config_Full.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\DLib_Product.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\CMSIS\Include\cmsis_version.h \
   C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\..\Drivers\CMSIS\Include\cmsis_compiler.h \

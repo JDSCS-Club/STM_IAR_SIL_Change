@@ -612,8 +612,13 @@ int8_t readline( S8 *bufp )
 	S8	*command_buf = bufp;	//[MAX_COMMAND_LENGTH];
 
 	int8_t		ret = 0;
-
-	for ( ;; )
+    
+    int8_t sCnt = 0; 
+    int8_t sMax_Len= 0; 
+    
+    sMax_Len = sizeof(bufp);
+    
+	for (sCnt = 0 ; sCnt < sMax_Len;sCnt++ )
 	{
 		ch =(int8_t) getchar();
 
