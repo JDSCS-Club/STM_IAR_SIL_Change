@@ -846,7 +846,7 @@ uint8_t cmd_uptime(uint8_t argc, char *argv[])
 	uint8_t	sec, min, hour;
 	uint8_t	day;
 
-	day = (uint8_t)((uint8_t)tmp / 3600 / 24);
+	day = (uint8_t)((uint8_t)tmp / (3600 / 24));
 	tmp = (uint8_t)((uint8_t)tmp % (uint8_t)(3600 * 24));
 
 	hour = (uint8_t)((uint8_t)tmp / 3600);
