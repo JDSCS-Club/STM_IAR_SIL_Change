@@ -69,7 +69,7 @@ uint8_t	 	g_nRFMMode 		=	RFMModeNormal;		//  eRFMMode
 
 uint8_t		g_offsetCA		=	0;					//	충돌회피 Offset ( msec ) ( 0 ~ 1000 )
 
-uint8_t		g_nStampRxPkt	=	0;					//	방송/통화 Stamp
+uint16_t		g_nStampRxPkt	=	0;					//	방송/통화 Stamp
 
 uint8_t		g_nRSSI			=	0;					//	RSSI Value
 
@@ -1076,7 +1076,7 @@ static uint8_t bRxBuffering = 1;	//  Rx Buffering. ( Packet 4 ~ Packet 0)
 void RFM_I2SEx_TxRxCpltCallback( I2S_HandleTypeDef *hi2s )
 //========================================================================
 {
-	static uint8_t 	idx = 0;
+	static int16_t 	idx = 0;
 	int16_t		*pAudioTx;
 	int16_t		*pAudioRx;
 
@@ -1761,7 +1761,7 @@ void LoopProcRFM ( uint16_t nTick )
 
 	//========================================================================
 	//  수신기 Standby GPIO 제어 : 모듈동작시 1초간격 Blink
-	static uint8_t s_nTickStandby;
+	static uint16_t s_nTickStandby;
 
 	if ( nTick - s_nTickStandby >= 1000 )
 	{
@@ -1828,7 +1828,7 @@ void LoopProcRFM ( uint16_t nTick )
 #if defined(USE_STAT_REQ)	//	송신기 : 상태 정보 요청 100 msec간격.
 	//========================================================================
 	//	송신기 장치 상태정보 요청.
-	static uint8_t oldTickStatReq = 0;
+	static uint16_t oldTickStatReq = 0;
 	static uint8_t s_idxCh = 0;
 
 	if	( ( (nTick - oldTickStatReq) > TIME_STAT_REQ )	//	주기 : 200 msec
@@ -1921,7 +1921,7 @@ void SetStat( uint8_t nRspID )
 }
 
 //========================================================================
-void ReflashStat( uint8_t nTick )
+void ReflashStat(uint16_t nTick )
 //========================================================================
 {
 	//	상태정보 갱신.
@@ -1963,7 +1963,7 @@ void ReloadStampStat( void )
 	//	-> 상태정보 시간 최신값으로 유지.
 	//	-> 방송/통화 중 상태정보 전송을 하지 않기 때문에 방송통화 이후에 상태정보가 Reset되는 현상 방지.
 
-	uint8_t nStamp = HAL_GetTick();
+	uint16_t nStamp = HAL_GetTick();
 
 	uint8_t idx;
 

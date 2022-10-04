@@ -118,14 +118,14 @@ void qBufClear( QBuf_t *q )
 }
 
 //===========================================================================
-uint8_t qBufCnt( QBuf_t *q )
+uint16_t qBufCnt( QBuf_t *q )
 //===========================================================================
 {
 	return ( ( ( q->rear + q->size ) - q->front ) % q->size );
 }
 
 //===========================================================================
-uint8_t qBufPut( QBuf_t *q, uint8_t *pBuf, uint16_t size )
+uint16_t qBufPut( QBuf_t *q, uint8_t *pBuf, uint16_t size )
 //===========================================================================
 {
 	if ( ( q->rear + size ) % q->size == q->front )
@@ -145,7 +145,7 @@ uint8_t qBufPut( QBuf_t *q, uint8_t *pBuf, uint16_t size )
 }
 
 //===========================================================================
-uint8_t qBufGet( QBuf_t *q, uint8_t *pBuf, uint16_t size )
+uint16_t qBufGet( QBuf_t *q, uint8_t *pBuf, uint16_t size )
 //===========================================================================
 {
 	//*

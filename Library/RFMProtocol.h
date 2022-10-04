@@ -399,7 +399,7 @@ typedef struct _RFMDevStat
 {
 	//--------------------------------------------------------------------------
 	RFMPktStat	stat;
-	uint8_t			stampRx;	//	상태정보 수신 Timestamp
+	uint16_t			stampRx;	//	상태정보 수신 Timestamp
 	uint8_t			nRSSI;		//	RSSI 값.
 } RFMDevStat;
 

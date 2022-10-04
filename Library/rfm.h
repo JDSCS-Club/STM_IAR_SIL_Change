@@ -77,7 +77,7 @@ extern uint8_t			g_nChRx;			//  RF Rx Channel
 
 extern uint8_t			g_offsetCA;			//	충돌회피 Offset ( msec )
 
-extern uint8_t			g_nStampRxPkt;		//	방송/통화 Stamp
+extern uint16_t			g_nStampRxPkt;		//	방송/통화 Stamp
 
 extern uint8_t			g_nRSSI;			//	RSSI Value
 
@@ -165,7 +165,7 @@ uint8_t		cmd_OccPa		( uint8_t argc, char * argv[] );	//	대승객방송 시작/�
 
 uint8_t		cmd_hop			( uint8_t argc, char * argv[] );	//	Hopping
 
-void ReflashStat( uint8_t nTick );
+void ReflashStat(uint16_t nTick );
 void ReloadStampStat( void );
 
 

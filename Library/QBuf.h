@@ -52,9 +52,9 @@ typedef struct _QBuf_t
 //===========================================================================
 void	qBufInit	( QBuf_t *q, uint8_t *_qBuf, uint16_t _size );
 void	qBufClear	( QBuf_t *q );
-uint8_t		qBufCnt		( QBuf_t *q );
-uint8_t		qBufPut		( QBuf_t *q, uint8_t *pBuf, uint16_t size );
-uint8_t		qBufGet		( QBuf_t *q, uint8_t *pBuf, uint16_t size );
+uint16_t		qBufCnt		( QBuf_t *q );
+uint16_t		qBufPut		( QBuf_t *q, uint8_t *pBuf, uint16_t size );
+uint16_t		qBufGet		( QBuf_t *q, uint8_t *pBuf, uint16_t size );
 //===========================================================================
 
 //===========================================================================

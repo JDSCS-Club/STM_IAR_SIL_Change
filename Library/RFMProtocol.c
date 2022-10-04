@@ -820,7 +820,7 @@ uint8_t	ProcPktCtrlPaCall	( const RFMPkt *pRFPkt )
 		SetChPARFT( GetChNearRFT() );
 	}
 
-	g_nStampRxPkt = (uint8_t)HAL_GetTick();		//	방송/통화 Stamp
+	g_nStampRxPkt = (uint16_t)HAL_GetTick();		//	방송/통화 Stamp
 
 	return (uint8_t) 0;
 }
@@ -875,7 +875,7 @@ uint8_t	ProcPktPA			( const RFMPkt *pRFPkt )
 		//  Red LED On
 		HAL_GPIO_WritePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_SET ); //  RED LED
 	}
-	g_nStampRxPkt = (uint8_t)HAL_GetTick();		//	방송/통화 Stamp
+	g_nStampRxPkt = (uint16_t)HAL_GetTick();		//	방송/통화 Stamp
 
 	return (uint8_t) 0;
 }
@@ -919,7 +919,7 @@ uint8_t	ProcPktCall			( const RFMPkt *pRFPkt )
 		SetRFMMode( (uint8_t)RFMModeRx );
 	}
 
-	g_nStampRxPkt = (uint8_t)HAL_GetTick();		//	방송/통화 Stamp
+	g_nStampRxPkt = (uint16_t)HAL_GetTick();		//	방송/통화 Stamp
 
 	return (uint8_t) 0;
 }

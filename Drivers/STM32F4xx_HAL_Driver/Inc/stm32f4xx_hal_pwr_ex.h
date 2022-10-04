@@ -134,13 +134,13 @@
   *            @arg PWR_REGULATOR_VOLTAGE_SCALE3: Regulator voltage output Scale 3 mode
   * @retval None
   */
-#define __HAL_PWR_VOLTAGESCALING_CONFIG(__REGULATOR__) do {                                                     \
+#define __HAL_PWR_VOLTAGESCALING_CONFIG(__REGULATOR__)  {                                                     \
                                                             __IO uint32_t tmpreg = 0x00U;                        \
                                                             MODIFY_REG(PWR->CR, PWR_CR_VOS, (__REGULATOR__));   \
                                                             /* Delay after an RCC peripheral clock enabling */  \
                                                             tmpreg = READ_BIT(PWR->CR, PWR_CR_VOS);             \
                                                             UNUSED(tmpreg);                                     \
-                                                          } while(0U)
+                                                          } 
 #endif /* STM32F405xx || STM32F407xx || STM32F415xx || STM32F417xx */ 
 
 #if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx) ||\
