@@ -829,8 +829,8 @@ uint8_t	ProcPktCtrlPaCall	( const RFMPkt *pRFPkt )
 uint8_t	ProcPktPA			( const RFMPkt *pRFPkt )
 //========================================================================
 {
-    static uint8_t sReMode = 0;
-    static uint8_t sspkVal = 0;
+    static uint8_t sReMode = RFMModeRx;
+    static uint8_t sspkVal = 1;
     
 	if ( GetDbg() )
 	{
@@ -850,12 +850,12 @@ uint8_t	ProcPktPA			( const RFMPkt *pRFPkt )
 		// 조명 On
 		HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
 
-        sReMode = RFMModeRx;
+        //sReMode = RFMModeRx;
         
 		SetRFMMode( (uint8_t)sReMode );
 
 		//	Codec Speaker On
-        sspkVal = 1;
+        //sspkVal = 1;
 		RFM_Spk((uint8_t)sspkVal);
 		//  수신기 Spk Relay On
 		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_SET );
@@ -868,7 +868,7 @@ uint8_t	ProcPktPA			( const RFMPkt *pRFPkt )
 #if defined(USE_RFT_ONLY_RX_SPK_ON)
 		//  송신기 : 수신중인 경우 SPK ON
 //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
-        sspkVal = 1;
+        //sspkVal = 1;
 		RFM_Spk((uint8_t)sspkVal);
 #endif
 
@@ -876,7 +876,7 @@ uint8_t	ProcPktPA			( const RFMPkt *pRFPkt )
 		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
 		//========================================================================
 
-        sReMode = RFMModeRx;
+        //sReMode = RFMModeRx;
 		//  송신기
 		SetRFMMode( (uint8_t)sReMode );
 
