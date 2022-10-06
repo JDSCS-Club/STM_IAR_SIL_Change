@@ -1,10 +1,10 @@
 C:\D\Git_Hub\STM_IAR_SIL_Change\EWARM\RFM\BrowseInfo\Drivers\display\PHanFontEng.pbi: \
-  C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\fonts\PHanFontEng.c \
-  C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\fonts\PHan_Lib.h \
-  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\stdint.h \
-  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\ycheck.h \
-  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\yvals.h \
-  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\DLib_Defaults.h \
-  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\DLib_Config_Full.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\fonts\PHanFontEng.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\DLib_Product.h \
-  C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\fonts\PHanFontEng.h
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\DLib_Config_Full.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\DLib_Defaults.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\yvals.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\ycheck.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\ EWARM\ FS\ 9.20.3\arm\inc\c\stdint.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\fonts\PHan_Lib.h \
+  C:\D\Git_Hub\STM_IAR_SIL_Change\Drivers\display\fonts\PHanFontEng.c

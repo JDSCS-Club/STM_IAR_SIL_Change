@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#                                                         30/Sep/2022  17:12:36
+#                                                         06/Oct/2022  13:55:47
 # IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
@@ -509,7 +509,7 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
     182          	{
     183          		printf( "%s(%d)\n", __func__, __LINE__ );
    \        0xE   0x22B7             MOVS     R2,#+183
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_2
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable23_1
    \       0x14   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x18   0x.... 0x....      BL       printf
     184          	}
@@ -587,7 +587,7 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
     216          	{
     217          		printf( "%s(%d)\n", __func__, __LINE__ );
    \        0xE   0x22D9             MOVS     R2,#+217
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_3
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_2
    \       0x14   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x18   0x.... 0x....      BL       printf
     218          	}
@@ -660,12 +660,12 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \       0x7C   0x82B8             STRH     R0,[R7, #+20]
     247          
     248          	pStat->nManHop		=	g_nManHopping;		//	Manual Hopping Setting
-   \       0x7E   0x.... 0x....      LDR.W    R0,??DataTable24_4
+   \       0x7E   0x.... 0x....      LDR.W    R0,??DataTable24_3
    \       0x82   0x7800             LDRB     R0,[R0, #+0]
    \       0x84   0x75B8             STRB     R0,[R7, #+22]
     249          
     250          	pStat->nDevFlag		=	g_nDevFlag;			//	Device Flag : 조명 상태 등.
-   \       0x86   0x.... 0x....      LDR.W    R0,??DataTable24_5
+   \       0x86   0x.... 0x....      LDR.W    R0,??DataTable24_4
    \       0x8A   0x7800             LDRB     R0,[R0, #+0]
    \       0x8C   0x7638             STRB     R0,[R7, #+24]
     251          
@@ -726,7 +726,7 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \        0x4   0x0004             MOVS     R4,R0
     283          	printf( "%s(%d)\n", __func__, __LINE__ );
    \        0x6   0xF240 0x121B      MOVW     R2,#+283
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable24_6
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable24_5
    \        0xE   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x12   0x.... 0x....      BL       printf
     284          
@@ -816,7 +816,7 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \        0x4   0x0004             MOVS     R4,R0
     333          	printf( "%s(%d)\n", __func__, __LINE__ );
    \        0x6   0xF240 0x124D      MOVW     R2,#+333
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable24_7
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable24_6
    \        0xE   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x12   0x.... 0x....      BL       printf
     334          
@@ -912,7 +912,7 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \        0x4   0x0004             MOVS     R4,R0
     387          	printf( "%s(%d)\n", __func__, __LINE__ );
    \        0x6   0xF240 0x1283      MOVW     R2,#+387
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable24_8
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable24_7
    \        0xE   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x12   0x.... 0x....      BL       printf
     388          
@@ -1002,7 +1002,7 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \        0x4   0x0004             MOVS     R4,R0
     437          	printf( "%s(%d)\n", __func__, __LINE__ );
    \        0x6   0xF240 0x12B5      MOVW     R2,#+437
-   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable24_9
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable24_8
    \        0xE   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x12   0x.... 0x....      BL       printf
     438          
@@ -1105,7 +1105,7 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
    \        0x8   0x0016             MOVS     R6,R2
     495          	printf( "%s(%d)\n", __func__, __LINE__ );
    \        0xA   0xF240 0x12EF      MOVW     R2,#+495
-   \        0xE   0x.... 0x....      LDR.W    R1,??DataTable24_10
+   \        0xE   0x.... 0x....      LDR.W    R1,??DataTable24_9
    \       0x12   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x16   0x.... 0x....      BL       printf
     496          	//========================================================================
@@ -1146,7 +1146,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \        0x6   0x000D             MOVS     R5,R1
     510          	printf( "%s(%d)\n", __func__, __LINE__ );
    \        0x8   0xF44F 0x72FF      MOV      R2,#+510
-   \        0xC   0x.... 0x....      LDR.W    R1,??DataTable24_11
+   \        0xC   0x.... 0x....      LDR.W    R1,??DataTable24_10
    \       0x10   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x14   0x.... 0x....      BL       printf
     511          	//========================================================================
@@ -1205,12 +1205,12 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \        0x2   0xB092             SUB      SP,SP,#+72
     534          	printf( "%s(%d)\n", __func__, __LINE__ );
    \        0x4   0xF240 0x2216      MOVW     R2,#+534
-   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable24_12
+   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable24_11
    \        0xC   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x10   0x.... 0x....      BL       printf
     535          
     536          	SendRFCmd( "reset", (uint8_t)190 );
-   \       0x14   0x.... 0x....      LDR.W    R4,??DataTable24_13
+   \       0x14   0x.... 0x....      LDR.W    R4,??DataTable24_12
    \       0x18   0x21BE             MOVS     R1,#+190
    \       0x1A   0x0020             MOVS     R0,R4
    \       0x1C   0x.... 0x....      BL       SendRFCmd
@@ -1243,13 +1243,13 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \        0x0   0xB580             PUSH     {R7,LR}
     550          	printf( "%s(%d)\n", __func__, __LINE__ );
    \        0x2   0xF240 0x2226      MOVW     R2,#+550
-   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable24_14
+   \        0x6   0x.... 0x....      LDR.W    R1,??DataTable24_13
    \        0xA   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \        0xE   0x.... 0x....      BL       printf
     551          	//==========================================================================
     552          	SendRFCmd( "stboot", (uint8_t)247 );	//	DFU모드의 경우 아주 근접(RSSI-247)하지 않으면 동작하지 않도록 한다!!!
    \       0x12   0x21F7             MOVS     R1,#+247
-   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable24_15
+   \       0x14   0x.... 0x....      LDR.W    R0,??DataTable24_14
    \       0x18   0x.... 0x....      BL       SendRFCmd
     553          	//==========================================================================
     554          }
@@ -1270,7 +1270,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
     563          
     564          	printf( "%s(%d)\n", __func__, __LINE__ );
    \        0x4   0xF44F 0x720D      MOV      R2,#+564
-   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable24_16
+   \        0x8   0x.... 0x....      LDR.W    R1,??DataTable24_15
    \        0xC   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x10   0x.... 0x....      BL       printf
     565          	//==========================================================================
@@ -1286,7 +1286,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
     571          		//	Upgrade Mode로 변경.
     572          		SendRFCmdCh( (uint8_t)ChUpgrDst, (char *)"upgrade 1", (uint8_t) 200 );	//	DFU모드의 경우 근접(RSSI-200)하지 않으면 동작하지 않도록 한다!!!
    \       0x1C   0x22C8             MOVS     R2,#+200
-   \       0x1E   0x.... 0x....      LDR.W    R1,??DataTable24_17
+   \       0x1E   0x.... 0x....      LDR.W    R1,??DataTable24_16
    \       0x22   0x2003             MOVS     R0,#+3
    \       0x24   0x.... 0x....      BL       SendRFCmdCh
    \       0x28   0xE004             B.N      ??SendRFCmdUpgrade_1
@@ -1297,7 +1297,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
     577          		SendRFCmd( (char *)"upgrade 1", (uint8_t)200 );	//	DFU모드의 경우 근접(RSSI-200)하지 않으면 동작하지 않도록 한다!!!
    \                     ??SendRFCmdUpgrade_0: (+1)
    \       0x2A   0x21C8             MOVS     R1,#+200
-   \       0x2C   0x.... 0x....      LDR.W    R0,??DataTable24_17
+   \       0x2C   0x.... 0x....      LDR.W    R0,??DataTable24_16
    \       0x30   0x.... 0x....      BL       SendRFCmd
     578          	}
     579          	//==========================================================================
@@ -1427,8 +1427,8 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \        0x6   0x0023             MOVS     R3,R4
    \        0x8   0xB2DB             UXTB     R3,R3
    \        0xA   0xF44F 0x721F      MOV      R2,#+636
-   \        0xE   0x.... 0x....      LDR.W    R1,??DataTable24_18
-   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable24_19
+   \        0xE   0x.... 0x....      LDR.W    R1,??DataTable24_17
+   \       0x12   0x.... 0x....      LDR.W    R0,??DataTable24_18
    \       0x16   0x.... 0x....      BL       printf
     637          
     638          	RFMPkt			stPkt;
@@ -1462,11 +1462,11 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
     649          	pUpgrStat->nResult		=	nUpgrResult;
    \       0x44   0x703C             STRB     R4,[R7, #+0]
     650          	pUpgrStat->nTrainSet	=	g_idxTrainSet;
-   \       0x46   0x.... 0x....      LDR.W    R0,??DataTable24_20
+   \       0x46   0x.... 0x....      LDR.W    R0,??DataTable24_19
    \       0x4A   0x7800             LDRB     R0,[R0, #+0]
    \       0x4C   0x7138             STRB     R0,[R7, #+4]
     651          	pUpgrStat->nCarNo 		=	g_nCarNo;
-   \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable24_21
+   \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable24_20
    \       0x52   0x7800             LDRB     R0,[R0, #+0]
    \       0x54   0x7178             STRB     R0,[R7, #+5]
     652          
@@ -1528,7 +1528,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
     688          	{
     689          		printf( "%s(%d)\n", __func__, __LINE__ );
    \        0xC   0xF240 0x22B1      MOVW     R2,#+689
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_22
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_21
    \       0x14   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x18   0x.... 0x....      BL       printf
     690          	}
@@ -1561,7 +1561,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \       0x38   0xF64A 0x2155      MOVW     R1,#+43605
    \       0x3C   0x4288             CMP      R0,R1
    \       0x3E   0xD10B             BNE.N    ??ProcPktStat_1
-   \       0x40   0x.... 0x....      LDR.W    R0,??DataTable24_23
+   \       0x40   0x.... 0x....      LDR.W    R0,??DataTable24_22
    \       0x44   0x7800             LDRB     R0,[R0, #+0]
    \       0x46   0x2800             CMP      R0,#+0
    \       0x48   0xD106             BNE.N    ??ProcPktStat_1
@@ -1621,7 +1621,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
     739          	{
     740          		printf( "%s(%d)\n", __func__, __LINE__ );
    \        0xC   0xF44F 0x7239      MOV      R2,#+740
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_24
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_23
    \       0x14   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x18   0x.... 0x....      BL       printf
     741          	}
@@ -1650,8 +1650,8 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
     755          		//========================================================================
     756          		//	RSSI 갱신
     757          		g_devStat[idx].stat.nChRx = pStatReq->nSrcCh;
-   \       0x32   0x201B             MOVS     R0,#+27
-   \       0x34   0x.... 0x....      LDR.W    R1,??DataTable24_25
+   \       0x32   0x201C             MOVS     R0,#+28
+   \       0x34   0x.... 0x....      LDR.W    R1,??DataTable24_24
    \       0x38   0x0032             MOVS     R2,R6
    \       0x3A   0xB2D2             UXTB     R2,R2
    \       0x3C   0x4342             MULS     R2,R0,R2
@@ -1662,9 +1662,9 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \       0x44   0xB2F6             UXTB     R6,R6
    \       0x46   0x4346             MULS     R6,R0,R6
    \       0x48   0xEB01 0x0006      ADD      R0,R1,R6
-   \       0x4C   0x.... 0x....      LDR.W    R1,??DataTable24_26
+   \       0x4C   0x.... 0x....      LDR.W    R1,??DataTable24_25
    \       0x50   0x7809             LDRB     R1,[R1, #+0]
-   \       0x52   0x7681             STRB     R1,[R0, #+26]
+   \       0x52   0x76C1             STRB     R1,[R0, #+27]
     759          	}
     760          
     761          	//	Source Channel로 상태정보 송신.
@@ -1695,7 +1695,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
     773          	{
     774          		printf( "%s(%d)\n", __func__, __LINE__ );
    \        0xC   0xF240 0x3206      MOVW     R2,#+774
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_27
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_26
    \       0x14   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x18   0x.... 0x....      BL       printf
     775          	}
@@ -1715,7 +1715,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
     782          	case CtrlStart:
     783          		printf("[Start]");
    \                     ??ProcPktCtrlPaCall_3: (+1)
-   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable24_28
+   \       0x2A   0x.... 0x....      LDR.W    R0,??DataTable24_27
    \       0x2E   0x.... 0x....      BL       printf
     784          		SetRFMMode( (uint8_t)RFMModeRx );
    \       0x32   0x2002             MOVS     R0,#+2
@@ -1725,7 +1725,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
     786          	case CtrlStop:
     787          		printf("[Stop]");
    \                     ??ProcPktCtrlPaCall_1: (+1)
-   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable24_29
+   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable24_28
    \       0x3E   0x.... 0x....      BL       printf
     788          		SetRFMMode( (uint8_t)RFMModeNormal );
    \       0x42   0x2000             MOVS     R0,#+0
@@ -1734,7 +1734,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
     790          		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_RESET );
    \       0x48   0x2200             MOVS     R2,#+0
    \       0x4A   0xF44F 0x7180      MOV      R1,#+256
-   \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable24_30
+   \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable24_29
    \       0x52   0x.... 0x....      BL       HAL_GPIO_WritePin
     791          		break;
     792          	//default:
@@ -1756,21 +1756,21 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
     799          	case CtrlPA:
     800          		printf("[PA]");
    \                     ??ProcPktCtrlPaCall_4: (+1)
-   \       0x66   0x.... 0x....      LDR.W    R0,??DataTable24_31
+   \       0x66   0x.... 0x....      LDR.W    R0,??DataTable24_30
    \       0x6A   0x.... 0x....      BL       printf
     801          		break;
    \       0x6E   0xE008             B.N      ??ProcPktCtrlPaCall_5
     802          	case CtrlCall:
     803          		printf("[Call]");
    \                     ??ProcPktCtrlPaCall_7: (+1)
-   \       0x70   0x.... 0x....      LDR.W    R0,??DataTable24_32
+   \       0x70   0x.... 0x....      LDR.W    R0,??DataTable24_31
    \       0x74   0x.... 0x....      BL       printf
     804          		break;
    \       0x78   0xE003             B.N      ??ProcPktCtrlPaCall_5
     805          	case CtrlOccPa:
     806          		printf("[OccPa]");
    \                     ??ProcPktCtrlPaCall_6: (+1)
-   \       0x7A   0x.... 0x....      LDR.W    R0,??DataTable24_33
+   \       0x7A   0x.... 0x....      LDR.W    R0,??DataTable24_32
    \       0x7E   0x.... 0x....      BL       printf
     807          		break;
     808          	//default:
@@ -1797,11 +1797,11 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \       0x96   0x.... 0x....      BL       SetChPARFT
     821          	}
     822          
-    823          	g_nStampRxPkt = (uint8_t)HAL_GetTick();		//	방송/통화 Stamp
+    823          	g_nStampRxPkt = (uint16_t)HAL_GetTick();		//	방송/통화 Stamp
    \                     ??ProcPktCtrlPaCall_8: (+1)
    \       0x9A   0x.... 0x....      BL       HAL_GetTick
-   \       0x9E   0x.... 0x....      LDR.W    R1,??DataTable24_34
-   \       0xA2   0x7008             STRB     R0,[R1, #+0]
+   \       0x9E   0x.... 0x....      LDR.W    R1,??DataTable24_33
+   \       0xA2   0x8008             STRH     R0,[R1, #+0]
     824          
     825          	return (uint8_t) 0;
    \       0xA4   0x2000             MOVS     R0,#+0
@@ -1817,267 +1817,287 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \                     ProcPktPA: (+1)
    \        0x0   0xB570             PUSH     {R4-R6,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    832          	if ( GetDbg() )
+    832              static uint8_t sReMode = RFMModeRx;
+    833              static uint8_t sspkVal = 1;
+    834              
+    835          	if ( GetDbg() )
    \        0x4   0x.... 0x....      BL       GetDbg
    \        0x8   0x2800             CMP      R0,#+0
    \        0xA   0xD007             BEQ.N    ??ProcPktPA_0
-    833          	{
-    834          		printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0xC   0xF240 0x3242      MOVW     R2,#+834
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_35
+    836          	{
+    837          		printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0xC   0xF240 0x3245      MOVW     R2,#+837
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_34
    \       0x14   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x18   0x.... 0x....      BL       printf
-    835          	}
-    836          
-    837          	//========================================================================
-    838          	//  방송 ( PTT )
-    839          	if ( GetDevID() == DevRF900M )
+    838          	}
+    839          
+    840          	//========================================================================
+    841          	//  방송 ( PTT )
+    842          	if ( GetDevID() == DevRF900M )
    \                     ??ProcPktPA_0: (+1)
    \       0x1C   0x.... 0x....      BL       GetDevID
    \       0x20   0x2801             CMP      R0,#+1
-   \       0x22   0xD11C             BNE.N    ??ProcPktPA_1
-    840          	{
-    841          		//  수신기
-    842          		uint16_t	 *pAudioBuf = (uint16_t*)pRFPkt->dat.data;
+   \       0x22   0xD120             BNE.N    ??ProcPktPA_1
+    843          	{
+    844          		//  수신기
+    845          		uint16_t	 *pAudioBuf = (uint16_t*)pRFPkt->dat.data;
    \       0x24   0xF114 0x050A      ADDS     R5,R4,#+10
-    843          
-    844          		//  방송 : 송신기 -> 수신기
-    845          		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, ( (uint16_t)I2S_DMA_LOOP_SIZE * 2 ) );
+    846          
+    847          		//  방송 : 송신기 -> 수신기
+    848          		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, ( (uint16_t)I2S_DMA_LOOP_SIZE * 2 ) );
    \       0x28   0x223C             MOVS     R2,#+60
    \       0x2A   0x0029             MOVS     R1,R5
-   \       0x2C   0x.... 0x....      LDR.W    R0,??DataTable24_36
+   \       0x2C   0x.... 0x....      LDR.W    R0,??DataTable24_35
    \       0x30   0x.... 0x....      BL       qBufPut
-    846          
-    847          		// 조명 On
-    848          		HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
-   \       0x34   0x.... 0x....      LDR.W    R6,??DataTable24_30
+    849          
+    850          		// 조명 On
+    851          		HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
+   \       0x34   0x.... 0x....      LDR.W    R6,??DataTable24_29
    \       0x38   0x2201             MOVS     R2,#+1
    \       0x3A   0xF44F 0x7100      MOV      R1,#+512
    \       0x3E   0x0030             MOVS     R0,R6
    \       0x40   0x.... 0x....      BL       HAL_GPIO_WritePin
-    849          
-    850          		SetRFMMode( (uint8_t)RFMModeRx );
-   \       0x44   0x2002             MOVS     R0,#+2
-   \       0x46   0x.... 0x....      BL       SetRFMMode
-    851          
-    852          		//	Codec Speaker On
-    853          		RFM_Spk((uint8_t)1);
-   \       0x4A   0x2001             MOVS     R0,#+1
-   \       0x4C   0x.... 0x....      BL       RFM_Spk
-    854          		//  수신기 Spk Relay On
-    855          		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_SET );
-   \       0x50   0x2201             MOVS     R2,#+1
-   \       0x52   0xF44F 0x7180      MOV      R1,#+256
-   \       0x56   0x0030             MOVS     R0,R6
-   \       0x58   0x.... 0x....      BL       HAL_GPIO_WritePin
-   \       0x5C   0xE014             B.N      ??ProcPktPA_2
-    856          	}
-    857          	else
-    858          	{
-    859          		//========================================================================
-    860          		uint16_t	 *pAudioBuf = (uint16_t*)pRFPkt->dat.data;
+    852          
+    853                  //sReMode = RFMModeRx;
+    854                  
+    855          		SetRFMMode( (uint8_t)sReMode );
+   \       0x44   0x.... 0x....      LDR.W    R0,??DataTable24_36
+   \       0x48   0x7800             LDRB     R0,[R0, #+0]
+   \       0x4A   0x.... 0x....      BL       SetRFMMode
+    856          
+    857          		//	Codec Speaker On
+    858                  //sspkVal = 1;
+    859          		RFM_Spk((uint8_t)sspkVal);
+   \       0x4E   0x.... 0x....      LDR.W    R0,??DataTable24_37
+   \       0x52   0x7800             LDRB     R0,[R0, #+0]
+   \       0x54   0x.... 0x....      BL       RFM_Spk
+    860          		//  수신기 Spk Relay On
+    861          		HAL_GPIO_WritePin( AUDIO_ON_GPIO_Port, AUDIO_ON_Pin, GPIO_PIN_SET );
+   \       0x58   0x2201             MOVS     R2,#+1
+   \       0x5A   0xF44F 0x7180      MOV      R1,#+256
+   \       0x5E   0x0030             MOVS     R0,R6
+   \       0x60   0x.... 0x....      BL       HAL_GPIO_WritePin
+   \       0x64   0xE018             B.N      ??ProcPktPA_2
+    862          	}
+    863          	else
+    864          	{
+    865          		//========================================================================
+    866          		uint16_t	 *pAudioBuf = (uint16_t*)pRFPkt->dat.data;
    \                     ??ProcPktPA_1: (+1)
-   \       0x5E   0xF114 0x050A      ADDS     R5,R4,#+10
-    861          
-    862          #if defined(USE_RFT_ONLY_RX_SPK_ON)
-    863          		//  송신기 : 수신중인 경우 SPK ON
-    864          //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
-    865          		RFM_Spk((uint8_t)1);
-   \       0x62   0x2001             MOVS     R0,#+1
-   \       0x64   0x.... 0x....      BL       RFM_Spk
-    866          #endif
+   \       0x66   0xF114 0x050A      ADDS     R5,R4,#+10
     867          
-    868          		//  방송 : 송신기 -> 수신기
-    869          		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
-   \       0x68   0x223C             MOVS     R2,#+60
-   \       0x6A   0x0029             MOVS     R1,R5
-   \       0x6C   0x.... 0x....      LDR.W    R0,??DataTable24_36
-   \       0x70   0x.... 0x....      BL       qBufPut
-    870          		//========================================================================
-    871          
-    872          		//  송신기
-    873          		SetRFMMode( (uint8_t)RFMModeRx );
-   \       0x74   0x2002             MOVS     R0,#+2
-   \       0x76   0x.... 0x....      BL       SetRFMMode
+    868          #if defined(USE_RFT_ONLY_RX_SPK_ON)
+    869          		//  송신기 : 수신중인 경우 SPK ON
+    870          //			HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
+    871                  //sspkVal = 1;
+    872          		RFM_Spk((uint8_t)sspkVal);
+   \       0x6A   0x.... 0x....      LDR.W    R0,??DataTable24_37
+   \       0x6E   0x7800             LDRB     R0,[R0, #+0]
+   \       0x70   0x.... 0x....      BL       RFM_Spk
+    873          #endif
     874          
-    875          		//  Red LED On
-    876          		HAL_GPIO_WritePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_SET ); //  RED LED
-   \       0x7A   0x2201             MOVS     R2,#+1
-   \       0x7C   0xF44F 0x4180      MOV      R1,#+16384
-   \       0x80   0x.... 0x....      LDR.W    R0,??DataTable24_37
-   \       0x84   0x.... 0x....      BL       HAL_GPIO_WritePin
-    877          	}
-    878          	g_nStampRxPkt = (uint8_t)HAL_GetTick();		//	방송/통화 Stamp
-   \                     ??ProcPktPA_2: (+1)
-   \       0x88   0x.... 0x....      BL       HAL_GetTick
-   \       0x8C   0x.... 0x....      LDR.W    R1,??DataTable24_34
-   \       0x90   0x7008             STRB     R0,[R1, #+0]
-    879          
-    880          	return (uint8_t) 0;
-   \       0x92   0x2000             MOVS     R0,#+0
-   \       0x94   0xBD70             POP      {R4-R6,PC}
-    881          }
+    875          		//  방송 : 송신기 -> 수신기
+    876          		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
+   \       0x74   0x223C             MOVS     R2,#+60
+   \       0x76   0x0029             MOVS     R1,R5
+   \       0x78   0x.... 0x....      LDR.W    R0,??DataTable24_35
+   \       0x7C   0x.... 0x....      BL       qBufPut
+    877          		//========================================================================
+    878          
+    879                  //sReMode = RFMModeRx;
+    880          		//  송신기
+    881          		SetRFMMode( (uint8_t)sReMode );
+   \       0x80   0x.... 0x....      LDR.W    R0,??DataTable24_36
+   \       0x84   0x7800             LDRB     R0,[R0, #+0]
+   \       0x86   0x.... 0x....      BL       SetRFMMode
     882          
-    883          //========================================================================
+    883          		//  Red LED On
+    884          		HAL_GPIO_WritePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_SET ); //  RED LED
+   \       0x8A   0x2201             MOVS     R2,#+1
+   \       0x8C   0xF44F 0x4180      MOV      R1,#+16384
+   \       0x90   0x.... 0x....      LDR.W    R0,??DataTable24_38
+   \       0x94   0x.... 0x....      BL       HAL_GPIO_WritePin
+    885          	}
+    886          	g_nStampRxPkt = (uint16_t)HAL_GetTick();		//	방송/통화 Stamp
+   \                     ??ProcPktPA_2: (+1)
+   \       0x98   0x.... 0x....      BL       HAL_GetTick
+   \       0x9C   0x.... 0x....      LDR.W    R1,??DataTable24_33
+   \       0xA0   0x8008             STRH     R0,[R1, #+0]
+    887          
+    888          	return (uint8_t) 0;
+   \       0xA2   0x2000             MOVS     R0,#+0
+   \       0xA4   0xBD70             POP      {R4-R6,PC}
+    889          }
+
+   \                                 In section .data, align 1
+   \                     `ProcPktPA::sReMode`:
+   \        0x0   0x02               DC8 2
+
+   \                                 In section .data, align 1
+   \                     `ProcPktPA::sspkVal`:
+   \        0x0   0x01               DC8 1
+    890          
+    891          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    884          uint8_t	ProcPktCall			( const RFMPkt *pRFPkt )
-    885          //========================================================================
-    886          {
+    892          uint8_t	ProcPktCall			( const RFMPkt *pRFPkt )
+    893          //========================================================================
+    894          {
    \                     ProcPktCall: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    887          	if ( GetDbg() )
+    895          	if ( GetDbg() )
    \        0x4   0x.... 0x....      BL       GetDbg
    \        0x8   0x2800             CMP      R0,#+0
    \        0xA   0xD007             BEQ.N    ??ProcPktCall_0
-    888          	{
-    889          		printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0xC   0xF240 0x3279      MOVW     R2,#+889
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_38
+    896          	{
+    897          		printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0xC   0xF240 0x3281      MOVW     R2,#+897
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_39
    \       0x14   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x18   0x.... 0x....      BL       printf
-    890          	}
-    891          
-    892          	if( GetDevID() == DevRF900T )
+    898          	}
+    899          
+    900          	if( GetDevID() == DevRF900T )
    \                     ??ProcPktCall_0: (+1)
    \       0x1C   0x.... 0x....      BL       GetDevID
    \       0x20   0x2802             CMP      R0,#+2
    \       0x22   0xD115             BNE.N    ??ProcPktCall_1
-    893          	{
-    894          		//	송신기
-    895          
-    896          		//========================================================================
-    897          		//  통화 ( SOS )
-    898          		uint16_t	 *pAudioBuf = (uint16_t*)pRFPkt->dat.data;
+    901          	{
+    902          		//	송신기
+    903          
+    904          		//========================================================================
+    905          		//  통화 ( SOS )
+    906          		uint16_t	 *pAudioBuf = (uint16_t*)pRFPkt->dat.data;
    \       0x24   0xF114 0x050A      ADDS     R5,R4,#+10
-    899          
-    900          		SetRFMMode( (uint8_t)RFMModeRx );
+    907          
+    908          		SetRFMMode( (uint8_t)RFMModeRx );
    \       0x28   0x2002             MOVS     R0,#+2
    \       0x2A   0x.... 0x....      BL       SetRFMMode
-    901          
-    902          #if defined(USE_RFT_ONLY_RX_SPK_ON)
-    903          		//  송신기 : 수신중인 경우 SPK ON
-    904          //		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
-    905          		RFM_Spk((uint8_t)1);
+    909          
+    910          #if defined(USE_RFT_ONLY_RX_SPK_ON)
+    911          		//  송신기 : 수신중인 경우 SPK ON
+    912          //		HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
+    913          		RFM_Spk((uint8_t)1);
    \       0x2E   0x2001             MOVS     R0,#+1
    \       0x30   0x.... 0x....      BL       RFM_Spk
-    906          #endif
-    907          
-    908          		//  Red LED On
-    909          		HAL_GPIO_WritePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_SET ); //  RED LED
+    914          #endif
+    915          
+    916          		//  Red LED On
+    917          		HAL_GPIO_WritePin ( LED_ON_B_GPIO_Port, LED_ON_B_Pin, GPIO_PIN_SET ); //  RED LED
    \       0x34   0x2201             MOVS     R2,#+1
    \       0x36   0xF44F 0x4180      MOV      R1,#+16384
-   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable24_37
+   \       0x3A   0x.... 0x....      LDR.W    R0,??DataTable24_38
    \       0x3E   0x.... 0x....      BL       HAL_GPIO_WritePin
-    910          
-    911          		//  통화 : 송신기 -> 송신기
-    912          
-    913          		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
+    918          
+    919          		//  통화 : 송신기 -> 송신기
+    920          
+    921          		qBufPut( &g_qBufAudioRx, (uint8_t*)pAudioBuf, (uint16_t)( I2S_DMA_LOOP_SIZE * 2 ) );
    \       0x42   0x223C             MOVS     R2,#+60
    \       0x44   0x0029             MOVS     R1,R5
-   \       0x46   0x.... 0x....      LDR.W    R0,??DataTable24_36
+   \       0x46   0x.... 0x....      LDR.W    R0,??DataTable24_35
    \       0x4A   0x.... 0x....      BL       qBufPut
    \       0x4E   0xE006             B.N      ??ProcPktCall_2
-    914          	}
-    915          	else if ( GetDevID() == DevRF900M )
+    922          	}
+    923          	else if ( GetDevID() == DevRF900M )
    \                     ??ProcPktCall_1: (+1)
    \       0x50   0x.... 0x....      BL       GetDevID
    \       0x54   0x2801             CMP      R0,#+1
    \       0x56   0xD102             BNE.N    ??ProcPktCall_2
-    916          	{
-    917          		//	수신기
-    918          
-    919          		SetRFMMode( (uint8_t)RFMModeRx );
+    924          	{
+    925          		//	수신기
+    926          
+    927          		SetRFMMode( (uint8_t)RFMModeRx );
    \       0x58   0x2002             MOVS     R0,#+2
    \       0x5A   0x.... 0x....      BL       SetRFMMode
-    920          	}
-    921          
-    922          	g_nStampRxPkt = (uint8_t)HAL_GetTick();		//	방송/통화 Stamp
+    928          	}
+    929          
+    930          	g_nStampRxPkt = (uint16_t)HAL_GetTick();		//	방송/통화 Stamp
    \                     ??ProcPktCall_2: (+1)
    \       0x5E   0x.... 0x....      BL       HAL_GetTick
-   \       0x62   0x.... 0x....      LDR.W    R1,??DataTable24_34
-   \       0x66   0x7008             STRB     R0,[R1, #+0]
-    923          
-    924          	return (uint8_t) 0;
+   \       0x62   0x.... 0x....      LDR.W    R1,??DataTable24_33
+   \       0x66   0x8008             STRH     R0,[R1, #+0]
+    931          
+    932          	return (uint8_t) 0;
    \       0x68   0x2000             MOVS     R0,#+0
    \       0x6A   0xBD32             POP      {R1,R4,R5,PC}
-    925          }
-    926          
-    927          
-    928          //========================================================================
+    933          }
+    934          
+    935          
+    936          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    929          uint8_t	ProcPktDevConn			( const RFMPkt *pRFPkt )
-    930          //========================================================================
-    931          {
+    937          uint8_t	ProcPktDevConn			( const RFMPkt *pRFPkt )
+    938          //========================================================================
+    939          {
    \                     ProcPktDevConn: (+1)
    \        0x0   0xB538             PUSH     {R3-R5,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    932          	//	Device Node Connection
-    933          	if ( GetDbg() )
+    940          	//	Device Node Connection
+    941          	if ( GetDbg() )
    \        0x4   0x.... 0x....      BL       GetDbg
    \        0x8   0x2800             CMP      R0,#+0
    \        0xA   0xD007             BEQ.N    ??ProcPktDevConn_0
-    934          	{
-    935          		printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0xC   0xF240 0x32A7      MOVW     R2,#+935
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_39
+    942          	{
+    943          		printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0xC   0xF240 0x32AF      MOVW     R2,#+943
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_40
    \       0x14   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x18   0x.... 0x....      BL       printf
-    936          	}
-    937          
-    938          	const RFMPktDevConn	*pConn = &pRFPkt->dat.devConn;
+    944          	}
+    945          
+    946          	const RFMPktDevConn	*pConn = &pRFPkt->dat.devConn;
                  	                   	 ^
 Warning[Pe177]: variable "pConn" was declared but never referenced
    \                     ??ProcPktDevConn_0: (+1)
    \       0x1C   0xF114 0x050A      ADDS     R5,R4,#+10
-    939          
-    940          	if( GetDevID() == DevRF900T )
+    947          
+    948          	if( GetDevID() == DevRF900T )
    \       0x20   0x.... 0x....      BL       GetDevID
    \       0x24   0x2802             CMP      R0,#+2
    \       0x26   0xD001             BEQ.N    ??ProcPktDevConn_1
-    941          	{
-    942          		//========================================================================
-    943          		//	송신기
-    944          		//SetDevConn( pConn->nSrcCh, pConn->nDevType, pConn->nConnect );
-    945          	}
-    946          	else if ( GetDevID() == DevRF900M )
+    949          	{
+    950          		//========================================================================
+    951          		//	송신기
+    952          		//SetDevConn( pConn->nSrcCh, pConn->nDevType, pConn->nConnect );
+    953          	}
+    954          	else if ( GetDevID() == DevRF900M )
    \       0x28   0x.... 0x....      BL       GetDevID
-    947          	{
-    948          		//========================================================================
-    949          		//	수신기
-    950          		//SetDevConn( pConn->nSrcCh, pConn->nDevType, pConn->nConnect );
-    951          	}
-    952          
-    953          	return (uint8_t) 0;
+    955          	{
+    956          		//========================================================================
+    957          		//	수신기
+    958          		//SetDevConn( pConn->nSrcCh, pConn->nDevType, pConn->nConnect );
+    959          	}
+    960          
+    961          	return (uint8_t) 0;
    \                     ??ProcPktDevConn_1: (+1)
    \       0x2C   0x2000             MOVS     R0,#+0
    \       0x2E   0xBD32             POP      {R1,R4,R5,PC}
-    954          }
-    955          
-    956          //========================================================================
+    962          }
+    963          
+    964          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    957          uint8_t	ProcPktLight		( const RFMPkt *pRFPkt )
-    958          //========================================================================
-    959          {
+    965          uint8_t	ProcPktLight		( const RFMPkt *pRFPkt )
+    966          //========================================================================
+    967          {
    \                     ProcPktLight: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    960          	if ( GetDbg() )
+    968          	if ( GetDbg() )
    \        0x4   0x.... 0x....      BL       GetDbg
    \        0x8   0x2800             CMP      R0,#+0
    \        0xA   0xD007             BEQ.N    ??ProcPktLight_0
-    961          	{
-    962          		printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0xC   0xF240 0x32C2      MOVW     R2,#+962
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_40
+    969          	{
+    970          		printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0xC   0xF240 0x32CA      MOVW     R2,#+970
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_41
    \       0x14   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x18   0x.... 0x....      BL       printf
-    963          	}
-    964          
-    965          	if ( GetDevID() == DevRF900M && pRFPkt->hdr.nPktCmd == PktLight )
+    971          	}
+    972          
+    973          	if ( GetDevID() == DevRF900M && pRFPkt->hdr.nPktCmd == PktLight )
    \                     ??ProcPktLight_0: (+1)
    \       0x1C   0x.... 0x....      BL       GetDevID
    \       0x20   0x2801             CMP      R0,#+1
@@ -2085,688 +2105,688 @@ Warning[Pe177]: variable "pConn" was declared but never referenced
    \       0x24   0x78E0             LDRB     R0,[R4, #+3]
    \       0x26   0x2804             CMP      R0,#+4
    \       0x28   0xD114             BNE.N    ??ProcPktLight_1
-    966          	{
-    967          		//  수신기 조명제어.
-    968          		if ( pRFPkt->dat.light.nOnOff == 0 )
+    974          	{
+    975          		//  수신기 조명제어.
+    976          		if ( pRFPkt->dat.light.nOnOff == 0 )
    \       0x2A   0x7AA0             LDRB     R0,[R4, #+10]
    \       0x2C   0x2800             CMP      R0,#+0
    \       0x2E   0xD107             BNE.N    ??ProcPktLight_2
-    969          		{
-    970          			// 조명 Off 명령 수신시.
-    971          			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET );
+    977          		{
+    978          			// 조명 Off 명령 수신시.
+    979          			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_RESET );
    \       0x30   0x2200             MOVS     R2,#+0
    \       0x32   0xF44F 0x7100      MOV      R1,#+512
-   \       0x36   0x.... 0x....      LDR.W    R0,??DataTable24_30
+   \       0x36   0x.... 0x....      LDR.W    R0,??DataTable24_29
    \       0x3A   0x.... 0x....      BL       HAL_GPIO_WritePin
    \       0x3E   0xE009             B.N      ??ProcPktLight_1
-    972          		}
-    973          		else if ( pRFPkt->dat.light.nOnOff == 1 )
+    980          		}
+    981          		else if ( pRFPkt->dat.light.nOnOff == 1 )
    \                     ??ProcPktLight_2: (+1)
    \       0x40   0x7AA0             LDRB     R0,[R4, #+10]
    \       0x42   0x2801             CMP      R0,#+1
    \       0x44   0xD106             BNE.N    ??ProcPktLight_1
-    974          		{
-    975          			// 조명 On 명령 수신시.
-    976          			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
+    982          		{
+    983          			// 조명 On 명령 수신시.
+    984          			HAL_GPIO_WritePin ( LIGHT_ON_GPIO_Port, LIGHT_ON_Pin, GPIO_PIN_SET );
    \       0x46   0x2201             MOVS     R2,#+1
    \       0x48   0xF44F 0x7100      MOV      R1,#+512
-   \       0x4C   0x.... 0x....      LDR.W    R0,??DataTable24_30
+   \       0x4C   0x.... 0x....      LDR.W    R0,??DataTable24_29
    \       0x50   0x.... 0x....      BL       HAL_GPIO_WritePin
-    977          		}
-    978          	}
-    979          
-    980          	return (uint8_t) 0;
+    985          		}
+    986          	}
+    987          
+    988          	return (uint8_t) 0;
    \                     ??ProcPktLight_1: (+1)
    \       0x54   0x2000             MOVS     R0,#+0
    \       0x56   0xBD10             POP      {R4,PC}
-    981          }
-    982          
-    983          
-    984          //========================================================================
+    989          }
+    990          
+    991          
+    992          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-    985          uint8_t	ProcPktCmd			( const RFMPkt *pRFPkt )
-    986          //========================================================================
-    987          {
+    993          uint8_t	ProcPktCmd			( const RFMPkt *pRFPkt )
+    994          //========================================================================
+    995          {
    \                     ProcPktCmd: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-    988          	if ( GetDbg() )
+    996          	if ( GetDbg() )
    \        0x4   0x.... 0x....      BL       GetDbg
    \        0x8   0x2800             CMP      R0,#+0
    \        0xA   0xD007             BEQ.N    ??ProcPktCmd_0
-    989          	{
-    990          		printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0xC   0xF240 0x32DE      MOVW     R2,#+990
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_41
+    997          	{
+    998          		printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0xC   0xF240 0x32E6      MOVW     R2,#+998
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_42
    \       0x14   0x.... 0x....      LDR.W    R0,??DataTable24_1
    \       0x18   0x.... 0x....      BL       printf
-    991          	}
-    992          
-    993          	//	RSSI Check
-    994          	printf( "%s(%d) - %s\n", __func__, __LINE__, pRFPkt->dat.cmd.sCmd );
+    999          	}
+   1000          
+   1001          	//	RSSI Check
+   1002          	printf( "%s(%d) - %s\n", __func__, __LINE__, pRFPkt->dat.cmd.sCmd );
    \                     ??ProcPktCmd_0: (+1)
    \       0x1C   0xF114 0x030E      ADDS     R3,R4,#+14
-   \       0x20   0xF240 0x32E2      MOVW     R2,#+994
-   \       0x24   0x.... 0x....      LDR.W    R1,??DataTable24_41
-   \       0x28   0x.... 0x....      LDR.W    R0,??DataTable24_42
+   \       0x20   0xF240 0x32EA      MOVW     R2,#+1002
+   \       0x24   0x.... 0x....      LDR.W    R1,??DataTable24_42
+   \       0x28   0x.... 0x....      LDR.W    R0,??DataTable24_43
    \       0x2C   0x.... 0x....      BL       printf
-    995          
-    996          	if ( (uint8_t)g_nRSSI >= (uint8_t)(pRFPkt->dat.cmd.nRSSIOver) )
-   \       0x30   0x.... 0x....      LDR.W    R0,??DataTable24_26
+   1003          
+   1004          	if ( (uint8_t)g_nRSSI >= (uint8_t)(pRFPkt->dat.cmd.nRSSIOver) )
+   \       0x30   0x.... 0x....      LDR.W    R0,??DataTable24_25
    \       0x34   0x7800             LDRB     R0,[R0, #+0]
    \       0x36   0xF994 0x100A      LDRSB    R1,[R4, #+10]
    \       0x3A   0xB2C9             UXTB     R1,R1
    \       0x3C   0x4288             CMP      R0,R1
    \       0x3E   0xDB03             BLT.N    ??ProcPktCmd_1
-    997          	{
-    998          		if ( pRFPkt->dat.cmd.nRsp == 1 )
-    999          		{
-   1000          			//	명령 처리 동작 결과 응답.
-   1001          
-   1002          			//	ToDo
-   1003          		}
-   1004          
-   1005          		//	RSSI값 확인 후 해당 범위 내에 있는 경우 명령 동작.
-   1006          		ProcessCommand( (char *) pRFPkt->dat.cmd.sCmd );
+   1005          	{
+   1006          		if ( pRFPkt->dat.cmd.nRsp == 1 )
+   1007          		{
+   1008          			//	명령 처리 동작 결과 응답.
+   1009          
+   1010          			//	ToDo
+   1011          		}
+   1012          
+   1013          		//	RSSI값 확인 후 해당 범위 내에 있는 경우 명령 동작.
+   1014          		ProcessCommand( (char *) pRFPkt->dat.cmd.sCmd );
    \       0x40   0xF114 0x000E      ADDS     R0,R4,#+14
    \       0x44   0x.... 0x....      BL       ProcessCommand
-   1007          	}
-   1008          }
+   1015          	}
+   1016          }
                  ^
 Warning[Pe940]: missing return statement at end of non-void function
           "ProcPktCmd"
    \                     ??ProcPktCmd_1: (+1)
    \       0x48   0xBD10             POP      {R4,PC}
-   1009          
-   1010          
-   1011          //========================================================================
+   1017          
+   1018          
+   1019          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-   1012          uint8_t	ProcPktCmdRsp		( const RFMPkt *pRFPkt )
-   1013          //========================================================================
-   1014          {
+   1020          uint8_t	ProcPktCmdRsp		( const RFMPkt *pRFPkt )
+   1021          //========================================================================
+   1022          {
    \                     ProcPktCmdRsp: (+1)
    \        0x0   0xB510             PUSH     {R4,LR}
    \        0x2   0x0004             MOVS     R4,R0
-   1015          	if ( GetDbg() )
+   1023          	if ( GetDbg() )
    \        0x4   0x.... 0x....      BL       GetDbg
    \        0x8   0x2800             CMP      R0,#+0
    \        0xA   0xD006             BEQ.N    ??ProcPktCmdRsp_0
-   1016          	{
-   1017          		printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0xC   0xF240 0x32F9      MOVW     R2,#+1017
-   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_43
+   1024          	{
+   1025          		printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0xC   0xF240 0x4201      MOVW     R2,#+1025
+   \       0x10   0x.... 0x....      LDR.W    R1,??DataTable24_44
    \       0x14   0x....             LDR.N    R0,??DataTable24_1
    \       0x16   0x.... 0x....      BL       printf
-   1018          	}
-   1019          
-   1020          	//	Command 처리결과 응답.
-   1021          
-   1022          	//	ToDo
-   1023          }
+   1026          	}
+   1027          
+   1028          	//	Command 처리결과 응답.
+   1029          
+   1030          	//	ToDo
+   1031          }
                  ^
 Warning[Pe940]: missing return statement at end of non-void function
           "ProcPktCmdRsp"
    \                     ??ProcPktCmdRsp_0: (+1)
    \       0x1A   0xBD10             POP      {R4,PC}
-   1024          
-   1025          //========================================================================
+   1032          
+   1033          //========================================================================
 
    \                                 In section .bss, align 4
-   1026          uint8_t	s_bUpgrDataValid[(MaxUpgrDataPacket + 7) / 8];	//	4000];	//	Upgrade Data Valid Check
+   1034          uint8_t	s_bUpgrDataValid[(MaxUpgrDataPacket + 7) / 8];	//	4000];	//	Upgrade Data Valid Check
    \                     s_bUpgrDataValid:
    \        0x0                      DS8 1'024
-   1027          //========================================================================
-   1028          
-   1029          //========================================================================
+   1035          //========================================================================
+   1036          
+   1037          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-   1030          uint8_t	ProcPktUpgr			( const RFMPkt *pRFPkt )
-   1031          //========================================================================
-   1032          {
+   1038          uint8_t	ProcPktUpgr			( const RFMPkt *pRFPkt )
+   1039          //========================================================================
+   1040          {
    \                     ProcPktUpgr: (+1)
    \        0x0   0xE92D 0x4FF1      PUSH     {R0,R4-R11,LR}
    \        0x4   0xB088             SUB      SP,SP,#+32
-   1033          	//========================================================================
-   1034          	//	Upgrade Flash Image
-   1035          	//========================================================================
-   1036          
-   1037          	if ( GetDbg() )
+   1041          	//========================================================================
+   1042          	//	Upgrade Flash Image
+   1043          	//========================================================================
+   1044          
+   1045          	if ( GetDbg() )
    \        0x6   0x.... 0x....      BL       GetDbg
    \        0xA   0x2800             CMP      R0,#+0
    \        0xC   0xD006             BEQ.N    ??ProcPktUpgr_0
-   1038          	{
-   1039          		printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0xE   0xF240 0x420F      MOVW     R2,#+1039
-   \       0x12   0x.... 0x....      LDR.W    R1,??DataTable24_44
+   1046          	{
+   1047          		printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0xE   0xF240 0x4217      MOVW     R2,#+1047
+   \       0x12   0x.... 0x....      LDR.W    R1,??DataTable24_45
    \       0x16   0x....             LDR.N    R0,??DataTable24_1
    \       0x18   0x.... 0x....      BL       printf
-   1040          	}
-   1041          
-   1042          	//========================================================================
-   1043          	//	Data Flash영역에 Write
-   1044          	const RFMPktUpgr	*pUpgr = &pRFPkt->dat.upgr;
+   1048          	}
+   1049          
+   1050          	//========================================================================
+   1051          	//	Data Flash영역에 Write
+   1052          	const RFMPktUpgr	*pUpgr = &pRFPkt->dat.upgr;
    \                     ??ProcPktUpgr_0: (+1)
    \       0x1C   0x9808             LDR      R0,[SP, #+32]
    \       0x1E   0xF110 0x040A      ADDS     R4,R0,#+10
-   1045          
-   1046          	if ( pUpgr->baseAddr < 0x08080000 || 0x080FFFFF < pUpgr->baseAddr )
+   1053          
+   1054          	if ( pUpgr->baseAddr < 0x08080000 || 0x080FFFFF < pUpgr->baseAddr )
    \       0x22   0x6820             LDR      R0,[R4, #+0]
-   \       0x24   0x.... 0x....      LDR.W    R5,??DataTable24_45
+   \       0x24   0x.... 0x....      LDR.W    R5,??DataTable24_46
    \       0x28   0x42A8             CMP      R0,R5
    \       0x2A   0xD303             BCC.N    ??ProcPktUpgr_1
    \       0x2C   0x6820             LDR      R0,[R4, #+0]
    \       0x2E   0xF1B0 0x6F01      CMP      R0,#+135266304
    \       0x32   0xD30A             BCC.N    ??ProcPktUpgr_2
-   1047          	{
-   1048          		printf("%s(%d) - Out Of Range - baseAddr(0x%08X)\n", __func__, __LINE__, pUpgr->baseAddr );
+   1055          	{
+   1056          		printf("%s(%d) - Out Of Range - baseAddr(0x%08X)\n", __func__, __LINE__, pUpgr->baseAddr );
    \                     ??ProcPktUpgr_1: (+1)
    \       0x34   0x6823             LDR      R3,[R4, #+0]
-   \       0x36   0xF44F 0x6283      MOV      R2,#+1048
-   \       0x3A   0x.... 0x....      LDR.W    R1,??DataTable24_44
-   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable24_46
+   \       0x36   0xF44F 0x6284      MOV      R2,#+1056
+   \       0x3A   0x.... 0x....      LDR.W    R1,??DataTable24_45
+   \       0x3E   0x.... 0x....      LDR.W    R0,??DataTable24_47
    \       0x42   0x.... 0x....      BL       printf
-   1049          		return 0;
+   1057          		return 0;
    \       0x46   0x2000             MOVS     R0,#+0
-   \       0x48   0xE136             B.N      ??ProcPktUpgr_3
-   1050          	}
-   1051          
-   1052          	//========================================================================
-   1053          	//	RFM Packet
-   1054          //	RFMPktUpgr	*pUpgr = (RFMPktUpgr *)pRFPkt->dat.upgr;
-   1055          //	pUpgr->baseAddr		=	nAddrTarget;
-   1056          //	pUpgr->totPkt		=	nPktTot;
-   1057          //	pUpgr->idxPkt		=	nPktIdx;
-   1058          //	pUpgr->nSize		=	nSize;
-   1059          //	memcpy( pUpgr->data, sBuf, nSize );
-   1060          
-   1061          	//========================================================================
-   1062          	static int	s_rxPkt;
-   1063          
-   1064          	if ( pUpgr->idxPkt == 0 )
+   \       0x48   0xE137             B.N      ??ProcPktUpgr_3
+   1058          	}
+   1059          
+   1060          	//========================================================================
+   1061          	//	RFM Packet
+   1062          //	RFMPktUpgr	*pUpgr = (RFMPktUpgr *)pRFPkt->dat.upgr;
+   1063          //	pUpgr->baseAddr		=	nAddrTarget;
+   1064          //	pUpgr->totPkt		=	nPktTot;
+   1065          //	pUpgr->idxPkt		=	nPktIdx;
+   1066          //	pUpgr->nSize		=	nSize;
+   1067          //	memcpy( pUpgr->data, sBuf, nSize );
+   1068          
+   1069          	//========================================================================
+   1070          	static int	s_rxPkt;
+   1071          
+   1072          	if ( pUpgr->idxPkt == 0 )
    \                     ??ProcPktUpgr_2: (+1)
    \       0x4A   0x88E0             LDRH     R0,[R4, #+6]
    \       0x4C   0x2800             CMP      R0,#+0
-   \       0x4E   0xD130             BNE.N    ??ProcPktUpgr_4
-   1065          	{
-   1066          		//	Start Uprade
-   1067          		printf("%s(%d) - Start Upgrade\n", __func__, __LINE__ );
-   \       0x50   0xF240 0x422B      MOVW     R2,#+1067
-   \       0x54   0x....             LDR.N    R1,??DataTable24_44
-   \       0x56   0x.... 0x....      LDR.W    R0,??DataTable24_47
-   \       0x5A   0x.... 0x....      BL       printf
-   1068          
-   1069          		if( pUpgr->bFlag & PktUpgrFlagRetry )
-   \       0x5E   0x7A60             LDRB     R0,[R4, #+9]
-   \       0x60   0x07C0             LSLS     R0,R0,#+31
-   \       0x62   0xD506             BPL.N    ??ProcPktUpgr_5
-   1070          		{
-   1071          			//	No Erase
-   1072          			printf( "[%08d] Flash Erase - Skip ( Retry - Upgrade )\n", HAL_GetTick() );
-   \       0x64   0x.... 0x....      BL       HAL_GetTick
-   \       0x68   0x0001             MOVS     R1,R0
-   \       0x6A   0x....             LDR.N    R0,??DataTable24_48
-   \       0x6C   0x.... 0x....      BL       printf
-   \       0x70   0xE01C             B.N      ??ProcPktUpgr_6
-   1073          		}
-   1074          		else
-   1075          		{
-   1076          			//========================================================================
-   1077          			//	Flash Erase
-   1078          	//		 __HAL_RCC_DBGMCU_CLK_ENABLE();
-   1079          			 __HAL_DBGMCU_FREEZE_IWDG();
+   \       0x4E   0xD131             BNE.N    ??ProcPktUpgr_4
+   1073          	{
+   1074          		//	Start Uprade
+   1075          		printf("%s(%d) - Start Upgrade\n", __func__, __LINE__ );
+   \       0x50   0xF240 0x4233      MOVW     R2,#+1075
+   \       0x54   0x.... 0x....      LDR.W    R1,??DataTable24_45
+   \       0x58   0x.... 0x....      LDR.W    R0,??DataTable24_48
+   \       0x5C   0x.... 0x....      BL       printf
+   1076          
+   1077          		if( pUpgr->bFlag & PktUpgrFlagRetry )
+   \       0x60   0x7A60             LDRB     R0,[R4, #+9]
+   \       0x62   0x07C0             LSLS     R0,R0,#+31
+   \       0x64   0xD506             BPL.N    ??ProcPktUpgr_5
+   1078          		{
+   1079          			//	No Erase
+   1080          			printf( "[%08d] Flash Erase - Skip ( Retry - Upgrade )\n", HAL_GetTick() );
+   \       0x66   0x.... 0x....      BL       HAL_GetTick
+   \       0x6A   0x0001             MOVS     R1,R0
+   \       0x6C   0x....             LDR.N    R0,??DataTable24_49
+   \       0x6E   0x.... 0x....      BL       printf
+   \       0x72   0xE01C             B.N      ??ProcPktUpgr_6
+   1081          		}
+   1082          		else
+   1083          		{
+   1084          			//========================================================================
+   1085          			//	Flash Erase
+   1086          	//		 __HAL_RCC_DBGMCU_CLK_ENABLE();
+   1087          			 __HAL_DBGMCU_FREEZE_IWDG();
    \                     ??ProcPktUpgr_5: (+1)
-   \       0x72   0x....             LDR.N    R0,??DataTable24_49
-   \       0x74   0x6801             LDR      R1,[R0, #+0]
-   \       0x76   0xF451 0x5180      ORRS     R1,R1,#0x1000
-   \       0x7A   0x6001             STR      R1,[R0, #+0]
-   1080          	//		MX_IWDG_Disable();		//	Disable Watchdog
-   1081          			printf( "[%08d] Flash Erase - Start\n", HAL_GetTick() );
-   \       0x7C   0x.... 0x....      BL       HAL_GetTick
-   \       0x80   0x0001             MOVS     R1,R0
-   \       0x82   0x....             LDR.N    R0,??DataTable24_50
-   \       0x84   0x.... 0x....      BL       printf
-   1082          	//        FLASH_If_Erase( ADDR_FLASH_IMGAPP );
-   1083          			FLASH_If_Erase( ADDR_FLASH_IMGBOOT );		//	0x08080000
-   \       0x88   0x0028             MOVS     R0,R5
-   \       0x8A   0x.... 0x....      BL       FLASH_If_Erase
-   1084          			printf( "[%08d] Flash Erase - End\n", HAL_GetTick() );
-   \       0x8E   0x.... 0x....      BL       HAL_GetTick
-   \       0x92   0x0001             MOVS     R1,R0
-   \       0x94   0x....             LDR.N    R0,??DataTable24_51
-   \       0x96   0x.... 0x....      BL       printf
-   1085          	    	//========================================================================
-   1086          
-   1087          			memset( s_bUpgrDataValid, 0, sizeof(s_bUpgrDataValid) );
-   \       0x9A   0xF44F 0x6580      MOV      R5,#+1024
-   \       0x9E   0x2600             MOVS     R6,#+0
-   \       0xA0   0x....             LDR.N    R7,??DataTable24_52
-   \       0xA2   0x0032             MOVS     R2,R6
-   \       0xA4   0x0029             MOVS     R1,R5
-   \       0xA6   0x0038             MOVS     R0,R7
-   \       0xA8   0x.... 0x....      BL       __aeabi_memset
-   1088          		}
-   1089          
-   1090          		s_rxPkt = 0;
-   \                     ??ProcPktUpgr_6: (+1)
-   \       0xAC   0x2000             MOVS     R0,#+0
-   \       0xAE   0x....             LDR.N    R1,??DataTable24_53
-   \       0xB0   0x6008             STR      R0,[R1, #+0]
-   1091          	}
-   1092          
-   1093          	s_rxPkt++;
-   \                     ??ProcPktUpgr_4: (+1)
-   \       0xB2   0x....             LDR.N    R6,??DataTable24_53
-   \       0xB4   0x6830             LDR      R0,[R6, #+0]
-   \       0xB6   0x1C40             ADDS     R0,R0,#+1
-   \       0xB8   0x6030             STR      R0,[R6, #+0]
+   \       0x74   0x....             LDR.N    R0,??DataTable24_50
+   \       0x76   0x6801             LDR      R1,[R0, #+0]
+   \       0x78   0xF451 0x5180      ORRS     R1,R1,#0x1000
+   \       0x7C   0x6001             STR      R1,[R0, #+0]
+   1088          	//		MX_IWDG_Disable();		//	Disable Watchdog
+   1089          			printf( "[%08d] Flash Erase - Start\n", HAL_GetTick() );
+   \       0x7E   0x.... 0x....      BL       HAL_GetTick
+   \       0x82   0x0001             MOVS     R1,R0
+   \       0x84   0x....             LDR.N    R0,??DataTable24_51
+   \       0x86   0x.... 0x....      BL       printf
+   1090          	//        FLASH_If_Erase( ADDR_FLASH_IMGAPP );
+   1091          			FLASH_If_Erase( ADDR_FLASH_IMGBOOT );		//	0x08080000
+   \       0x8A   0x0028             MOVS     R0,R5
+   \       0x8C   0x.... 0x....      BL       FLASH_If_Erase
+   1092          			printf( "[%08d] Flash Erase - End\n", HAL_GetTick() );
+   \       0x90   0x.... 0x....      BL       HAL_GetTick
+   \       0x94   0x0001             MOVS     R1,R0
+   \       0x96   0x....             LDR.N    R0,??DataTable24_52
+   \       0x98   0x.... 0x....      BL       printf
+   1093          	    	//========================================================================
    1094          
-   1095          	//========================================================================
-   1096          	//	Write Upgrade Image Data
+   1095          			memset( s_bUpgrDataValid, 0, sizeof(s_bUpgrDataValid) );
+   \       0x9C   0xF44F 0x6580      MOV      R5,#+1024
+   \       0xA0   0x2600             MOVS     R6,#+0
+   \       0xA2   0x....             LDR.N    R7,??DataTable24_53
+   \       0xA4   0x0032             MOVS     R2,R6
+   \       0xA6   0x0029             MOVS     R1,R5
+   \       0xA8   0x0038             MOVS     R0,R7
+   \       0xAA   0x.... 0x....      BL       __aeabi_memset
+   1096          		}
    1097          
-   1098          	if ( FLASH_If_Write( pUpgr->baseAddr + (pUpgr->idxPkt * PktUpgrDataSize),
-   1099          						(uint32_t *)pUpgr->data,
-   1100          						pUpgr->nSize / 4 ) == FLASHIF_OK )
-   \       0xBA   0x6820             LDR      R0,[R4, #+0]
-   \       0xBC   0x2730             MOVS     R7,#+48
-   \       0xBE   0x7A21             LDRB     R1,[R4, #+8]
-   \       0xC0   0x2204             MOVS     R2,#+4
-   \       0xC2   0xFB91 0xF2F2      SDIV     R2,R1,R2
-   \       0xC6   0xF114 0x010A      ADDS     R1,R4,#+10
-   \       0xCA   0x88E3             LDRH     R3,[R4, #+6]
-   \       0xCC   0xFB07 0x0003      MLA      R0,R7,R3,R0
-   \       0xD0   0x.... 0x....      BL       FLASH_If_Write
-   \       0xD4   0x2800             CMP      R0,#+0
-   \       0xD6   0xD117             BNE.N    ??ProcPktUpgr_7
-   1101          	{
-   1102          		//	Valid Check Data
-   1103          		SET_BIT( s_bUpgrDataValid[pUpgr->idxPkt/8], (0x1 << (pUpgr->idxPkt % 8)) );
-   \       0xD8   0x88E0             LDRH     R0,[R4, #+6]
-   \       0xDA   0x2108             MOVS     R1,#+8
-   \       0xDC   0x....             LDR.N    R2,??DataTable24_52
-   \       0xDE   0x88E3             LDRH     R3,[R4, #+6]
-   \       0xE0   0x2508             MOVS     R5,#+8
-   \       0xE2   0xFB93 0xF3F5      SDIV     R3,R3,R5
-   \       0xE6   0x88E5             LDRH     R5,[R4, #+6]
-   \       0xE8   0xF05F 0x0C08      MOVS     R12,#+8
-   \       0xEC   0xFB95 0xF5FC      SDIV     R5,R5,R12
-   \       0xF0   0x5D55             LDRB     R5,[R2, R5]
-   \       0xF2   0xF05F 0x0C01      MOVS     R12,#+1
-   \       0xF6   0xFB90 0xFEF1      SDIV     LR,R0,R1
-   \       0xFA   0xFB01 0x001E      MLS      R0,R1,LR,R0
-   \       0xFE   0xFA1C 0xF000      LSLS     R0,R12,R0
-   \      0x102   0x4328             ORRS     R0,R0,R5
-   \      0x104   0x54D0             STRB     R0,[R2, R3]
-   \      0x106   0xE01E             B.N      ??ProcPktUpgr_8
-   1104          	}
-   1105          	else /* An error occurred while writing to Flash memory */
-   1106          	{
-   1107          		/* End session */
-   1108          		printf("%s(%d) - Error idx(%d)\n", __func__, __LINE__, pUpgr->idxPkt );
+   1098          		s_rxPkt = 0;
+   \                     ??ProcPktUpgr_6: (+1)
+   \       0xAE   0x2000             MOVS     R0,#+0
+   \       0xB0   0x....             LDR.N    R1,??DataTable24_54
+   \       0xB2   0x6008             STR      R0,[R1, #+0]
+   1099          	}
+   1100          
+   1101          	s_rxPkt++;
+   \                     ??ProcPktUpgr_4: (+1)
+   \       0xB4   0x....             LDR.N    R6,??DataTable24_54
+   \       0xB6   0x6830             LDR      R0,[R6, #+0]
+   \       0xB8   0x1C40             ADDS     R0,R0,#+1
+   \       0xBA   0x6030             STR      R0,[R6, #+0]
+   1102          
+   1103          	//========================================================================
+   1104          	//	Write Upgrade Image Data
+   1105          
+   1106          	if ( FLASH_If_Write( pUpgr->baseAddr + (pUpgr->idxPkt * PktUpgrDataSize),
+   1107          						(uint32_t *)pUpgr->data,
+   1108          						pUpgr->nSize / 4 ) == FLASHIF_OK )
+   \       0xBC   0x6820             LDR      R0,[R4, #+0]
+   \       0xBE   0x2730             MOVS     R7,#+48
+   \       0xC0   0x7A21             LDRB     R1,[R4, #+8]
+   \       0xC2   0x2204             MOVS     R2,#+4
+   \       0xC4   0xFB91 0xF2F2      SDIV     R2,R1,R2
+   \       0xC8   0xF114 0x010A      ADDS     R1,R4,#+10
+   \       0xCC   0x88E3             LDRH     R3,[R4, #+6]
+   \       0xCE   0xFB07 0x0003      MLA      R0,R7,R3,R0
+   \       0xD2   0x.... 0x....      BL       FLASH_If_Write
+   \       0xD6   0x2800             CMP      R0,#+0
+   \       0xD8   0xD117             BNE.N    ??ProcPktUpgr_7
+   1109          	{
+   1110          		//	Valid Check Data
+   1111          		SET_BIT( s_bUpgrDataValid[pUpgr->idxPkt/8], (0x1 << (pUpgr->idxPkt % 8)) );
+   \       0xDA   0x88E0             LDRH     R0,[R4, #+6]
+   \       0xDC   0x2108             MOVS     R1,#+8
+   \       0xDE   0x....             LDR.N    R2,??DataTable24_53
+   \       0xE0   0x88E3             LDRH     R3,[R4, #+6]
+   \       0xE2   0x2508             MOVS     R5,#+8
+   \       0xE4   0xFB93 0xF3F5      SDIV     R3,R3,R5
+   \       0xE8   0x88E5             LDRH     R5,[R4, #+6]
+   \       0xEA   0xF05F 0x0C08      MOVS     R12,#+8
+   \       0xEE   0xFB95 0xF5FC      SDIV     R5,R5,R12
+   \       0xF2   0x5D55             LDRB     R5,[R2, R5]
+   \       0xF4   0xF05F 0x0C01      MOVS     R12,#+1
+   \       0xF8   0xFB90 0xFEF1      SDIV     LR,R0,R1
+   \       0xFC   0xFB01 0x001E      MLS      R0,R1,LR,R0
+   \      0x100   0xFA1C 0xF000      LSLS     R0,R12,R0
+   \      0x104   0x4328             ORRS     R0,R0,R5
+   \      0x106   0x54D0             STRB     R0,[R2, R3]
+   \      0x108   0xE01E             B.N      ??ProcPktUpgr_8
+   1112          	}
+   1113          	else /* An error occurred while writing to Flash memory */
+   1114          	{
+   1115          		/* End session */
+   1116          		printf("%s(%d) - Error idx(%d)\n", __func__, __LINE__, pUpgr->idxPkt );
    \                     ??ProcPktUpgr_7: (+1)
-   \      0x108   0x88E3             LDRH     R3,[R4, #+6]
-   \      0x10A   0xF240 0x4254      MOVW     R2,#+1108
-   \      0x10E   0x....             LDR.N    R1,??DataTable24_44
-   \      0x110   0x....             LDR.N    R0,??DataTable24_54
-   \      0x112   0x.... 0x....      BL       printf
-   1109          		CLEAR_BIT( s_bUpgrDataValid[pUpgr->idxPkt/8], (0x1 << (pUpgr->idxPkt % 8)) );	//	Clear
-   \      0x116   0x88E0             LDRH     R0,[R4, #+6]
-   \      0x118   0x2108             MOVS     R1,#+8
-   \      0x11A   0x....             LDR.N    R2,??DataTable24_52
-   \      0x11C   0x88E3             LDRH     R3,[R4, #+6]
-   \      0x11E   0x2508             MOVS     R5,#+8
-   \      0x120   0xFB93 0xF3F5      SDIV     R3,R3,R5
-   \      0x124   0x88E5             LDRH     R5,[R4, #+6]
-   \      0x126   0xF05F 0x0C08      MOVS     R12,#+8
-   \      0x12A   0xFB95 0xF5FC      SDIV     R5,R5,R12
-   \      0x12E   0x5D55             LDRB     R5,[R2, R5]
-   \      0x130   0xF05F 0x0C01      MOVS     R12,#+1
-   \      0x134   0xFB90 0xFEF1      SDIV     LR,R0,R1
-   \      0x138   0xFB01 0x001E      MLS      R0,R1,LR,R0
-   \      0x13C   0xFA1C 0xF000      LSLS     R0,R12,R0
-   \      0x140   0xEA35 0x0000      BICS     R0,R5,R0
-   \      0x144   0x54D0             STRB     R0,[R2, R3]
-   1110          	}
-   1111          
-   1112          	g_nStampRxPkt = HAL_GetTick();		//	Rx Pkt Stamp
+   \      0x10A   0x88E3             LDRH     R3,[R4, #+6]
+   \      0x10C   0xF240 0x425C      MOVW     R2,#+1116
+   \      0x110   0x....             LDR.N    R1,??DataTable24_45
+   \      0x112   0x....             LDR.N    R0,??DataTable24_55
+   \      0x114   0x.... 0x....      BL       printf
+   1117          		CLEAR_BIT( s_bUpgrDataValid[pUpgr->idxPkt/8], (0x1 << (pUpgr->idxPkt % 8)) );	//	Clear
+   \      0x118   0x88E0             LDRH     R0,[R4, #+6]
+   \      0x11A   0x2108             MOVS     R1,#+8
+   \      0x11C   0x....             LDR.N    R2,??DataTable24_53
+   \      0x11E   0x88E3             LDRH     R3,[R4, #+6]
+   \      0x120   0x2508             MOVS     R5,#+8
+   \      0x122   0xFB93 0xF3F5      SDIV     R3,R3,R5
+   \      0x126   0x88E5             LDRH     R5,[R4, #+6]
+   \      0x128   0xF05F 0x0C08      MOVS     R12,#+8
+   \      0x12C   0xFB95 0xF5FC      SDIV     R5,R5,R12
+   \      0x130   0x5D55             LDRB     R5,[R2, R5]
+   \      0x132   0xF05F 0x0C01      MOVS     R12,#+1
+   \      0x136   0xFB90 0xFEF1      SDIV     LR,R0,R1
+   \      0x13A   0xFB01 0x001E      MLS      R0,R1,LR,R0
+   \      0x13E   0xFA1C 0xF000      LSLS     R0,R12,R0
+   \      0x142   0xEA35 0x0000      BICS     R0,R5,R0
+   \      0x146   0x54D0             STRB     R0,[R2, R3]
+   1118          	}
+   1119          
+   1120          	g_nStampRxPkt = HAL_GetTick();		//	Rx Pkt Stamp
    \                     ??ProcPktUpgr_8: (+1)
-   \      0x146   0x.... 0x....      BL       HAL_GetTick
-   \      0x14A   0x....             LDR.N    R1,??DataTable24_34
-   \      0x14C   0x7008             STRB     R0,[R1, #+0]
-   1113          	//========================================================================
-   1114          
-   1115          	//========================================================================
-   1116          	if ( pUpgr->idxPkt == (pUpgr->totPkt - 1) )
-   \      0x14E   0x88E0             LDRH     R0,[R4, #+6]
-   \      0x150   0x88A1             LDRH     R1,[R4, #+4]
-   \      0x152   0x1E49             SUBS     R1,R1,#+1
-   \      0x154   0x4288             CMP      R0,R1
-   \      0x156   0xF040 0x80AF      BNE.W    ??ProcPktUpgr_9
-   1117          	{
-   1118          		//	End Upgrade
-   1119          //		s_rxPkt++;
-   1120          
-   1121          		printf("%s(%d) - End Upgrade ( rxPkt : %d / totPkt : %d )\n", __func__, __LINE__,
-   1122          					s_rxPkt, pUpgr->totPkt );
-   \      0x15A   0x....             LDR.N    R5,??DataTable24_44
-   \      0x15C   0x88A0             LDRH     R0,[R4, #+4]
-   \      0x15E   0x9000             STR      R0,[SP, #+0]
-   \      0x160   0x6833             LDR      R3,[R6, #+0]
-   \      0x162   0xF240 0x4261      MOVW     R2,#+1121
-   \      0x166   0x0029             MOVS     R1,R5
-   \      0x168   0x....             LDR.N    R0,??DataTable24_55
-   \      0x16A   0x.... 0x....      BL       printf
-   1123          
-   1124          		int result = UpgrStatSuccess;
-   \      0x16E   0x2601             MOVS     R6,#+1
-   1125          		for( int i = 0; i < pUpgr->totPkt; i++ )
-   \      0x170   0x2000             MOVS     R0,#+0
+   \      0x148   0x.... 0x....      BL       HAL_GetTick
+   \      0x14C   0x....             LDR.N    R1,??DataTable24_33
+   \      0x14E   0x8008             STRH     R0,[R1, #+0]
+   1121          	//========================================================================
+   1122          
+   1123          	//========================================================================
+   1124          	if ( pUpgr->idxPkt == (pUpgr->totPkt - 1) )
+   \      0x150   0x88E0             LDRH     R0,[R4, #+6]
+   \      0x152   0x88A1             LDRH     R1,[R4, #+4]
+   \      0x154   0x1E49             SUBS     R1,R1,#+1
+   \      0x156   0x4288             CMP      R0,R1
+   \      0x158   0xF040 0x80AF      BNE.W    ??ProcPktUpgr_9
+   1125          	{
+   1126          		//	End Upgrade
+   1127          //		s_rxPkt++;
+   1128          
+   1129          		printf("%s(%d) - End Upgrade ( rxPkt : %d / totPkt : %d )\n", __func__, __LINE__,
+   1130          					s_rxPkt, pUpgr->totPkt );
+   \      0x15C   0x....             LDR.N    R5,??DataTable24_45
+   \      0x15E   0x88A0             LDRH     R0,[R4, #+4]
+   \      0x160   0x9000             STR      R0,[SP, #+0]
+   \      0x162   0x6833             LDR      R3,[R6, #+0]
+   \      0x164   0xF240 0x4269      MOVW     R2,#+1129
+   \      0x168   0x0029             MOVS     R1,R5
+   \      0x16A   0x....             LDR.N    R0,??DataTable24_56
+   \      0x16C   0x.... 0x....      BL       printf
+   1131          
+   1132          		int result = UpgrStatSuccess;
+   \      0x170   0x2601             MOVS     R6,#+1
+   1133          		for( int i = 0; i < pUpgr->totPkt; i++ )
+   \      0x172   0x2000             MOVS     R0,#+0
    \                     ??ProcPktUpgr_10: (+1)
-   \      0x172   0x88A1             LDRH     R1,[R4, #+4]
-   \      0x174   0x4288             CMP      R0,R1
-   \      0x176   0xDA13             BGE.N    ??ProcPktUpgr_11
-   1126          		{
-   1127          			if( READ_BIT( s_bUpgrDataValid[i / 8], (0x1 << (i % 8)) ) == 0 )
-   \      0x178   0x2108             MOVS     R1,#+8
-   \      0x17A   0x2208             MOVS     R2,#+8
-   \      0x17C   0xFB90 0xF2F2      SDIV     R2,R0,R2
-   \      0x180   0x....             LDR.N    R3,??DataTable24_52
-   \      0x182   0x5C9A             LDRB     R2,[R3, R2]
-   \      0x184   0x2301             MOVS     R3,#+1
-   \      0x186   0xFB90 0xFCF1      SDIV     R12,R0,R1
-   \      0x18A   0xFB01 0x011C      MLS      R1,R1,R12,R0
-   \      0x18E   0xFA13 0xF101      LSLS     R1,R3,R1
-   \      0x192   0x420A             TST      R2,R1
-   \      0x194   0xD102             BNE.N    ??ProcPktUpgr_12
-   1128          			{
-   1129          				result = UpgrStatFailed;
-   \      0x196   0x2100             MOVS     R1,#+0
-   \      0x198   0x000E             MOVS     R6,R1
-   1130          				break;
-   \      0x19A   0xE001             B.N      ??ProcPktUpgr_11
-   1131          			}
-   1132          		}
+   \      0x174   0x88A1             LDRH     R1,[R4, #+4]
+   \      0x176   0x4288             CMP      R0,R1
+   \      0x178   0xDA13             BGE.N    ??ProcPktUpgr_11
+   1134          		{
+   1135          			if( READ_BIT( s_bUpgrDataValid[i / 8], (0x1 << (i % 8)) ) == 0 )
+   \      0x17A   0x2108             MOVS     R1,#+8
+   \      0x17C   0x2208             MOVS     R2,#+8
+   \      0x17E   0xFB90 0xF2F2      SDIV     R2,R0,R2
+   \      0x182   0x....             LDR.N    R3,??DataTable24_53
+   \      0x184   0x5C9A             LDRB     R2,[R3, R2]
+   \      0x186   0x2301             MOVS     R3,#+1
+   \      0x188   0xFB90 0xFCF1      SDIV     R12,R0,R1
+   \      0x18C   0xFB01 0x011C      MLS      R1,R1,R12,R0
+   \      0x190   0xFA13 0xF101      LSLS     R1,R3,R1
+   \      0x194   0x420A             TST      R2,R1
+   \      0x196   0xD102             BNE.N    ??ProcPktUpgr_12
+   1136          			{
+   1137          				result = UpgrStatFailed;
+   \      0x198   0x2100             MOVS     R1,#+0
+   \      0x19A   0x000E             MOVS     R6,R1
+   1138          				break;
+   \      0x19C   0xE001             B.N      ??ProcPktUpgr_11
+   1139          			}
+   1140          		}
    \                     ??ProcPktUpgr_12: (+1)
-   \      0x19C   0x1C40             ADDS     R0,R0,#+1
-   \      0x19E   0xE7E8             B.N      ??ProcPktUpgr_10
-   1133          
-   1134          		//========================================================================
-   1135          		if ( result == UpgrStatSuccess )//( s_rxPkt == pUpgr->totPkt )
-   \                     ??ProcPktUpgr_11: (+1)
-   \      0x1A0   0x2E01             CMP      R6,#+1
-   \      0x1A2   0xD16D             BNE.N    ??ProcPktUpgr_13
-   1136          		{
-   1137          			//	Upgrade Success
-   1138          
-   1139          			char buf[10];
-   1140          			int filesize = pUpgr->totPkt * PktUpgrDataSize;
-   \      0x1A4   0x88A0             LDRH     R0,[R4, #+4]
-   \      0x1A6   0xFB07 0xF700      MUL      R7,R7,R0
-   \      0x1AA   0x9701             STR      R7,[SP, #+4]
+   \      0x19E   0x1C40             ADDS     R0,R0,#+1
+   \      0x1A0   0xE7E8             B.N      ??ProcPktUpgr_10
    1141          
-   1142          			printf("%s(%d) - Upgrade Success ( Size : %d )\n", __func__, __LINE__, filesize );
-   \      0x1AC   0x9B01             LDR      R3,[SP, #+4]
-   \      0x1AE   0xF240 0x4276      MOVW     R2,#+1142
-   \      0x1B2   0x0029             MOVS     R1,R5
-   \      0x1B4   0x....             LDR.N    R0,??DataTable24_56
-   \      0x1B6   0x.... 0x....      BL       printf
-   1143          
-   1144          			memset( buf, 0, sizeof( buf ) );
-   \      0x1BA   0x200A             MOVS     R0,#+10
-   \      0x1BC   0x9006             STR      R0,[SP, #+24]
-   \      0x1BE   0x2000             MOVS     R0,#+0
-   \      0x1C0   0x9005             STR      R0,[SP, #+20]
-   \      0x1C2   0xAF02             ADD      R7,SP,#+8
-   \      0x1C4   0x9A05             LDR      R2,[SP, #+20]
-   \      0x1C6   0x9906             LDR      R1,[SP, #+24]
-   \      0x1C8   0x0038             MOVS     R0,R7
-   \      0x1CA   0x.... 0x....      BL       __aeabi_memset
-   1145          
-   1146          			buf[0] = 0xaa;
-   \      0x1CE   0x20AA             MOVS     R0,#+170
-   \      0x1D0   0xF88D 0x0008      STRB     R0,[SP, #+8]
-   1147          			buf[1] = 0x55;
-   \      0x1D4   0xAF02             ADD      R7,SP,#+8
-   \      0x1D6   0x2055             MOVS     R0,#+85
-   \      0x1D8   0x7078             STRB     R0,[R7, #+1]
-   1148          			buf[2] = ( filesize >> 16 ) & 0xFF;
-   \      0x1DA   0x9801             LDR      R0,[SP, #+4]
-   \      0x1DC   0x1400             ASRS     R0,R0,#+16
-   \      0x1DE   0x70B8             STRB     R0,[R7, #+2]
-   1149          			buf[3] = ( filesize >> 8 ) & 0xFF;
-   \      0x1E0   0x9801             LDR      R0,[SP, #+4]
-   \      0x1E2   0x1200             ASRS     R0,R0,#+8
-   \      0x1E4   0x70F8             STRB     R0,[R7, #+3]
-   1150          			buf[4] = ( filesize >> 0 ) & 0xFF;
-   \      0x1E6   0x9801             LDR      R0,[SP, #+4]
-   \      0x1E8   0x7138             STRB     R0,[R7, #+4]
+   1142          		//========================================================================
+   1143          		if ( result == UpgrStatSuccess )//( s_rxPkt == pUpgr->totPkt )
+   \                     ??ProcPktUpgr_11: (+1)
+   \      0x1A2   0x2E01             CMP      R6,#+1
+   \      0x1A4   0xD16D             BNE.N    ??ProcPktUpgr_13
+   1144          		{
+   1145          			//	Upgrade Success
+   1146          
+   1147          			char buf[10];
+   1148          			int filesize = pUpgr->totPkt * PktUpgrDataSize;
+   \      0x1A6   0x88A0             LDRH     R0,[R4, #+4]
+   \      0x1A8   0xFB07 0xF700      MUL      R7,R7,R0
+   \      0x1AC   0x9701             STR      R7,[SP, #+4]
+   1149          
+   1150          			printf("%s(%d) - Upgrade Success ( Size : %d )\n", __func__, __LINE__, filesize );
+   \      0x1AE   0x9B01             LDR      R3,[SP, #+4]
+   \      0x1B0   0xF240 0x427E      MOVW     R2,#+1150
+   \      0x1B4   0x0029             MOVS     R1,R5
+   \      0x1B6   0x....             LDR.N    R0,??DataTable24_57
+   \      0x1B8   0x.... 0x....      BL       printf
    1151          
-   1152          		    M24_HAL_WriteBytes( &hi2c1, (uint16_t)0xA0, (uint16_t)AddrEEPUpgrMGN1, (uint8_t *)buf,(uint16_t) 5 );
-   \      0x1EA   0x.... 0x....      LDR.W    R10,??DataTable24_57
-   \      0x1EE   0x2005             MOVS     R0,#+5
-   \      0x1F0   0x9000             STR      R0,[SP, #+0]
-   \      0x1F2   0xAB02             ADD      R3,SP,#+8
-   \      0x1F4   0x2220             MOVS     R2,#+32
-   \      0x1F6   0x21A0             MOVS     R1,#+160
-   \      0x1F8   0x4650             MOV      R0,R10
-   \      0x1FA   0x.... 0x....      BL       M24_HAL_WriteBytes
+   1152          			memset( buf, 0, sizeof( buf ) );
+   \      0x1BC   0x200A             MOVS     R0,#+10
+   \      0x1BE   0x9006             STR      R0,[SP, #+24]
+   \      0x1C0   0x2000             MOVS     R0,#+0
+   \      0x1C2   0x9005             STR      R0,[SP, #+20]
+   \      0x1C4   0xAF02             ADD      R7,SP,#+8
+   \      0x1C6   0x9A05             LDR      R2,[SP, #+20]
+   \      0x1C8   0x9906             LDR      R1,[SP, #+24]
+   \      0x1CA   0x0038             MOVS     R0,R7
+   \      0x1CC   0x.... 0x....      BL       __aeabi_memset
    1153          
-   1154          			memset( buf, 0, sizeof( buf ) );
-   \      0x1FE   0xF05F 0x080A      MOVS     R8,#+10
-   \      0x202   0xF05F 0x0900      MOVS     R9,#+0
-   \      0x206   0xF10D 0x0B08      ADD      R11,SP,#+8
-   \      0x20A   0x464A             MOV      R2,R9
-   \      0x20C   0x4641             MOV      R1,R8
-   \      0x20E   0x4658             MOV      R0,R11
-   \      0x210   0x.... 0x....      BL       __aeabi_memset
-   1155          
-   1156          		    M24_HAL_ReadBytes( &hi2c1,(uint16_t) 0xA0, (uint16_t)AddrEEPUpgrMGN1, (uint8_t *)buf, (uint16_t)5 );
-   \      0x214   0x2005             MOVS     R0,#+5
-   \      0x216   0x9000             STR      R0,[SP, #+0]
-   \      0x218   0xAB02             ADD      R3,SP,#+8
-   \      0x21A   0x2220             MOVS     R2,#+32
-   \      0x21C   0x21A0             MOVS     R1,#+160
-   \      0x21E   0x4650             MOV      R0,R10
-   \      0x220   0x.... 0x....      BL       M24_HAL_ReadBytes
-   1157          
-   1158          		    filesize = ( buf[2] << 16 ) | ( buf[3] << 8 ) | ( buf[4] );
-   \      0x224   0x78B8             LDRB     R0,[R7, #+2]
-   \      0x226   0xF897 0xA003      LDRB     R10,[R7, #+3]
-   \      0x22A   0xEA5F 0x2A0A      LSLS     R10,R10,#+8
-   \      0x22E   0xEA5A 0x4A00      ORRS     R10,R10,R0, LSL #+16
-   \      0x232   0x7938             LDRB     R0,[R7, #+4]
-   \      0x234   0xEA50 0x0A0A      ORRS     R10,R0,R10
+   1154          			buf[0] = 0xaa;
+   \      0x1D0   0x20AA             MOVS     R0,#+170
+   \      0x1D2   0xF88D 0x0008      STRB     R0,[SP, #+8]
+   1155          			buf[1] = 0x55;
+   \      0x1D6   0xAF02             ADD      R7,SP,#+8
+   \      0x1D8   0x2055             MOVS     R0,#+85
+   \      0x1DA   0x7078             STRB     R0,[R7, #+1]
+   1156          			buf[2] = ( filesize >> 16 ) & 0xFF;
+   \      0x1DC   0x9801             LDR      R0,[SP, #+4]
+   \      0x1DE   0x1400             ASRS     R0,R0,#+16
+   \      0x1E0   0x70B8             STRB     R0,[R7, #+2]
+   1157          			buf[3] = ( filesize >> 8 ) & 0xFF;
+   \      0x1E2   0x9801             LDR      R0,[SP, #+4]
+   \      0x1E4   0x1200             ASRS     R0,R0,#+8
+   \      0x1E6   0x70F8             STRB     R0,[R7, #+3]
+   1158          			buf[4] = ( filesize >> 0 ) & 0xFF;
+   \      0x1E8   0x9801             LDR      R0,[SP, #+4]
+   \      0x1EA   0x7138             STRB     R0,[R7, #+4]
    1159          
-   1160          			printf( "%s(%d) - EEPROM [0,1] : 0x%02X 0x%02X / ( bin size : %d )\n", __func__, __LINE__, buf[0], buf[1], filesize );
-   \      0x238   0xF8CD 0xA004      STR      R10,[SP, #+4]
-   \      0x23C   0x7878             LDRB     R0,[R7, #+1]
-   \      0x23E   0x9000             STR      R0,[SP, #+0]
-   \      0x240   0xF89D 0x3008      LDRB     R3,[SP, #+8]
-   \      0x244   0xF44F 0x6291      MOV      R2,#+1160
-   \      0x248   0x0029             MOVS     R1,R5
-   \      0x24A   0x....             LDR.N    R0,??DataTable24_58
-   \      0x24C   0x.... 0x....      BL       printf
+   1160          		    M24_HAL_WriteBytes( &hi2c1, (uint16_t)0xA0, (uint16_t)AddrEEPUpgrMGN1, (uint8_t *)buf,(uint16_t) 5 );
+   \      0x1EC   0x.... 0x....      LDR.W    R10,??DataTable24_58
+   \      0x1F0   0x2005             MOVS     R0,#+5
+   \      0x1F2   0x9000             STR      R0,[SP, #+0]
+   \      0x1F4   0xAB02             ADD      R3,SP,#+8
+   \      0x1F6   0x2220             MOVS     R2,#+32
+   \      0x1F8   0x21A0             MOVS     R1,#+160
+   \      0x1FA   0x4650             MOV      R0,R10
+   \      0x1FC   0x.... 0x....      BL       M24_HAL_WriteBytes
    1161          
-   1162          			HAL_Delay( (uint32_t)2000 );	//	Upgrade 결과전송 전 Delay
-   \      0x250   0xF44F 0x60FA      MOV      R0,#+2000
-   \      0x254   0x.... 0x....      BL       HAL_Delay
+   1162          			memset( buf, 0, sizeof( buf ) );
+   \      0x200   0xF05F 0x080A      MOVS     R8,#+10
+   \      0x204   0xF05F 0x0900      MOVS     R9,#+0
+   \      0x208   0xF10D 0x0B08      ADD      R11,SP,#+8
+   \      0x20C   0x464A             MOV      R2,R9
+   \      0x20E   0x4641             MOV      R1,R8
+   \      0x210   0x4658             MOV      R0,R11
+   \      0x212   0x.... 0x....      BL       __aeabi_memset
    1163          
-   1164          			//===========================================================================
-   1165          			//	Send Upgrade Result
-   1166          			SendUpgrStat( (uint8_t)UpgrStatSuccess );	//	Upgrade 결과전송.
-   \      0x258   0x2001             MOVS     R0,#+1
-   \      0x25A   0x.... 0x....      BL       SendUpgrStat
-   1167          			HAL_Delay((uint32_t) 100 );	//	Upgrade 결과전송 전 Delay
-   \      0x25E   0x2064             MOVS     R0,#+100
-   \      0x260   0x.... 0x....      BL       HAL_Delay
-   1168          			SendUpgrStat( (uint8_t)UpgrStatSuccess );	//	Upgrade 결과전송.
-   \      0x264   0x2001             MOVS     R0,#+1
-   \      0x266   0x.... 0x....      BL       SendUpgrStat
-   1169          			HAL_Delay( (uint32_t)100 );	//	Upgrade 결과전송 전 Delay
-   \      0x26A   0x2064             MOVS     R0,#+100
-   \      0x26C   0x.... 0x....      BL       HAL_Delay
-   1170          			SendUpgrStat((uint8_t) UpgrStatSuccess );	//	Upgrade 결과전송.
-   \      0x270   0x2001             MOVS     R0,#+1
-   \      0x272   0x.... 0x....      BL       SendUpgrStat
+   1164          		    M24_HAL_ReadBytes( &hi2c1,(uint16_t) 0xA0, (uint16_t)AddrEEPUpgrMGN1, (uint8_t *)buf, (uint16_t)5 );
+   \      0x216   0x2005             MOVS     R0,#+5
+   \      0x218   0x9000             STR      R0,[SP, #+0]
+   \      0x21A   0xAB02             ADD      R3,SP,#+8
+   \      0x21C   0x2220             MOVS     R2,#+32
+   \      0x21E   0x21A0             MOVS     R1,#+160
+   \      0x220   0x4650             MOV      R0,R10
+   \      0x222   0x.... 0x....      BL       M24_HAL_ReadBytes
+   1165          
+   1166          		    filesize = ( buf[2] << 16 ) | ( buf[3] << 8 ) | ( buf[4] );
+   \      0x226   0x78B8             LDRB     R0,[R7, #+2]
+   \      0x228   0xF897 0xA003      LDRB     R10,[R7, #+3]
+   \      0x22C   0xEA5F 0x2A0A      LSLS     R10,R10,#+8
+   \      0x230   0xEA5A 0x4A00      ORRS     R10,R10,R0, LSL #+16
+   \      0x234   0x7938             LDRB     R0,[R7, #+4]
+   \      0x236   0xEA50 0x0A0A      ORRS     R10,R0,R10
+   1167          
+   1168          			printf( "%s(%d) - EEPROM [0,1] : 0x%02X 0x%02X / ( bin size : %d )\n", __func__, __LINE__, buf[0], buf[1], filesize );
+   \      0x23A   0xF8CD 0xA004      STR      R10,[SP, #+4]
+   \      0x23E   0x7878             LDRB     R0,[R7, #+1]
+   \      0x240   0x9000             STR      R0,[SP, #+0]
+   \      0x242   0xF89D 0x3008      LDRB     R3,[SP, #+8]
+   \      0x246   0xF44F 0x6292      MOV      R2,#+1168
+   \      0x24A   0x0029             MOVS     R1,R5
+   \      0x24C   0x....             LDR.N    R0,??DataTable24_59
+   \      0x24E   0x.... 0x....      BL       printf
+   1169          
+   1170          			HAL_Delay( (uint32_t)2000 );	//	Upgrade 결과전송 전 Delay
+   \      0x252   0xF44F 0x60FA      MOV      R0,#+2000
+   \      0x256   0x.... 0x....      BL       HAL_Delay
    1171          
    1172          			//===========================================================================
-   1173          			//	Reset
-   1174          			cmd_reset(0, 0);
-   \      0x276   0x2100             MOVS     R1,#+0
-   \      0x278   0x2000             MOVS     R0,#+0
-   \      0x27A   0x.... 0x....      BL       cmd_reset
-   \      0x27E   0xE018             B.N      ??ProcPktUpgr_14
-   1175          			//===========================================================================
-   1176          		}
-   1177          		else
-   1178          		{
-   1179          			HAL_Delay( (uint32_t)2000 );	//	Upgrade 결과전송 전 Delay
+   1173          			//	Send Upgrade Result
+   1174          			SendUpgrStat( (uint8_t)UpgrStatSuccess );	//	Upgrade 결과전송.
+   \      0x25A   0x2001             MOVS     R0,#+1
+   \      0x25C   0x.... 0x....      BL       SendUpgrStat
+   1175          			HAL_Delay((uint32_t) 100 );	//	Upgrade 결과전송 전 Delay
+   \      0x260   0x2064             MOVS     R0,#+100
+   \      0x262   0x.... 0x....      BL       HAL_Delay
+   1176          			SendUpgrStat( (uint8_t)UpgrStatSuccess );	//	Upgrade 결과전송.
+   \      0x266   0x2001             MOVS     R0,#+1
+   \      0x268   0x.... 0x....      BL       SendUpgrStat
+   1177          			HAL_Delay( (uint32_t)100 );	//	Upgrade 결과전송 전 Delay
+   \      0x26C   0x2064             MOVS     R0,#+100
+   \      0x26E   0x.... 0x....      BL       HAL_Delay
+   1178          			SendUpgrStat((uint8_t) UpgrStatSuccess );	//	Upgrade 결과전송.
+   \      0x272   0x2001             MOVS     R0,#+1
+   \      0x274   0x.... 0x....      BL       SendUpgrStat
+   1179          
+   1180          			//===========================================================================
+   1181          			//	Reset
+   1182          			cmd_reset(0, 0);
+   \      0x278   0x2100             MOVS     R1,#+0
+   \      0x27A   0x2000             MOVS     R0,#+0
+   \      0x27C   0x.... 0x....      BL       cmd_reset
+   \      0x280   0xE018             B.N      ??ProcPktUpgr_14
+   1183          			//===========================================================================
+   1184          		}
+   1185          		else
+   1186          		{
+   1187          			HAL_Delay( (uint32_t)2000 );	//	Upgrade 결과전송 전 Delay
    \                     ??ProcPktUpgr_13: (+1)
-   \      0x280   0xF44F 0x60FA      MOV      R0,#+2000
-   \      0x284   0x.... 0x....      BL       HAL_Delay
-   1180          
-   1181          			//===========================================================================
-   1182          			//	Send Upgrade Result
-   1183          			SendUpgrStat( UpgrStatFailed );		//	Upgrade 결과전송.
-   \      0x288   0x2000             MOVS     R0,#+0
-   \      0x28A   0x.... 0x....      BL       SendUpgrStat
-   1184          			HAL_Delay( (uint32_t)100 );	//	Upgrade 결과전송 전 Delay
-   \      0x28E   0x2064             MOVS     R0,#+100
-   \      0x290   0x.... 0x....      BL       HAL_Delay
-   1185          			SendUpgrStat( (uint8_t)UpgrStatFailed );	//	Upgrade 결과전송.
-   \      0x294   0x2000             MOVS     R0,#+0
-   \      0x296   0x.... 0x....      BL       SendUpgrStat
-   1186          			HAL_Delay((uint32_t) 100 );	//	Upgrade 결과전송 전 Delay
-   \      0x29A   0x2064             MOVS     R0,#+100
-   \      0x29C   0x.... 0x....      BL       HAL_Delay
-   1187          			SendUpgrStat( (uint8_t)UpgrStatFailed );	//	Upgrade 결과전송.
-   \      0x2A0   0x2000             MOVS     R0,#+0
-   \      0x2A2   0x.... 0x....      BL       SendUpgrStat
+   \      0x282   0xF44F 0x60FA      MOV      R0,#+2000
+   \      0x286   0x.... 0x....      BL       HAL_Delay
    1188          
-   1189          			//	Upgrade Failed
-   1190          			printf("%s(%d) - Upgrade Failed\n", __func__, __LINE__ );
-   \      0x2A6   0xF240 0x42A6      MOVW     R2,#+1190
-   \      0x2AA   0x0029             MOVS     R1,R5
-   \      0x2AC   0x....             LDR.N    R0,??DataTable24_59
-   \      0x2AE   0x.... 0x....      BL       printf
-   1191          		}
-   1192          		//========================================================================
-   1193          
-   1194          		//========================================================================
-   1195          		SetRFMMode( (uint8_t)RFMModeNormal );	//	Normal 모드로 설정.
+   1189          			//===========================================================================
+   1190          			//	Send Upgrade Result
+   1191          			SendUpgrStat( UpgrStatFailed );		//	Upgrade 결과전송.
+   \      0x28A   0x2000             MOVS     R0,#+0
+   \      0x28C   0x.... 0x....      BL       SendUpgrStat
+   1192          			HAL_Delay( (uint32_t)100 );	//	Upgrade 결과전송 전 Delay
+   \      0x290   0x2064             MOVS     R0,#+100
+   \      0x292   0x.... 0x....      BL       HAL_Delay
+   1193          			SendUpgrStat( (uint8_t)UpgrStatFailed );	//	Upgrade 결과전송.
+   \      0x296   0x2000             MOVS     R0,#+0
+   \      0x298   0x.... 0x....      BL       SendUpgrStat
+   1194          			HAL_Delay((uint32_t) 100 );	//	Upgrade 결과전송 전 Delay
+   \      0x29C   0x2064             MOVS     R0,#+100
+   \      0x29E   0x.... 0x....      BL       HAL_Delay
+   1195          			SendUpgrStat( (uint8_t)UpgrStatFailed );	//	Upgrade 결과전송.
+   \      0x2A2   0x2000             MOVS     R0,#+0
+   \      0x2A4   0x.... 0x....      BL       SendUpgrStat
+   1196          
+   1197          			//	Upgrade Failed
+   1198          			printf("%s(%d) - Upgrade Failed\n", __func__, __LINE__ );
+   \      0x2A8   0xF240 0x42AE      MOVW     R2,#+1198
+   \      0x2AC   0x0029             MOVS     R1,R5
+   \      0x2AE   0x....             LDR.N    R0,??DataTable24_60
+   \      0x2B0   0x.... 0x....      BL       printf
+   1199          		}
+   1200          		//========================================================================
+   1201          
+   1202          		//========================================================================
+   1203          		SetRFMMode( (uint8_t)RFMModeNormal );	//	Normal 모드로 설정.
    \                     ??ProcPktUpgr_14: (+1)
-   \      0x2B2   0x2000             MOVS     R0,#+0
-   \      0x2B4   0x.... 0x....      BL       SetRFMMode
-   1196          		//========================================================================
-   1197          	}
-   1198          }
+   \      0x2B4   0x2000             MOVS     R0,#+0
+   \      0x2B6   0x.... 0x....      BL       SetRFMMode
+   1204          		//========================================================================
+   1205          	}
+   1206          }
                  ^
 Warning[Pe940]: missing return statement at end of non-void function
           "ProcPktUpgr"
    \                     ??ProcPktUpgr_9: (+1)
    \                     ??ProcPktUpgr_3: (+1)
-   \      0x2B8   0xB009             ADD      SP,SP,#+36
-   \      0x2BA   0xE8BD 0x8FF0      POP      {R4-R11,PC}
+   \      0x2BA   0xB009             ADD      SP,SP,#+36
+   \      0x2BC   0xE8BD 0x8FF0      POP      {R4-R11,PC}
 
    \                                 In section .bss, align 4
    \                     `ProcPktUpgr::s_rxPkt`:
    \        0x0                      DS8 4
-   1199          
-   1200          
-   1201          //========================================================================
+   1207          
+   1208          
+   1209          //========================================================================
 
    \                                 In section .text, align 2, keep-with-next
-   1202          uint8_t	ProcPktUpgrStat			( const RFMPkt *pRFPkt )
-   1203          //========================================================================
-   1204          {
+   1210          uint8_t	ProcPktUpgrStat			( const RFMPkt *pRFPkt )
+   1211          //========================================================================
+   1212          {
    \                     ProcPktUpgrStat: (+1)
    \        0x0   0xB530             PUSH     {R4,R5,LR}
    \        0x2   0xB08D             SUB      SP,SP,#+52
    \        0x4   0x0004             MOVS     R4,R0
-   1205          	//========================================================================
-   1206          	//	Upgrade Status
-   1207          	//========================================================================
-   1208          
-   1209          	//	Upgrade 결과 수신후 수신기 LCD창에 표시.
-   1210          	if ( GetDbg() )
+   1213          	//========================================================================
+   1214          	//	Upgrade Status
+   1215          	//========================================================================
+   1216          
+   1217          	//	Upgrade 결과 수신후 수신기 LCD창에 표시.
+   1218          	if ( GetDbg() )
    \        0x6   0x.... 0x....      BL       GetDbg
    \        0xA   0x2800             CMP      R0,#+0
    \        0xC   0xD005             BEQ.N    ??ProcPktUpgrStat_0
-   1211          	{
-   1212          		printf( "%s(%d)\n", __func__, __LINE__ );
-   \        0xE   0xF240 0x42BC      MOVW     R2,#+1212
-   \       0x12   0x....             LDR.N    R1,??DataTable24_60
+   1219          	{
+   1220          		printf( "%s(%d)\n", __func__, __LINE__ );
+   \        0xE   0xF240 0x42C4      MOVW     R2,#+1220
+   \       0x12   0x....             LDR.N    R1,??DataTable24_61
    \       0x14   0x....             LDR.N    R0,??DataTable24_1
    \       0x16   0x.... 0x....      BL       printf
-   1213          	}
-   1214          
-   1215          	char sBuf[50];
-   1216          
-   1217          	//========================================================================
-   1218          	//	Data Flash영역에 Write
-   1219          	RFMPktUpgrStat	*pUpgrStat = (RFMPktUpgrStat *)&pRFPkt->dat.upgrStat;
+   1221          	}
+   1222          
+   1223          	char sBuf[50];
+   1224          
+   1225          	//========================================================================
+   1226          	//	Data Flash영역에 Write
+   1227          	RFMPktUpgrStat	*pUpgrStat = (RFMPktUpgrStat *)&pRFPkt->dat.upgrStat;
    \                     ??ProcPktUpgrStat_0: (+1)
    \       0x1A   0xF114 0x050A      ADDS     R5,R4,#+10
-   1220          
-   1221          	printf( "%s(%d) - %d\n", __func__, __LINE__, pUpgrStat->nResult );
+   1228          
+   1229          	printf( "%s(%d) - %d\n", __func__, __LINE__, pUpgrStat->nResult );
    \       0x1E   0x782B             LDRB     R3,[R5, #+0]
-   \       0x20   0xF240 0x42C5      MOVW     R2,#+1221
-   \       0x24   0x....             LDR.N    R1,??DataTable24_60
-   \       0x26   0x....             LDR.N    R0,??DataTable24_19
+   \       0x20   0xF240 0x42CD      MOVW     R2,#+1229
+   \       0x24   0x....             LDR.N    R1,??DataTable24_61
+   \       0x26   0x....             LDR.N    R0,??DataTable24_18
    \       0x28   0x.... 0x....      BL       printf
-   1222          
-   1223          	if ( pUpgrStat->nResult == UpgrStatSuccess )
+   1230          
+   1231          	if ( pUpgrStat->nResult == UpgrStatSuccess )
    \       0x2C   0x7828             LDRB     R0,[R5, #+0]
    \       0x2E   0x2801             CMP      R0,#+1
    \       0x30   0xD10B             BNE.N    ??ProcPktUpgrStat_1
-   1224          	{
-   1225          		//	송신기 : Upgr Success
-   1226          
-   1227          		sprintf(sBuf, "Success(%d/%d)", pUpgrStat->nTrainSet, pUpgrStat->nCarNo);
+   1232          	{
+   1233          		//	송신기 : Upgr Success
+   1234          
+   1235          		sprintf(sBuf, "Success(%d/%d)", pUpgrStat->nTrainSet, pUpgrStat->nCarNo);
    \       0x32   0x796B             LDRB     R3,[R5, #+5]
    \       0x34   0x792A             LDRB     R2,[R5, #+4]
-   \       0x36   0x....             LDR.N    R1,??DataTable24_61
+   \       0x36   0x....             LDR.N    R1,??DataTable24_62
    \       0x38   0x4668             MOV      R0,SP
    \       0x3A   0x.... 0x....      BL       sprintf
-   1228          		LCDPrintfXY( 0, 13, sBuf );
+   1236          		LCDPrintfXY( 0, 13, sBuf );
    \       0x3E   0x466A             MOV      R2,SP
    \       0x40   0x210D             MOVS     R1,#+13
    \       0x42   0x2000             MOVS     R0,#+0
    \       0x44   0x.... 0x....      BL       LCDPrintfXY
    \       0x48   0xE00D             B.N      ??ProcPktUpgrStat_2
-   1229          
-   1230          //		HAL_Delay(2000);
-   1231          	}
-   1232          	else if( pUpgrStat->nResult == UpgrStatFailed )
+   1237          
+   1238          //		HAL_Delay(2000);
+   1239          	}
+   1240          	else if( pUpgrStat->nResult == UpgrStatFailed )
    \                     ??ProcPktUpgrStat_1: (+1)
    \       0x4A   0x7828             LDRB     R0,[R5, #+0]
    \       0x4C   0x2800             CMP      R0,#+0
    \       0x4E   0xD10A             BNE.N    ??ProcPktUpgrStat_2
-   1233          	{
-   1234          		//	송신기 : Upgr Failed
-   1235          
-   1236          		sprintf(sBuf, "Failed(%d/%d)", pUpgrStat->nTrainSet, pUpgrStat->nCarNo);
+   1241          	{
+   1242          		//	송신기 : Upgr Failed
+   1243          
+   1244          		sprintf(sBuf, "Failed(%d/%d)", pUpgrStat->nTrainSet, pUpgrStat->nCarNo);
    \       0x50   0x796B             LDRB     R3,[R5, #+5]
    \       0x52   0x792A             LDRB     R2,[R5, #+4]
-   \       0x54   0x....             LDR.N    R1,??DataTable24_62
+   \       0x54   0x....             LDR.N    R1,??DataTable24_63
    \       0x56   0x4668             MOV      R0,SP
    \       0x58   0x.... 0x....      BL       sprintf
-   1237          		LCDPrintfXY( 0, 13, sBuf );
+   1245          		LCDPrintfXY( 0, 13, sBuf );
    \       0x5C   0x466A             MOV      R2,SP
    \       0x5E   0x210D             MOVS     R1,#+13
    \       0x60   0x2000             MOVS     R0,#+0
    \       0x62   0x.... 0x....      BL       LCDPrintfXY
-   1238          
-   1239          //		HAL_Delay(2000);
-   1240          	}
-   1241          
-   1242          	return 1;
+   1246          
+   1247          //		HAL_Delay(2000);
+   1248          	}
+   1249          
+   1250          	return 1;
    \                     ??ProcPktUpgrStat_2: (+1)
    \       0x66   0x2001             MOVS     R0,#+1
    \       0x68   0xB00D             ADD      SP,SP,#+52
    \       0x6A   0xBD30             POP      {R4,R5,PC}
-   1243          }
+   1251          }
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable22:
@@ -2783,6 +2803,10 @@ Warning[Pe940]: missing return statement at end of non-void function
    \        0x0   0x....'....        DC32     `_MakeRFCmd::__func__`
 
    \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable23_1:
+   \        0x0   0x....'....        DC32     `SendStatReq::__func__`
+
+   \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24:
    \        0x0   0x....'....        DC32     g_flagRspID
 
@@ -2792,246 +2816,250 @@ Warning[Pe940]: missing return statement at end of non-void function
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_2:
-   \        0x0   0x....'....        DC32     `SendStatReq::__func__`
-
-   \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_3:
    \        0x0   0x....'....        DC32     `SendStat::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_4:
+   \                     ??DataTable24_3:
    \        0x0   0x....'....        DC32     g_nManHopping
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_5:
+   \                     ??DataTable24_4:
    \        0x0   0x....'....        DC32     g_nDevFlag
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_6:
+   \                     ??DataTable24_5:
    \        0x0   0x....'....        DC32     `SendPA::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_7:
+   \                     ??DataTable24_6:
    \        0x0   0x....'....        DC32     `SendCall::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_8:
+   \                     ??DataTable24_7:
    \        0x0   0x....'....        DC32     `SendOCCPA::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_9:
+   \                     ??DataTable24_8:
    \        0x0   0x....'....        DC32     `SendLight::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_10:
+   \                     ??DataTable24_9:
    \        0x0   0x....'....        DC32     `SendRFCmdCh::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_11:
+   \                     ??DataTable24_10:
    \        0x0   0x....'....        DC32     `SendRFCmd::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_12:
+   \                     ??DataTable24_11:
    \        0x0   0x....'....        DC32     `SendRFCmdReset::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_13:
+   \                     ??DataTable24_12:
    \        0x0   0x....'....        DC32     ?_1
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_14:
+   \                     ??DataTable24_13:
    \        0x0   0x....'....        DC32     `SendRFCmdDFUMode::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_15:
+   \                     ??DataTable24_14:
    \        0x0   0x....'....        DC32     ?_2
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_16:
+   \                     ??DataTable24_15:
    \        0x0   0x....'....        DC32     `SendRFCmdUpgrade::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_17:
+   \                     ??DataTable24_16:
    \        0x0   0x....'....        DC32     ?_3
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_18:
+   \                     ??DataTable24_17:
    \        0x0   0x....'....        DC32     `SendUpgrStat::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_19:
+   \                     ??DataTable24_18:
    \        0x0   0x....'....        DC32     ?_4
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_20:
+   \                     ??DataTable24_19:
    \        0x0   0x....'....        DC32     g_idxTrainSet
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_21:
+   \                     ??DataTable24_20:
    \        0x0   0x....'....        DC32     g_nCarNo
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_22:
+   \                     ??DataTable24_21:
    \        0x0   0x....'....        DC32     `ProcPktStat::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_23:
+   \                     ??DataTable24_22:
    \        0x0   0x....'....        DC32     g_bSetRspIDManual
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_24:
+   \                     ??DataTable24_23:
    \        0x0   0x....'....        DC32     `ProcPktStatReq::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_25:
+   \                     ??DataTable24_24:
    \        0x0   0x....'....        DC32     g_devStat
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_26:
+   \                     ??DataTable24_25:
    \        0x0   0x....'....        DC32     g_nRSSI
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_27:
+   \                     ??DataTable24_26:
    \        0x0   0x....'....        DC32     `ProcPktCtrlPaCall::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_28:
+   \                     ??DataTable24_27:
    \        0x0   0x....'....        DC32     ?_5
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_29:
+   \                     ??DataTable24_28:
    \        0x0   0x....'....        DC32     ?_6
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_30:
+   \                     ??DataTable24_29:
    \        0x0   0x4002'1000        DC32     0x40021000
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_31:
+   \                     ??DataTable24_30:
    \        0x0   0x....'....        DC32     ?_7
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_32:
+   \                     ??DataTable24_31:
    \        0x0   0x....'....        DC32     ?_8
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_33:
+   \                     ??DataTable24_32:
    \        0x0   0x....'....        DC32     ?_9
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_34:
+   \                     ??DataTable24_33:
    \        0x0   0x....'....        DC32     g_nStampRxPkt
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_35:
+   \                     ??DataTable24_34:
    \        0x0   0x....'....        DC32     `ProcPktPA::__func__`
 
    \                                 In section .text, align 4, keep-with-next
-   \                     ??DataTable24_36:
+   \                     ??DataTable24_35:
    \        0x0   0x....'....        DC32     g_qBufAudioRx
 
    \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable24_36:
+   \        0x0   0x....'....        DC32     `ProcPktPA::sReMode`
+
+   \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_37:
-   \        0x0   0x4002'0400        DC32     0x40020400
+   \        0x0   0x....'....        DC32     `ProcPktPA::sspkVal`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_38:
-   \        0x0   0x....'....        DC32     `ProcPktCall::__func__`
+   \        0x0   0x4002'0400        DC32     0x40020400
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_39:
-   \        0x0   0x....'....        DC32     `ProcPktDevConn::__func__`
+   \        0x0   0x....'....        DC32     `ProcPktCall::__func__`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_40:
-   \        0x0   0x....'....        DC32     `ProcPktLight::__func__`
+   \        0x0   0x....'....        DC32     `ProcPktDevConn::__func__`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_41:
-   \        0x0   0x....'....        DC32     `ProcPktCmd::__func__`
+   \        0x0   0x....'....        DC32     `ProcPktLight::__func__`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_42:
-   \        0x0   0x....'....        DC32     ?_11
+   \        0x0   0x....'....        DC32     `ProcPktCmd::__func__`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_43:
-   \        0x0   0x....'....        DC32     `ProcPktCmdRsp::__func__`
+   \        0x0   0x....'....        DC32     ?_11
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_44:
-   \        0x0   0x....'....        DC32     `ProcPktUpgr::__func__`
+   \        0x0   0x....'....        DC32     `ProcPktCmdRsp::__func__`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_45:
-   \        0x0   0x0808'0000        DC32     0x8080000
+   \        0x0   0x....'....        DC32     `ProcPktUpgr::__func__`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_46:
-   \        0x0   0x....'....        DC32     ?_12
+   \        0x0   0x0808'0000        DC32     0x8080000
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_47:
-   \        0x0   0x....'....        DC32     ?_13
+   \        0x0   0x....'....        DC32     ?_12
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_48:
-   \        0x0   0x....'....        DC32     ?_14
+   \        0x0   0x....'....        DC32     ?_13
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_49:
-   \        0x0   0xE004'2008        DC32     0xe0042008
+   \        0x0   0x....'....        DC32     ?_14
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_50:
-   \        0x0   0x....'....        DC32     ?_15
+   \        0x0   0xE004'2008        DC32     0xe0042008
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_51:
-   \        0x0   0x....'....        DC32     ?_16
+   \        0x0   0x....'....        DC32     ?_15
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_52:
-   \        0x0   0x....'....        DC32     s_bUpgrDataValid
+   \        0x0   0x....'....        DC32     ?_16
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_53:
-   \        0x0   0x....'....        DC32     `ProcPktUpgr::s_rxPkt`
+   \        0x0   0x....'....        DC32     s_bUpgrDataValid
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_54:
-   \        0x0   0x....'....        DC32     ?_17
+   \        0x0   0x....'....        DC32     `ProcPktUpgr::s_rxPkt`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_55:
-   \        0x0   0x....'....        DC32     ?_18
+   \        0x0   0x....'....        DC32     ?_17
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_56:
-   \        0x0   0x....'....        DC32     ?_19
+   \        0x0   0x....'....        DC32     ?_18
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_57:
-   \        0x0   0x....'....        DC32     hi2c1
+   \        0x0   0x....'....        DC32     ?_19
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_58:
-   \        0x0   0x....'....        DC32     ?_20
+   \        0x0   0x....'....        DC32     hi2c1
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_59:
-   \        0x0   0x....'....        DC32     ?_21
+   \        0x0   0x....'....        DC32     ?_20
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_60:
-   \        0x0   0x....'....        DC32     `ProcPktUpgrStat::__func__`
+   \        0x0   0x....'....        DC32     ?_21
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_61:
-   \        0x0   0x....'....        DC32     ?_22
+   \        0x0   0x....'....        DC32     `ProcPktUpgrStat::__func__`
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable24_62:
+   \        0x0   0x....'....        DC32     ?_22
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable24_63:
    \        0x0   0x....'....        DC32     ?_23
 
    \                                 In section .rodata, align 4
@@ -3583,7 +3611,7 @@ Warning[Pe940]: missing return statement at end of non-void function
 
    \              0x29 0x00
    \        0xE                      DS8 2
-   1244          
+   1252          
 
    Maximum stack usage in bytes:
 
@@ -3774,6 +3802,7 @@ Warning[Pe940]: missing return statement at end of non-void function
        4  ??DataTable22
        4  ??DataTable22_1
        4  ??DataTable23
+       4  ??DataTable23_1
        4  ??DataTable24
        4  ??DataTable24_1
        4  ??DataTable24_10
@@ -3834,6 +3863,7 @@ Warning[Pe940]: missing return statement at end of non-void function
        4  ??DataTable24_60
        4  ??DataTable24_61
        4  ??DataTable24_62
+       4  ??DataTable24_63
        4  ??DataTable24_7
        4  ??DataTable24_8
        4  ??DataTable24_9
@@ -3867,10 +3897,10 @@ Warning[Pe940]: missing return statement at end of non-void function
      168  ProcPktCtrlPaCall
       48  ProcPktDevConn
       88  ProcPktLight
-     150  ProcPktPA
+     166  ProcPktPA
       92  ProcPktStat
       94  ProcPktStatReq
-     702  ProcPktUpgr
+     704  ProcPktUpgr
      108  ProcPktUpgrStat
       98  SendCall
       70  SendLight
@@ -3890,18 +3920,21 @@ Warning[Pe940]: missing return statement at end of non-void function
      158  _MakePktHdr
      150  _MakePktHdr2
       80  _MakeRFCmd
+       1  sReMode
    1'024  s_bUpgrDataValid
        4  s_rxPkt
+       1  sspkVal
      336  -- Other
 
  
  1'028 bytes in section .bss
+     2 bytes in section .data
    854 bytes in section .rodata
- 3'516 bytes in section .text
+ 3'542 bytes in section .text
  
- 3'516 bytes of CODE  memory
+ 3'542 bytes of CODE  memory
    854 bytes of CONST memory
- 1'028 bytes of DATA  memory
+ 1'030 bytes of DATA  memory
 
 Errors: none
 Warnings: 23

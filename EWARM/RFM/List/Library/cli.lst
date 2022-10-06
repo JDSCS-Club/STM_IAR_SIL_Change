@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#                                                         30/Sep/2022  17:12:34
+#                                                         06/Oct/2022  13:55:46
 # IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
@@ -1201,7 +1201,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \       0x7A   0x4640             MOV      R0,R8
    \       0x7C   0xB280             UXTH     R0,R0
    \       0x7E   0x2800             CMP      R0,#+0
-   \       0x80   0xF000 0x8085      BEQ.W    ??ProcessCommand_4
+   \       0x80   0xF000 0x80A0      BEQ.W    ??ProcessCommand_4
     528          	{
     529          
     530          		// md/mm 등에 따르는 "[.b|.w|.l]에 대한 처리
@@ -1273,7 +1273,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \       0xD2   0x0028             MOVS     R0,R5
    \       0xD4   0xB280             UXTH     R0,R0
    \       0xD6   0x2818             CMP      R0,#+24
-   \       0xD8   0xD24A             BCS.N    ??ProcessCommand_11
+   \       0xD8   0xD265             BCS.N    ??ProcessCommand_11
     556          		{
     557          			if ( strcmp( argv[0], user_command_table[i].command_name ) == 0 )
    \       0xDA   0x.... 0x....      LDR.W    R9,??DataTable11_14
@@ -1284,7 +1284,7 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \       0xE8   0x9815             LDR      R0,[SP, #+84]
    \       0xEA   0x.... 0x....      BL       strcmp
    \       0xEE   0x2800             CMP      R0,#+0
-   \       0xF0   0xD13C             BNE.N    ??ProcessCommand_12
+   \       0xF0   0xD157             BNE.N    ??ProcessCommand_12
     558          			{
     559          				if ( argc >= 2 )
    \       0xF2   0x4640             MOV      R0,R8
@@ -1338,13 +1338,11 @@ Warning[Pe167]: argument of type "char *" is incompatible with parameter of
    \      0x14E   0x2001             MOVS     R0,#+1
    \      0x150   0x0007             MOVS     R7,R0
     569          						break;
-   \      0x152   0xE00D             B.N      ??ProcessCommand_11
+   \      0x152   0xE028             B.N      ??ProcessCommand_11
     570          					}
     571          				}
     572          				// 처리함수를 호출
-    573          				if ( user_command_table[i].func( argc, argv ) < 0 )
-                 				                                              ^
-Warning[Pe186]: pointless comparison of unsigned integer with zero
+    573          				if ( user_command_table[i].func( argc, argv ) <= 0 )
    \                     ??ProcessCommand_13: (+1)
    \      0x154   0xA915             ADD      R1,SP,#+84
    \      0x156   0x4640             MOV      R0,R8
@@ -1355,53 +1353,78 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
    \      0x160   0x444A             ADD      R2,R9,R2
    \      0x162   0x68D2             LDR      R2,[R2, #+12]
    \      0x164   0x4790             BLX      R2
+   \      0x166   0x2800             CMP      R0,#+0
+   \      0x168   0xD118             BNE.N    ??ProcessCommand_16
     574          				{
     575          					printf( "%s\n", user_command_table[i].command_help1 );
+   \      0x16A   0x.... 0x....      ADR.W    R10,??DataTable8_1
+   \      0x16E   0x0028             MOVS     R0,R5
+   \      0x170   0xB280             UXTH     R0,R0
+   \      0x172   0x0100             LSLS     R0,R0,#+4
+   \      0x174   0x4448             ADD      R0,R9,R0
+   \      0x176   0x6841             LDR      R1,[R0, #+4]
+   \      0x178   0x4650             MOV      R0,R10
+   \      0x17A   0x.... 0x....      BL       printf
     576          					if ( user_command_table[i].command_help2 != NULL )
+   \      0x17E   0x0028             MOVS     R0,R5
+   \      0x180   0xB280             UXTH     R0,R0
+   \      0x182   0x0100             LSLS     R0,R0,#+4
+   \      0x184   0x4448             ADD      R0,R9,R0
+   \      0x186   0x6880             LDR      R0,[R0, #+8]
+   \      0x188   0x2800             CMP      R0,#+0
+   \      0x18A   0xD007             BEQ.N    ??ProcessCommand_16
     577          					{
     578          						printf( "%s\n", user_command_table[i].command_help2 );
+   \      0x18C   0x0028             MOVS     R0,R5
+   \      0x18E   0xB280             UXTH     R0,R0
+   \      0x190   0x0100             LSLS     R0,R0,#+4
+   \      0x192   0x4448             ADD      R0,R9,R0
+   \      0x194   0x6881             LDR      R1,[R0, #+8]
+   \      0x196   0x4650             MOV      R0,R10
+   \      0x198   0x.... 0x....      BL       printf
     579          					}
     580          				}
     581          				v = 1;	// 명령을 찾아서 처리했음을 표시
-   \      0x166   0x2001             MOVS     R0,#+1
-   \      0x168   0x0007             MOVS     R7,R0
+   \                     ??ProcessCommand_16: (+1)
+   \      0x19C   0x2001             MOVS     R0,#+1
+   \      0x19E   0x0007             MOVS     R7,R0
     582          				break;
-   \      0x16A   0xE001             B.N      ??ProcessCommand_11
+   \      0x1A0   0xE001             B.N      ??ProcessCommand_11
     583          			}
     584          		}
    \                     ??ProcessCommand_12: (+1)
-   \      0x16C   0x1C6D             ADDS     R5,R5,#+1
-   \      0x16E   0xE7B0             B.N      ??ProcessCommand_10
+   \      0x1A2   0x1C6D             ADDS     R5,R5,#+1
+   \      0x1A4   0xE795             B.N      ??ProcessCommand_10
     585          		if ( v == 0 )
    \                     ??ProcessCommand_11: (+1)
-   \      0x170   0x0038             MOVS     R0,R7
-   \      0x172   0xB280             UXTH     R0,R0
-   \      0x174   0x2800             CMP      R0,#+0
-   \      0x176   0xD105             BNE.N    ??ProcessCommand_16
+   \      0x1A6   0x0038             MOVS     R0,R7
+   \      0x1A8   0xB280             UXTH     R0,R0
+   \      0x1AA   0x2800             CMP      R0,#+0
+   \      0x1AC   0xD105             BNE.N    ??ProcessCommand_17
     586          		{
     587          			// 엉뚱하게 입력한 경우
     588          			printf( "%s: command not found\n\r", argv[0] );
-   \      0x178   0x9915             LDR      R1,[SP, #+84]
-   \      0x17A   0x.... 0x....      LDR.W    R0,??DataTable11_16
-   \      0x17E   0x.... 0x....      BL       printf
-   \      0x182   0xE004             B.N      ??ProcessCommand_4
+   \      0x1AE   0x9915             LDR      R1,[SP, #+84]
+   \      0x1B0   0x.... 0x....      LDR.W    R0,??DataTable11_16
+   \      0x1B4   0x.... 0x....      BL       printf
+   \      0x1B8   0xE004             B.N      ??ProcessCommand_4
     589          		}
     590          		else
     591          		{
     592          			// !! 처리를 위해서 old_cmd로 명령 복사
     593          			strcpy( old_cmd, temp );
-   \                     ??ProcessCommand_16: (+1)
-   \      0x184   0xA901             ADD      R1,SP,#+4
-   \      0x186   0x.... 0x....      LDR.W    R0,??DataTable11_12
-   \      0x18A   0x.... 0x....      BL       strcpy
+   \                     ??ProcessCommand_17: (+1)
+   \      0x1BA   0xA901             ADD      R1,SP,#+4
+   \      0x1BC   0x.... 0x....      LDR.W    R0,??DataTable11_12
+   \      0x1C0   0x.... 0x....      BL       strcpy
     594          		}
     595          	}
     596          
     597          	return (uint8_t) 1;
    \                     ??ProcessCommand_4: (+1)
-   \      0x18E   0x2001             MOVS     R0,#+1
-   \      0x190   0xB02A             ADD      SP,SP,#+168
-   \      0x192   0xE8BD 0x87F0      POP      {R4-R10,PC}
+   \      0x1C4   0x2001             MOVS     R0,#+1
+   \      0x1C6   0xB02A             ADD      SP,SP,#+168
+   \      0x1C8   0xE8BD 0x87F0      POP      {R4-R10,PC}
     598          }
     599          
     600          
@@ -2000,68 +2023,71 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
     846          	uint8_t	sec, min, hour;
     847          	uint8_t	day;
     848          
-    849          	day = (uint8_t)((uint8_t)tmp / 3600 / 24);
-   \       0x14   0x2700             MOVS     R7,#+0
+    849          	day = (uint8_t)((uint8_t)tmp / (3600 / 24));
+   \       0x14   0x0020             MOVS     R0,R4
+   \       0x16   0xB2C0             UXTB     R0,R0
+   \       0x18   0x2196             MOVS     R1,#+150
+   \       0x1A   0xFB90 0xF7F1      SDIV     R7,R0,R1
     850          	tmp = (uint8_t)((uint8_t)tmp % (uint8_t)(3600 * 24));
-   \       0x16   0xB2E4             UXTB     R4,R4
-   \       0x18   0x2080             MOVS     R0,#+128
-   \       0x1A   0xFB94 0xF1F0      SDIV     R1,R4,R0
-   \       0x1E   0xFB00 0x4411      MLS      R4,R0,R1,R4
-   \       0x22   0xB2E4             UXTB     R4,R4
+   \       0x1E   0xB2E4             UXTB     R4,R4
+   \       0x20   0x2080             MOVS     R0,#+128
+   \       0x22   0xFB94 0xF1F0      SDIV     R1,R4,R0
+   \       0x26   0xFB00 0x4411      MLS      R4,R0,R1,R4
+   \       0x2A   0xB2E4             UXTB     R4,R4
     851          
     852          	hour = (uint8_t)((uint8_t)tmp / 3600);
-   \       0x24   0xF05F 0x0800      MOVS     R8,#+0
+   \       0x2C   0xF05F 0x0800      MOVS     R8,#+0
     853          	tmp = (uint8_t)((uint8_t)tmp % 3600);
-   \       0x28   0xB2E4             UXTB     R4,R4
-   \       0x2A   0xF44F 0x6061      MOV      R0,#+3600
-   \       0x2E   0xFB94 0xF1F0      SDIV     R1,R4,R0
-   \       0x32   0xFB00 0x4411      MLS      R4,R0,R1,R4
-   \       0x36   0xB2E4             UXTB     R4,R4
+   \       0x30   0xB2E4             UXTB     R4,R4
+   \       0x32   0xF44F 0x6061      MOV      R0,#+3600
+   \       0x36   0xFB94 0xF1F0      SDIV     R1,R4,R0
+   \       0x3A   0xFB00 0x4411      MLS      R4,R0,R1,R4
+   \       0x3E   0xB2E4             UXTB     R4,R4
     854          
     855          	min = (uint8_t)((uint8_t)tmp / 60);
-   \       0x38   0x0020             MOVS     R0,R4
-   \       0x3A   0xB2C0             UXTB     R0,R0
-   \       0x3C   0x213C             MOVS     R1,#+60
-   \       0x3E   0xFB90 0xF9F1      SDIV     R9,R0,R1
+   \       0x40   0x0020             MOVS     R0,R4
+   \       0x42   0xB2C0             UXTB     R0,R0
+   \       0x44   0x213C             MOVS     R1,#+60
+   \       0x46   0xFB90 0xF9F1      SDIV     R9,R0,R1
     856          	sec = (uint8_t)((uint8_t)tmp % 60);
-   \       0x42   0x0021             MOVS     R1,R4
-   \       0x44   0xB2C9             UXTB     R1,R1
-   \       0x46   0x203C             MOVS     R0,#+60
-   \       0x48   0xFB91 0xFAF0      SDIV     R10,R1,R0
-   \       0x4C   0xFB00 0x1A1A      MLS      R10,R0,R10,R1
+   \       0x4A   0x0021             MOVS     R1,R4
+   \       0x4C   0xB2C9             UXTB     R1,R1
+   \       0x4E   0x203C             MOVS     R0,#+60
+   \       0x50   0xFB91 0xFAF0      SDIV     R10,R1,R0
+   \       0x54   0xFB00 0x1A1A      MLS      R10,R0,R10,R1
     857          
     858          	if (0 < day)
-   \       0x50   0x0038             MOVS     R0,R7
-   \       0x52   0xB2C0             UXTB     R0,R0
-   \       0x54   0x2800             CMP      R0,#+0
-   \       0x56   0xD00C             BEQ.N    ??cmd_uptime_0
+   \       0x58   0x0038             MOVS     R0,R7
+   \       0x5A   0xB2C0             UXTB     R0,R0
+   \       0x5C   0x2800             CMP      R0,#+0
+   \       0x5E   0xD00C             BEQ.N    ??cmd_uptime_0
     859          	{
     860          		printf("%d day(s) %d:%02d:%02d up.\n", day, hour, min, sec);
-   \       0x58   0x4650             MOV      R0,R10
-   \       0x5A   0xB2C0             UXTB     R0,R0
-   \       0x5C   0x9000             STR      R0,[SP, #+0]
-   \       0x5E   0x464B             MOV      R3,R9
-   \       0x60   0xB2DB             UXTB     R3,R3
-   \       0x62   0x4642             MOV      R2,R8
-   \       0x64   0xB2D2             UXTB     R2,R2
-   \       0x66   0x0039             MOVS     R1,R7
-   \       0x68   0xB2C9             UXTB     R1,R1
-   \       0x6A   0x....             LDR.N    R0,??DataTable11_24
-   \       0x6C   0x.... 0x....      BL       printf
-   \       0x70   0xE008             B.N      ??cmd_uptime_1
+   \       0x60   0x4650             MOV      R0,R10
+   \       0x62   0xB2C0             UXTB     R0,R0
+   \       0x64   0x9000             STR      R0,[SP, #+0]
+   \       0x66   0x464B             MOV      R3,R9
+   \       0x68   0xB2DB             UXTB     R3,R3
+   \       0x6A   0x4642             MOV      R2,R8
+   \       0x6C   0xB2D2             UXTB     R2,R2
+   \       0x6E   0x0039             MOVS     R1,R7
+   \       0x70   0xB2C9             UXTB     R1,R1
+   \       0x72   0x....             LDR.N    R0,??DataTable11_24
+   \       0x74   0x.... 0x....      BL       printf
+   \       0x78   0xE008             B.N      ??cmd_uptime_1
     861          	}
     862          	else
     863          	{
     864          		printf("%d:%02d:%02d up.\n", hour, min, sec);
    \                     ??cmd_uptime_0: (+1)
-   \       0x72   0x4653             MOV      R3,R10
-   \       0x74   0xB2DB             UXTB     R3,R3
-   \       0x76   0x464A             MOV      R2,R9
-   \       0x78   0xB2D2             UXTB     R2,R2
-   \       0x7A   0x4641             MOV      R1,R8
-   \       0x7C   0xB2C9             UXTB     R1,R1
-   \       0x7E   0x....             LDR.N    R0,??DataTable11_25
-   \       0x80   0x.... 0x....      BL       printf
+   \       0x7A   0x4653             MOV      R3,R10
+   \       0x7C   0xB2DB             UXTB     R3,R3
+   \       0x7E   0x464A             MOV      R2,R9
+   \       0x80   0xB2D2             UXTB     R2,R2
+   \       0x82   0x4641             MOV      R1,R8
+   \       0x84   0xB2C9             UXTB     R1,R1
+   \       0x86   0x....             LDR.N    R0,??DataTable11_25
+   \       0x88   0x.... 0x....      BL       printf
     865          	}
     866          
     867          //=============================================================================
@@ -2070,8 +2096,8 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
     870          
     871          	return (uint8_t)0;
    \                     ??cmd_uptime_1: (+1)
-   \       0x84   0x2000             MOVS     R0,#+0
-   \       0x86   0xE8BD 0x87F6      POP      {R1,R2,R4-R10,PC}
+   \       0x8C   0x2000             MOVS     R0,#+0
+   \       0x8E   0xE8BD 0x87F6      POP      {R1,R2,R4-R10,PC}
     872          }
     873          
     874          //========================================================================
@@ -3877,11 +3903,11 @@ Warning[Pe111]: statement is unreachable
 
    \                                 In section .rodata, align 4
    \                     ?_88:
-   \        0x0   0x53 0x65          DC8 "Sep 30 2022, 17:12:34"
+   \        0x0   0x4F 0x63          DC8 "Oct  6 2022, 13:55:46"
 
-   \              0x70 0x20    
+   \              0x74 0x20    
 
-   \              0x33 0x30    
+   \              0x20 0x36    
 
    \              0x20 0x32    
 
@@ -3891,13 +3917,13 @@ Warning[Pe111]: statement is unreachable
 
    \              0x20 0x31    
 
-   \              0x37 0x3A    
+   \              0x33 0x3A    
 
-   \              0x31 0x32    
+   \              0x35 0x35    
 
-   \              0x3A 0x33    
+   \              0x3A 0x34    
 
-   \              0x34 0x00
+   \              0x36 0x00
    \       0x16                      DS8 2
     891          
     892          /*
@@ -4097,14 +4123,14 @@ Warning[Pe111]: statement is unreachable
       16  ?_9
       12  CLIPrompt
       44  LoopProcCLI
-     406  ProcessCommand
+     460  ProcessCommand
        6  SetCLIProc
        6  SetCLIPrompt
       30  __NVIC_SystemReset
       20  a2hex
      180  cmd_help
       14  cmd_reset
-     138  cmd_uptime
+     146  cmd_uptime
       20  cmd_ver
       64  command_buf
        1  command_index
@@ -4123,11 +4149,11 @@ Warning[Pe111]: statement is unreachable
    145 bytes in section .bss
    396 bytes in section .data
  1'489 bytes in section .rodata
- 1'882 bytes in section .text
+ 1'944 bytes in section .text
  
- 1'882 bytes of CODE  memory
+ 1'944 bytes of CODE  memory
  1'489 bytes of CONST memory
    541 bytes of DATA  memory
 
 Errors: none
-Warnings: 30
+Warnings: 29

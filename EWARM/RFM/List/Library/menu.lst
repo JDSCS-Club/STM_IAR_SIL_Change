@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#                                                         30/Sep/2022  17:12:35
+#                                                         06/Oct/2022  13:55:46
 # IAR ANSI C/C++ Compiler V9.20.3.326/W64 for ARM Functional Safety
 # Copyright 1999-2022 IAR Systems AB.
 #
@@ -1263,7 +1263,7 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
     477          	if ( GetActiveMenu() == NULL )
    \        0x2   0x.... 0x....      BL       GetActiveMenu
    \        0x6   0x2800             CMP      R0,#+0
-   \        0x8   0xD008             BEQ.N    ??ProcBtnUp_0
+   \        0x8   0xD011             BEQ.N    ??ProcBtnUp_0
     478          	{
     479          		return;
     480          	}
@@ -1272,21 +1272,28 @@ Warning[Pe167]: argument of type "S8 *" is incompatible with parameter of type
     483          
     484          	g_pActiveMenu->currIdx--;
    \                     ??ProcBtnUp_1: (+1)
-   \        0xA   0x.... 0x....      LDR.W    R0,??DataTable23_2
-   \        0xE   0x6801             LDR      R1,[R0, #+0]
-   \       0x10   0x7949             LDRB     R1,[R1, #+5]
-   \       0x12   0x1E49             SUBS     R1,R1,#+1
-   \       0x14   0x6800             LDR      R0,[R0, #+0]
-   \       0x16   0x7141             STRB     R1,[R0, #+5]
+   \        0xA   0x.... 0x....      LDR.W    R1,??DataTable23_2
+   \        0xE   0x6808             LDR      R0,[R1, #+0]
+   \       0x10   0x7940             LDRB     R0,[R0, #+5]
+   \       0x12   0x1E40             SUBS     R0,R0,#+1
+   \       0x14   0x680A             LDR      R2,[R1, #+0]
+   \       0x16   0x7150             STRB     R0,[R2, #+5]
     485          
-    486          	if ( g_pActiveMenu->currIdx < 0 )
-                 	                            ^
-Warning[Pe186]: pointless comparison of unsigned integer with zero
+    486          	if ( g_pActiveMenu->currIdx <= 0 )
+   \       0x18   0x6808             LDR      R0,[R1, #+0]
+   \       0x1A   0x7940             LDRB     R0,[R0, #+5]
+   \       0x1C   0x2800             CMP      R0,#+0
+   \       0x1E   0xD104             BNE.N    ??ProcBtnUp_2
     487          	{
     488          #if defined(USE_RFT_MENU_LOOP)
     489          
     490          		//	Menu Up/Down Loop
     491          		g_pActiveMenu->currIdx = g_pActiveMenu->cntItem  - 1;
+   \       0x20   0x6808             LDR      R0,[R1, #+0]
+   \       0x22   0x7900             LDRB     R0,[R0, #+4]
+   \       0x24   0x1E40             SUBS     R0,R0,#+1
+   \       0x26   0x6809             LDR      R1,[R1, #+0]
+   \       0x28   0x7148             STRB     R0,[R1, #+5]
     492          
     493          #else
     494          
@@ -1298,10 +1305,11 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
     500          
     501          
     502          	UpdateLCDMenu();   //  메뉴화면 Update
-   \       0x18   0x.... 0x....      BL       UpdateLCDMenu
+   \                     ??ProcBtnUp_2: (+1)
+   \       0x2A   0x.... 0x....      BL       UpdateLCDMenu
     503          }
    \                     ??ProcBtnUp_0: (+1)
-   \       0x1C   0xBD01             POP      {R0,PC}
+   \       0x2E   0xBD01             POP      {R0,PC}
     504          
     505          //========================================================================
 
@@ -4354,7 +4362,7 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
       48  ProcBtnDown
       60  ProcBtnMenu
       48  ProcBtnOK
-      30  ProcBtnUp
+      48  ProcBtnUp
       10  ProcDispStat
       20  ProcDispVer
       64  ProcLightOff
@@ -4412,11 +4420,11 @@ Warning[Pe186]: pointless comparison of unsigned integer with zero
      8 bytes in section .bss
    832 bytes in section .data
  1'292 bytes in section .rodata
- 1'834 bytes in section .text
+ 1'852 bytes in section .text
  
- 1'834 bytes of CODE  memory
+ 1'852 bytes of CODE  memory
  1'292 bytes of CONST memory
    840 bytes of DATA  memory
 
 Errors: none
-Warnings: 25
+Warnings: 24
