@@ -672,7 +672,7 @@ void	RFM_Spk			( uint8_t bOnOff )		//	1(On) / 0(Off)
 		printf("%s(%d) - %d\n", __func__, __LINE__, bOnOff);
 	}
 
-    if ( bOnOff )
+    if ( bOnOff !=  0)
     {
         //  Spk Relay On
         HAL_GPIO_WritePin( SPK_ON_GPIO_Port, SPK_ON_Pin, GPIO_PIN_SET );
