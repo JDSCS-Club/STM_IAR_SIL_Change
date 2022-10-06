@@ -116,13 +116,13 @@
   *            @arg PWR_REGULATOR_VOLTAGE_SCALE2: Regulator voltage output Scale 2 mode
   * @retval None
   */
-#define __HAL_PWR_VOLTAGESCALING_CONFIG(__REGULATOR__) do {                                                     \
+#define __HAL_PWR_VOLTAGESCALING_CONFIG(__REGULATOR__)  {                                                     \
                                                             __IO uint32_t tmpreg = 0x00U;                        \
                                                             MODIFY_REG(PWR->CR, PWR_CR_VOS, (__REGULATOR__));   \
                                                             /* Delay after an RCC peripheral clock enabling */  \
                                                             tmpreg = READ_BIT(PWR->CR, PWR_CR_VOS);             \
                                                             UNUSED(tmpreg);                                     \
-                                                          } while(0U)
+                                                          }
 #else
 /** @brief  macros configure the main internal regulator output voltage.
   * @param  __REGULATOR__ specifies the regulator output voltage to achieve
